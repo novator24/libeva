@@ -7,7 +7,7 @@
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch01.html" title="Core Library Support">
 <link rel="prev" href="eva-evamacros.html" title="Helpful Macros">
-<link rel="next" href="GskStream.html" title="Binary Input/Output Stream Base">
+<link rel="next" href="EvaStream.html" title="Binary Input/Output Stream Base">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -34,23 +34,23 @@
 <td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="GskStream.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="EvaStream.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskIO.synopsis" class="shortcut">Top</a>
+<a href="#EvaIO.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskIO.description" class="shortcut">Description</a>
+                <a href="#EvaIO.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskIO.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaIO.object-hierarchy" class="shortcut">Object Hierarchy</a>
                  | 
-                <a href="#GskIO.signals" class="shortcut">Signals</a>
+                <a href="#EvaIO.signals" class="shortcut">Signals</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskIO"></a><div class="titlepage"></div>
+<a name="EvaIO"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskIO.top_of_page"></a>Base Input/Output Object</span></h2>
+<h2><span class="refentrytitle"><a name="EvaIO.top_of_page"></a>Base Input/Output Object</span></h2>
 <p>Base Input/Output Object — A base class with input and output triggers,
 but no actual read or write methods.
 Those are left for derived classes to support.</p>
@@ -58,111 +58,111 @@ Those are left for derived classes to support.</p>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskIO.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaIO.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="GskIO.html#GskIOClass" title="GskIOClass">GskIOClass</a>;
-                    <a class="link" href="GskIO.html#GskIO-struct" title="GskIO">GskIO</a>;
+                    <a class="link" href="EvaIO.html#EvaIOClass" title="EvaIOClass">EvaIOClass</a>;
+                    <a class="link" href="EvaIO.html#EvaIO-struct" title="EvaIO">EvaIO</a>;
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (<a class="link" href="GskIO.html#GskIOHookFunc" title="GskIOHookFunc ()">*GskIOHookFunc</a>)                    (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io,
+>gboolean</a>            (<a class="link" href="EvaIO.html#EvaIOHookFunc" title="EvaIOHookFunc ()">*EvaIOHookFunc</a>)                    (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);
-enum                <a class="link" href="GskIO.html#GskIOErrorCause" title="enum GskIOErrorCause">GskIOErrorCause</a>;
-#define             <a class="link" href="GskIO.html#EVA-IO-READ-HOOK--CAPS" title="EVA_IO_READ_HOOK()">EVA_IO_READ_HOOK</a>                    (io)
-#define             <a class="link" href="GskIO.html#EVA-IO-WRITE-HOOK--CAPS" title="EVA_IO_WRITE_HOOK()">EVA_IO_WRITE_HOOK</a>                   (io)
-#define             <a class="link" href="GskIO.html#eva-io-block-read" title="eva_io_block_read()">eva_io_block_read</a>                   (io)
-#define             <a class="link" href="GskIO.html#eva-io-block-write" title="eva_io_block_write()">eva_io_block_write</a>                  (io)
-#define             <a class="link" href="GskIO.html#eva-io-unblock-read" title="eva_io_unblock_read()">eva_io_unblock_read</a>                 (io)
-#define             <a class="link" href="GskIO.html#eva-io-unblock-write" title="eva_io_unblock_write()">eva_io_unblock_write</a>                (io)
-#define             <a class="link" href="GskIO.html#eva-io-has-read-hook" title="eva_io_has_read_hook()">eva_io_has_read_hook</a>                (io)
-#define             <a class="link" href="GskIO.html#eva-io-has-write-hook" title="eva_io_has_write_hook()">eva_io_has_write_hook</a>               (io)
-#define             <a class="link" href="GskIO.html#eva-io-trap-readable" title="eva_io_trap_readable()">eva_io_trap_readable</a>                (io, func, shutdown_func, data, destroy)
-#define             <a class="link" href="GskIO.html#eva-io-trap-writable" title="eva_io_trap_writable()">eva_io_trap_writable</a>                (io, func, shutdown_func, data, destroy)
-#define             <a class="link" href="GskIO.html#eva-io-untrap-readable" title="eva_io_untrap_readable()">eva_io_untrap_readable</a>              (io)
-#define             <a class="link" href="GskIO.html#eva-io-untrap-writable" title="eva_io_untrap_writable()">eva_io_untrap_writable</a>              (io)
-void                <a class="link" href="GskIO.html#eva-io-shutdown" title="eva_io_shutdown ()">eva_io_shutdown</a>                     (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io,
+enum                <a class="link" href="EvaIO.html#EvaIOErrorCause" title="enum EvaIOErrorCause">EvaIOErrorCause</a>;
+#define             <a class="link" href="EvaIO.html#EVA-IO-READ-HOOK--CAPS" title="EVA_IO_READ_HOOK()">EVA_IO_READ_HOOK</a>                    (io)
+#define             <a class="link" href="EvaIO.html#EVA-IO-WRITE-HOOK--CAPS" title="EVA_IO_WRITE_HOOK()">EVA_IO_WRITE_HOOK</a>                   (io)
+#define             <a class="link" href="EvaIO.html#eva-io-block-read" title="eva_io_block_read()">eva_io_block_read</a>                   (io)
+#define             <a class="link" href="EvaIO.html#eva-io-block-write" title="eva_io_block_write()">eva_io_block_write</a>                  (io)
+#define             <a class="link" href="EvaIO.html#eva-io-unblock-read" title="eva_io_unblock_read()">eva_io_unblock_read</a>                 (io)
+#define             <a class="link" href="EvaIO.html#eva-io-unblock-write" title="eva_io_unblock_write()">eva_io_unblock_write</a>                (io)
+#define             <a class="link" href="EvaIO.html#eva-io-has-read-hook" title="eva_io_has_read_hook()">eva_io_has_read_hook</a>                (io)
+#define             <a class="link" href="EvaIO.html#eva-io-has-write-hook" title="eva_io_has_write_hook()">eva_io_has_write_hook</a>               (io)
+#define             <a class="link" href="EvaIO.html#eva-io-trap-readable" title="eva_io_trap_readable()">eva_io_trap_readable</a>                (io, func, shutdown_func, data, destroy)
+#define             <a class="link" href="EvaIO.html#eva-io-trap-writable" title="eva_io_trap_writable()">eva_io_trap_writable</a>                (io, func, shutdown_func, data, destroy)
+#define             <a class="link" href="EvaIO.html#eva-io-untrap-readable" title="eva_io_untrap_readable()">eva_io_untrap_readable</a>              (io)
+#define             <a class="link" href="EvaIO.html#eva-io-untrap-writable" title="eva_io_untrap_writable()">eva_io_untrap_writable</a>              (io)
+void                <a class="link" href="EvaIO.html#eva-io-shutdown" title="eva_io_shutdown ()">eva_io_shutdown</a>                     (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-#define             <a class="link" href="GskIO.html#eva-io-read-shutdown" title="eva_io_read_shutdown()">eva_io_read_shutdown</a>                (io, error)
-#define             <a class="link" href="GskIO.html#eva-io-write-shutdown" title="eva_io_write_shutdown()">eva_io_write_shutdown</a>               (io, error)
-void                <a class="link" href="GskIO.html#eva-io-close" title="eva_io_close ()">eva_io_close</a>                        (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io);
-#define             <a class="link" href="GskIO.html#eva-io-notify-ready-to-read" title="eva_io_notify_ready_to_read()">eva_io_notify_ready_to_read</a>         (io)
-#define             <a class="link" href="GskIO.html#eva-io-notify-ready-to-write" title="eva_io_notify_ready_to_write()">eva_io_notify_ready_to_write</a>        (io)
-#define             <a class="link" href="GskIO.html#eva-io-notify-read-shutdown" title="eva_io_notify_read_shutdown()">eva_io_notify_read_shutdown</a>         (io)
-#define             <a class="link" href="GskIO.html#eva-io-notify-write-shutdown" title="eva_io_notify_write_shutdown()">eva_io_notify_write_shutdown</a>        (io)
-void                <a class="link" href="GskIO.html#eva-io-notify-shutdown" title="eva_io_notify_shutdown ()">eva_io_notify_shutdown</a>              (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io);
-void                <a class="link" href="GskIO.html#eva-io-notify-connected" title="eva_io_notify_connected ()">eva_io_notify_connected</a>             (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io);
-#define             <a class="link" href="GskIO.html#eva-io-is-polling-for-read" title="eva_io_is_polling_for_read()">eva_io_is_polling_for_read</a>          (io)
-#define             <a class="link" href="GskIO.html#eva-io-is-polling-for-write" title="eva_io_is_polling_for_write()">eva_io_is_polling_for_write</a>         (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-is-connecting" title="eva_io_get_is_connecting()">eva_io_get_is_connecting</a>            (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-is-readable" title="eva_io_get_is_readable()">eva_io_get_is_readable</a>              (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-is-writable" title="eva_io_get_is_writable()">eva_io_get_is_writable</a>              (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-never-partial-reads" title="eva_io_get_never_partial_reads()">eva_io_get_never_partial_reads</a>      (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-never-partial-writes" title="eva_io_get_never_partial_writes()">eva_io_get_never_partial_writes</a>     (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-never-blocks-write" title="eva_io_get_never_blocks_write()">eva_io_get_never_blocks_write</a>       (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-never-blocks-read" title="eva_io_get_never_blocks_read()">eva_io_get_never_blocks_read</a>        (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-idle-notify-write" title="eva_io_get_idle_notify_write()">eva_io_get_idle_notify_write</a>        (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-idle-notify-read" title="eva_io_get_idle_notify_read()">eva_io_get_idle_notify_read</a>         (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-is-open" title="eva_io_get_is_open()">eva_io_get_is_open</a>                  (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-is-read-shutting-down" title="eva_io_get_is_read_shutting_down()">eva_io_get_is_read_shutting_down</a>    (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-is-write-shutting-down" title="eva_io_get_is_write_shutting_down()">eva_io_get_is_write_shutting_down</a>   (io)
-#define             <a class="link" href="GskIO.html#eva-io-get-shutdown-on-error" title="eva_io_get_shutdown_on_error()">eva_io_get_shutdown_on_error</a>        (io)
-#define             <a class="link" href="GskIO.html#eva-io-mark-is-connecting" title="eva_io_mark_is_connecting()">eva_io_mark_is_connecting</a>           (io)
-#define             <a class="link" href="GskIO.html#eva-io-mark-is-readable" title="eva_io_mark_is_readable()">eva_io_mark_is_readable</a>             (io)
-#define             <a class="link" href="GskIO.html#eva-io-mark-is-writable" title="eva_io_mark_is_writable()">eva_io_mark_is_writable</a>             (io)
-#define             <a class="link" href="GskIO.html#eva-io-mark-never-partial-reads" title="eva_io_mark_never_partial_reads()">eva_io_mark_never_partial_reads</a>     (io)
-#define             <a class="link" href="GskIO.html#eva-io-mark-never-partial-writes" title="eva_io_mark_never_partial_writes()">eva_io_mark_never_partial_writes</a>    (io)
-#define             <a class="link" href="GskIO.html#eva-io-mark-never-blocks-write" title="eva_io_mark_never_blocks_write()">eva_io_mark_never_blocks_write</a>      (io)
-#define             <a class="link" href="GskIO.html#eva-io-mark-never-blocks-read" title="eva_io_mark_never_blocks_read()">eva_io_mark_never_blocks_read</a>       (io)
-#define             <a class="link" href="GskIO.html#eva-io-mark-idle-notify-write" title="eva_io_mark_idle_notify_write()">eva_io_mark_idle_notify_write</a>       (io)
-#define             <a class="link" href="GskIO.html#eva-io-mark-idle-notify-read" title="eva_io_mark_idle_notify_read()">eva_io_mark_idle_notify_read</a>        (io)
-#define             <a class="link" href="GskIO.html#eva-io-mark-is-open" title="eva_io_mark_is_open()">eva_io_mark_is_open</a>                 (io)
-#define             <a class="link" href="GskIO.html#eva-io-mark-shutdown-on-error" title="eva_io_mark_shutdown_on_error()">eva_io_mark_shutdown_on_error</a>       (io)
-#define             <a class="link" href="GskIO.html#eva-io-clear-is-readable" title="eva_io_clear_is_readable()">eva_io_clear_is_readable</a>            (io)
-#define             <a class="link" href="GskIO.html#eva-io-clear-is-writable" title="eva_io_clear_is_writable()">eva_io_clear_is_writable</a>            (io)
-#define             <a class="link" href="GskIO.html#eva-io-clear-never-partial-reads" title="eva_io_clear_never_partial_reads()">eva_io_clear_never_partial_reads</a>    (io)
-#define             <a class="link" href="GskIO.html#eva-io-clear-never-partial-writes" title="eva_io_clear_never_partial_writes()">eva_io_clear_never_partial_writes</a>   (io)
-#define             <a class="link" href="GskIO.html#eva-io-clear-idle-notify-write" title="eva_io_clear_idle_notify_write()">eva_io_clear_idle_notify_write</a>      (io)
-#define             <a class="link" href="GskIO.html#eva-io-clear-idle-notify-read" title="eva_io_clear_idle_notify_read()">eva_io_clear_idle_notify_read</a>       (io)
-#define             <a class="link" href="GskIO.html#eva-io-clear-is-open" title="eva_io_clear_is_open()">eva_io_clear_is_open</a>                (io)
-#define             <a class="link" href="GskIO.html#eva-io-clear-shutdown-on-error" title="eva_io_clear_shutdown_on_error()">eva_io_clear_shutdown_on_error</a>      (io)
-#define             <a class="link" href="GskIO.html#eva-io-set-idle-notify-write" title="eva_io_set_idle_notify_write()">eva_io_set_idle_notify_write</a>        (io,v)
-#define             <a class="link" href="GskIO.html#eva-io-set-idle-notify-read" title="eva_io_set_idle_notify_read()">eva_io_set_idle_notify_read</a>         (io,v)
-void                <a class="link" href="GskIO.html#eva-io-set-error" title="eva_io_set_error ()">eva_io_set_error</a>                    (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io,
-                                                         <a class="link" href="GskIO.html#GskIOErrorCause" title="enum GskIOErrorCause">GskIOErrorCause</a> cause,
-                                                         <a class="link" href="eva-evaerror.html#GskErrorCode" title="enum GskErrorCode">GskErrorCode</a> error_code,
+#define             <a class="link" href="EvaIO.html#eva-io-read-shutdown" title="eva_io_read_shutdown()">eva_io_read_shutdown</a>                (io, error)
+#define             <a class="link" href="EvaIO.html#eva-io-write-shutdown" title="eva_io_write_shutdown()">eva_io_write_shutdown</a>               (io, error)
+void                <a class="link" href="EvaIO.html#eva-io-close" title="eva_io_close ()">eva_io_close</a>                        (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io);
+#define             <a class="link" href="EvaIO.html#eva-io-notify-ready-to-read" title="eva_io_notify_ready_to_read()">eva_io_notify_ready_to_read</a>         (io)
+#define             <a class="link" href="EvaIO.html#eva-io-notify-ready-to-write" title="eva_io_notify_ready_to_write()">eva_io_notify_ready_to_write</a>        (io)
+#define             <a class="link" href="EvaIO.html#eva-io-notify-read-shutdown" title="eva_io_notify_read_shutdown()">eva_io_notify_read_shutdown</a>         (io)
+#define             <a class="link" href="EvaIO.html#eva-io-notify-write-shutdown" title="eva_io_notify_write_shutdown()">eva_io_notify_write_shutdown</a>        (io)
+void                <a class="link" href="EvaIO.html#eva-io-notify-shutdown" title="eva_io_notify_shutdown ()">eva_io_notify_shutdown</a>              (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io);
+void                <a class="link" href="EvaIO.html#eva-io-notify-connected" title="eva_io_notify_connected ()">eva_io_notify_connected</a>             (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io);
+#define             <a class="link" href="EvaIO.html#eva-io-is-polling-for-read" title="eva_io_is_polling_for_read()">eva_io_is_polling_for_read</a>          (io)
+#define             <a class="link" href="EvaIO.html#eva-io-is-polling-for-write" title="eva_io_is_polling_for_write()">eva_io_is_polling_for_write</a>         (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-is-connecting" title="eva_io_get_is_connecting()">eva_io_get_is_connecting</a>            (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-is-readable" title="eva_io_get_is_readable()">eva_io_get_is_readable</a>              (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-is-writable" title="eva_io_get_is_writable()">eva_io_get_is_writable</a>              (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-never-partial-reads" title="eva_io_get_never_partial_reads()">eva_io_get_never_partial_reads</a>      (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-never-partial-writes" title="eva_io_get_never_partial_writes()">eva_io_get_never_partial_writes</a>     (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-never-blocks-write" title="eva_io_get_never_blocks_write()">eva_io_get_never_blocks_write</a>       (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-never-blocks-read" title="eva_io_get_never_blocks_read()">eva_io_get_never_blocks_read</a>        (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-idle-notify-write" title="eva_io_get_idle_notify_write()">eva_io_get_idle_notify_write</a>        (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-idle-notify-read" title="eva_io_get_idle_notify_read()">eva_io_get_idle_notify_read</a>         (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-is-open" title="eva_io_get_is_open()">eva_io_get_is_open</a>                  (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-is-read-shutting-down" title="eva_io_get_is_read_shutting_down()">eva_io_get_is_read_shutting_down</a>    (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-is-write-shutting-down" title="eva_io_get_is_write_shutting_down()">eva_io_get_is_write_shutting_down</a>   (io)
+#define             <a class="link" href="EvaIO.html#eva-io-get-shutdown-on-error" title="eva_io_get_shutdown_on_error()">eva_io_get_shutdown_on_error</a>        (io)
+#define             <a class="link" href="EvaIO.html#eva-io-mark-is-connecting" title="eva_io_mark_is_connecting()">eva_io_mark_is_connecting</a>           (io)
+#define             <a class="link" href="EvaIO.html#eva-io-mark-is-readable" title="eva_io_mark_is_readable()">eva_io_mark_is_readable</a>             (io)
+#define             <a class="link" href="EvaIO.html#eva-io-mark-is-writable" title="eva_io_mark_is_writable()">eva_io_mark_is_writable</a>             (io)
+#define             <a class="link" href="EvaIO.html#eva-io-mark-never-partial-reads" title="eva_io_mark_never_partial_reads()">eva_io_mark_never_partial_reads</a>     (io)
+#define             <a class="link" href="EvaIO.html#eva-io-mark-never-partial-writes" title="eva_io_mark_never_partial_writes()">eva_io_mark_never_partial_writes</a>    (io)
+#define             <a class="link" href="EvaIO.html#eva-io-mark-never-blocks-write" title="eva_io_mark_never_blocks_write()">eva_io_mark_never_blocks_write</a>      (io)
+#define             <a class="link" href="EvaIO.html#eva-io-mark-never-blocks-read" title="eva_io_mark_never_blocks_read()">eva_io_mark_never_blocks_read</a>       (io)
+#define             <a class="link" href="EvaIO.html#eva-io-mark-idle-notify-write" title="eva_io_mark_idle_notify_write()">eva_io_mark_idle_notify_write</a>       (io)
+#define             <a class="link" href="EvaIO.html#eva-io-mark-idle-notify-read" title="eva_io_mark_idle_notify_read()">eva_io_mark_idle_notify_read</a>        (io)
+#define             <a class="link" href="EvaIO.html#eva-io-mark-is-open" title="eva_io_mark_is_open()">eva_io_mark_is_open</a>                 (io)
+#define             <a class="link" href="EvaIO.html#eva-io-mark-shutdown-on-error" title="eva_io_mark_shutdown_on_error()">eva_io_mark_shutdown_on_error</a>       (io)
+#define             <a class="link" href="EvaIO.html#eva-io-clear-is-readable" title="eva_io_clear_is_readable()">eva_io_clear_is_readable</a>            (io)
+#define             <a class="link" href="EvaIO.html#eva-io-clear-is-writable" title="eva_io_clear_is_writable()">eva_io_clear_is_writable</a>            (io)
+#define             <a class="link" href="EvaIO.html#eva-io-clear-never-partial-reads" title="eva_io_clear_never_partial_reads()">eva_io_clear_never_partial_reads</a>    (io)
+#define             <a class="link" href="EvaIO.html#eva-io-clear-never-partial-writes" title="eva_io_clear_never_partial_writes()">eva_io_clear_never_partial_writes</a>   (io)
+#define             <a class="link" href="EvaIO.html#eva-io-clear-idle-notify-write" title="eva_io_clear_idle_notify_write()">eva_io_clear_idle_notify_write</a>      (io)
+#define             <a class="link" href="EvaIO.html#eva-io-clear-idle-notify-read" title="eva_io_clear_idle_notify_read()">eva_io_clear_idle_notify_read</a>       (io)
+#define             <a class="link" href="EvaIO.html#eva-io-clear-is-open" title="eva_io_clear_is_open()">eva_io_clear_is_open</a>                (io)
+#define             <a class="link" href="EvaIO.html#eva-io-clear-shutdown-on-error" title="eva_io_clear_shutdown_on_error()">eva_io_clear_shutdown_on_error</a>      (io)
+#define             <a class="link" href="EvaIO.html#eva-io-set-idle-notify-write" title="eva_io_set_idle_notify_write()">eva_io_set_idle_notify_write</a>        (io,v)
+#define             <a class="link" href="EvaIO.html#eva-io-set-idle-notify-read" title="eva_io_set_idle_notify_read()">eva_io_set_idle_notify_read</a>         (io,v)
+void                <a class="link" href="EvaIO.html#eva-io-set-error" title="eva_io_set_error ()">eva_io_set_error</a>                    (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io,
+                                                         <a class="link" href="EvaIO.html#EvaIOErrorCause" title="enum EvaIOErrorCause">EvaIOErrorCause</a> cause,
+                                                         <a class="link" href="eva-evaerror.html#EvaErrorCode" title="enum EvaErrorCode">EvaErrorCode</a> error_code,
                                                          const char *format,
                                                          ...);
-void                <a class="link" href="GskIO.html#eva-io-set-gerror" title="eva_io_set_gerror ()">eva_io_set_gerror</a>                   (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io,
-                                                         <a class="link" href="GskIO.html#GskIOErrorCause" title="enum GskIOErrorCause">GskIOErrorCause</a> cause,
+void                <a class="link" href="EvaIO.html#eva-io-set-gerror" title="eva_io_set_gerror ()">eva_io_set_gerror</a>                   (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io,
+                                                         <a class="link" href="EvaIO.html#EvaIOErrorCause" title="enum EvaIOErrorCause">EvaIOErrorCause</a> cause,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error);
-const char *        <a class="link" href="GskIO.html#eva-io-error-cause-to-string" title="eva_io_error_cause_to_string ()">eva_io_error_cause_to_string</a>        (<a class="link" href="GskIO.html#GskIOErrorCause" title="enum GskIOErrorCause">GskIOErrorCause</a> cause);
+const char *        <a class="link" href="EvaIO.html#eva-io-error-cause-to-string" title="eva_io_error_cause_to_string ()">eva_io_error_cause_to_string</a>        (<a class="link" href="EvaIO.html#EvaIOErrorCause" title="enum EvaIOErrorCause">EvaIOErrorCause</a> cause);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskIO.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaIO.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----GskIO
-         +----<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a>
-         +----<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a>
+   +----EvaIO
+         +----<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a>
+         +----<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a>
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskIO.signals"></a><h2>Signals</h2>
+<a name="EvaIO.signals"></a><h2>Signals</h2>
 <pre class="synopsis">
-  "<a class="link" href="GskIO.html#GskIO-on-connect" title='The "on-connect" signal'>on-connect</a>"                                     : No Recursion
-  "<a class="link" href="GskIO.html#GskIO-on-error" title='The "on-error" signal'>on-error</a>"                                       : No Recursion
+  "<a class="link" href="EvaIO.html#EvaIO-on-connect" title='The "on-connect" signal'>on-connect</a>"                                     : No Recursion
+  "<a class="link" href="EvaIO.html#EvaIO-on-error" title='The "on-error" signal'>on-error</a>"                                       : No Recursion
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskIO.description"></a><h2>Description</h2>
+<a name="EvaIO.description"></a><h2>Description</h2>
 <p>
 The primary feature of this class is that it has two hooks;
 a read hook and a write hook, and a ton of convenience methods
@@ -170,29 +170,29 @@ to access them.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskIO.details"></a><h2>Details</h2>
+<a name="EvaIO.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskIOClass"></a><h3>GskIOClass</h3>
+<a name="EvaIOClass"></a><h3>EvaIOClass</h3>
 <pre class="programlisting">typedef struct {
   GObjectClass object_class;
   /* --- signals (do not override, usually) --- */
   /* Emitted after the connection is made. */
-  void       (*on_connect)      (GskIO      *io);
-  void       (*on_error)        (GskIO      *io);
+  void       (*on_connect)      (EvaIO      *io);
+  void       (*on_error)        (EvaIO      *io);
 
   /* --- virtuals --- */
-  gboolean   (*open)            (GskIO      *io,
+  gboolean   (*open)            (EvaIO      *io,
 				 GError    **error);
-  void       (*set_poll_read)   (GskIO      *io,
+  void       (*set_poll_read)   (EvaIO      *io,
 				 gboolean    do_poll);
-  void       (*set_poll_write)  (GskIO      *io,
+  void       (*set_poll_write)  (EvaIO      *io,
 				 gboolean    do_poll);
-  gboolean   (*shutdown_read)   (GskIO      *io,
+  gboolean   (*shutdown_read)   (EvaIO      *io,
 				 GError    **error);
-  gboolean   (*shutdown_write)  (GskIO      *io,
+  gboolean   (*shutdown_write)  (EvaIO      *io,
 				 GError    **error);
-  void       (*close)           (GskIO      *io);
-} GskIOClass;
+  void       (*close)           (EvaIO      *io);
+} EvaIOClass;
 </pre>
 <p>
 Methods which derived classes should overload to
@@ -224,21 +224,21 @@ has been completed.
 <tr>
 <td><p><span class="term"><em class="structfield"><code>open</code></em> ()</span></p></td>
 <td>
-Open resources.  This is called when the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> is constructed.
+Open resources.  This is called when the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> is constructed.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="structfield"><code>set_poll_read</code></em> ()</span></p></td>
 <td>
 This function should turn on/off whether the implementation
-will call <a class="link" href="GskIO.html#eva-io-notify-ready-to-read" title="eva_io_notify_ready_to_read()"><code class="function">eva_io_notify_ready_to_read()</code></a>.
+will call <a class="link" href="EvaIO.html#eva-io-notify-ready-to-read" title="eva_io_notify_ready_to_read()"><code class="function">eva_io_notify_ready_to_read()</code></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="structfield"><code>set_poll_write</code></em> ()</span></p></td>
 <td>
 This function should turn on/off whether the implementation
-will call <a class="link" href="GskIO.html#eva-io-notify-ready-to-write" title="eva_io_notify_ready_to_write()"><code class="function">eva_io_notify_ready_to_write()</code></a>.
+will call <a class="link" href="EvaIO.html#eva-io-notify-ready-to-write" title="eva_io_notify_ready_to_write()"><code class="function">eva_io_notify_ready_to_write()</code></a>.
 </td>
 </tr>
 <tr>
@@ -268,8 +268,8 @@ Deallocate system resources associated with instance.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskIO-struct"></a><h3>GskIO</h3>
-<pre class="programlisting">typedef struct _GskIO GskIO;</pre>
+<a name="EvaIO-struct"></a><h3>EvaIO</h3>
+<pre class="programlisting">typedef struct _EvaIO EvaIO;</pre>
 <p>
 The base class for all input/output objects.
 It has no public members.
@@ -277,10 +277,10 @@ It has no public members.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskIOHookFunc"></a><h3>GskIOHookFunc ()</h3>
+<a name="EvaIOHookFunc"></a><h3>EvaIOHookFunc ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (*GskIOHookFunc)                    (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io,
+>gboolean</a>            (*EvaIOHookFunc)                    (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);</pre>
@@ -298,8 +298,8 @@ is ready to read or write, or shutdown in either direction.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
-<td>the data passed to <a class="link" href="GskIO.html#eva-io-trap-readable" title="eva_io_trap_readable()"><code class="function">eva_io_trap_readable()</code></a>
-or <a class="link" href="GskIO.html#eva-io-trap-writable" title="eva_io_trap_writable()"><code class="function">eva_io_trap_writable()</code></a>.
+<td>the data passed to <a class="link" href="EvaIO.html#eva-io-trap-readable" title="eva_io_trap_readable()"><code class="function">eva_io_trap_readable()</code></a>
+or <a class="link" href="EvaIO.html#eva-io-trap-writable" title="eva_io_trap_writable()"><code class="function">eva_io_trap_writable()</code></a>.
 </td>
 </tr>
 <tr>
@@ -313,7 +313,7 @@ be deleted.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskIOErrorCause"></a><h3>enum GskIOErrorCause</h3>
+<a name="EvaIOErrorCause"></a><h3>enum EvaIOErrorCause</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_IO_ERROR_NONE,
@@ -329,15 +329,15 @@ be deleted.
   EVA_IO_ERROR_CLOSE,
   EVA_IO_ERROR_SYNC,
   EVA_IO_ERROR_POLL
-} GskIOErrorCause;
+} EvaIOErrorCause;
 </pre>
 <p>
-Every <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> has an GError and a GskIOErrorCause
+Every <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> has an GError and a EvaIOErrorCause
 which tells the last error observed on the stream,
 and what type of action triggered it.
 </p>
 <p>
-Implementations can use <a class="link" href="GskIO.html#eva-io-set-error" title="eva_io_set_error ()"><code class="function">eva_io_set_error()</code></a>
+Implementations can use <a class="link" href="EvaIO.html#eva-io-set-error" title="eva_io_set_error ()"><code class="function">eva_io_set_error()</code></a>
 to register an error.
 </p>
 <div class="variablelist"><table border="0">
@@ -424,14 +424,14 @@ An error occurred closing.
 <a name="EVA-IO-READ-HOOK--CAPS"></a><h3>EVA_IO_READ_HOOK()</h3>
 <pre class="programlisting">#define             EVA_IO_READ_HOOK(io)</pre>
 <p>
-Get a pointer to the <a class="link" href="eva-evahook.html#GskHook" title="GskHook"><span class="type">GskHook</span></a>
-corresponding to the read end of the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>.
+Get a pointer to the <a class="link" href="eva-evahook.html#EvaHook" title="EvaHook"><span class="type">EvaHook</span></a>
+corresponding to the read end of the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the GskIO which contains the read-hook.
+<td>the EvaIO which contains the read-hook.
 </td>
 </tr></tbody>
 </table></div>
@@ -441,14 +441,14 @@ corresponding to the read end of the <a class="link" href="GskIO.html" title="Ba
 <a name="EVA-IO-WRITE-HOOK--CAPS"></a><h3>EVA_IO_WRITE_HOOK()</h3>
 <pre class="programlisting">#define             EVA_IO_WRITE_HOOK(io)</pre>
 <p>
-Get a pointer to the <a class="link" href="eva-evahook.html#GskHook" title="GskHook"><span class="type">GskHook</span></a>
-corresponding to the write end of the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>.
+Get a pointer to the <a class="link" href="eva-evahook.html#EvaHook" title="EvaHook"><span class="type">EvaHook</span></a>
+corresponding to the write end of the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the GskIO which contains the write-hook.
+<td>the EvaIO which contains the write-hook.
 </td>
 </tr></tbody>
 </table></div>
@@ -464,7 +464,7 @@ Block the read hook from being triggered.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the GskIO whose read hook should be blocked.
+<td>the EvaIO whose read hook should be blocked.
 </td>
 </tr></tbody>
 </table></div>
@@ -480,7 +480,7 @@ Block the write hook from being triggered.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the GskIO whose write hook should be blocked.
+<td>the EvaIO whose write hook should be blocked.
 </td>
 </tr></tbody>
 </table></div>
@@ -496,7 +496,7 @@ Unblock the read hook from being triggered.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the GskIO whose read hook should be unblocked.
+<td>the EvaIO whose read hook should be unblocked.
 </td>
 </tr></tbody>
 </table></div>
@@ -512,7 +512,7 @@ Unblock the write hook from being triggered.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the GskIO whose write hook should be unblocked.
+<td>the EvaIO whose write hook should be unblocked.
 </td>
 </tr></tbody>
 </table></div>
@@ -528,7 +528,7 @@ Return whether the read hook is trapped.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the GskIO whose read hook should be tested.
+<td>the EvaIO whose read hook should be tested.
 </td>
 </tr></tbody>
 </table></div>
@@ -544,7 +544,7 @@ Return whether the write hook is trapped.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the GskIO whose write hook should be tested.
+<td>the EvaIO whose write hook should be tested.
 </td>
 </tr></tbody>
 </table></div>
@@ -554,27 +554,27 @@ Return whether the write hook is trapped.
 <a name="eva-io-trap-readable"></a><h3>eva_io_trap_readable()</h3>
 <pre class="programlisting">#define             eva_io_trap_readable(io, func, shutdown_func, data, destroy)</pre>
 <p>
-Trap the read end of the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>.
+Trap the read end of the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>.
 </p>
 <p>
-Note that only one trap of a <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>'s read-end is allowed at a time.
+Note that only one trap of a <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>'s read-end is allowed at a time.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> whose read end should be trapped.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> whose read end should be trapped.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
-<td>the function to call (a <a class="link" href="GskIO.html#GskIOHookFunc" title="GskIOHookFunc ()"><span class="type">GskIOHookFunc</span></a>) when it's readable.
+<td>the function to call (a <a class="link" href="EvaIO.html#EvaIOHookFunc" title="EvaIOHookFunc ()"><span class="type">EvaIOHookFunc</span></a>) when it's readable.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>shutdown_func</code></em> :</span></p></td>
-<td>the function to call (a <a class="link" href="GskIO.html#GskIOHookFunc" title="GskIOHookFunc ()"><span class="type">GskIOHookFunc</span></a>) when it's read end is shut down.
+<td>the function to call (a <a class="link" href="EvaIO.html#EvaIOHookFunc" title="EvaIOHookFunc ()"><span class="type">EvaIOHookFunc</span></a>) when it's read end is shut down.
 </td>
 </tr>
 <tr>
@@ -595,27 +595,27 @@ Note that only one trap of a <a class="link" href="GskIO.html" title="Base Input
 <a name="eva-io-trap-writable"></a><h3>eva_io_trap_writable()</h3>
 <pre class="programlisting">#define             eva_io_trap_writable(io, func, shutdown_func, data, destroy)</pre>
 <p>
-Trap the write end of the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>.
+Trap the write end of the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>.
 </p>
 <p>
-Note that only one trap of a <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>'s write-end is allowed at a time.
+Note that only one trap of a <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>'s write-end is allowed at a time.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> whose write end should be trapped.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> whose write end should be trapped.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
-<td>the function to call (a <a class="link" href="GskIO.html#GskIOHookFunc" title="GskIOHookFunc ()"><span class="type">GskIOHookFunc</span></a>) when it's writable.
+<td>the function to call (a <a class="link" href="EvaIO.html#EvaIOHookFunc" title="EvaIOHookFunc ()"><span class="type">EvaIOHookFunc</span></a>) when it's writable.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>shutdown_func</code></em> :</span></p></td>
-<td>the function to call (a <a class="link" href="GskIO.html#GskIOHookFunc" title="GskIOHookFunc ()"><span class="type">GskIOHookFunc</span></a>) when it's write end is shut down.
+<td>the function to call (a <a class="link" href="EvaIO.html#EvaIOHookFunc" title="EvaIOHookFunc ()"><span class="type">EvaIOHookFunc</span></a>) when it's write end is shut down.
 </td>
 </tr>
 <tr>
@@ -636,13 +636,13 @@ Note that only one trap of a <a class="link" href="GskIO.html" title="Base Input
 <a name="eva-io-untrap-readable"></a><h3>eva_io_untrap_readable()</h3>
 <pre class="programlisting">#define             eva_io_untrap_readable(io)</pre>
 <p>
-Untrap the read end of the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>.
+Untrap the read end of the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> whose read end should be untrapped.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> whose read end should be untrapped.
 </td>
 </tr></tbody>
 </table></div>
@@ -652,13 +652,13 @@ Untrap the read end of the <a class="link" href="GskIO.html" title="Base Input/O
 <a name="eva-io-untrap-writable"></a><h3>eva_io_untrap_writable()</h3>
 <pre class="programlisting">#define             eva_io_untrap_writable(io)</pre>
 <p>
-Untrap the write end of the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>.
+Untrap the write end of the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> whose write end should be untrapped.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> whose write end should be untrapped.
 </td>
 </tr></tbody>
 </table></div>
@@ -666,12 +666,12 @@ Untrap the write end of the <a class="link" href="GskIO.html" title="Base Input/
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-io-shutdown"></a><h3>eva_io_shutdown ()</h3>
-<pre class="programlisting">void                eva_io_shutdown                     (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io,
+<pre class="programlisting">void                eva_io_shutdown                     (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
 <p>
-Shutdown the read and write ends of a <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>.</p>
+Shutdown the read and write ends of a <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -695,7 +695,7 @@ Shutdown the read and write ends of a <a class="link" href="GskIO.html" title="B
 <a name="eva-io-read-shutdown"></a><h3>eva_io_read_shutdown()</h3>
 <pre class="programlisting">#define             eva_io_read_shutdown(io, error)</pre>
 <p>
-Shutdown both the read ends of the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>.
+Shutdown both the read ends of the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>.
 </p>
 <p>
 Returns TRUE if the shutdown succeeded immediately.
@@ -710,7 +710,7 @@ at the <em class="parameter"><code>error</code></em> return.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr>
 <tr>
@@ -726,7 +726,7 @@ at the <em class="parameter"><code>error</code></em> return.
 <a name="eva-io-write-shutdown"></a><h3>eva_io_write_shutdown()</h3>
 <pre class="programlisting">#define             eva_io_write_shutdown(io, error)</pre>
 <p>
-Shutdown both the write ends of the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>.
+Shutdown both the write ends of the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>.
 </p>
 <p>
 Returns FALSE if the shutdown has been initiated but not finished,
@@ -738,7 +738,7 @@ at the <em class="parameter"><code>error</code></em> return.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr>
 <tr>
@@ -752,16 +752,16 @@ at the <em class="parameter"><code>error</code></em> return.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-io-close"></a><h3>eva_io_close ()</h3>
-<pre class="programlisting">void                eva_io_close                        (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io);</pre>
+<pre class="programlisting">void                eva_io_close                        (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io);</pre>
 <p>
-Close an open <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>.</p>
+Close an open <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td> the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to close.
+<td> the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to close.
 </td>
 </tr></tbody>
 </table></div>
@@ -778,7 +778,7 @@ called by derived implementations.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> whose read-end is ready.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> whose read-end is ready.
 </td>
 </tr></tbody>
 </table></div>
@@ -795,7 +795,7 @@ called by derived implementations.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> whose write-end is ready.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> whose write-end is ready.
 </td>
 </tr></tbody>
 </table></div>
@@ -812,7 +812,7 @@ called by derived implementations.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> whose read-end is shutdown.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> whose read-end is shutdown.
 </td>
 </tr></tbody>
 </table></div>
@@ -829,7 +829,7 @@ called by derived implementations.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> whose write-end is shutdown.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> whose write-end is shutdown.
 </td>
 </tr></tbody>
 </table></div>
@@ -837,7 +837,7 @@ called by derived implementations.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-io-notify-shutdown"></a><h3>eva_io_notify_shutdown ()</h3>
-<pre class="programlisting">void                eva_io_notify_shutdown              (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io);</pre>
+<pre class="programlisting">void                eva_io_notify_shutdown              (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io);</pre>
 <p>
 This function is called by an implementation
 when the read- and write- ends of the i/o object
@@ -856,7 +856,7 @@ have both shut-down.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-io-notify-connected"></a><h3>eva_io_notify_connected ()</h3>
-<pre class="programlisting">void                eva_io_notify_connected             (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io);</pre>
+<pre class="programlisting">void                eva_io_notify_connected             (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io);</pre>
 <p>
 Trigger an is-connected event.  This should only be
 called by derived implementations.
@@ -867,7 +867,7 @@ Called to indicate that the connection has been made.</p>
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td> the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> that finished connecting to the remote side.
+<td> the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> that finished connecting to the remote side.
 </td>
 </tr></tbody>
 </table></div>
@@ -911,14 +911,14 @@ indicated that polling for writability was desired.
 <a name="eva-io-get-is-connecting"></a><h3>eva_io_get_is_connecting()</h3>
 <pre class="programlisting">#define             eva_io_get_is_connecting(io)</pre>
 <p>
-Return whether the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> is still connecting.
-Will be FALSE if the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> is never connecting.
+Return whether the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> is still connecting.
+Will be FALSE if the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> is never connecting.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to test.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to test.
 </td>
 </tr></tbody>
 </table></div>
@@ -928,7 +928,7 @@ Will be FALSE if the <a class="link" href="GskIO.html" title="Base Input/Output 
 <a name="eva-io-get-is-readable"></a><h3>eva_io_get_is_readable()</h3>
 <pre class="programlisting">#define             eva_io_get_is_readable(io)</pre>
 <p>
-Return whether the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> is readable.
+Return whether the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> is readable.
 (It means that the read-end is available--
 it does not that there is any data which can be read.)
 </p>
@@ -936,7 +936,7 @@ it does not that there is any data which can be read.)
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to test.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to test.
 </td>
 </tr></tbody>
 </table></div>
@@ -946,7 +946,7 @@ it does not that there is any data which can be read.)
 <a name="eva-io-get-is-writable"></a><h3>eva_io_get_is_writable()</h3>
 <pre class="programlisting">#define             eva_io_get_is_writable(io)</pre>
 <p>
-Return whether the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> is writable.
+Return whether the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> is writable.
 (It means that the write-end is available--
 it does not mean that you can necessarily write data.)
 </p>
@@ -954,7 +954,7 @@ it does not mean that you can necessarily write data.)
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to test.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to test.
 </td>
 </tr></tbody>
 </table></div>
@@ -964,7 +964,7 @@ it does not mean that you can necessarily write data.)
 <a name="eva-io-get-never-partial-reads"></a><h3>eva_io_get_never_partial_reads()</h3>
 <pre class="programlisting">#define             eva_io_get_never_partial_reads(io)</pre>
 <p>
-Return whether the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> ever reads a partial buffer.
+Return whether the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> ever reads a partial buffer.
 </p>
 <p>
 An example of a source which never returns partial data
@@ -974,7 +974,7 @@ is a virtual source like /dev/zero.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to test.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to test.
 </td>
 </tr></tbody>
 </table></div>
@@ -984,7 +984,7 @@ is a virtual source like /dev/zero.
 <a name="eva-io-get-never-partial-writes"></a><h3>eva_io_get_never_partial_writes()</h3>
 <pre class="programlisting">#define             eva_io_get_never_partial_writes(io)</pre>
 <p>
-Return whether the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> ever writes a partial buffer.
+Return whether the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> ever writes a partial buffer.
 </p>
 <p>
 An example of a source which never writes partial data
@@ -995,7 +995,7 @@ discards data written to it.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to test.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to test.
 </td>
 </tr></tbody>
 </table></div>
@@ -1005,14 +1005,14 @@ discards data written to it.
 <a name="eva-io-get-never-blocks-write"></a><h3>eva_io_get_never_blocks_write()</h3>
 <pre class="programlisting">#define             eva_io_get_never_blocks_write(io)</pre>
 <p>
-Return if the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> will never block to write data.  It will always allow
+Return if the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> will never block to write data.  It will always allow
 some data to be written, until it is full and will allow no more ever.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to test.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to test.
 </td>
 </tr></tbody>
 </table></div>
@@ -1022,14 +1022,14 @@ some data to be written, until it is full and will allow no more ever.
 <a name="eva-io-get-never-blocks-read"></a><h3>eva_io_get_never_blocks_read()</h3>
 <pre class="programlisting">#define             eva_io_get_never_blocks_read(io)</pre>
 <p>
-Return if the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> will never block to read data.  It will always return
+Return if the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> will never block to read data.  It will always return
 some data, until it is empty and will never return any more.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to test.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to test.
 </td>
 </tr></tbody>
 </table></div>
@@ -1047,7 +1047,7 @@ as long as there is a unblocked hook watching it.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to test.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to test.
 </td>
 </tr></tbody>
 </table></div>
@@ -1065,7 +1065,7 @@ as long as there is a unblocked hook watching it.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to test.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to test.
 </td>
 </tr></tbody>
 </table></div>
@@ -1075,14 +1075,14 @@ as long as there is a unblocked hook watching it.
 <a name="eva-io-get-is-open"></a><h3>eva_io_get_is_open()</h3>
 <pre class="programlisting">#define             eva_io_get_is_open(io)</pre>
 <p>
-Return whether the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> is open.  A <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> should be open if
+Return whether the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> is open.  A <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> should be open if
 you want to use it.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to test.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to test.
 </td>
 </tr></tbody>
 </table></div>
@@ -1139,15 +1139,15 @@ Get whether the write end of the IO is in the process of shutting down.
 <a name="eva-io-mark-is-connecting"></a><h3>eva_io_mark_is_connecting()</h3>
 <pre class="programlisting">#define             eva_io_mark_is_connecting(io)</pre>
 <p>
-Set the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>'s is_connecting flag.  This should only be called
+Set the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>'s is_connecting flag.  This should only be called
 by the implementations of derived classes.  By default,
-GskIO is not in the connecting state.
+EvaIO is not in the connecting state.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1157,7 +1157,7 @@ GskIO is not in the connecting state.
 <a name="eva-io-mark-is-readable"></a><h3>eva_io_mark_is_readable()</h3>
 <pre class="programlisting">#define             eva_io_mark_is_readable(io)</pre>
 <p>
-Set whether the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> is_readable.  This should only be called by
+Set whether the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> is_readable.  This should only be called by
 the implementations of derived classes.  In general,
 you should not change is_readable more than once in the lifetime
 of an object; however some types of streams
@@ -1167,7 +1167,7 @@ can be made readable again once they are shutdown.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1177,7 +1177,7 @@ can be made readable again once they are shutdown.
 <a name="eva-io-mark-is-writable"></a><h3>eva_io_mark_is_writable()</h3>
 <pre class="programlisting">#define             eva_io_mark_is_writable(io)</pre>
 <p>
-Set whether the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> is_writable.  This should only be called by
+Set whether the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> is_writable.  This should only be called by
 the implementations of derived classes.  In general,
 you should not change is_writable more than once in the lifetime
 of an object; however some types of streams
@@ -1187,7 +1187,7 @@ can be made writable again once they are shutdown.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1205,7 +1205,7 @@ This should therefore only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1223,7 +1223,7 @@ This should therefore only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1233,7 +1233,7 @@ This should therefore only be used by implementations of derived classes.
 <a name="eva-io-mark-never-blocks-write"></a><h3>eva_io_mark_never_blocks_write()</h3>
 <pre class="programlisting">#define             eva_io_mark_never_blocks_write(io)</pre>
 <p>
-Indicate that writing to the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> never will block.
+Indicate that writing to the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> never will block.
 Once this flag is set it cannot be cleared.
 This should only be used by implementations of derived classes.
 </p>
@@ -1241,7 +1241,7 @@ This should only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1251,7 +1251,7 @@ This should only be used by implementations of derived classes.
 <a name="eva-io-mark-never-blocks-read"></a><h3>eva_io_mark_never_blocks_read()</h3>
 <pre class="programlisting">#define             eva_io_mark_never_blocks_read(io)</pre>
 <p>
-Indicate that reading from the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> never will block.
+Indicate that reading from the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> never will block.
 Once this flag is set it cannot be cleared.
 This should only be used by implementations of derived classes.
 </p>
@@ -1259,7 +1259,7 @@ This should only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1269,7 +1269,7 @@ This should only be used by implementations of derived classes.
 <a name="eva-io-mark-idle-notify-write"></a><h3>eva_io_mark_idle_notify_write()</h3>
 <pre class="programlisting">#define             eva_io_mark_idle_notify_write(io)</pre>
 <p>
-Tell the GskIO system to continually trigger a user's write hook,
+Tell the EvaIO system to continually trigger a user's write hook,
 if any, assuming it is not blocked.
 This should only be used by implementations of derived classes.
 </p>
@@ -1277,7 +1277,7 @@ This should only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1287,7 +1287,7 @@ This should only be used by implementations of derived classes.
 <a name="eva-io-mark-idle-notify-read"></a><h3>eva_io_mark_idle_notify_read()</h3>
 <pre class="programlisting">#define             eva_io_mark_idle_notify_read(io)</pre>
 <p>
-Tell the GskIO system to continually trigger a user's read hook,
+Tell the EvaIO system to continually trigger a user's read hook,
 if any, assuming it is not blocked.
 This should only be used by implementations of derived classes.
 </p>
@@ -1295,7 +1295,7 @@ This should only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1305,14 +1305,14 @@ This should only be used by implementations of derived classes.
 <a name="eva-io-mark-is-open"></a><h3>eva_io_mark_is_open()</h3>
 <pre class="programlisting">#define             eva_io_mark_is_open(io)</pre>
 <p>
-Indicate that a <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> is open.
+Indicate that a <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> is open.
 This should only be used by implementations of derived classes.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1322,13 +1322,13 @@ This should only be used by implementations of derived classes.
 <a name="eva-io-mark-shutdown-on-error"></a><h3>eva_io_mark_shutdown_on_error()</h3>
 <pre class="programlisting">#define             eva_io_mark_shutdown_on_error(io)</pre>
 <p>
-Cause the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> object to be shutdown if it fails.
+Cause the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> object to be shutdown if it fails.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> object to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> object to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1338,7 +1338,7 @@ Cause the <a class="link" href="GskIO.html" title="Base Input/Output Object"><sp
 <a name="eva-io-clear-is-readable"></a><h3>eva_io_clear_is_readable()</h3>
 <pre class="programlisting">#define             eva_io_clear_is_readable(io)</pre>
 <p>
-Indicate that a <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> is no longer readable.
+Indicate that a <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> is no longer readable.
 In most classes, this condition is permanent.
 This should only be used by implementations of derived classes.
 </p>
@@ -1346,7 +1346,7 @@ This should only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1356,7 +1356,7 @@ This should only be used by implementations of derived classes.
 <a name="eva-io-clear-is-writable"></a><h3>eva_io_clear_is_writable()</h3>
 <pre class="programlisting">#define             eva_io_clear_is_writable(io)</pre>
 <p>
-Indicate that a <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> is no longer writable.
+Indicate that a <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> is no longer writable.
 In most classes, this condition is permanent.
 This should only be used by implementations of derived classes.
 </p>
@@ -1364,7 +1364,7 @@ This should only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1374,13 +1374,13 @@ This should only be used by implementations of derived classes.
 <a name="eva-io-clear-never-partial-reads"></a><h3>eva_io_clear_never_partial_reads()</h3>
 <pre class="programlisting">#define             eva_io_clear_never_partial_reads(io)</pre>
 <p>
-Indicate that the GskIO may exhibit partial reads.
+Indicate that the EvaIO may exhibit partial reads.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1390,13 +1390,13 @@ Indicate that the GskIO may exhibit partial reads.
 <a name="eva-io-clear-never-partial-writes"></a><h3>eva_io_clear_never_partial_writes()</h3>
 <pre class="programlisting">#define             eva_io_clear_never_partial_writes(io)</pre>
 <p>
-Indicate that the GskIO may exhibit partial writes.
+Indicate that the EvaIO may exhibit partial writes.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1407,13 +1407,13 @@ Indicate that the GskIO may exhibit partial writes.
 <pre class="programlisting">#define             eva_io_clear_idle_notify_write(io)</pre>
 <p>
 Stop continually triggering the user's write hook.
-(This undoes <a class="link" href="GskIO.html#eva-io-mark-idle-notify-write" title="eva_io_mark_idle_notify_write()"><code class="function">eva_io_mark_idle_notify_write()</code></a>)
+(This undoes <a class="link" href="EvaIO.html#eva-io-mark-idle-notify-write" title="eva_io_mark_idle_notify_write()"><code class="function">eva_io_mark_idle_notify_write()</code></a>)
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1424,13 +1424,13 @@ Stop continually triggering the user's write hook.
 <pre class="programlisting">#define             eva_io_clear_idle_notify_read(io)</pre>
 <p>
 Stop continually triggering the user's read hook.
-(This undoes <a class="link" href="GskIO.html#eva-io-mark-idle-notify-read" title="eva_io_mark_idle_notify_read()"><code class="function">eva_io_mark_idle_notify_read()</code></a>)
+(This undoes <a class="link" href="EvaIO.html#eva-io-mark-idle-notify-read" title="eva_io_mark_idle_notify_read()"><code class="function">eva_io_mark_idle_notify_read()</code></a>)
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1440,13 +1440,13 @@ Stop continually triggering the user's read hook.
 <a name="eva-io-clear-is-open"></a><h3>eva_io_clear_is_open()</h3>
 <pre class="programlisting">#define             eva_io_clear_is_open(io)</pre>
 <p>
-Indicate that the GskIO is closed.
+Indicate that the EvaIO is closed.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>io</code></em> :</span></p></td>
-<td>the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a> to affect.
+<td>the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -1472,7 +1472,7 @@ Suppress automatic-shutdown when the stream fails.
 <a name="eva-io-set-idle-notify-write"></a><h3>eva_io_set_idle_notify_write()</h3>
 <pre class="programlisting">#define             eva_io_set_idle_notify_write(io,v)</pre>
 <p>
-Set whether to perform idle-notification on the writable end of this GskIO.
+Set whether to perform idle-notification on the writable end of this EvaIO.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -1495,7 +1495,7 @@ Set whether to perform idle-notification on the writable end of this GskIO.
 <a name="eva-io-set-idle-notify-read"></a><h3>eva_io_set_idle_notify_read()</h3>
 <pre class="programlisting">#define             eva_io_set_idle_notify_read(io,v)</pre>
 <p>
-Set whether to perform idle-notification on the readable end of this GskIO.
+Set whether to perform idle-notification on the readable end of this EvaIO.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -1516,13 +1516,13 @@ Set whether to perform idle-notification on the readable end of this GskIO.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-io-set-error"></a><h3>eva_io_set_error ()</h3>
-<pre class="programlisting">void                eva_io_set_error                    (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io,
-                                                         <a class="link" href="GskIO.html#GskIOErrorCause" title="enum GskIOErrorCause">GskIOErrorCause</a> cause,
-                                                         <a class="link" href="eva-evaerror.html#GskErrorCode" title="enum GskErrorCode">GskErrorCode</a> error_code,
+<pre class="programlisting">void                eva_io_set_error                    (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io,
+                                                         <a class="link" href="EvaIO.html#EvaIOErrorCause" title="enum EvaIOErrorCause">EvaIOErrorCause</a> cause,
+                                                         <a class="link" href="eva-evaerror.html#EvaErrorCode" title="enum EvaErrorCode">EvaErrorCode</a> error_code,
                                                          const char *format,
                                                          ...);</pre>
 <p>
-Set the error member of the <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>.</p>
+Set the error member of the <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1559,8 +1559,8 @@ Set the error member of the <a class="link" href="GskIO.html" title="Base Input/
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-io-set-gerror"></a><h3>eva_io_set_gerror ()</h3>
-<pre class="programlisting">void                eva_io_set_gerror                   (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a> *io,
-                                                         <a class="link" href="GskIO.html#GskIOErrorCause" title="enum GskIOErrorCause">GskIOErrorCause</a> cause,
+<pre class="programlisting">void                eva_io_set_gerror                   (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a> *io,
+                                                         <a class="link" href="EvaIO.html#EvaIOErrorCause" title="enum EvaIOErrorCause">EvaIOErrorCause</a> cause,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error);</pre>
@@ -1593,9 +1593,9 @@ the <em class="parameter"><code>error</code></em> parameter.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-io-error-cause-to-string"></a><h3>eva_io_error_cause_to_string ()</h3>
-<pre class="programlisting">const char *        eva_io_error_cause_to_string        (<a class="link" href="GskIO.html#GskIOErrorCause" title="enum GskIOErrorCause">GskIOErrorCause</a> cause);</pre>
+<pre class="programlisting">const char *        eva_io_error_cause_to_string        (<a class="link" href="EvaIO.html#EvaIOErrorCause" title="enum EvaIOErrorCause">EvaIOErrorCause</a> cause);</pre>
 <p>
-Convert the GskIOErrorCause code into a human-readable lowercase string.</p>
+Convert the EvaIOErrorCause code into a human-readable lowercase string.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1616,10 +1616,10 @@ Convert the GskIOErrorCause code into a human-readable lowercase string.</p>
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskIO.signal-details"></a><h2>Signal Details</h2>
+<a name="EvaIO.signal-details"></a><h2>Signal Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskIO-on-connect"></a><h3>The <code class="literal">"on-connect"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a>   *evaio,
+<a name="EvaIO-on-connect"></a><h3>The <code class="literal">"on-connect"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a>   *evaio,
                                                         <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data)      : No Recursion</pre>
@@ -1644,14 +1644,14 @@ Signal to indicate that the eva-io has become connected
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskIO-on-error"></a><h3>The <code class="literal">"on-error"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a>   *evaio,
+<a name="EvaIO-on-error"></a><h3>The <code class="literal">"on-error"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a>   *evaio,
                                                         <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data)      : No Recursion</pre>
 <p>
 Signal to indicate that the eva-io has had an error.
-Use the 'error' and 'error_cause' members of <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>
+Use the 'error' and 'error_cause' members of <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>
 to find out what went wrong.
 </p>
 <div class="variablelist"><table border="0">
@@ -1671,9 +1671,9 @@ to find out what went wrong.
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskIO.see-also"></a><h2>See Also</h2>
+<a name="EvaIO.see-also"></a><h2>See Also</h2>
 <p>
-GskHook, GskStream
+EvaHook, EvaStream
 </p>
 </div>
 </div>

@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskUrl</title>
+<title>EvaUrl</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch05.html" title="Standard Objects: the URL class">
 <link rel="prev" href="ch05.html" title="Standard Objects: the URL class">
-<link rel="next" href="GskUrlTransfer.html" title="GskUrlTransfer">
+<link rel="next" href="EvaUrlTransfer.html" title="EvaUrlTransfer">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -34,45 +34,45 @@
 <td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="GskUrlTransfer.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="EvaUrlTransfer.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskUrl.synopsis" class="shortcut">Top</a>
+<a href="#EvaUrl.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskUrl.description" class="shortcut">Description</a>
+                <a href="#EvaUrl.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskUrl.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaUrl.object-hierarchy" class="shortcut">Object Hierarchy</a>
                  | 
-                <a href="#GskUrl.properties" class="shortcut">Properties</a>
+                <a href="#EvaUrl.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskUrl"></a><div class="titlepage"></div>
+<a name="EvaUrl"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskUrl.top_of_page"></a>GskUrl</span></h2>
-<p>GskUrl — A Universal Resource Locator (or Identifier)
+<h2><span class="refentrytitle"><a name="EvaUrl.top_of_page"></a>EvaUrl</span></h2>
+<p>EvaUrl — A Universal Resource Locator (or Identifier)
 object.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskUrl.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaUrl.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="GskUrl.html#GskUrl-struct" title="GskUrl">GskUrl</a>;
-enum                <a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a>;
-#define             <a class="link" href="GskUrl.html#EVA-URL-RESERVED-CHARSET--CAPS" title="EVA_URL_RESERVED_CHARSET">EVA_URL_RESERVED_CHARSET</a>
-#define             <a class="link" href="GskUrl.html#EVA-URL-UNRESERVED-CHARSET--CAPS" title="EVA_URL_UNRESERVED_CHARSET">EVA_URL_UNRESERVED_CHARSET</a>
-<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *            <a class="link" href="GskUrl.html#eva-url-new" title="eva_url_new ()">eva_url_new</a>                         (const char *spec,
+                    <a class="link" href="EvaUrl.html#EvaUrl-struct" title="EvaUrl">EvaUrl</a>;
+enum                <a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a>;
+#define             <a class="link" href="EvaUrl.html#EVA-URL-RESERVED-CHARSET--CAPS" title="EVA_URL_RESERVED_CHARSET">EVA_URL_RESERVED_CHARSET</a>
+#define             <a class="link" href="EvaUrl.html#EVA-URL-UNRESERVED-CHARSET--CAPS" title="EVA_URL_UNRESERVED_CHARSET">EVA_URL_UNRESERVED_CHARSET</a>
+<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *            <a class="link" href="EvaUrl.html#eva-url-new" title="eva_url_new ()">eva_url_new</a>                         (const char *spec,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *            <a class="link" href="GskUrl.html#eva-url-new-in-context" title="eva_url_new_in_context ()">eva_url_new_in_context</a>              (const char *spec,
-                                                         <a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a> context,
+<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *            <a class="link" href="EvaUrl.html#eva-url-new-in-context" title="eva_url_new_in_context ()">eva_url_new_in_context</a>              (const char *spec,
+                                                         <a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a> context,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *            <a class="link" href="GskUrl.html#eva-url-new-from-parts" title="eva_url_new_from_parts ()">eva_url_new_from_parts</a>              (<a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a> scheme,
+<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *            <a class="link" href="EvaUrl.html#eva-url-new-from-parts" title="eva_url_new_from_parts ()">eva_url_new_from_parts</a>              (<a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a> scheme,
                                                          const char *host,
                                                          int port,
                                                          const char *user_name,
@@ -80,131 +80,131 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
                                                          const char *path,
                                                          const char *query,
                                                          const char *fragment);
-<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *            <a class="link" href="GskUrl.html#eva-url-new-relative" title="eva_url_new_relative ()">eva_url_new_relative</a>                (<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *base_url,
+<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *            <a class="link" href="EvaUrl.html#eva-url-new-relative" title="eva_url_new_relative ()">eva_url_new_relative</a>                (<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *base_url,
                                                          const char *location,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-char *              <a class="link" href="GskUrl.html#eva-url-get-relative-path" title="eva_url_get_relative_path ()">eva_url_get_relative_path</a>           (<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url);
+char *              <a class="link" href="EvaUrl.html#eva-url-get-relative-path" title="eva_url_get_relative_path ()">eva_url_get_relative_path</a>           (<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="GskUrl.html#eva-url-get-port" title="eva_url_get_port ()">eva_url_get_port</a>                    (const <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url);
-char *              <a class="link" href="GskUrl.html#eva-url-decode" title="eva_url_decode ()">eva_url_decode</a>                      (const char *encoded);
-char *              <a class="link" href="GskUrl.html#eva-url-decode-http" title="eva_url_decode_http ()">eva_url_decode_http</a>                 (const char *encoded);
-char *              <a class="link" href="GskUrl.html#eva-url-encode" title="eva_url_encode ()">eva_url_encode</a>                      (const char *decoded);
-char *              <a class="link" href="GskUrl.html#eva-url-encode-http" title="eva_url_encode_http ()">eva_url_encode_http</a>                 (const char *decoded);
-#define             <a class="link" href="GskUrl.html#eva-url-is-valid-fragment" title="eva_url_is_valid_fragment()">eva_url_is_valid_fragment</a>           (str, bad_char_out)
+>guint</a>               <a class="link" href="EvaUrl.html#eva-url-get-port" title="eva_url_get_port ()">eva_url_get_port</a>                    (const <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url);
+char *              <a class="link" href="EvaUrl.html#eva-url-decode" title="eva_url_decode ()">eva_url_decode</a>                      (const char *encoded);
+char *              <a class="link" href="EvaUrl.html#eva-url-decode-http" title="eva_url_decode_http ()">eva_url_decode_http</a>                 (const char *encoded);
+char *              <a class="link" href="EvaUrl.html#eva-url-encode" title="eva_url_encode ()">eva_url_encode</a>                      (const char *decoded);
+char *              <a class="link" href="EvaUrl.html#eva-url-encode-http" title="eva_url_encode_http ()">eva_url_encode_http</a>                 (const char *decoded);
+#define             <a class="link" href="EvaUrl.html#eva-url-is-valid-fragment" title="eva_url_is_valid_fragment()">eva_url_is_valid_fragment</a>           (str, bad_char_out)
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskUrl.html#eva-url-is-valid-generic-component" title="eva_url_is_valid_generic_component ()">eva_url_is_valid_generic_component</a>  (const char *str,
+>gboolean</a>            <a class="link" href="EvaUrl.html#eva-url-is-valid-generic-component" title="eva_url_is_valid_generic_component ()">eva_url_is_valid_generic_component</a>  (const char *str,
                                                          char *bad_char_out);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskUrl.html#eva-url-is-valid-hostname" title="eva_url_is_valid_hostname ()">eva_url_is_valid_hostname</a>           (const char *str,
+>gboolean</a>            <a class="link" href="EvaUrl.html#eva-url-is-valid-hostname" title="eva_url_is_valid_hostname ()">eva_url_is_valid_hostname</a>           (const char *str,
                                                          char *bad_char_out);
-#define             <a class="link" href="GskUrl.html#eva-url-is-valid-path" title="eva_url_is_valid_path()">eva_url_is_valid_path</a>               (str, bad_char_out)
-#define             <a class="link" href="GskUrl.html#eva-url-is-valid-query" title="eva_url_is_valid_query()">eva_url_is_valid_query</a>              (str, bad_char_out)
-char **             <a class="link" href="GskUrl.html#eva-url-split-form-urlencoded" title="eva_url_split_form_urlencoded ()">eva_url_split_form_urlencoded</a>       (const char *encoded_query);
-char *              <a class="link" href="GskUrl.html#eva-url-to-string" title="eva_url_to_string ()">eva_url_to_string</a>                   (const <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url);
-void                (<a class="link" href="GskUrl.html#GskUrlSuccess" title="GskUrlSuccess ()">*GskUrlSuccess</a>)                    (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
+#define             <a class="link" href="EvaUrl.html#eva-url-is-valid-path" title="eva_url_is_valid_path()">eva_url_is_valid_path</a>               (str, bad_char_out)
+#define             <a class="link" href="EvaUrl.html#eva-url-is-valid-query" title="eva_url_is_valid_query()">eva_url_is_valid_query</a>              (str, bad_char_out)
+char **             <a class="link" href="EvaUrl.html#eva-url-split-form-urlencoded" title="eva_url_split_form_urlencoded ()">eva_url_split_form_urlencoded</a>       (const char *encoded_query);
+char *              <a class="link" href="EvaUrl.html#eva-url-to-string" title="eva_url_to_string ()">eva_url_to_string</a>                   (const <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url);
+void                (<a class="link" href="EvaUrl.html#EvaUrlSuccess" title="EvaUrlSuccess ()">*EvaUrlSuccess</a>)                    (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
-void                (<a class="link" href="GskUrl.html#GskUrlFailure" title="GskUrlFailure ()">*GskUrlFailure</a>)                    (<a
+void                (<a class="link" href="EvaUrl.html#EvaUrlFailure" title="EvaUrlFailure ()">*EvaUrlFailure</a>)                    (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
-void                <a class="link" href="GskUrl.html#eva-url-download" title="eva_url_download ()">eva_url_download</a>                    (<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url,
-                                                         <a class="link" href="GskUrl.html#GskUrlSuccess" title="GskUrlSuccess ()">GskUrlSuccess</a> success_func,
-                                                         <a class="link" href="GskUrl.html#GskUrlFailure" title="GskUrlFailure ()">GskUrlFailure</a> failure_func,
+void                <a class="link" href="EvaUrl.html#eva-url-download" title="eva_url_download ()">eva_url_download</a>                    (<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url,
+                                                         <a class="link" href="EvaUrl.html#EvaUrlSuccess" title="EvaUrlSuccess ()">EvaUrlSuccess</a> success_func,
+                                                         <a class="link" href="EvaUrl.html#EvaUrlFailure" title="EvaUrlFailure ()">EvaUrlFailure</a> failure_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
-<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *            (<a class="link" href="GskUrl.html#GskUrlParser" title="GskUrlParser ()">*GskUrlParser</a>)                     (<a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a> scheme,
+<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *            (<a class="link" href="EvaUrl.html#EvaUrlParser" title="EvaUrlParser ()">*EvaUrlParser</a>)                     (<a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a> scheme,
                                                          const char *url,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);
-char *              (<a class="link" href="GskUrl.html#GskUrlToString" title="GskUrlToString ()">*GskUrlToString</a>)                   (<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url,
+char *              (<a class="link" href="EvaUrl.html#EvaUrlToString" title="EvaUrlToString ()">*EvaUrlToString</a>)                   (<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);
-<a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a>        <a class="link" href="GskUrl.html#eva-url-scheme-get-unique" title="eva_url_scheme_get_unique ()">eva_url_scheme_get_unique</a>           (const char *url_scheme,
+<a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a>        <a class="link" href="EvaUrl.html#eva-url-scheme-get-unique" title="eva_url_scheme_get_unique ()">eva_url_scheme_get_unique</a>           (const char *url_scheme,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> default_port,
-                                                         <a class="link" href="GskUrl.html#GskUrlParser" title="GskUrlParser ()">GskUrlParser</a> parse_func,
-                                                         <a class="link" href="GskUrl.html#GskUrlToString" title="GskUrlToString ()">GskUrlToString</a> print_func,
+                                                         <a class="link" href="EvaUrl.html#EvaUrlParser" title="EvaUrlParser ()">EvaUrlParser</a> parse_func,
+                                                         <a class="link" href="EvaUrl.html#EvaUrlToString" title="EvaUrlToString ()">EvaUrlToString</a> print_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="GskUrl.html#eva-url-hash" title="eva_url_hash ()">eva_url_hash</a>                        (const <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url);
+>guint</a>               <a class="link" href="EvaUrl.html#eva-url-hash" title="eva_url_hash ()">eva_url_hash</a>                        (const <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskUrl.html#eva-url-equal" title="eva_url_equal ()">eva_url_equal</a>                       (const <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *a,
-                                                         const <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *b);
-                    <a class="link" href="GskUrl.html#GskUrlDownload" title="GskUrlDownload">GskUrlDownload</a>;
-void                (<a class="link" href="GskUrl.html#GskUrlDownloadMethod" title="GskUrlDownloadMethod ()">*GskUrlDownloadMethod</a>)             (<a class="link" href="GskUrl.html#GskUrlDownload" title="GskUrlDownload">GskUrlDownload</a> *download,
+>gboolean</a>            <a class="link" href="EvaUrl.html#eva-url-equal" title="eva_url_equal ()">eva_url_equal</a>                       (const <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *a,
+                                                         const <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *b);
+                    <a class="link" href="EvaUrl.html#EvaUrlDownload" title="EvaUrlDownload">EvaUrlDownload</a>;
+void                (<a class="link" href="EvaUrl.html#EvaUrlDownloadMethod" title="EvaUrlDownloadMethod ()">*EvaUrlDownloadMethod</a>)             (<a class="link" href="EvaUrl.html#EvaUrlDownload" title="EvaUrlDownload">EvaUrlDownload</a> *download,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> download_data);
-void                <a class="link" href="GskUrl.html#eva-url-scheme-add-dl-method" title="eva_url_scheme_add_dl_method ()">eva_url_scheme_add_dl_method</a>        (<a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a> scheme,
-                                                         <a class="link" href="GskUrl.html#GskUrlDownloadMethod" title="GskUrlDownloadMethod ()">GskUrlDownloadMethod</a> download_method,
+void                <a class="link" href="EvaUrl.html#eva-url-scheme-add-dl-method" title="eva_url_scheme_add_dl_method ()">eva_url_scheme_add_dl_method</a>        (<a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a> scheme,
+                                                         <a class="link" href="EvaUrl.html#EvaUrlDownloadMethod" title="EvaUrlDownloadMethod ()">EvaUrlDownloadMethod</a> download_method,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> download_data);
-void                <a class="link" href="GskUrl.html#eva-url-download-success" title="eva_url_download_success ()">eva_url_download_success</a>            (<a class="link" href="GskUrl.html#GskUrlDownload" title="GskUrlDownload">GskUrlDownload</a> *download,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream);
-void                <a class="link" href="GskUrl.html#eva-url-download-fail" title="eva_url_download_fail ()">eva_url_download_fail</a>               (<a class="link" href="GskUrl.html#GskUrlDownload" title="GskUrlDownload">GskUrlDownload</a> *download,
+void                <a class="link" href="EvaUrl.html#eva-url-download-success" title="eva_url_download_success ()">eva_url_download_success</a>            (<a class="link" href="EvaUrl.html#EvaUrlDownload" title="EvaUrlDownload">EvaUrlDownload</a> *download,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream);
+void                <a class="link" href="EvaUrl.html#eva-url-download-fail" title="eva_url_download_fail ()">eva_url_download_fail</a>               (<a class="link" href="EvaUrl.html#EvaUrlDownload" title="EvaUrlDownload">EvaUrlDownload</a> *download,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error);
-<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *            <a class="link" href="GskUrl.html#eva-url-download-peek-url" title="eva_url_download_peek_url ()">eva_url_download_peek_url</a>           (<a class="link" href="GskUrl.html#GskUrlDownload" title="GskUrlDownload">GskUrlDownload</a> *download);
-void                <a class="link" href="GskUrl.html#eva-url-download-redirect" title="eva_url_download_redirect ()">eva_url_download_redirect</a>           (<a class="link" href="GskUrl.html#GskUrlDownload" title="GskUrlDownload">GskUrlDownload</a> *download,
-                                                         <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *new_url);
+<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *            <a class="link" href="EvaUrl.html#eva-url-download-peek-url" title="eva_url_download_peek_url ()">eva_url_download_peek_url</a>           (<a class="link" href="EvaUrl.html#EvaUrlDownload" title="EvaUrlDownload">EvaUrlDownload</a> *download);
+void                <a class="link" href="EvaUrl.html#eva-url-download-redirect" title="eva_url_download_redirect ()">eva_url_download_redirect</a>           (<a class="link" href="EvaUrl.html#EvaUrlDownload" title="EvaUrlDownload">EvaUrlDownload</a> *download,
+                                                         <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *new_url);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskUrl.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaUrl.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----GskUrl
+   +----EvaUrl
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskUrl.properties"></a><h2>Properties</h2>
+<a name="EvaUrl.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a class="link" href="GskUrl.html#GskUrl--fragment" title='The "fragment" property'>fragment</a>"                 <a
+  "<a class="link" href="EvaUrl.html#EvaUrl--fragment" title='The "fragment" property'>fragment</a>"                 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskUrl.html#GskUrl--host" title='The "host" property'>host</a>"                     <a
+  "<a class="link" href="EvaUrl.html#EvaUrl--host" title='The "host" property'>host</a>"                     <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskUrl.html#GskUrl--password" title='The "password" property'>password</a>"                 <a
+  "<a class="link" href="EvaUrl.html#EvaUrl--password" title='The "password" property'>password</a>"                 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskUrl.html#GskUrl--path" title='The "path" property'>path</a>"                     <a
+  "<a class="link" href="EvaUrl.html#EvaUrl--path" title='The "path" property'>path</a>"                     <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskUrl.html#GskUrl--port" title='The "port" property'>port</a>"                     <a
+  "<a class="link" href="EvaUrl.html#EvaUrl--port" title='The "port" property'>port</a>"                     <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a>                 : Read / Write
-  "<a class="link" href="GskUrl.html#GskUrl--query" title='The "query" property'>query</a>"                    <a
+  "<a class="link" href="EvaUrl.html#EvaUrl--query" title='The "query" property'>query</a>"                    <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskUrl.html#GskUrl--user-name" title='The "user-name" property'>user-name</a>"                <a
+  "<a class="link" href="EvaUrl.html#EvaUrl--user-name" title='The "user-name" property'>user-name</a>"                <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskUrl.description"></a><h2>Description</h2>
+<a name="EvaUrl.description"></a><h2>Description</h2>
 <p>
 A URL is a pointer to content on the internet.
 (Well, not all types of URLs apply across the internet;
@@ -222,10 +222,10 @@ TODO: find a reference RFC for URL encoding.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskUrl.details"></a><h2>Details</h2>
+<a name="EvaUrl.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskUrl-struct"></a><h3>GskUrl</h3>
-<pre class="programlisting">typedef struct _GskUrl GskUrl;</pre>
+<a name="EvaUrl-struct"></a><h3>EvaUrl</h3>
+<pre class="programlisting">typedef struct _EvaUrl EvaUrl;</pre>
 <p>
 A URL (Universal Resource Locator).
 This structure contains a number of read-only, pre-parsed
@@ -238,7 +238,7 @@ and other usual benefits.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrlScheme"></a><h3>enum GskUrlScheme</h3>
+<a name="EvaUrlScheme"></a><h3>enum EvaUrlScheme</h3>
 <pre class="programlisting">typedef enum 
 {
   EVA_URL_SCHEME_FILE,
@@ -246,12 +246,12 @@ and other usual benefits.
   EVA_URL_SCHEME_HTTPS,
   EVA_URL_SCHEME_FTP,
   EVA_URL_SCHEME_OTHER = 0x10000,
-} GskUrlScheme;
+} EvaUrlScheme;
 </pre>
 <p>
 Types of URLs that are known.
 (This is an extensible enum-- you can allocate new enum values
-using <a class="link" href="GskUrl.html#eva-url-scheme-get-unique" title="eva_url_scheme_get_unique ()"><code class="function">eva_url_scheme_get_unique()</code></a>).
+using <a class="link" href="EvaUrl.html#eva-url-scheme-get-unique" title="eva_url_scheme_get_unique ()"><code class="function">eva_url_scheme_get_unique()</code></a>).
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -312,7 +312,7 @@ Characters which do not normally need escaping within a URL.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-new"></a><h3>eva_url_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *            eva_url_new                         (const char *spec,
+<pre class="programlisting"><a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *            eva_url_new                         (const char *spec,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -346,8 +346,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-new-in-context"></a><h3>eva_url_new_in_context ()</h3>
-<pre class="programlisting"><a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *            eva_url_new_in_context              (const char *spec,
-                                                         <a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a> context,
+<pre class="programlisting"><a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *            eva_url_new_in_context              (const char *spec,
+                                                         <a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a> context,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -359,13 +359,13 @@ to be specified.
 </p>
 <p>
 To be fully paranoid in such a situation, you may wish to
-if there appears to be a scheme, use <a class="link" href="GskUrl.html#eva-url-new" title="eva_url_new ()"><code class="function">eva_url_new()</code></a>;
+if there appears to be a scheme, use <a class="link" href="EvaUrl.html#eva-url-new" title="eva_url_new ()"><code class="function">eva_url_new()</code></a>;
 otherwise call <code class="function">eva_url_new_from_scheme_specific()</code> directly.
 Alternately, it may be easier just to call
-<a class="link" href="GskUrl.html#eva-url-new-in-context" title="eva_url_new_in_context ()"><code class="function">eva_url_new_in_context()</code></a> directly all the time.
+<a class="link" href="EvaUrl.html#eva-url-new-in-context" title="eva_url_new_in_context ()"><code class="function">eva_url_new_in_context()</code></a> directly all the time.
 </p>
 <p>
-See also <a class="link" href="GskUrl.html#eva-url-new-relative" title="eva_url_new_relative ()"><code class="function">eva_url_new_relative()</code></a>.</p>
+See also <a class="link" href="EvaUrl.html#eva-url-new-relative" title="eva_url_new_relative ()"><code class="function">eva_url_new_relative()</code></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -400,7 +400,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-new-from-parts"></a><h3>eva_url_new_from_parts ()</h3>
-<pre class="programlisting"><a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *            eva_url_new_from_parts              (<a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a> scheme,
+<pre class="programlisting"><a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *            eva_url_new_from_parts              (<a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a> scheme,
                                                          const char *host,
                                                          int port,
                                                          const char *user_name,
@@ -469,7 +469,7 @@ will default to the next integer.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-new-relative"></a><h3>eva_url_new_relative ()</h3>
-<pre class="programlisting"><a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *            eva_url_new_relative                (<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *base_url,
+<pre class="programlisting"><a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *            eva_url_new_relative                (<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *base_url,
                                                          const char *location,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
@@ -521,7 +521,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-get-relative-path"></a><h3>eva_url_get_relative_path ()</h3>
-<pre class="programlisting">char *              eva_url_get_relative_path           (<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url);</pre>
+<pre class="programlisting">char *              eva_url_get_relative_path           (<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url);</pre>
 <p>
 Obtain the path portion of a URL without
 the initial slash (/) character.
@@ -551,7 +551,7 @@ The query component and fragment are also returned.</p>
 <a name="eva-url-get-port"></a><h3>eva_url_get_port ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_url_get_port                    (const <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url);</pre>
+>guint</a>               eva_url_get_port                    (const <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url);</pre>
 <p>
 Returns the port.  If the port is 0, the default port
 for the type of scheme is returned (80 for HTTP, 21 for FTP
@@ -841,7 +841,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-to-string"></a><h3>eva_url_to_string ()</h3>
-<pre class="programlisting">char *              eva_url_to_string                   (const <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url);</pre>
+<pre class="programlisting">char *              eva_url_to_string                   (const <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url);</pre>
 <p>
 Convert the URL to a string.</p>
 <p>
@@ -864,8 +864,8 @@ Convert the URL to a string.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrlSuccess"></a><h3>GskUrlSuccess ()</h3>
-<pre class="programlisting">void                (*GskUrlSuccess)                    (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
+<a name="EvaUrlSuccess"></a><h3>EvaUrlSuccess ()</h3>
+<pre class="programlisting">void                (*EvaUrlSuccess)                    (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);</pre>
@@ -879,12 +879,12 @@ download request seems to be succeeding.
 <tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
 <td>content stream of the data referenced
-by the URL which was passed to <a class="link" href="GskUrl.html#eva-url-download" title="eva_url_download ()"><code class="function">eva_url_download()</code></a>.
+by the URL which was passed to <a class="link" href="EvaUrl.html#eva-url-download" title="eva_url_download ()"><code class="function">eva_url_download()</code></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td>data passed to <a class="link" href="GskUrl.html#eva-url-download" title="eva_url_download ()"><code class="function">eva_url_download()</code></a>.
+<td>data passed to <a class="link" href="EvaUrl.html#eva-url-download" title="eva_url_download ()"><code class="function">eva_url_download()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -892,8 +892,8 @@ by the URL which was passed to <a class="link" href="GskUrl.html#eva-url-downloa
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrlFailure"></a><h3>GskUrlFailure ()</h3>
-<pre class="programlisting">void                (*GskUrlFailure)                    (<a
+<a name="EvaUrlFailure"></a><h3>EvaUrlFailure ()</h3>
+<pre class="programlisting">void                (*EvaUrlFailure)                    (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error,
                                                          <a
@@ -913,7 +913,7 @@ download seems to be failing.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td>data passed to <a class="link" href="GskUrl.html#eva-url-download" title="eva_url_download ()"><code class="function">eva_url_download()</code></a>.
+<td>data passed to <a class="link" href="EvaUrl.html#eva-url-download" title="eva_url_download ()"><code class="function">eva_url_download()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -922,9 +922,9 @@ download seems to be failing.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-download"></a><h3>eva_url_download ()</h3>
-<pre class="programlisting">void                eva_url_download                    (<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url,
-                                                         <a class="link" href="GskUrl.html#GskUrlSuccess" title="GskUrlSuccess ()">GskUrlSuccess</a> success_func,
-                                                         <a class="link" href="GskUrl.html#GskUrlFailure" title="GskUrlFailure ()">GskUrlFailure</a> failure_func,
+<pre class="programlisting">void                eva_url_download                    (<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url,
+                                                         <a class="link" href="EvaUrl.html#EvaUrlSuccess" title="EvaUrlSuccess ()">EvaUrlSuccess</a> success_func,
+                                                         <a class="link" href="EvaUrl.html#EvaUrlFailure" title="EvaUrlFailure ()">EvaUrlFailure</a> failure_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);</pre>
@@ -972,16 +972,16 @@ url cannot be retrieved.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrlParser"></a><h3>GskUrlParser ()</h3>
-<pre class="programlisting"><a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *            (*GskUrlParser)                     (<a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a> scheme,
+<a name="EvaUrlParser"></a><h3>EvaUrlParser ()</h3>
+<pre class="programlisting"><a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *            (*EvaUrlParser)                     (<a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a> scheme,
                                                          const char *url,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);</pre>
 <p>
 Function to parse a string (of a given scheme)
-into a <a class="link" href="GskUrl.html" title="GskUrl"><span class="type">GskUrl</span></a>.  This is used to register new types
-of URL.  See <a class="link" href="GskUrl.html#eva-url-scheme-get-unique" title="eva_url_scheme_get_unique ()"><code class="function">eva_url_scheme_get_unique()</code></a>.
+into a <a class="link" href="EvaUrl.html" title="EvaUrl"><span class="type">EvaUrl</span></a>.  This is used to register new types
+of URL.  See <a class="link" href="EvaUrl.html#eva-url-scheme-get-unique" title="eva_url_scheme_get_unique ()"><code class="function">eva_url_scheme_get_unique()</code></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -998,7 +998,7 @@ of URL.  See <a class="link" href="GskUrl.html#eva-url-scheme-get-unique" title=
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
-<td>data passed to <a class="link" href="GskUrl.html#eva-url-scheme-get-unique" title="eva_url_scheme_get_unique ()"><code class="function">eva_url_scheme_get_unique()</code></a>.
+<td>data passed to <a class="link" href="EvaUrl.html#eva-url-scheme-get-unique" title="eva_url_scheme_get_unique ()"><code class="function">eva_url_scheme_get_unique()</code></a>.
 </td>
 </tr>
 <tr>
@@ -1011,15 +1011,15 @@ of URL.  See <a class="link" href="GskUrl.html#eva-url-scheme-get-unique" title=
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrlToString"></a><h3>GskUrlToString ()</h3>
-<pre class="programlisting">char *              (*GskUrlToString)                   (<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url,
+<a name="EvaUrlToString"></a><h3>EvaUrlToString ()</h3>
+<pre class="programlisting">char *              (*EvaUrlToString)                   (<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);</pre>
 <p>
-Function to convert a <a class="link" href="GskUrl.html" title="GskUrl"><span class="type">GskUrl</span></a> into a NUL-terminated string.
+Function to convert a <a class="link" href="EvaUrl.html" title="EvaUrl"><span class="type">EvaUrl</span></a> into a NUL-terminated string.
 This is used to register new types
-of URL.  See <a class="link" href="GskUrl.html#eva-url-scheme-get-unique" title="eva_url_scheme_get_unique ()"><code class="function">eva_url_scheme_get_unique()</code></a>.
+of URL.  See <a class="link" href="EvaUrl.html#eva-url-scheme-get-unique" title="eva_url_scheme_get_unique ()"><code class="function">eva_url_scheme_get_unique()</code></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -1031,7 +1031,7 @@ of URL.  See <a class="link" href="GskUrl.html#eva-url-scheme-get-unique" title=
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
-<td>data passed to <a class="link" href="GskUrl.html#eva-url-scheme-get-unique" title="eva_url_scheme_get_unique ()"><code class="function">eva_url_scheme_get_unique()</code></a>.
+<td>data passed to <a class="link" href="EvaUrl.html#eva-url-scheme-get-unique" title="eva_url_scheme_get_unique ()"><code class="function">eva_url_scheme_get_unique()</code></a>.
 </td>
 </tr>
 <tr>
@@ -1045,12 +1045,12 @@ of URL.  See <a class="link" href="GskUrl.html#eva-url-scheme-get-unique" title=
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-scheme-get-unique"></a><h3>eva_url_scheme_get_unique ()</h3>
-<pre class="programlisting"><a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a>        eva_url_scheme_get_unique           (const char *url_scheme,
+<pre class="programlisting"><a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a>        eva_url_scheme_get_unique           (const char *url_scheme,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> default_port,
-                                                         <a class="link" href="GskUrl.html#GskUrlParser" title="GskUrlParser ()">GskUrlParser</a> parse_func,
-                                                         <a class="link" href="GskUrl.html#GskUrlToString" title="GskUrlToString ()">GskUrlToString</a> print_func,
+                                                         <a class="link" href="EvaUrl.html#EvaUrlParser" title="EvaUrlParser ()">EvaUrlParser</a> parse_func,
+                                                         <a class="link" href="EvaUrl.html#EvaUrlToString" title="EvaUrlToString ()">EvaUrlToString</a> print_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);</pre>
@@ -1097,7 +1097,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <a name="eva-url-hash"></a><h3>eva_url_hash ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_url_hash                        (const <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url);</pre>
+>guint</a>               eva_url_hash                        (const <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url);</pre>
 <p>
 Compute a randomish hash code based on the URL.
 </p>
@@ -1128,8 +1128,8 @@ You can create a GHashTable that's keyed off of URLs with:
 <a name="eva-url-equal"></a><h3>eva_url_equal ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_url_equal                       (const <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *a,
-                                                         const <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *b);</pre>
+>gboolean</a>            eva_url_equal                       (const <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *a,
+                                                         const <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *b);</pre>
 <p>
 Test to see if two URLs are the same.</p>
 <p>
@@ -1157,15 +1157,15 @@ Test to see if two URLs are the same.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrlDownload"></a><h3>GskUrlDownload</h3>
-<pre class="programlisting">typedef struct _GskUrlDownload GskUrlDownload;</pre>
+<a name="EvaUrlDownload"></a><h3>EvaUrlDownload</h3>
+<pre class="programlisting">typedef struct _EvaUrlDownload EvaUrlDownload;</pre>
 <p>
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrlDownloadMethod"></a><h3>GskUrlDownloadMethod ()</h3>
-<pre class="programlisting">void                (*GskUrlDownloadMethod)             (<a class="link" href="GskUrl.html#GskUrlDownload" title="GskUrlDownload">GskUrlDownload</a> *download,
+<a name="EvaUrlDownloadMethod"></a><h3>EvaUrlDownloadMethod ()</h3>
+<pre class="programlisting">void                (*EvaUrlDownloadMethod)             (<a class="link" href="EvaUrl.html#EvaUrlDownload" title="EvaUrlDownload">EvaUrlDownload</a> *download,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> download_data);</pre>
@@ -1173,8 +1173,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 Function to begin downloading a given URL.
 </p>
 <p>
-A function which must eventually call <a class="link" href="GskUrl.html#eva-url-download-fail" title="eva_url_download_fail ()"><code class="function">eva_url_download_fail()</code></a>
-or <a class="link" href="GskUrl.html#eva-url-download-success" title="eva_url_download_success ()"><code class="function">eva_url_download_success()</code></a>.  (Note: it may happen long after this
+A function which must eventually call <a class="link" href="EvaUrl.html#eva-url-download-fail" title="eva_url_download_fail ()"><code class="function">eva_url_download_fail()</code></a>
+or <a class="link" href="EvaUrl.html#eva-url-download-success" title="eva_url_download_success ()"><code class="function">eva_url_download_success()</code></a>.  (Note: it may happen long after this
 function returns, but it is allowed to call these functions
 before returning as well).
 </p>
@@ -1191,7 +1191,7 @@ This function type is only used to register new methods for downloading URLs.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>download_data</code></em> :</span></p></td>
-<td>data passed in to <a class="link" href="GskUrl.html#eva-url-scheme-add-dl-method" title="eva_url_scheme_add_dl_method ()"><code class="function">eva_url_scheme_add_dl_method()</code></a>.
+<td>data passed in to <a class="link" href="EvaUrl.html#eva-url-scheme-add-dl-method" title="eva_url_scheme_add_dl_method ()"><code class="function">eva_url_scheme_add_dl_method()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -1200,8 +1200,8 @@ This function type is only used to register new methods for downloading URLs.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-scheme-add-dl-method"></a><h3>eva_url_scheme_add_dl_method ()</h3>
-<pre class="programlisting">void                eva_url_scheme_add_dl_method        (<a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a> scheme,
-                                                         <a class="link" href="GskUrl.html#GskUrlDownloadMethod" title="GskUrlDownloadMethod ()">GskUrlDownloadMethod</a> download_method,
+<pre class="programlisting">void                eva_url_scheme_add_dl_method        (<a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a> scheme,
+                                                         <a class="link" href="EvaUrl.html#EvaUrlDownloadMethod" title="EvaUrlDownloadMethod ()">EvaUrlDownloadMethod</a> download_method,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> download_data);</pre>
@@ -1211,8 +1211,8 @@ Register a new method for downloading a URL of a particular scheme.
 <p>
 The callback <em class="parameter"><code>download_method</code></em> will be run with each new requested URL.
 Each call to <em class="parameter"><code>download_method</code></em> must cause it to
-eventually call <a class="link" href="GskUrl.html#eva-url-download-success" title="eva_url_download_success ()"><code class="function">eva_url_download_success()</code></a>
-or <a class="link" href="GskUrl.html#eva-url-download-fail" title="eva_url_download_fail ()"><code class="function">eva_url_download_fail()</code></a>; furthermore, it may
+eventually call <a class="link" href="EvaUrl.html#eva-url-download-success" title="eva_url_download_success ()"><code class="function">eva_url_download_success()</code></a>
+or <a class="link" href="EvaUrl.html#eva-url-download-fail" title="eva_url_download_fail ()"><code class="function">eva_url_download_fail()</code></a>; furthermore, it may
 call those functions before returning.</p>
 <p>
 </p>
@@ -1240,11 +1240,11 @@ call those functions before returning.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-download-success"></a><h3>eva_url_download_success ()</h3>
-<pre class="programlisting">void                eva_url_download_success            (<a class="link" href="GskUrl.html#GskUrlDownload" title="GskUrlDownload">GskUrlDownload</a> *download,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream);</pre>
+<pre class="programlisting">void                eva_url_download_success            (<a class="link" href="EvaUrl.html#EvaUrlDownload" title="EvaUrlDownload">EvaUrlDownload</a> *download,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream);</pre>
 <p>
 Give a stream to the user which requested it
-via <a class="link" href="GskUrl.html#eva-url-download" title="eva_url_download ()"><code class="function">eva_url_download()</code></a>.
+via <a class="link" href="EvaUrl.html#eva-url-download" title="eva_url_download ()"><code class="function">eva_url_download()</code></a>.
 </p>
 <p>
 This function should only be used for implementing
@@ -1271,13 +1271,13 @@ who requested the download.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-download-fail"></a><h3>eva_url_download_fail ()</h3>
-<pre class="programlisting">void                eva_url_download_fail               (<a class="link" href="GskUrl.html#GskUrlDownload" title="GskUrlDownload">GskUrlDownload</a> *download,
+<pre class="programlisting">void                eva_url_download_fail               (<a class="link" href="EvaUrl.html#EvaUrlDownload" title="EvaUrlDownload">EvaUrlDownload</a> *download,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error);</pre>
 <p>
 Give a failure notice to the user which requested a url download
-via <a class="link" href="GskUrl.html#eva-url-download" title="eva_url_download ()"><code class="function">eva_url_download()</code></a>.
+via <a class="link" href="EvaUrl.html#eva-url-download" title="eva_url_download ()"><code class="function">eva_url_download()</code></a>.
 </p>
 <p>
 This function should only be used for implementing
@@ -1303,7 +1303,7 @@ handlers for new URL schemes.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-download-peek-url"></a><h3>eva_url_download_peek_url ()</h3>
-<pre class="programlisting"><a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *            eva_url_download_peek_url           (<a class="link" href="GskUrl.html#GskUrlDownload" title="GskUrlDownload">GskUrlDownload</a> *download);</pre>
+<pre class="programlisting"><a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *            eva_url_download_peek_url           (<a class="link" href="EvaUrl.html#EvaUrlDownload" title="EvaUrlDownload">EvaUrlDownload</a> *download);</pre>
 <p>
 Get the URL that you are supposed to download.</p>
 <p>
@@ -1327,8 +1327,8 @@ Get the URL that you are supposed to download.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-download-redirect"></a><h3>eva_url_download_redirect ()</h3>
-<pre class="programlisting">void                eva_url_download_redirect           (<a class="link" href="GskUrl.html#GskUrlDownload" title="GskUrlDownload">GskUrlDownload</a> *download,
-                                                         <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *new_url);</pre>
+<pre class="programlisting">void                eva_url_download_redirect           (<a class="link" href="EvaUrl.html#EvaUrlDownload" title="EvaUrlDownload">EvaUrlDownload</a> *download,
+                                                         <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *new_url);</pre>
 <p>
 Indicate that retrieving one URL lead to a message
 saying that the content is at a different URL.
@@ -1358,9 +1358,9 @@ handlers for new URL schemes.</p>
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskUrl.property-details"></a><h2>Property Details</h2>
+<a name="EvaUrl.property-details"></a><h2>Property Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskUrl--fragment"></a><h3>The <code class="literal">"fragment"</code> property</h3>
+<a name="EvaUrl--fragment"></a><h3>The <code class="literal">"fragment"</code> property</h3>
 <pre class="programlisting">  "fragment"                 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -1369,7 +1369,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrl--host"></a><h3>The <code class="literal">"host"</code> property</h3>
+<a name="EvaUrl--host"></a><h3>The <code class="literal">"host"</code> property</h3>
 <pre class="programlisting">  "host"                     <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -1378,7 +1378,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrl--password"></a><h3>The <code class="literal">"password"</code> property</h3>
+<a name="EvaUrl--password"></a><h3>The <code class="literal">"password"</code> property</h3>
 <pre class="programlisting">  "password"                 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -1387,7 +1387,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrl--path"></a><h3>The <code class="literal">"path"</code> property</h3>
+<a name="EvaUrl--path"></a><h3>The <code class="literal">"path"</code> property</h3>
 <pre class="programlisting">  "path"                     <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -1396,7 +1396,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrl--port"></a><h3>The <code class="literal">"port"</code> property</h3>
+<a name="EvaUrl--port"></a><h3>The <code class="literal">"port"</code> property</h3>
 <pre class="programlisting">  "port"                     <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a>                 : Read / Write</pre>
@@ -1406,7 +1406,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrl--query"></a><h3>The <code class="literal">"query"</code> property</h3>
+<a name="EvaUrl--query"></a><h3>The <code class="literal">"query"</code> property</h3>
 <pre class="programlisting">  "query"                    <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -1415,7 +1415,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrl--user-name"></a><h3>The <code class="literal">"user-name"</code> property</h3>
+<a name="EvaUrl--user-name"></a><h3>The <code class="literal">"user-name"</code> property</h3>
 <pre class="programlisting">  "user-name"                <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskXmlrpcStream</title>
+<title>EvaXmlrpcStream</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch12.html" title="RPC protocols">
@@ -37,38 +37,38 @@
 <td><a accesskey="n" href="ch13.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#eva-GskXmlrpcStream.synopsis" class="shortcut">Top</a>
+<a href="#eva-EvaXmlrpcStream.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#eva-GskXmlrpcStream.description" class="shortcut">Description</a>
+                <a href="#eva-EvaXmlrpcStream.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="eva-GskXmlrpcStream"></a><div class="titlepage"></div>
+<a name="eva-EvaXmlrpcStream"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="eva-GskXmlrpcStream.top_of_page"></a>GskXmlrpcStream</span></h2>
-<p>GskXmlrpcStream — a stream of XMLRPC method calls and responses.</p>
+<h2><span class="refentrytitle"><a name="eva-EvaXmlrpcStream.top_of_page"></a>EvaXmlrpcStream</span></h2>
+<p>EvaXmlrpcStream — a stream of XMLRPC method calls and responses.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="eva-GskXmlrpcStream.synopsis"></a><h2>Synopsis</h2>
+<a name="eva-EvaXmlrpcStream.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="eva-GskXmlrpcStream.html#GskXmlrpcStreamClass" title="GskXmlrpcStreamClass">GskXmlrpcStreamClass</a>;
-                    <a class="link" href="eva-GskXmlrpcStream.html#GskXmlrpcStream" title="GskXmlrpcStream">GskXmlrpcStream</a>;
-#define             <a class="link" href="eva-GskXmlrpcStream.html#EVA-XMLRPC-STREAM-REQUEST-HOOK--CAPS" title="EVA_XMLRPC_STREAM_REQUEST_HOOK()">EVA_XMLRPC_STREAM_REQUEST_HOOK</a>      (stream)
-<a class="link" href="eva-evaxmlrpc.html#GskXmlrpcRequest" title="GskXmlrpcRequest">GskXmlrpcRequest</a> *  <a class="link" href="eva-GskXmlrpcStream.html#eva-xmlrpc-stream-get-request" title="eva_xmlrpc_stream_get_request ()">eva_xmlrpc_stream_get_request</a>       (<a class="link" href="eva-GskXmlrpcStream.html#GskXmlrpcStream" title="GskXmlrpcStream">GskXmlrpcStream</a> *stream);
-void                <a class="link" href="eva-GskXmlrpcStream.html#eva-xmlrpc-stream-respond" title="eva_xmlrpc_stream_respond ()">eva_xmlrpc_stream_respond</a>           (<a class="link" href="eva-GskXmlrpcStream.html#GskXmlrpcStream" title="GskXmlrpcStream">GskXmlrpcStream</a> *stream,
-                                                         <a class="link" href="eva-evaxmlrpc.html#GskXmlrpcRequest" title="GskXmlrpcRequest">GskXmlrpcRequest</a> *request,
-                                                         <a class="link" href="eva-evaxmlrpc.html#GskXmlrpcResponse" title="GskXmlrpcResponse">GskXmlrpcResponse</a> *response);
-void                (<a class="link" href="eva-GskXmlrpcStream.html#GskXmlrpcResponseNotify" title="GskXmlrpcResponseNotify ()">*GskXmlrpcResponseNotify</a>)          (<a class="link" href="eva-evaxmlrpc.html#GskXmlrpcRequest" title="GskXmlrpcRequest">GskXmlrpcRequest</a> *request,
-                                                         <a class="link" href="eva-evaxmlrpc.html#GskXmlrpcResponse" title="GskXmlrpcResponse">GskXmlrpcResponse</a> *response,
+                    <a class="link" href="eva-EvaXmlrpcStream.html#EvaXmlrpcStreamClass" title="EvaXmlrpcStreamClass">EvaXmlrpcStreamClass</a>;
+                    <a class="link" href="eva-EvaXmlrpcStream.html#EvaXmlrpcStream" title="EvaXmlrpcStream">EvaXmlrpcStream</a>;
+#define             <a class="link" href="eva-EvaXmlrpcStream.html#EVA-XMLRPC-STREAM-REQUEST-HOOK--CAPS" title="EVA_XMLRPC_STREAM_REQUEST_HOOK()">EVA_XMLRPC_STREAM_REQUEST_HOOK</a>      (stream)
+<a class="link" href="eva-evaxmlrpc.html#EvaXmlrpcRequest" title="EvaXmlrpcRequest">EvaXmlrpcRequest</a> *  <a class="link" href="eva-EvaXmlrpcStream.html#eva-xmlrpc-stream-get-request" title="eva_xmlrpc_stream_get_request ()">eva_xmlrpc_stream_get_request</a>       (<a class="link" href="eva-EvaXmlrpcStream.html#EvaXmlrpcStream" title="EvaXmlrpcStream">EvaXmlrpcStream</a> *stream);
+void                <a class="link" href="eva-EvaXmlrpcStream.html#eva-xmlrpc-stream-respond" title="eva_xmlrpc_stream_respond ()">eva_xmlrpc_stream_respond</a>           (<a class="link" href="eva-EvaXmlrpcStream.html#EvaXmlrpcStream" title="EvaXmlrpcStream">EvaXmlrpcStream</a> *stream,
+                                                         <a class="link" href="eva-evaxmlrpc.html#EvaXmlrpcRequest" title="EvaXmlrpcRequest">EvaXmlrpcRequest</a> *request,
+                                                         <a class="link" href="eva-evaxmlrpc.html#EvaXmlrpcResponse" title="EvaXmlrpcResponse">EvaXmlrpcResponse</a> *response);
+void                (<a class="link" href="eva-EvaXmlrpcStream.html#EvaXmlrpcResponseNotify" title="EvaXmlrpcResponseNotify ()">*EvaXmlrpcResponseNotify</a>)          (<a class="link" href="eva-evaxmlrpc.html#EvaXmlrpcRequest" title="EvaXmlrpcRequest">EvaXmlrpcRequest</a> *request,
+                                                         <a class="link" href="eva-evaxmlrpc.html#EvaXmlrpcResponse" title="EvaXmlrpcResponse">EvaXmlrpcResponse</a> *response,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);
-void                <a class="link" href="eva-GskXmlrpcStream.html#eva-xmlrpc-stream-make-request" title="eva_xmlrpc_stream_make_request ()">eva_xmlrpc_stream_make_request</a>      (<a class="link" href="eva-GskXmlrpcStream.html#GskXmlrpcStream" title="GskXmlrpcStream">GskXmlrpcStream</a> *stream,
-                                                         <a class="link" href="eva-evaxmlrpc.html#GskXmlrpcRequest" title="GskXmlrpcRequest">GskXmlrpcRequest</a> *request,
-                                                         <a class="link" href="eva-GskXmlrpcStream.html#GskXmlrpcResponseNotify" title="GskXmlrpcResponseNotify ()">GskXmlrpcResponseNotify</a> notify,
+void                <a class="link" href="eva-EvaXmlrpcStream.html#eva-xmlrpc-stream-make-request" title="eva_xmlrpc_stream_make_request ()">eva_xmlrpc_stream_make_request</a>      (<a class="link" href="eva-EvaXmlrpcStream.html#EvaXmlrpcStream" title="EvaXmlrpcStream">EvaXmlrpcStream</a> *stream,
+                                                         <a class="link" href="eva-evaxmlrpc.html#EvaXmlrpcRequest" title="EvaXmlrpcRequest">EvaXmlrpcRequest</a> *request,
+                                                         <a class="link" href="eva-EvaXmlrpcStream.html#EvaXmlrpcResponseNotify" title="EvaXmlrpcResponseNotify ()">EvaXmlrpcResponseNotify</a> notify,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -78,7 +78,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNo
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="eva-GskXmlrpcStream.description"></a><h2>Description</h2>
+<a name="eva-EvaXmlrpcStream.description"></a><h2>Description</h2>
 <p>
 This class provides an easy way to handle XMLRPC;
 you may wish to attach this to an HTTP post_data
@@ -90,40 +90,40 @@ if you please.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="eva-GskXmlrpcStream.details"></a><h2>Details</h2>
+<a name="eva-EvaXmlrpcStream.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskXmlrpcStreamClass"></a><h3>GskXmlrpcStreamClass</h3>
+<a name="EvaXmlrpcStreamClass"></a><h3>EvaXmlrpcStreamClass</h3>
 <pre class="programlisting">typedef struct {
-  GskStreamClass stream_class;
+  EvaStreamClass stream_class;
 
-  void (*set_poll_requestable) (GskXmlrpcStream *,
+  void (*set_poll_requestable) (EvaXmlrpcStream *,
 				gboolean polling);
-  void (*shutdown_requestable) (GskXmlrpcStream *);
-} GskXmlrpcStreamClass;
+  void (*shutdown_requestable) (EvaXmlrpcStream *);
+} EvaXmlrpcStreamClass;
 </pre>
 <p>
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskXmlrpcStream"></a><h3>GskXmlrpcStream</h3>
+<a name="EvaXmlrpcStream"></a><h3>EvaXmlrpcStream</h3>
 <pre class="programlisting">typedef struct {
-  GskStream      stream;
-  GskXmlrpcParser *parser;
+  EvaStream      stream;
+  EvaXmlrpcParser *parser;
 
   /* handle incoming requests */
-  GskXmlrpcIncoming *first_unhandled_request;
-  GskXmlrpcIncoming *next_to_dequeue;
-  GskXmlrpcIncoming *last_request;
-  GskHook incoming_request_hook;
+  EvaXmlrpcIncoming *first_unhandled_request;
+  EvaXmlrpcIncoming *next_to_dequeue;
+  EvaXmlrpcIncoming *last_request;
+  EvaHook incoming_request_hook;
 
   /* handle outgoing requests */
-  GskXmlrpcOutgoing *first_unresponded_request;
-  GskXmlrpcOutgoing *last_unresponded_request;
+  EvaXmlrpcOutgoing *first_unresponded_request;
+  EvaXmlrpcOutgoing *last_unresponded_request;
 
   /* queue outgoing response and request data here */
-  GskBuffer outgoing;
-} GskXmlrpcStream;
+  EvaBuffer outgoing;
+} EvaXmlrpcStream;
 </pre>
 <p>
 </p>
@@ -133,13 +133,13 @@ if you please.
 <a name="EVA-XMLRPC-STREAM-REQUEST-HOOK--CAPS"></a><h3>EVA_XMLRPC_STREAM_REQUEST_HOOK()</h3>
 <pre class="programlisting">#define             EVA_XMLRPC_STREAM_REQUEST_HOOK(stream)</pre>
 <p>
-Get the <a class="link" href="eva-evahook.html#GskHook" title="GskHook"><span class="type">GskHook</span></a> for the request-available end of the stream.
+Get the <a class="link" href="eva-evahook.html#EvaHook" title="EvaHook"><span class="type">EvaHook</span></a> for the request-available end of the stream.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>#GskXmlrpcStream from which to obtain the hook.
+<td>#EvaXmlrpcStream from which to obtain the hook.
 </td>
 </tr></tbody>
 </table></div>
@@ -147,11 +147,11 @@ Get the <a class="link" href="eva-evahook.html#GskHook" title="GskHook"><span cl
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-xmlrpc-stream-get-request"></a><h3>eva_xmlrpc_stream_get_request ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evaxmlrpc.html#GskXmlrpcRequest" title="GskXmlrpcRequest">GskXmlrpcRequest</a> *  eva_xmlrpc_stream_get_request       (<a class="link" href="eva-GskXmlrpcStream.html#GskXmlrpcStream" title="GskXmlrpcStream">GskXmlrpcStream</a> *stream);</pre>
+<pre class="programlisting"><a class="link" href="eva-evaxmlrpc.html#EvaXmlrpcRequest" title="EvaXmlrpcRequest">EvaXmlrpcRequest</a> *  eva_xmlrpc_stream_get_request       (<a class="link" href="eva-EvaXmlrpcStream.html#EvaXmlrpcStream" title="EvaXmlrpcStream">EvaXmlrpcStream</a> *stream);</pre>
 <p>
 Grab a new request from the stream.
 The caller should eventually respond to it with
-<a class="link" href="eva-GskXmlrpcStream.html#eva-xmlrpc-stream-respond" title="eva_xmlrpc_stream_respond ()"><code class="function">eva_xmlrpc_stream_respond()</code></a>.</p>
+<a class="link" href="eva-EvaXmlrpcStream.html#eva-xmlrpc-stream-respond" title="eva_xmlrpc_stream_respond ()"><code class="function">eva_xmlrpc_stream_respond()</code></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -175,9 +175,9 @@ or NULL if no unhandled requests are available.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-xmlrpc-stream-respond"></a><h3>eva_xmlrpc_stream_respond ()</h3>
-<pre class="programlisting">void                eva_xmlrpc_stream_respond           (<a class="link" href="eva-GskXmlrpcStream.html#GskXmlrpcStream" title="GskXmlrpcStream">GskXmlrpcStream</a> *stream,
-                                                         <a class="link" href="eva-evaxmlrpc.html#GskXmlrpcRequest" title="GskXmlrpcRequest">GskXmlrpcRequest</a> *request,
-                                                         <a class="link" href="eva-evaxmlrpc.html#GskXmlrpcResponse" title="GskXmlrpcResponse">GskXmlrpcResponse</a> *response);</pre>
+<pre class="programlisting">void                eva_xmlrpc_stream_respond           (<a class="link" href="eva-EvaXmlrpcStream.html#EvaXmlrpcStream" title="EvaXmlrpcStream">EvaXmlrpcStream</a> *stream,
+                                                         <a class="link" href="eva-evaxmlrpc.html#EvaXmlrpcRequest" title="EvaXmlrpcRequest">EvaXmlrpcRequest</a> *request,
+                                                         <a class="link" href="eva-evaxmlrpc.html#EvaXmlrpcResponse" title="EvaXmlrpcResponse">EvaXmlrpcResponse</a> *response);</pre>
 <p>
 Give the RPC result to the other side of this connection.</p>
 <p>
@@ -205,9 +205,9 @@ Give the RPC result to the other side of this connection.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskXmlrpcResponseNotify"></a><h3>GskXmlrpcResponseNotify ()</h3>
-<pre class="programlisting">void                (*GskXmlrpcResponseNotify)          (<a class="link" href="eva-evaxmlrpc.html#GskXmlrpcRequest" title="GskXmlrpcRequest">GskXmlrpcRequest</a> *request,
-                                                         <a class="link" href="eva-evaxmlrpc.html#GskXmlrpcResponse" title="GskXmlrpcResponse">GskXmlrpcResponse</a> *response,
+<a name="EvaXmlrpcResponseNotify"></a><h3>EvaXmlrpcResponseNotify ()</h3>
+<pre class="programlisting">void                (*EvaXmlrpcResponseNotify)          (<a class="link" href="eva-evaxmlrpc.html#EvaXmlrpcRequest" title="EvaXmlrpcRequest">EvaXmlrpcRequest</a> *request,
+                                                         <a class="link" href="eva-evaxmlrpc.html#EvaXmlrpcResponse" title="EvaXmlrpcResponse">EvaXmlrpcResponse</a> *response,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);</pre>
@@ -237,9 +237,9 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-xmlrpc-stream-make-request"></a><h3>eva_xmlrpc_stream_make_request ()</h3>
-<pre class="programlisting">void                eva_xmlrpc_stream_make_request      (<a class="link" href="eva-GskXmlrpcStream.html#GskXmlrpcStream" title="GskXmlrpcStream">GskXmlrpcStream</a> *stream,
-                                                         <a class="link" href="eva-evaxmlrpc.html#GskXmlrpcRequest" title="GskXmlrpcRequest">GskXmlrpcRequest</a> *request,
-                                                         <a class="link" href="eva-GskXmlrpcStream.html#GskXmlrpcResponseNotify" title="GskXmlrpcResponseNotify ()">GskXmlrpcResponseNotify</a> notify,
+<pre class="programlisting">void                eva_xmlrpc_stream_make_request      (<a class="link" href="eva-EvaXmlrpcStream.html#EvaXmlrpcStream" title="EvaXmlrpcStream">EvaXmlrpcStream</a> *stream,
+                                                         <a class="link" href="eva-evaxmlrpc.html#EvaXmlrpcRequest" title="EvaXmlrpcRequest">EvaXmlrpcRequest</a> *request,
+                                                         <a class="link" href="eva-EvaXmlrpcStream.html#EvaXmlrpcResponseNotify" title="EvaXmlrpcResponseNotify ()">EvaXmlrpcResponseNotify</a> notify,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -248,7 +248,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNo
 >GDestroyNotify</a> destroy);</pre>
 <p>
 Make a request (a method call) to the other side of this
-<a class="link" href="eva-GskXmlrpcStream.html#GskXmlrpcStream" title="GskXmlrpcStream"><span class="type">GskXmlrpcStream</span></a>.  When a response is received,
+<a class="link" href="eva-EvaXmlrpcStream.html#EvaXmlrpcStream" title="EvaXmlrpcStream"><span class="type">EvaXmlrpcStream</span></a>.  When a response is received,
 <em class="parameter"><code>notify</code></em> will be called, then destroy will be called.
 </p>
 <p>

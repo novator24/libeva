@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskStreamFd</title>
+<title>EvaStreamFd</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch04.html" title="Standard Implementations">
-<link rel="prev" href="GskPacketQueueFd.html" title="GskPacketQueueFd">
-<link rel="next" href="eva-GskStreamExternal.html" title="GskStreamExternal">
+<link rel="prev" href="EvaPacketQueueFd.html" title="EvaPacketQueueFd">
+<link rel="next" href="eva-EvaStreamExternal.html" title="EvaStreamExternal">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -30,62 +30,62 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskPacketQueueFd.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaPacketQueueFd.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="eva-GskStreamExternal.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="eva-EvaStreamExternal.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskStreamFd.synopsis" class="shortcut">Top</a>
+<a href="#EvaStreamFd.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskStreamFd.description" class="shortcut">Description</a>
+                <a href="#EvaStreamFd.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskStreamFd.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaStreamFd.object-hierarchy" class="shortcut">Object Hierarchy</a>
                  | 
-                <a href="#GskStreamFd.properties" class="shortcut">Properties</a>
+                <a href="#EvaStreamFd.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskStreamFd"></a><div class="titlepage"></div>
+<a name="EvaStreamFd"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskStreamFd.top_of_page"></a>GskStreamFd</span></h2>
-<p>GskStreamFd — a file-descriptor based GskStream</p>
+<h2><span class="refentrytitle"><a name="EvaStreamFd.top_of_page"></a>EvaStreamFd</span></h2>
+<p>EvaStreamFd — a file-descriptor based EvaStream</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskStreamFd.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaStreamFd.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-#define             <a class="link" href="GskStreamFd.html#EVA-STREAM-FD-GET-FD--CAPS" title="EVA_STREAM_FD_GET_FD()">EVA_STREAM_FD_GET_FD</a>                (stream)
-                    <a class="link" href="GskStreamFd.html#GskStreamFd-struct" title="GskStreamFd">GskStreamFd</a>;
-enum                <a class="link" href="GskStreamFd.html#GskStreamFdFlags" title="enum GskStreamFdFlags">GskStreamFdFlags</a>;
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="GskStreamFd.html#eva-stream-fd-new" title="eva_stream_fd_new ()">eva_stream_fd_new</a>                   (<a
+#define             <a class="link" href="EvaStreamFd.html#EVA-STREAM-FD-GET-FD--CAPS" title="EVA_STREAM_FD_GET_FD()">EVA_STREAM_FD_GET_FD</a>                (stream)
+                    <a class="link" href="EvaStreamFd.html#EvaStreamFd-struct" title="EvaStreamFd">EvaStreamFd</a>;
+enum                <a class="link" href="EvaStreamFd.html#EvaStreamFdFlags" title="enum EvaStreamFdFlags">EvaStreamFdFlags</a>;
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="EvaStreamFd.html#eva-stream-fd-new" title="eva_stream_fd_new ()">eva_stream_fd_new</a>                   (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> fd,
-                                                         <a class="link" href="GskStreamFd.html#GskStreamFdFlags" title="enum GskStreamFdFlags">GskStreamFdFlags</a> flags);
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="GskStreamFd.html#eva-stream-fd-new-auto" title="eva_stream_fd_new_auto ()">eva_stream_fd_new_auto</a>              (<a
+                                                         <a class="link" href="EvaStreamFd.html#EvaStreamFdFlags" title="enum EvaStreamFdFlags">EvaStreamFdFlags</a> flags);
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="EvaStreamFd.html#eva-stream-fd-new-auto" title="eva_stream_fd_new_auto ()">eva_stream_fd_new_auto</a>              (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> fd);
-<a class="link" href="GskStreamFd.html#GskStreamFdFlags" title="enum GskStreamFdFlags">GskStreamFdFlags</a>    <a class="link" href="GskStreamFd.html#eva-stream-fd-flags-guess" title="eva_stream_fd_flags_guess ()">eva_stream_fd_flags_guess</a>           (<a
+<a class="link" href="EvaStreamFd.html#EvaStreamFdFlags" title="enum EvaStreamFdFlags">EvaStreamFdFlags</a>    <a class="link" href="EvaStreamFd.html#eva-stream-fd-flags-guess" title="eva_stream_fd_flags_guess ()">eva_stream_fd_flags_guess</a>           (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> fd);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskStreamFd.html#eva-stream-fd-pipe" title="eva_stream_fd_pipe ()">eva_stream_fd_pipe</a>                  (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> **read_side_out,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> **write_side_out,
+>gboolean</a>            <a class="link" href="EvaStreamFd.html#eva-stream-fd-pipe" title="eva_stream_fd_pipe ()">eva_stream_fd_pipe</a>                  (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> **read_side_out,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> **write_side_out,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="GskStreamFd.html#eva-stream-fd-new-connecting" title="eva_stream_fd_new_connecting ()">eva_stream_fd_new_connecting</a>        (<a
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="EvaStreamFd.html#eva-stream-fd-new-connecting" title="eva_stream_fd_new_connecting ()">eva_stream_fd_new_connecting</a>        (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> fd);
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="GskStreamFd.html#eva-stream-fd-new-read-file" title="eva_stream_fd_new_read_file ()">eva_stream_fd_new_read_file</a>         (const char *filename,
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="EvaStreamFd.html#eva-stream-fd-new-read-file" title="eva_stream_fd_new_read_file ()">eva_stream_fd_new_read_file</a>         (const char *filename,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="GskStreamFd.html#eva-stream-fd-new-write-file" title="eva_stream_fd_new_write_file ()">eva_stream_fd_new_write_file</a>        (const char *filename,
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="EvaStreamFd.html#eva-stream-fd-new-write-file" title="eva_stream_fd_new_write_file ()">eva_stream_fd_new_write_file</a>        (const char *filename,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> may_create,
@@ -95,14 +95,14 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="GskStreamFd.html#eva-stream-fd-new-create-file" title="eva_stream_fd_new_create_file ()">eva_stream_fd_new_create_file</a>       (const char *filename,
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="EvaStreamFd.html#eva-stream-fd-new-create-file" title="eva_stream_fd_new_create_file ()">eva_stream_fd_new_create_file</a>       (const char *filename,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> may_exist,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="GskStreamFd.html#eva-stream-fd-new-open" title="eva_stream_fd_new_open ()">eva_stream_fd_new_open</a>              (const char *filename,
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="EvaStreamFd.html#eva-stream-fd-new-open" title="eva_stream_fd_new_open ()">eva_stream_fd_new_open</a>              (const char *filename,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> open_flags,
@@ -114,64 +114,64 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskStreamFd.html#eva-stream-fd-duplex-pipe" title="eva_stream_fd_duplex_pipe ()">eva_stream_fd_duplex_pipe</a>           (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> **side_a_out,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> **side_b_out,
+>gboolean</a>            <a class="link" href="EvaStreamFd.html#eva-stream-fd-duplex-pipe" title="eva_stream_fd_duplex_pipe ()">eva_stream_fd_duplex_pipe</a>           (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> **side_a_out,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> **side_b_out,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskStreamFd.html#eva-stream-fd-duplex-pipe-fd" title="eva_stream_fd_duplex_pipe_fd ()">eva_stream_fd_duplex_pipe_fd</a>        (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> **side_a_out,
+>gboolean</a>            <a class="link" href="EvaStreamFd.html#eva-stream-fd-duplex-pipe-fd" title="eva_stream_fd_duplex_pipe_fd ()">eva_stream_fd_duplex_pipe_fd</a>        (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> **side_a_out,
                                                          int *side_b_fd_out,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="GskStreamFd.html#eva-stream-fd-new-from-symbolic-address" title="eva_stream_fd_new_from_symbolic_address ()">eva_stream_fd_new_from_symbolic_address</a>
-                                                        (GskSocketAddressSymbolic *symbolic,
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="EvaStreamFd.html#eva-stream-fd-new-from-symbolic-address" title="eva_stream_fd_new_from_symbolic_address ()">eva_stream_fd_new_from_symbolic_address</a>
+                                                        (EvaSocketAddressSymbolic *symbolic,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskStreamFd.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaStreamFd.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a>
-         +----<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a>
-               +----GskStreamFd
+   +----<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a>
+         +----<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a>
+               +----EvaStreamFd
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskStreamFd.properties"></a><h2>Properties</h2>
+<a name="EvaStreamFd.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a class="link" href="GskStreamFd.html#GskStreamFd--file-descriptor" title='The "file-descriptor" property'>file-descriptor</a>"          GskFd                 : Read / Write / Construct Only
-  "<a class="link" href="GskStreamFd.html#GskStreamFd--is-pollable" title='The "is-pollable" property'>is-pollable</a>"              <a
+  "<a class="link" href="EvaStreamFd.html#EvaStreamFd--file-descriptor" title='The "file-descriptor" property'>file-descriptor</a>"          EvaFd                 : Read / Write / Construct Only
+  "<a class="link" href="EvaStreamFd.html#EvaStreamFd--is-pollable" title='The "is-pollable" property'>is-pollable</a>"              <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>              : Read / Write / Construct Only
-  "<a class="link" href="GskStreamFd.html#GskStreamFd--is-readable" title='The "is-readable" property'>is-readable</a>"              <a
+  "<a class="link" href="EvaStreamFd.html#EvaStreamFd--is-readable" title='The "is-readable" property'>is-readable</a>"              <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>              : Read / Write / Construct Only
-  "<a class="link" href="GskStreamFd.html#GskStreamFd--is-writable" title='The "is-writable" property'>is-writable</a>"              <a
+  "<a class="link" href="EvaStreamFd.html#EvaStreamFd--is-writable" title='The "is-writable" property'>is-writable</a>"              <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>              : Read / Write / Construct Only
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskStreamFd.description"></a><h2>Description</h2>
+<a name="EvaStreamFd.description"></a><h2>Description</h2>
 <p>
-a GskStream that can be used for files and sockets.
+a EvaStream that can be used for files and sockets.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskStreamFd.details"></a><h2>Details</h2>
+<a name="EvaStreamFd.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
 <a name="EVA-STREAM-FD-GET-FD--CAPS"></a><h3>EVA_STREAM_FD_GET_FD()</h3>
 <pre class="programlisting">#define             EVA_STREAM_FD_GET_FD(stream)</pre>
 <p>
-Get underlying file-descriptor from a <a class="link" href="GskStreamFd.html" title="GskStreamFd"><span class="type">GskStreamFd</span></a>.
+Get underlying file-descriptor from a <a class="link" href="EvaStreamFd.html" title="EvaStreamFd"><span class="type">EvaStreamFd</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -184,15 +184,15 @@ Get underlying file-descriptor from a <a class="link" href="GskStreamFd.html" ti
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamFd-struct"></a><h3>GskStreamFd</h3>
-<pre class="programlisting">typedef struct _GskStreamFd GskStreamFd;</pre>
+<a name="EvaStreamFd-struct"></a><h3>EvaStreamFd</h3>
+<pre class="programlisting">typedef struct _EvaStreamFd EvaStreamFd;</pre>
 <p>
 An instance of a file-descriptor based stream.
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamFdFlags"></a><h3>enum GskStreamFdFlags</h3>
+<a name="EvaStreamFdFlags"></a><h3>enum EvaStreamFdFlags</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_STREAM_FD_IS_READABLE     = (1&lt;&lt;0),
@@ -204,7 +204,7 @@ An instance of a file-descriptor based stream.
   EVA_STREAM_FD_FOR_NEW_SOCKET  = EVA_STREAM_FD_IS_READWRITE
                                 | EVA_STREAM_FD_IS_POLLABLE
 			        | EVA_STREAM_FD_IS_SHUTDOWNABLE
-} GskStreamFdFlags;
+} EvaStreamFdFlags;
 </pre>
 <p>
 </p>
@@ -212,12 +212,12 @@ An instance of a file-descriptor based stream.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-fd-new"></a><h3>eva_stream_fd_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_fd_new                   (<a
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_fd_new                   (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> fd,
-                                                         <a class="link" href="GskStreamFd.html#GskStreamFdFlags" title="enum GskStreamFdFlags">GskStreamFdFlags</a> flags);</pre>
+                                                         <a class="link" href="EvaStreamFd.html#EvaStreamFdFlags" title="enum EvaStreamFdFlags">EvaStreamFdFlags</a> flags);</pre>
 <p>
-Create a new GskStream based on an already open file descriptor.</p>
+Create a new EvaStream based on an already open file descriptor.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -235,7 +235,7 @@ Create a new GskStream based on an already open file descriptor.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new GskStream
+<td> a new EvaStream
 </td>
 </tr>
 </tbody>
@@ -244,7 +244,7 @@ Create a new GskStream based on an already open file descriptor.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-fd-new-auto"></a><h3>eva_stream_fd_new_auto ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_fd_new_auto              (<a
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_fd_new_auto              (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> fd);</pre>
 <p>
@@ -262,7 +262,7 @@ Try to guess the nature of the file-descriptor using <code class="function">fsta
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new GskStream which will free <em class="parameter"><code>fd</code></em> when it is closed.
+<td> a new EvaStream which will free <em class="parameter"><code>fd</code></em> when it is closed.
 </td>
 </tr>
 </tbody>
@@ -271,7 +271,7 @@ Try to guess the nature of the file-descriptor using <code class="function">fsta
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-fd-flags-guess"></a><h3>eva_stream_fd_flags_guess ()</h3>
-<pre class="programlisting"><a class="link" href="GskStreamFd.html#GskStreamFdFlags" title="enum GskStreamFdFlags">GskStreamFdFlags</a>    eva_stream_fd_flags_guess           (<a
+<pre class="programlisting"><a class="link" href="EvaStreamFd.html#EvaStreamFdFlags" title="enum EvaStreamFdFlags">EvaStreamFdFlags</a>    eva_stream_fd_flags_guess           (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> fd);</pre>
 <p>
@@ -297,8 +297,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 <a name="eva-stream-fd-pipe"></a><h3>eva_stream_fd_pipe ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_stream_fd_pipe                  (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> **read_side_out,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> **write_side_out,
+>gboolean</a>            eva_stream_fd_pipe                  (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> **read_side_out,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> **write_side_out,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -337,11 +337,11 @@ The newly allocated streams are returned.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-fd-new-connecting"></a><h3>eva_stream_fd_new_connecting ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_fd_new_connecting        (<a
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_fd_new_connecting        (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> fd);</pre>
 <p>
-Create a new GskStream based on a socket which is still in the process of connecting.</p>
+Create a new EvaStream based on a socket which is still in the process of connecting.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -354,7 +354,7 @@ Create a new GskStream based on a socket which is still in the process of connec
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new GskStream
+<td> a new EvaStream
 </td>
 </tr>
 </tbody>
@@ -363,12 +363,12 @@ Create a new GskStream based on a socket which is still in the process of connec
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-fd-new-read-file"></a><h3>eva_stream_fd_new_read_file ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_fd_new_read_file         (const char *filename,
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_fd_new_read_file         (const char *filename,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
 <p>
-Open a file for reading as a <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>.
+Open a file for reading as a <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>.
 The stream is not writable.</p>
 <p>
 </p>
@@ -387,7 +387,7 @@ The stream is not writable.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new GskStream
+<td> a new EvaStream
 </td>
 </tr>
 </tbody>
@@ -396,7 +396,7 @@ The stream is not writable.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-fd-new-write-file"></a><h3>eva_stream_fd_new_write_file ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_fd_new_write_file        (const char *filename,
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_fd_new_write_file        (const char *filename,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> may_create,
@@ -407,7 +407,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
 <p>
-Open a file for writing as a <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>.
+Open a file for writing as a <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>.
 The stream is not readable.</p>
 <p>
 </p>
@@ -436,7 +436,7 @@ The stream is not readable.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new GskStream
+<td> a new EvaStream
 </td>
 </tr>
 </tbody>
@@ -445,7 +445,7 @@ The stream is not readable.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-fd-new-create-file"></a><h3>eva_stream_fd_new_create_file ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_fd_new_create_file       (const char *filename,
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_fd_new_create_file       (const char *filename,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> may_exist,
@@ -453,7 +453,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
 <p>
-Create a file for writing as a <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>.
+Create a file for writing as a <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>.
 The stream is not readable.</p>
 <p>
 </p>
@@ -477,7 +477,7 @@ The stream is not readable.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new GskStream
+<td> a new EvaStream
 </td>
 </tr>
 </tbody>
@@ -486,7 +486,7 @@ The stream is not readable.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-fd-new-open"></a><h3>eva_stream_fd_new_open ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_fd_new_open              (const char *filename,
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_fd_new_open              (const char *filename,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> open_flags,
@@ -497,10 +497,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
 <p>
-Open a file as a <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>; this interface strongly
+Open a file as a <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>; this interface strongly
 reflects its underlying open(2) implementation.
-Using <a class="link" href="GskStreamFd.html#eva-stream-fd-new-read-file" title="eva_stream_fd_new_read_file ()"><code class="function">eva_stream_fd_new_read_file()</code></a>
-and <a class="link" href="GskStreamFd.html#eva-stream-fd-new-write-file" title="eva_stream_fd_new_write_file ()"><code class="function">eva_stream_fd_new_write_file()</code></a> may be more portable ultimately.</p>
+Using <a class="link" href="EvaStreamFd.html#eva-stream-fd-new-read-file" title="eva_stream_fd_new_read_file ()"><code class="function">eva_stream_fd_new_read_file()</code></a>
+and <a class="link" href="EvaStreamFd.html#eva-stream-fd-new-write-file" title="eva_stream_fd_new_write_file ()"><code class="function">eva_stream_fd_new_write_file()</code></a> may be more portable ultimately.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -528,7 +528,7 @@ and <a class="link" href="GskStreamFd.html#eva-stream-fd-new-write-file" title="
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new GskStream
+<td> a new EvaStream
 </td>
 </tr>
 </tbody>
@@ -539,14 +539,14 @@ and <a class="link" href="GskStreamFd.html#eva-stream-fd-new-write-file" title="
 <a name="eva-stream-fd-duplex-pipe"></a><h3>eva_stream_fd_duplex_pipe ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_stream_fd_duplex_pipe           (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> **side_a_out,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> **side_b_out,
+>gboolean</a>            eva_stream_fd_duplex_pipe           (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> **side_a_out,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> **side_b_out,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
 <p>
 Create a pair of file-descriptors that 
-are connected to eachother, and make GskStreamFds around them.</p>
+are connected to eachother, and make EvaStreamFds around them.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -580,14 +580,14 @@ are connected to eachother, and make GskStreamFds around them.</p>
 <a name="eva-stream-fd-duplex-pipe-fd"></a><h3>eva_stream_fd_duplex_pipe_fd ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_stream_fd_duplex_pipe_fd        (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> **side_a_out,
+>gboolean</a>            eva_stream_fd_duplex_pipe_fd        (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> **side_a_out,
                                                          int *side_b_fd_out,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
 <p>
 Create a pair of file-descriptors that 
-are connected to eachother, and make a GskStreamFd around one of them.</p>
+are connected to eachother, and make a EvaStreamFd around one of them.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -619,8 +619,8 @@ are connected to eachother, and make a GskStreamFd around one of them.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-fd-new-from-symbolic-address"></a><h3>eva_stream_fd_new_from_symbolic_address ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_fd_new_from_symbolic_address
-                                                        (GskSocketAddressSymbolic *symbolic,
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_fd_new_from_symbolic_address
+                                                        (EvaSocketAddressSymbolic *symbolic,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -643,7 +643,7 @@ Create a stream connecting to a symbolic socket-address.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new GskStream
+<td> a new EvaStream
 </td>
 </tr>
 </tbody>
@@ -651,15 +651,15 @@ Create a stream connecting to a symbolic socket-address.</p>
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskStreamFd.property-details"></a><h2>Property Details</h2>
+<a name="EvaStreamFd.property-details"></a><h2>Property Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskStreamFd--file-descriptor"></a><h3>The <code class="literal">"file-descriptor"</code> property</h3>
-<pre class="programlisting">  "file-descriptor"          GskFd                 : Read / Write / Construct Only</pre>
+<a name="EvaStreamFd--file-descriptor"></a><h3>The <code class="literal">"file-descriptor"</code> property</h3>
+<pre class="programlisting">  "file-descriptor"          EvaFd                 : Read / Write / Construct Only</pre>
 <p>for reading and/or writing.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamFd--is-pollable"></a><h3>The <code class="literal">"is-pollable"</code> property</h3>
+<a name="EvaStreamFd--is-pollable"></a><h3>The <code class="literal">"is-pollable"</code> property</h3>
 <pre class="programlisting">  "is-pollable"              <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>              : Read / Write / Construct Only</pre>
@@ -668,7 +668,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamFd--is-readable"></a><h3>The <code class="literal">"is-readable"</code> property</h3>
+<a name="EvaStreamFd--is-readable"></a><h3>The <code class="literal">"is-readable"</code> property</h3>
 <pre class="programlisting">  "is-readable"              <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>              : Read / Write / Construct Only</pre>
@@ -677,7 +677,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamFd--is-writable"></a><h3>The <code class="literal">"is-writable"</code> property</h3>
+<a name="EvaStreamFd--is-writable"></a><h3>The <code class="literal">"is-writable"</code> property</h3>
 <pre class="programlisting">  "is-writable"              <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>              : Read / Write / Construct Only</pre>

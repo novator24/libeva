@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskUrlTransfer</title>
+<title>EvaUrlTransfer</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch05.html" title="Standard Objects: the URL class">
-<link rel="prev" href="GskUrl.html" title="GskUrl">
-<link rel="next" href="GskUrlTransferHttp.html" title="GskUrlTransferHttp">
+<link rel="prev" href="EvaUrl.html" title="EvaUrl">
+<link rel="next" href="EvaUrlTransferHttp.html" title="EvaUrlTransferHttp">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -30,41 +30,41 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskUrl.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaUrl.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="GskUrlTransferHttp.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="EvaUrlTransferHttp.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskUrlTransfer.synopsis" class="shortcut">Top</a>
+<a href="#EvaUrlTransfer.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskUrlTransfer.description" class="shortcut">Description</a>
+                <a href="#EvaUrlTransfer.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskUrlTransfer.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaUrlTransfer.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskUrlTransfer"></a><div class="titlepage"></div>
+<a name="EvaUrlTransfer"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskUrlTransfer.top_of_page"></a>GskUrlTransfer</span></h2>
-<p>GskUrlTransfer — Transfer data with a location by URL.</p>
+<h2><span class="refentrytitle"><a name="EvaUrlTransfer.top_of_page"></a>EvaUrlTransfer</span></h2>
+<p>EvaUrlTransfer — Transfer data with a location by URL.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskUrlTransfer.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaUrlTransfer.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="GskUrlTransfer.html#GskUrlTransferRedirect" title="GskUrlTransferRedirect">GskUrlTransferRedirect</a>;
-enum                <a class="link" href="GskUrlTransfer.html#GskUrlTransferResult" title="enum GskUrlTransferResult">GskUrlTransferResult</a>;
-#define             <a class="link" href="GskUrlTransfer.html#EVA-URL-TRANSFER-N-RESULTS--CAPS" title="EVA_URL_TRANSFER_N_RESULTS">EVA_URL_TRANSFER_N_RESULTS</a>
-const char *        <a class="link" href="GskUrlTransfer.html#eva-url-transfer-result-name" title="eva_url_transfer_result_name ()">eva_url_transfer_result_name</a>        (<a class="link" href="GskUrlTransfer.html#GskUrlTransferResult" title="enum GskUrlTransferResult">GskUrlTransferResult</a> result);
-void                (<a class="link" href="GskUrlTransfer.html#GskUrlTransferFunc" title="GskUrlTransferFunc ()">*GskUrlTransferFunc</a>)               (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *info,
+                    <a class="link" href="EvaUrlTransfer.html#EvaUrlTransferRedirect" title="EvaUrlTransferRedirect">EvaUrlTransferRedirect</a>;
+enum                <a class="link" href="EvaUrlTransfer.html#EvaUrlTransferResult" title="enum EvaUrlTransferResult">EvaUrlTransferResult</a>;
+#define             <a class="link" href="EvaUrlTransfer.html#EVA-URL-TRANSFER-N-RESULTS--CAPS" title="EVA_URL_TRANSFER_N_RESULTS">EVA_URL_TRANSFER_N_RESULTS</a>
+const char *        <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-result-name" title="eva_url_transfer_result_name ()">eva_url_transfer_result_name</a>        (<a class="link" href="EvaUrlTransfer.html#EvaUrlTransferResult" title="enum EvaUrlTransferResult">EvaUrlTransferResult</a> result);
+void                (<a class="link" href="EvaUrlTransfer.html#EvaUrlTransferFunc" title="EvaUrlTransferFunc ()">*EvaUrlTransferFunc</a>)               (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *info,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         (<a class="link" href="GskUrlTransfer.html#GskUrlUploadFunc" title="GskUrlUploadFunc ()">*GskUrlUploadFunc</a>)                 (<a
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         (<a class="link" href="EvaUrlTransfer.html#EvaUrlUploadFunc" title="EvaUrlUploadFunc ()">*EvaUrlUploadFunc</a>)                 (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> upload_data,
                                                          <a
@@ -73,18 +73,18 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gssize"
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-                    <a class="link" href="GskUrlTransfer.html#GskUrlTransfer-struct" title="GskUrlTransfer">GskUrlTransfer</a>;
+                    <a class="link" href="EvaUrlTransfer.html#EvaUrlTransfer-struct" title="EvaUrlTransfer">EvaUrlTransfer</a>;
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskUrlTransfer.html#eva-url-transfer" title="eva_url_transfer ()">eva_url_transfer</a>                    (<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url,
-                                                         <a class="link" href="GskUrlTransfer.html#GskUrlUploadFunc" title="GskUrlUploadFunc ()">GskUrlUploadFunc</a> upload_func,
+>gboolean</a>            <a class="link" href="EvaUrlTransfer.html#eva-url-transfer" title="eva_url_transfer ()">eva_url_transfer</a>                    (<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url,
+                                                         <a class="link" href="EvaUrlTransfer.html#EvaUrlUploadFunc" title="EvaUrlUploadFunc ()">EvaUrlUploadFunc</a> upload_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> upload_data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
 >GDestroyNotify</a> upload_destroy,
-                                                         <a class="link" href="GskUrlTransfer.html#GskUrlTransferFunc" title="GskUrlTransferFunc ()">GskUrlTransferFunc</a> handler,
+                                                         <a class="link" href="EvaUrlTransfer.html#EvaUrlTransferFunc" title="EvaUrlTransferFunc ()">EvaUrlTransferFunc</a> handler,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -94,55 +94,55 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNo
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *    <a class="link" href="GskUrlTransfer.html#eva-url-transfer-new" title="eva_url_transfer_new ()">eva_url_transfer_new</a>                (<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-handler" title="eva_url_transfer_set_handler ()">eva_url_transfer_set_handler</a>        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskUrlTransfer.html#GskUrlTransferFunc" title="GskUrlTransferFunc ()">GskUrlTransferFunc</a> handler,
+<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *    <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-new" title="eva_url_transfer_new ()">eva_url_transfer_new</a>                (<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url);
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-handler" title="eva_url_transfer_set_handler ()">eva_url_transfer_set_handler</a>        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaUrlTransfer.html#EvaUrlTransferFunc" title="EvaUrlTransferFunc ()">EvaUrlTransferFunc</a> handler,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
 >GDestroyNotify</a> destroy);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-url" title="eva_url_transfer_set_url ()">eva_url_transfer_set_url</a>            (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-upload" title="eva_url_transfer_set_upload ()">eva_url_transfer_set_upload</a>         (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskUrlTransfer.html#GskUrlUploadFunc" title="GskUrlUploadFunc ()">GskUrlUploadFunc</a> func,
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-url" title="eva_url_transfer_set_url ()">eva_url_transfer_set_url</a>            (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url);
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-upload" title="eva_url_transfer_set_upload ()">eva_url_transfer_set_upload</a>         (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaUrlTransfer.html#EvaUrlUploadFunc" title="EvaUrlUploadFunc ()">EvaUrlUploadFunc</a> func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
 >GDestroyNotify</a> destroy);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-upload-packet" title="eva_url_transfer_set_upload_packet ()">eva_url_transfer_set_upload_packet</a>  (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *packet);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-oneshot-upload" title="eva_url_transfer_set_oneshot_upload ()">eva_url_transfer_set_oneshot_upload</a> (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-upload-packet" title="eva_url_transfer_set_upload_packet ()">eva_url_transfer_set_upload_packet</a>  (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *packet);
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-oneshot-upload" title="eva_url_transfer_set_oneshot_upload ()">eva_url_transfer_set_oneshot_upload</a> (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gssize"
 >gssize</a> size);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-timeout" title="eva_url_transfer_set_timeout ()">eva_url_transfer_set_timeout</a>        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-timeout" title="eva_url_transfer_set_timeout ()">eva_url_transfer_set_timeout</a>        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> millis);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-clear-timeout" title="eva_url_transfer_clear_timeout ()">eva_url_transfer_clear_timeout</a>      (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-follow-redirects" title="eva_url_transfer_set_follow_redirects ()">eva_url_transfer_set_follow_redirects</a>
-                                                        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-clear-timeout" title="eva_url_transfer_clear_timeout ()">eva_url_transfer_clear_timeout</a>      (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer);
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-follow-redirects" title="eva_url_transfer_set_follow_redirects ()">eva_url_transfer_set_follow_redirects</a>
+                                                        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> follow_redirs);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-address-hint" title="eva_url_transfer_set_address_hint ()">eva_url_transfer_set_address_hint</a>   (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-address-hint" title="eva_url_transfer_set_address_hint ()">eva_url_transfer_set_address_hint</a>   (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskUrlTransfer.html#eva-url-transfer-start" title="eva_url_transfer_start ()">eva_url_transfer_start</a>              (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+>gboolean</a>            <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-start" title="eva_url_transfer_start ()">eva_url_transfer_start</a>              (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-cancel" title="eva_url_transfer_cancel ()">eva_url_transfer_cancel</a>             (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer);
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-cancel" title="eva_url_transfer_cancel ()">eva_url_transfer_cancel</a>             (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskUrlTransfer.html#eva-url-transfer-has-upload" title="eva_url_transfer_has_upload ()">eva_url_transfer_has_upload</a>         (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer);
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="GskUrlTransfer.html#eva-url-transfer-create-upload" title="eva_url_transfer_create_upload ()">eva_url_transfer_create_upload</a>      (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+>gboolean</a>            <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-has-upload" title="eva_url_transfer_has_upload ()">eva_url_transfer_has_upload</a>         (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer);
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-create-upload" title="eva_url_transfer_create_upload ()">eva_url_transfer_create_upload</a>      (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gssize"
 >gssize</a> *size_out,
@@ -151,16 +151,16 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskUrlTransfer.html#eva-url-transfer-peek-expects-download-stream" title="eva_url_transfer_peek_expects_download_stream ()">eva_url_transfer_peek_expects_download_stream</a>
-                                                        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer);
+>gboolean</a>            <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-peek-expects-download-stream" title="eva_url_transfer_peek_expects_download_stream ()">eva_url_transfer_peek_expects_download_stream</a>
+                                                        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskUrlTransfer.html#eva-url-transfer-is-done" title="eva_url_transfer_is_done ()">eva_url_transfer_is_done</a>            (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-address" title="eva_url_transfer_set_address ()">eva_url_transfer_set_address</a>        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *addr);
+>gboolean</a>            <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-is-done" title="eva_url_transfer_is_done ()">eva_url_transfer_is_done</a>            (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer);
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-address" title="eva_url_transfer_set_address ()">eva_url_transfer_set_address</a>        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *addr);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskUrlTransfer.html#eva-url-transfer-add-redirect" title="eva_url_transfer_add_redirect ()">eva_url_transfer_add_redirect</a>       (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+>gboolean</a>            <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-add-redirect" title="eva_url_transfer_add_redirect ()">eva_url_transfer_add_redirect</a>       (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a> *request,
@@ -170,51 +170,51 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_permanent,
-                                                         <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *dest_url);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-download" title="eva_url_transfer_set_download ()">eva_url_transfer_set_download</a>       (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *content);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-request" title="eva_url_transfer_set_request ()">eva_url_transfer_set_request</a>        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *dest_url);
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-download" title="eva_url_transfer_set_download ()">eva_url_transfer_set_download</a>       (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *content);
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-request" title="eva_url_transfer_set_request ()">eva_url_transfer_set_request</a>        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a> *request);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-response" title="eva_url_transfer_set_response ()">eva_url_transfer_set_response</a>       (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-response" title="eva_url_transfer_set_response ()">eva_url_transfer_set_response</a>       (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a> *response);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-error" title="eva_url_transfer_set_error ()">eva_url_transfer_set_error</a>          (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-error" title="eva_url_transfer_set_error ()">eva_url_transfer_set_error</a>          (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-take-error" title="eva_url_transfer_take_error ()">eva_url_transfer_take_error</a>         (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-take-error" title="eva_url_transfer_take_error ()">eva_url_transfer_take_error</a>         (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-notify-done" title="eva_url_transfer_notify_done ()">eva_url_transfer_notify_done</a>        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskUrlTransfer.html#GskUrlTransferResult" title="enum GskUrlTransferResult">GskUrlTransferResult</a> result);
-void                <a class="link" href="GskUrlTransfer.html#eva-url-transfer-class-register" title="eva_url_transfer_class_register ()">eva_url_transfer_class_register</a>     (<a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a> scheme,
-                                                         GskUrlTransferClass *transfer_class);
-char *              <a class="link" href="GskUrlTransfer.html#eva-url-transfer-get-state-string" title="eva_url_transfer_get_state_string ()">eva_url_transfer_get_state_string</a>   (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer);
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="GskUrlTransfer.html#eva-url-transfer-stream-new" title="eva_url_transfer_stream_new ()">eva_url_transfer_stream_new</a>         (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-notify-done" title="eva_url_transfer_notify_done ()">eva_url_transfer_notify_done</a>        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaUrlTransfer.html#EvaUrlTransferResult" title="enum EvaUrlTransferResult">EvaUrlTransferResult</a> result);
+void                <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-class-register" title="eva_url_transfer_class_register ()">eva_url_transfer_class_register</a>     (<a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a> scheme,
+                                                         EvaUrlTransferClass *transfer_class);
+char *              <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-get-state-string" title="eva_url_transfer_get_state_string ()">eva_url_transfer_get_state_string</a>   (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer);
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-stream-new" title="eva_url_transfer_stream_new ()">eva_url_transfer_stream_new</a>         (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskUrlTransfer.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaUrlTransfer.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----GskUrlTransfer
-         +----<a class="link" href="GskUrlTransferHttp.html" title="GskUrlTransferHttp">GskUrlTransferHttp</a>
-         +----GskUrlTransferFile
+   +----EvaUrlTransfer
+         +----<a class="link" href="EvaUrlTransferHttp.html" title="EvaUrlTransferHttp">EvaUrlTransferHttp</a>
+         +----EvaUrlTransferFile
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskUrlTransfer.description"></a><h2>Description</h2>
+<a name="EvaUrlTransfer.description"></a><h2>Description</h2>
 <p>
-A GskUrlTransfer represents a single upload and/or download with
+A EvaUrlTransfer represents a single upload and/or download with
 a resource designed by a URL.  Although most of the interface
 is URL-scheme independent, for convenience we allow users to see
 the URL-specific portions as well.
@@ -224,45 +224,45 @@ Some types of URLs are download only,
 and others support upload, but possibly not at the same time.
 </p>
 <p>
-The basic plan is to make a <a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer"><span class="type">GskUrlTransfer</span></a>
+The basic plan is to make a <a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer"><span class="type">EvaUrlTransfer</span></a>
 object.  If you wish to upload, provide a way of constructing
 an upload content-stream.  If you wish to download, provide a function
 that will be called with the downloading content-stream.
 Additional configuration may be done: for example, whether to follow redirections.
 </p>
 <p>
-The transfer which is returned from <a class="link" href="GskUrlTransfer.html#eva-url-transfer-new" title="eva_url_transfer_new ()"><code class="function">eva_url_transfer_new()</code></a>
+The transfer which is returned from <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-new" title="eva_url_transfer_new ()"><code class="function">eva_url_transfer_new()</code></a>
 is in an "unstarted" state.  After you are done configuring it,
-you should invoke <a class="link" href="GskUrlTransfer.html#eva-url-transfer-start" title="eva_url_transfer_start ()"><code class="function">eva_url_transfer_start()</code></a> to begin doing
+you should invoke <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-start" title="eva_url_transfer_start ()"><code class="function">eva_url_transfer_start()</code></a> to begin doing
 actual work.
 </p>
 <p>
 You should at least connect a handler to it
-before you start it using <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-handler" title="eva_url_transfer_set_handler ()"><code class="function">eva_url_transfer_set_handler()</code></a>.
+before you start it using <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-handler" title="eva_url_transfer_set_handler ()"><code class="function">eva_url_transfer_set_handler()</code></a>.
 </p>
 <p>
 Your handler is guaranteed to be called
-exactly once, after or during the invocation of <a class="link" href="GskUrlTransfer.html#eva-url-transfer-start" title="eva_url_transfer_start ()"><code class="function">eva_url_transfer_start()</code></a>.
+exactly once, after or during the invocation of <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-start" title="eva_url_transfer_start ()"><code class="function">eva_url_transfer_start()</code></a>.
 </p>
 <p>
 Internally, the URL-transfer code maintains a mapping from url-scheme to
-a list of GskUrlTransferClasses responsible for that type of URL.
+a list of EvaUrlTransferClasses responsible for that type of URL.
 When eva_url_transfer_new(url) is called, each handler for the url's scheme is tried in
 sequence until one is found that accepts the URL, or NULL will returned
 if no suitable class is found.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskUrlTransfer.details"></a><h2>Details</h2>
+<a name="EvaUrlTransfer.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskUrlTransferRedirect"></a><h3>GskUrlTransferRedirect</h3>
+<a name="EvaUrlTransferRedirect"></a><h3>EvaUrlTransferRedirect</h3>
 <pre class="programlisting">typedef struct {
   gboolean is_permanent;
-  GskUrl *url;
+  EvaUrl *url;
   GObject *request;
   GObject *response;
-  GskUrlTransferRedirect *next;
-} GskUrlTransferRedirect;
+  EvaUrlTransferRedirect *next;
+} EvaUrlTransferRedirect;
 </pre>
 <p>
 A node in the linked-list of redirections we have receieved.
@@ -278,7 +278,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *<em class="structfield"><code>url</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *<em class="structfield"><code>url</code></em>;</span></p></td>
 <td>the location that we have been redirected to.
 </td>
 </tr>
@@ -297,7 +297,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskUrlTransfer.html#GskUrlTransferRedirect" title="GskUrlTransferRedirect">GskUrlTransferRedirect</a> *<em class="structfield"><code>next</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaUrlTransfer.html#EvaUrlTransferRedirect" title="EvaUrlTransferRedirect">EvaUrlTransferRedirect</a> *<em class="structfield"><code>next</code></em>;</span></p></td>
 <td>next redirect chronologically.
 </td>
 </tr>
@@ -306,7 +306,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrlTransferResult"></a><h3>enum GskUrlTransferResult</h3>
+<a name="EvaUrlTransferResult"></a><h3>enum EvaUrlTransferResult</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_URL_TRANSFER_ERROR_BAD_REQUEST,
@@ -320,7 +320,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
   EVA_URL_TRANSFER_REDIRECT,
   EVA_URL_TRANSFER_CANCELLED,
   EVA_URL_TRANSFER_SUCCESS
-} GskUrlTransferResult;
+} EvaUrlTransferResult;
 </pre>
 <p>
 The result element of transfer is prepared before
@@ -400,7 +400,7 @@ See the transfer's redirect_url member.
 <td><p><a name="EVA-URL-TRANSFER-CANCELLED--CAPS"></a><span class="term"><code class="literal">EVA_URL_TRANSFER_CANCELLED</code></span></p></td>
 <td>
 The transfer was aborted because
-<a class="link" href="GskUrlTransfer.html#eva-url-transfer-cancel" title="eva_url_transfer_cancel ()"><code class="function">eva_url_transfer_cancel()</code></a> was called on it.
+<a class="link" href="EvaUrlTransfer.html#eva-url-transfer-cancel" title="eva_url_transfer_cancel ()"><code class="function">eva_url_transfer_cancel()</code></a> was called on it.
 </td>
 </tr>
 <tr>
@@ -424,12 +424,12 @@ Number of result-codes, seldom needed.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-result-name"></a><h3>eva_url_transfer_result_name ()</h3>
-<pre class="programlisting">const char *        eva_url_transfer_result_name        (<a class="link" href="GskUrlTransfer.html#GskUrlTransferResult" title="enum GskUrlTransferResult">GskUrlTransferResult</a> result);</pre>
+<pre class="programlisting">const char *        eva_url_transfer_result_name        (<a class="link" href="EvaUrlTransfer.html#EvaUrlTransferResult" title="enum EvaUrlTransferResult">EvaUrlTransferResult</a> result);</pre>
 <p>
 <em class="parameter"><code>result</code></em>: the enumeration value.
 </p>
 <p>
-Convert a GskUrlTransferResult value
+Convert a EvaUrlTransferResult value
 into a human-readable string.</p>
 <p>
 Get a mixed-case human-readable name for the Transfer-Result.
@@ -452,8 +452,8 @@ Get a mixed-case human-readable name for the Transfer-Result.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrlTransferFunc"></a><h3>GskUrlTransferFunc ()</h3>
-<pre class="programlisting">void                (*GskUrlTransferFunc)               (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *info,
+<a name="EvaUrlTransferFunc"></a><h3>EvaUrlTransferFunc ()</h3>
+<pre class="programlisting">void                (*EvaUrlTransferFunc)               (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *info,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);</pre>
@@ -463,7 +463,7 @@ This function is called if the transfer is successful,
 or has an error, or times out, or is cancelled.
 </p>
 <p>
-It will only be called after <a class="link" href="GskUrlTransfer.html#eva-url-transfer-start" title="eva_url_transfer_start ()"><code class="function">eva_url_transfer_start()</code></a> returns TRUE.
+It will only be called after <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-start" title="eva_url_transfer_start ()"><code class="function">eva_url_transfer_start()</code></a> returns TRUE.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -475,8 +475,8 @@ It will only be called after <a class="link" href="GskUrlTransfer.html#eva-url-t
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td>data registered with <a class="link" href="GskUrlTransfer.html#eva-url-transfer" title="eva_url_transfer ()"><code class="function">eva_url_transfer()</code></a>
-or <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-handler" title="eva_url_transfer_set_handler ()"><code class="function">eva_url_transfer_set_handler()</code></a>.
+<td>data registered with <a class="link" href="EvaUrlTransfer.html#eva-url-transfer" title="eva_url_transfer ()"><code class="function">eva_url_transfer()</code></a>
+or <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-handler" title="eva_url_transfer_set_handler ()"><code class="function">eva_url_transfer_set_handler()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -484,8 +484,8 @@ or <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-handler" title
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrlUploadFunc"></a><h3>GskUrlUploadFunc ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         (*GskUrlUploadFunc)                 (<a
+<a name="EvaUrlUploadFunc"></a><h3>EvaUrlUploadFunc ()</h3>
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         (*EvaUrlUploadFunc)                 (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> upload_data,
                                                          <a
@@ -503,15 +503,15 @@ a function like this.
 <p>
 If you don't care about POST-redirects,
 as you probably don't,
-you can just use <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-oneshot-upload" title="eva_url_transfer_set_oneshot_upload ()"><code class="function">eva_url_transfer_set_oneshot_upload()</code></a>.
+you can just use <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-oneshot-upload" title="eva_url_transfer_set_oneshot_upload ()"><code class="function">eva_url_transfer_set_oneshot_upload()</code></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>upload_data</code></em> :</span></p></td>
-<td>data passed into <a class="link" href="GskUrlTransfer.html#eva-url-transfer" title="eva_url_transfer ()"><code class="function">eva_url_transfer()</code></a>
-or <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-upload" title="eva_url_transfer_set_upload ()"><code class="function">eva_url_transfer_set_upload()</code></a>.
+<td>data passed into <a class="link" href="EvaUrlTransfer.html#eva-url-transfer" title="eva_url_transfer ()"><code class="function">eva_url_transfer()</code></a>
+or <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-upload" title="eva_url_transfer_set_upload ()"><code class="function">eva_url_transfer_set_upload()</code></a>.
 </td>
 </tr>
 <tr>
@@ -536,28 +536,28 @@ and indicates that the length is not known in advance.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskUrlTransfer-struct"></a><h3>GskUrlTransfer</h3>
+<a name="EvaUrlTransfer-struct"></a><h3>EvaUrlTransfer</h3>
 <pre class="programlisting">typedef struct {
   /* --- information prepared for the handler --- */
-  GskUrlTransferResult result;
-  GskUrl *url;
+  EvaUrlTransferResult result;
+  EvaUrl *url;
   GSList *redirect_urls;        // XXX: unused
-  GskUrlTransferRedirect *first_redirect, *last_redirect;
-  GskSocketAddress *address;
+  EvaUrlTransferRedirect *first_redirect, *last_redirect;
+  EvaSocketAddress *address;
 
   /* may be available: protocol-specific headers */
-  GObject *request;     /* a GskHttpRequest probably */
-  GObject *response;    /* a GskHttpResponse probably */
+  GObject *request;     /* a EvaHttpRequest probably */
+  GObject *response;    /* a EvaHttpResponse probably */
 
-  GskStream *content;   /* the downloading content */
+  EvaStream *content;   /* the downloading content */
 
   /* the last redirect (if any) */
-  GskUrl *redirect_url; /* [just a peeked version of last_redirect-&gt;url, not a ref] */
+  EvaUrl *redirect_url; /* [just a peeked version of last_redirect-&gt;url, not a ref] */
   gboolean redirect_is_permanent;
 
   /* ERROR status codes */
   GError *error;
-} GskUrlTransfer;
+} EvaUrlTransfer;
 </pre>
 <p>
 A GObject that represents a transfer of data with the entity responsible
@@ -567,13 +567,13 @@ for that type of URL.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="GskUrlTransfer.html#GskUrlTransferResult" title="enum GskUrlTransferResult">GskUrlTransferResult</a> <em class="structfield"><code>result</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaUrlTransfer.html#EvaUrlTransferResult" title="enum EvaUrlTransferResult">EvaUrlTransferResult</a> <em class="structfield"><code>result</code></em>;</span></p></td>
 <td>code indicating final status of the transfer.
 (only valid in the "done" state)
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *<em class="structfield"><code>url</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *<em class="structfield"><code>url</code></em>;</span></p></td>
 <td>the url of the initial request.
 </td>
 </tr>
@@ -585,7 +585,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Singly-Linked-Lists.html
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *<em class="structfield"><code>address</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *<em class="structfield"><code>address</code></em>;</span></p></td>
 <td>socket-address of the server for this url.
 </td>
 </tr>
@@ -604,12 +604,12 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *<em class="structfield"><code>content</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *<em class="structfield"><code>content</code></em>;</span></p></td>
 <td>downloading data.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *<em class="structfield"><code>redirect_url</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *<em class="structfield"><code>redirect_url</code></em>;</span></p></td>
 <td>target of first redirect.
 </td>
 </tr>
@@ -635,15 +635,15 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <a name="eva-url-transfer"></a><h3>eva_url_transfer ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_url_transfer                    (<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url,
-                                                         <a class="link" href="GskUrlTransfer.html#GskUrlUploadFunc" title="GskUrlUploadFunc ()">GskUrlUploadFunc</a> upload_func,
+>gboolean</a>            eva_url_transfer                    (<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url,
+                                                         <a class="link" href="EvaUrlTransfer.html#EvaUrlUploadFunc" title="EvaUrlUploadFunc ()">EvaUrlUploadFunc</a> upload_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> upload_data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
 >GDestroyNotify</a> upload_destroy,
-                                                         <a class="link" href="GskUrlTransfer.html#GskUrlTransferFunc" title="GskUrlTransferFunc ()">GskUrlTransferFunc</a> handler,
+                                                         <a class="link" href="EvaUrlTransfer.html#EvaUrlTransferFunc" title="EvaUrlTransferFunc ()">EvaUrlTransferFunc</a> handler,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -683,7 +683,7 @@ examining transfer-&gt;result.</p>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>upload_func</code></em> :</span></p></td>
 <td> optional function that can create the upload's content
-as a <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>.
+as a <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>.
 </td>
 </tr>
 <tr>
@@ -734,7 +734,7 @@ most common ways for this function to fail.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-new"></a><h3>eva_url_transfer_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *    eva_url_transfer_new                (<a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url);</pre>
+<pre class="programlisting"><a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *    eva_url_transfer_new                (<a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url);</pre>
 <p>
 Create a URL transfer of the appropriate type for the given URL.
 We try the registered classes, in order.</p>
@@ -760,8 +760,8 @@ could handle the URL.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-handler"></a><h3>eva_url_transfer_set_handler ()</h3>
-<pre class="programlisting">void                eva_url_transfer_set_handler        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskUrlTransfer.html#GskUrlTransferFunc" title="GskUrlTransferFunc ()">GskUrlTransferFunc</a> handler,
+<pre class="programlisting">void                eva_url_transfer_set_handler        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaUrlTransfer.html#EvaUrlTransferFunc" title="EvaUrlTransferFunc ()">EvaUrlTransferFunc</a> handler,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -807,8 +807,8 @@ This function may also be called in a number of error cases.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-url"></a><h3>eva_url_transfer_set_url ()</h3>
-<pre class="programlisting">void                eva_url_transfer_set_url            (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *url);</pre>
+<pre class="programlisting">void                eva_url_transfer_set_url            (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *url);</pre>
 <p>
 Set the URL that is the target of this transfer.
 This can only be done once, before the transfer
@@ -816,7 +816,7 @@ is started.
 </p>
 <p>
 You seldom need to use this function, as it
-is called by <a class="link" href="GskUrlTransfer.html#eva-url-transfer-new" title="eva_url_transfer_new ()"><code class="function">eva_url_transfer_new()</code></a>.</p>
+is called by <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-new" title="eva_url_transfer_new ()"><code class="function">eva_url_transfer_new()</code></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -838,8 +838,8 @@ is called by <a class="link" href="GskUrlTransfer.html#eva-url-transfer-new" tit
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-upload"></a><h3>eva_url_transfer_set_upload ()</h3>
-<pre class="programlisting">void                eva_url_transfer_set_upload         (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskUrlTransfer.html#GskUrlUploadFunc" title="GskUrlUploadFunc ()">GskUrlUploadFunc</a> func,
+<pre class="programlisting">void                eva_url_transfer_set_upload         (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaUrlTransfer.html#EvaUrlUploadFunc" title="EvaUrlUploadFunc ()">EvaUrlUploadFunc</a> func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -859,11 +859,11 @@ have been finalized by the time the <code class="function">destroy()</code> is i
 </p>
 <p>
 If you don't care about redirects, you can
-use <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-oneshot-upload" title="eva_url_transfer_set_oneshot_upload ()"><code class="function">eva_url_transfer_set_oneshot_upload()</code></a>.
+use <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-oneshot-upload" title="eva_url_transfer_set_oneshot_upload ()"><code class="function">eva_url_transfer_set_oneshot_upload()</code></a>.
 </p>
 <p>
 If you have a slab of memory that you want to use as the upload stream,
-consider using <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-upload-packet" title="eva_url_transfer_set_upload_packet ()"><code class="function">eva_url_transfer_set_upload_packet()</code></a>.</p>
+consider using <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-upload-packet" title="eva_url_transfer_set_upload_packet ()"><code class="function">eva_url_transfer_set_upload_packet()</code></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -877,7 +877,7 @@ consider using <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-up
 <tr>
 <td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
 <td> function that can create the upload's content
-as a <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>.
+as a <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>.
 </td>
 </tr>
 <tr>
@@ -898,10 +898,10 @@ still be extant though).
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-upload-packet"></a><h3>eva_url_transfer_set_upload_packet ()</h3>
-<pre class="programlisting">void                eva_url_transfer_set_upload_packet  (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *packet);</pre>
+<pre class="programlisting">void                eva_url_transfer_set_upload_packet  (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *packet);</pre>
 <p>
-Set the upload stream in an easy, reliable way using a GskPacket.</p>
+Set the upload stream in an easy, reliable way using a EvaPacket.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -914,7 +914,7 @@ Set the upload stream in an easy, reliable way using a GskPacket.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>packet</code></em> :</span></p></td>
-<td> the GskPacket containing the upload content as data.
+<td> the EvaPacket containing the upload content as data.
 </td>
 </tr>
 </tbody>
@@ -923,14 +923,14 @@ Set the upload stream in an easy, reliable way using a GskPacket.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-oneshot-upload"></a><h3>eva_url_transfer_set_oneshot_upload ()</h3>
-<pre class="programlisting">void                eva_url_transfer_set_oneshot_upload (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
+<pre class="programlisting">void                eva_url_transfer_set_oneshot_upload (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gssize"
 >gssize</a> size);</pre>
 <p>
 Set the content to upload to the remote URL,
-as a <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>.
+as a <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>.
 </p>
 <p>
 Since streams can only be read once,
@@ -962,7 +962,7 @@ redirection.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-timeout"></a><h3>eva_url_transfer_set_timeout ()</h3>
-<pre class="programlisting">void                eva_url_transfer_set_timeout        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+<pre class="programlisting">void                eva_url_transfer_set_timeout        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> millis);</pre>
@@ -996,7 +996,7 @@ This must be called before the transfer is started
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-clear-timeout"></a><h3>eva_url_transfer_clear_timeout ()</h3>
-<pre class="programlisting">void                eva_url_transfer_clear_timeout      (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer);</pre>
+<pre class="programlisting">void                eva_url_transfer_clear_timeout      (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer);</pre>
 <p>
 Clear the timeout on the download.
 </p>
@@ -1018,7 +1018,7 @@ This must be called before the transfer is started
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-follow-redirects"></a><h3>eva_url_transfer_set_follow_redirects ()</h3>
 <pre class="programlisting">void                eva_url_transfer_set_follow_redirects
-                                                        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+                                                        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> follow_redirs);</pre>
@@ -1055,8 +1055,8 @@ even if the download led to a redirect.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-address-hint"></a><h3>eva_url_transfer_set_address_hint ()</h3>
-<pre class="programlisting">void                eva_url_transfer_set_address_hint   (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);</pre>
+<pre class="programlisting">void                eva_url_transfer_set_address_hint   (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);</pre>
 <p>
 To avoid DNS lookups in very bulky transfer situations,
 DNS may be bypassed and replaced with this address.
@@ -1089,7 +1089,7 @@ the URL's port).
 <a name="eva-url-transfer-start"></a><h3>eva_url_transfer_start ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_url_transfer_start              (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+>gboolean</a>            eva_url_transfer_start              (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -1124,7 +1124,7 @@ receive done-notification.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-cancel"></a><h3>eva_url_transfer_cancel ()</h3>
-<pre class="programlisting">void                eva_url_transfer_cancel             (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer);</pre>
+<pre class="programlisting">void                eva_url_transfer_cancel             (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer);</pre>
 <p>
 Abort a running transfer.
 </p>
@@ -1147,13 +1147,13 @@ result EVA_URL_TRANSFER_CANCELLED.</p>
 <a name="eva-url-transfer-has-upload"></a><h3>eva_url_transfer_has_upload ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_url_transfer_has_upload         (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer);</pre>
+>gboolean</a>            eva_url_transfer_has_upload         (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer);</pre>
 <p>
 Figure out whether this transfer has upload data.
 </p>
 <p>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</p>
+of types of EvaUrlTransfer.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1175,7 +1175,7 @@ of types of GskUrlTransfer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-create-upload"></a><h3>eva_url_transfer_create_upload ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_url_transfer_create_upload      (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_url_transfer_create_upload      (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gssize"
 >gssize</a> *size_out,
@@ -1188,7 +1188,7 @@ function.
 </p>
 <p>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</p>
+of types of EvaUrlTransfer.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1213,7 +1213,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a newly allocated <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>, or NULL if an error occurs.
+<td> a newly allocated <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>, or NULL if an error occurs.
 </td>
 </tr>
 </tbody>
@@ -1225,13 +1225,13 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            eva_url_transfer_peek_expects_download_stream
-                                                        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer);</pre>
+                                                        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer);</pre>
 <p>
 This function can be used to see if download-content is expected.
 </p>
 <p>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</p>
+of types of EvaUrlTransfer.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1256,7 +1256,7 @@ returns: whether this transfer has a download handler.
 <a name="eva-url-transfer-is-done"></a><h3>eva_url_transfer_is_done ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_url_transfer_is_done            (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer);</pre>
+>gboolean</a>            eva_url_transfer_is_done            (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer);</pre>
 <p>
 Find out whether the transfer is done.
 The transfer is done iff the callback has been invoked.</p>
@@ -1281,15 +1281,15 @@ The transfer is done iff the callback has been invoked.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-address"></a><h3>eva_url_transfer_set_address ()</h3>
-<pre class="programlisting">void                eva_url_transfer_set_address        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *addr);</pre>
+<pre class="programlisting">void                eva_url_transfer_set_address        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *addr);</pre>
 <p>
 Set the socket-address for informational purposes.
 This is occasionally interesting to the user of the Transfer.
 </p>
 <p>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</p>
+of types of EvaUrlTransfer.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1313,7 +1313,7 @@ of types of GskUrlTransfer.</p>
 <a name="eva-url-transfer-add-redirect"></a><h3>eva_url_transfer_add_redirect ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_url_transfer_add_redirect       (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+>gboolean</a>            eva_url_transfer_add_redirect       (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a> *request,
@@ -1323,21 +1323,21 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_permanent,
-                                                         <a class="link" href="GskUrl.html" title="GskUrl">GskUrl</a> *dest_url);</pre>
+                                                         <a class="link" href="EvaUrl.html" title="EvaUrl">EvaUrl</a> *dest_url);</pre>
 <p>
 Add an entry to the list of redirects
 that we have encountered while trying to
 service this request.
 </p>
 <p>
-Most users of GskUrlTransfer won't care about these redirects--
+Most users of EvaUrlTransfer won't care about these redirects--
 they are provided to the rare client that cares about the redirect-path.
 More commonly, users merely wish to suppress redirect handling: that can be done
-more easily by <a class="link" href="GskUrlTransfer.html#eva-url-transfer-set-follow-redirects" title="eva_url_transfer_set_follow_redirects ()"><code class="function">eva_url_transfer_set_follow_redirects()</code></a>.
+more easily by <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-set-follow-redirects" title="eva_url_transfer_set_follow_redirects ()"><code class="function">eva_url_transfer_set_follow_redirects()</code></a>.
 </p>
 <p>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</p>
+of types of EvaUrlTransfer.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1372,7 +1372,7 @@ of types of GskUrlTransfer.</p>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> whether the redirect was allowed (it is disallowed if
 it is a circular redirect. In that case, we will set 'transfer-&gt;error',
-and call <a class="link" href="GskUrlTransfer.html#eva-url-transfer-notify-done" title="eva_url_transfer_notify_done ()"><code class="function">eva_url_transfer_notify_done()</code></a>.
+and call <a class="link" href="EvaUrlTransfer.html#eva-url-transfer-notify-done" title="eva_url_transfer_notify_done ()"><code class="function">eva_url_transfer_notify_done()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -1381,15 +1381,15 @@ and call <a class="link" href="GskUrlTransfer.html#eva-url-transfer-notify-done"
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-download"></a><h3>eva_url_transfer_set_download ()</h3>
-<pre class="programlisting">void                eva_url_transfer_set_download       (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *content);</pre>
+<pre class="programlisting">void                eva_url_transfer_set_download       (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *content);</pre>
 <p>
 Set the incoming-content that is associated with this transfer.
 This will used by the user of the Transfer.
 </p>
 <p>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</p>
+of types of EvaUrlTransfer.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1411,7 +1411,7 @@ of types of GskUrlTransfer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-request"></a><h3>eva_url_transfer_set_request ()</h3>
-<pre class="programlisting">void                eva_url_transfer_set_request        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+<pre class="programlisting">void                eva_url_transfer_set_request        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a> *request);</pre>
@@ -1420,7 +1420,7 @@ Set the outgoing-request header data for this transaction.
 </p>
 <p>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</p>
+of types of EvaUrlTransfer.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1442,7 +1442,7 @@ of types of GskUrlTransfer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-response"></a><h3>eva_url_transfer_set_response ()</h3>
-<pre class="programlisting">void                eva_url_transfer_set_response       (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+<pre class="programlisting">void                eva_url_transfer_set_response       (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a> *response);</pre>
@@ -1451,7 +1451,7 @@ Set the incoming-response header data for this transaction.
 </p>
 <p>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</p>
+of types of EvaUrlTransfer.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1473,7 +1473,7 @@ of types of GskUrlTransfer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-set-error"></a><h3>eva_url_transfer_set_error ()</h3>
-<pre class="programlisting">void                eva_url_transfer_set_error          (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+<pre class="programlisting">void                eva_url_transfer_set_error          (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error);</pre>
@@ -1483,7 +1483,7 @@ A copy of the error parameter is made.
 </p>
 <p>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</p>
+of types of EvaUrlTransfer.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1505,18 +1505,18 @@ of types of GskUrlTransfer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-take-error"></a><h3>eva_url_transfer_take_error ()</h3>
-<pre class="programlisting">void                eva_url_transfer_take_error         (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+<pre class="programlisting">void                eva_url_transfer_take_error         (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error);</pre>
 <p>
 Set the error field for this transaction.
 The error parameter will be freed eventually by the
-<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer"><span class="type">GskUrlTransfer</span></a>.
+<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer"><span class="type">EvaUrlTransfer</span></a>.
 </p>
 <p>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</p>
+of types of EvaUrlTransfer.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1538,8 +1538,8 @@ of types of GskUrlTransfer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-notify-done"></a><h3>eva_url_transfer_notify_done ()</h3>
-<pre class="programlisting">void                eva_url_transfer_notify_done        (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
-                                                         <a class="link" href="GskUrlTransfer.html#GskUrlTransferResult" title="enum GskUrlTransferResult">GskUrlTransferResult</a> result);</pre>
+<pre class="programlisting">void                eva_url_transfer_notify_done        (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
+                                                         <a class="link" href="EvaUrlTransfer.html#EvaUrlTransferResult" title="enum EvaUrlTransferResult">EvaUrlTransferResult</a> result);</pre>
 <p>
 Transition the transfer to the DONE state,
 and invoke the user's callback (if any).
@@ -1547,7 +1547,7 @@ This function may only be invoked once per transfer.
 </p>
 <p>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</p>
+of types of EvaUrlTransfer.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1569,8 +1569,8 @@ of types of GskUrlTransfer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-class-register"></a><h3>eva_url_transfer_class_register ()</h3>
-<pre class="programlisting">void                eva_url_transfer_class_register     (<a class="link" href="GskUrl.html#GskUrlScheme" title="enum GskUrlScheme">GskUrlScheme</a> scheme,
-                                                         GskUrlTransferClass *transfer_class);</pre>
+<pre class="programlisting">void                eva_url_transfer_class_register     (<a class="link" href="EvaUrl.html#EvaUrlScheme" title="enum EvaUrlScheme">EvaUrlScheme</a> scheme,
+                                                         EvaUrlTransferClass *transfer_class);</pre>
 <p>
 Register a class of URL transfer that can
 handle a given scheme.
@@ -1596,7 +1596,7 @@ It will only be instantiated if the class' test method</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-get-state-string"></a><h3>eva_url_transfer_get_state_string ()</h3>
-<pre class="programlisting">char *              eva_url_transfer_get_state_string   (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer);</pre>
+<pre class="programlisting">char *              eva_url_transfer_get_state_string   (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer);</pre>
 <p>
 Get a newly allocated, human-readable description
 of the state of the transfer.</p>
@@ -1621,7 +1621,7 @@ of the state of the transfer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-url-transfer-stream-new"></a><h3>eva_url_transfer_stream_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_url_transfer_stream_new         (<a class="link" href="GskUrlTransfer.html" title="GskUrlTransfer">GskUrlTransfer</a> *transfer,
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_url_transfer_stream_new         (<a class="link" href="EvaUrlTransfer.html" title="EvaUrlTransfer">EvaUrlTransfer</a> *transfer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -1655,9 +1655,9 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskUrlTransfer.see-also"></a><h2>See Also</h2>
+<a name="EvaUrlTransfer.see-also"></a><h2>See Also</h2>
 <p>
-<a class="link" href="GskUrlTransferHttp.html" title="GskUrlTransferHttp"><span class="type">GskUrlTransferHttp</span></a>.
+<a class="link" href="EvaUrlTransferHttp.html" title="EvaUrlTransferHttp"><span class="type">EvaUrlTransferHttp</span></a>.
 </p>
 </div>
 </div>

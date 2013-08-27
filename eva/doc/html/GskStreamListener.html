@@ -37,85 +37,85 @@
 <td><a accesskey="n" href="eva-evastreamclient.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskStreamListener.synopsis" class="shortcut">Top</a>
+<a href="#EvaStreamListener.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskStreamListener.description" class="shortcut">Description</a>
+                <a href="#EvaStreamListener.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskStreamListener.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaStreamListener.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskStreamListener"></a><div class="titlepage"></div>
+<a name="EvaStreamListener"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskStreamListener.top_of_page"></a>Listening for Connections</span></h2>
+<h2><span class="refentrytitle"><a name="EvaStreamListener.top_of_page"></a>Listening for Connections</span></h2>
 <p>Listening for Connections — Base class for server-type objects.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskStreamListener.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaStreamListener.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (<a class="link" href="GskStreamListener.html#GskStreamListenerAcceptFunc" title="GskStreamListenerAcceptFunc ()">*GskStreamListenerAcceptFunc</a>)      (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
+>gboolean</a>            (<a class="link" href="EvaStreamListener.html#EvaStreamListenerAcceptFunc" title="EvaStreamListenerAcceptFunc ()">*EvaStreamListenerAcceptFunc</a>)      (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-void                (<a class="link" href="GskStreamListener.html#GskStreamListenerErrorFunc" title="GskStreamListenerErrorFunc ()">*GskStreamListenerErrorFunc</a>)       (<a
+void                (<a class="link" href="EvaStreamListener.html#EvaStreamListenerErrorFunc" title="EvaStreamListenerErrorFunc ()">*EvaStreamListenerErrorFunc</a>)       (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *err,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);
-                    <a class="link" href="GskStreamListener.html#GskStreamListenerClass" title="GskStreamListenerClass">GskStreamListenerClass</a>;
-                    <a class="link" href="GskStreamListener.html#GskStreamListener-struct" title="GskStreamListener">GskStreamListener</a>;
-void                <a class="link" href="GskStreamListener.html#eva-stream-listener-handle-accept" title="eva_stream_listener_handle_accept ()">eva_stream_listener_handle_accept</a>   (<a class="link" href="GskStreamListener.html" title="Listening for Connections">GskStreamListener</a> *listener,
-                                                         <a class="link" href="GskStreamListener.html#GskStreamListenerAcceptFunc" title="GskStreamListenerAcceptFunc ()">GskStreamListenerAcceptFunc</a> func,
-                                                         <a class="link" href="GskStreamListener.html#GskStreamListenerErrorFunc" title="GskStreamListenerErrorFunc ()">GskStreamListenerErrorFunc</a> err_func,
+                    <a class="link" href="EvaStreamListener.html#EvaStreamListenerClass" title="EvaStreamListenerClass">EvaStreamListenerClass</a>;
+                    <a class="link" href="EvaStreamListener.html#EvaStreamListener-struct" title="EvaStreamListener">EvaStreamListener</a>;
+void                <a class="link" href="EvaStreamListener.html#eva-stream-listener-handle-accept" title="eva_stream_listener_handle_accept ()">eva_stream_listener_handle_accept</a>   (<a class="link" href="EvaStreamListener.html" title="Listening for Connections">EvaStreamListener</a> *listener,
+                                                         <a class="link" href="EvaStreamListener.html#EvaStreamListenerAcceptFunc" title="EvaStreamListenerAcceptFunc ()">EvaStreamListenerAcceptFunc</a> func,
+                                                         <a class="link" href="EvaStreamListener.html#EvaStreamListenerErrorFunc" title="EvaStreamListenerErrorFunc ()">EvaStreamListenerErrorFunc</a> err_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
 >GDestroyNotify</a> destroy);
-void                <a class="link" href="GskStreamListener.html#eva-stream-listener-notify-accepted" title="eva_stream_listener_notify_accepted ()">eva_stream_listener_notify_accepted</a> (<a class="link" href="GskStreamListener.html" title="Listening for Connections">GskStreamListener</a> *stream_listener,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *new_stream);
-void                <a class="link" href="GskStreamListener.html#eva-stream-listener-notify-error" title="eva_stream_listener_notify_error ()">eva_stream_listener_notify_error</a>    (<a class="link" href="GskStreamListener.html" title="Listening for Connections">GskStreamListener</a> *stream_listener,
+void                <a class="link" href="EvaStreamListener.html#eva-stream-listener-notify-accepted" title="eva_stream_listener_notify_accepted ()">eva_stream_listener_notify_accepted</a> (<a class="link" href="EvaStreamListener.html" title="Listening for Connections">EvaStreamListener</a> *stream_listener,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *new_stream);
+void                <a class="link" href="EvaStreamListener.html#eva-stream-listener-notify-error" title="eva_stream_listener_notify_error ()">eva_stream_listener_notify_error</a>    (<a class="link" href="EvaStreamListener.html" title="Listening for Connections">EvaStreamListener</a> *stream_listener,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskStreamListener.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaStreamListener.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----GskStreamListener
-         +----<a class="link" href="GskStreamListenerSocket.html" title="GskStreamListenerSocket">GskStreamListenerSocket</a>
+   +----EvaStreamListener
+         +----<a class="link" href="EvaStreamListenerSocket.html" title="EvaStreamListenerSocket">EvaStreamListenerSocket</a>
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskStreamListener.description"></a><h2>Description</h2>
+<a name="EvaStreamListener.description"></a><h2>Description</h2>
 <p>
-Derived classes of GskStreamListener provide new GskStreams
+Derived classes of EvaStreamListener provide new EvaStreams
 as connections are accepted.  Users can receive notification
 of this, and usually attach the stream to a new protocol object
 to handle the connection.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskStreamListener.details"></a><h2>Details</h2>
+<a name="EvaStreamListener.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskStreamListenerAcceptFunc"></a><h3>GskStreamListenerAcceptFunc ()</h3>
+<a name="EvaStreamListenerAcceptFunc"></a><h3>EvaStreamListenerAcceptFunc ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (*GskStreamListenerAcceptFunc)      (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
+>gboolean</a>            (*EvaStreamListenerAcceptFunc)      (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -126,8 +126,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 A method for handling a new connection.
 </p>
 <p>
-Because <a class="link" href="GskStream.html#eva-stream-attach" title="eva_stream_attach ()"><code class="function">eva_stream_attach()</code></a> automatically adds a reference to
-the stream, the usual pattern is to do a few <a class="link" href="GskStream.html#eva-stream-attach" title="eva_stream_attach ()"><code class="function">eva_stream_attach()</code></a>s
+Because <a class="link" href="EvaStream.html#eva-stream-attach" title="eva_stream_attach ()"><code class="function">eva_stream_attach()</code></a> automatically adds a reference to
+the stream, the usual pattern is to do a few <a class="link" href="EvaStream.html#eva-stream-attach" title="eva_stream_attach ()"><code class="function">eva_stream_attach()</code></a>s
 and then <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
 ><code class="function">g_object_unref()</code></a> from within this callback.
@@ -137,7 +137,7 @@ TODO: One can interpret this as meaning that the ownership of the
 stream is passed through this callback,
 which is irregular.
 We will probably fix this by
-implementing listener attachment with a GskHook
+implementing listener attachment with a EvaHook
 and deprecating this API.
 </p>
 <div class="variablelist"><table border="0">
@@ -153,7 +153,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
-<td>the data provided to <a class="link" href="GskStreamListener.html#eva-stream-listener-handle-accept" title="eva_stream_listener_handle_accept ()"><code class="function">eva_stream_listener_handle_accept()</code></a>
+<td>the data provided to <a class="link" href="EvaStreamListener.html#eva-stream-listener-handle-accept" title="eva_stream_listener_handle_accept ()"><code class="function">eva_stream_listener_handle_accept()</code></a>
 </td>
 </tr>
 <tr>
@@ -171,8 +171,8 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamListenerErrorFunc"></a><h3>GskStreamListenerErrorFunc ()</h3>
-<pre class="programlisting">void                (*GskStreamListenerErrorFunc)       (<a
+<a name="EvaStreamListenerErrorFunc"></a><h3>EvaStreamListenerErrorFunc ()</h3>
+<pre class="programlisting">void                (*EvaStreamListenerErrorFunc)       (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *err,
                                                          <a
@@ -191,7 +191,7 @@ A method for handling a low-level server error.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
-<td>the data provided to <a class="link" href="GskStreamListener.html#eva-stream-listener-handle-accept" title="eva_stream_listener_handle_accept ()"><code class="function">eva_stream_listener_handle_accept()</code></a>
+<td>the data provided to <a class="link" href="EvaStreamListener.html#eva-stream-listener-handle-accept" title="eva_stream_listener_handle_accept ()"><code class="function">eva_stream_listener_handle_accept()</code></a>
 </td>
 </tr>
 </tbody>
@@ -199,14 +199,14 @@ A method for handling a low-level server error.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamListenerClass"></a><h3>GskStreamListenerClass</h3>
+<a name="EvaStreamListenerClass"></a><h3>EvaStreamListenerClass</h3>
 <pre class="programlisting">typedef struct {
   GObjectClass object_class;
-} GskStreamListenerClass;
+} EvaStreamListenerClass;
 </pre>
 <p>
 The base class of an object which accepts
-new incoming <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>'s.
+new incoming <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>'s.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -221,19 +221,19 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamListener-struct"></a><h3>GskStreamListener</h3>
-<pre class="programlisting">typedef struct _GskStreamListener GskStreamListener;</pre>
+<a name="EvaStreamListener-struct"></a><h3>EvaStreamListener</h3>
+<pre class="programlisting">typedef struct _EvaStreamListener EvaStreamListener;</pre>
 <p>
 The base instance of an object which accepts
-new incoming <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>'s.
+new incoming <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>'s.
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-listener-handle-accept"></a><h3>eva_stream_listener_handle_accept ()</h3>
-<pre class="programlisting">void                eva_stream_listener_handle_accept   (<a class="link" href="GskStreamListener.html" title="Listening for Connections">GskStreamListener</a> *listener,
-                                                         <a class="link" href="GskStreamListener.html#GskStreamListenerAcceptFunc" title="GskStreamListenerAcceptFunc ()">GskStreamListenerAcceptFunc</a> func,
-                                                         <a class="link" href="GskStreamListener.html#GskStreamListenerErrorFunc" title="GskStreamListenerErrorFunc ()">GskStreamListenerErrorFunc</a> err_func,
+<pre class="programlisting">void                eva_stream_listener_handle_accept   (<a class="link" href="EvaStreamListener.html" title="Listening for Connections">EvaStreamListener</a> *listener,
+                                                         <a class="link" href="EvaStreamListener.html#EvaStreamListenerAcceptFunc" title="EvaStreamListenerAcceptFunc ()">EvaStreamListenerAcceptFunc</a> func,
+                                                         <a class="link" href="EvaStreamListener.html#EvaStreamListenerErrorFunc" title="EvaStreamListenerErrorFunc ()">EvaStreamListenerErrorFunc</a> err_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -280,8 +280,8 @@ then <em class="parameter"><code>err_func</code></em> and <em class="parameter">
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-listener-notify-accepted"></a><h3>eva_stream_listener_notify_accepted ()</h3>
-<pre class="programlisting">void                eva_stream_listener_notify_accepted (<a class="link" href="GskStreamListener.html" title="Listening for Connections">GskStreamListener</a> *stream_listener,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *new_stream);</pre>
+<pre class="programlisting">void                eva_stream_listener_notify_accepted (<a class="link" href="EvaStreamListener.html" title="Listening for Connections">EvaStreamListener</a> *stream_listener,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *new_stream);</pre>
 <p>
 Called by a derived class to notify the system that 
 a new stream has been accepted.</p>
@@ -306,7 +306,7 @@ a new stream has been accepted.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-listener-notify-error"></a><h3>eva_stream_listener_notify_error ()</h3>
-<pre class="programlisting">void                eva_stream_listener_notify_error    (<a class="link" href="GskStreamListener.html" title="Listening for Connections">GskStreamListener</a> *stream_listener,
+<pre class="programlisting">void                eva_stream_listener_notify_error    (<a class="link" href="EvaStreamListener.html" title="Listening for Connections">EvaStreamListener</a> *stream_listener,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error);</pre>

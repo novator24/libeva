@@ -2,11 +2,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskZlibInflator</title>
+<title>EvaZlibInflator</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch07.html" title="Standard Streams: standard compression algorithms">
-<link rel="prev" href="eva-GskZlibDeflator.html" title="GskZlibDeflator">
+<link rel="prev" href="eva-EvaZlibDeflator.html" title="EvaZlibDeflator">
 <link rel="next" href="eva-evazlib.html" title="evazlib">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -30,50 +30,50 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="eva-GskZlibDeflator.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="eva-EvaZlibDeflator.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch07.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
 <td><a accesskey="n" href="eva-evazlib.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#eva-GskZlibInflator.synopsis" class="shortcut">Top</a>
+<a href="#eva-EvaZlibInflator.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#eva-GskZlibInflator.description" class="shortcut">Description</a>
+                <a href="#eva-EvaZlibInflator.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="eva-GskZlibInflator"></a><div class="titlepage"></div>
+<a name="eva-EvaZlibInflator"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="eva-GskZlibInflator.top_of_page"></a>GskZlibInflator</span></h2>
-<p>GskZlibInflator — a zlib decompressor</p>
+<h2><span class="refentrytitle"><a name="eva-EvaZlibInflator.top_of_page"></a>EvaZlibInflator</span></h2>
+<p>EvaZlibInflator — a zlib decompressor</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="eva-GskZlibInflator.synopsis"></a><h2>Synopsis</h2>
+<a name="eva-EvaZlibInflator.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="eva-GskZlibInflator.html#GskZlibInflator" title="GskZlibInflator">GskZlibInflator</a>;
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="eva-GskZlibInflator.html#eva-zlib-inflator-new" title="eva_zlib_inflator_new ()">eva_zlib_inflator_new</a>               (void);
+                    <a class="link" href="eva-EvaZlibInflator.html#EvaZlibInflator" title="EvaZlibInflator">EvaZlibInflator</a>;
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="eva-EvaZlibInflator.html#eva-zlib-inflator-new" title="eva_zlib_inflator_new ()">eva_zlib_inflator_new</a>               (void);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="eva-GskZlibInflator.description"></a><h2>Description</h2>
+<a name="eva-EvaZlibInflator.description"></a><h2>Description</h2>
 <p>
 A stream which decompresses data on its input to decompressed data on its output.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="eva-GskZlibInflator.details"></a><h2>Details</h2>
+<a name="eva-EvaZlibInflator.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskZlibInflator"></a><h3>GskZlibInflator</h3>
+<a name="EvaZlibInflator"></a><h3>EvaZlibInflator</h3>
 <pre class="programlisting">typedef struct {
-  GskStream      stream;
+  EvaStream      stream;
   gpointer       private_stream;
-  GskBuffer      decompressed;
+  EvaBuffer      decompressed;
   gboolean       use_gzip;
-} GskZlibInflator;
+} EvaZlibInflator;
 </pre>
 <p>
 The instance of a zlib inflator stream (a decompressor).
@@ -84,7 +84,7 @@ raw (decompressed) data can be read from it.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> <em class="structfield"><code>stream</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> <em class="structfield"><code>stream</code></em>;</span></p></td>
 <td>parent instance.
 </td>
 </tr>
@@ -96,7 +96,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> <em class="structfield"><code>decompressed</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> <em class="structfield"><code>decompressed</code></em>;</span></p></td>
 <td>buffer of decompressed data.
 </td>
 </tr>
@@ -113,7 +113,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-zlib-inflator-new"></a><h3>eva_zlib_inflator_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_zlib_inflator_new               (void);</pre>
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_zlib_inflator_new               (void);</pre>
 <p>
 Create a new zlib inflator: this takes deflated (compressed) input
 which is written into it, and uncompressed data can be read from it.</p>
@@ -130,9 +130,9 @@ which is written into it, and uncompressed data can be read from it.</p>
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="eva-GskZlibInflator.see-also"></a><h2>See Also</h2>
+<a name="eva-EvaZlibInflator.see-also"></a><h2>See Also</h2>
 <p>
-GskZlibDeflator
+EvaZlibDeflator
 </p>
 </div>
 </div>

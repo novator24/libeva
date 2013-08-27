@@ -2,11 +2,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskHttpServer</title>
+<title>EvaHttpServer</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch06.html" title="Standard Streams: the HTTP client and server">
-<link rel="prev" href="GskHttpClient.html" title="GskHttpClient">
+<link rel="prev" href="EvaHttpClient.html" title="EvaHttpClient">
 <link rel="next" href="ch07.html" title="Standard Streams: standard compression algorithms">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -30,81 +30,81 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskHttpClient.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaHttpClient.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch06.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
 <td><a accesskey="n" href="ch07.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskHttpServer.synopsis" class="shortcut">Top</a>
+<a href="#EvaHttpServer.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskHttpServer.description" class="shortcut">Description</a>
+                <a href="#EvaHttpServer.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskHttpServer.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaHttpServer.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskHttpServer"></a><div class="titlepage"></div>
+<a name="EvaHttpServer"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskHttpServer.top_of_page"></a>GskHttpServer</span></h2>
-<p>GskHttpServer — The server end of an HTTP connection.</p>
+<h2><span class="refentrytitle"><a name="EvaHttpServer.top_of_page"></a>EvaHttpServer</span></h2>
+<p>EvaHttpServer — The server end of an HTTP connection.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskHttpServer.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaHttpServer.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (<a class="link" href="GskHttpServer.html#GskHttpServerTrap" title="GskHttpServerTrap ()">*GskHttpServerTrap</a>)                (<a class="link" href="GskHttpServer.html" title="GskHttpServer">GskHttpServer</a> *server,
+>gboolean</a>            (<a class="link" href="EvaHttpServer.html#EvaHttpServerTrap" title="EvaHttpServerTrap ()">*EvaHttpServerTrap</a>)                (<a class="link" href="EvaHttpServer.html" title="EvaHttpServer">EvaHttpServer</a> *server,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);
-                    <a class="link" href="GskHttpServer.html#GskHttpServerClass" title="GskHttpServerClass">GskHttpServerClass</a>;
-                    <a class="link" href="GskHttpServer.html#GskHttpServer-struct" title="GskHttpServer">GskHttpServer</a>;
-#define             <a class="link" href="GskHttpServer.html#EVA-HTTP-SERVER-HOOK--CAPS" title="EVA_HTTP_SERVER_HOOK()">EVA_HTTP_SERVER_HOOK</a>                (client)
-#define             <a class="link" href="GskHttpServer.html#eva-http-server-trap" title="eva_http_server_trap()">eva_http_server_trap</a>                (server,func,shutdown,data,destroy)
-#define             <a class="link" href="GskHttpServer.html#eva-http-server-untrap" title="eva_http_server_untrap()">eva_http_server_untrap</a>              (server)
-<a class="link" href="GskHttpServer.html" title="GskHttpServer">GskHttpServer</a> *     <a class="link" href="GskHttpServer.html#eva-http-server-new" title="eva_http_server_new ()">eva_http_server_new</a>                 (void);
+                    <a class="link" href="EvaHttpServer.html#EvaHttpServerClass" title="EvaHttpServerClass">EvaHttpServerClass</a>;
+                    <a class="link" href="EvaHttpServer.html#EvaHttpServer-struct" title="EvaHttpServer">EvaHttpServer</a>;
+#define             <a class="link" href="EvaHttpServer.html#EVA-HTTP-SERVER-HOOK--CAPS" title="EVA_HTTP_SERVER_HOOK()">EVA_HTTP_SERVER_HOOK</a>                (client)
+#define             <a class="link" href="EvaHttpServer.html#eva-http-server-trap" title="eva_http_server_trap()">eva_http_server_trap</a>                (server,func,shutdown,data,destroy)
+#define             <a class="link" href="EvaHttpServer.html#eva-http-server-untrap" title="eva_http_server_untrap()">eva_http_server_untrap</a>              (server)
+<a class="link" href="EvaHttpServer.html" title="EvaHttpServer">EvaHttpServer</a> *     <a class="link" href="EvaHttpServer.html#eva-http-server-new" title="eva_http_server_new ()">eva_http_server_new</a>                 (void);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskHttpServer.html#eva-http-server-get-request" title="eva_http_server_get_request ()">eva_http_server_get_request</a>         (<a class="link" href="GskHttpServer.html" title="GskHttpServer">GskHttpServer</a> *server,
-                                                         <a class="link" href="GskHttpRequest.html" title="GskHttpRequest">GskHttpRequest</a> **request_out,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> **post_data_out);
-void                <a class="link" href="GskHttpServer.html#eva-http-server-respond" title="eva_http_server_respond ()">eva_http_server_respond</a>             (<a class="link" href="GskHttpServer.html" title="GskHttpServer">GskHttpServer</a> *server,
-                                                         <a class="link" href="GskHttpRequest.html" title="GskHttpRequest">GskHttpRequest</a> *request,
-                                                         <a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *content);
+>gboolean</a>            <a class="link" href="EvaHttpServer.html#eva-http-server-get-request" title="eva_http_server_get_request ()">eva_http_server_get_request</a>         (<a class="link" href="EvaHttpServer.html" title="EvaHttpServer">EvaHttpServer</a> *server,
+                                                         <a class="link" href="EvaHttpRequest.html" title="EvaHttpRequest">EvaHttpRequest</a> **request_out,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> **post_data_out);
+void                <a class="link" href="EvaHttpServer.html#eva-http-server-respond" title="eva_http_server_respond ()">eva_http_server_respond</a>             (<a class="link" href="EvaHttpServer.html" title="EvaHttpServer">EvaHttpServer</a> *server,
+                                                         <a class="link" href="EvaHttpRequest.html" title="EvaHttpRequest">EvaHttpRequest</a> *request,
+                                                         <a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *content);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpServer.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaHttpServer.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a>
-         +----<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a>
-               +----GskHttpServer
+   +----<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a>
+         +----<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a>
+               +----EvaHttpServer
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpServer.description"></a><h2>Description</h2>
+<a name="EvaHttpServer.description"></a><h2>Description</h2>
 <p>
 This class manages incoming requests (including post-data),
-and outgoing responses (by passing a supplied <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>
+and outgoing responses (by passing a supplied <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>
 as HTTP content).
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpServer.details"></a><h2>Details</h2>
+<a name="EvaHttpServer.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskHttpServerTrap"></a><h3>GskHttpServerTrap ()</h3>
+<a name="EvaHttpServerTrap"></a><h3>EvaHttpServerTrap ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (*GskHttpServerTrap)                (<a class="link" href="GskHttpServer.html" title="GskHttpServer">GskHttpServer</a> *server,
+>gboolean</a>            (*EvaHttpServerTrap)                (<a class="link" href="EvaHttpServer.html" title="EvaHttpServer">EvaHttpServer</a> *server,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);</pre>
@@ -121,7 +121,7 @@ Function which will be called when the server has a request ready.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
-<td>as passed in to <a class="link" href="GskHttpServer.html#eva-http-server-trap" title="eva_http_server_trap()"><code class="function">eva_http_server_trap()</code></a>.
+<td>as passed in to <a class="link" href="EvaHttpServer.html#eva-http-server-trap" title="eva_http_server_trap()"><code class="function">eva_http_server_trap()</code></a>.
 </td>
 </tr>
 <tr>
@@ -134,13 +134,13 @@ Function which will be called when the server has a request ready.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpServerClass"></a><h3>GskHttpServerClass</h3>
+<a name="EvaHttpServerClass"></a><h3>EvaHttpServerClass</h3>
 <pre class="programlisting">typedef struct {
-  GskStreamClass stream_class;
-  void         (*set_poll_request) (GskHttpServer *server,
+  EvaStreamClass stream_class;
+  void         (*set_poll_request) (EvaHttpServer *server,
 				    gboolean       do_poll);
-  void         (*shutdown_request) (GskHttpServer *server);
-} GskHttpServerClass;
+  void         (*shutdown_request) (EvaHttpServer *server);
+} EvaHttpServerClass;
 </pre>
 <p>
 Virtual functions which are implemented by an
@@ -150,7 +150,7 @@ HTTP server.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="GskStream.html#GskStreamClass" title="GskStreamClass">GskStreamClass</a> <em class="structfield"><code>stream_class</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaStream.html#EvaStreamClass" title="EvaStreamClass">EvaStreamClass</a> <em class="structfield"><code>stream_class</code></em>;</span></p></td>
 <td>the base server class.
 </td>
 </tr>
@@ -171,15 +171,15 @@ accepting requests.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpServer-struct"></a><h3>GskHttpServer</h3>
-<pre class="programlisting">typedef struct _GskHttpServer GskHttpServer;</pre>
+<a name="EvaHttpServer-struct"></a><h3>EvaHttpServer</h3>
+<pre class="programlisting">typedef struct _EvaHttpServer EvaHttpServer;</pre>
 <p>
 Stream which is the server end of an HTTP connection.
 </p>
 <p>
 This has a trap which is triggered when new requests are
 available.  This HTTP server does not define any behavior--
-the user is responsible for calling <a class="link" href="GskHttpServer.html#eva-http-server-respond" title="eva_http_server_respond ()"><code class="function">eva_http_server_respond()</code></a>
+the user is responsible for calling <a class="link" href="EvaHttpServer.html#eva-http-server-respond" title="eva_http_server_respond ()"><code class="function">eva_http_server_respond()</code></a>
 to handle the request.
 </p>
 </div>
@@ -206,7 +206,7 @@ Get the hook which is triggered on HTTP request availability.
 <p>
 Register a function which will get called as long as a request is
 available.
-The request should be dequeued with <a class="link" href="GskHttpServer.html#eva-http-server-get-request" title="eva_http_server_get_request ()"><code class="function">eva_http_server_get_request()</code></a>.
+The request should be dequeued with <a class="link" href="EvaHttpServer.html#eva-http-server-get-request" title="eva_http_server_get_request ()"><code class="function">eva_http_server_get_request()</code></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -249,7 +249,7 @@ whenever a request was available.
 </p>
 <p>
 This has the same effect as returning FALSE from the function
-registered with <a class="link" href="GskHttpServer.html#eva-http-server-trap" title="eva_http_server_trap()"><code class="function">eva_http_server_trap()</code></a>.
+registered with <a class="link" href="EvaHttpServer.html#eva-http-server-trap" title="eva_http_server_trap()"><code class="function">eva_http_server_trap()</code></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -263,7 +263,7 @@ registered with <a class="link" href="GskHttpServer.html#eva-http-server-trap" t
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-server-new"></a><h3>eva_http_server_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpServer.html" title="GskHttpServer">GskHttpServer</a> *     eva_http_server_new                 (void);</pre>
+<pre class="programlisting"><a class="link" href="EvaHttpServer.html" title="EvaHttpServer">EvaHttpServer</a> *     eva_http_server_new                 (void);</pre>
 <p>
 Allocate a new HTTP server protocol processor.
 (Note that generally you will need to connect it
@@ -284,11 +284,11 @@ to an accepted socket)</p>
 <a name="eva-http-server-get-request"></a><h3>eva_http_server_get_request ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_http_server_get_request         (<a class="link" href="GskHttpServer.html" title="GskHttpServer">GskHttpServer</a> *server,
-                                                         <a class="link" href="GskHttpRequest.html" title="GskHttpRequest">GskHttpRequest</a> **request_out,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> **post_data_out);</pre>
+>gboolean</a>            eva_http_server_get_request         (<a class="link" href="EvaHttpServer.html" title="EvaHttpServer">EvaHttpServer</a> *server,
+                                                         <a class="link" href="EvaHttpRequest.html" title="EvaHttpRequest">EvaHttpRequest</a> **request_out,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> **post_data_out);</pre>
 <p>
-Grab a client request if available.  Use <a class="link" href="GskHttpServer.html#eva-http-server-trap" title="eva_http_server_trap()"><code class="function">eva_http_server_trap()</code></a>
+Grab a client request if available.  Use <a class="link" href="EvaHttpServer.html#eva-http-server-trap" title="eva_http_server_trap()"><code class="function">eva_http_server_trap()</code></a>
 to get notification when a request is available.
 </p>
 <p>
@@ -326,10 +326,10 @@ or NULL will be stored if this is not a POST-type request.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-server-respond"></a><h3>eva_http_server_respond ()</h3>
-<pre class="programlisting">void                eva_http_server_respond             (<a class="link" href="GskHttpServer.html" title="GskHttpServer">GskHttpServer</a> *server,
-                                                         <a class="link" href="GskHttpRequest.html" title="GskHttpRequest">GskHttpRequest</a> *request,
-                                                         <a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *content);</pre>
+<pre class="programlisting">void                eva_http_server_respond             (<a class="link" href="EvaHttpServer.html" title="EvaHttpServer">EvaHttpServer</a> *server,
+                                                         <a class="link" href="EvaHttpRequest.html" title="EvaHttpRequest">EvaHttpRequest</a> *request,
+                                                         <a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *content);</pre>
 <p>
 Give a response to a client's request.</p>
 <p>
@@ -344,7 +344,7 @@ Give a response to a client's request.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>request</code></em> :</span></p></td>
-<td> the request obtained with <a class="link" href="GskHttpServer.html#eva-http-server-get-request" title="eva_http_server_get_request ()"><code class="function">eva_http_server_get_request()</code></a>.
+<td> the request obtained with <a class="link" href="EvaHttpServer.html#eva-http-server-get-request" title="eva_http_server_get_request ()"><code class="function">eva_http_server_get_request()</code></a>.
 </td>
 </tr>
 <tr>
@@ -362,9 +362,9 @@ Give a response to a client's request.</p>
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpServer.see-also"></a><h2>See Also</h2>
+<a name="EvaHttpServer.see-also"></a><h2>See Also</h2>
 <p>
-GskHttpClient
+EvaHttpClient
 </p>
 </div>
 </div>

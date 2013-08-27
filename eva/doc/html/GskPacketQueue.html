@@ -37,35 +37,35 @@
 <td><a accesskey="n" href="eva-evapacket.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskPacketQueue.synopsis" class="shortcut">Top</a>
+<a href="#EvaPacketQueue.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskPacketQueue.description" class="shortcut">Description</a>
+                <a href="#EvaPacketQueue.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskPacketQueue.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaPacketQueue.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskPacketQueue"></a><div class="titlepage"></div>
+<a name="EvaPacketQueue"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskPacketQueue.top_of_page"></a>Datagram I/O</span></h2>
+<h2><span class="refentrytitle"><a name="EvaPacketQueue.top_of_page"></a>Datagram I/O</span></h2>
 <p>Datagram I/O — base class for datagram I/O classes</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskPacketQueue.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaPacketQueue.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="GskPacketQueue.html#GskPacketQueueClass" title="GskPacketQueueClass">GskPacketQueueClass</a>;
-                    <a class="link" href="GskPacketQueue.html#GskPacketQueue-struct" title="GskPacketQueue">GskPacketQueue</a>;
+                    <a class="link" href="EvaPacketQueue.html#EvaPacketQueueClass" title="EvaPacketQueueClass">EvaPacketQueueClass</a>;
+                    <a class="link" href="EvaPacketQueue.html#EvaPacketQueue-struct" title="EvaPacketQueue">EvaPacketQueue</a>;
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskPacketQueue.html#eva-packet-queue-bind" title="eva_packet_queue_bind ()">eva_packet_queue_bind</a>               (<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *queue,
-                                                         <a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address,
+>gboolean</a>            <a class="link" href="EvaPacketQueue.html#eva-packet-queue-bind" title="eva_packet_queue_bind ()">eva_packet_queue_bind</a>               (<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *queue,
+                                                         <a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *         <a class="link" href="GskPacketQueue.html#eva-packet-queue-read" title="eva_packet_queue_read ()">eva_packet_queue_read</a>               (<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *queue,
+<a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *         <a class="link" href="EvaPacketQueue.html#eva-packet-queue-read" title="eva_packet_queue_read ()">eva_packet_queue_read</a>               (<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *queue,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> save_address,
@@ -74,44 +74,44 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskPacketQueue.html#eva-packet-queue-write" title="eva_packet_queue_write ()">eva_packet_queue_write</a>              (<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *queue,
-                                                         <a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *out,
+>gboolean</a>            <a class="link" href="EvaPacketQueue.html#eva-packet-queue-write" title="eva_packet_queue_write ()">eva_packet_queue_write</a>              (<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *queue,
+                                                         <a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *out,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-get-allow-address" title="eva_packet_queue_get_allow_address()">eva_packet_queue_get_allow_address</a>  (queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-get-allow-no-address" title="eva_packet_queue_get_allow_no_address()">eva_packet_queue_get_allow_no_address</a>(queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-get-misses-packets" title="eva_packet_queue_get_misses_packets()">eva_packet_queue_get_misses_packets</a> (queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-get-is-readable" title="eva_packet_queue_get_is_readable()">eva_packet_queue_get_is_readable</a>    (queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-get-is-writable" title="eva_packet_queue_get_is_writable()">eva_packet_queue_get_is_writable</a>    (queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-peek-bound-address" title="eva_packet_queue_peek_bound_address()">eva_packet_queue_peek_bound_address</a> (queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-mark-allow-address" title="eva_packet_queue_mark_allow_address()">eva_packet_queue_mark_allow_address</a> (queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-mark-allow-no-address" title="eva_packet_queue_mark_allow_no_address()">eva_packet_queue_mark_allow_no_address</a>(queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-mark-misses-packets" title="eva_packet_queue_mark_misses_packets()">eva_packet_queue_mark_misses_packets</a>(queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-mark-is-readable" title="eva_packet_queue_mark_is_readable()">eva_packet_queue_mark_is_readable</a>   (queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-mark-is-writable" title="eva_packet_queue_mark_is_writable()">eva_packet_queue_mark_is_writable</a>   (queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-clear-allow-address" title="eva_packet_queue_clear_allow_address()">eva_packet_queue_clear_allow_address</a>(queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-clear-allow-no-address" title="eva_packet_queue_clear_allow_no_address()">eva_packet_queue_clear_allow_no_address</a>(queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-clear-misses-packets" title="eva_packet_queue_clear_misses_packets()">eva_packet_queue_clear_misses_packets</a>(queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-clear-is-readable" title="eva_packet_queue_clear_is_readable()">eva_packet_queue_clear_is_readable</a>  (queue)
-#define             <a class="link" href="GskPacketQueue.html#eva-packet-queue-clear-is-writable" title="eva_packet_queue_clear_is_writable()">eva_packet_queue_clear_is_writable</a>  (queue)
-void                <a class="link" href="GskPacketQueue.html#eva-packet-queue-set-bound-addresss" title="eva_packet_queue_set_bound_addresss ()">eva_packet_queue_set_bound_addresss</a> (<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *queue,
-                                                         <a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-get-allow-address" title="eva_packet_queue_get_allow_address()">eva_packet_queue_get_allow_address</a>  (queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-get-allow-no-address" title="eva_packet_queue_get_allow_no_address()">eva_packet_queue_get_allow_no_address</a>(queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-get-misses-packets" title="eva_packet_queue_get_misses_packets()">eva_packet_queue_get_misses_packets</a> (queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-get-is-readable" title="eva_packet_queue_get_is_readable()">eva_packet_queue_get_is_readable</a>    (queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-get-is-writable" title="eva_packet_queue_get_is_writable()">eva_packet_queue_get_is_writable</a>    (queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-peek-bound-address" title="eva_packet_queue_peek_bound_address()">eva_packet_queue_peek_bound_address</a> (queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-mark-allow-address" title="eva_packet_queue_mark_allow_address()">eva_packet_queue_mark_allow_address</a> (queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-mark-allow-no-address" title="eva_packet_queue_mark_allow_no_address()">eva_packet_queue_mark_allow_no_address</a>(queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-mark-misses-packets" title="eva_packet_queue_mark_misses_packets()">eva_packet_queue_mark_misses_packets</a>(queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-mark-is-readable" title="eva_packet_queue_mark_is_readable()">eva_packet_queue_mark_is_readable</a>   (queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-mark-is-writable" title="eva_packet_queue_mark_is_writable()">eva_packet_queue_mark_is_writable</a>   (queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-clear-allow-address" title="eva_packet_queue_clear_allow_address()">eva_packet_queue_clear_allow_address</a>(queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-clear-allow-no-address" title="eva_packet_queue_clear_allow_no_address()">eva_packet_queue_clear_allow_no_address</a>(queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-clear-misses-packets" title="eva_packet_queue_clear_misses_packets()">eva_packet_queue_clear_misses_packets</a>(queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-clear-is-readable" title="eva_packet_queue_clear_is_readable()">eva_packet_queue_clear_is_readable</a>  (queue)
+#define             <a class="link" href="EvaPacketQueue.html#eva-packet-queue-clear-is-writable" title="eva_packet_queue_clear_is_writable()">eva_packet_queue_clear_is_writable</a>  (queue)
+void                <a class="link" href="EvaPacketQueue.html#eva-packet-queue-set-bound-addresss" title="eva_packet_queue_set_bound_addresss ()">eva_packet_queue_set_bound_addresss</a> (<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *queue,
+                                                         <a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskPacketQueue.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaPacketQueue.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a>
-         +----GskPacketQueue
-               +----<a class="link" href="GskPacketQueueFd.html" title="GskPacketQueueFd">GskPacketQueueFd</a>
+   +----<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a>
+         +----EvaPacketQueue
+               +----<a class="link" href="EvaPacketQueueFd.html" title="EvaPacketQueueFd">EvaPacketQueueFd</a>
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskPacketQueue.description"></a><h2>Description</h2>
+<a name="EvaPacketQueue.description"></a><h2>Description</h2>
 <p>
 Datagram I/O means binary packets of data are the transmission unit.
 You can bind to an address in the right family,
@@ -120,21 +120,21 @@ Unless the packet_queue is bound, it is unlikely to ever be readable.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskPacketQueue.details"></a><h2>Details</h2>
+<a name="EvaPacketQueue.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskPacketQueueClass"></a><h3>GskPacketQueueClass</h3>
+<a name="EvaPacketQueueClass"></a><h3>EvaPacketQueueClass</h3>
 <pre class="programlisting">typedef struct {
-  GskIOClass io_class;
-  gboolean   (*bind)  (GskPacketQueue    *queue,
-		       GskSocketAddress  *addr,
+  EvaIOClass io_class;
+  gboolean   (*bind)  (EvaPacketQueue    *queue,
+		       EvaSocketAddress  *addr,
 		       GError           **error);
-  GskPacket *(*read)  (GskPacketQueue    *queue,
+  EvaPacket *(*read)  (EvaPacketQueue    *queue,
 		       gboolean           save_address,
 		       GError           **error);
-  gboolean   (*write) (GskPacketQueue    *queue,
-		       GskPacket         *out,
+  gboolean   (*write) (EvaPacketQueue    *queue,
+		       EvaPacket         *out,
 		       GError           **error);
-} GskPacketQueueClass;
+} EvaPacketQueueClass;
 </pre>
 <p>
 Base class for an object which can input and output packets.
@@ -143,7 +143,7 @@ Base class for an object which can input and output packets.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="GskIO.html#GskIOClass" title="GskIOClass">GskIOClass</a> <em class="structfield"><code>io_class</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaIO.html#EvaIOClass" title="EvaIOClass">EvaIOClass</a> <em class="structfield"><code>io_class</code></em>;</span></p></td>
 <td>parent class.
 </td>
 </tr>
@@ -167,8 +167,8 @@ Base class for an object which can input and output packets.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskPacketQueue-struct"></a><h3>GskPacketQueue</h3>
-<pre class="programlisting">typedef struct _GskPacketQueue GskPacketQueue;</pre>
+<a name="EvaPacketQueue-struct"></a><h3>EvaPacketQueue</h3>
+<pre class="programlisting">typedef struct _EvaPacketQueue EvaPacketQueue;</pre>
 <p>
 Abstract instance which can read and write packets.
 </p>
@@ -178,8 +178,8 @@ Abstract instance which can read and write packets.
 <a name="eva-packet-queue-bind"></a><h3>eva_packet_queue_bind ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_packet_queue_bind               (<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *queue,
-                                                         <a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address,
+>gboolean</a>            eva_packet_queue_bind               (<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *queue,
+                                                         <a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -216,7 +216,7 @@ Bind a packet queue to receive on a particular address.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-packet-queue-read"></a><h3>eva_packet_queue_read ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *         eva_packet_queue_read               (<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *queue,
+<pre class="programlisting"><a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *         eva_packet_queue_read               (<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *queue,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> save_address,
@@ -258,8 +258,8 @@ Read a packet from the queue, optionally tracking whence it came.</p>
 <a name="eva-packet-queue-write"></a><h3>eva_packet_queue_write ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_packet_queue_write              (<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *queue,
-                                                         <a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *out,
+>gboolean</a>            eva_packet_queue_write              (<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *queue,
+                                                         <a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *out,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -584,8 +584,8 @@ This should only be used by derived classes.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-packet-queue-set-bound-addresss"></a><h3>eva_packet_queue_set_bound_addresss ()</h3>
-<pre class="programlisting">void                eva_packet_queue_set_bound_addresss (<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *queue,
-                                                         <a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);</pre>
+<pre class="programlisting">void                eva_packet_queue_set_bound_addresss (<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *queue,
+                                                         <a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);</pre>
 <p>
 Set the bound_address member of the packet-queue safely.
 </p>
@@ -612,9 +612,9 @@ which automatically bind to certain addresses.</p>
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskPacketQueue.see-also"></a><h2>See Also</h2>
+<a name="EvaPacketQueue.see-also"></a><h2>See Also</h2>
 <p>
-GskIO
+EvaIO
 </p>
 </div>
 </div>

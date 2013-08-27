@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskHttpHeader</title>
+<title>EvaHttpHeader</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch06.html" title="Standard Streams: the HTTP client and server">
 <link rel="prev" href="ch06.html" title="Standard Streams: the HTTP client and server">
-<link rel="next" href="GskHttpRequest.html" title="GskHttpRequest">
+<link rel="next" href="EvaHttpRequest.html" title="EvaHttpRequest">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -34,88 +34,88 @@
 <td><a accesskey="u" href="ch06.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="GskHttpRequest.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="EvaHttpRequest.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskHttpHeader.synopsis" class="shortcut">Top</a>
+<a href="#EvaHttpHeader.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskHttpHeader.description" class="shortcut">Description</a>
+                <a href="#EvaHttpHeader.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskHttpHeader.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaHttpHeader.object-hierarchy" class="shortcut">Object Hierarchy</a>
                  | 
-                <a href="#GskHttpHeader.properties" class="shortcut">Properties</a>
+                <a href="#EvaHttpHeader.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskHttpHeader"></a><div class="titlepage"></div>
+<a name="EvaHttpHeader"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskHttpHeader.top_of_page"></a>GskHttpHeader</span></h2>
-<p>GskHttpHeader — Base class for HTTP headers.</p>
+<h2><span class="refentrytitle"><a name="EvaHttpHeader.top_of_page"></a>EvaHttpHeader</span></h2>
+<p>EvaHttpHeader — Base class for HTTP headers.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskHttpHeader.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaHttpHeader.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a>;
-                    <a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a>;
-                    <a class="link" href="GskHttpHeader.html#GskHttpCharSet" title="GskHttpCharSet">GskHttpCharSet</a>;
-                    <a class="link" href="GskHttpHeader.html#GskHttpCookie" title="GskHttpCookie">GskHttpCookie</a>;
-                    <a class="link" href="GskHttpHeader.html#GskHttpLanguageSet" title="GskHttpLanguageSet">GskHttpLanguageSet</a>;
-                    <a class="link" href="GskHttpHeader.html#GskHttpMediaTypeSet" title="GskHttpMediaTypeSet">GskHttpMediaTypeSet</a>;
-                    <a class="link" href="GskHttpHeader.html#GskHttpContentEncodingSet" title="GskHttpContentEncodingSet">GskHttpContentEncodingSet</a>;
-                    <a class="link" href="GskHttpHeader.html#GskHttpTransferEncodingSet" title="GskHttpTransferEncodingSet">GskHttpTransferEncodingSet</a>;
-                    <a class="link" href="GskHttpHeader.html#GskHttpRangeSet" title="GskHttpRangeSet">GskHttpRangeSet</a>;
-enum                <a class="link" href="GskHttpHeader.html#GskHttpStatus" title="enum GskHttpStatus">GskHttpStatus</a>;
-enum                <a class="link" href="GskHttpHeader.html#GskHttpVerb" title="enum GskHttpVerb">GskHttpVerb</a>;
-enum                <a class="link" href="GskHttpHeader.html#GskHttpRange" title="enum GskHttpRange">GskHttpRange</a>;
-enum                <a class="link" href="GskHttpHeader.html#GskHttpContentEncoding" title="enum GskHttpContentEncoding">GskHttpContentEncoding</a>;
-enum                <a class="link" href="GskHttpHeader.html#GskHttpTransferEncoding" title="enum GskHttpTransferEncoding">GskHttpTransferEncoding</a>;
-enum                <a class="link" href="GskHttpHeader.html#GskHttpConnection" title="enum GskHttpConnection">GskHttpConnection</a>;
-<a class="link" href="GskHttpHeader.html#GskHttpMediaTypeSet" title="GskHttpMediaTypeSet">GskHttpMediaTypeSet</a> * <a class="link" href="GskHttpHeader.html#eva-http-media-type-set-new" title="eva_http_media_type_set_new ()">eva_http_media_type_set_new</a>       (const char *type,
+                    <a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a>;
+                    <a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a>;
+                    <a class="link" href="EvaHttpHeader.html#EvaHttpCharSet" title="EvaHttpCharSet">EvaHttpCharSet</a>;
+                    <a class="link" href="EvaHttpHeader.html#EvaHttpCookie" title="EvaHttpCookie">EvaHttpCookie</a>;
+                    <a class="link" href="EvaHttpHeader.html#EvaHttpLanguageSet" title="EvaHttpLanguageSet">EvaHttpLanguageSet</a>;
+                    <a class="link" href="EvaHttpHeader.html#EvaHttpMediaTypeSet" title="EvaHttpMediaTypeSet">EvaHttpMediaTypeSet</a>;
+                    <a class="link" href="EvaHttpHeader.html#EvaHttpContentEncodingSet" title="EvaHttpContentEncodingSet">EvaHttpContentEncodingSet</a>;
+                    <a class="link" href="EvaHttpHeader.html#EvaHttpTransferEncodingSet" title="EvaHttpTransferEncodingSet">EvaHttpTransferEncodingSet</a>;
+                    <a class="link" href="EvaHttpHeader.html#EvaHttpRangeSet" title="EvaHttpRangeSet">EvaHttpRangeSet</a>;
+enum                <a class="link" href="EvaHttpHeader.html#EvaHttpStatus" title="enum EvaHttpStatus">EvaHttpStatus</a>;
+enum                <a class="link" href="EvaHttpHeader.html#EvaHttpVerb" title="enum EvaHttpVerb">EvaHttpVerb</a>;
+enum                <a class="link" href="EvaHttpHeader.html#EvaHttpRange" title="enum EvaHttpRange">EvaHttpRange</a>;
+enum                <a class="link" href="EvaHttpHeader.html#EvaHttpContentEncoding" title="enum EvaHttpContentEncoding">EvaHttpContentEncoding</a>;
+enum                <a class="link" href="EvaHttpHeader.html#EvaHttpTransferEncoding" title="enum EvaHttpTransferEncoding">EvaHttpTransferEncoding</a>;
+enum                <a class="link" href="EvaHttpHeader.html#EvaHttpConnection" title="enum EvaHttpConnection">EvaHttpConnection</a>;
+<a class="link" href="EvaHttpHeader.html#EvaHttpMediaTypeSet" title="EvaHttpMediaTypeSet">EvaHttpMediaTypeSet</a> * <a class="link" href="EvaHttpHeader.html#eva-http-media-type-set-new" title="eva_http_media_type_set_new ()">eva_http_media_type_set_new</a>       (const char *type,
                                                          const char *subtype,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 >gfloat</a> quality);
-void                <a class="link" href="GskHttpHeader.html#eva-http-media-type-set-free" title="eva_http_media_type_set_free ()">eva_http_media_type_set_free</a>        (<a class="link" href="GskHttpHeader.html#GskHttpMediaTypeSet" title="GskHttpMediaTypeSet">GskHttpMediaTypeSet</a> *set);
-<a class="link" href="GskHttpHeader.html#GskHttpCharSet" title="GskHttpCharSet">GskHttpCharSet</a> *    <a class="link" href="GskHttpHeader.html#eva-http-char-set-new" title="eva_http_char_set_new ()">eva_http_char_set_new</a>               (const char *charset_name,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-media-type-set-free" title="eva_http_media_type_set_free ()">eva_http_media_type_set_free</a>        (<a class="link" href="EvaHttpHeader.html#EvaHttpMediaTypeSet" title="EvaHttpMediaTypeSet">EvaHttpMediaTypeSet</a> *set);
+<a class="link" href="EvaHttpHeader.html#EvaHttpCharSet" title="EvaHttpCharSet">EvaHttpCharSet</a> *    <a class="link" href="EvaHttpHeader.html#eva-http-char-set-new" title="eva_http_char_set_new ()">eva_http_char_set_new</a>               (const char *charset_name,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 >gfloat</a> quality);
-void                <a class="link" href="GskHttpHeader.html#eva-http-char-set-free" title="eva_http_char_set_free ()">eva_http_char_set_free</a>              (<a class="link" href="GskHttpHeader.html#GskHttpCharSet" title="GskHttpCharSet">GskHttpCharSet</a> *char_set);
-<a class="link" href="GskHttpHeader.html#GskHttpContentEncodingSet" title="GskHttpContentEncodingSet">GskHttpContentEncodingSet</a> * <a class="link" href="GskHttpHeader.html#eva-http-content-encoding-set-new" title="eva_http_content_encoding_set_new ()">eva_http_content_encoding_set_new</a>
-                                                        (<a class="link" href="GskHttpHeader.html#GskHttpContentEncoding" title="enum GskHttpContentEncoding">GskHttpContentEncoding</a> encoding,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-char-set-free" title="eva_http_char_set_free ()">eva_http_char_set_free</a>              (<a class="link" href="EvaHttpHeader.html#EvaHttpCharSet" title="EvaHttpCharSet">EvaHttpCharSet</a> *char_set);
+<a class="link" href="EvaHttpHeader.html#EvaHttpContentEncodingSet" title="EvaHttpContentEncodingSet">EvaHttpContentEncodingSet</a> * <a class="link" href="EvaHttpHeader.html#eva-http-content-encoding-set-new" title="eva_http_content_encoding_set_new ()">eva_http_content_encoding_set_new</a>
+                                                        (<a class="link" href="EvaHttpHeader.html#EvaHttpContentEncoding" title="enum EvaHttpContentEncoding">EvaHttpContentEncoding</a> encoding,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 >gfloat</a> quality);
-void                <a class="link" href="GskHttpHeader.html#eva-http-content-encoding-set-free" title="eva_http_content_encoding_set_free ()">eva_http_content_encoding_set_free</a>  (<a class="link" href="GskHttpHeader.html#GskHttpContentEncodingSet" title="GskHttpContentEncodingSet">GskHttpContentEncodingSet</a> *encoding_set);
-<a class="link" href="GskHttpHeader.html#GskHttpTransferEncodingSet" title="GskHttpTransferEncodingSet">GskHttpTransferEncodingSet</a> * <a class="link" href="GskHttpHeader.html#eva-http-transfer-encoding-set-new" title="eva_http_transfer_encoding_set_new ()">eva_http_transfer_encoding_set_new</a>
-                                                        (<a class="link" href="GskHttpHeader.html#GskHttpTransferEncoding" title="enum GskHttpTransferEncoding">GskHttpTransferEncoding</a> encoding,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-content-encoding-set-free" title="eva_http_content_encoding_set_free ()">eva_http_content_encoding_set_free</a>  (<a class="link" href="EvaHttpHeader.html#EvaHttpContentEncodingSet" title="EvaHttpContentEncodingSet">EvaHttpContentEncodingSet</a> *encoding_set);
+<a class="link" href="EvaHttpHeader.html#EvaHttpTransferEncodingSet" title="EvaHttpTransferEncodingSet">EvaHttpTransferEncodingSet</a> * <a class="link" href="EvaHttpHeader.html#eva-http-transfer-encoding-set-new" title="eva_http_transfer_encoding_set_new ()">eva_http_transfer_encoding_set_new</a>
+                                                        (<a class="link" href="EvaHttpHeader.html#EvaHttpTransferEncoding" title="enum EvaHttpTransferEncoding">EvaHttpTransferEncoding</a> encoding,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 >gfloat</a> quality);
-void                <a class="link" href="GskHttpHeader.html#eva-http-transfer-encoding-set-free" title="eva_http_transfer_encoding_set_free ()">eva_http_transfer_encoding_set_free</a> (<a class="link" href="GskHttpHeader.html#GskHttpTransferEncodingSet" title="GskHttpTransferEncodingSet">GskHttpTransferEncodingSet</a> *encoding_set);
-<a class="link" href="GskHttpHeader.html#GskHttpRangeSet" title="GskHttpRangeSet">GskHttpRangeSet</a> *   <a class="link" href="GskHttpHeader.html#eva-http-range-set-new" title="eva_http_range_set_new ()">eva_http_range_set_new</a>              (<a class="link" href="GskHttpHeader.html#GskHttpRange" title="enum GskHttpRange">GskHttpRange</a> range_type);
-void                <a class="link" href="GskHttpHeader.html#eva-http-range-set-free" title="eva_http_range_set_free ()">eva_http_range_set_free</a>             (<a class="link" href="GskHttpHeader.html#GskHttpRangeSet" title="GskHttpRangeSet">GskHttpRangeSet</a> *set);
-<a class="link" href="GskHttpHeader.html#GskHttpLanguageSet" title="GskHttpLanguageSet">GskHttpLanguageSet</a> * <a class="link" href="GskHttpHeader.html#eva-http-language-set-new" title="eva_http_language_set_new ()">eva_http_language_set_new</a>          (const char *language,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-transfer-encoding-set-free" title="eva_http_transfer_encoding_set_free ()">eva_http_transfer_encoding_set_free</a> (<a class="link" href="EvaHttpHeader.html#EvaHttpTransferEncodingSet" title="EvaHttpTransferEncodingSet">EvaHttpTransferEncodingSet</a> *encoding_set);
+<a class="link" href="EvaHttpHeader.html#EvaHttpRangeSet" title="EvaHttpRangeSet">EvaHttpRangeSet</a> *   <a class="link" href="EvaHttpHeader.html#eva-http-range-set-new" title="eva_http_range_set_new ()">eva_http_range_set_new</a>              (<a class="link" href="EvaHttpHeader.html#EvaHttpRange" title="enum EvaHttpRange">EvaHttpRange</a> range_type);
+void                <a class="link" href="EvaHttpHeader.html#eva-http-range-set-free" title="eva_http_range_set_free ()">eva_http_range_set_free</a>             (<a class="link" href="EvaHttpHeader.html#EvaHttpRangeSet" title="EvaHttpRangeSet">EvaHttpRangeSet</a> *set);
+<a class="link" href="EvaHttpHeader.html#EvaHttpLanguageSet" title="EvaHttpLanguageSet">EvaHttpLanguageSet</a> * <a class="link" href="EvaHttpHeader.html#eva-http-language-set-new" title="eva_http_language_set_new ()">eva_http_language_set_new</a>          (const char *language,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 >gfloat</a> quality);
-void                <a class="link" href="GskHttpHeader.html#eva-http-language-set-free" title="eva_http_language_set_free ()">eva_http_language_set_free</a>          (<a class="link" href="GskHttpHeader.html#GskHttpLanguageSet" title="GskHttpLanguageSet">GskHttpLanguageSet</a> *set);
-<a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> * <a class="link" href="GskHttpHeader.html#eva-http-authenticate-new-basic" title="eva_http_authenticate_new_basic ()">eva_http_authenticate_new_basic</a>   (const char *realm);
-<a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> * <a class="link" href="GskHttpHeader.html#eva-http-authenticate-new-digest" title="eva_http_authenticate_new_digest ()">eva_http_authenticate_new_digest</a>  (const char *realm,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-language-set-free" title="eva_http_language_set_free ()">eva_http_language_set_free</a>          (<a class="link" href="EvaHttpHeader.html#EvaHttpLanguageSet" title="EvaHttpLanguageSet">EvaHttpLanguageSet</a> *set);
+<a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> * <a class="link" href="EvaHttpHeader.html#eva-http-authenticate-new-basic" title="eva_http_authenticate_new_basic ()">eva_http_authenticate_new_basic</a>   (const char *realm);
+<a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> * <a class="link" href="EvaHttpHeader.html#eva-http-authenticate-new-digest" title="eva_http_authenticate_new_digest ()">eva_http_authenticate_new_digest</a>  (const char *realm,
                                                          const char *domain,
                                                          const char *nonce,
                                                          const char *opaque,
                                                          const char *algorithm);
-<a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> * <a class="link" href="GskHttpHeader.html#eva-http-authenticate-new-unknown" title="eva_http_authenticate_new_unknown ()">eva_http_authenticate_new_unknown</a> (const char *auth_scheme_name,
+<a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> * <a class="link" href="EvaHttpHeader.html#eva-http-authenticate-new-unknown" title="eva_http_authenticate_new_unknown ()">eva_http_authenticate_new_unknown</a> (const char *auth_scheme_name,
                                                          const char *realm,
                                                          const char *options);
-<a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> * <a class="link" href="GskHttpHeader.html#eva-http-authorization-new-basic" title="eva_http_authorization_new_basic ()">eva_http_authorization_new_basic</a> (const char *user,
+<a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> * <a class="link" href="EvaHttpHeader.html#eva-http-authorization-new-basic" title="eva_http_authorization_new_basic ()">eva_http_authorization_new_basic</a> (const char *user,
                                                          const char *password);
-<a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> * <a class="link" href="GskHttpHeader.html#eva-http-authorization-new-respond-post" title="eva_http_authorization_new_respond_post ()">eva_http_authorization_new_respond_post</a>
-                                                        (const <a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> *,
+<a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> * <a class="link" href="EvaHttpHeader.html#eva-http-authorization-new-respond-post" title="eva_http_authorization_new_respond_post ()">eva_http_authorization_new_respond_post</a>
+                                                        (const <a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> *,
                                                          const char *user,
                                                          const char *password,
                                                          <a
@@ -127,13 +127,13 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstp
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> * <a class="link" href="GskHttpHeader.html#eva-http-authorization-new-unknown" title="eva_http_authorization_new_unknown ()">eva_http_authorization_new_unknown</a>
+<a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> * <a class="link" href="EvaHttpHeader.html#eva-http-authorization-new-unknown" title="eva_http_authorization_new_unknown ()">eva_http_authorization_new_unknown</a>
                                                         (const char *auth_scheme_name,
                                                          const char *response);
-const char *        <a class="link" href="GskHttpHeader.html#eva-http-authorization-peek-response-digest" title="eva_http_authorization_peek_response_digest ()">eva_http_authorization_peek_response_digest</a>
-                                                        (<a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> *);
-<a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> * <a class="link" href="GskHttpHeader.html#eva-http-authorization-copy" title="eva_http_authorization_copy ()">eva_http_authorization_copy</a>      (const <a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> *);
-<a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> * <a class="link" href="GskHttpHeader.html#eva-http-authorization-new-digest" title="eva_http_authorization_new_digest ()">eva_http_authorization_new_digest</a>
+const char *        <a class="link" href="EvaHttpHeader.html#eva-http-authorization-peek-response-digest" title="eva_http_authorization_peek_response_digest ()">eva_http_authorization_peek_response_digest</a>
+                                                        (<a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> *);
+<a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> * <a class="link" href="EvaHttpHeader.html#eva-http-authorization-copy" title="eva_http_authorization_copy ()">eva_http_authorization_copy</a>      (const <a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> *);
+<a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> * <a class="link" href="EvaHttpHeader.html#eva-http-authorization-new-digest" title="eva_http_authorization_new_digest ()">eva_http_authorization_new_digest</a>
                                                         (const char *realm,
                                                          const char *domain,
                                                          const char *nonce,
@@ -143,123 +143,123 @@ const char *        <a class="link" href="GskHttpHeader.html#eva-http-authorizat
                                                          const char *password,
                                                          const char *response_digest,
                                                          const char *entity_digest);
-<a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> * <a class="link" href="GskHttpHeader.html#eva-http-authorization-new-respond" title="eva_http_authorization_new_respond ()">eva_http_authorization_new_respond</a>
-                                                        (const <a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> *,
+<a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> * <a class="link" href="EvaHttpHeader.html#eva-http-authorization-new-respond" title="eva_http_authorization_new_respond ()">eva_http_authorization_new_respond</a>
+                                                        (const <a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> *,
                                                          const char *user,
                                                          const char *password,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-void                <a class="link" href="GskHttpHeader.html#eva-http-authorization-set-nonce" title="eva_http_authorization_set_nonce ()">eva_http_authorization_set_nonce</a>    (<a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> *,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-authorization-set-nonce" title="eva_http_authorization_set_nonce ()">eva_http_authorization_set_nonce</a>    (<a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> *,
                                                          const char *nonce);
-<a class="link" href="GskHttpHeader.html#GskHttpCookie" title="GskHttpCookie">GskHttpCookie</a> *     <a class="link" href="GskHttpHeader.html#eva-http-cookie-new" title="eva_http_cookie_new ()">eva_http_cookie_new</a>                 (const char *key,
+<a class="link" href="EvaHttpHeader.html#EvaHttpCookie" title="EvaHttpCookie">EvaHttpCookie</a> *     <a class="link" href="EvaHttpHeader.html#eva-http-cookie-new" title="eva_http_cookie_new ()">eva_http_cookie_new</a>                 (const char *key,
                                                          const char *value,
                                                          const char *path,
                                                          const char *domain,
                                                          const char *expire_date,
                                                          const char *comment,
                                                          int max_age);
-<a class="link" href="GskHttpHeader.html#GskHttpCookie" title="GskHttpCookie">GskHttpCookie</a> *     <a class="link" href="GskHttpHeader.html#eva-http-cookie-copy" title="eva_http_cookie_copy ()">eva_http_cookie_copy</a>                (const <a class="link" href="GskHttpHeader.html#GskHttpCookie" title="GskHttpCookie">GskHttpCookie</a> *orig);
-void                <a class="link" href="GskHttpHeader.html#eva-http-cookie-free" title="eva_http_cookie_free ()">eva_http_cookie_free</a>                (<a class="link" href="GskHttpHeader.html#GskHttpCookie" title="GskHttpCookie">GskHttpCookie</a> *orig);
-                    <a class="link" href="GskHttpHeader.html#GskHttpHeaderClass" title="GskHttpHeaderClass">GskHttpHeaderClass</a>;
-                    <a class="link" href="GskHttpHeader.html#GskHttpHeader-struct" title="GskHttpHeader">GskHttpHeader</a>;
-enum                <a class="link" href="GskHttpHeader.html#GskHttpParseFlags" title="enum GskHttpParseFlags">GskHttpParseFlags</a>;
-<a class="link" href="GskHttpHeader.html#GskHttpConnection" title="enum GskHttpConnection">GskHttpConnection</a>   <a class="link" href="GskHttpHeader.html#eva-http-header-get-connection" title="eva_http_header_get_connection ()">eva_http_header_get_connection</a>      (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header);
-<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *     <a class="link" href="GskHttpHeader.html#eva-http-header-from-buffer" title="eva_http_header_from_buffer ()">eva_http_header_from_buffer</a>         (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *input,
+<a class="link" href="EvaHttpHeader.html#EvaHttpCookie" title="EvaHttpCookie">EvaHttpCookie</a> *     <a class="link" href="EvaHttpHeader.html#eva-http-cookie-copy" title="eva_http_cookie_copy ()">eva_http_cookie_copy</a>                (const <a class="link" href="EvaHttpHeader.html#EvaHttpCookie" title="EvaHttpCookie">EvaHttpCookie</a> *orig);
+void                <a class="link" href="EvaHttpHeader.html#eva-http-cookie-free" title="eva_http_cookie_free ()">eva_http_cookie_free</a>                (<a class="link" href="EvaHttpHeader.html#EvaHttpCookie" title="EvaHttpCookie">EvaHttpCookie</a> *orig);
+                    <a class="link" href="EvaHttpHeader.html#EvaHttpHeaderClass" title="EvaHttpHeaderClass">EvaHttpHeaderClass</a>;
+                    <a class="link" href="EvaHttpHeader.html#EvaHttpHeader-struct" title="EvaHttpHeader">EvaHttpHeader</a>;
+enum                <a class="link" href="EvaHttpHeader.html#EvaHttpParseFlags" title="enum EvaHttpParseFlags">EvaHttpParseFlags</a>;
+<a class="link" href="EvaHttpHeader.html#EvaHttpConnection" title="enum EvaHttpConnection">EvaHttpConnection</a>   <a class="link" href="EvaHttpHeader.html#eva-http-header-get-connection" title="eva_http_header_get_connection ()">eva_http_header_get_connection</a>      (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header);
+<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *     <a class="link" href="EvaHttpHeader.html#eva-http-header-from-buffer" title="eva_http_header_from_buffer ()">eva_http_header_from_buffer</a>         (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *input,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_request,
-                                                         <a class="link" href="GskHttpHeader.html#GskHttpParseFlags" title="enum GskHttpParseFlags">GskHttpParseFlags</a> flags,
+                                                         <a class="link" href="EvaHttpHeader.html#EvaHttpParseFlags" title="enum EvaHttpParseFlags">EvaHttpParseFlags</a> flags,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-to-buffer" title="eva_http_header_to_buffer ()">eva_http_header_to_buffer</a>           (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
-                                                         <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *output);
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-set-content-encoding" title="eva_http_header_set_content_encoding ()">eva_http_header_set_content_encoding</a>
-                                                        (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-to-buffer" title="eva_http_header_to_buffer ()">eva_http_header_to_buffer</a>           (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
+                                                         <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *output);
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-set-content-encoding" title="eva_http_header_set_content_encoding ()">eva_http_header_set_content_encoding</a>
+                                                        (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *encoding);
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-get-content-encoding" title="eva_http_header_get_content_encoding()">eva_http_header_get_content_encoding</a>(header)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-set-date" title="eva_http_header_set_date()">eva_http_header_set_date</a>            (header, date)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-get-date" title="eva_http_header_get_date()">eva_http_header_get_date</a>            (header)
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-add-misc" title="eva_http_header_add_misc ()">eva_http_header_add_misc</a>            (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-get-content-encoding" title="eva_http_header_get_content_encoding()">eva_http_header_get_content_encoding</a>(header)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-set-date" title="eva_http_header_set_date()">eva_http_header_set_date</a>            (header, date)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-get-date" title="eva_http_header_get_date()">eva_http_header_get_date</a>            (header)
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-add-misc" title="eva_http_header_add_misc ()">eva_http_header_add_misc</a>            (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *key,
                                                          const char *value);
-const char *        <a class="link" href="GskHttpHeader.html#eva-http-header-lookup-misc" title="eva_http_header_lookup_misc ()">eva_http_header_lookup_misc</a>         (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+const char *        <a class="link" href="EvaHttpHeader.html#eva-http-header-lookup-misc" title="eva_http_header_lookup_misc ()">eva_http_header_lookup_misc</a>         (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *key);
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-remove-misc" title="eva_http_header_remove_misc ()">eva_http_header_remove_misc</a>         (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-remove-misc" title="eva_http_header_remove_misc ()">eva_http_header_remove_misc</a>         (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *key);
-                    <a class="link" href="GskHttpHeader.html#GskHttpHeaderLineParser" title="GskHttpHeaderLineParser">GskHttpHeaderLineParser</a>;
+                    <a class="link" href="EvaHttpHeader.html#EvaHttpHeaderLineParser" title="EvaHttpHeaderLineParser">EvaHttpHeaderLineParser</a>;
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (<a class="link" href="GskHttpHeader.html#GskHttpHeaderLineParserFunc" title="GskHttpHeaderLineParserFunc ()">*GskHttpHeaderLineParserFunc</a>)      (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+>gboolean</a>            (<a class="link" href="EvaHttpHeader.html#EvaHttpHeaderLineParserFunc" title="EvaHttpHeaderLineParserFunc ()">*EvaHttpHeaderLineParserFunc</a>)      (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *text,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"
->GHashTable</a> *        <a class="link" href="GskHttpHeader.html#eva-http-header-get-parser-table" title="eva_http_header_get_parser_table ()">eva_http_header_get_parser_table</a>    (<a
+>GHashTable</a> *        <a class="link" href="EvaHttpHeader.html#eva-http-header-get-parser-table" title="eva_http_header_get_parser_table ()">eva_http_header_get_parser_table</a>    (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_request);
-void                (<a class="link" href="GskHttpHeader.html#GskHttpHeaderPrintFunc" title="GskHttpHeaderPrintFunc ()">*GskHttpHeaderPrintFunc</a>)           (const char *text,
+void                (<a class="link" href="EvaHttpHeader.html#EvaHttpHeaderPrintFunc" title="EvaHttpHeaderPrintFunc ()">*EvaHttpHeaderPrintFunc</a>)           (const char *text,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-print" title="eva_http_header_print ()">eva_http_header_print</a>               (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *http_header,
-                                                         <a class="link" href="GskHttpHeader.html#GskHttpHeaderPrintFunc" title="GskHttpHeaderPrintFunc ()">GskHttpHeaderPrintFunc</a> print_func,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-print" title="eva_http_header_print ()">eva_http_header_print</a>               (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *http_header,
+                                                         <a class="link" href="EvaHttpHeader.html#EvaHttpHeaderPrintFunc" title="EvaHttpHeaderPrintFunc ()">EvaHttpHeaderPrintFunc</a> print_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> print_data);
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-set-connection-type" title="eva_http_header_set_connection_type()">eva_http_header_set_connection_type</a> (header, connection_type)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-get-connection-type" title="eva_http_header_get_connection_type()">eva_http_header_get_connection_type</a> (header)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-set-transfer-encoding" title="eva_http_header_set_transfer_encoding()">eva_http_header_set_transfer_encoding</a>(header, enc)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-get-transfer-encoding" title="eva_http_header_get_transfer_encoding()">eva_http_header_get_transfer_encoding</a>(header)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-get-content-type" title="eva_http_header_get_content_type()">eva_http_header_get_content_type</a>    (header)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-set-content-type" title="eva_http_header_set_content_type()">eva_http_header_set_content_type</a>    (header, content_type)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-get-content-subtype" title="eva_http_header_get_content_subtype()">eva_http_header_get_content_subtype</a> (header)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-set-content-subtype" title="eva_http_header_set_content_subtype()">eva_http_header_set_content_subtype</a> (header, content_type)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-set-content-length" title="eva_http_header_set_content_length()">eva_http_header_set_content_length</a>  (header, len)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-get-content-length" title="eva_http_header_get_content_length()">eva_http_header_get_content_length</a>  (header)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-get-content-charset" title="eva_http_header_get_content_charset()">eva_http_header_get_content_charset</a> (header)
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-add-accepted-range" title="eva_http_header_add_accepted_range ()">eva_http_header_add_accepted_range</a>  (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
-                                                         <a class="link" href="GskHttpHeader.html#GskHttpRange" title="enum GskHttpRange">GskHttpRange</a> range);
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-add-pragma" title="eva_http_header_add_pragma ()">eva_http_header_add_pragma</a>          (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-set-connection-type" title="eva_http_header_set_connection_type()">eva_http_header_set_connection_type</a> (header, connection_type)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-get-connection-type" title="eva_http_header_get_connection_type()">eva_http_header_get_connection_type</a> (header)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-set-transfer-encoding" title="eva_http_header_set_transfer_encoding()">eva_http_header_set_transfer_encoding</a>(header, enc)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-get-transfer-encoding" title="eva_http_header_get_transfer_encoding()">eva_http_header_get_transfer_encoding</a>(header)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-get-content-type" title="eva_http_header_get_content_type()">eva_http_header_get_content_type</a>    (header)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-set-content-type" title="eva_http_header_set_content_type()">eva_http_header_set_content_type</a>    (header, content_type)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-get-content-subtype" title="eva_http_header_get_content_subtype()">eva_http_header_get_content_subtype</a> (header)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-set-content-subtype" title="eva_http_header_set_content_subtype()">eva_http_header_set_content_subtype</a> (header, content_type)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-set-content-length" title="eva_http_header_set_content_length()">eva_http_header_set_content_length</a>  (header, len)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-get-content-length" title="eva_http_header_get_content_length()">eva_http_header_get_content_length</a>  (header)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-get-content-charset" title="eva_http_header_get_content_charset()">eva_http_header_get_content_charset</a> (header)
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-add-accepted-range" title="eva_http_header_add_accepted_range ()">eva_http_header_add_accepted_range</a>  (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
+                                                         <a class="link" href="EvaHttpHeader.html#EvaHttpRange" title="enum EvaHttpRange">EvaHttpRange</a> range);
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-add-pragma" title="eva_http_header_add_pragma ()">eva_http_header_add_pragma</a>          (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *pragma);
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-set-content-charset" title="eva_http_header_set_content_charset()">eva_http_header_set_content_charset</a> (header, content_type)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-set-range" title="eva_http_header_set_range()">eva_http_header_set_range</a>           (header, start, end)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-get-range-start" title="eva_http_header_get_range_start()">eva_http_header_get_range_start</a>     (header)
-#define             <a class="link" href="GskHttpHeader.html#eva-http-header-get-range-end" title="eva_http_header_get_range_end()">eva_http_header_get_range_end</a>       (header)
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-set-string" title="eva_http_header_set_string ()">eva_http_header_set_string</a>          (<a
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-set-content-charset" title="eva_http_header_set_content_charset()">eva_http_header_set_content_charset</a> (header, content_type)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-set-range" title="eva_http_header_set_range()">eva_http_header_set_range</a>           (header, start, end)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-get-range-start" title="eva_http_header_get_range_start()">eva_http_header_get_range_start</a>     (header)
+#define             <a class="link" href="EvaHttpHeader.html#eva-http-header-get-range-end" title="eva_http_header_get_range_end()">eva_http_header_get_range_end</a>       (header)
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-set-string" title="eva_http_header_set_string ()">eva_http_header_set_string</a>          (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> http_header,
                                                          char **p_str,
                                                          const char *str);
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-set-string-val" title="eva_http_header_set_string_val ()">eva_http_header_set_string_val</a>      (<a
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-set-string-val" title="eva_http_header_set_string_val ()">eva_http_header_set_string_val</a>      (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> http_header,
                                                          char **p_str,
                                                          const <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-Generic-values.html#GValue"
 >GValue</a> *value);
-char *              <a class="link" href="GskHttpHeader.html#eva-http-header-cut-string" title="eva_http_header_cut_string ()">eva_http_header_cut_string</a>          (<a
+char *              <a class="link" href="EvaHttpHeader.html#eva-http-header-cut-string" title="eva_http_header_cut_string ()">eva_http_header_cut_string</a>          (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> http_header,
                                                          const char *start,
                                                          const char *end);
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-free-string" title="eva_http_header_free_string ()">eva_http_header_free_string</a>         (<a
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-free-string" title="eva_http_header_free_string ()">eva_http_header_free_string</a>         (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> http_header,
                                                          char *str);
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-set-connection-string" title="eva_http_header_set_connection_string ()">eva_http_header_set_connection_string</a>
-                                                        (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-set-connection-string" title="eva_http_header_set_connection_string ()">eva_http_header_set_connection_string</a>
+                                                        (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *str);
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-set-content-encoding-string" title="eva_http_header_set_content_encoding_string ()">eva_http_header_set_content_encoding_string</a>
-                                                        (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-set-content-encoding-string" title="eva_http_header_set_content_encoding_string ()">eva_http_header_set_content_encoding_string</a>
+                                                        (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *str);
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-set-transfer-encoding-string" title="eva_http_header_set_transfer_encoding_string ()">eva_http_header_set_transfer_encoding_string</a>
-                                                        (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-set-transfer-encoding-string" title="eva_http_header_set_transfer_encoding_string ()">eva_http_header_set_transfer_encoding_string</a>
+                                                        (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *str);
-void                <a class="link" href="GskHttpHeader.html#eva-http-header-set-version" title="eva_http_header_set_version ()">eva_http_header_set_version</a>         (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+void                <a class="link" href="EvaHttpHeader.html#eva-http-header-set-version" title="eva_http_header_set_version ()">eva_http_header_set_version</a>         (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> major,
@@ -269,73 +269,73 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpHeader.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaHttpHeader.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----GskHttpHeader
-         +----<a class="link" href="GskHttpRequest.html" title="GskHttpRequest">GskHttpRequest</a>
-         +----<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a>
+   +----EvaHttpHeader
+         +----<a class="link" href="EvaHttpRequest.html" title="EvaHttpRequest">EvaHttpRequest</a>
+         +----<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a>
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpHeader.properties"></a><h2>Properties</h2>
+<a name="EvaHttpHeader.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--connection" title='The "connection" property'>connection</a>"               <a class="link" href="GskHttpHeader.html#GskHttpConnection" title="enum GskHttpConnection">GskHttpConnection</a>     : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--connection-string" title='The "connection-string" property'>connection-string</a>"        <a
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--connection" title='The "connection" property'>connection</a>"               <a class="link" href="EvaHttpHeader.html#EvaHttpConnection" title="enum EvaHttpConnection">EvaHttpConnection</a>     : Read / Write
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--connection-string" title='The "connection-string" property'>connection-string</a>"        <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--content-charset" title='The "content-charset" property'>content-charset</a>"          <a
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--content-charset" title='The "content-charset" property'>content-charset</a>"          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--content-encoding" title='The "content-encoding" property'>content-encoding</a>"         <a class="link" href="GskHttpHeader.html#GskHttpContentEncoding" title="enum GskHttpContentEncoding">GskHttpContentEncoding</a>  : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--content-encoding-string" title='The "content-encoding-string" property'>content-encoding-string</a>"  <a
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--content-encoding" title='The "content-encoding" property'>content-encoding</a>"         <a class="link" href="EvaHttpHeader.html#EvaHttpContentEncoding" title="enum EvaHttpContentEncoding">EvaHttpContentEncoding</a>  : Read / Write
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--content-encoding-string" title='The "content-encoding-string" property'>content-encoding-string</a>"  <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--content-length" title='The "content-length" property'>content-length</a>"           <a
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--content-length" title='The "content-length" property'>content-length</a>"           <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a>                  : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--content-subtype" title='The "content-subtype" property'>content-subtype</a>"          <a
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--content-subtype" title='The "content-subtype" property'>content-subtype</a>"          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--content-type" title='The "content-type" property'>content-type</a>"             <a
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--content-type" title='The "content-type" property'>content-type</a>"             <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--date" title='The "date" property'>date</a>"                     <a
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--date" title='The "date" property'>date</a>"                     <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a>                  : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--major-version" title='The "major-version" property'>major-version</a>"            <a
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--major-version" title='The "major-version" property'>major-version</a>"            <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a>                 : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--minor-version" title='The "minor-version" property'>minor-version</a>"            <a
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--minor-version" title='The "minor-version" property'>minor-version</a>"            <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a>                 : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--range-end" title='The "range-end" property'>range-end</a>"                <a
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--range-end" title='The "range-end" property'>range-end</a>"                <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a>                  : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--range-start" title='The "range-start" property'>range-start</a>"              <a
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--range-start" title='The "range-start" property'>range-start</a>"              <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a>                  : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--transfer-encoding" title='The "transfer-encoding" property'>transfer-encoding</a>"        <a class="link" href="GskHttpHeader.html#GskHttpTransferEncoding" title="enum GskHttpTransferEncoding">GskHttpTransferEncoding</a>  : Read / Write
-  "<a class="link" href="GskHttpHeader.html#GskHttpHeader--transfer-encoding-string" title='The "transfer-encoding-string" property'>transfer-encoding-string</a>" <a
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--transfer-encoding" title='The "transfer-encoding" property'>transfer-encoding</a>"        <a class="link" href="EvaHttpHeader.html#EvaHttpTransferEncoding" title="enum EvaHttpTransferEncoding">EvaHttpTransferEncoding</a>  : Read / Write
+  "<a class="link" href="EvaHttpHeader.html#EvaHttpHeader--transfer-encoding-string" title='The "transfer-encoding-string" property'>transfer-encoding-string</a>" <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpHeader.description"></a><h2>Description</h2>
+<a name="EvaHttpHeader.description"></a><h2>Description</h2>
 <p>
 The class provides methods and structure to parse and
 examime HTTP requests and responses.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpHeader.details"></a><h2>Details</h2>
+<a name="EvaHttpHeader.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskHttpAuthorization"></a><h3>GskHttpAuthorization</h3>
+<a name="EvaHttpAuthorization"></a><h3>EvaHttpAuthorization</h3>
 <pre class="programlisting">typedef struct {
-  GskHttpAuthMode mode;
+  EvaHttpAuthMode mode;
   char           *auth_scheme_name;
   union
   {
@@ -358,7 +358,7 @@ examime HTTP requests and responses.
       char                   *entity_digest;
     } digest;
   } info;
-} GskHttpAuthorization;
+} EvaHttpAuthorization;
 </pre>
 <p>
   A response to a Authenticate: challenge.
@@ -381,9 +381,9 @@ examime HTTP requests and responses.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpAuthenticate"></a><h3>GskHttpAuthenticate</h3>
+<a name="EvaHttpAuthenticate"></a><h3>EvaHttpAuthenticate</h3>
 <pre class="programlisting">typedef struct {
-  GskHttpAuthMode mode;
+  EvaHttpAuthMode mode;
   char           *auth_scheme_name;
   char           *realm;
   union
@@ -403,7 +403,7 @@ examime HTTP requests and responses.
       char                   *algorithm;
     } digest;
   } info;
-} GskHttpAuthenticate;
+} EvaHttpAuthenticate;
 </pre>
 <p>
 XXX: should be a list of possible authenification strategies.
@@ -417,16 +417,16 @@ parameters applicable to the Request-URI.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpCharSet"></a><h3>GskHttpCharSet</h3>
+<a name="EvaHttpCharSet"></a><h3>EvaHttpCharSet</h3>
 <pre class="programlisting">typedef struct {
   /*&lt; public: read-only &gt;*/
   char                 *charset_name;
   gfloat                quality;                /* -1 if not present */
-} GskHttpCharSet;
+} EvaHttpCharSet;
 </pre>
 <p>
 A character set, along with optional quality factor.
-The default quality is 1.0.  See also <a class="link" href="GskHttpRequest.html#eva-http-request-add-charsets" title="eva_http_request_add_charsets ()"><code class="function">eva_http_request_add_charsets()</code></a>
+The default quality is 1.0.  See also <a class="link" href="EvaHttpRequest.html#eva-http-request-add-charsets" title="eva_http_request_add_charsets ()"><code class="function">eva_http_request_add_charsets()</code></a>
 and <code class="function">eva_http_response_set_charset()</code>.  The HTTP standard does not concretely
 define the Character Set strings that are mentioned in RFC 2616, Section 3.4.
 But it recommends the documents
@@ -456,7 +456,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpCookie"></a><h3>GskHttpCookie</h3>
+<a name="EvaHttpCookie"></a><h3>EvaHttpCookie</h3>
 <pre class="programlisting">typedef struct {
   /*&lt; public: read-only &gt;*/
   char                   *key;
@@ -468,7 +468,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
   int                     max_age;
   gboolean                secure;               /* default is FALSE */
   guint                   version;              /* default is 0, unspecified */
-} GskHttpCookie;
+} EvaHttpCookie;
 </pre>
 <p>
 See RFC 2964 "Use of HTTP State Management"
@@ -477,14 +477,14 @@ and RFC 2965 "HTTP State Management Mechanism".
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpLanguageSet"></a><h3>GskHttpLanguageSet</h3>
+<a name="EvaHttpLanguageSet"></a><h3>EvaHttpLanguageSet</h3>
 <pre class="programlisting">typedef struct {
   /*&lt; public: read-only &gt;*/
 
   /* these give a language (with optional dialect specifier) */
   char                 *language;
   gfloat                quality;                /* -1 if not present */
-} GskHttpLanguageSet;
+} EvaHttpLanguageSet;
 </pre>
 <p>
 A list of natural languages that may be acceptable
@@ -517,13 +517,13 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpMediaTypeSet"></a><h3>GskHttpMediaTypeSet</h3>
+<a name="EvaHttpMediaTypeSet"></a><h3>EvaHttpMediaTypeSet</h3>
 <pre class="programlisting">typedef struct {
   /*&lt; public: read-only &gt;*/
   char                 *type;
   char                 *subtype;
   gfloat                quality;                /* -1 if not present */
-} GskHttpMediaTypeSet;
+} EvaHttpMediaTypeSet;
 </pre>
 <p>
 A list of media types that the client can handle, and
@@ -556,12 +556,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpContentEncodingSet"></a><h3>GskHttpContentEncodingSet</h3>
+<a name="EvaHttpContentEncodingSet"></a><h3>EvaHttpContentEncodingSet</h3>
 <pre class="programlisting">typedef struct {
   /*&lt; public: read-only &gt;*/
-  GskHttpContentEncoding       encoding;
+  EvaHttpContentEncoding       encoding;
   gfloat                       quality;       /* -1 if not present */
-} GskHttpContentEncodingSet;
+} EvaHttpContentEncodingSet;
 </pre>
 <p>
 A node in a list of content-encodings allowed by the server.
@@ -573,7 +573,7 @@ comparison purposes it should be treated at +1.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="GskHttpHeader.html#GskHttpContentEncoding" title="enum GskHttpContentEncoding">GskHttpContentEncoding</a> <em class="structfield"><code>encoding</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaHttpHeader.html#EvaHttpContentEncoding" title="enum EvaHttpContentEncoding">EvaHttpContentEncoding</a> <em class="structfield"><code>encoding</code></em>;</span></p></td>
 <td>the encoding being rated.
 </td>
 </tr>
@@ -589,12 +589,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpTransferEncodingSet"></a><h3>GskHttpTransferEncodingSet</h3>
+<a name="EvaHttpTransferEncodingSet"></a><h3>EvaHttpTransferEncodingSet</h3>
 <pre class="programlisting">typedef struct {
   /*&lt; public: read-only &gt;*/
-  GskHttpTransferEncoding      encoding;
+  EvaHttpTransferEncoding      encoding;
   gfloat                       quality;       /* -1 if not present */
-} GskHttpTransferEncodingSet;
+} EvaHttpTransferEncodingSet;
 </pre>
 <p>
 A node in a list of transfer-encodings allowed by the server.
@@ -606,7 +606,7 @@ comparison purposes it should be treated at +1.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="GskHttpHeader.html#GskHttpTransferEncoding" title="enum GskHttpTransferEncoding">GskHttpTransferEncoding</a> <em class="structfield"><code>encoding</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaHttpHeader.html#EvaHttpTransferEncoding" title="enum EvaHttpTransferEncoding">EvaHttpTransferEncoding</a> <em class="structfield"><code>encoding</code></em>;</span></p></td>
 <td>the encoding being rated.
 </td>
 </tr>
@@ -622,11 +622,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpRangeSet"></a><h3>GskHttpRangeSet</h3>
+<a name="EvaHttpRangeSet"></a><h3>EvaHttpRangeSet</h3>
 <pre class="programlisting">typedef struct {
   /*&lt; public: read-only &gt;*/
-  GskHttpRange          range_type;
-} GskHttpRangeSet;
+  EvaHttpRange          range_type;
+} EvaHttpRangeSet;
 </pre>
 <p>
 A node in a list of range-specifiers allowed by the server.
@@ -641,7 +641,7 @@ one valid unit allowed, 'bytes'.
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
-<td><p><span class="term"><a class="link" href="GskHttpHeader.html#GskHttpRange" title="enum GskHttpRange">GskHttpRange</a> <em class="structfield"><code>range_type</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaHttpHeader.html#EvaHttpRange" title="enum EvaHttpRange">EvaHttpRange</a> <em class="structfield"><code>range_type</code></em>;</span></p></td>
 <td>the units permitted for partial content requests.
 </td>
 </tr></tbody>
@@ -649,7 +649,7 @@ one valid unit allowed, 'bytes'.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpStatus"></a><h3>enum GskHttpStatus</h3>
+<a name="EvaHttpStatus"></a><h3>enum EvaHttpStatus</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_HTTP_STATUS_CONTINUE                      = 100,
@@ -692,7 +692,7 @@ one valid unit allowed, 'bytes'.
   EVA_HTTP_STATUS_SERVICE_UNAVAILABLE           = 503,
   EVA_HTTP_STATUS_GATEWAY_TIMEOUT               = 504,
   EVA_HTTP_STATUS_UNSUPPORTED_VERSION           = 505
-} GskHttpStatus;
+} EvaHttpStatus;
 </pre>
 <p>
 Status code corresponding to the number on the
@@ -1316,7 +1316,7 @@ takes on the same numerical value.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpVerb"></a><h3>enum GskHttpVerb</h3>
+<a name="EvaHttpVerb"></a><h3>enum EvaHttpVerb</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_HTTP_VERB_GET,
@@ -1327,7 +1327,7 @@ takes on the same numerical value.
   EVA_HTTP_VERB_DELETE,
   EVA_HTTP_VERB_TRACE,
   EVA_HTTP_VERB_CONNECT
-} GskHttpVerb;
+} EvaHttpVerb;
 </pre>
 <p>
 The type of action requested by the User or User-Agent.
@@ -1589,11 +1589,11 @@ have this property, as well as the safe methods GET and HEAD.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpRange"></a><h3>enum GskHttpRange</h3>
+<a name="EvaHttpRange"></a><h3>enum EvaHttpRange</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_HTTP_RANGE_BYTES
-} GskHttpRange;
+} EvaHttpRange;
 </pre>
 <p>
 This gives units, or allowed units, for the Content-Range.
@@ -1616,13 +1616,13 @@ bytes.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpContentEncoding"></a><h3>enum GskHttpContentEncoding</h3>
+<a name="EvaHttpContentEncoding"></a><h3>enum EvaHttpContentEncoding</h3>
 <pre class="programlisting">typedef enum {
   EVA_HTTP_CONTENT_ENCODING_IDENTITY,
   EVA_HTTP_CONTENT_ENCODING_GZIP,
   EVA_HTTP_CONTENT_ENCODING_COMPRESS,
   EVA_HTTP_CONTENT_ENCODING_UNRECOGNIZED = 0x100
-} GskHttpContentEncoding;
+} EvaHttpContentEncoding;
 </pre>
 <p>
 This gives ways in which content can be encoded.
@@ -1674,12 +1674,12 @@ An unrecognized type of content-encoding was requested.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpTransferEncoding"></a><h3>enum GskHttpTransferEncoding</h3>
+<a name="EvaHttpTransferEncoding"></a><h3>enum EvaHttpTransferEncoding</h3>
 <pre class="programlisting">typedef enum {
   EVA_HTTP_TRANSFER_ENCODING_NONE    = 0,
   EVA_HTTP_TRANSFER_ENCODING_CHUNKED = 1,
   EVA_HTTP_TRANSFER_ENCODING_UNRECOGNIZED = 0x100
-} GskHttpTransferEncoding;
+} EvaHttpTransferEncoding;
 </pre>
 <p>
    [RFC 2616, Section 3.6]
@@ -1713,13 +1713,13 @@ An unrecognized transfer encoding was received.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpConnection"></a><h3>enum GskHttpConnection</h3>
+<a name="EvaHttpConnection"></a><h3>enum EvaHttpConnection</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_HTTP_CONNECTION_NONE       = 0,
   EVA_HTTP_CONNECTION_CLOSE      = 1,
   EVA_HTTP_CONNECTION_KEEPALIVE  = 2,
-} GskHttpConnection;
+} EvaHttpConnection;
 </pre>
 <p>
 Specify what should happen once the transaction is done.
@@ -1760,13 +1760,13 @@ length in advance.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-media-type-set-new"></a><h3>eva_http_media_type_set_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpMediaTypeSet" title="GskHttpMediaTypeSet">GskHttpMediaTypeSet</a> * eva_http_media_type_set_new       (const char *type,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpMediaTypeSet" title="EvaHttpMediaTypeSet">EvaHttpMediaTypeSet</a> * eva_http_media_type_set_new       (const char *type,
                                                          const char *subtype,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 >gfloat</a> quality);</pre>
 <p>
-Allocate a new node in a GskHttpMediaTypeSet list.</p>
+Allocate a new node in a EvaHttpMediaTypeSet list.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1800,7 +1800,7 @@ Allocate a new node in a GskHttpMediaTypeSet list.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-media-type-set-free"></a><h3>eva_http_media_type_set_free ()</h3>
-<pre class="programlisting">void                eva_http_media_type_set_free        (<a class="link" href="GskHttpHeader.html#GskHttpMediaTypeSet" title="GskHttpMediaTypeSet">GskHttpMediaTypeSet</a> *set);</pre>
+<pre class="programlisting">void                eva_http_media_type_set_free        (<a class="link" href="EvaHttpHeader.html#EvaHttpMediaTypeSet" title="EvaHttpMediaTypeSet">EvaHttpMediaTypeSet</a> *set);</pre>
 <p>
 Free the memory associated with the media-type-set node.</p>
 <p>
@@ -1817,12 +1817,12 @@ Free the memory associated with the media-type-set node.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-char-set-new"></a><h3>eva_http_char_set_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpCharSet" title="GskHttpCharSet">GskHttpCharSet</a> *    eva_http_char_set_new               (const char *charset_name,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpCharSet" title="EvaHttpCharSet">EvaHttpCharSet</a> *    eva_http_char_set_new               (const char *charset_name,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 >gfloat</a> quality);</pre>
 <p>
-Allocate a single GskHttpCharSet preference.
+Allocate a single EvaHttpCharSet preference.
 You may wish to build a list of these.</p>
 <p>
 </p>
@@ -1850,9 +1850,9 @@ You may wish to build a list of these.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-char-set-free"></a><h3>eva_http_char_set_free ()</h3>
-<pre class="programlisting">void                eva_http_char_set_free              (<a class="link" href="GskHttpHeader.html#GskHttpCharSet" title="GskHttpCharSet">GskHttpCharSet</a> *char_set);</pre>
+<pre class="programlisting">void                eva_http_char_set_free              (<a class="link" href="EvaHttpHeader.html#EvaHttpCharSet" title="EvaHttpCharSet">EvaHttpCharSet</a> *char_set);</pre>
 <p>
-Deallocate a GskHttpCharSet.</p>
+Deallocate a EvaHttpCharSet.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1867,13 +1867,13 @@ Deallocate a GskHttpCharSet.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-content-encoding-set-new"></a><h3>eva_http_content_encoding_set_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpContentEncodingSet" title="GskHttpContentEncodingSet">GskHttpContentEncodingSet</a> * eva_http_content_encoding_set_new
-                                                        (<a class="link" href="GskHttpHeader.html#GskHttpContentEncoding" title="enum GskHttpContentEncoding">GskHttpContentEncoding</a> encoding,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpContentEncodingSet" title="EvaHttpContentEncodingSet">EvaHttpContentEncodingSet</a> * eva_http_content_encoding_set_new
+                                                        (<a class="link" href="EvaHttpHeader.html#EvaHttpContentEncoding" title="enum EvaHttpContentEncoding">EvaHttpContentEncoding</a> encoding,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 >gfloat</a> quality);</pre>
 <p>
-Allocate a new node in a GskHttpContentEncodingSet list.</p>
+Allocate a new node in a EvaHttpContentEncodingSet list.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1902,7 +1902,7 @@ which means it should be treated as 1.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-content-encoding-set-free"></a><h3>eva_http_content_encoding_set_free ()</h3>
-<pre class="programlisting">void                eva_http_content_encoding_set_free  (<a class="link" href="GskHttpHeader.html#GskHttpContentEncodingSet" title="GskHttpContentEncodingSet">GskHttpContentEncodingSet</a> *encoding_set);</pre>
+<pre class="programlisting">void                eva_http_content_encoding_set_free  (<a class="link" href="EvaHttpHeader.html#EvaHttpContentEncodingSet" title="EvaHttpContentEncodingSet">EvaHttpContentEncodingSet</a> *encoding_set);</pre>
 <p>
 Deallocate the encoding.</p>
 <p>
@@ -1919,13 +1919,13 @@ Deallocate the encoding.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-transfer-encoding-set-new"></a><h3>eva_http_transfer_encoding_set_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpTransferEncodingSet" title="GskHttpTransferEncodingSet">GskHttpTransferEncodingSet</a> * eva_http_transfer_encoding_set_new
-                                                        (<a class="link" href="GskHttpHeader.html#GskHttpTransferEncoding" title="enum GskHttpTransferEncoding">GskHttpTransferEncoding</a> encoding,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpTransferEncodingSet" title="EvaHttpTransferEncodingSet">EvaHttpTransferEncodingSet</a> * eva_http_transfer_encoding_set_new
+                                                        (<a class="link" href="EvaHttpHeader.html#EvaHttpTransferEncoding" title="enum EvaHttpTransferEncoding">EvaHttpTransferEncoding</a> encoding,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 >gfloat</a> quality);</pre>
 <p>
-Allocate a new node in a GskHttpTransferEncodingSet list.</p>
+Allocate a new node in a EvaHttpTransferEncodingSet list.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1954,7 +1954,7 @@ which means it should be treated as 1.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-transfer-encoding-set-free"></a><h3>eva_http_transfer_encoding_set_free ()</h3>
-<pre class="programlisting">void                eva_http_transfer_encoding_set_free (<a class="link" href="GskHttpHeader.html#GskHttpTransferEncodingSet" title="GskHttpTransferEncodingSet">GskHttpTransferEncodingSet</a> *encoding_set);</pre>
+<pre class="programlisting">void                eva_http_transfer_encoding_set_free (<a class="link" href="EvaHttpHeader.html#EvaHttpTransferEncodingSet" title="EvaHttpTransferEncodingSet">EvaHttpTransferEncodingSet</a> *encoding_set);</pre>
 <p>
 Deallocate the encoding (a single node in the list).</p>
 <p>
@@ -1971,7 +1971,7 @@ Deallocate the encoding (a single node in the list).</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-range-set-new"></a><h3>eva_http_range_set_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpRangeSet" title="GskHttpRangeSet">GskHttpRangeSet</a> *   eva_http_range_set_new              (<a class="link" href="GskHttpHeader.html#GskHttpRange" title="enum GskHttpRange">GskHttpRange</a> range_type);</pre>
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpRangeSet" title="EvaHttpRangeSet">EvaHttpRangeSet</a> *   eva_http_range_set_new              (<a class="link" href="EvaHttpHeader.html#EvaHttpRange" title="enum EvaHttpRange">EvaHttpRange</a> range_type);</pre>
 <p>
 Allocate a node telling what units are available for
 specifying partial content.</p>
@@ -1996,7 +1996,7 @@ specifying partial content.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-range-set-free"></a><h3>eva_http_range_set_free ()</h3>
-<pre class="programlisting">void                eva_http_range_set_free             (<a class="link" href="GskHttpHeader.html#GskHttpRangeSet" title="GskHttpRangeSet">GskHttpRangeSet</a> *set);</pre>
+<pre class="programlisting">void                eva_http_range_set_free             (<a class="link" href="EvaHttpHeader.html#EvaHttpRangeSet" title="EvaHttpRangeSet">EvaHttpRangeSet</a> *set);</pre>
 <p>
 Free the memory associated with the node in the range-set.</p>
 <p>
@@ -2013,12 +2013,12 @@ Free the memory associated with the node in the range-set.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-language-set-new"></a><h3>eva_http_language_set_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpLanguageSet" title="GskHttpLanguageSet">GskHttpLanguageSet</a> * eva_http_language_set_new          (const char *language,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpLanguageSet" title="EvaHttpLanguageSet">EvaHttpLanguageSet</a> * eva_http_language_set_new          (const char *language,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gfloat"
 >gfloat</a> quality);</pre>
 <p>
-Allocate a new node in a GskHttpLanguageSet list.
+Allocate a new node in a EvaHttpLanguageSet list.
 Though any ASCII string is basically allowed,
 a two letter language code (en, de, pl, it, etc)
 is the usual start of the language name;
@@ -2052,7 +2052,7 @@ which means it should be treated as 1.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-language-set-free"></a><h3>eva_http_language_set_free ()</h3>
-<pre class="programlisting">void                eva_http_language_set_free          (<a class="link" href="GskHttpHeader.html#GskHttpLanguageSet" title="GskHttpLanguageSet">GskHttpLanguageSet</a> *set);</pre>
+<pre class="programlisting">void                eva_http_language_set_free          (<a class="link" href="EvaHttpHeader.html#EvaHttpLanguageSet" title="EvaHttpLanguageSet">EvaHttpLanguageSet</a> *set);</pre>
 <p>
 Deallocate the node in the language-set.</p>
 <p>
@@ -2069,9 +2069,9 @@ Deallocate the node in the language-set.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-authenticate-new-basic"></a><h3>eva_http_authenticate_new_basic ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> * eva_http_authenticate_new_basic   (const char *realm);</pre>
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> * eva_http_authenticate_new_basic   (const char *realm);</pre>
 <p>
-Create an <a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate"><span class="type">GskHttpAuthenticate</span></a> for basic authentication.
+Create an <a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate"><span class="type">EvaHttpAuthenticate</span></a> for basic authentication.
 Basic authentication is very insecure: the password
 is merely transmitted base64 encoded.</p>
 <p>
@@ -2096,13 +2096,13 @@ This is the name used by the RFC.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-authenticate-new-digest"></a><h3>eva_http_authenticate_new_digest ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> * eva_http_authenticate_new_digest  (const char *realm,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> * eva_http_authenticate_new_digest  (const char *realm,
                                                          const char *domain,
                                                          const char *nonce,
                                                          const char *opaque,
                                                          const char *algorithm);</pre>
 <p>
-Create an <a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate"><span class="type">GskHttpAuthenticate</span></a> for Digest authentication.
+Create an <a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate"><span class="type">EvaHttpAuthenticate</span></a> for Digest authentication.
 Digest authentication improves Basic authentication by
 using a hash of the password.</p>
 <p>
@@ -2148,7 +2148,7 @@ and is equivalent to specifying NULL.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-authenticate-new-unknown"></a><h3>eva_http_authenticate_new_unknown ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> * eva_http_authenticate_new_unknown (const char *auth_scheme_name,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> * eva_http_authenticate_new_unknown (const char *auth_scheme_name,
                                                          const char *realm,
                                                          const char *options);</pre>
 <p>
@@ -2204,7 +2204,7 @@ in a EVA_HTTP_STATUS_UNAUTHORIZED response message.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-authorization-new-basic"></a><h3>eva_http_authorization_new_basic ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> * eva_http_authorization_new_basic (const char *user,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> * eva_http_authorization_new_basic (const char *user,
                                                          const char *password);</pre>
 <p>
 Basic HTTP authentication response.
@@ -2235,8 +2235,8 @@ Not very secure because your password is provided plain-text.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-authorization-new-respond-post"></a><h3>eva_http_authorization_new_respond_post ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> * eva_http_authorization_new_respond_post
-                                                        (const <a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> *,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> * eva_http_authorization_new_respond_post
+                                                        (const <a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> *,
                                                          const char *user,
                                                          const char *password,
                                                          <a
@@ -2294,15 +2294,15 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-authorization-new-unknown"></a><h3>eva_http_authorization_new_unknown ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> * eva_http_authorization_new_unknown
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> * eva_http_authorization_new_unknown
                                                         (const char *auth_scheme_name,
                                                          const char *response);</pre>
 <p>
 Arbitrary authorization response.
 </p>
 <p>
-We recommend you use <a class="link" href="GskHttpHeader.html#eva-http-authorization-new-digest" title="eva_http_authorization_new_digest ()"><code class="function">eva_http_authorization_new_digest()</code></a>
-instead, or <a class="link" href="GskHttpHeader.html#eva-http-authorization-new-basic" title="eva_http_authorization_new_basic ()"><code class="function">eva_http_authorization_new_basic()</code></a> if that's all
+We recommend you use <a class="link" href="EvaHttpHeader.html#eva-http-authorization-new-digest" title="eva_http_authorization_new_digest ()"><code class="function">eva_http_authorization_new_digest()</code></a>
+instead, or <a class="link" href="EvaHttpHeader.html#eva-http-authorization-new-basic" title="eva_http_authorization_new_basic ()"><code class="function">eva_http_authorization_new_basic()</code></a> if that's all
 the server can do.</p>
 <p>
 </p>
@@ -2331,7 +2331,7 @@ the server can do.</p>
 <div class="refsect2" lang="en">
 <a name="eva-http-authorization-peek-response-digest"></a><h3>eva_http_authorization_peek_response_digest ()</h3>
 <pre class="programlisting">const char *        eva_http_authorization_peek_response_digest
-                                                        (<a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> *);</pre>
+                                                        (<a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> *);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -2353,7 +2353,7 @@ the server can do.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-authorization-copy"></a><h3>eva_http_authorization_copy ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> * eva_http_authorization_copy      (const <a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> *);</pre>
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> * eva_http_authorization_copy      (const <a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> *);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -2375,7 +2375,7 @@ the server can do.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-authorization-new-digest"></a><h3>eva_http_authorization_new_digest ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> * eva_http_authorization_new_digest
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> * eva_http_authorization_new_digest
                                                         (const char *realm,
                                                          const char *domain,
                                                          const char *nonce,
@@ -2439,7 +2439,7 @@ This value is NOT transmitted to the remote host.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>response_digest</code></em> :</span></p></td>
-<td> the securely-hashed response.   If NULL, Gsk will compute the response.
+<td> the securely-hashed response.   If NULL, Eva will compute the response.
 </td>
 </tr>
 <tr>
@@ -2458,8 +2458,8 @@ This value is NOT transmitted to the remote host.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-authorization-new-respond"></a><h3>eva_http_authorization_new_respond ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> * eva_http_authorization_new_respond
-                                                        (const <a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> *,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> * eva_http_authorization_new_respond
+                                                        (const <a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> *,
                                                          const char *user,
                                                          const char *password,
                                                          <a
@@ -2504,7 +2504,7 @@ the given request.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-authorization-set-nonce"></a><h3>eva_http_authorization_set_nonce ()</h3>
-<pre class="programlisting">void                eva_http_authorization_set_nonce    (<a class="link" href="GskHttpHeader.html#GskHttpAuthorization" title="GskHttpAuthorization">GskHttpAuthorization</a> *,
+<pre class="programlisting">void                eva_http_authorization_set_nonce    (<a class="link" href="EvaHttpHeader.html#EvaHttpAuthorization" title="EvaHttpAuthorization">EvaHttpAuthorization</a> *,
                                                          const char *nonce);</pre>
 <p>
 </p>
@@ -2527,7 +2527,7 @@ the given request.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-cookie-new"></a><h3>eva_http_cookie_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpCookie" title="GskHttpCookie">GskHttpCookie</a> *     eva_http_cookie_new                 (const char *key,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpCookie" title="EvaHttpCookie">EvaHttpCookie</a> *     eva_http_cookie_new                 (const char *key,
                                                          const char *value,
                                                          const char *path,
                                                          const char *domain,
@@ -2603,7 +2603,7 @@ See RFC 2964 and 2965.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-cookie-copy"></a><h3>eva_http_cookie_copy ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpCookie" title="GskHttpCookie">GskHttpCookie</a> *     eva_http_cookie_copy                (const <a class="link" href="GskHttpHeader.html#GskHttpCookie" title="GskHttpCookie">GskHttpCookie</a> *orig);</pre>
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpCookie" title="EvaHttpCookie">EvaHttpCookie</a> *     eva_http_cookie_copy                (const <a class="link" href="EvaHttpHeader.html#EvaHttpCookie" title="EvaHttpCookie">EvaHttpCookie</a> *orig);</pre>
 <p>
 Copy a cookie.</p>
 <p>
@@ -2627,7 +2627,7 @@ Copy a cookie.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-cookie-free"></a><h3>eva_http_cookie_free ()</h3>
-<pre class="programlisting">void                eva_http_cookie_free                (<a class="link" href="GskHttpHeader.html#GskHttpCookie" title="GskHttpCookie">GskHttpCookie</a> *orig);</pre>
+<pre class="programlisting">void                eva_http_cookie_free                (<a class="link" href="EvaHttpHeader.html#EvaHttpCookie" title="EvaHttpCookie">EvaHttpCookie</a> *orig);</pre>
 <p>
 Free the memory associated with the cookie.</p>
 <p>
@@ -2643,10 +2643,10 @@ Free the memory associated with the cookie.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeaderClass"></a><h3>GskHttpHeaderClass</h3>
+<a name="EvaHttpHeaderClass"></a><h3>EvaHttpHeaderClass</h3>
 <pre class="programlisting">typedef struct {
   GObjectClass                  base_class;
-} GskHttpHeaderClass;
+} EvaHttpHeaderClass;
 </pre>
 <p>
 Virtual functions of HTTP headers (none, for now).
@@ -2664,16 +2664,16 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader-struct"></a><h3>GskHttpHeader</h3>
+<a name="EvaHttpHeader-struct"></a><h3>EvaHttpHeader</h3>
 <pre class="programlisting">typedef struct {
   guint16                       http_major_version;             /* always 1 */
   guint16                       http_minor_version;
 
-  GskHttpConnection             connection_type;
+  EvaHttpConnection             connection_type;
 
-  GskHttpTransferEncoding       transfer_encoding_type;
-  GskHttpContentEncoding        content_encoding_type;
-  GskHttpRangeSet              *accepted_range_units;  /* Accept-Ranges */
+  EvaHttpTransferEncoding       transfer_encoding_type;
+  EvaHttpContentEncoding        content_encoding_type;
+  EvaHttpRangeSet              *accepted_range_units;  /* Accept-Ranges */
 
   char                         *unrecognized_transfer_encoding;
   char                         *unrecognized_content_encoding;
@@ -2713,7 +2713,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 
   /* and actual accumulated parse error (a bit of a hack) */
   GError                       *g_error;
-} GskHttpHeader;
+} EvaHttpHeader;
 </pre>
 <p>
 Base class for all HTTP headers.
@@ -2740,28 +2740,28 @@ This must always by '0' or '1'.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskHttpHeader.html#GskHttpConnection" title="enum GskHttpConnection">GskHttpConnection</a> <em class="structfield"><code>connection_type</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaHttpHeader.html#EvaHttpConnection" title="enum EvaHttpConnection">EvaHttpConnection</a> <em class="structfield"><code>connection_type</code></em>;</span></p></td>
 <td>
 Whether to close or keep alive the connection at the
 end of the current transaction.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskHttpHeader.html#GskHttpTransferEncoding" title="enum GskHttpTransferEncoding">GskHttpTransferEncoding</a> <em class="structfield"><code>transfer_encoding_type</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaHttpHeader.html#EvaHttpTransferEncoding" title="enum EvaHttpTransferEncoding">EvaHttpTransferEncoding</a> <em class="structfield"><code>transfer_encoding_type</code></em>;</span></p></td>
 <td>
 Type of encoding used to package the header for transmission
 across the transport.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskHttpHeader.html#GskHttpContentEncoding" title="enum GskHttpContentEncoding">GskHttpContentEncoding</a> <em class="structfield"><code>content_encoding_type</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaHttpHeader.html#EvaHttpContentEncoding" title="enum EvaHttpContentEncoding">EvaHttpContentEncoding</a> <em class="structfield"><code>content_encoding_type</code></em>;</span></p></td>
 <td>
 Type of encoding used encode the content.  This is mostly
 used to support compressed transactions.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskHttpHeader.html#GskHttpRangeSet" title="GskHttpRangeSet">GskHttpRangeSet</a> *<em class="structfield"><code>accepted_range_units</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaHttpHeader.html#EvaHttpRangeSet" title="EvaHttpRangeSet">EvaHttpRangeSet</a> *<em class="structfield"><code>accepted_range_units</code></em>;</span></p></td>
 <td>
 </td>
 </tr>
@@ -2884,7 +2884,7 @@ this header.  Usually NULL.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpParseFlags"></a><h3>enum GskHttpParseFlags</h3>
+<a name="EvaHttpParseFlags"></a><h3>enum EvaHttpParseFlags</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_HTTP_PARSE_STRICT = (1 &lt;&lt; 0),
@@ -2892,7 +2892,7 @@ this header.  Usually NULL.
   /* instead of giving up on unknown headers, just 
    * add them as misc-headers */
   EVA_HTTP_PARSE_SAVE_ERRORS = (1 &lt;&lt; 1)
-} GskHttpParseFlags;
+} EvaHttpParseFlags;
 </pre>
 <p>
 Flags which affect how headers are parsed.
@@ -2920,14 +2920,14 @@ the misc-headers hashtable.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-header-get-connection"></a><h3>eva_http_header_get_connection ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpConnection" title="enum GskHttpConnection">GskHttpConnection</a>   eva_http_header_get_connection      (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header);</pre>
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpConnection" title="enum EvaHttpConnection">EvaHttpConnection</a>   eva_http_header_get_connection      (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header);</pre>
 <p>
 Returns the connection semantics.
-Note that this will never return <a class="link" href="GskHttpHeader.html#EVA-HTTP-CONNECTION-NONE--CAPS"><span class="type">EVA_HTTP_CONNECTION_NONE</span></a>;
+Note that this will never return <a class="link" href="EvaHttpHeader.html#EVA-HTTP-CONNECTION-NONE--CAPS"><span class="type">EVA_HTTP_CONNECTION_NONE</span></a>;
 it will figure out if the default is keep-alive or close.
 </p>
 <p>
-Use <a class="link" href="GskHttpHeader.html#eva-http-header-get-connection-type" title="eva_http_header_get_connection_type()"><code class="function">eva_http_header_get_connection_type()</code></a> to get the 
+Use <a class="link" href="EvaHttpHeader.html#eva-http-header-get-connection-type" title="eva_http_header_get_connection_type()"><code class="function">eva_http_header_get_connection_type()</code></a> to get the 
 actual connection-type that will be transmitted over the
 wire (with NONE meaning that there is no Connection: header).
 </p>
@@ -2957,11 +2957,11 @@ and calling this on the response gets the server's intentions.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-header-from-buffer"></a><h3>eva_http_header_from_buffer ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *     eva_http_header_from_buffer         (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *input,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *     eva_http_header_from_buffer         (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *input,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_request,
-                                                         <a class="link" href="GskHttpHeader.html#GskHttpParseFlags" title="enum GskHttpParseFlags">GskHttpParseFlags</a> flags,
+                                                         <a class="link" href="EvaHttpHeader.html#EvaHttpParseFlags" title="enum EvaHttpParseFlags">EvaHttpParseFlags</a> flags,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -3003,8 +3003,8 @@ Parse the HTTP header from the buffer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-header-to-buffer"></a><h3>eva_http_header_to_buffer ()</h3>
-<pre class="programlisting">void                eva_http_header_to_buffer           (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
-                                                         <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *output);</pre>
+<pre class="programlisting">void                eva_http_header_to_buffer           (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
+                                                         <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *output);</pre>
 <p>
 Appends an HTTP header into a buffer.</p>
 <p>
@@ -3029,11 +3029,11 @@ Appends an HTTP header into a buffer.</p>
 <div class="refsect2" lang="en">
 <a name="eva-http-header-set-content-encoding"></a><h3>eva_http_header_set_content_encoding ()</h3>
 <pre class="programlisting">void                eva_http_header_set_content_encoding
-                                                        (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+                                                        (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *encoding);</pre>
 <p>
 Set encoding method for the content.
-The actual encoding is done transparently by <a class="link" href="GskHttpClient.html" title="GskHttpClient"><span class="type">GskHttpClient</span></a> and <a class="link" href="GskHttpServer.html" title="GskHttpServer"><span class="type">GskHttpServer</span></a> usually.
+The actual encoding is done transparently by <a class="link" href="EvaHttpClient.html" title="EvaHttpClient"><span class="type">EvaHttpClient</span></a> and <a class="link" href="EvaHttpServer.html" title="EvaHttpServer"><span class="type">EvaHttpServer</span></a> usually.
 Encoding is only used for POST and PUT requests
 and any response that has a body (most do).
 The default is the identity encoding.
@@ -3060,7 +3060,7 @@ The default is the identity encoding.
 <pre class="programlisting">#define             eva_http_header_get_content_encoding(header)</pre>
 <p>
 Get encoding method for the content.
-(The actual encoding is done transparently by <a class="link" href="GskHttpClient.html" title="GskHttpClient"><span class="type">GskHttpClient</span></a> and <a class="link" href="GskHttpServer.html" title="GskHttpServer"><span class="type">GskHttpServer</span></a> usually.)
+(The actual encoding is done transparently by <a class="link" href="EvaHttpClient.html" title="EvaHttpClient"><span class="type">EvaHttpClient</span></a> and <a class="link" href="EvaHttpServer.html" title="EvaHttpServer"><span class="type">EvaHttpServer</span></a> usually.)
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -3118,7 +3118,7 @@ in [RFC 2616, Section 14.18].
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-header-add-misc"></a><h3>eva_http_header_add_misc ()</h3>
-<pre class="programlisting">void                eva_http_header_add_misc            (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+<pre class="programlisting">void                eva_http_header_add_misc            (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *key,
                                                          const char *value);</pre>
 <p>
@@ -3150,7 +3150,7 @@ Add a raw header line to the header, with an associated value.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-header-lookup-misc"></a><h3>eva_http_header_lookup_misc ()</h3>
-<pre class="programlisting">const char *        eva_http_header_lookup_misc         (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+<pre class="programlisting">const char *        eva_http_header_lookup_misc         (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *key);</pre>
 <p>
 Lookup a miscellaneous HTTP header.  All headers that begin with X-
@@ -3183,7 +3183,7 @@ returns: value of the key.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-header-remove-misc"></a><h3>eva_http_header_remove_misc ()</h3>
-<pre class="programlisting">void                eva_http_header_remove_misc         (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+<pre class="programlisting">void                eva_http_header_remove_misc         (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *key);</pre>
 <p>
 Remove a raw header line from the header.</p>
@@ -3208,12 +3208,12 @@ Remove a raw header line from the header.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeaderLineParser"></a><h3>GskHttpHeaderLineParser</h3>
+<a name="EvaHttpHeaderLineParser"></a><h3>EvaHttpHeaderLineParser</h3>
 <pre class="programlisting">typedef struct {
   const char *name;
-  GskHttpHeaderLineParserFunc func;
+  EvaHttpHeaderLineParserFunc func;
   gpointer data;
-} GskHttpHeaderLineParser;
+} EvaHttpHeaderLineParser;
 </pre>
 <p>
 A structure giving a HTTP header line field-name,
@@ -3228,7 +3228,7 @@ and a function to parse the value of that kind of field.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskHttpHeader.html#GskHttpHeaderLineParserFunc" title="GskHttpHeaderLineParserFunc ()">GskHttpHeaderLineParserFunc</a> <em class="structfield"><code>func</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaHttpHeader.html#EvaHttpHeaderLineParserFunc" title="EvaHttpHeaderLineParserFunc ()">EvaHttpHeaderLineParserFunc</a> <em class="structfield"><code>func</code></em>;</span></p></td>
 <td>function to call to parse the value of that field.
 So if a "Date: Thu Jun  5 06:27:39 PDT 2003" line comes in,
 then this function will be called with "Thu Jun  5 06:27:39 PDT 2003",
@@ -3247,10 +3247,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeaderLineParserFunc"></a><h3>GskHttpHeaderLineParserFunc ()</h3>
+<a name="EvaHttpHeaderLineParserFunc"></a><h3>EvaHttpHeaderLineParserFunc ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (*GskHttpHeaderLineParserFunc)      (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+>gboolean</a>            (*EvaHttpHeaderLineParserFunc)      (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *text,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
@@ -3277,7 +3277,7 @@ the <em class="parameter"><code>text</code></em> should merely be "42".
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
-<td>pointer from the <a class="link" href="GskHttpHeader.html#GskHttpHeaderLineParser" title="GskHttpHeaderLineParser"><span class="type">GskHttpHeaderLineParser</span></a> to give auxilliary info.
+<td>pointer from the <a class="link" href="EvaHttpHeader.html#EvaHttpHeaderLineParser" title="EvaHttpHeaderLineParser"><span class="type">EvaHttpHeaderLineParser</span></a> to give auxilliary info.
 </td>
 </tr>
 <tr>
@@ -3298,7 +3298,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 >gboolean</a> is_request);</pre>
 <p>
 Obtain a hash-table which maps lowercased HTTP header keys
-to <a class="link" href="GskHttpHeader.html#GskHttpHeaderLineParser" title="GskHttpHeaderLineParser"><span class="type">GskHttpHeaderLineParser</span></a>'s.  There are different maps
+to <a class="link" href="EvaHttpHeader.html#EvaHttpHeaderLineParser" title="EvaHttpHeaderLineParser"><span class="type">EvaHttpHeaderLineParser</span></a>'s.  There are different maps
 for requests and responses.</p>
 <p>
 </p>
@@ -3320,8 +3320,8 @@ for requests and responses.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeaderPrintFunc"></a><h3>GskHttpHeaderPrintFunc ()</h3>
-<pre class="programlisting">void                (*GskHttpHeaderPrintFunc)           (const char *text,
+<a name="EvaHttpHeaderPrintFunc"></a><h3>EvaHttpHeaderPrintFunc ()</h3>
+<pre class="programlisting">void                (*EvaHttpHeaderPrintFunc)           (const char *text,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);</pre>
@@ -3338,7 +3338,7 @@ Function to print a line of HTTP header data.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
-<td>print_data argument of <a class="link" href="GskHttpHeader.html#eva-http-header-print" title="eva_http_header_print ()"><code class="function">eva_http_header_print()</code></a>.
+<td>print_data argument of <a class="link" href="EvaHttpHeader.html#eva-http-header-print" title="eva_http_header_print ()"><code class="function">eva_http_header_print()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -3347,8 +3347,8 @@ Function to print a line of HTTP header data.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-header-print"></a><h3>eva_http_header_print ()</h3>
-<pre class="programlisting">void                eva_http_header_print               (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *http_header,
-                                                         <a class="link" href="GskHttpHeader.html#GskHttpHeaderPrintFunc" title="GskHttpHeaderPrintFunc ()">GskHttpHeaderPrintFunc</a> print_func,
+<pre class="programlisting">void                eva_http_header_print               (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *http_header,
+                                                         <a class="link" href="EvaHttpHeader.html#EvaHttpHeaderPrintFunc" title="EvaHttpHeaderPrintFunc ()">EvaHttpHeaderPrintFunc</a> print_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> print_data);</pre>
@@ -3632,8 +3632,8 @@ cannot be predetermined.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-header-add-accepted-range"></a><h3>eva_http_header_add_accepted_range ()</h3>
-<pre class="programlisting">void                eva_http_header_add_accepted_range  (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
-                                                         <a class="link" href="GskHttpHeader.html#GskHttpRange" title="enum GskHttpRange">GskHttpRange</a> range);</pre>
+<pre class="programlisting">void                eva_http_header_add_accepted_range  (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
+                                                         <a class="link" href="EvaHttpHeader.html#EvaHttpRange" title="enum EvaHttpRange">EvaHttpRange</a> range);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -3655,7 +3655,7 @@ cannot be predetermined.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-header-add-pragma"></a><h3>eva_http_header_add_pragma ()</h3>
-<pre class="programlisting">void                eva_http_header_add_pragma          (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+<pre class="programlisting">void                eva_http_header_add_pragma          (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *pragma);</pre>
 <p>
 </p>
@@ -3880,9 +3880,9 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
                                                          char *str);</pre>
 <p>
 Deallocate a string allocated with 
-<a class="link" href="GskHttpHeader.html#eva-http-header-set-string" title="eva_http_header_set_string ()"><code class="function">eva_http_header_set_string()</code></a>,
-<a class="link" href="GskHttpHeader.html#eva-http-header-set-string-val" title="eva_http_header_set_string_val ()"><code class="function">eva_http_header_set_string_val()</code></a>,
-<a class="link" href="GskHttpHeader.html#eva-http-header-cut-string" title="eva_http_header_cut_string ()"><code class="function">eva_http_header_cut_string()</code></a>.</p>
+<a class="link" href="EvaHttpHeader.html#eva-http-header-set-string" title="eva_http_header_set_string ()"><code class="function">eva_http_header_set_string()</code></a>,
+<a class="link" href="EvaHttpHeader.html#eva-http-header-set-string-val" title="eva_http_header_set_string_val ()"><code class="function">eva_http_header_set_string_val()</code></a>,
+<a class="link" href="EvaHttpHeader.html#eva-http-header-cut-string" title="eva_http_header_cut_string ()"><code class="function">eva_http_header_cut_string()</code></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -3905,7 +3905,7 @@ Deallocate a string allocated with
 <div class="refsect2" lang="en">
 <a name="eva-http-header-set-connection-string"></a><h3>eva_http_header_set_connection_string ()</h3>
 <pre class="programlisting">void                eva_http_header_set_connection_string
-                                                        (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+                                                        (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *str);</pre>
 <p>
 Change the Connection type reflected in this header.
@@ -3938,13 +3938,13 @@ the same as that which is found literally in the header.)
 <div class="refsect2" lang="en">
 <a name="eva-http-header-set-content-encoding-string"></a><h3>eva_http_header_set_content_encoding_string ()</h3>
 <pre class="programlisting">void                eva_http_header_set_content_encoding_string
-                                                        (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+                                                        (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *str);</pre>
 <p>
 Change the Content-Encoding type reflected in this header.
 </p>
 <p>
-The actual encoding is done transparently by <a class="link" href="GskHttpClient.html" title="GskHttpClient"><span class="type">GskHttpClient</span></a> and <a class="link" href="GskHttpServer.html" title="GskHttpServer"><span class="type">GskHttpServer</span></a> usually.
+The actual encoding is done transparently by <a class="link" href="EvaHttpClient.html" title="EvaHttpClient"><span class="type">EvaHttpClient</span></a> and <a class="link" href="EvaHttpServer.html" title="EvaHttpServer"><span class="type">EvaHttpServer</span></a> usually.
 Encoding is only used for POST and PUT requests
 and any response that has a body (most do).
 The default is the identity encoding.</p>
@@ -3971,7 +3971,7 @@ the same as that which is found literally in the header.)
 <div class="refsect2" lang="en">
 <a name="eva-http-header-set-transfer-encoding-string"></a><h3>eva_http_header_set_transfer_encoding_string ()</h3>
 <pre class="programlisting">void                eva_http_header_set_transfer_encoding_string
-                                                        (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+                                                        (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          const char *str);</pre>
 <p>
 Set the Transfer-Encoding type, as a string.
@@ -4005,7 +4005,7 @@ the same as that which is found literally in the header.)
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-header-set-version"></a><h3>eva_http_header_set_version ()</h3>
-<pre class="programlisting">void                eva_http_header_set_version         (<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a> *header,
+<pre class="programlisting">void                eva_http_header_set_version         (<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a> *header,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> major,
@@ -4049,19 +4049,19 @@ Only HTTP 1.0 and 1.1 are supported.</p>
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpHeader.property-details"></a><h2>Property Details</h2>
+<a name="EvaHttpHeader.property-details"></a><h2>Property Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--connection"></a><h3>The <code class="literal">"connection"</code> property</h3>
-<pre class="programlisting">  "connection"               <a class="link" href="GskHttpHeader.html#GskHttpConnection" title="enum GskHttpConnection">GskHttpConnection</a>     : Read / Write</pre>
+<a name="EvaHttpHeader--connection"></a><h3>The <code class="literal">"connection"</code> property</h3>
+<pre class="programlisting">  "connection"               <a class="link" href="EvaHttpHeader.html#EvaHttpConnection" title="enum EvaHttpConnection">EvaHttpConnection</a>     : Read / Write</pre>
 <p>
-The type of connection.  See <a class="link" href="GskHttpHeader.html#eva-http-header-set-connection-type" title="eva_http_header_set_connection_type()"><code class="function">eva_http_header_set_connection_type()</code></a>
+The type of connection.  See <a class="link" href="EvaHttpHeader.html#eva-http-header-set-connection-type" title="eva_http_header_set_connection_type()"><code class="function">eva_http_header_set_connection_type()</code></a>
 for more documentation.
 </p>
 <p>Default value: EVA_HTTP_CONNECTION_NONE</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--connection-string"></a><h3>The <code class="literal">"connection-string"</code> property</h3>
+<a name="EvaHttpHeader--connection-string"></a><h3>The <code class="literal">"connection-string"</code> property</h3>
 <pre class="programlisting">  "connection-string"        <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -4072,7 +4072,7 @@ The type of connection as a string.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--content-charset"></a><h3>The <code class="literal">"content-charset"</code> property</h3>
+<a name="EvaHttpHeader--content-charset"></a><h3>The <code class="literal">"content-charset"</code> property</h3>
 <pre class="programlisting">  "content-charset"          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -4081,17 +4081,17 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--content-encoding"></a><h3>The <code class="literal">"content-encoding"</code> property</h3>
-<pre class="programlisting">  "content-encoding"         <a class="link" href="GskHttpHeader.html#GskHttpContentEncoding" title="enum GskHttpContentEncoding">GskHttpContentEncoding</a>  : Read / Write</pre>
+<a name="EvaHttpHeader--content-encoding"></a><h3>The <code class="literal">"content-encoding"</code> property</h3>
+<pre class="programlisting">  "content-encoding"         <a class="link" href="EvaHttpHeader.html#EvaHttpContentEncoding" title="enum EvaHttpContentEncoding">EvaHttpContentEncoding</a>  : Read / Write</pre>
 <p>
-The way the content is encoded, see <a class="link" href="GskHttpHeader.html#GskHttpConnection" title="enum GskHttpConnection"><span class="type">GskHttpConnection</span></a>
+The way the content is encoded, see <a class="link" href="EvaHttpHeader.html#EvaHttpConnection" title="enum EvaHttpConnection"><span class="type">EvaHttpConnection</span></a>
 for more documentation.
 </p>
 <p>Default value: EVA_HTTP_CONTENT_ENCODING_IDENTITY</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--content-encoding-string"></a><h3>The <code class="literal">"content-encoding-string"</code> property</h3>
+<a name="EvaHttpHeader--content-encoding-string"></a><h3>The <code class="literal">"content-encoding-string"</code> property</h3>
 <pre class="programlisting">  "content-encoding-string"  <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -4103,7 +4103,7 @@ values are "identity", "gzip" and "compress".
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--content-length"></a><h3>The <code class="literal">"content-length"</code> property</h3>
+<a name="EvaHttpHeader--content-length"></a><h3>The <code class="literal">"content-length"</code> property</h3>
 <pre class="programlisting">  "content-length"           <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a>                  : Read / Write</pre>
@@ -4115,7 +4115,7 @@ Length of content associated with this header.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--content-subtype"></a><h3>The <code class="literal">"content-subtype"</code> property</h3>
+<a name="EvaHttpHeader--content-subtype"></a><h3>The <code class="literal">"content-subtype"</code> property</h3>
 <pre class="programlisting">  "content-subtype"          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -4124,7 +4124,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--content-type"></a><h3>The <code class="literal">"content-type"</code> property</h3>
+<a name="EvaHttpHeader--content-type"></a><h3>The <code class="literal">"content-type"</code> property</h3>
 <pre class="programlisting">  "content-type"             <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -4133,7 +4133,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--date"></a><h3>The <code class="literal">"date"</code> property</h3>
+<a name="EvaHttpHeader--date"></a><h3>The <code class="literal">"date"</code> property</h3>
 <pre class="programlisting">  "date"                     <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a>                  : Read / Write</pre>
@@ -4145,7 +4145,7 @@ the date of the content of this response.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--major-version"></a><h3>The <code class="literal">"major-version"</code> property</h3>
+<a name="EvaHttpHeader--major-version"></a><h3>The <code class="literal">"major-version"</code> property</h3>
 <pre class="programlisting">  "major-version"            <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a>                 : Read / Write</pre>
@@ -4158,7 +4158,7 @@ Always 1.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--minor-version"></a><h3>The <code class="literal">"minor-version"</code> property</h3>
+<a name="EvaHttpHeader--minor-version"></a><h3>The <code class="literal">"minor-version"</code> property</h3>
 <pre class="programlisting">  "minor-version"            <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a>                 : Read / Write</pre>
@@ -4171,7 +4171,7 @@ Always 0 or 1, usually 1, indicating HTTP/1.1.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--range-end"></a><h3>The <code class="literal">"range-end"</code> property</h3>
+<a name="EvaHttpHeader--range-end"></a><h3>The <code class="literal">"range-end"</code> property</h3>
 <pre class="programlisting">  "range-end"                <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a>                  : Read / Write</pre>
@@ -4181,7 +4181,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--range-start"></a><h3>The <code class="literal">"range-start"</code> property</h3>
+<a name="EvaHttpHeader--range-start"></a><h3>The <code class="literal">"range-start"</code> property</h3>
 <pre class="programlisting">  "range-start"              <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a>                  : Read / Write</pre>
@@ -4191,14 +4191,14 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--transfer-encoding"></a><h3>The <code class="literal">"transfer-encoding"</code> property</h3>
-<pre class="programlisting">  "transfer-encoding"        <a class="link" href="GskHttpHeader.html#GskHttpTransferEncoding" title="enum GskHttpTransferEncoding">GskHttpTransferEncoding</a>  : Read / Write</pre>
+<a name="EvaHttpHeader--transfer-encoding"></a><h3>The <code class="literal">"transfer-encoding"</code> property</h3>
+<pre class="programlisting">  "transfer-encoding"        <a class="link" href="EvaHttpHeader.html#EvaHttpTransferEncoding" title="enum EvaHttpTransferEncoding">EvaHttpTransferEncoding</a>  : Read / Write</pre>
 <p>type of transfer encoding.</p>
 <p>Default value: EVA_HTTP_TRANSFER_ENCODING_NONE</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpHeader--transfer-encoding-string"></a><h3>The <code class="literal">"transfer-encoding-string"</code> property</h3>
+<a name="EvaHttpHeader--transfer-encoding-string"></a><h3>The <code class="literal">"transfer-encoding-string"</code> property</h3>
 <pre class="programlisting">  "transfer-encoding-string" <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -4207,9 +4207,9 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpHeader.see-also"></a><h2>See Also</h2>
+<a name="EvaHttpHeader.see-also"></a><h2>See Also</h2>
 <p>
-GskHttpRequest, GskHttpResponse
+EvaHttpRequest, EvaHttpResponse
 </p>
 </div>
 </div>

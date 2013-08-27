@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskStreamQueue</title>
+<title>EvaStreamQueue</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch08.html" title="Standard Streams: utility streams">
@@ -37,56 +37,56 @@
 <td><a accesskey="n" href="eva-evamemory.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#eva-GskStreamQueue.synopsis" class="shortcut">Top</a>
+<a href="#eva-EvaStreamQueue.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#eva-GskStreamQueue.description" class="shortcut">Description</a>
+                <a href="#eva-EvaStreamQueue.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="eva-GskStreamQueue"></a><div class="titlepage"></div>
+<a name="eva-EvaStreamQueue"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="eva-GskStreamQueue.top_of_page"></a>GskStreamQueue</span></h2>
-<p>GskStreamQueue</p>
+<h2><span class="refentrytitle"><a name="eva-EvaStreamQueue.top_of_page"></a>EvaStreamQueue</span></h2>
+<p>EvaStreamQueue</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="eva-GskStreamQueue.synopsis"></a><h2>Synopsis</h2>
+<a name="eva-EvaStreamQueue.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-GskStreamQueue *    <a class="link" href="eva-GskStreamQueue.html#eva-stream-queue-new" title="eva_stream_queue_new ()">eva_stream_queue_new</a>                (<a
+EvaStreamQueue *    <a class="link" href="eva-EvaStreamQueue.html#eva-stream-queue-new" title="eva_stream_queue_new ()">eva_stream_queue_new</a>                (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_readable,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_writable);
-void                <a class="link" href="eva-GskStreamQueue.html#eva-stream-queue-append-read-stream" title="eva_stream_queue_append_read_stream ()">eva_stream_queue_append_read_stream</a> (GskStreamQueue *queue,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *substream);
-void                <a class="link" href="eva-GskStreamQueue.html#eva-stream-queue-append-write-stream" title="eva_stream_queue_append_write_stream ()">eva_stream_queue_append_write_stream</a>
-                                                        (GskStreamQueue *queue,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *substream);
-void                <a class="link" href="eva-GskStreamQueue.html#eva-stream-queue-no-more-read-streams" title="eva_stream_queue_no_more_read_streams ()">eva_stream_queue_no_more_read_streams</a>
-                                                        (GskStreamQueue *queue);
-void                <a class="link" href="eva-GskStreamQueue.html#eva-stream-queue-no-more-write-streams" title="eva_stream_queue_no_more_write_streams ()">eva_stream_queue_no_more_write_streams</a>
-                                                        (GskStreamQueue *queue);
-#define             <a class="link" href="eva-GskStreamQueue.html#EVA-STREAM-QUEUE-READ-EMPTY-HOOK--CAPS" title="EVA_STREAM_QUEUE_READ_EMPTY_HOOK()">EVA_STREAM_QUEUE_READ_EMPTY_HOOK</a>    (queue)
-#define             <a class="link" href="eva-GskStreamQueue.html#eva-stream-queue-trap-read-empty" title="eva_stream_queue_trap_read_empty()">eva_stream_queue_trap_read_empty</a>    (queue, func, shutdown, data, destroy)
-#define             <a class="link" href="eva-GskStreamQueue.html#eva-stream-queue-untrap-read-empty" title="eva_stream_queue_untrap_read_empty()">eva_stream_queue_untrap_read_empty</a>  (queue)
-#define             <a class="link" href="eva-GskStreamQueue.html#EVA-STREAM-QUEUE-WRITE-EMPTY-HOOK--CAPS" title="EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK()">EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK</a>   (queue)
-#define             <a class="link" href="eva-GskStreamQueue.html#eva-stream-queue-trap-write-empty" title="eva_stream_queue_trap_write_empty()">eva_stream_queue_trap_write_empty</a>   (queue, func, shutdown, data, destroy)
-#define             <a class="link" href="eva-GskStreamQueue.html#eva-stream-queue-untrap-write-empty" title="eva_stream_queue_untrap_write_empty()">eva_stream_queue_untrap_write_empty</a> (queue)
+void                <a class="link" href="eva-EvaStreamQueue.html#eva-stream-queue-append-read-stream" title="eva_stream_queue_append_read_stream ()">eva_stream_queue_append_read_stream</a> (EvaStreamQueue *queue,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *substream);
+void                <a class="link" href="eva-EvaStreamQueue.html#eva-stream-queue-append-write-stream" title="eva_stream_queue_append_write_stream ()">eva_stream_queue_append_write_stream</a>
+                                                        (EvaStreamQueue *queue,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *substream);
+void                <a class="link" href="eva-EvaStreamQueue.html#eva-stream-queue-no-more-read-streams" title="eva_stream_queue_no_more_read_streams ()">eva_stream_queue_no_more_read_streams</a>
+                                                        (EvaStreamQueue *queue);
+void                <a class="link" href="eva-EvaStreamQueue.html#eva-stream-queue-no-more-write-streams" title="eva_stream_queue_no_more_write_streams ()">eva_stream_queue_no_more_write_streams</a>
+                                                        (EvaStreamQueue *queue);
+#define             <a class="link" href="eva-EvaStreamQueue.html#EVA-STREAM-QUEUE-READ-EMPTY-HOOK--CAPS" title="EVA_STREAM_QUEUE_READ_EMPTY_HOOK()">EVA_STREAM_QUEUE_READ_EMPTY_HOOK</a>    (queue)
+#define             <a class="link" href="eva-EvaStreamQueue.html#eva-stream-queue-trap-read-empty" title="eva_stream_queue_trap_read_empty()">eva_stream_queue_trap_read_empty</a>    (queue, func, shutdown, data, destroy)
+#define             <a class="link" href="eva-EvaStreamQueue.html#eva-stream-queue-untrap-read-empty" title="eva_stream_queue_untrap_read_empty()">eva_stream_queue_untrap_read_empty</a>  (queue)
+#define             <a class="link" href="eva-EvaStreamQueue.html#EVA-STREAM-QUEUE-WRITE-EMPTY-HOOK--CAPS" title="EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK()">EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK</a>   (queue)
+#define             <a class="link" href="eva-EvaStreamQueue.html#eva-stream-queue-trap-write-empty" title="eva_stream_queue_trap_write_empty()">eva_stream_queue_trap_write_empty</a>   (queue, func, shutdown, data, destroy)
+#define             <a class="link" href="eva-EvaStreamQueue.html#eva-stream-queue-untrap-write-empty" title="eva_stream_queue_untrap_write_empty()">eva_stream_queue_untrap_write_empty</a> (queue)
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="eva-GskStreamQueue.description"></a><h2>Description</h2>
+<a name="eva-EvaStreamQueue.description"></a><h2>Description</h2>
 <p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="eva-GskStreamQueue.details"></a><h2>Details</h2>
+<a name="eva-EvaStreamQueue.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
 <a name="eva-stream-queue-new"></a><h3>eva_stream_queue_new ()</h3>
-<pre class="programlisting">GskStreamQueue *    eva_stream_queue_new                (<a
+<pre class="programlisting">EvaStreamQueue *    eva_stream_queue_new                (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_readable,
                                                          <a
@@ -123,8 +123,8 @@ appended to it.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-queue-append-read-stream"></a><h3>eva_stream_queue_append_read_stream ()</h3>
-<pre class="programlisting">void                eva_stream_queue_append_read_stream (GskStreamQueue *queue,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *substream);</pre>
+<pre class="programlisting">void                eva_stream_queue_append_read_stream (EvaStreamQueue *queue,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *substream);</pre>
 <p>
 Append a readable stream to a queue-stream.
 It will be read in the order in which it was appended.</p>
@@ -154,8 +154,8 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <div class="refsect2" lang="en">
 <a name="eva-stream-queue-append-write-stream"></a><h3>eva_stream_queue_append_write_stream ()</h3>
 <pre class="programlisting">void                eva_stream_queue_append_write_stream
-                                                        (GskStreamQueue *queue,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *substream);</pre>
+                                                        (EvaStreamQueue *queue,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *substream);</pre>
 <p>
 Append a writable stream to a queue-stream.
 It will be written to in the order in which it was appended.</p>
@@ -185,7 +185,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <div class="refsect2" lang="en">
 <a name="eva-stream-queue-no-more-read-streams"></a><h3>eva_stream_queue_no_more_read_streams ()</h3>
 <pre class="programlisting">void                eva_stream_queue_no_more_read_streams
-                                                        (GskStreamQueue *queue);</pre>
+                                                        (EvaStreamQueue *queue);</pre>
 <p>
 Indicate that you are done added substreams to a queue-stream.
 When the last stream shuts down for reading, and all the buffered
@@ -206,7 +206,7 @@ will shut down.</p>
 <div class="refsect2" lang="en">
 <a name="eva-stream-queue-no-more-write-streams"></a><h3>eva_stream_queue_no_more_write_streams ()</h3>
 <pre class="programlisting">void                eva_stream_queue_no_more_write_streams
-                                                        (GskStreamQueue *queue);</pre>
+                                                        (EvaStreamQueue *queue);</pre>
 <p>
 Indicate that you are done added substreams to a queue-stream.
 When the last stream shuts down for writeing, then this queue-stream
@@ -227,7 +227,7 @@ will shut down.</p>
 <a name="EVA-STREAM-QUEUE-READ-EMPTY-HOOK--CAPS"></a><h3>EVA_STREAM_QUEUE_READ_EMPTY_HOOK()</h3>
 <pre class="programlisting">#define             EVA_STREAM_QUEUE_READ_EMPTY_HOOK(queue)</pre>
 <p>
-GskHook which notifies as long as the queue's supply of readable streams is empty.
+EvaHook which notifies as long as the queue's supply of readable streams is empty.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -285,7 +285,7 @@ should return FALSE.
 <a name="eva-stream-queue-untrap-read-empty"></a><h3>eva_stream_queue_untrap_read_empty()</h3>
 <pre class="programlisting">#define             eva_stream_queue_untrap_read_empty(queue)</pre>
 <p>
-Remove the trap set by <a class="link" href="eva-GskStreamQueue.html#eva-stream-queue-trap-read-empty" title="eva_stream_queue_trap_read_empty()"><code class="function">eva_stream_queue_trap_read_empty()</code></a>.
+Remove the trap set by <a class="link" href="eva-EvaStreamQueue.html#eva-stream-queue-trap-read-empty" title="eva_stream_queue_trap_read_empty()"><code class="function">eva_stream_queue_trap_read_empty()</code></a>.
 </p>
 <p>
 The destroy function, if any, will be called (possibly not immediately)
@@ -304,7 +304,7 @@ The destroy function, if any, will be called (possibly not immediately)
 <a name="EVA-STREAM-QUEUE-WRITE-EMPTY-HOOK--CAPS"></a><h3>EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK()</h3>
 <pre class="programlisting">#define             EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK(queue)</pre>
 <p>
-GskHook which notifies as long as the queue's supply of writable streams is empty.
+EvaHook which notifies as long as the queue's supply of writable streams is empty.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -361,7 +361,7 @@ streams to write to.
 <a name="eva-stream-queue-untrap-write-empty"></a><h3>eva_stream_queue_untrap_write_empty()</h3>
 <pre class="programlisting">#define             eva_stream_queue_untrap_write_empty(queue)</pre>
 <p>
-Remove the trap set by <a class="link" href="eva-GskStreamQueue.html#eva-stream-queue-trap-write-empty" title="eva_stream_queue_trap_write_empty()"><code class="function">eva_stream_queue_trap_write_empty()</code></a>.
+Remove the trap set by <a class="link" href="eva-EvaStreamQueue.html#eva-stream-queue-trap-write-empty" title="eva_stream_queue_trap_write_empty()"><code class="function">eva_stream_queue_trap_write_empty()</code></a>.
 </p>
 <p>
 The destroy function, if any, will be called (possibly not immediately)

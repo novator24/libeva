@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch01.html" title="Core Library Support">
-<link rel="prev" href="GskIO.html" title="Base Input/Output Object">
+<link rel="prev" href="EvaIO.html" title="Base Input/Output Object">
 <link rel="next" href="eva-evastreamconnection.html" title="evastreamconnection">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -30,38 +30,38 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskIO.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaIO.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
 <td><a accesskey="n" href="eva-evastreamconnection.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskStream.synopsis" class="shortcut">Top</a>
+<a href="#EvaStream.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskStream.description" class="shortcut">Description</a>
+                <a href="#EvaStream.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskStream.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaStream.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskStream"></a><div class="titlepage"></div>
+<a name="EvaStream"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskStream.top_of_page"></a>Binary Input/Output Stream Base</span></h2>
+<h2><span class="refentrytitle"><a name="EvaStream.top_of_page"></a>Binary Input/Output Stream Base</span></h2>
 <p>Binary Input/Output Stream Base — A byte stream.  This has methods to read and write data,
-and it inherits read/write notification from <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>.</p>
+and it inherits read/write notification from <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskStream.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaStream.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="GskStream.html#GskStreamClass" title="GskStreamClass">GskStreamClass</a>;
-                    <a class="link" href="GskStream.html#GskStream-struct" title="GskStream">GskStream</a>;
+                    <a class="link" href="EvaStream.html#EvaStreamClass" title="EvaStreamClass">EvaStreamClass</a>;
+                    <a class="link" href="EvaStream.html#EvaStream-struct" title="EvaStream">EvaStream</a>;
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
->gsize</a>               <a class="link" href="GskStream.html#eva-stream-read" title="eva_stream_read ()">eva_stream_read</a>                     (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
+>gsize</a>               <a class="link" href="EvaStream.html#eva-stream-read" title="eva_stream_read ()">eva_stream_read</a>                     (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> buffer,
@@ -73,7 +73,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
->gsize</a>               <a class="link" href="GskStream.html#eva-stream-write" title="eva_stream_write ()">eva_stream_write</a>                    (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
+>gsize</a>               <a class="link" href="EvaStream.html#eva-stream-write" title="eva_stream_write ()">eva_stream_write</a>                    (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> buffer,
@@ -85,88 +85,88 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
->gsize</a>               <a class="link" href="GskStream.html#eva-stream-read-buffer" title="eva_stream_read_buffer ()">eva_stream_read_buffer</a>              (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
-                                                         <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+>gsize</a>               <a class="link" href="EvaStream.html#eva-stream-read-buffer" title="eva_stream_read_buffer ()">eva_stream_read_buffer</a>              (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
+                                                         <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
->gsize</a>               <a class="link" href="GskStream.html#eva-stream-write-buffer" title="eva_stream_write_buffer ()">eva_stream_write_buffer</a>             (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
-                                                         <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+>gsize</a>               <a class="link" href="EvaStream.html#eva-stream-write-buffer" title="eva_stream_write_buffer ()">eva_stream_write_buffer</a>             (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
+                                                         <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskStream.html#eva-stream-attach" title="eva_stream_attach ()">eva_stream_attach</a>                   (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *input_stream,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *output_stream,
+>gboolean</a>            <a class="link" href="EvaStream.html#eva-stream-attach" title="eva_stream_attach ()">eva_stream_attach</a>                   (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *input_stream,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *output_stream,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskStream.html#eva-stream-attach-pair" title="eva_stream_attach_pair ()">eva_stream_attach_pair</a>              (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream_a,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream_b,
+>gboolean</a>            <a class="link" href="EvaStream.html#eva-stream-attach-pair" title="eva_stream_attach_pair ()">eva_stream_attach_pair</a>              (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream_a,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream_b,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-#define             <a class="link" href="GskStream.html#eva-stream-get-is-connecting" title="eva_stream_get_is_connecting()">eva_stream_get_is_connecting</a>        (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-get-is-readable" title="eva_stream_get_is_readable()">eva_stream_get_is_readable</a>          (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-get-is-writable" title="eva_stream_get_is_writable()">eva_stream_get_is_writable</a>          (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-get-never-blocks-write" title="eva_stream_get_never_blocks_write()">eva_stream_get_never_blocks_write</a>   (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-get-never-blocks-read" title="eva_stream_get_never_blocks_read()">eva_stream_get_never_blocks_read</a>    (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-get-idle-notify-write" title="eva_stream_get_idle_notify_write()">eva_stream_get_idle_notify_write</a>    (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-get-idle-notify-read" title="eva_stream_get_idle_notify_read()">eva_stream_get_idle_notify_read</a>     (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-get-is-open" title="eva_stream_get_is_open()">eva_stream_get_is_open</a>              (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-get-never-partial-reads" title="eva_stream_get_never_partial_reads()">eva_stream_get_never_partial_reads</a>  (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-get-never-partial-writes" title="eva_stream_get_never_partial_writes()">eva_stream_get_never_partial_writes</a> (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-mark-is-connecting" title="eva_stream_mark_is_connecting()">eva_stream_mark_is_connecting</a>       (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-mark-is-readable" title="eva_stream_mark_is_readable()">eva_stream_mark_is_readable</a>         (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-mark-is-writable" title="eva_stream_mark_is_writable()">eva_stream_mark_is_writable</a>         (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-mark-never-blocks-write" title="eva_stream_mark_never_blocks_write()">eva_stream_mark_never_blocks_write</a>  (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-mark-never-blocks-read" title="eva_stream_mark_never_blocks_read()">eva_stream_mark_never_blocks_read</a>   (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-mark-idle-notify-write" title="eva_stream_mark_idle_notify_write()">eva_stream_mark_idle_notify_write</a>   (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-mark-idle-notify-read" title="eva_stream_mark_idle_notify_read()">eva_stream_mark_idle_notify_read</a>    (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-mark-is-open" title="eva_stream_mark_is_open()">eva_stream_mark_is_open</a>             (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-mark-never-partial-reads" title="eva_stream_mark_never_partial_reads()">eva_stream_mark_never_partial_reads</a> (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-mark-never-partial-writes" title="eva_stream_mark_never_partial_writes()">eva_stream_mark_never_partial_writes</a>(stream)
-#define             <a class="link" href="GskStream.html#eva-stream-clear-is-readable" title="eva_stream_clear_is_readable()">eva_stream_clear_is_readable</a>        (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-clear-is-writable" title="eva_stream_clear_is_writable()">eva_stream_clear_is_writable</a>        (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-clear-is-open" title="eva_stream_clear_is_open()">eva_stream_clear_is_open</a>            (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-clear-idle-notify-write" title="eva_stream_clear_idle_notify_write()">eva_stream_clear_idle_notify_write</a>  (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-clear-idle-notify-read" title="eva_stream_clear_idle_notify_read()">eva_stream_clear_idle_notify_read</a>   (stream)
-#define             <a class="link" href="GskStream.html#eva-stream-clear-never-partial-reads" title="eva_stream_clear_never_partial_reads()">eva_stream_clear_never_partial_reads</a>(stream)
-#define             <a class="link" href="GskStream.html#eva-stream-clear-never-partial-writes" title="eva_stream_clear_never_partial_writes()">eva_stream_clear_never_partial_writes</a>(stream)
-#define             <a class="link" href="GskStream.html#eva-stream-trap-readable" title="eva_stream_trap_readable">eva_stream_trap_readable</a>
-#define             <a class="link" href="GskStream.html#eva-stream-trap-writable" title="eva_stream_trap_writable">eva_stream_trap_writable</a>
-#define             <a class="link" href="GskStream.html#eva-stream-untrap-readable" title="eva_stream_untrap_readable">eva_stream_untrap_readable</a>
-#define             <a class="link" href="GskStream.html#eva-stream-untrap-writable" title="eva_stream_untrap_writable">eva_stream_untrap_writable</a>
+#define             <a class="link" href="EvaStream.html#eva-stream-get-is-connecting" title="eva_stream_get_is_connecting()">eva_stream_get_is_connecting</a>        (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-get-is-readable" title="eva_stream_get_is_readable()">eva_stream_get_is_readable</a>          (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-get-is-writable" title="eva_stream_get_is_writable()">eva_stream_get_is_writable</a>          (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-get-never-blocks-write" title="eva_stream_get_never_blocks_write()">eva_stream_get_never_blocks_write</a>   (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-get-never-blocks-read" title="eva_stream_get_never_blocks_read()">eva_stream_get_never_blocks_read</a>    (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-get-idle-notify-write" title="eva_stream_get_idle_notify_write()">eva_stream_get_idle_notify_write</a>    (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-get-idle-notify-read" title="eva_stream_get_idle_notify_read()">eva_stream_get_idle_notify_read</a>     (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-get-is-open" title="eva_stream_get_is_open()">eva_stream_get_is_open</a>              (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-get-never-partial-reads" title="eva_stream_get_never_partial_reads()">eva_stream_get_never_partial_reads</a>  (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-get-never-partial-writes" title="eva_stream_get_never_partial_writes()">eva_stream_get_never_partial_writes</a> (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-mark-is-connecting" title="eva_stream_mark_is_connecting()">eva_stream_mark_is_connecting</a>       (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-mark-is-readable" title="eva_stream_mark_is_readable()">eva_stream_mark_is_readable</a>         (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-mark-is-writable" title="eva_stream_mark_is_writable()">eva_stream_mark_is_writable</a>         (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-mark-never-blocks-write" title="eva_stream_mark_never_blocks_write()">eva_stream_mark_never_blocks_write</a>  (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-mark-never-blocks-read" title="eva_stream_mark_never_blocks_read()">eva_stream_mark_never_blocks_read</a>   (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-mark-idle-notify-write" title="eva_stream_mark_idle_notify_write()">eva_stream_mark_idle_notify_write</a>   (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-mark-idle-notify-read" title="eva_stream_mark_idle_notify_read()">eva_stream_mark_idle_notify_read</a>    (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-mark-is-open" title="eva_stream_mark_is_open()">eva_stream_mark_is_open</a>             (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-mark-never-partial-reads" title="eva_stream_mark_never_partial_reads()">eva_stream_mark_never_partial_reads</a> (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-mark-never-partial-writes" title="eva_stream_mark_never_partial_writes()">eva_stream_mark_never_partial_writes</a>(stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-clear-is-readable" title="eva_stream_clear_is_readable()">eva_stream_clear_is_readable</a>        (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-clear-is-writable" title="eva_stream_clear_is_writable()">eva_stream_clear_is_writable</a>        (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-clear-is-open" title="eva_stream_clear_is_open()">eva_stream_clear_is_open</a>            (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-clear-idle-notify-write" title="eva_stream_clear_idle_notify_write()">eva_stream_clear_idle_notify_write</a>  (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-clear-idle-notify-read" title="eva_stream_clear_idle_notify_read()">eva_stream_clear_idle_notify_read</a>   (stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-clear-never-partial-reads" title="eva_stream_clear_never_partial_reads()">eva_stream_clear_never_partial_reads</a>(stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-clear-never-partial-writes" title="eva_stream_clear_never_partial_writes()">eva_stream_clear_never_partial_writes</a>(stream)
+#define             <a class="link" href="EvaStream.html#eva-stream-trap-readable" title="eva_stream_trap_readable">eva_stream_trap_readable</a>
+#define             <a class="link" href="EvaStream.html#eva-stream-trap-writable" title="eva_stream_trap_writable">eva_stream_trap_writable</a>
+#define             <a class="link" href="EvaStream.html#eva-stream-untrap-readable" title="eva_stream_untrap_readable">eva_stream_untrap_readable</a>
+#define             <a class="link" href="EvaStream.html#eva-stream-untrap-writable" title="eva_stream_untrap_writable">eva_stream_untrap_writable</a>
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskStream.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaStream.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a>
-         +----GskStream
-               +----<a class="link" href="GskStreamFd.html" title="GskStreamFd">GskStreamFd</a>
-               +----<a class="link" href="eva-evastreamssl.html#GskStreamSsl">GskStreamSsl</a>
-               +----<a class="link" href="eva-evabufferstream.html#GskBufferStream">GskBufferStream</a>
-               +----<a class="link" href="GskHttpClient.html" title="GskHttpClient">GskHttpClient</a>
-               +----<a class="link" href="GskHttpServer.html" title="GskHttpServer">GskHttpServer</a>
+   +----<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a>
+         +----EvaStream
+               +----<a class="link" href="EvaStreamFd.html" title="EvaStreamFd">EvaStreamFd</a>
+               +----<a class="link" href="eva-evastreamssl.html#EvaStreamSsl">EvaStreamSsl</a>
+               +----<a class="link" href="eva-evabufferstream.html#EvaBufferStream">EvaBufferStream</a>
+               +----<a class="link" href="EvaHttpClient.html" title="EvaHttpClient">EvaHttpClient</a>
+               +----<a class="link" href="EvaHttpServer.html" title="EvaHttpServer">EvaHttpServer</a>
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskStream.description"></a><h2>Description</h2>
+<a name="EvaStream.description"></a><h2>Description</h2>
 <p>
 This encapsulates anything which reads bytes in or writes bytes out.
 Examples are a unix socket or a http-protocol implementation.
 </p>
 <p>
-It supports all the richness of <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>'s read/write notification
+It supports all the richness of <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>'s read/write notification
 system, along with read and write methods.
 In particular, (1) you can trap and block read/write separately on the stream.
 (2) the read/write ends of the stream can be shutdown separately.
@@ -180,28 +180,28 @@ or that the stream will never block.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskStream.details"></a><h2>Details</h2>
+<a name="EvaStream.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskStreamClass"></a><h3>GskStreamClass</h3>
+<a name="EvaStreamClass"></a><h3>EvaStreamClass</h3>
 <pre class="programlisting">typedef struct {
-  GskIOClass base_class;
+  EvaIOClass base_class;
 
   /* --- virtuals --- */
-  guint      (*raw_read)        (GskStream     *stream,
+  guint      (*raw_read)        (EvaStream     *stream,
 			 	 gpointer       data,
 			 	 guint          length,
 			 	 GError       **error);
-  guint      (*raw_write)       (GskStream     *stream,
+  guint      (*raw_write)       (EvaStream     *stream,
 			 	 gconstpointer  data,
 			 	 guint          length,
 			 	 GError       **error);
-  guint      (*raw_read_buffer) (GskStream     *stream,
-				 GskBuffer     *buffer,
+  guint      (*raw_read_buffer) (EvaStream     *stream,
+				 EvaBuffer     *buffer,
 				 GError       **error);
-  guint      (*raw_write_buffer)(GskStream    *stream,
-				 GskBuffer     *buffer,
+  guint      (*raw_write_buffer)(EvaStream    *stream,
+				 EvaBuffer     *buffer,
 				 GError       **error);
-} GskStreamClass;
+} EvaStreamClass;
 </pre>
 <p>
 Functions which may be overridden by derived classes to provide
@@ -211,7 +211,7 @@ input and output methods.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="GskIO.html#GskIOClass" title="GskIOClass">GskIOClass</a> <em class="structfield"><code>base_class</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaIO.html#EvaIOClass" title="EvaIOClass">EvaIOClass</a> <em class="structfield"><code>base_class</code></em>;</span></p></td>
 <td>
 </td>
 </tr>
@@ -253,11 +253,11 @@ This function is provided as an optimization.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStream-struct"></a><h3>GskStream</h3>
-<pre class="programlisting">typedef struct _GskStream GskStream;</pre>
+<a name="EvaStream-struct"></a><h3>EvaStream</h3>
+<pre class="programlisting">typedef struct _EvaStream EvaStream;</pre>
 <p>
 An input and/or output stream of raw bytes.
-This has input and output triggers, inherited from <a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>
+This has input and output triggers, inherited from <a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>
 as well as methods to read and write raw bytes.
 </p>
 </div>
@@ -266,7 +266,7 @@ as well as methods to read and write raw bytes.
 <a name="eva-stream-read"></a><h3>eva_stream_read ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
->gsize</a>               eva_stream_read                     (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
+>gsize</a>               eva_stream_read                     (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> buffer,
@@ -318,7 +318,7 @@ this does not indicate an end-of-file.</p>
 <a name="eva-stream-write"></a><h3>eva_stream_write ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
->gsize</a>               eva_stream_write                    (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
+>gsize</a>               eva_stream_write                    (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> buffer,
@@ -370,13 +370,13 @@ this does not indicate an error by itself.</p>
 <a name="eva-stream-read-buffer"></a><h3>eva_stream_read_buffer ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
->gsize</a>               eva_stream_read_buffer              (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
-                                                         <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+>gsize</a>               eva_stream_read_buffer              (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
+                                                         <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
 <p>
-Read data from the stream directly into a <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer"><span class="type">GskBuffer</span></a>.</p>
+Read data from the stream directly into a <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer"><span class="type">EvaBuffer</span></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -410,13 +410,13 @@ Read data from the stream directly into a <a class="link" href="eva-evabuffer.ht
 <a name="eva-stream-write-buffer"></a><h3>eva_stream_write_buffer ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
->gsize</a>               eva_stream_write_buffer             (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream,
-                                                         <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+>gsize</a>               eva_stream_write_buffer             (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream,
+                                                         <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
 <p>
-Write data to the stream directly from a <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer"><span class="type">GskBuffer</span></a>.
+Write data to the stream directly from a <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer"><span class="type">EvaBuffer</span></a>.
 Data written from the buffer is removed from it.</p>
 <p>
 </p>
@@ -451,8 +451,8 @@ Data written from the buffer is removed from it.</p>
 <a name="eva-stream-attach"></a><h3>eva_stream_attach ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_stream_attach                   (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *input_stream,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *output_stream,
+>gboolean</a>            eva_stream_attach                   (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *input_stream,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *output_stream,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -493,8 +493,8 @@ returning an error if anything goes wrong.</p>
 <a name="eva-stream-attach-pair"></a><h3>eva_stream_attach_pair ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_stream_attach_pair              (<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream_a,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream_b,
+>gboolean</a>            eva_stream_attach_pair              (<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream_a,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream_b,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -583,7 +583,7 @@ Test whether the stream is potentially writable.
 <a name="eva-stream-get-never-blocks-write"></a><h3>eva_stream_get_never_blocks_write()</h3>
 <pre class="programlisting">#define             eva_stream_get_never_blocks_write(stream)</pre>
 <p>
-Return if the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> will never block to write data.  It will always allow
+Return if the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> will never block to write data.  It will always allow
 some data to be written, until it is full and will allow no more ever.
 </p>
 <div class="variablelist"><table border="0">
@@ -600,7 +600,7 @@ some data to be written, until it is full and will allow no more ever.
 <a name="eva-stream-get-never-blocks-read"></a><h3>eva_stream_get_never_blocks_read()</h3>
 <pre class="programlisting">#define             eva_stream_get_never_blocks_read(stream)</pre>
 <p>
-Return if the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> will never block to read data.  It will always return
+Return if the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> will never block to read data.  It will always return
 some data, until it is empty and will never return any more.
 </p>
 <div class="variablelist"><table border="0">
@@ -653,7 +653,7 @@ as long as there is a unblocked hook watching it.
 <a name="eva-stream-get-is-open"></a><h3>eva_stream_get_is_open()</h3>
 <pre class="programlisting">#define             eva_stream_get_is_open(stream)</pre>
 <p>
-Return whether the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> is open.  A <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> should be open if
+Return whether the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> is open.  A <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> should be open if
 you want to use it.
 </p>
 <div class="variablelist"><table border="0">
@@ -670,7 +670,7 @@ you want to use it.
 <a name="eva-stream-get-never-partial-reads"></a><h3>eva_stream_get_never_partial_reads()</h3>
 <pre class="programlisting">#define             eva_stream_get_never_partial_reads(stream)</pre>
 <p>
-Return whether the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> is never allowed to return a partial buffer.
+Return whether the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> is never allowed to return a partial buffer.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -686,7 +686,7 @@ Return whether the <a class="link" href="GskStream.html" title="Binary Input/Out
 <a name="eva-stream-get-never-partial-writes"></a><h3>eva_stream_get_never_partial_writes()</h3>
 <pre class="programlisting">#define             eva_stream_get_never_partial_writes(stream)</pre>
 <p>
-Return whether the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> is never allowed to write a partial buffer.
+Return whether the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> is never allowed to write a partial buffer.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -702,15 +702,15 @@ Return whether the <a class="link" href="GskStream.html" title="Binary Input/Out
 <a name="eva-stream-mark-is-connecting"></a><h3>eva_stream_mark_is_connecting()</h3>
 <pre class="programlisting">#define             eva_stream_mark_is_connecting(stream)</pre>
 <p>
-Set the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>'s is_connecting flag.  This should only be called
+Set the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>'s is_connecting flag.  This should only be called
 by the implementations of derived classes.  By default,
-GskStream is not in the connecting state.
+EvaStream is not in the connecting state.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -720,14 +720,14 @@ GskStream is not in the connecting state.
 <a name="eva-stream-mark-is-readable"></a><h3>eva_stream_mark_is_readable()</h3>
 <pre class="programlisting">#define             eva_stream_mark_is_readable(stream)</pre>
 <p>
-Set whether the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> is_readable.  This should only be called by
+Set whether the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> is_readable.  This should only be called by
 the implementations of derived classes.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -737,14 +737,14 @@ the implementations of derived classes.
 <a name="eva-stream-mark-is-writable"></a><h3>eva_stream_mark_is_writable()</h3>
 <pre class="programlisting">#define             eva_stream_mark_is_writable(stream)</pre>
 <p>
-Set whether the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> is_writable.  This should only be called by
+Set whether the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> is_writable.  This should only be called by
 the implementations of derived classes.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -754,7 +754,7 @@ the implementations of derived classes.
 <a name="eva-stream-mark-never-blocks-write"></a><h3>eva_stream_mark_never_blocks_write()</h3>
 <pre class="programlisting">#define             eva_stream_mark_never_blocks_write(stream)</pre>
 <p>
-Indicate that writing to the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> never will block.
+Indicate that writing to the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> never will block.
 Once this flag is set it cannot be cleared.
 This should only be used by implementations of derived classes.
 </p>
@@ -762,7 +762,7 @@ This should only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -772,7 +772,7 @@ This should only be used by implementations of derived classes.
 <a name="eva-stream-mark-never-blocks-read"></a><h3>eva_stream_mark_never_blocks_read()</h3>
 <pre class="programlisting">#define             eva_stream_mark_never_blocks_read(stream)</pre>
 <p>
-Indicate that reading to the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> never will block.
+Indicate that reading to the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> never will block.
 Once this flag is set it cannot be cleared.
 This should only be used by implementations of derived classes.
 </p>
@@ -780,7 +780,7 @@ This should only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -790,7 +790,7 @@ This should only be used by implementations of derived classes.
 <a name="eva-stream-mark-idle-notify-write"></a><h3>eva_stream_mark_idle_notify_write()</h3>
 <pre class="programlisting">#define             eva_stream_mark_idle_notify_write(stream)</pre>
 <p>
-Tell the GskStream system to continually trigger a user's write hook,
+Tell the EvaStream system to continually trigger a user's write hook,
 if any, assuming it is not blocked.
 This should only be used by implementations of derived classes.
 </p>
@@ -798,7 +798,7 @@ This should only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -808,7 +808,7 @@ This should only be used by implementations of derived classes.
 <a name="eva-stream-mark-idle-notify-read"></a><h3>eva_stream_mark_idle_notify_read()</h3>
 <pre class="programlisting">#define             eva_stream_mark_idle_notify_read(stream)</pre>
 <p>
-Tell the GskStream system to continually trigger a user's read hook,
+Tell the EvaStream system to continually trigger a user's read hook,
 if any, assuming it is not blocked.
 This should only be used by implementations of derived classes.
 </p>
@@ -816,7 +816,7 @@ This should only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -826,14 +826,14 @@ This should only be used by implementations of derived classes.
 <a name="eva-stream-mark-is-open"></a><h3>eva_stream_mark_is_open()</h3>
 <pre class="programlisting">#define             eva_stream_mark_is_open(stream)</pre>
 <p>
-Indicate that a <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> is open.
+Indicate that a <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> is open.
 This should only be used by implementations of derived classes.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -843,14 +843,14 @@ This should only be used by implementations of derived classes.
 <a name="eva-stream-mark-never-partial-reads"></a><h3>eva_stream_mark_never_partial_reads()</h3>
 <pre class="programlisting">#define             eva_stream_mark_never_partial_reads(stream)</pre>
 <p>
-Indicate that the <a class="link" href="GskStream.html#eva-stream-read" title="eva_stream_read ()"><code class="function">eva_stream_read()</code></a>
+Indicate that the <a class="link" href="EvaStream.html#eva-stream-read" title="eva_stream_read ()"><code class="function">eva_stream_read()</code></a>
 will always read a whole buffer of data.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -860,14 +860,14 @@ will always read a whole buffer of data.
 <a name="eva-stream-mark-never-partial-writes"></a><h3>eva_stream_mark_never_partial_writes()</h3>
 <pre class="programlisting">#define             eva_stream_mark_never_partial_writes(stream)</pre>
 <p>
-Indicate that the <a class="link" href="GskStream.html#eva-stream-write" title="eva_stream_write ()"><code class="function">eva_stream_write()</code></a> and <a class="link" href="GskStream.html#eva-stream-write-buffer" title="eva_stream_write_buffer ()"><code class="function">eva_stream_write_buffer()</code></a>
+Indicate that the <a class="link" href="EvaStream.html#eva-stream-write" title="eva_stream_write ()"><code class="function">eva_stream_write()</code></a> and <a class="link" href="EvaStream.html#eva-stream-write-buffer" title="eva_stream_write_buffer ()"><code class="function">eva_stream_write_buffer()</code></a>
 will always finish completely, or give an error.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -877,7 +877,7 @@ will always finish completely, or give an error.
 <a name="eva-stream-clear-is-readable"></a><h3>eva_stream_clear_is_readable()</h3>
 <pre class="programlisting">#define             eva_stream_clear_is_readable(stream)</pre>
 <p>
-Indicate that a <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> is no longer readable.
+Indicate that a <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> is no longer readable.
 In most classes, this condition is permanent.
 This should only be used by implementations of derived classes.
 </p>
@@ -885,7 +885,7 @@ This should only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -895,7 +895,7 @@ This should only be used by implementations of derived classes.
 <a name="eva-stream-clear-is-writable"></a><h3>eva_stream_clear_is_writable()</h3>
 <pre class="programlisting">#define             eva_stream_clear_is_writable(stream)</pre>
 <p>
-Indicate that a <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> is no longer writable.
+Indicate that a <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> is no longer writable.
 In most classes, this condition is permanent.
 This should only be used by implementations of derived classes.
 </p>
@@ -903,7 +903,7 @@ This should only be used by implementations of derived classes.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -913,13 +913,13 @@ This should only be used by implementations of derived classes.
 <a name="eva-stream-clear-is-open"></a><h3>eva_stream_clear_is_open()</h3>
 <pre class="programlisting">#define             eva_stream_clear_is_open(stream)</pre>
 <p>
-Indicate that the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> is closed.
+Indicate that the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> is closed.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -930,13 +930,13 @@ Indicate that the <a class="link" href="GskStream.html" title="Binary Input/Outp
 <pre class="programlisting">#define             eva_stream_clear_idle_notify_write(stream)</pre>
 <p>
 Stop continually triggering the user's write hook.
-(This undoes <a class="link" href="GskStream.html#eva-stream-mark-idle-notify-write" title="eva_stream_mark_idle_notify_write()"><code class="function">eva_stream_mark_idle_notify_write()</code></a>)
+(This undoes <a class="link" href="EvaStream.html#eva-stream-mark-idle-notify-write" title="eva_stream_mark_idle_notify_write()"><code class="function">eva_stream_mark_idle_notify_write()</code></a>)
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -947,13 +947,13 @@ Stop continually triggering the user's write hook.
 <pre class="programlisting">#define             eva_stream_clear_idle_notify_read(stream)</pre>
 <p>
 Stop continually triggering the user's read hook.
-(This undoes <a class="link" href="GskStream.html#eva-stream-mark-idle-notify-read" title="eva_stream_mark_idle_notify_read()"><code class="function">eva_stream_mark_idle_notify_read()</code></a>)
+(This undoes <a class="link" href="EvaStream.html#eva-stream-mark-idle-notify-read" title="eva_stream_mark_idle_notify_read()"><code class="function">eva_stream_mark_idle_notify_read()</code></a>)
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -963,13 +963,13 @@ Stop continually triggering the user's read hook.
 <a name="eva-stream-clear-never-partial-reads"></a><h3>eva_stream_clear_never_partial_reads()</h3>
 <pre class="programlisting">#define             eva_stream_clear_never_partial_reads(stream)</pre>
 <p>
-Indicate that the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> may exhibit partial reads.
+Indicate that the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> may exhibit partial reads.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -979,13 +979,13 @@ Indicate that the <a class="link" href="GskStream.html" title="Binary Input/Outp
 <a name="eva-stream-clear-never-partial-writes"></a><h3>eva_stream_clear_never_partial_writes()</h3>
 <pre class="programlisting">#define             eva_stream_clear_never_partial_writes(stream)</pre>
 <p>
-Indicate that the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> may exhibit partial writes.
+Indicate that the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> may exhibit partial writes.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> to affect.
+<td>the <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> to affect.
 </td>
 </tr></tbody>
 </table></div>
@@ -995,7 +995,7 @@ Indicate that the <a class="link" href="GskStream.html" title="Binary Input/Outp
 <a name="eva-stream-trap-readable"></a><h3>eva_stream_trap_readable</h3>
 <pre class="programlisting">#define             eva_stream_trap_readable</pre>
 <p>
-Trap the read end of a stream.  See <a class="link" href="GskIO.html#eva-io-trap-readable" title="eva_io_trap_readable()"><code class="function">eva_io_trap_readable()</code></a>.
+Trap the read end of a stream.  See <a class="link" href="EvaIO.html#eva-io-trap-readable" title="eva_io_trap_readable()"><code class="function">eva_io_trap_readable()</code></a>.
 </p>
 </div>
 <hr>
@@ -1003,7 +1003,7 @@ Trap the read end of a stream.  See <a class="link" href="GskIO.html#eva-io-trap
 <a name="eva-stream-trap-writable"></a><h3>eva_stream_trap_writable</h3>
 <pre class="programlisting">#define             eva_stream_trap_writable</pre>
 <p>
-Trap the write end of a stream.  See <a class="link" href="GskIO.html#eva-io-trap-writable" title="eva_io_trap_writable()"><code class="function">eva_io_trap_writable()</code></a>.
+Trap the write end of a stream.  See <a class="link" href="EvaIO.html#eva-io-trap-writable" title="eva_io_trap_writable()"><code class="function">eva_io_trap_writable()</code></a>.
 </p>
 </div>
 <hr>
@@ -1011,7 +1011,7 @@ Trap the write end of a stream.  See <a class="link" href="GskIO.html#eva-io-tra
 <a name="eva-stream-untrap-readable"></a><h3>eva_stream_untrap_readable</h3>
 <pre class="programlisting">#define             eva_stream_untrap_readable</pre>
 <p>
-Untrap the read end of a stream.  See <a class="link" href="GskIO.html#eva-io-untrap-readable" title="eva_io_untrap_readable()"><code class="function">eva_io_untrap_readable()</code></a>.
+Untrap the read end of a stream.  See <a class="link" href="EvaIO.html#eva-io-untrap-readable" title="eva_io_untrap_readable()"><code class="function">eva_io_untrap_readable()</code></a>.
 </p>
 </div>
 <hr>
@@ -1019,14 +1019,14 @@ Untrap the read end of a stream.  See <a class="link" href="GskIO.html#eva-io-un
 <a name="eva-stream-untrap-writable"></a><h3>eva_stream_untrap_writable</h3>
 <pre class="programlisting">#define             eva_stream_untrap_writable</pre>
 <p>
-Untrap the write end of a stream.  See <a class="link" href="GskIO.html#eva-io-untrap-writable" title="eva_io_untrap_writable()"><code class="function">eva_io_untrap_writable()</code></a>.
+Untrap the write end of a stream.  See <a class="link" href="EvaIO.html#eva-io-untrap-writable" title="eva_io_untrap_writable()"><code class="function">eva_io_untrap_writable()</code></a>.
 </p>
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskStream.see-also"></a><h2>See Also</h2>
+<a name="EvaStream.see-also"></a><h2>See Also</h2>
 <p>
-<a class="link" href="GskIO.html" title="Base Input/Output Object"><span class="type">GskIO</span></a>
+<a class="link" href="EvaIO.html" title="Base Input/Output Object"><span class="type">EvaIO</span></a>
 </p>
 </div>
 </div>

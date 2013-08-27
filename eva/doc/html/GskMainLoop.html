@@ -37,126 +37,126 @@
 <td><a accesskey="n" href="eva-evanameresolver.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskMainLoop.synopsis" class="shortcut">Top</a>
+<a href="#EvaMainLoop.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskMainLoop.description" class="shortcut">Description</a>
+                <a href="#EvaMainLoop.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskMainLoop.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaMainLoop.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskMainLoop"></a><div class="titlepage"></div>
+<a name="EvaMainLoop"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskMainLoop.top_of_page"></a>Main Loop (Generic Event Management)</span></h2>
+<h2><span class="refentrytitle"><a name="EvaMainLoop.top_of_page"></a>Main Loop (Generic Event Management)</span></h2>
 <p>Main Loop (Generic Event Management) — Convenient way to be notified when certain types of event occur.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskMainLoop.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaMainLoop.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="GskMainLoop.html#GskMainLoopChange" title="GskMainLoopChange">GskMainLoopChange</a>;
-                    <a class="link" href="GskMainLoop.html#GskMainLoopEvent" title="GskMainLoopEvent">GskMainLoopEvent</a>;
-                    <a class="link" href="GskMainLoop.html#GskMainLoopWaitInfo" title="GskMainLoopWaitInfo">GskMainLoopWaitInfo</a>;
-                    <a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a>;
-                    <a class="link" href="GskMainLoop.html#GskMainLoopContextList" title="GskMainLoopContextList">GskMainLoopContextList</a>;
-enum                <a class="link" href="GskMainLoop.html#GskMainLoopEventType" title="enum GskMainLoopEventType">GskMainLoopEventType</a>;
-                    <a class="link" href="GskMainLoop.html#GskMainLoopClass" title="GskMainLoopClass">GskMainLoopClass</a>;
-                    <a class="link" href="GskMainLoop.html#GskMainLoop-struct" title="GskMainLoop">GskMainLoop</a>;
-void                (<a class="link" href="GskMainLoop.html#GskMainLoopWaitPidFunc" title="GskMainLoopWaitPidFunc ()">*GskMainLoopWaitPidFunc</a>)           (<a class="link" href="GskMainLoop.html#GskMainLoopWaitInfo" title="GskMainLoopWaitInfo">GskMainLoopWaitInfo</a> *info,
+                    <a class="link" href="EvaMainLoop.html#EvaMainLoopChange" title="EvaMainLoopChange">EvaMainLoopChange</a>;
+                    <a class="link" href="EvaMainLoop.html#EvaMainLoopEvent" title="EvaMainLoopEvent">EvaMainLoopEvent</a>;
+                    <a class="link" href="EvaMainLoop.html#EvaMainLoopWaitInfo" title="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</a>;
+                    <a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a>;
+                    <a class="link" href="EvaMainLoop.html#EvaMainLoopContextList" title="EvaMainLoopContextList">EvaMainLoopContextList</a>;
+enum                <a class="link" href="EvaMainLoop.html#EvaMainLoopEventType" title="enum EvaMainLoopEventType">EvaMainLoopEventType</a>;
+                    <a class="link" href="EvaMainLoop.html#EvaMainLoopClass" title="EvaMainLoopClass">EvaMainLoopClass</a>;
+                    <a class="link" href="EvaMainLoop.html#EvaMainLoop-struct" title="EvaMainLoop">EvaMainLoop</a>;
+void                (<a class="link" href="EvaMainLoop.html#EvaMainLoopWaitPidFunc" title="EvaMainLoopWaitPidFunc ()">*EvaMainLoopWaitPidFunc</a>)           (<a class="link" href="EvaMainLoop.html#EvaMainLoopWaitInfo" title="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</a> *info,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (<a class="link" href="GskMainLoop.html#GskMainLoopIdleFunc" title="GskMainLoopIdleFunc ()">*GskMainLoopIdleFunc</a>)              (<a
+>gboolean</a>            (<a class="link" href="EvaMainLoop.html#EvaMainLoopIdleFunc" title="EvaMainLoopIdleFunc ()">*EvaMainLoopIdleFunc</a>)              (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (<a class="link" href="GskMainLoop.html#GskMainLoopSignalFunc" title="GskMainLoopSignalFunc ()">*GskMainLoopSignalFunc</a>)            (int sig_no,
+>gboolean</a>            (<a class="link" href="EvaMainLoop.html#EvaMainLoopSignalFunc" title="EvaMainLoopSignalFunc ()">*EvaMainLoopSignalFunc</a>)            (int sig_no,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (<a class="link" href="GskMainLoop.html#GskMainLoopTimeoutFunc" title="GskMainLoopTimeoutFunc ()">*GskMainLoopTimeoutFunc</a>)           (<a
+>gboolean</a>            (<a class="link" href="EvaMainLoop.html#EvaMainLoopTimeoutFunc" title="EvaMainLoopTimeoutFunc ()">*EvaMainLoopTimeoutFunc</a>)           (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (<a class="link" href="GskMainLoop.html#GskMainLoopIOFunc" title="GskMainLoopIOFunc ()">*GskMainLoopIOFunc</a>)                (int fd,
+>gboolean</a>            (<a class="link" href="EvaMainLoop.html#EvaMainLoopIOFunc" title="EvaMainLoopIOFunc ()">*EvaMainLoopIOFunc</a>)                (int fd,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-IO-Channels.html#GIOCondition"
 >GIOCondition</a> condition,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
-enum                <a class="link" href="GskMainLoop.html#GskMainLoopCreateFlags" title="enum GskMainLoopCreateFlags">GskMainLoopCreateFlags</a>;
-<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *       <a class="link" href="GskMainLoop.html#eva-main-loop-new" title="eva_main_loop_new ()">eva_main_loop_new</a>                   (<a class="link" href="GskMainLoop.html#GskMainLoopCreateFlags" title="enum GskMainLoopCreateFlags">GskMainLoopCreateFlags</a> create_flags);
-<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *       <a class="link" href="GskMainLoop.html#eva-main-loop-default" title="eva_main_loop_default ()">eva_main_loop_default</a>               (void);
+enum                <a class="link" href="EvaMainLoop.html#EvaMainLoopCreateFlags" title="enum EvaMainLoopCreateFlags">EvaMainLoopCreateFlags</a>;
+<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *       <a class="link" href="EvaMainLoop.html#eva-main-loop-new" title="eva_main_loop_new ()">eva_main_loop_new</a>                   (<a class="link" href="EvaMainLoop.html#EvaMainLoopCreateFlags" title="enum EvaMainLoopCreateFlags">EvaMainLoopCreateFlags</a> create_flags);
+<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *       <a class="link" href="EvaMainLoop.html#eva-main-loop-default" title="eva_main_loop_default ()">eva_main_loop_default</a>               (void);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="GskMainLoop.html#eva-main-loop-run" title="eva_main_loop_run ()">eva_main_loop_run</a>                   (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
+>guint</a>               <a class="link" href="EvaMainLoop.html#eva-main-loop-run" title="eva_main_loop_run ()">eva_main_loop_run</a>                   (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> timeout,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> *t_waited_out);
-<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *         <a class="link" href="GskMainLoop.html#eva-main-loop-add-idle" title="eva_main_loop_add_idle ()">eva_main_loop_add_idle</a>              (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopIdleFunc" title="GskMainLoopIdleFunc ()">GskMainLoopIdleFunc</a> source_func,
+<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *         <a class="link" href="EvaMainLoop.html#eva-main-loop-add-idle" title="eva_main_loop_add_idle ()">eva_main_loop_add_idle</a>              (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopIdleFunc" title="EvaMainLoopIdleFunc ()">EvaMainLoopIdleFunc</a> source_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
 >GDestroyNotify</a> destroy);
-<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *         <a class="link" href="GskMainLoop.html#eva-main-loop-add-signal" title="eva_main_loop_add_signal ()">eva_main_loop_add_signal</a>            (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
+<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *         <a class="link" href="EvaMainLoop.html#eva-main-loop-add-signal" title="eva_main_loop_add_signal ()">eva_main_loop_add_signal</a>            (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
                                                          int signal_number,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopSignalFunc" title="GskMainLoopSignalFunc ()">GskMainLoopSignalFunc</a> signal_func,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopSignalFunc" title="EvaMainLoopSignalFunc ()">EvaMainLoopSignalFunc</a> signal_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
 >GDestroyNotify</a> destroy);
-<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *         <a class="link" href="GskMainLoop.html#eva-main-loop-add-waitpid" title="eva_main_loop_add_waitpid ()">eva_main_loop_add_waitpid</a>           (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
+<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *         <a class="link" href="EvaMainLoop.html#eva-main-loop-add-waitpid" title="eva_main_loop_add_waitpid ()">eva_main_loop_add_waitpid</a>           (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
                                                          int process_id,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopWaitPidFunc" title="GskMainLoopWaitPidFunc ()">GskMainLoopWaitPidFunc</a> waitpid_func,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopWaitPidFunc" title="EvaMainLoopWaitPidFunc ()">EvaMainLoopWaitPidFunc</a> waitpid_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
 >GDestroyNotify</a> destroy);
-<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *         <a class="link" href="GskMainLoop.html#eva-main-loop-add-io" title="eva_main_loop_add_io ()">eva_main_loop_add_io</a>                (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
+<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *         <a class="link" href="EvaMainLoop.html#eva-main-loop-add-io" title="eva_main_loop_add_io ()">eva_main_loop_add_io</a>                (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
                                                          int fd,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> events,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopIOFunc" title="GskMainLoopIOFunc ()">GskMainLoopIOFunc</a> io_func,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopIOFunc" title="EvaMainLoopIOFunc ()">EvaMainLoopIOFunc</a> io_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
 >GDestroyNotify</a> destroy);
-void                <a class="link" href="GskMainLoop.html#eva-source-adjust-io" title="eva_source_adjust_io ()">eva_source_adjust_io</a>                (<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *source,
+void                <a class="link" href="EvaMainLoop.html#eva-source-adjust-io" title="eva_source_adjust_io ()">eva_source_adjust_io</a>                (<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *source,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> events);
-void                <a class="link" href="GskMainLoop.html#eva-source-remove-io-events" title="eva_source_remove_io_events ()">eva_source_remove_io_events</a>         (<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *source,
+void                <a class="link" href="EvaMainLoop.html#eva-source-remove-io-events" title="eva_source_remove_io_events ()">eva_source_remove_io_events</a>         (<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *source,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> events);
-void                <a class="link" href="GskMainLoop.html#eva-source-add-io-events" title="eva_source_add_io_events ()">eva_source_add_io_events</a>            (<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *source,
+void                <a class="link" href="EvaMainLoop.html#eva-source-add-io-events" title="eva_source_add_io_events ()">eva_source_add_io_events</a>            (<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *source,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> events);
-<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *         <a class="link" href="GskMainLoop.html#eva-main-loop-add-timer" title="eva_main_loop_add_timer ()">eva_main_loop_add_timer</a>             (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopTimeoutFunc" title="GskMainLoopTimeoutFunc ()">GskMainLoopTimeoutFunc</a> timer_func,
+<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *         <a class="link" href="EvaMainLoop.html#eva-main-loop-add-timer" title="eva_main_loop_add_timer ()">eva_main_loop_add_timer</a>             (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopTimeoutFunc" title="EvaMainLoopTimeoutFunc ()">EvaMainLoopTimeoutFunc</a> timer_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> timer_data,
@@ -169,8 +169,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint64"
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint64"
 >gint64</a> milli_period);
-<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *         <a class="link" href="GskMainLoop.html#eva-main-loop-add-timer-absolute" title="eva_main_loop_add_timer_absolute ()">eva_main_loop_add_timer_absolute</a>    (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopTimeoutFunc" title="GskMainLoopTimeoutFunc ()">GskMainLoopTimeoutFunc</a> timer_func,
+<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *         <a class="link" href="EvaMainLoop.html#eva-main-loop-add-timer-absolute" title="eva_main_loop_add_timer_absolute ()">eva_main_loop_add_timer_absolute</a>    (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopTimeoutFunc" title="EvaMainLoopTimeoutFunc ()">EvaMainLoopTimeoutFunc</a> timer_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> timer_data,
@@ -179,43 +179,43 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNo
 >GDestroyNotify</a> timer_destroy,
                                                          int unixtime,
                                                          int unixtime_micro);
-void                <a class="link" href="GskMainLoop.html#eva-source-adjust-timer" title="eva_source_adjust_timer ()">eva_source_adjust_timer</a>             (<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *timer_source,
+void                <a class="link" href="EvaMainLoop.html#eva-source-adjust-timer" title="eva_source_adjust_timer ()">eva_source_adjust_timer</a>             (<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *timer_source,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint64"
 >gint64</a> millis_expire,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint64"
 >gint64</a> milli_period);
-void                <a class="link" href="GskMainLoop.html#eva-source-remove" title="eva_source_remove ()">eva_source_remove</a>                   (<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *source);
-void                <a class="link" href="GskMainLoop.html#eva-main-loop-add-context" title="eva_main_loop_add_context ()">eva_main_loop_add_context</a>           (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
+void                <a class="link" href="EvaMainLoop.html#eva-source-remove" title="eva_source_remove ()">eva_source_remove</a>                   (<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *source);
+void                <a class="link" href="EvaMainLoop.html#eva-main-loop-add-context" title="eva_main_loop_add_context ()">eva_main_loop_add_context</a>           (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-The-Main-Event-Loop.html#GMainContext"
 >GMainContext</a> *context);
-void                <a class="link" href="GskMainLoop.html#eva-main-loop-quit" title="eva_main_loop_quit ()">eva_main_loop_quit</a>                  (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop);
+void                <a class="link" href="EvaMainLoop.html#eva-main-loop-quit" title="eva_main_loop_quit ()">eva_main_loop_quit</a>                  (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskMainLoop.html#eva-main-loop-should-continue" title="eva_main_loop_should_continue ()">eva_main_loop_should_continue</a>       (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop);
-<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *       <a class="link" href="GskMainLoop.html#eva-source-peek-main-loop" title="eva_source_peek_main_loop ()">eva_source_peek_main_loop</a>           (<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *source);
-void                <a class="link" href="GskMainLoop.html#eva-main-loop-destroy-all-sources" title="eva_main_loop_destroy_all_sources ()">eva_main_loop_destroy_all_sources</a>   (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop);
+>gboolean</a>            <a class="link" href="EvaMainLoop.html#eva-main-loop-should-continue" title="eva_main_loop_should_continue ()">eva_main_loop_should_continue</a>       (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop);
+<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *       <a class="link" href="EvaMainLoop.html#eva-source-peek-main-loop" title="eva_source_peek_main_loop ()">eva_source_peek_main_loop</a>           (<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *source);
+void                <a class="link" href="EvaMainLoop.html#eva-main-loop-destroy-all-sources" title="eva_main_loop_destroy_all_sources ()">eva_main_loop_destroy_all_sources</a>   (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskMainLoop.html#eva-main-loop-do-waitpid" title="eva_main_loop_do_waitpid ()">eva_main_loop_do_waitpid</a>            (int pid,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopWaitInfo" title="GskMainLoopWaitInfo">GskMainLoopWaitInfo</a> *wait_info);
+>gboolean</a>            <a class="link" href="EvaMainLoop.html#eva-main-loop-do-waitpid" title="eva_main_loop_do_waitpid ()">eva_main_loop_do_waitpid</a>            (int pid,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopWaitInfo" title="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</a> *wait_info);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskMainLoop.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaMainLoop.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----GskMainLoop
-         +----<a class="link" href="GskMainLoopPollBase.html" title="GskMainLoopPollBase">GskMainLoopPollBase</a>
-         +----<a class="link" href="GskMainLoopKqueue.html" title="GskMainLoopKqueue">GskMainLoopKqueue</a>
+   +----EvaMainLoop
+         +----<a class="link" href="EvaMainLoopPollBase.html" title="EvaMainLoopPollBase">EvaMainLoopPollBase</a>
+         +----<a class="link" href="EvaMainLoopKqueue.html" title="EvaMainLoopKqueue">EvaMainLoopKqueue</a>
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskMainLoop.description"></a><h2>Description</h2>
+<a name="EvaMainLoop.description"></a><h2>Description</h2>
 <p>
 A main loop is an object which can trap events and call user functions
 when those events happen.
@@ -226,17 +226,17 @@ readied, signals being delivered, timeouts, idle functions and child-process
 termination are the currently known events.
 </p>
 <p>
-GskMainLoop itself is abstract, you must use a system-specific derived class
-to do polling.  Use <a class="link" href="GskMainLoop.html#eva-main-loop-default" title="eva_main_loop_default ()"><code class="function">eva_main_loop_default()</code></a> to get a main loop which is
+EvaMainLoop itself is abstract, you must use a system-specific derived class
+to do polling.  Use <a class="link" href="EvaMainLoop.html#eva-main-loop-default" title="eva_main_loop_default ()"><code class="function">eva_main_loop_default()</code></a> to get a main loop which is
 appropriate to your system.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskMainLoop.details"></a><h2>Details</h2>
+<a name="EvaMainLoop.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopChange"></a><h3>GskMainLoopChange</h3>
+<a name="EvaMainLoopChange"></a><h3>EvaMainLoopChange</h3>
 <pre class="programlisting">typedef struct {
-  GskMainLoopEventType type;
+  EvaMainLoopEventType type;
   union
   {
     struct {
@@ -254,7 +254,7 @@ appropriate to your system.
       gboolean did_exit;
     } process;
   } data;
-} GskMainLoopChange;
+} EvaMainLoopChange;
 </pre>
 <p>
 This structure is passed to the system-dependent polling
@@ -263,7 +263,7 @@ mechanism to indicate a change in events we want notification of.
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
-<td><p><span class="term"><a class="link" href="GskMainLoop.html#GskMainLoopEventType" title="enum GskMainLoopEventType">GskMainLoopEventType</a> <em class="structfield"><code>type</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaMainLoop.html#EvaMainLoopEventType" title="enum EvaMainLoopEventType">EvaMainLoopEventType</a> <em class="structfield"><code>type</code></em>;</span></p></td>
 <td>what type of change is to occur.
 </td>
 </tr></tbody>
@@ -271,9 +271,9 @@ mechanism to indicate a change in events we want notification of.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopEvent"></a><h3>GskMainLoopEvent</h3>
+<a name="EvaMainLoopEvent"></a><h3>EvaMainLoopEvent</h3>
 <pre class="programlisting">typedef struct {
-  GskMainLoopEventType type;
+  EvaMainLoopEventType type;
   union
   {
     guint signal;
@@ -281,9 +281,9 @@ mechanism to indicate a change in events we want notification of.
       guint fd;
       GIOCondition events;
     } io;
-    GskMainLoopWaitInfo process_wait_info;
+    EvaMainLoopWaitInfo process_wait_info;
   } data;
-} GskMainLoopEvent;
+} EvaMainLoopEvent;
 </pre>
 <p>
 An event passed back from the system-dependent polling
@@ -293,12 +293,12 @@ mechanism.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="GskMainLoop.html#GskMainLoopEventType" title="enum GskMainLoopEventType">GskMainLoopEventType</a> <em class="structfield"><code>type</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaMainLoop.html#EvaMainLoopEventType" title="enum EvaMainLoopEventType">EvaMainLoopEventType</a> <em class="structfield"><code>type</code></em>;</span></p></td>
 <td>what type of event occurred.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskMainLoop.html#GskMainLoopWaitInfo" title="GskMainLoopWaitInfo">GskMainLoopWaitInfo</a> <em class="structfield"><code>process_wait_info</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaMainLoop.html#EvaMainLoopWaitInfo" title="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</a> <em class="structfield"><code>process_wait_info</code></em>;</span></p></td>
 <td>
 </td>
 </tr>
@@ -307,7 +307,7 @@ mechanism.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopWaitInfo"></a><h3>GskMainLoopWaitInfo</h3>
+<a name="EvaMainLoopWaitInfo"></a><h3>EvaMainLoopWaitInfo</h3>
 <pre class="programlisting">typedef struct {
   int               pid; 
   gboolean          exited;         /* exit(2) or killed by signal? */
@@ -316,7 +316,7 @@ mechanism.
     int             exit_status;    /*  exited */
   } d;           
   gboolean          dumped_core;
-} GskMainLoopWaitInfo;
+} EvaMainLoopWaitInfo;
 </pre>
 <p>
 Information about a process's termination.
@@ -349,29 +349,29 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskSource"></a><h3>GskSource</h3>
-<pre class="programlisting">typedef struct _GskSource GskSource;</pre>
+<a name="EvaSource"></a><h3>EvaSource</h3>
+<pre class="programlisting">typedef struct _EvaSource EvaSource;</pre>
 <p>
 An opaque object representing a trap of an event.
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopContextList"></a><h3>GskMainLoopContextList</h3>
-<pre class="programlisting">typedef struct _GskMainLoopContextList GskMainLoopContextList;</pre>
+<a name="EvaMainLoopContextList"></a><h3>EvaMainLoopContextList</h3>
+<pre class="programlisting">typedef struct _EvaMainLoopContextList EvaMainLoopContextList;</pre>
 <p>
 Private.
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopEventType"></a><h3>enum GskMainLoopEventType</h3>
+<a name="EvaMainLoopEventType"></a><h3>enum EvaMainLoopEventType</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_MAIN_LOOP_EVENT_IO,
   EVA_MAIN_LOOP_EVENT_SIGNAL,
   EVA_MAIN_LOOP_EVENT_PROCESS
-} GskMainLoopEventType;
+} EvaMainLoopEventType;
 </pre>
 <p>
 Types of event that can be dealt with by this main-loop.
@@ -400,17 +400,17 @@ An input/output event.  This is really just a file-descriptor event.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopClass"></a><h3>GskMainLoopClass</h3>
+<a name="EvaMainLoopClass"></a><h3>EvaMainLoopClass</h3>
 <pre class="programlisting">typedef struct {
   GObjectClass object_class;
-  gboolean (*setup)  (GskMainLoop       *main_loop);
-  void     (*change) (GskMainLoop       *main_loop,
-                      GskMainLoopChange *change);
-  guint    (*poll)   (GskMainLoop       *main_loop,
+  gboolean (*setup)  (EvaMainLoop       *main_loop);
+  void     (*change) (EvaMainLoop       *main_loop,
+                      EvaMainLoopChange *change);
+  guint    (*poll)   (EvaMainLoop       *main_loop,
                       guint              max_events_out,
-                      GskMainLoopEvent  *events,
+                      EvaMainLoopEvent  *events,
                       gint               timeout);
-} GskMainLoopClass;
+} EvaMainLoopClass;
 </pre>
 <p>
 The virtual function which must be implemented for each type of main-loop.
@@ -446,17 +446,17 @@ are interested in has occurred.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoop-struct"></a><h3>GskMainLoop</h3>
+<a name="EvaMainLoop-struct"></a><h3>EvaMainLoop</h3>
 <pre class="programlisting">typedef struct {
   gint		 exit_status;
 
-  GskMainLoopEvent *event_array_cache;
+  EvaMainLoopEvent *event_array_cache;
   unsigned       max_events;
 
   /* a list of GMainContext's */
-  GskMainLoopContextList *first_context;
-  GskMainLoopContextList *last_context;
-} GskMainLoop;
+  EvaMainLoopContextList *first_context;
+  EvaMainLoopContextList *last_context;
+} EvaMainLoop;
 </pre>
 <p>
 A main-loop.  This holds information about all its sources.
@@ -473,17 +473,17 @@ return from <code class="function">main()</code>.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskMainLoop.html#GskMainLoopEvent" title="GskMainLoopEvent">GskMainLoopEvent</a> *<em class="structfield"><code>event_array_cache</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaMainLoop.html#EvaMainLoopEvent" title="EvaMainLoopEvent">EvaMainLoopEvent</a> *<em class="structfield"><code>event_array_cache</code></em>;</span></p></td>
 <td>
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskMainLoop.html#GskMainLoopContextList" title="GskMainLoopContextList">GskMainLoopContextList</a> *<em class="structfield"><code>first_context</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaMainLoop.html#EvaMainLoopContextList" title="EvaMainLoopContextList">EvaMainLoopContextList</a> *<em class="structfield"><code>first_context</code></em>;</span></p></td>
 <td>first GMainContext in the list.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskMainLoop.html#GskMainLoopContextList" title="GskMainLoopContextList">GskMainLoopContextList</a> *<em class="structfield"><code>last_context</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaMainLoop.html#EvaMainLoopContextList" title="EvaMainLoopContextList">EvaMainLoopContextList</a> *<em class="structfield"><code>last_context</code></em>;</span></p></td>
 <td>last GMainContext in the list.
 </td>
 </tr>
@@ -492,8 +492,8 @@ return from <code class="function">main()</code>.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopWaitPidFunc"></a><h3>GskMainLoopWaitPidFunc ()</h3>
-<pre class="programlisting">void                (*GskMainLoopWaitPidFunc)           (<a class="link" href="GskMainLoop.html#GskMainLoopWaitInfo" title="GskMainLoopWaitInfo">GskMainLoopWaitInfo</a> *info,
+<a name="EvaMainLoopWaitPidFunc"></a><h3>EvaMainLoopWaitPidFunc ()</h3>
+<pre class="programlisting">void                (*EvaMainLoopWaitPidFunc)           (<a class="link" href="EvaMainLoop.html#EvaMainLoopWaitInfo" title="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</a> *info,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);</pre>
@@ -510,7 +510,7 @@ A function which will be invoked when a process terminates.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td>data registered to <a class="link" href="GskMainLoop.html#eva-main-loop-add-waitpid" title="eva_main_loop_add_waitpid ()"><code class="function">eva_main_loop_add_waitpid()</code></a>.
+<td>data registered to <a class="link" href="EvaMainLoop.html#eva-main-loop-add-waitpid" title="eva_main_loop_add_waitpid ()"><code class="function">eva_main_loop_add_waitpid()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -518,10 +518,10 @@ A function which will be invoked when a process terminates.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopIdleFunc"></a><h3>GskMainLoopIdleFunc ()</h3>
+<a name="EvaMainLoopIdleFunc"></a><h3>EvaMainLoopIdleFunc ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (*GskMainLoopIdleFunc)              (<a
+>gboolean</a>            (*EvaMainLoopIdleFunc)              (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);</pre>
 <p>
@@ -534,7 +534,7 @@ is run on its source, or if it returns FALSE.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td>data registered to <a class="link" href="GskMainLoop.html#eva-main-loop-add-idle" title="eva_main_loop_add_idle ()"><code class="function">eva_main_loop_add_idle()</code></a>.
+<td>data registered to <a class="link" href="EvaMainLoop.html#eva-main-loop-add-idle" title="eva_main_loop_add_idle ()"><code class="function">eva_main_loop_add_idle()</code></a>.
 </td>
 </tr>
 <tr>
@@ -547,10 +547,10 @@ is run on its source, or if it returns FALSE.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopSignalFunc"></a><h3>GskMainLoopSignalFunc ()</h3>
+<a name="EvaMainLoopSignalFunc"></a><h3>EvaMainLoopSignalFunc ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (*GskMainLoopSignalFunc)            (int sig_no,
+>gboolean</a>            (*EvaMainLoopSignalFunc)            (int sig_no,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);</pre>
@@ -571,7 +571,7 @@ or if it returns FALSE.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td>data registered to <a class="link" href="GskMainLoop.html#eva-main-loop-add-signal" title="eva_main_loop_add_signal ()"><code class="function">eva_main_loop_add_signal()</code></a>.
+<td>data registered to <a class="link" href="EvaMainLoop.html#eva-main-loop-add-signal" title="eva_main_loop_add_signal ()"><code class="function">eva_main_loop_add_signal()</code></a>.
 </td>
 </tr>
 <tr>
@@ -584,10 +584,10 @@ or if it returns FALSE.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopTimeoutFunc"></a><h3>GskMainLoopTimeoutFunc ()</h3>
+<a name="EvaMainLoopTimeoutFunc"></a><h3>EvaMainLoopTimeoutFunc ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (*GskMainLoopTimeoutFunc)           (<a
+>gboolean</a>            (*EvaMainLoopTimeoutFunc)           (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);</pre>
 <p>
@@ -603,8 +603,8 @@ milli_period==-1).
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td>data registered to <a class="link" href="GskMainLoop.html#eva-main-loop-add-timer" title="eva_main_loop_add_timer ()"><code class="function">eva_main_loop_add_timer()</code></a> or
-<a class="link" href="GskMainLoop.html#eva-main-loop-add-timer-absolute" title="eva_main_loop_add_timer_absolute ()"><code class="function">eva_main_loop_add_timer_absolute()</code></a>.
+<td>data registered to <a class="link" href="EvaMainLoop.html#eva-main-loop-add-timer" title="eva_main_loop_add_timer ()"><code class="function">eva_main_loop_add_timer()</code></a> or
+<a class="link" href="EvaMainLoop.html#eva-main-loop-add-timer-absolute" title="eva_main_loop_add_timer_absolute ()"><code class="function">eva_main_loop_add_timer_absolute()</code></a>.
 </td>
 </tr>
 <tr>
@@ -618,10 +618,10 @@ or if the source has been destroyed)
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopIOFunc"></a><h3>GskMainLoopIOFunc ()</h3>
+<a name="EvaMainLoopIOFunc"></a><h3>EvaMainLoopIOFunc ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            (*GskMainLoopIOFunc)                (int fd,
+>gboolean</a>            (*EvaMainLoopIOFunc)                (int fd,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-IO-Channels.html#GIOCondition"
 >GIOCondition</a> condition,
@@ -647,7 +647,7 @@ requested events are noticed.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td>data registered to <a class="link" href="GskMainLoop.html#eva-main-loop-add-io" title="eva_main_loop_add_io ()"><code class="function">eva_main_loop_add_io()</code></a>.
+<td>data registered to <a class="link" href="EvaMainLoop.html#eva-main-loop-add-io" title="eva_main_loop_add_io ()"><code class="function">eva_main_loop_add_io()</code></a>.
 </td>
 </tr>
 <tr>
@@ -660,11 +660,11 @@ requested events are noticed.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopCreateFlags"></a><h3>enum GskMainLoopCreateFlags</h3>
+<a name="EvaMainLoopCreateFlags"></a><h3>enum EvaMainLoopCreateFlags</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_MAIN_LOOP_NEEDS_THREADS = (1 &lt;&lt; 0)
-} GskMainLoopCreateFlags;
+} EvaMainLoopCreateFlags;
 </pre>
 <p>
 Indicate user requirements for the main-loop being constructed.
@@ -674,7 +674,7 @@ Indicate user requirements for the main-loop being constructed.
 <tbody><tr>
 <td><p><a name="EVA-MAIN-LOOP-NEEDS-THREADS--CAPS"></a><span class="term"><code class="literal">EVA_MAIN_LOOP_NEEDS_THREADS</code></span></p></td>
 <td>
-Some main loops (like GskMainLoopKqueue) don't cooperate with
+Some main loops (like EvaMainLoopKqueue) don't cooperate with
 threads at all!  This flag precludes choosing main-loops
 which are have this property.
 If you don't need threads, this flag does not hurt, except
@@ -687,7 +687,7 @@ want to get it right for a high-volume single-threaded server.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-main-loop-new"></a><h3>eva_main_loop_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *       eva_main_loop_new                   (<a class="link" href="GskMainLoop.html#GskMainLoopCreateFlags" title="enum GskMainLoopCreateFlags">GskMainLoopCreateFlags</a> create_flags);</pre>
+<pre class="programlisting"><a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *       eva_main_loop_new                   (<a class="link" href="EvaMainLoop.html#EvaMainLoopCreateFlags" title="enum EvaMainLoopCreateFlags">EvaMainLoopCreateFlags</a> create_flags);</pre>
 <p>
 Make a new main loop.
 </p>
@@ -710,7 +710,7 @@ Make a new main loop.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-main-loop-default"></a><h3>eva_main_loop_default ()</h3>
-<pre class="programlisting"><a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *       eva_main_loop_default               (void);</pre>
+<pre class="programlisting"><a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *       eva_main_loop_default               (void);</pre>
 <p>
 Get the main-loop which is associated with the current thread.</p>
 <p>
@@ -733,7 +733,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <a name="eva-main-loop-run"></a><h3>eva_main_loop_run ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_main_loop_run                   (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
+>guint</a>               eva_main_loop_run                   (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> timeout,
@@ -773,8 +773,8 @@ Run the main loop once, for a specified number of milliseconds.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-main-loop-add-idle"></a><h3>eva_main_loop_add_idle ()</h3>
-<pre class="programlisting"><a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *         eva_main_loop_add_idle              (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopIdleFunc" title="GskMainLoopIdleFunc ()">GskMainLoopIdleFunc</a> source_func,
+<pre class="programlisting"><a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *         eva_main_loop_add_idle              (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopIdleFunc" title="EvaMainLoopIdleFunc ()">EvaMainLoopIdleFunc</a> source_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data,
@@ -820,7 +820,7 @@ be handled at one time.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a class="link" href="GskMainLoop.html#GskSource" title="GskSource"><span class="type">GskSource</span></a> which can be removed (or ignored).
+<td> a <a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource"><span class="type">EvaSource</span></a> which can be removed (or ignored).
 </td>
 </tr>
 </tbody>
@@ -829,9 +829,9 @@ be handled at one time.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-main-loop-add-signal"></a><h3>eva_main_loop_add_signal ()</h3>
-<pre class="programlisting"><a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *         eva_main_loop_add_signal            (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
+<pre class="programlisting"><a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *         eva_main_loop_add_signal            (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
                                                          int signal_number,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopSignalFunc" title="GskMainLoopSignalFunc ()">GskMainLoopSignalFunc</a> signal_func,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopSignalFunc" title="EvaMainLoopSignalFunc ()">EvaMainLoopSignalFunc</a> signal_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data,
@@ -884,7 +884,7 @@ It is ok to connect multiple times to a single signal simulataneously.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a class="link" href="GskMainLoop.html#GskSource" title="GskSource"><span class="type">GskSource</span></a> which can be removed (or ignored).
+<td> a <a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource"><span class="type">EvaSource</span></a> which can be removed (or ignored).
 </td>
 </tr>
 </tbody>
@@ -893,9 +893,9 @@ It is ok to connect multiple times to a single signal simulataneously.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-main-loop-add-waitpid"></a><h3>eva_main_loop_add_waitpid ()</h3>
-<pre class="programlisting"><a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *         eva_main_loop_add_waitpid           (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
+<pre class="programlisting"><a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *         eva_main_loop_add_waitpid           (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
                                                          int process_id,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopWaitPidFunc" title="GskMainLoopWaitPidFunc ()">GskMainLoopWaitPidFunc</a> waitpid_func,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopWaitPidFunc" title="EvaMainLoopWaitPidFunc ()">EvaMainLoopWaitPidFunc</a> waitpid_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data,
@@ -942,7 +942,7 @@ The handler will be invoked synchronously.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a class="link" href="GskMainLoop.html#GskSource" title="GskSource"><span class="type">GskSource</span></a> which can be removed (or ignored).
+<td> <a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource"><span class="type">EvaSource</span></a> which can be removed (or ignored).
 </td>
 </tr>
 </tbody>
@@ -951,12 +951,12 @@ The handler will be invoked synchronously.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-main-loop-add-io"></a><h3>eva_main_loop_add_io ()</h3>
-<pre class="programlisting"><a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *         eva_main_loop_add_io                (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
+<pre class="programlisting"><a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *         eva_main_loop_add_io                (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
                                                          int fd,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> events,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopIOFunc" title="GskMainLoopIOFunc ()">GskMainLoopIOFunc</a> io_func,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopIOFunc" title="EvaMainLoopIOFunc ()">EvaMainLoopIOFunc</a> io_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data,
@@ -1012,7 +1012,7 @@ events occur.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a class="link" href="GskMainLoop.html#GskSource" title="GskSource"><span class="type">GskSource</span></a> which can be removed or altered.
+<td> a <a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource"><span class="type">EvaSource</span></a> which can be removed or altered.
 </td>
 </tr>
 </tbody>
@@ -1021,7 +1021,7 @@ events occur.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-source-adjust-io"></a><h3>eva_source_adjust_io ()</h3>
-<pre class="programlisting">void                eva_source_adjust_io                (<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *source,
+<pre class="programlisting">void                eva_source_adjust_io                (<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *source,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> events);</pre>
@@ -1029,8 +1029,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 This changes the types of events being watched by the main-loop.
 </p>
 <p>
-Note:  each new file-descriptor needs a new GskSource.
-You must reuse this GskSource for a new file-descriptor
+Note:  each new file-descriptor needs a new EvaSource.
+You must reuse this EvaSource for a new file-descriptor
 even if it happens to have the same numeric value
 as a file-descriptor you closed.
 (The reason why:  EVA automatically coagulates
@@ -1038,8 +1038,8 @@ multiple adjust_io calls.  This is fine with all main-loops.
 However, kqueue(2) on BSD, and possibly others, automatically
 unregister all interest in an event if the file-descriptor closes.
 Hence, if the file-descriptor is re-opened and re-used with the
-same GskSource, EVA will not be able to determine
-that anything has changed, and will not issue a new <a class="link" href="GskMainLoop.html#GskMainLoopChange" title="GskMainLoopChange"><span class="type">GskMainLoopChange</span></a>.
+same EvaSource, EVA will not be able to determine
+that anything has changed, and will not issue a new <a class="link" href="EvaMainLoop.html#EvaMainLoopChange" title="EvaMainLoopChange"><span class="type">EvaMainLoopChange</span></a>.
 This will break main-loops that are sensitive to exact which file-descriptor
 (not just the number) was registered.)</p>
 <p>
@@ -1063,7 +1063,7 @@ This will break main-loops that are sensitive to exact which file-descriptor
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-source-remove-io-events"></a><h3>eva_source_remove_io_events ()</h3>
-<pre class="programlisting">void                eva_source_remove_io_events         (<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *source,
+<pre class="programlisting">void                eva_source_remove_io_events         (<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *source,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> events);</pre>
@@ -1092,7 +1092,7 @@ should be reduced.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-source-add-io-events"></a><h3>eva_source_add_io_events ()</h3>
-<pre class="programlisting">void                eva_source_add_io_events            (<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *source,
+<pre class="programlisting">void                eva_source_add_io_events            (<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *source,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> events);</pre>
@@ -1122,8 +1122,8 @@ should be expanded.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-main-loop-add-timer"></a><h3>eva_main_loop_add_timer ()</h3>
-<pre class="programlisting"><a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *         eva_main_loop_add_timer             (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopTimeoutFunc" title="GskMainLoopTimeoutFunc ()">GskMainLoopTimeoutFunc</a> timer_func,
+<pre class="programlisting"><a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *         eva_main_loop_add_timer             (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopTimeoutFunc" title="EvaMainLoopTimeoutFunc ()">EvaMainLoopTimeoutFunc</a> timer_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> timer_data,
@@ -1179,7 +1179,7 @@ This may be -1 to indicate that the timeout is a one-shot.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a class="link" href="GskMainLoop.html#GskSource" title="GskSource"><span class="type">GskSource</span></a> which can be removed or altered.
+<td> <a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource"><span class="type">EvaSource</span></a> which can be removed or altered.
 </td>
 </tr>
 </tbody>
@@ -1188,8 +1188,8 @@ This may be -1 to indicate that the timeout is a one-shot.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-main-loop-add-timer-absolute"></a><h3>eva_main_loop_add_timer_absolute ()</h3>
-<pre class="programlisting"><a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *         eva_main_loop_add_timer_absolute    (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopTimeoutFunc" title="GskMainLoopTimeoutFunc ()">GskMainLoopTimeoutFunc</a> timer_func,
+<pre class="programlisting"><a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *         eva_main_loop_add_timer_absolute    (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopTimeoutFunc" title="EvaMainLoopTimeoutFunc ()">EvaMainLoopTimeoutFunc</a> timer_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> timer_data,
@@ -1243,7 +1243,7 @@ timer should expire.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a class="link" href="GskMainLoop.html#GskSource" title="GskSource"><span class="type">GskSource</span></a> which can be removed or altered.
+<td> a <a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource"><span class="type">EvaSource</span></a> which can be removed or altered.
 </td>
 </tr>
 </tbody>
@@ -1252,7 +1252,7 @@ timer should expire.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-source-adjust-timer"></a><h3>eva_source_adjust_timer ()</h3>
-<pre class="programlisting">void                eva_source_adjust_timer             (<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *timer_source,
+<pre class="programlisting">void                eva_source_adjust_timer             (<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *timer_source,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint64"
 >gint64</a> millis_expire,
@@ -1269,7 +1269,7 @@ Adjust the timeout and period for an already existing timer source.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>timer_source</code></em> :</span></p></td>
-<td> the timeout source returned by <a class="link" href="GskMainLoop.html#eva-main-loop-add-timer" title="eva_main_loop_add_timer ()"><code class="function">eva_main_loop_add_timer()</code></a> or <a class="link" href="GskMainLoop.html#eva-main-loop-add-timer-absolute" title="eva_main_loop_add_timer_absolute ()"><code class="function">eva_main_loop_add_timer_absolute()</code></a>.
+<td> the timeout source returned by <a class="link" href="EvaMainLoop.html#eva-main-loop-add-timer" title="eva_main_loop_add_timer ()"><code class="function">eva_main_loop_add_timer()</code></a> or <a class="link" href="EvaMainLoop.html#eva-main-loop-add-timer-absolute" title="eva_main_loop_add_timer_absolute ()"><code class="function">eva_main_loop_add_timer_absolute()</code></a>.
 </td>
 </tr>
 <tr>
@@ -1289,7 +1289,7 @@ the timer is a one-shot.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-source-remove"></a><h3>eva_source_remove ()</h3>
-<pre class="programlisting">void                eva_source_remove                   (<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *source);</pre>
+<pre class="programlisting">void                eva_source_remove                   (<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *source);</pre>
 <p>
 Destroy a main loop's source.
 </p>
@@ -1312,12 +1312,12 @@ deleted unexpectedly in the middle of the user's callback.)</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-main-loop-add-context"></a><h3>eva_main_loop_add_context ()</h3>
-<pre class="programlisting">void                eva_main_loop_add_context           (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop,
+<pre class="programlisting">void                eva_main_loop_add_context           (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-The-Main-Event-Loop.html#GMainContext"
 >GMainContext</a> *context);</pre>
 <p>
-Indicate that a particular <a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)"><span class="type">GskMainLoop</span></a> will take care of
+Indicate that a particular <a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)"><span class="type">EvaMainLoop</span></a> will take care of
 invoking the necessary methods of <em class="parameter"><code>context</code></em>.</p>
 <p>
 </p>
@@ -1331,7 +1331,7 @@ invoking the necessary methods of <em class="parameter"><code>context</code></em
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
-<td> a GMainContext that should be handled by <a class="link" href="GskMainLoop.html#eva-main-loop-run" title="eva_main_loop_run ()"><code class="function">eva_main_loop_run()</code></a>.
+<td> a GMainContext that should be handled by <a class="link" href="EvaMainLoop.html#eva-main-loop-run" title="eva_main_loop_run ()"><code class="function">eva_main_loop_run()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -1340,13 +1340,13 @@ invoking the necessary methods of <em class="parameter"><code>context</code></em
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-main-loop-quit"></a><h3>eva_main_loop_quit ()</h3>
-<pre class="programlisting">void                eva_main_loop_quit                  (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop);</pre>
+<pre class="programlisting">void                eva_main_loop_quit                  (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop);</pre>
 <p>
 Set the main-loop flag that indicates that it should really stop running.
 </p>
 <p>
-If you are executing a GskMainLoop using <a class="link" href="GskMainLoop.html#eva-main-loop-run" title="eva_main_loop_run ()"><code class="function">eva_main_loop_run()</code></a>,
-then you should probably check <a class="link" href="GskMainLoop.html#eva-main-loop-should-continue" title="eva_main_loop_should_continue ()"><code class="function">eva_main_loop_should_continue()</code></a> at every iteration
+If you are executing a EvaMainLoop using <a class="link" href="EvaMainLoop.html#eva-main-loop-run" title="eva_main_loop_run ()"><code class="function">eva_main_loop_run()</code></a>,
+then you should probably check <a class="link" href="EvaMainLoop.html#eva-main-loop-should-continue" title="eva_main_loop_should_continue ()"><code class="function">eva_main_loop_should_continue()</code></a> at every iteration
 to ensure that you should not have quit by now.</p>
 <p>
 </p>
@@ -1364,7 +1364,7 @@ to ensure that you should not have quit by now.</p>
 <a name="eva-main-loop-should-continue"></a><h3>eva_main_loop_should_continue ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_main_loop_should_continue       (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop);</pre>
+>gboolean</a>            eva_main_loop_should_continue       (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop);</pre>
 <p>
 Query whether the main-loop should keep running or not.</p>
 <p>
@@ -1388,7 +1388,7 @@ Query whether the main-loop should keep running or not.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-source-peek-main-loop"></a><h3>eva_source_peek_main_loop ()</h3>
-<pre class="programlisting"><a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *       eva_source_peek_main_loop           (<a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *source);</pre>
+<pre class="programlisting"><a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *       eva_source_peek_main_loop           (<a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *source);</pre>
 <p>
 Get the main-loop where the source was created.</p>
 <p>
@@ -1412,7 +1412,7 @@ Get the main-loop where the source was created.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-main-loop-destroy-all-sources"></a><h3>eva_main_loop_destroy_all_sources ()</h3>
-<pre class="programlisting">void                eva_main_loop_destroy_all_sources   (<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a> *main_loop);</pre>
+<pre class="programlisting">void                eva_main_loop_destroy_all_sources   (<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a> *main_loop);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1430,7 +1430,7 @@ Get the main-loop where the source was created.</p>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            eva_main_loop_do_waitpid            (int pid,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopWaitInfo" title="GskMainLoopWaitInfo">GskMainLoopWaitInfo</a> *wait_info);</pre>
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopWaitInfo" title="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</a> *wait_info);</pre>
 <p>
 Do a waitpid system call on the process and munge the
 data into <em class="parameter"><code>wait_info</code></em> for the caller to use.</p>

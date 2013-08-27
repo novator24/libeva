@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskZlibDeflator</title>
+<title>EvaZlibDeflator</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch07.html" title="Standard Streams: standard compression algorithms">
 <link rel="prev" href="ch07.html" title="Standard Streams: standard compression algorithms">
-<link rel="next" href="eva-GskZlibInflator.html" title="GskZlibInflator">
+<link rel="next" href="eva-EvaZlibInflator.html" title="EvaZlibInflator">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -34,35 +34,35 @@
 <td><a accesskey="u" href="ch07.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="eva-GskZlibInflator.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="eva-EvaZlibInflator.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#eva-GskZlibDeflator.synopsis" class="shortcut">Top</a>
+<a href="#eva-EvaZlibDeflator.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#eva-GskZlibDeflator.description" class="shortcut">Description</a>
+                <a href="#eva-EvaZlibDeflator.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="eva-GskZlibDeflator"></a><div class="titlepage"></div>
+<a name="eva-EvaZlibDeflator"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="eva-GskZlibDeflator.top_of_page"></a>GskZlibDeflator</span></h2>
-<p>GskZlibDeflator — a zlib compressor.</p>
+<h2><span class="refentrytitle"><a name="eva-EvaZlibDeflator.top_of_page"></a>EvaZlibDeflator</span></h2>
+<p>EvaZlibDeflator — a zlib compressor.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="eva-GskZlibDeflator.synopsis"></a><h2>Synopsis</h2>
+<a name="eva-EvaZlibDeflator.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="eva-GskZlibDeflator.html#GskZlibDeflator" title="GskZlibDeflator">GskZlibDeflator</a>;
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="eva-GskZlibDeflator.html#eva-zlib-deflator-new" title="eva_zlib_deflator_new ()">eva_zlib_deflator_new</a>               (<a
+                    <a class="link" href="eva-EvaZlibDeflator.html#EvaZlibDeflator" title="EvaZlibDeflator">EvaZlibDeflator</a>;
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="eva-EvaZlibDeflator.html#eva-zlib-deflator-new" title="eva_zlib_deflator_new ()">eva_zlib_deflator_new</a>               (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> compression_level,
                                                          int flush_millis);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="eva-GskZlibDeflator.description"></a><h2>Description</h2>
+<a name="eva-EvaZlibDeflator.description"></a><h2>Description</h2>
 <p>
 A stream which compresses data on its input to its output.
 This is the raw zlib deflated data.  See RFCs 1950 and 1951.
@@ -72,18 +72,18 @@ We use the implementation in a shared library -lz.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="eva-GskZlibDeflator.details"></a><h2>Details</h2>
+<a name="eva-EvaZlibDeflator.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskZlibDeflator"></a><h3>GskZlibDeflator</h3>
+<a name="EvaZlibDeflator"></a><h3>EvaZlibDeflator</h3>
 <pre class="programlisting">typedef struct {
-  GskStream      stream;
+  EvaStream      stream;
   gpointer       private_stream;
-  GskBuffer      compressed;
+  EvaBuffer      compressed;
   guint          level;
   gint           flush_millis;
-  GskSource     *flush_source;
+  EvaSource     *flush_source;
   gboolean       use_gzip;
-} GskZlibDeflator;
+} EvaZlibDeflator;
 </pre>
 <p>
 A zlib deflator (compressor) object.
@@ -94,7 +94,7 @@ read the compressed data from it.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> <em class="structfield"><code>stream</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> <em class="structfield"><code>stream</code></em>;</span></p></td>
 <td>parent instance.
 </td>
 </tr>
@@ -106,7 +106,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> <em class="structfield"><code>compressed</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> <em class="structfield"><code>compressed</code></em>;</span></p></td>
 <td>buffer of compressed data.
 </td>
 </tr>
@@ -126,7 +126,7 @@ or -1 to indicate that flush need only be done at end-of-file.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *<em class="structfield"><code>flush_source</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *<em class="structfield"><code>flush_source</code></em>;</span></p></td>
 <td>private: flush timeout source.
 </td>
 </tr>
@@ -143,7 +143,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-zlib-deflator-new"></a><h3>eva_zlib_deflator_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_zlib_deflator_new               (<a
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_zlib_deflator_new               (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> compression_level,
                                                          int flush_millis);</pre>
@@ -181,9 +181,9 @@ are only flushed after a write-shutdown.
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="eva-GskZlibDeflator.see-also"></a><h2>See Also</h2>
+<a name="eva-EvaZlibDeflator.see-also"></a><h2>See Also</h2>
 <p>
-GskZlibInflator
+EvaZlibInflator
 </p>
 </div>
 </div>

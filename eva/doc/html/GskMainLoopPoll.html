@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskMainLoopPoll</title>
+<title>EvaMainLoopPoll</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch13.html" title="Main Loops">
-<link rel="prev" href="GskMainLoopKqueue.html" title="GskMainLoopKqueue">
-<link rel="next" href="GskMainLoopPollBase.html" title="GskMainLoopPollBase">
+<link rel="prev" href="EvaMainLoopKqueue.html" title="EvaMainLoopKqueue">
+<link rel="next" href="EvaMainLoopPollBase.html" title="EvaMainLoopPollBase">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -30,57 +30,57 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskMainLoopKqueue.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaMainLoopKqueue.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch13.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="GskMainLoopPollBase.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="EvaMainLoopPollBase.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskMainLoopPoll.synopsis" class="shortcut">Top</a>
+<a href="#EvaMainLoopPoll.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskMainLoopPoll.description" class="shortcut">Description</a>
+                <a href="#EvaMainLoopPoll.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskMainLoopPoll.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaMainLoopPoll.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskMainLoopPoll"></a><div class="titlepage"></div>
+<a name="EvaMainLoopPoll"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskMainLoopPoll.top_of_page"></a>GskMainLoopPoll</span></h2>
-<p>GskMainLoopPoll — a poll(2)-based main-loop.</p>
+<h2><span class="refentrytitle"><a name="EvaMainLoopPoll.top_of_page"></a>EvaMainLoopPoll</span></h2>
+<p>EvaMainLoopPoll — a poll(2)-based main-loop.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskMainLoopPoll.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaMainLoopPoll.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="GskMainLoopPoll.html#GskMainLoopPoll-struct" title="GskMainLoopPoll">GskMainLoopPoll</a>;
+                    <a class="link" href="EvaMainLoopPoll.html#EvaMainLoopPoll-struct" title="EvaMainLoopPoll">EvaMainLoopPoll</a>;
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskMainLoopPoll.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaMainLoopPoll.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a>
-         +----<a class="link" href="GskMainLoopPollBase.html" title="GskMainLoopPollBase">GskMainLoopPollBase</a>
-               +----GskMainLoopPoll
+   +----<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a>
+         +----<a class="link" href="EvaMainLoopPollBase.html" title="EvaMainLoopPollBase">EvaMainLoopPollBase</a>
+               +----EvaMainLoopPoll
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskMainLoopPoll.description"></a><h2>Description</h2>
+<a name="EvaMainLoopPoll.description"></a><h2>Description</h2>
 <p>
 A main-loop which uses poll(2) as its underlying multiplexing method.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskMainLoopPoll.details"></a><h2>Details</h2>
+<a name="EvaMainLoopPoll.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopPoll-struct"></a><h3>GskMainLoopPoll</h3>
-<pre class="programlisting">typedef struct _GskMainLoopPoll GskMainLoopPoll;</pre>
+<a name="EvaMainLoopPoll-struct"></a><h3>EvaMainLoopPoll</h3>
+<pre class="programlisting">typedef struct _EvaMainLoopPoll EvaMainLoopPoll;</pre>
 <p>
 The poll(2)-based main-loop.
 </p>

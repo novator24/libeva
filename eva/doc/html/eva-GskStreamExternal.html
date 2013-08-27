@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskStreamExternal</title>
+<title>EvaStreamExternal</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch04.html" title="Standard Implementations">
-<link rel="prev" href="GskStreamFd.html" title="GskStreamFd">
-<link rel="next" href="GskStreamListenerSocket.html" title="GskStreamListenerSocket">
+<link rel="prev" href="EvaStreamFd.html" title="EvaStreamFd">
+<link rel="next" href="EvaStreamListenerSocket.html" title="EvaStreamListenerSocket">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -30,47 +30,47 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskStreamFd.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaStreamFd.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="GskStreamListenerSocket.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="EvaStreamListenerSocket.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#eva-GskStreamExternal.synopsis" class="shortcut">Top</a>
+<a href="#eva-EvaStreamExternal.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#eva-GskStreamExternal.description" class="shortcut">Description</a>
+                <a href="#eva-EvaStreamExternal.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="eva-GskStreamExternal"></a><div class="titlepage"></div>
+<a name="eva-EvaStreamExternal"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="eva-GskStreamExternal.top_of_page"></a>GskStreamExternal</span></h2>
-<p>GskStreamExternal — streams which connect to another process.</p>
+<h2><span class="refentrytitle"><a name="eva-EvaStreamExternal.top_of_page"></a>EvaStreamExternal</span></h2>
+<p>EvaStreamExternal — streams which connect to another process.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="eva-GskStreamExternal.synopsis"></a><h2>Synopsis</h2>
+<a name="eva-EvaStreamExternal.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-void                (<a class="link" href="eva-GskStreamExternal.html#GskStreamExternalTerminated" title="GskStreamExternalTerminated ()">*GskStreamExternalTerminated</a>)      (<a class="link" href="eva-GskStreamExternal.html#GskStreamExternal" title="GskStreamExternal">GskStreamExternal</a> *external,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopWaitInfo" title="GskMainLoopWaitInfo">GskMainLoopWaitInfo</a> *wait_info,
+void                (<a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternalTerminated" title="EvaStreamExternalTerminated ()">*EvaStreamExternalTerminated</a>)      (<a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternal" title="EvaStreamExternal">EvaStreamExternal</a> *external,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopWaitInfo" title="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</a> *wait_info,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
-void                (<a class="link" href="eva-GskStreamExternal.html#GskStreamExternalStderr" title="GskStreamExternalStderr ()">*GskStreamExternalStderr</a>)          (<a class="link" href="eva-GskStreamExternal.html#GskStreamExternal" title="GskStreamExternal">GskStreamExternal</a> *external,
+void                (<a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternalStderr" title="EvaStreamExternalStderr ()">*EvaStreamExternalStderr</a>)          (<a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternal" title="EvaStreamExternal">EvaStreamExternal</a> *external,
                                                          const char *error_text,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
-                    <a class="link" href="eva-GskStreamExternal.html#GskStreamExternal" title="GskStreamExternal">GskStreamExternal</a>;
-enum                <a class="link" href="eva-GskStreamExternal.html#GskStreamExternalFlags" title="enum GskStreamExternalFlags">GskStreamExternalFlags</a>;
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="eva-GskStreamExternal.html#eva-stream-external-new" title="eva_stream_external_new ()">eva_stream_external_new</a>             (<a class="link" href="eva-GskStreamExternal.html#GskStreamExternalFlags" title="enum GskStreamExternalFlags">GskStreamExternalFlags</a> flags,
+                    <a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternal" title="EvaStreamExternal">EvaStreamExternal</a>;
+enum                <a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternalFlags" title="enum EvaStreamExternalFlags">EvaStreamExternalFlags</a>;
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="eva-EvaStreamExternal.html#eva-stream-external-new" title="eva_stream_external_new ()">eva_stream_external_new</a>             (<a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternalFlags" title="enum EvaStreamExternalFlags">EvaStreamExternalFlags</a> flags,
                                                          const char *stdin_filename,
                                                          const char *stdout_filename,
-                                                         <a class="link" href="eva-GskStreamExternal.html#GskStreamExternalTerminated" title="GskStreamExternalTerminated ()">GskStreamExternalTerminated</a> term_func,
-                                                         <a class="link" href="eva-GskStreamExternal.html#GskStreamExternalStderr" title="GskStreamExternalStderr ()">GskStreamExternalStderr</a> err_func,
+                                                         <a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternalTerminated" title="EvaStreamExternalTerminated ()">EvaStreamExternalTerminated</a> term_func,
+                                                         <a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternalStderr" title="EvaStreamExternalStderr ()">EvaStreamExternalStderr</a> err_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data,
@@ -83,7 +83,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="eva-GskStreamExternal.description"></a><h2>Description</h2>
+<a name="eva-EvaStreamExternal.description"></a><h2>Description</h2>
 <p>
 These are streams where the input and output
 map to standard output and standard input for
@@ -91,11 +91,11 @@ another process which is exec(2)'d from this one.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="eva-GskStreamExternal.details"></a><h2>Details</h2>
+<a name="eva-EvaStreamExternal.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskStreamExternalTerminated"></a><h3>GskStreamExternalTerminated ()</h3>
-<pre class="programlisting">void                (*GskStreamExternalTerminated)      (<a class="link" href="eva-GskStreamExternal.html#GskStreamExternal" title="GskStreamExternal">GskStreamExternal</a> *external,
-                                                         <a class="link" href="GskMainLoop.html#GskMainLoopWaitInfo" title="GskMainLoopWaitInfo">GskMainLoopWaitInfo</a> *wait_info,
+<a name="EvaStreamExternalTerminated"></a><h3>EvaStreamExternalTerminated ()</h3>
+<pre class="programlisting">void                (*EvaStreamExternalTerminated)      (<a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternal" title="EvaStreamExternal">EvaStreamExternal</a> *external,
+                                                         <a class="link" href="EvaMainLoop.html#EvaMainLoopWaitInfo" title="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</a> *wait_info,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);</pre>
@@ -117,7 +117,7 @@ Function to run when the process underlying the stream is terminated.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td>passed in from <a class="link" href="eva-GskStreamExternal.html#eva-stream-external-new" title="eva_stream_external_new ()"><code class="function">eva_stream_external_new()</code></a>.
+<td>passed in from <a class="link" href="eva-EvaStreamExternal.html#eva-stream-external-new" title="eva_stream_external_new ()"><code class="function">eva_stream_external_new()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -125,8 +125,8 @@ Function to run when the process underlying the stream is terminated.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamExternalStderr"></a><h3>GskStreamExternalStderr ()</h3>
-<pre class="programlisting">void                (*GskStreamExternalStderr)          (<a class="link" href="eva-GskStreamExternal.html#GskStreamExternal" title="GskStreamExternal">GskStreamExternal</a> *external,
+<a name="EvaStreamExternalStderr"></a><h3>EvaStreamExternalStderr ()</h3>
+<pre class="programlisting">void                (*EvaStreamExternalStderr)          (<a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternal" title="EvaStreamExternal">EvaStreamExternal</a> *external,
                                                          const char *error_text,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
@@ -150,7 +150,7 @@ of the subprocess.  The line has had the newline chopped from it.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td>passed in from <a class="link" href="eva-GskStreamExternal.html#eva-stream-external-new" title="eva_stream_external_new ()"><code class="function">eva_stream_external_new()</code></a>.
+<td>passed in from <a class="link" href="eva-EvaStreamExternal.html#eva-stream-external-new" title="eva_stream_external_new ()"><code class="function">eva_stream_external_new()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -158,37 +158,37 @@ of the subprocess.  The line has had the newline chopped from it.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamExternal"></a><h3>GskStreamExternal</h3>
+<a name="EvaStreamExternal"></a><h3>EvaStreamExternal</h3>
 <pre class="programlisting">typedef struct {
-  GskStream      stream;
+  EvaStream      stream;
 
   /* stdin for the process */
   int write_fd;
-  GskSource *write_source;
-  GskBuffer write_buffer;
+  EvaSource *write_source;
+  EvaBuffer write_buffer;
   gsize max_write_buffer;
 
   /* stdout for the process */
   int read_fd;
-  GskSource *read_source;
-  GskBuffer read_buffer;
+  EvaSource *read_source;
+  EvaBuffer read_buffer;
   gsize max_read_buffer;
 
   /* stderr for the process */
   int read_err_fd;
-  GskSource *read_err_source;
-  GskBuffer read_err_buffer;
+  EvaSource *read_err_source;
+  EvaBuffer read_err_buffer;
   gsize max_err_line_length;
 
   /* process-termination notification */
-  GskSource *process_source;
+  EvaSource *process_source;
   glong pid;
 
   /* user-callback information */
-  GskStreamExternalTerminated term_func;
-  GskStreamExternalStderr err_func;
+  EvaStreamExternalTerminated term_func;
+  EvaStreamExternalStderr err_func;
   gpointer user_data;
-} GskStreamExternal;
+} EvaStreamExternal;
 </pre>
 <p>
 Instance of an object whose input and output come
@@ -198,7 +198,7 @@ from another process.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> <em class="structfield"><code>stream</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> <em class="structfield"><code>stream</code></em>;</span></p></td>
 <td>parent instance.
 </td>
 </tr>
@@ -209,12 +209,12 @@ standard-input of the child process).
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *<em class="structfield"><code>write_source</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *<em class="structfield"><code>write_source</code></em>;</span></p></td>
 <td>notification that it's ready to write.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> <em class="structfield"><code>write_buffer</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> <em class="structfield"><code>write_buffer</code></em>;</span></p></td>
 <td>data pending to be written.
 </td>
 </tr>
@@ -232,12 +232,12 @@ standard-output of the child process).
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *<em class="structfield"><code>read_source</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *<em class="structfield"><code>read_source</code></em>;</span></p></td>
 <td>notification that it's ready to read.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> <em class="structfield"><code>read_buffer</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> <em class="structfield"><code>read_buffer</code></em>;</span></p></td>
 <td>data pending read from child.
 </td>
 </tr>
@@ -255,12 +255,12 @@ standard-error of the child process).
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *<em class="structfield"><code>read_err_source</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *<em class="structfield"><code>read_err_source</code></em>;</span></p></td>
 <td>notification that the error stream is ready-to-read.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> <em class="structfield"><code>read_err_buffer</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> <em class="structfield"><code>read_err_buffer</code></em>;</span></p></td>
 <td>data pending from error stream.
 </td>
 </tr>
@@ -272,7 +272,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskMainLoop.html#GskSource" title="GskSource">GskSource</a> *<em class="structfield"><code>process_source</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaMainLoop.html#EvaSource" title="EvaSource">EvaSource</a> *<em class="structfield"><code>process_source</code></em>;</span></p></td>
 <td>process-termination notification.
 </td>
 </tr>
@@ -284,12 +284,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="eva-GskStreamExternal.html#GskStreamExternalTerminated" title="GskStreamExternalTerminated ()">GskStreamExternalTerminated</a> <em class="structfield"><code>term_func</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternalTerminated" title="EvaStreamExternalTerminated ()">EvaStreamExternalTerminated</a> <em class="structfield"><code>term_func</code></em>;</span></p></td>
 <td>function to call when the child process dies.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="eva-GskStreamExternal.html#GskStreamExternalStderr" title="GskStreamExternalStderr ()">GskStreamExternalStderr</a> <em class="structfield"><code>err_func</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternalStderr" title="EvaStreamExternalStderr ()">EvaStreamExternalStderr</a> <em class="structfield"><code>err_func</code></em>;</span></p></td>
 <td>function to call with standard error data.
 </td>
 </tr>
@@ -305,12 +305,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamExternalFlags"></a><h3>enum GskStreamExternalFlags</h3>
+<a name="EvaStreamExternalFlags"></a><h3>enum EvaStreamExternalFlags</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_STREAM_EXTERNAL_ALLOCATE_PSEUDOTTY = (1&lt;&lt;2),
   EVA_STREAM_EXTERNAL_SEARCH_PATH        = (1&lt;&lt;3)
-} GskStreamExternalFlags;
+} EvaStreamExternalFlags;
 </pre>
 <p>
 Flags which affect the construction of the stream.
@@ -337,11 +337,11 @@ Search along $PATH for the binary.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-external-new"></a><h3>eva_stream_external_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_external_new             (<a class="link" href="eva-GskStreamExternal.html#GskStreamExternalFlags" title="enum GskStreamExternalFlags">GskStreamExternalFlags</a> flags,
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_external_new             (<a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternalFlags" title="enum EvaStreamExternalFlags">EvaStreamExternalFlags</a> flags,
                                                          const char *stdin_filename,
                                                          const char *stdout_filename,
-                                                         <a class="link" href="eva-GskStreamExternal.html#GskStreamExternalTerminated" title="GskStreamExternalTerminated ()">GskStreamExternalTerminated</a> term_func,
-                                                         <a class="link" href="eva-GskStreamExternal.html#GskStreamExternalStderr" title="GskStreamExternalStderr ()">GskStreamExternalStderr</a> err_func,
+                                                         <a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternalTerminated" title="EvaStreamExternalTerminated ()">EvaStreamExternalTerminated</a> term_func,
+                                                         <a class="link" href="eva-EvaStreamExternal.html#EvaStreamExternalStderr" title="EvaStreamExternalStderr ()">EvaStreamExternalStderr</a> err_func,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data,

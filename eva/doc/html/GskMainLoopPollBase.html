@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskMainLoopPollBase</title>
+<title>EvaMainLoopPollBase</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch13.html" title="Main Loops">
-<link rel="prev" href="GskMainLoopPoll.html" title="GskMainLoopPoll">
-<link rel="next" href="GskMainLoopSelect.html" title="GskMainLoopSelect">
+<link rel="prev" href="EvaMainLoopPoll.html" title="EvaMainLoopPoll">
+<link rel="next" href="EvaMainLoopSelect.html" title="EvaMainLoopSelect">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -30,52 +30,52 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskMainLoopPoll.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaMainLoopPoll.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch13.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="GskMainLoopSelect.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="EvaMainLoopSelect.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskMainLoopPollBase.synopsis" class="shortcut">Top</a>
+<a href="#EvaMainLoopPollBase.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskMainLoopPollBase.description" class="shortcut">Description</a>
+                <a href="#EvaMainLoopPollBase.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskMainLoopPollBase.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaMainLoopPollBase.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskMainLoopPollBase"></a><div class="titlepage"></div>
+<a name="EvaMainLoopPollBase"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskMainLoopPollBase.top_of_page"></a>GskMainLoopPollBase</span></h2>
-<p>GskMainLoopPollBase — a base class for file-descriptor-only polling mechanisms.</p>
+<h2><span class="refentrytitle"><a name="EvaMainLoopPollBase.top_of_page"></a>EvaMainLoopPollBase</span></h2>
+<p>EvaMainLoopPollBase — a base class for file-descriptor-only polling mechanisms.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskMainLoopPollBase.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaMainLoopPollBase.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="GskMainLoopPollBase.html#GskMainLoopPollBaseClass" title="GskMainLoopPollBaseClass">GskMainLoopPollBaseClass</a>;
-                    <a class="link" href="GskMainLoopPollBase.html#GskMainLoopPollBase-struct" title="GskMainLoopPollBase">GskMainLoopPollBase</a>;
-void                <a class="link" href="GskMainLoopPollBase.html#eva-main-loop-poll-base-wakeup" title="eva_main_loop_poll_base_wakeup ()">eva_main_loop_poll_base_wakeup</a>      (<a class="link" href="GskMainLoopPollBase.html" title="GskMainLoopPollBase">GskMainLoopPollBase</a> *poll_base);
+                    <a class="link" href="EvaMainLoopPollBase.html#EvaMainLoopPollBaseClass" title="EvaMainLoopPollBaseClass">EvaMainLoopPollBaseClass</a>;
+                    <a class="link" href="EvaMainLoopPollBase.html#EvaMainLoopPollBase-struct" title="EvaMainLoopPollBase">EvaMainLoopPollBase</a>;
+void                <a class="link" href="EvaMainLoopPollBase.html#eva-main-loop-poll-base-wakeup" title="eva_main_loop_poll_base_wakeup ()">eva_main_loop_poll_base_wakeup</a>      (<a class="link" href="EvaMainLoopPollBase.html" title="EvaMainLoopPollBase">EvaMainLoopPollBase</a> *poll_base);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskMainLoopPollBase.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaMainLoopPollBase.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a>
-         +----GskMainLoopPollBase
-               +----<a class="link" href="GskMainLoopDevPoll.html" title="GskMainLoopDevPoll">GskMainLoopDevPoll</a>
-               +----<a class="link" href="GskMainLoopPoll.html" title="GskMainLoopPoll">GskMainLoopPoll</a>
-               +----<a class="link" href="GskMainLoopSelect.html" title="GskMainLoopSelect">GskMainLoopSelect</a>
+   +----<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a>
+         +----EvaMainLoopPollBase
+               +----<a class="link" href="EvaMainLoopDevPoll.html" title="EvaMainLoopDevPoll">EvaMainLoopDevPoll</a>
+               +----<a class="link" href="EvaMainLoopPoll.html" title="EvaMainLoopPoll">EvaMainLoopPoll</a>
+               +----<a class="link" href="EvaMainLoopSelect.html" title="EvaMainLoopSelect">EvaMainLoopSelect</a>
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskMainLoopPollBase.description"></a><h2>Description</h2>
+<a name="EvaMainLoopPollBase.description"></a><h2>Description</h2>
 <p>
 This class converts signals and child-process-termination notification
 events into I/O events so that derived class
@@ -84,25 +84,25 @@ are implemented in terms of pipes.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskMainLoopPollBase.details"></a><h2>Details</h2>
+<a name="EvaMainLoopPollBase.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopPollBaseClass"></a><h3>GskMainLoopPollBaseClass</h3>
+<a name="EvaMainLoopPollBaseClass"></a><h3>EvaMainLoopPollBaseClass</h3>
 <pre class="programlisting">typedef struct {
-  GskMainLoopClass    main_loop_class;
+  EvaMainLoopClass    main_loop_class;
 
-  void              (*config_fd)       (GskMainLoopPollBase   *main_loop,
+  void              (*config_fd)       (EvaMainLoopPollBase   *main_loop,
                                         int                    fd,
 					GIOCondition           old_io_conditions,
 				        GIOCondition           io_conditions);
 
   /* returns FALSE if the poll function has an error.
    */
-  gboolean          (*do_polling)      (GskMainLoopPollBase   *main_loop,
+  gboolean          (*do_polling)      (EvaMainLoopPollBase   *main_loop,
 				        int                    max_timeout,
 				        guint                  max_events,
 				        guint                 *num_events_out,
-                                        GskMainLoopEvent      *events);
-} GskMainLoopPollBaseClass;
+                                        EvaMainLoopEvent      *events);
+} EvaMainLoopPollBaseClass;
 </pre>
 <p>
 Base-class for I/O-only main-loops.
@@ -113,7 +113,7 @@ by specific polling mechanisms.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="GskMainLoop.html#GskMainLoopClass" title="GskMainLoopClass">GskMainLoopClass</a> <em class="structfield"><code>main_loop_class</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaMainLoop.html#EvaMainLoopClass" title="EvaMainLoopClass">EvaMainLoopClass</a> <em class="structfield"><code>main_loop_class</code></em>;</span></p></td>
 <td>the base-class from which this is derived.
 </td>
 </tr>
@@ -136,8 +136,8 @@ is auto-unpolled when it is closed.)
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopPollBase-struct"></a><h3>GskMainLoopPollBase</h3>
-<pre class="programlisting">typedef struct _GskMainLoopPollBase GskMainLoopPollBase;</pre>
+<a name="EvaMainLoopPollBase-struct"></a><h3>EvaMainLoopPollBase</h3>
+<pre class="programlisting">typedef struct _EvaMainLoopPollBase EvaMainLoopPollBase;</pre>
 <p>
 Base data for I/O-only main loop mechanisms.
 </p>
@@ -145,7 +145,7 @@ Base data for I/O-only main loop mechanisms.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-main-loop-poll-base-wakeup"></a><h3>eva_main_loop_poll_base_wakeup ()</h3>
-<pre class="programlisting">void                eva_main_loop_poll_base_wakeup      (<a class="link" href="GskMainLoopPollBase.html" title="GskMainLoopPollBase">GskMainLoopPollBase</a> *poll_base);</pre>
+<pre class="programlisting">void                eva_main_loop_poll_base_wakeup      (<a class="link" href="EvaMainLoopPollBase.html" title="EvaMainLoopPollBase">EvaMainLoopPollBase</a> *poll_base);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">

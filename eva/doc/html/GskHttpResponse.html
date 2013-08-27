@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskHttpResponse</title>
+<title>EvaHttpResponse</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch06.html" title="Standard Streams: the HTTP client and server">
-<link rel="prev" href="GskHttpRequest.html" title="GskHttpRequest">
-<link rel="next" href="GskHttpClient.html" title="GskHttpClient">
+<link rel="prev" href="EvaHttpRequest.html" title="EvaHttpRequest">
+<link rel="next" href="EvaHttpClient.html" title="EvaHttpClient">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -30,157 +30,157 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskHttpRequest.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaHttpRequest.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch06.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="GskHttpClient.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="EvaHttpClient.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskHttpResponse.synopsis" class="shortcut">Top</a>
+<a href="#EvaHttpResponse.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskHttpResponse.description" class="shortcut">Description</a>
+                <a href="#EvaHttpResponse.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskHttpResponse.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaHttpResponse.object-hierarchy" class="shortcut">Object Hierarchy</a>
                  | 
-                <a href="#GskHttpResponse.properties" class="shortcut">Properties</a>
+                <a href="#EvaHttpResponse.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskHttpResponse"></a><div class="titlepage"></div>
+<a name="EvaHttpResponse"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskHttpResponse.top_of_page"></a>GskHttpResponse</span></h2>
-<p>GskHttpResponse — An HTTP header that is sent from server to client.</p>
+<h2><span class="refentrytitle"><a name="EvaHttpResponse.top_of_page"></a>EvaHttpResponse</span></h2>
+<p>EvaHttpResponse — An HTTP header that is sent from server to client.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskHttpResponse.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaHttpResponse.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="GskHttpResponse.html#GskHttpResponse-struct" title="GskHttpResponse">GskHttpResponse</a>;
-<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *   <a class="link" href="GskHttpResponse.html#eva-http-response-new-blank" title="eva_http_response_new_blank ()">eva_http_response_new_blank</a>         (void);
-<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *   <a class="link" href="GskHttpResponse.html#eva-http-response-new-redirect" title="eva_http_response_new_redirect ()">eva_http_response_new_redirect</a>      (const char *location);
-<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *   <a class="link" href="GskHttpResponse.html#eva-http-response-from-request" title="eva_http_response_from_request ()">eva_http_response_from_request</a>      (<a class="link" href="GskHttpRequest.html" title="GskHttpRequest">GskHttpRequest</a> *request,
-                                                         <a class="link" href="GskHttpHeader.html#GskHttpStatus" title="enum GskHttpStatus">GskHttpStatus</a> status_code,
+                    <a class="link" href="EvaHttpResponse.html#EvaHttpResponse-struct" title="EvaHttpResponse">EvaHttpResponse</a>;
+<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *   <a class="link" href="EvaHttpResponse.html#eva-http-response-new-blank" title="eva_http_response_new_blank ()">eva_http_response_new_blank</a>         (void);
+<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *   <a class="link" href="EvaHttpResponse.html#eva-http-response-new-redirect" title="eva_http_response_new_redirect ()">eva_http_response_new_redirect</a>      (const char *location);
+<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *   <a class="link" href="EvaHttpResponse.html#eva-http-response-from-request" title="eva_http_response_from_request ()">eva_http_response_from_request</a>      (<a class="link" href="EvaHttpRequest.html" title="EvaHttpRequest">EvaHttpRequest</a> *request,
+                                                         <a class="link" href="EvaHttpHeader.html#EvaHttpStatus" title="enum EvaHttpStatus">EvaHttpStatus</a> status_code,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint64"
 >gint64</a> length);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskHttpResponse.html#eva-http-response-process-first-line" title="eva_http_response_process_first_line ()">eva_http_response_process_first_line</a>
-                                                        (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
+>gboolean</a>            <a class="link" href="EvaHttpResponse.html#eva-http-response-process-first-line" title="eva_http_response_process_first_line ()">eva_http_response_process_first_line</a>
+                                                        (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
                                                          const char *line);
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-set-status-code" title="eva_http_response_set_status_code()">eva_http_response_set_status_code</a>   (response, status)
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-get-status-code" title="eva_http_response_get_status_code()">eva_http_response_get_status_code</a>   (response)
-void                <a class="link" href="GskHttpResponse.html#eva-http-response-set-allowed-verbs" title="eva_http_response_set_allowed_verbs ()">eva_http_response_set_allowed_verbs</a> (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-set-status-code" title="eva_http_response_set_status_code()">eva_http_response_set_status_code</a>   (response, status)
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-get-status-code" title="eva_http_response_get_status_code()">eva_http_response_get_status_code</a>   (response)
+void                <a class="link" href="EvaHttpResponse.html#eva-http-response-set-allowed-verbs" title="eva_http_response_set_allowed_verbs ()">eva_http_response_set_allowed_verbs</a> (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> allowed);
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-get-allowed-verbs" title="eva_http_response_get_allowed_verbs()">eva_http_response_get_allowed_verbs</a> (header)
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-set-age" title="eva_http_response_set_age()">eva_http_response_set_age</a>           (response, age)
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-get-age" title="eva_http_response_get_age()">eva_http_response_get_age</a>           (response)
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-set-location" title="eva_http_response_set_location()">eva_http_response_set_location</a>      (response, location)
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-peek-location" title="eva_http_response_peek_location()">eva_http_response_peek_location</a>     (response)
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-set-etag" title="eva_http_response_set_etag()">eva_http_response_set_etag</a>          (response, etag)
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-peek-etag" title="eva_http_response_peek_etag()">eva_http_response_peek_etag</a>         (response)
-void                <a class="link" href="GskHttpResponse.html#eva-http-response-set-cache-control" title="eva_http_response_set_cache_control ()">eva_http_response_set_cache_control</a> (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
-                                                         GskHttpResponseCacheDirective *directive);
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-peek-cache-control" title="eva_http_response_peek_cache_control()">eva_http_response_peek_cache_control</a>(response)
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-set-last-modified" title="eva_http_response_set_last_modified()">eva_http_response_set_last_modified</a> (response, last_modified)
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-get-last-modified" title="eva_http_response_get_last_modified()">eva_http_response_get_last_modified</a> (response)
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-set-expires" title="eva_http_response_set_expires()">eva_http_response_set_expires</a>       (response, expires)
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-get-expires" title="eva_http_response_get_expires()">eva_http_response_get_expires</a>       (response)
-void                <a class="link" href="GskHttpResponse.html#eva-http-response-set-md5" title="eva_http_response_set_md5 ()">eva_http_response_set_md5</a>           (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-get-allowed-verbs" title="eva_http_response_get_allowed_verbs()">eva_http_response_get_allowed_verbs</a> (header)
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-set-age" title="eva_http_response_set_age()">eva_http_response_set_age</a>           (response, age)
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-get-age" title="eva_http_response_get_age()">eva_http_response_get_age</a>           (response)
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-set-location" title="eva_http_response_set_location()">eva_http_response_set_location</a>      (response, location)
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-peek-location" title="eva_http_response_peek_location()">eva_http_response_peek_location</a>     (response)
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-set-etag" title="eva_http_response_set_etag()">eva_http_response_set_etag</a>          (response, etag)
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-peek-etag" title="eva_http_response_peek_etag()">eva_http_response_peek_etag</a>         (response)
+void                <a class="link" href="EvaHttpResponse.html#eva-http-response-set-cache-control" title="eva_http_response_set_cache_control ()">eva_http_response_set_cache_control</a> (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
+                                                         EvaHttpResponseCacheDirective *directive);
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-peek-cache-control" title="eva_http_response_peek_cache_control()">eva_http_response_peek_cache_control</a>(response)
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-set-last-modified" title="eva_http_response_set_last_modified()">eva_http_response_set_last_modified</a> (response, last_modified)
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-get-last-modified" title="eva_http_response_get_last_modified()">eva_http_response_get_last_modified</a> (response)
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-set-expires" title="eva_http_response_set_expires()">eva_http_response_set_expires</a>       (response, expires)
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-get-expires" title="eva_http_response_get_expires()">eva_http_response_get_expires</a>       (response)
+void                <a class="link" href="EvaHttpResponse.html#eva-http-response-set-md5" title="eva_http_response_set_md5 ()">eva_http_response_set_md5</a>           (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
                                                          const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint8"
 >guint8</a> *md5sum);
 const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint8"
->guint8</a> *      <a class="link" href="GskHttpResponse.html#eva-http-response-peek-md5" title="eva_http_response_peek_md5 ()">eva_http_response_peek_md5</a>          (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response);
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-set-server" title="eva_http_response_set_server()">eva_http_response_set_server</a>        (response, server)
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-peek-server" title="eva_http_response_peek_server()">eva_http_response_peek_server</a>       (response)
-void                <a class="link" href="GskHttpResponse.html#eva-http-response-set-retry-after" title="eva_http_response_set_retry_after ()">eva_http_response_set_retry_after</a>   (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
+>guint8</a> *      <a class="link" href="EvaHttpResponse.html#eva-http-response-peek-md5" title="eva_http_response_peek_md5 ()">eva_http_response_peek_md5</a>          (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response);
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-set-server" title="eva_http_response_set_server()">eva_http_response_set_server</a>        (response, server)
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-peek-server" title="eva_http_response_peek_server()">eva_http_response_peek_server</a>       (response)
+void                <a class="link" href="EvaHttpResponse.html#eva-http-response-set-retry-after" title="eva_http_response_set_retry_after ()">eva_http_response_set_retry_after</a>   (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_relative,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"
 >glong</a> time);
-void                <a class="link" href="GskHttpResponse.html#eva-http-response-set-no-retry-after" title="eva_http_response_set_no_retry_after ()">eva_http_response_set_no_retry_after</a>
-                                                        (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response);
-void                <a class="link" href="GskHttpResponse.html#eva-http-response-set-authenticate" title="eva_http_response_set_authenticate ()">eva_http_response_set_authenticate</a>  (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
+void                <a class="link" href="EvaHttpResponse.html#eva-http-response-set-no-retry-after" title="eva_http_response_set_no_retry_after ()">eva_http_response_set_no_retry_after</a>
+                                                        (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response);
+void                <a class="link" href="EvaHttpResponse.html#eva-http-response-set-authenticate" title="eva_http_response_set_authenticate ()">eva_http_response_set_authenticate</a>  (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_proxy_auth,
-                                                         <a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> *auth);
-<a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> * <a class="link" href="GskHttpResponse.html#eva-http-response-peek-authenticate" title="eva_http_response_peek_authenticate ()">eva_http_response_peek_authenticate</a>
-                                                        (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
+                                                         <a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> *auth);
+<a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> * <a class="link" href="EvaHttpResponse.html#eva-http-response-peek-authenticate" title="eva_http_response_peek_authenticate ()">eva_http_response_peek_authenticate</a>
+                                                        (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_proxy_auth);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskHttpResponse.html#eva-http-response-has-content-body" title="eva_http_response_has_content_body ()">eva_http_response_has_content_body</a>  (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
-                                                         <a class="link" href="GskHttpRequest.html" title="GskHttpRequest">GskHttpRequest</a> *request);
-void                <a class="link" href="GskHttpResponse.html#eva-http-response-cache-directive-free" title="eva_http_response_cache_directive_free ()">eva_http_response_cache_directive_free</a>
-                                                        (GskHttpResponseCacheDirective *directive);
-GskHttpResponseCacheDirective * <a class="link" href="GskHttpResponse.html#eva-http-response-cache-directive-new" title="eva_http_response_cache_directive_new ()">eva_http_response_cache_directive_new</a>
+>gboolean</a>            <a class="link" href="EvaHttpResponse.html#eva-http-response-has-content-body" title="eva_http_response_has_content_body ()">eva_http_response_has_content_body</a>  (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
+                                                         <a class="link" href="EvaHttpRequest.html" title="EvaHttpRequest">EvaHttpRequest</a> *request);
+void                <a class="link" href="EvaHttpResponse.html#eva-http-response-cache-directive-free" title="eva_http_response_cache_directive_free ()">eva_http_response_cache_directive_free</a>
+                                                        (EvaHttpResponseCacheDirective *directive);
+EvaHttpResponseCacheDirective * <a class="link" href="EvaHttpResponse.html#eva-http-response-cache-directive-new" title="eva_http_response_cache_directive_new ()">eva_http_response_cache_directive_new</a>
                                                         (void);
-void                <a class="link" href="GskHttpResponse.html#eva-http-response-cache-directive-set-no-cache-name" title="eva_http_response_cache_directive_set_no_cache_name ()">eva_http_response_cache_directive_set_no_cache_name</a>
-                                                        (GskHttpResponseCacheDirective *directive,
+void                <a class="link" href="EvaHttpResponse.html#eva-http-response-cache-directive-set-no-cache-name" title="eva_http_response_cache_directive_set_no_cache_name ()">eva_http_response_cache_directive_set_no_cache_name</a>
+                                                        (EvaHttpResponseCacheDirective *directive,
                                                          const char *name,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
 >gsize</a> name_len);
-void                <a class="link" href="GskHttpResponse.html#eva-http-response-cache-directive-set-private-name" title="eva_http_response_cache_directive_set_private_name ()">eva_http_response_cache_directive_set_private_name</a>
-                                                        (GskHttpResponseCacheDirective *directive,
+void                <a class="link" href="EvaHttpResponse.html#eva-http-response-cache-directive-set-private-name" title="eva_http_response_cache_directive_set_private_name ()">eva_http_response_cache_directive_set_private_name</a>
+                                                        (EvaHttpResponseCacheDirective *directive,
                                                          const char *name,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
 >gsize</a> name_len);
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-get-content-subtype" title="eva_http_response_get_content_subtype">eva_http_response_get_content_subtype</a>
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-get-content-type" title="eva_http_response_get_content_type">eva_http_response_get_content_type</a>
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-set-content-subtype" title="eva_http_response_set_content_subtype">eva_http_response_set_content_subtype</a>
-#define             <a class="link" href="GskHttpResponse.html#eva-http-response-set-content-type" title="eva_http_response_set_content_type">eva_http_response_set_content_type</a>
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-get-content-subtype" title="eva_http_response_get_content_subtype">eva_http_response_get_content_subtype</a>
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-get-content-type" title="eva_http_response_get_content_type">eva_http_response_get_content_type</a>
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-set-content-subtype" title="eva_http_response_set_content_subtype">eva_http_response_set_content_subtype</a>
+#define             <a class="link" href="EvaHttpResponse.html#eva-http-response-set-content-type" title="eva_http_response_set_content_type">eva_http_response_set_content_type</a>
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpResponse.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaHttpResponse.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskHttpHeader.html" title="GskHttpHeader">GskHttpHeader</a>
-         +----GskHttpResponse
+   +----<a class="link" href="EvaHttpHeader.html" title="EvaHttpHeader">EvaHttpHeader</a>
+         +----EvaHttpResponse
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpResponse.properties"></a><h2>Properties</h2>
+<a name="EvaHttpResponse.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a class="link" href="GskHttpResponse.html#GskHttpResponse--age" title='The "age" property'>age</a>"                      <a
+  "<a class="link" href="EvaHttpResponse.html#EvaHttpResponse--age" title='The "age" property'>age</a>"                      <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"
 >glong</a>                 : Read / Write
-  "<a class="link" href="GskHttpResponse.html#GskHttpResponse--e-tag" title='The "e-tag" property'>e-tag</a>"                    <a
+  "<a class="link" href="EvaHttpResponse.html#EvaHttpResponse--e-tag" title='The "e-tag" property'>e-tag</a>"                    <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskHttpResponse.html#GskHttpResponse--expires" title='The "expires" property'>expires</a>"                  <a
+  "<a class="link" href="EvaHttpResponse.html#EvaHttpResponse--expires" title='The "expires" property'>expires</a>"                  <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"
 >glong</a>                 : Read / Write
-  "<a class="link" href="GskHttpResponse.html#GskHttpResponse--last-modified" title='The "last-modified" property'>last-modified</a>"            <a
+  "<a class="link" href="EvaHttpResponse.html#EvaHttpResponse--last-modified" title='The "last-modified" property'>last-modified</a>"            <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"
 >glong</a>                 : Read / Write
-  "<a class="link" href="GskHttpResponse.html#GskHttpResponse--location" title='The "location" property'>location</a>"                 <a
+  "<a class="link" href="EvaHttpResponse.html#EvaHttpResponse--location" title='The "location" property'>location</a>"                 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskHttpResponse.html#GskHttpResponse--server" title='The "server" property'>server</a>"                   <a
+  "<a class="link" href="EvaHttpResponse.html#EvaHttpResponse--server" title='The "server" property'>server</a>"                   <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write
-  "<a class="link" href="GskHttpResponse.html#GskHttpResponse--status-code" title='The "status-code" property'>status-code</a>"              <a class="link" href="GskHttpHeader.html#GskHttpStatus" title="enum GskHttpStatus">GskHttpStatus</a>         : Read / Write
+  "<a class="link" href="EvaHttpResponse.html#EvaHttpResponse--status-code" title='The "status-code" property'>status-code</a>"              <a class="link" href="EvaHttpHeader.html#EvaHttpStatus" title="enum EvaHttpStatus">EvaHttpStatus</a>         : Read / Write
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpResponse.description"></a><h2>Description</h2>
+<a name="EvaHttpResponse.description"></a><h2>Description</h2>
 <p>
 A response is the last of two messages in an HTTP transaction.
 It indicates whether the request succeeded, or what went wrong.
@@ -188,10 +188,10 @@ It may also include often information about the content.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpResponse.details"></a><h2>Details</h2>
+<a name="EvaHttpResponse.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskHttpResponse-struct"></a><h3>GskHttpResponse</h3>
-<pre class="programlisting">typedef struct _GskHttpResponse GskHttpResponse;</pre>
+<a name="EvaHttpResponse-struct"></a><h3>EvaHttpResponse</h3>
+<pre class="programlisting">typedef struct _EvaHttpResponse EvaHttpResponse;</pre>
 <p>
 An instance of a HTTP response header.
 </p>
@@ -199,7 +199,7 @@ An instance of a HTTP response header.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-response-new-blank"></a><h3>eva_http_response_new_blank ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *   eva_http_response_new_blank         (void);</pre>
+<pre class="programlisting"><a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *   eva_http_response_new_blank         (void);</pre>
 <p>
 Create a new, empty default response.</p>
 <p>
@@ -216,7 +216,7 @@ Create a new, empty default response.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-response-new-redirect"></a><h3>eva_http_response_new_redirect ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *   eva_http_response_new_redirect      (const char *location);</pre>
+<pre class="programlisting"><a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *   eva_http_response_new_redirect      (const char *location);</pre>
 <p>
 Create a redirection HTTP response header.
 </p>
@@ -243,8 +243,8 @@ We use the 302 ("Found") status code.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-response-from-request"></a><h3>eva_http_response_from_request ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *   eva_http_response_from_request      (<a class="link" href="GskHttpRequest.html" title="GskHttpRequest">GskHttpRequest</a> *request,
-                                                         <a class="link" href="GskHttpHeader.html#GskHttpStatus" title="enum GskHttpStatus">GskHttpStatus</a> status_code,
+<pre class="programlisting"><a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *   eva_http_response_from_request      (<a class="link" href="EvaHttpRequest.html" title="EvaHttpRequest">EvaHttpRequest</a> *request,
+                                                         <a class="link" href="EvaHttpHeader.html#EvaHttpStatus" title="enum EvaHttpStatus">EvaHttpStatus</a> status_code,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint64"
 >gint64</a> length);</pre>
@@ -285,7 +285,7 @@ with a caller-supplied status code and optional length.</p>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            eva_http_response_process_first_line
-                                                        (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
+                                                        (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
                                                          const char *line);</pre>
 <p>
 Parse the first line of an HTTP response.</p>
@@ -318,7 +318,7 @@ Parse the first line of an HTTP response.</p>
 <pre class="programlisting">#define             eva_http_response_set_status_code(response, status)</pre>
 <p>
 Set what kind of response is going to be given.
-See <a class="link" href="GskHttpHeader.html#GskHttpStatus" title="enum GskHttpStatus"><span class="type">GskHttpStatus</span></a> for a description of all the status codes
+See <a class="link" href="EvaHttpHeader.html#EvaHttpStatus" title="enum EvaHttpStatus"><span class="type">EvaHttpStatus</span></a> for a description of all the status codes
 defined in HTTP/1.1 (RFC 2616).
 </p>
 <div class="variablelist"><table border="0">
@@ -356,7 +356,7 @@ Query the status code from a response.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-response-set-allowed-verbs"></a><h3>eva_http_response_set_allowed_verbs ()</h3>
-<pre class="programlisting">void                eva_http_response_set_allowed_verbs (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
+<pre class="programlisting">void                eva_http_response_set_allowed_verbs (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> allowed);</pre>
@@ -553,8 +553,8 @@ ETag field.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-response-set-cache-control"></a><h3>eva_http_response_set_cache_control ()</h3>
-<pre class="programlisting">void                eva_http_response_set_cache_control (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
-                                                         GskHttpResponseCacheDirective *directive);</pre>
+<pre class="programlisting">void                eva_http_response_set_cache_control (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
+                                                         EvaHttpResponseCacheDirective *directive);</pre>
 <p>
 Set the cache-control flags in the header.
 Note that <em class="parameter"><code>directive</code></em> will be freed by the HTTP header when
@@ -582,7 +582,7 @@ it is destroyed.</p>
 <a name="eva-http-response-peek-cache-control"></a><h3>eva_http_response_peek_cache_control()</h3>
 <pre class="programlisting">#define             eva_http_response_peek_cache_control(response)</pre>
 <p>
-Obtain the <span class="type">GskHttpCacheDirective</span> associated with the
+Obtain the <span class="type">EvaHttpCacheDirective</span> associated with the
 response.
 </p>
 <div class="variablelist"><table border="0">
@@ -694,7 +694,7 @@ Get the expiration time for this content, or -1 if no expiration time given.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-response-set-md5"></a><h3>eva_http_response_set_md5 ()</h3>
-<pre class="programlisting">void                eva_http_response_set_md5           (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
+<pre class="programlisting">void                eva_http_response_set_md5           (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
                                                          const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint8"
 >guint8</a> *md5sum);</pre>
@@ -726,7 +726,7 @@ If this is NULL, unset the MD5 field.
 <a name="eva-http-response-peek-md5"></a><h3>eva_http_response_peek_md5 ()</h3>
 <pre class="programlisting">const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint8"
->guint8</a> *      eva_http_response_peek_md5          (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response);</pre>
+>guint8</a> *      eva_http_response_peek_md5          (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response);</pre>
 <p>
 Get the MD5 sum associated with this response.
 (It should be the MD5 sum of the content stream).
@@ -800,7 +800,7 @@ This field is optional, but is helpful for debugging, etc.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-response-set-retry-after"></a><h3>eva_http_response_set_retry_after ()</h3>
-<pre class="programlisting">void                eva_http_response_set_retry_after   (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
+<pre class="programlisting">void                eva_http_response_set_retry_after   (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_relative,
@@ -847,7 +847,7 @@ the current time; otherwise, it's unix time (ie seconds after Jan 1 1970, GMT).
 <div class="refsect2" lang="en">
 <a name="eva-http-response-set-no-retry-after"></a><h3>eva_http_response_set_no_retry_after ()</h3>
 <pre class="programlisting">void                eva_http_response_set_no_retry_after
-                                                        (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response);</pre>
+                                                        (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response);</pre>
 <p>
 Clear the Retry-After header for this response.</p>
 <p>
@@ -864,11 +864,11 @@ Clear the Retry-After header for this response.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-response-set-authenticate"></a><h3>eva_http_response_set_authenticate ()</h3>
-<pre class="programlisting">void                eva_http_response_set_authenticate  (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
+<pre class="programlisting">void                eva_http_response_set_authenticate  (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_proxy_auth,
-                                                         <a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> *auth);</pre>
+                                                         <a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> *auth);</pre>
 <p>
 Set the authentication for this response.
 This is like a key to get access to certain entities.
@@ -903,8 +903,8 @@ See sections 14.8 for normal Authorization and 14.34.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-response-peek-authenticate"></a><h3>eva_http_response_peek_authenticate ()</h3>
-<pre class="programlisting"><a class="link" href="GskHttpHeader.html#GskHttpAuthenticate" title="GskHttpAuthenticate">GskHttpAuthenticate</a> * eva_http_response_peek_authenticate
-                                                        (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
+<pre class="programlisting"><a class="link" href="EvaHttpHeader.html#EvaHttpAuthenticate" title="EvaHttpAuthenticate">EvaHttpAuthenticate</a> * eva_http_response_peek_authenticate
+                                                        (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_proxy_auth);</pre>
@@ -939,8 +939,8 @@ or normal server authentication.
 <a name="eva-http-response-has-content-body"></a><h3>eva_http_response_has_content_body ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_http_response_has_content_body  (<a class="link" href="GskHttpResponse.html" title="GskHttpResponse">GskHttpResponse</a> *response,
-                                                         <a class="link" href="GskHttpRequest.html" title="GskHttpRequest">GskHttpRequest</a> *request);</pre>
+>gboolean</a>            eva_http_response_has_content_body  (<a class="link" href="EvaHttpResponse.html" title="EvaHttpResponse">EvaHttpResponse</a> *response,
+                                                         <a class="link" href="EvaHttpRequest.html" title="EvaHttpRequest">EvaHttpRequest</a> *request);</pre>
 <p>
 Find out whether a HTTP Response should be
 accompanied by a body.
@@ -976,9 +976,9 @@ by a body of data.
 <div class="refsect2" lang="en">
 <a name="eva-http-response-cache-directive-free"></a><h3>eva_http_response_cache_directive_free ()</h3>
 <pre class="programlisting">void                eva_http_response_cache_directive_free
-                                                        (GskHttpResponseCacheDirective *directive);</pre>
+                                                        (EvaHttpResponseCacheDirective *directive);</pre>
 <p>
-Deallocate a GskHttpResponseCacheDirective.</p>
+Deallocate a EvaHttpResponseCacheDirective.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -993,7 +993,7 @@ Deallocate a GskHttpResponseCacheDirective.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-http-response-cache-directive-new"></a><h3>eva_http_response_cache_directive_new ()</h3>
-<pre class="programlisting">GskHttpResponseCacheDirective * eva_http_response_cache_directive_new
+<pre class="programlisting">EvaHttpResponseCacheDirective * eva_http_response_cache_directive_new
                                                         (void);</pre>
 <p>
 </p>
@@ -1012,7 +1012,7 @@ Deallocate a GskHttpResponseCacheDirective.</p>
 <div class="refsect2" lang="en">
 <a name="eva-http-response-cache-directive-set-no-cache-name"></a><h3>eva_http_response_cache_directive_set_no_cache_name ()</h3>
 <pre class="programlisting">void                eva_http_response_cache_directive_set_no_cache_name
-                                                        (GskHttpResponseCacheDirective *directive,
+                                                        (EvaHttpResponseCacheDirective *directive,
                                                          const char *name,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
@@ -1061,7 +1061,7 @@ good luck.</p>
 <div class="refsect2" lang="en">
 <a name="eva-http-response-cache-directive-set-private-name"></a><h3>eva_http_response_cache_directive_set_private_name ()</h3>
 <pre class="programlisting">void                eva_http_response_cache_directive_set_private_name
-                                                        (GskHttpResponseCacheDirective *directive,
+                                                        (EvaHttpResponseCacheDirective *directive,
                                                          const char *name,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
@@ -1121,9 +1121,9 @@ Intended for more detailed specification of private cache data.</p>
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpResponse.property-details"></a><h2>Property Details</h2>
+<a name="EvaHttpResponse.property-details"></a><h2>Property Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskHttpResponse--age"></a><h3>The <code class="literal">"age"</code> property</h3>
+<a name="EvaHttpResponse--age"></a><h3>The <code class="literal">"age"</code> property</h3>
 <pre class="programlisting">  "age"                      <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"
 >glong</a>                 : Read / Write</pre>
@@ -1133,7 +1133,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpResponse--e-tag"></a><h3>The <code class="literal">"e-tag"</code> property</h3>
+<a name="EvaHttpResponse--e-tag"></a><h3>The <code class="literal">"e-tag"</code> property</h3>
 <pre class="programlisting">  "e-tag"                    <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -1142,7 +1142,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpResponse--expires"></a><h3>The <code class="literal">"expires"</code> property</h3>
+<a name="EvaHttpResponse--expires"></a><h3>The <code class="literal">"expires"</code> property</h3>
 <pre class="programlisting">  "expires"                  <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"
 >glong</a>                 : Read / Write</pre>
@@ -1152,7 +1152,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpResponse--last-modified"></a><h3>The <code class="literal">"last-modified"</code> property</h3>
+<a name="EvaHttpResponse--last-modified"></a><h3>The <code class="literal">"last-modified"</code> property</h3>
 <pre class="programlisting">  "last-modified"            <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"
 >glong</a>                 : Read / Write</pre>
@@ -1162,7 +1162,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpResponse--location"></a><h3>The <code class="literal">"location"</code> property</h3>
+<a name="EvaHttpResponse--location"></a><h3>The <code class="literal">"location"</code> property</h3>
 <pre class="programlisting">  "location"                 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -1171,7 +1171,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpResponse--server"></a><h3>The <code class="literal">"server"</code> property</h3>
+<a name="EvaHttpResponse--server"></a><h3>The <code class="literal">"server"</code> property</h3>
 <pre class="programlisting">  "server"                   <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write</pre>
@@ -1180,16 +1180,16 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskHttpResponse--status-code"></a><h3>The <code class="literal">"status-code"</code> property</h3>
-<pre class="programlisting">  "status-code"              <a class="link" href="GskHttpHeader.html#GskHttpStatus" title="enum GskHttpStatus">GskHttpStatus</a>         : Read / Write</pre>
+<a name="EvaHttpResponse--status-code"></a><h3>The <code class="literal">"status-code"</code> property</h3>
+<pre class="programlisting">  "status-code"              <a class="link" href="EvaHttpHeader.html#EvaHttpStatus" title="enum EvaHttpStatus">EvaHttpStatus</a>         : Read / Write</pre>
 <p>HTTP status code.</p>
 <p>Default value: EVA_HTTP_STATUS_OK</p>
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskHttpResponse.see-also"></a><h2>See Also</h2>
+<a name="EvaHttpResponse.see-also"></a><h2>See Also</h2>
 <p>
-GskHttpHeader, GskHttpRequest
+EvaHttpHeader, EvaHttpRequest
 </p>
 </div>
 </div>

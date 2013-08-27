@@ -37,32 +37,32 @@
 <td><a accesskey="n" href="eva-evalog.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskSocketAddress.synopsis" class="shortcut">Top</a>
+<a href="#EvaSocketAddress.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskSocketAddress.description" class="shortcut">Description</a>
+                <a href="#EvaSocketAddress.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskSocketAddress.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaSocketAddress.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskSocketAddress"></a><div class="titlepage"></div>
+<a name="EvaSocketAddress"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskSocketAddress.top_of_page"></a>Socket Addresses.</span></h2>
+<h2><span class="refentrytitle"><a name="EvaSocketAddress.top_of_page"></a>Socket Addresses.</span></h2>
 <p>Socket Addresses. — The location of a socket endpoint, in some domain.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskSocketAddress.synopsis"></a><h2>Synopsis</h2>
-<a name="GskSocketAddressIpv4"></a><a name="GskSocketAddressLocal"></a><a name="GskSocketAddressIpv6"></a><pre class="synopsis">
-                    <a class="link" href="GskSocketAddress.html#GskSocketAddressClass" title="GskSocketAddressClass">GskSocketAddressClass</a>;
-                    <a class="link" href="GskSocketAddress.html#GskSocketAddress-struct" title="GskSocketAddress">GskSocketAddress</a>;
-                    <a class="link" href="GskSocketAddress.html#GskSocketAddressIpv4-struct" title="GskSocketAddressIpv4">GskSocketAddressIpv4</a>;
-                    <a class="link" href="GskSocketAddress.html#GskSocketAddressLocal-struct" title="GskSocketAddressLocal">GskSocketAddressLocal</a>;
-                    <a class="link" href="GskSocketAddress.html#GskSocketAddressIpv6-struct" title="GskSocketAddressIpv6">GskSocketAddressIpv6</a>;
-                    <a class="link" href="GskSocketAddress.html#GskSocketAddressEthernet" title="GskSocketAddressEthernet">GskSocketAddressEthernet</a>;
-<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *  <a class="link" href="GskSocketAddress.html#eva-socket-address-from-native" title="eva_socket_address_from_native ()">eva_socket_address_from_native</a>      (<a
+<a name="EvaSocketAddress.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaSocketAddressIpv4"></a><a name="EvaSocketAddressLocal"></a><a name="EvaSocketAddressIpv6"></a><pre class="synopsis">
+                    <a class="link" href="EvaSocketAddress.html#EvaSocketAddressClass" title="EvaSocketAddressClass">EvaSocketAddressClass</a>;
+                    <a class="link" href="EvaSocketAddress.html#EvaSocketAddress-struct" title="EvaSocketAddress">EvaSocketAddress</a>;
+                    <a class="link" href="EvaSocketAddress.html#EvaSocketAddressIpv4-struct" title="EvaSocketAddressIpv4">EvaSocketAddressIpv4</a>;
+                    <a class="link" href="EvaSocketAddress.html#EvaSocketAddressLocal-struct" title="EvaSocketAddressLocal">EvaSocketAddressLocal</a>;
+                    <a class="link" href="EvaSocketAddress.html#EvaSocketAddressIpv6-struct" title="EvaSocketAddressIpv6">EvaSocketAddressIpv6</a>;
+                    <a class="link" href="EvaSocketAddress.html#EvaSocketAddressEthernet" title="EvaSocketAddressEthernet">EvaSocketAddressEthernet</a>;
+<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *  <a class="link" href="EvaSocketAddress.html#eva-socket-address-from-native" title="eva_socket_address_from_native ()">eva_socket_address_from_native</a>      (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> native_data,
                                                          <a
@@ -70,47 +70,47 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
 >gsize</a> native_size);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a>                <a class="link" href="GskSocketAddress.html#eva-socket-address-protocol-family" title="eva_socket_address_protocol_family ()">eva_socket_address_protocol_family</a>  (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);
+>gint</a>                <a class="link" href="EvaSocketAddress.html#eva-socket-address-protocol-family" title="eva_socket_address_protocol_family ()">eva_socket_address_protocol_family</a>  (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a>                <a class="link" href="GskSocketAddress.html#eva-socket-address-address-family" title="eva_socket_address_address_family ()">eva_socket_address_address_family</a>   (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);
+>gint</a>                <a class="link" href="EvaSocketAddress.html#eva-socket-address-address-family" title="eva_socket_address_address_family ()">eva_socket_address_address_family</a>   (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="GskSocketAddress.html#eva-socket-address-sizeof-native" title="eva_socket_address_sizeof_native ()">eva_socket_address_sizeof_native</a>    (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);
+>guint</a>               <a class="link" href="EvaSocketAddress.html#eva-socket-address-sizeof-native" title="eva_socket_address_sizeof_native ()">eva_socket_address_sizeof_native</a>    (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskSocketAddress.html#eva-socket-address-to-native" title="eva_socket_address_to_native ()">eva_socket_address_to_native</a>        (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address,
+>gboolean</a>            <a class="link" href="EvaSocketAddress.html#eva-socket-address-to-native" title="eva_socket_address_to_native ()">eva_socket_address_to_native</a>        (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> output,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-char *              <a class="link" href="GskSocketAddress.html#eva-socket-address-to-string" title="eva_socket_address_to_string ()">eva_socket_address_to_string</a>        (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);
-#define             <a class="link" href="GskSocketAddress.html#eva-socket-address-ipv4-localhost" title="eva_socket_address_ipv4_localhost()">eva_socket_address_ipv4_localhost</a>   (port)
-<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *  <a class="link" href="GskSocketAddress.html#eva-socket-address-ipv4-new" title="eva_socket_address_ipv4_new ()">eva_socket_address_ipv4_new</a>         (const <a
+char *              <a class="link" href="EvaSocketAddress.html#eva-socket-address-to-string" title="eva_socket_address_to_string ()">eva_socket_address_to_string</a>        (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);
+#define             <a class="link" href="EvaSocketAddress.html#eva-socket-address-ipv4-localhost" title="eva_socket_address_ipv4_localhost()">eva_socket_address_ipv4_localhost</a>   (port)
+<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *  <a class="link" href="EvaSocketAddress.html#eva-socket-address-ipv4-new" title="eva_socket_address_ipv4_new ()">eva_socket_address_ipv4_new</a>         (const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint8"
 >guint8</a> *ip_address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint16"
 >guint16</a> port);
-<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *  <a class="link" href="GskSocketAddress.html#eva-socket-address-ipv6-new" title="eva_socket_address_ipv6_new ()">eva_socket_address_ipv6_new</a>         (const <a
+<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *  <a class="link" href="EvaSocketAddress.html#eva-socket-address-ipv6-new" title="eva_socket_address_ipv6_new ()">eva_socket_address_ipv6_new</a>         (const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint8"
 >guint8</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint16"
 >guint16</a> port);
-<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *  <a class="link" href="GskSocketAddress.html#eva-socket-address-ethernet-new" title="eva_socket_address_ethernet_new ()">eva_socket_address_ethernet_new</a>     (const <a
+<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *  <a class="link" href="EvaSocketAddress.html#eva-socket-address-ethernet-new" title="eva_socket_address_ethernet_new ()">eva_socket_address_ethernet_new</a>     (const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint8"
 >guint8</a> *mac_addr);
-<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *  <a class="link" href="GskSocketAddress.html#eva-socket-address-local-new" title="eva_socket_address_local_new ()">eva_socket_address_local_new</a>        (const char *path);
+<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *  <a class="link" href="EvaSocketAddress.html#eva-socket-address-local-new" title="eva_socket_address_local_new ()">eva_socket_address_local_new</a>        (const char *path);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskSocketAddress.html#eva-socket-address-system-supports-ipv6" title="eva_socket_address_system_supports_ipv6 ()">eva_socket_address_system_supports_ipv6</a>
+>gboolean</a>            <a class="link" href="EvaSocketAddress.html#eva-socket-address-system-supports-ipv6" title="eva_socket_address_system_supports_ipv6 ()">eva_socket_address_system_supports_ipv6</a>
                                                         (void);
-void                <a class="link" href="GskSocketAddress.html#eva-socket-address-register-subclass" title="eva_socket_address_register_subclass ()">eva_socket_address_register_subclass</a>
-                                                        (<a class="link" href="GskSocketAddress.html#GskSocketAddressClass" title="GskSocketAddressClass">GskSocketAddressClass</a> *klass);
-int                 <a class="link" href="GskSocketAddress.html#eva-socket-address-connect-fd" title="eva_socket_address_connect_fd ()">eva_socket_address_connect_fd</a>       (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address,
+void                <a class="link" href="EvaSocketAddress.html#eva-socket-address-register-subclass" title="eva_socket_address_register_subclass ()">eva_socket_address_register_subclass</a>
+                                                        (<a class="link" href="EvaSocketAddress.html#EvaSocketAddressClass" title="EvaSocketAddressClass">EvaSocketAddressClass</a> *klass);
+int                 <a class="link" href="EvaSocketAddress.html#eva-socket-address-connect-fd" title="eva_socket_address_connect_fd ()">eva_socket_address_connect_fd</a>       (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> *is_connected,
@@ -119,13 +119,13 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskSocketAddress.html#eva-socket-address-finish-fd" title="eva_socket_address_finish_fd ()">eva_socket_address_finish_fd</a>        (int fd,
+>gboolean</a>            <a class="link" href="EvaSocketAddress.html#eva-socket-address-finish-fd" title="eva_socket_address_finish_fd ()">eva_socket_address_finish_fd</a>        (int fd,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskSocketAddress.html#eva-socket-address-equals" title="eva_socket_address_equals ()">eva_socket_address_equals</a>           (<a
+>gboolean</a>            <a class="link" href="EvaSocketAddress.html#eva-socket-address-equals" title="eva_socket_address_equals ()">eva_socket_address_equals</a>           (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> address_a_ptr,
                                                          <a
@@ -133,48 +133,48 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstp
 >gconstpointer</a> address_b_ptr);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="GskSocketAddress.html#eva-socket-address-hash" title="eva_socket_address_hash ()">eva_socket_address_hash</a>             (<a
+>guint</a>               <a class="link" href="EvaSocketAddress.html#eva-socket-address-hash" title="eva_socket_address_hash ()">eva_socket_address_hash</a>             (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> address_ptr);
-#define             <a class="link" href="GskSocketAddress.html#EVA-SOCKET-ADDRESS-REMOTE-QUARK--CAPS" title="EVA_SOCKET_ADDRESS_REMOTE_QUARK">EVA_SOCKET_ADDRESS_REMOTE_QUARK</a>
-#define             <a class="link" href="GskSocketAddress.html#EVA-SOCKET-ADDRESS-LOCAL-QUARK--CAPS" title="EVA_SOCKET_ADDRESS_LOCAL_QUARK">EVA_SOCKET_ADDRESS_LOCAL_QUARK</a>
+#define             <a class="link" href="EvaSocketAddress.html#EVA-SOCKET-ADDRESS-REMOTE-QUARK--CAPS" title="EVA_SOCKET_ADDRESS_REMOTE_QUARK">EVA_SOCKET_ADDRESS_REMOTE_QUARK</a>
+#define             <a class="link" href="EvaSocketAddress.html#EVA-SOCKET-ADDRESS-LOCAL-QUARK--CAPS" title="EVA_SOCKET_ADDRESS_LOCAL_QUARK">EVA_SOCKET_ADDRESS_LOCAL_QUARK</a>
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskSocketAddress.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaSocketAddress.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----GskSocketAddress
-         +----<a class="link" href="GskSocketAddress.html#GskSocketAddressIpv4">GskSocketAddressIpv4</a>
-         +----<a class="link" href="GskSocketAddress.html#GskSocketAddressIpv6">GskSocketAddressIpv6</a>
-         +----<a class="link" href="GskSocketAddress.html#GskSocketAddressLocal">GskSocketAddressLocal</a>
+   +----EvaSocketAddress
+         +----<a class="link" href="EvaSocketAddress.html#EvaSocketAddressIpv4">EvaSocketAddressIpv4</a>
+         +----<a class="link" href="EvaSocketAddress.html#EvaSocketAddressIpv6">EvaSocketAddressIpv6</a>
+         +----<a class="link" href="EvaSocketAddress.html#EvaSocketAddressLocal">EvaSocketAddressLocal</a>
 </pre>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a>
-         +----GskSocketAddressIpv4
+   +----<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a>
+         +----EvaSocketAddressIpv4
 </pre>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a>
-         +----GskSocketAddressLocal
+   +----<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a>
+         +----EvaSocketAddressLocal
 </pre>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a>
-         +----GskSocketAddressIpv6
+   +----<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a>
+         +----EvaSocketAddressIpv6
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskSocketAddress.description"></a><h2>Description</h2>
+<a name="EvaSocketAddress.description"></a><h2>Description</h2>
 <p>
 This is a <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
@@ -182,25 +182,25 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskSocketAddress.details"></a><h2>Details</h2>
+<a name="EvaSocketAddress.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskSocketAddressClass"></a><h3>GskSocketAddressClass</h3>
+<a name="EvaSocketAddressClass"></a><h3>EvaSocketAddressClass</h3>
 <pre class="programlisting">typedef struct {
   GObjectClass object_class;
   gsize sizeof_native_address;
   gint protocol_family;		/* eg PF_INET, PF_LOCAL etc */
   gint address_family;		/* eg AF_INET, AF_LOCAL etc */
-  gboolean (*to_native)  (GskSocketAddress *address,
+  gboolean (*to_native)  (EvaSocketAddress *address,
 			  gpointer          output);
-  gboolean (*from_native)(GskSocketAddress *address,
+  gboolean (*from_native)(EvaSocketAddress *address,
 			  gconstpointer     sockaddr_data,
 			  gsize             sockaddr_length);
-  char    *(*to_string)  (GskSocketAddress *address);
+  char    *(*to_string)  (EvaSocketAddress *address);
   /* note: both addresses will be of exactly the same type */
-  gboolean (*equals)     (GskSocketAddress *addr1,
-			  GskSocketAddress *addr2);
-  guint    (*hash)       (GskSocketAddress *addr);
-} GskSocketAddressClass;
+  gboolean (*equals)     (EvaSocketAddress *addr1,
+			  EvaSocketAddress *addr2);
+  guint    (*hash)       (EvaSocketAddress *addr);
+} EvaSocketAddressClass;
 </pre>
 <p>
 The base-class for all types of socket-addresses.
@@ -255,7 +255,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 </tr>
 <tr>
 <td><p><span class="term"><em class="structfield"><code>equals</code></em> ()</span></p></td>
-<td>Test if this is equal to another <a class="link" href="GskSocketAddress.html" title="Socket Addresses."><span class="type">GskSocketAddress</span></a>
+<td>Test if this is equal to another <a class="link" href="EvaSocketAddress.html" title="Socket Addresses."><span class="type">EvaSocketAddress</span></a>
 of this exact type are equal.
 </td>
 </tr>
@@ -269,16 +269,16 @@ of this exact type are equal.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskSocketAddress-struct"></a><h3>GskSocketAddress</h3>
-<pre class="programlisting">typedef struct _GskSocketAddress GskSocketAddress;</pre>
+<a name="EvaSocketAddress-struct"></a><h3>EvaSocketAddress</h3>
+<pre class="programlisting">typedef struct _EvaSocketAddress EvaSocketAddress;</pre>
 <p>
 The base instance for all socket addresses.
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskSocketAddressIpv4-struct"></a><h3>GskSocketAddressIpv4</h3>
-<pre class="programlisting">typedef struct _GskSocketAddressIpv4 GskSocketAddressIpv4;</pre>
+<a name="EvaSocketAddressIpv4-struct"></a><h3>EvaSocketAddressIpv4</h3>
+<pre class="programlisting">typedef struct _EvaSocketAddressIpv4 EvaSocketAddressIpv4;</pre>
 <p>
 An IPv4 Socket Address.  This is a 4-byte host IP address
 and a 2-byte port number (as a guint16).
@@ -286,27 +286,27 @@ and a 2-byte port number (as a guint16).
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskSocketAddressLocal-struct"></a><h3>GskSocketAddressLocal</h3>
-<pre class="programlisting">typedef struct _GskSocketAddressLocal GskSocketAddressLocal;</pre>
+<a name="EvaSocketAddressLocal-struct"></a><h3>EvaSocketAddressLocal</h3>
+<pre class="programlisting">typedef struct _EvaSocketAddressLocal EvaSocketAddressLocal;</pre>
 <p>
 A local socket, often called a UNIX-domain socket.
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskSocketAddressIpv6-struct"></a><h3>GskSocketAddressIpv6</h3>
-<pre class="programlisting">typedef struct _GskSocketAddressIpv6 GskSocketAddressIpv6;</pre>
+<a name="EvaSocketAddressIpv6-struct"></a><h3>EvaSocketAddressIpv6</h3>
+<pre class="programlisting">typedef struct _EvaSocketAddressIpv6 EvaSocketAddressIpv6;</pre>
 <p>
 An IPv6 Socket Address.  For now, the IPv6 implementation is unfinished.
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskSocketAddressEthernet"></a><h3>GskSocketAddressEthernet</h3>
+<a name="EvaSocketAddressEthernet"></a><h3>EvaSocketAddressEthernet</h3>
 <pre class="programlisting">typedef struct {
-  GskSocketAddress      socket_address;
+  EvaSocketAddress      socket_address;
   guint8                mac_address[6];
-} GskSocketAddressEthernet;
+} EvaSocketAddressEthernet;
 </pre>
 <p>
 </p>
@@ -314,14 +314,14 @@ An IPv6 Socket Address.  For now, the IPv6 implementation is unfinished.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-socket-address-from-native"></a><h3>eva_socket_address_from_native ()</h3>
-<pre class="programlisting"><a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *  eva_socket_address_from_native      (<a
+<pre class="programlisting"><a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *  eva_socket_address_from_native      (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> native_data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
 >gsize</a> native_size);</pre>
 <p>
-Allocate a new GskSocketAddress based on
+Allocate a new EvaSocketAddress based on
 native_data, if we know how.</p>
 <p>
 </p>
@@ -340,7 +340,7 @@ native_data, if we know how.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new GskSocketAddress or NULL if we could not interpret the sockaddr.
+<td> a new EvaSocketAddress or NULL if we could not interpret the sockaddr.
 </td>
 </tr>
 </tbody>
@@ -351,7 +351,7 @@ native_data, if we know how.</p>
 <a name="eva-socket-address-protocol-family"></a><h3>eva_socket_address_protocol_family ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a>                eva_socket_address_protocol_family  (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);</pre>
+>gint</a>                eva_socket_address_protocol_family  (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);</pre>
 <p>
 Get the PF_* macro value corresponding to this address.</p>
 <p>
@@ -377,7 +377,7 @@ Get the PF_* macro value corresponding to this address.</p>
 <a name="eva-socket-address-address-family"></a><h3>eva_socket_address_address_family ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a>                eva_socket_address_address_family   (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);</pre>
+>gint</a>                eva_socket_address_address_family   (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);</pre>
 <p>
 Get the AF_* macro value corresponding to this address.</p>
 <p>
@@ -403,7 +403,7 @@ Get the AF_* macro value corresponding to this address.</p>
 <a name="eva-socket-address-sizeof-native"></a><h3>eva_socket_address_sizeof_native ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_socket_address_sizeof_native    (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);</pre>
+>guint</a>               eva_socket_address_sizeof_native    (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);</pre>
 <p>
 Determine how many bytes of storage the sockaddr_t
 based on this object will require.</p>
@@ -430,7 +430,7 @@ based on this object will require.</p>
 <a name="eva-socket-address-to-native"></a><h3>eva_socket_address_to_native ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_socket_address_to_native        (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address,
+>gboolean</a>            eva_socket_address_to_native        (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> output,
@@ -470,7 +470,7 @@ Convert a socket-address to its native form.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-socket-address-to-string"></a><h3>eva_socket_address_to_string ()</h3>
-<pre class="programlisting">char *              eva_socket_address_to_string        (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);</pre>
+<pre class="programlisting">char *              eva_socket_address_to_string        (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);</pre>
 <p>
 Convert a socket-address to a newly allocated string,
 which the caller must free.</p>
@@ -510,7 +510,7 @@ on the given port.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the newly allocated <a class="link" href="GskSocketAddress.html#GskSocketAddressIpv4"><span class="type">GskSocketAddressIpv4</span></a>.
+<td>the newly allocated <a class="link" href="EvaSocketAddress.html#EvaSocketAddressIpv4"><span class="type">EvaSocketAddressIpv4</span></a>.
 </td>
 </tr>
 </tbody>
@@ -519,7 +519,7 @@ on the given port.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-socket-address-ipv4-new"></a><h3>eva_socket_address_ipv4_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *  eva_socket_address_ipv4_new         (const <a
+<pre class="programlisting"><a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *  eva_socket_address_ipv4_new         (const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint8"
 >guint8</a> *ip_address,
                                                          <a
@@ -544,7 +544,7 @@ Allocate a new IPv4 address given a numeric IP and port number.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new GskSocketAddress
+<td> a new EvaSocketAddress
 </td>
 </tr>
 </tbody>
@@ -553,7 +553,7 @@ Allocate a new IPv4 address given a numeric IP and port number.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-socket-address-ipv6-new"></a><h3>eva_socket_address_ipv6_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *  eva_socket_address_ipv6_new         (const <a
+<pre class="programlisting"><a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *  eva_socket_address_ipv6_new         (const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint8"
 >guint8</a> *address,
                                                          <a
@@ -585,7 +585,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint16
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-socket-address-ethernet-new"></a><h3>eva_socket_address_ethernet_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *  eva_socket_address_ethernet_new     (const <a
+<pre class="programlisting"><a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *  eva_socket_address_ethernet_new     (const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint8"
 >guint8</a> *mac_addr);</pre>
 <p>
@@ -612,7 +612,7 @@ ethernet device.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-socket-address-local-new"></a><h3>eva_socket_address_local_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *  eva_socket_address_local_new        (const char *path);</pre>
+<pre class="programlisting"><a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *  eva_socket_address_local_new        (const char *path);</pre>
 <p>
 Create a socket-address which is associated with a path
 in the local filesystem.  Such socket-addresses
@@ -662,7 +662,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 <div class="refsect2" lang="en">
 <a name="eva-socket-address-register-subclass"></a><h3>eva_socket_address_register_subclass ()</h3>
 <pre class="programlisting">void                eva_socket_address_register_subclass
-                                                        (<a class="link" href="GskSocketAddress.html#GskSocketAddressClass" title="GskSocketAddressClass">GskSocketAddressClass</a> *klass);</pre>
+                                                        (<a class="link" href="EvaSocketAddress.html#EvaSocketAddressClass" title="EvaSocketAddressClass">EvaSocketAddressClass</a> *klass);</pre>
 <p>
 Add the class to a per address-family hash table
 for use converting from native.</p>
@@ -680,7 +680,7 @@ for use converting from native.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-socket-address-connect-fd"></a><h3>eva_socket_address_connect_fd ()</h3>
-<pre class="programlisting">int                 eva_socket_address_connect_fd       (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address,
+<pre class="programlisting">int                 eva_socket_address_connect_fd       (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> *is_connected,
@@ -698,7 +698,7 @@ and a non-negative file descriptor will be returned.
 <p>
 Sometimes connections only partially succeed,
 in which case *<em class="parameter"><code>is_connected</code></em> will be set to FALSE,
-and you must call <a class="link" href="GskSocketAddress.html#eva-socket-address-finish-fd" title="eva_socket_address_finish_fd ()"><code class="function">eva_socket_address_finish_fd()</code></a> whenever the
+and you must call <a class="link" href="EvaSocketAddress.html#eva-socket-address-finish-fd" title="eva_socket_address_finish_fd ()"><code class="function">eva_socket_address_finish_fd()</code></a> whenever the
 file-description polls ready to input or output.
 </p>
 <p>
@@ -781,11 +781,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstp
 <p>
 This function is a GEqualFunc which can determine
 if two socket address are the same.
-This is principally used with <a class="link" href="GskSocketAddress.html#eva-socket-address-hash" title="eva_socket_address_hash ()"><span class="type">eva_socket_address_hash</span></a>
+This is principally used with <a class="link" href="EvaSocketAddress.html#eva-socket-address-hash" title="eva_socket_address_hash ()"><span class="type">eva_socket_address_hash</span></a>
 to make a hash-table mapping from socket-addresses.
 </p>
 <p>
-(This just uses the virtual method of GskSocketAddressClass)</p>
+(This just uses the virtual method of EvaSocketAddressClass)</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -793,12 +793,12 @@ to make a hash-table mapping from socket-addresses.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>address_a_ptr</code></em> :</span></p></td>
-<td> a pointer to a <a class="link" href="GskSocketAddress.html" title="Socket Addresses."><span class="type">GskSocketAddress</span></a>.
+<td> a pointer to a <a class="link" href="EvaSocketAddress.html" title="Socket Addresses."><span class="type">EvaSocketAddress</span></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>address_b_ptr</code></em> :</span></p></td>
-<td> a pointer to a <a class="link" href="GskSocketAddress.html" title="Socket Addresses."><span class="type">GskSocketAddress</span></a>.
+<td> a pointer to a <a class="link" href="EvaSocketAddress.html" title="Socket Addresses."><span class="type">EvaSocketAddress</span></a>.
 </td>
 </tr>
 <tr>
@@ -822,11 +822,11 @@ This function is a GHashFunc which can determine
 a hash value for a socket-address.
 </p>
 <p>
-This is principally used with <a class="link" href="GskSocketAddress.html#eva-socket-address-equals" title="eva_socket_address_equals ()"><span class="type">eva_socket_address_equals</span></a>
+This is principally used with <a class="link" href="EvaSocketAddress.html#eva-socket-address-equals" title="eva_socket_address_equals ()"><span class="type">eva_socket_address_equals</span></a>
 to make a hash-table mapping from socket-addresses.
 </p>
 <p>
-(This just uses the virtual method of GskSocketAddressClass)</p>
+(This just uses the virtual method of EvaSocketAddressClass)</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -834,7 +834,7 @@ to make a hash-table mapping from socket-addresses.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>address_ptr</code></em> :</span></p></td>
-<td> a pointer to a <a class="link" href="GskSocketAddress.html" title="Socket Addresses."><span class="type">GskSocketAddress</span></a>.
+<td> a pointer to a <a class="link" href="EvaSocketAddress.html" title="Socket Addresses."><span class="type">EvaSocketAddress</span></a>.
 </td>
 </tr>
 <tr>

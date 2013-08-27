@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskPacketQueueFd</title>
+<title>EvaPacketQueueFd</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch04.html" title="Standard Implementations">
 <link rel="prev" href="ch04.html" title="Standard Implementations">
-<link rel="next" href="GskStreamFd.html" title="GskStreamFd">
+<link rel="next" href="EvaStreamFd.html" title="EvaStreamFd">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -34,43 +34,43 @@
 <td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="GskStreamFd.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="EvaStreamFd.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskPacketQueueFd.synopsis" class="shortcut">Top</a>
+<a href="#EvaPacketQueueFd.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskPacketQueueFd.description" class="shortcut">Description</a>
+                <a href="#EvaPacketQueueFd.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskPacketQueueFd.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaPacketQueueFd.object-hierarchy" class="shortcut">Object Hierarchy</a>
                  | 
-                <a href="#GskPacketQueueFd.properties" class="shortcut">Properties</a>
+                <a href="#EvaPacketQueueFd.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskPacketQueueFd"></a><div class="titlepage"></div>
+<a name="EvaPacketQueueFd"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskPacketQueueFd.top_of_page"></a>GskPacketQueueFd</span></h2>
-<p>GskPacketQueueFd — A PacketQueue based on a file descriptor.</p>
+<h2><span class="refentrytitle"><a name="EvaPacketQueueFd.top_of_page"></a>EvaPacketQueueFd</span></h2>
+<p>EvaPacketQueueFd — A PacketQueue based on a file descriptor.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskPacketQueueFd.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaPacketQueueFd.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="GskPacketQueueFd.html#GskPacketQueueFd-struct" title="GskPacketQueueFd">GskPacketQueueFd</a>;
-<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *    <a class="link" href="GskPacketQueueFd.html#eva-packet-queue-fd-new" title="eva_packet_queue_fd_new ()">eva_packet_queue_fd_new</a>             (int fd);
-<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *    <a class="link" href="GskPacketQueueFd.html#eva-packet-queue-fd-new-by-family" title="eva_packet_queue_fd_new_by_family ()">eva_packet_queue_fd_new_by_family</a>   (int addr_family,
+                    <a class="link" href="EvaPacketQueueFd.html#EvaPacketQueueFd-struct" title="EvaPacketQueueFd">EvaPacketQueueFd</a>;
+<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *    <a class="link" href="EvaPacketQueueFd.html#eva-packet-queue-fd-new" title="eva_packet_queue_fd_new ()">eva_packet_queue_fd_new</a>             (int fd);
+<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *    <a class="link" href="EvaPacketQueueFd.html#eva-packet-queue-fd-new-by-family" title="eva_packet_queue_fd_new_by_family ()">eva_packet_queue_fd_new_by_family</a>   (int addr_family,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *    <a class="link" href="GskPacketQueueFd.html#eva-packet-queue-fd-new-bound" title="eva_packet_queue_fd_new_bound ()">eva_packet_queue_fd_new_bound</a>       (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address,
+<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *    <a class="link" href="EvaPacketQueueFd.html#eva-packet-queue-fd-new-bound" title="eva_packet_queue_fd_new_bound ()">eva_packet_queue_fd_new_bound</a>       (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GskPacketQueueFd.html#eva-packet-queue-fd-set-broadcast" title="eva_packet_queue_fd_set_broadcast ()">eva_packet_queue_fd_set_broadcast</a>   (<a class="link" href="GskPacketQueueFd.html" title="GskPacketQueueFd">GskPacketQueueFd</a> *packet_queue_fd,
+>gboolean</a>            <a class="link" href="EvaPacketQueueFd.html#eva-packet-queue-fd-set-broadcast" title="eva_packet_queue_fd_set_broadcast ()">eva_packet_queue_fd_set_broadcast</a>   (<a class="link" href="EvaPacketQueueFd.html" title="EvaPacketQueueFd">EvaPacketQueueFd</a> *packet_queue_fd,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> allow_broadcast,
@@ -80,42 +80,42 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskPacketQueueFd.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaPacketQueueFd.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a>
-         +----<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a>
-               +----GskPacketQueueFd
+   +----<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a>
+         +----<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a>
+               +----EvaPacketQueueFd
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskPacketQueueFd.properties"></a><h2>Properties</h2>
+<a name="EvaPacketQueueFd.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a class="link" href="GskPacketQueueFd.html#GskPacketQueueFd--file-descriptor" title='The "file-descriptor" property'>file-descriptor</a>"          GskFd                 : Read / Write / Construct Only
+  "<a class="link" href="EvaPacketQueueFd.html#EvaPacketQueueFd--file-descriptor" title='The "file-descriptor" property'>file-descriptor</a>"          EvaFd                 : Read / Write / Construct Only
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskPacketQueueFd.description"></a><h2>Description</h2>
+<a name="EvaPacketQueueFd.description"></a><h2>Description</h2>
 <p>
 A datagram client or server.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskPacketQueueFd.details"></a><h2>Details</h2>
+<a name="EvaPacketQueueFd.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskPacketQueueFd-struct"></a><h3>GskPacketQueueFd</h3>
-<pre class="programlisting">typedef struct _GskPacketQueueFd GskPacketQueueFd;</pre>
+<a name="EvaPacketQueueFd-struct"></a><h3>EvaPacketQueueFd</h3>
+<pre class="programlisting">typedef struct _EvaPacketQueueFd EvaPacketQueueFd;</pre>
 <p>
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-packet-queue-fd-new"></a><h3>eva_packet_queue_fd_new ()</h3>
-<pre class="programlisting"><a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *    eva_packet_queue_fd_new             (int fd);</pre>
+<pre class="programlisting"><a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *    eva_packet_queue_fd_new             (int fd);</pre>
 <p>
-Create a new <a class="link" href="GskPacketQueue.html" title="Datagram I/O"><span class="type">GskPacketQueue</span></a> from an already opened
+Create a new <a class="link" href="EvaPacketQueue.html" title="Datagram I/O"><span class="type">EvaPacketQueue</span></a> from an already opened
 file-descriptor.</p>
 <p>
 </p>
@@ -138,7 +138,7 @@ file-descriptor.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-packet-queue-fd-new-by-family"></a><h3>eva_packet_queue_fd_new_by_family ()</h3>
-<pre class="programlisting"><a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *    eva_packet_queue_fd_new_by_family   (int addr_family,
+<pre class="programlisting"><a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *    eva_packet_queue_fd_new_by_family   (int addr_family,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -149,8 +149,8 @@ is the sequence of AF_ defines in the header &amp;lt;sys/socket.h&amp;gt;
 on most unices.
 </p>
 <p>
-The address family of a <a class="link" href="GskSocketAddress.html" title="Socket Addresses."><span class="type">GskSocketAddress</span></a> may be found
-using <a class="link" href="GskSocketAddress.html#eva-socket-address-protocol-family" title="eva_socket_address_protocol_family ()"><code class="function">eva_socket_address_protocol_family()</code></a>.</p>
+The address family of a <a class="link" href="EvaSocketAddress.html" title="Socket Addresses."><span class="type">EvaSocketAddress</span></a> may be found
+using <a class="link" href="EvaSocketAddress.html#eva-socket-address-protocol-family" title="eva_socket_address_protocol_family ()"><code class="function">eva_socket_address_protocol_family()</code></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -177,7 +177,7 @@ using <a class="link" href="GskSocketAddress.html#eva-socket-address-protocol-fa
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-packet-queue-fd-new-bound"></a><h3>eva_packet_queue_fd_new_bound ()</h3>
-<pre class="programlisting"><a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *    eva_packet_queue_fd_new_bound       (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address,
+<pre class="programlisting"><a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *    eva_packet_queue_fd_new_bound       (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -218,7 +218,7 @@ and a stream-listener.</p>
 <a name="eva-packet-queue-fd-set-broadcast"></a><h3>eva_packet_queue_fd_set_broadcast ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_packet_queue_fd_set_broadcast   (<a class="link" href="GskPacketQueueFd.html" title="GskPacketQueueFd">GskPacketQueueFd</a> *packet_queue_fd,
+>gboolean</a>            eva_packet_queue_fd_set_broadcast   (<a class="link" href="EvaPacketQueueFd.html" title="EvaPacketQueueFd">EvaPacketQueueFd</a> *packet_queue_fd,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> allow_broadcast,
@@ -261,10 +261,10 @@ disallow broadcast packets.
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskPacketQueueFd.property-details"></a><h2>Property Details</h2>
+<a name="EvaPacketQueueFd.property-details"></a><h2>Property Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskPacketQueueFd--file-descriptor"></a><h3>The <code class="literal">"file-descriptor"</code> property</h3>
-<pre class="programlisting">  "file-descriptor"          GskFd                 : Read / Write / Construct Only</pre>
+<a name="EvaPacketQueueFd--file-descriptor"></a><h3>The <code class="literal">"file-descriptor"</code> property</h3>
+<pre class="programlisting">  "file-descriptor"          EvaFd                 : Read / Write / Construct Only</pre>
 <p>for reading and/or writing.</p>
 </div>
 </div>

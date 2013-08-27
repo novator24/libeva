@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskMainLoopKqueue</title>
+<title>EvaMainLoopKqueue</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch13.html" title="Main Loops">
-<link rel="prev" href="GskMainLoopDevPoll.html" title="GskMainLoopDevPoll">
-<link rel="next" href="GskMainLoopPoll.html" title="GskMainLoopPoll">
+<link rel="prev" href="EvaMainLoopDevPoll.html" title="EvaMainLoopDevPoll">
+<link rel="next" href="EvaMainLoopPoll.html" title="EvaMainLoopPoll">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -30,57 +30,57 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskMainLoopDevPoll.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaMainLoopDevPoll.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch13.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="GskMainLoopPoll.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="EvaMainLoopPoll.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
-<a href="#GskMainLoopKqueue.synopsis" class="shortcut">Top</a>
+<a href="#EvaMainLoopKqueue.synopsis" class="shortcut">Top</a>
                  | 
-                <a href="#GskMainLoopKqueue.description" class="shortcut">Description</a>
+                <a href="#EvaMainLoopKqueue.description" class="shortcut">Description</a>
                  | 
-                <a href="#GskMainLoopKqueue.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                <a href="#EvaMainLoopKqueue.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" lang="en">
-<a name="GskMainLoopKqueue"></a><div class="titlepage"></div>
+<a name="EvaMainLoopKqueue"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="GskMainLoopKqueue.top_of_page"></a>GskMainLoopKqueue</span></h2>
-<p>GskMainLoopKqueue — a kqueue-based event loop.</p>
+<h2><span class="refentrytitle"><a name="EvaMainLoopKqueue.top_of_page"></a>EvaMainLoopKqueue</span></h2>
+<p>EvaMainLoopKqueue — a kqueue-based event loop.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<a name="GskMainLoopKqueue.synopsis"></a><h2>Synopsis</h2>
+<a name="EvaMainLoopKqueue.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="GskMainLoopKqueue.html#GskMainLoopKqueue-struct" title="GskMainLoopKqueue">GskMainLoopKqueue</a>;
+                    <a class="link" href="EvaMainLoopKqueue.html#EvaMainLoopKqueue-struct" title="EvaMainLoopKqueue">EvaMainLoopKqueue</a>;
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskMainLoopKqueue.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<a name="EvaMainLoopKqueue.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">GskMainLoop</a>
-         +----GskMainLoopKqueue
+   +----<a class="link" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">EvaMainLoop</a>
+         +----EvaMainLoopKqueue
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskMainLoopKqueue.description"></a><h2>Description</h2>
+<a name="EvaMainLoopKqueue.description"></a><h2>Description</h2>
 <p>
 A main-loop implemented in terms of kqueue(2), which is
 a generic event filter for BSD.
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="GskMainLoopKqueue.details"></a><h2>Details</h2>
+<a name="EvaMainLoopKqueue.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskMainLoopKqueue-struct"></a><h3>GskMainLoopKqueue</h3>
-<pre class="programlisting">typedef struct _GskMainLoopKqueue GskMainLoopKqueue;</pre>
+<a name="EvaMainLoopKqueue-struct"></a><h3>EvaMainLoopKqueue</h3>
+<pre class="programlisting">typedef struct _EvaMainLoopKqueue EvaMainLoopKqueue;</pre>
 <p>
 The kqueue(2)-based main-loop.
 </p>
