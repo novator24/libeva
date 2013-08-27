@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="EVA Reference Manual" link="index.html" author="" name="eva">
+  <chapters>
+    <sub name="Core Library Support" link="ch01.html">
+      <sub name="Lightweight Hookable Events" link="eva-evahook.html"/>
+      <sub name="Library Initialization" link="eva-evainit.html"/>
+      <sub name="Helpful Macros" link="eva-evamacros.html"/>
+      <sub name="Base Input/Output Object" link="GskIO.html"/>
+      <sub name="Binary Input/Output Stream Base" link="GskStream.html"/>
+      <sub name="evastreamconnection" link="eva-evastreamconnection.html"/>
+      <sub name="Main Loop (Generic Event Management)" link="GskMainLoop.html"/>
+      <sub name="Socket Address Lookup by Name" link="eva-evanameresolver.html"/>
+      <sub name="Useful GTypes" link="eva-evatypes.html"/>
+      <sub name="GskBuffer" link="eva-evabuffer.html"/>
+      <sub name="Old-Fashioned errno Handling" link="eva-evaerrno.html"/>
+      <sub name="Error Codes" link="eva-evaerror.html"/>
+      <sub name="Trivial Main Functions." link="eva-evamain.html"/>
+      <sub name="Glib Helper Routines" link="eva-evaghelpers.html"/>
+      <sub name="Datagram I/O" link="GskPacketQueue.html"/>
+      <sub name="Binary Packet" link="eva-evapacket.html"/>
+      <sub name="Listening for Connections" link="GskStreamListener.html"/>
+      <sub name="Client Stream" link="eva-evastreamclient.html"/>
+      <sub name="Socket Addresses." link="GskSocketAddress.html"/>
+      <sub name="evalog" link="eva-evalog.html"/>
+      <sub name="Debugging Hints" link="tutorial-debugging-hints.html"/>
+      <sub name="Runtime Toggled Debug Logging" link="eva-evadebug.html"/>
+      <sub name="evautils" link="eva-evautils.html"/>
+    </sub>
+    <sub name="Object Hierarchy" link="ch02.html"/>
+    <sub name="Tutorials" link="ch03.html">
+      <sub name="Writing a Generic Server" link="tutorial-server.html"/>
+      <sub name="Writing a Generic Client" link="tutorial-client.html"/>
+      <sub name="Writing an HTTP Server" link="tutorial-httpserver.html"/>
+      <sub name="Writing a HTTP Client" link="tutorial-httpclient.html"/>
+    </sub>
+    <sub name="Standard Implementations" link="ch04.html">
+      <sub name="GskPacketQueueFd" link="GskPacketQueueFd.html"/>
+      <sub name="GskStreamFd" link="GskStreamFd.html"/>
+      <sub name="GskStreamExternal" link="eva-GskStreamExternal.html"/>
+      <sub name="GskStreamListenerSocket" link="GskStreamListenerSocket.html"/>
+      <sub name="evabufferstream" link="eva-evabufferstream.html"/>
+    </sub>
+    <sub name="Standard Objects: the URL class" link="ch05.html">
+      <sub name="GskUrl" link="GskUrl.html"/>
+      <sub name="GskUrlTransfer" link="GskUrlTransfer.html"/>
+      <sub name="GskUrlTransferHttp" link="GskUrlTransferHttp.html"/>
+    </sub>
+    <sub name="Standard Streams:  the HTTP client and server" link="ch06.html">
+      <sub name="GskHttpHeader" link="GskHttpHeader.html"/>
+      <sub name="GskHttpRequest" link="GskHttpRequest.html"/>
+      <sub name="GskHttpResponse" link="GskHttpResponse.html"/>
+      <sub name="GskHttpClient" link="GskHttpClient.html"/>
+      <sub name="GskHttpServer" link="GskHttpServer.html"/>
+    </sub>
+    <sub name="Standard Streams:  standard compression algorithms" link="ch07.html">
+      <sub name="GskZlibDeflator" link="eva-GskZlibDeflator.html"/>
+      <sub name="GskZlibInflator" link="eva-GskZlibInflator.html"/>
+      <sub name="evazlib" link="eva-evazlib.html"/>
+    </sub>
+    <sub name="Standard Streams:  utility streams" link="ch08.html">
+      <sub name="GskStreamQueue" link="eva-GskStreamQueue.html"/>
+      <sub name="memory-based streams" link="eva-evamemory.html"/>
+    </sub>
+    <sub name="DNS library (client and server support)" link="ch09.html">
+      <sub name="evadns" link="eva-evadns.html"/>
+      <sub name="evadnsrrcache" link="eva-evadnsrrcache.html"/>
+      <sub name="evadnsclient" link="eva-evadnsclient.html"/>
+      <sub name="evadnslocalresolver" link="eva-evadnslocalresolver.html"/>
+      <sub name="evadnsresolver" link="eva-evadnsresolver.html"/>
+      <sub name="evadnsserver" link="eva-evadnsserver.html"/>
+    </sub>
+    <sub name="SSL interface" link="ch10.html">
+      <sub name="GskStreamSsl" link="eva-evastreamssl.html"/>
+    </sub>
+    <sub name="MIME handling" link="ch11.html">
+      <sub name="evamimemultipartpiece" link="eva-evamimemultipartpiece.html"/>
+      <sub name="GskMimeMultipartDecoder" link="eva-GskMimeMultipartDecoder.html"/>
+    </sub>
+    <sub name="RPC protocols" link="ch12.html">
+      <sub name="evaxmlrpc" link="eva-evaxmlrpc.html"/>
+      <sub name="GskXmlrpcStream" link="eva-GskXmlrpcStream.html"/>
+    </sub>
+    <sub name="Main Loops" link="ch13.html">
+      <sub name="GskMainLoopDevPoll" link="GskMainLoopDevPoll.html"/>
+      <sub name="GskMainLoopKqueue" link="GskMainLoopKqueue.html"/>
+      <sub name="GskMainLoopPoll" link="GskMainLoopPoll.html"/>
+      <sub name="GskMainLoopPollBase" link="GskMainLoopPollBase.html"/>
+      <sub name="GskMainLoopSelect" link="GskMainLoopSelect.html"/>
+    </sub>
+    <sub name="Odds and Ends" link="ch14.html">
+      <sub name="Base-64" link="eva-evabase64.html"/>
+      <sub name="evahash" link="eva-evahash.html"/>
+      <sub name="evamempool" link="eva-evamempool.html"/>
+      <sub name="evanetworkinterface" link="eva-evanetworkinterface.html"/>
+      <sub name="evadate" link="eva-evadate.html"/>
+    </sub>
+    <sub name="Macro Madness" link="ch15.html">
+      <sub name="evalistmacros" link="eva-evalistmacros.html"/>
+      <sub name="evarbtreemacros" link="eva-evarbtreemacros.html"/>
+      <sub name="evaqsortmacro" link="eva-evaqsortmacro.html"/>
+    </sub>
+    <sub name="Questionable ideas" link="ch16.html">
+      <sub name="evatree" link="eva-evatree.html"/>
+      <sub name="evafork" link="eva-evafork.html"/>
+    </sub>
+  </chapters>
+  <functions>
+    <function name="GskHook" link="eva-evahook.html#GskHook"/>
+    <function name="GskHookFunc ()" link="eva-evahook.html#GskHookFunc"/>
+    <function name="GskHookSetPollFunc ()" link="eva-evahook.html#GskHookSetPollFunc"/>
+    <function name="GskHookShutdownFunc ()" link="eva-evahook.html#GskHookShutdownFunc"/>
+    <function name="GskHookShutdownErrorFunc ()" link="eva-evahook.html#GskHookShutdownErrorFunc"/>
+    <function name="enum GskHookFlags" link="eva-evahook.html#GskHookFlags"/>
+    <function name="EVA_HOOK_GET_OBJECT()" link="eva-evahook.html#EVA-HOOK-GET-OBJECT--CAPS"/>
+    <function name="EVA_HOOK_TEST_FLAG()" link="eva-evahook.html#EVA-HOOK-TEST-FLAG--CAPS"/>
+    <function name="EVA_HOOK_SET_FLAG" link="eva-evahook.html#EVA-HOOK-SET-FLAG--CAPS"/>
+    <function name="EVA_HOOK_CLEAR_FLAG()" link="eva-evahook.html#EVA-HOOK-CLEAR-FLAG--CAPS"/>
+    <function name="EVA_HOOK_TEST_USER_FLAG()" link="eva-evahook.html#EVA-HOOK-TEST-USER-FLAG--CAPS"/>
+    <function name="EVA_HOOK_MARK_USER_FLAG()" link="eva-evahook.html#EVA-HOOK-MARK-USER-FLAG--CAPS"/>
+    <function name="EVA_HOOK_CLEAR_USER_FLAG()" link="eva-evahook.html#EVA-HOOK-CLEAR-USER-FLAG--CAPS"/>
+    <function name="EVA_HOOK_TEST_SHUTTING_DOWN()" link="eva-evahook.html#EVA-HOOK-TEST-SHUTTING-DOWN--CAPS"/>
+    <function name="EVA_HOOK_TEST_NEVER_BLOCKS()" link="eva-evahook.html#EVA-HOOK-TEST-NEVER-BLOCKS--CAPS"/>
+    <function name="EVA_HOOK_TEST_IS_AVAILABLE()" link="eva-evahook.html#EVA-HOOK-TEST-IS-AVAILABLE--CAPS"/>
+    <function name="EVA_HOOK_TEST_IDLE_NOTIFY()" link="eva-evahook.html#EVA-HOOK-TEST-IDLE-NOTIFY--CAPS"/>
+    <function name="eva_hook_trap ()" link="eva-evahook.html#eva-hook-trap"/>
+    <function name="eva_hook_untrap ()" link="eva-evahook.html#eva-hook-untrap"/>
+    <function name="eva_hook_is_trapped()" link="eva-evahook.html#eva-hook-is-trapped"/>
+    <function name="eva_hook_block ()" link="eva-evahook.html#eva-hook-block"/>
+    <function name="eva_hook_unblock ()" link="eva-evahook.html#eva-hook-unblock"/>
+    <function name="eva_hook_shutdown ()" link="eva-evahook.html#eva-hook-shutdown"/>
+    <function name="eva_hook_init ()" link="eva-evahook.html#eva-hook-init"/>
+    <function name="eva_hook_class_init ()" link="eva-evahook.html#eva-hook-class-init"/>
+    <function name="eva_hook_notify ()" link="eva-evahook.html#eva-hook-notify"/>
+    <function name="eva_hook_notify_shutdown ()" link="eva-evahook.html#eva-hook-notify-shutdown"/>
+    <function name="eva_hook_destruct ()" link="eva-evahook.html#eva-hook-destruct"/>
+    <function name="eva_hook_set_idle_notify ()" link="eva-evahook.html#eva-hook-set-idle-notify"/>
+    <function name="eva_hook_mark_idle_notify ()" link="eva-evahook.html#eva-hook-mark-idle-notify"/>
+    <function name="eva_hook_clear_idle_notify ()" link="eva-evahook.html#eva-hook-clear-idle-notify"/>
+    <function name="eva_hook_mark_never_blocks ()" link="eva-evahook.html#eva-hook-mark-never-blocks"/>
+    <function name="eva_hook_get_last_poll_state ()" link="eva-evahook.html#eva-hook-get-last-poll-state"/>
+    <function name="EVA_HOOK_INIT()" link="eva-evahook.html#EVA-HOOK-INIT--CAPS"/>
+    <function name="EVA_HOOK_INIT_NO_SHUTDOWN()" link="eva-evahook.html#EVA-HOOK-INIT-NO-SHUTDOWN--CAPS"/>
+    <function name="EVA_HOOK_CLASS_INIT()" link="eva-evahook.html#EVA-HOOK-CLASS-INIT--CAPS"/>
+    <function name="GskInitInfo" link="eva-evainit.html#GskInitInfo"/>
+    <function name="eva_init_info_get_defaults ()" link="eva-evainit.html#eva-init-info-get-defaults"/>
+    <function name="eva_init ()" link="eva-evainit.html#eva-init"/>
+    <function name="eva_init_without_threads ()" link="eva-evainit.html#eva-init-without-threads"/>
+    <function name="eva_init_get_support_threads()" link="eva-evainit.html#eva-init-get-support-threads"/>
+    <function name="eva_init_info_parse_args ()" link="eva-evainit.html#eva-init-info-parse-args"/>
+    <function name="eva_init_raw ()" link="eva-evainit.html#eva-init-raw"/>
+    <function name="eva_init_flags" link="eva-evainit.html#eva-init-flags"/>
+    <function name="eva_main_thread" link="eva-evainit.html#eva-main-thread"/>
+    <function name="EVA_DECLARE_POOL_ALLOCATORS()" link="eva-evamacros.html#EVA-DECLARE-POOL-ALLOCATORS--CAPS"/>
+    <function name="EVA_STRUCT_MEMBER_SIZE()" link="eva-evamacros.html#EVA-STRUCT-MEMBER-SIZE--CAPS"/>
+    <function name="EVA_STRUCT_MEMBER_END_OFFSET()" link="eva-evamacros.html#EVA-STRUCT-MEMBER-END-OFFSET--CAPS"/>
+    <function name="_()" link="eva-evamacros.html#gettext-macro"/>
+    <function name="EVA_SKIP_CHAR_TYPE()" link="eva-evamacros.html#EVA-SKIP-CHAR-TYPE--CAPS"/>
+    <function name="EVA_SKIP_WHITESPACE()" link="eva-evamacros.html#EVA-SKIP-WHITESPACE--CAPS"/>
+    <function name="EVA_SKIP_NONWHITESPACE()" link="eva-evamacros.html#EVA-SKIP-NONWHITESPACE--CAPS"/>
+    <function name="GskIOClass" link="GskIO.html#GskIOClass"/>
+    <function name="GskIO" link="GskIO.html#GskIO-struct"/>
+    <function name="GskIOHookFunc ()" link="GskIO.html#GskIOHookFunc"/>
+    <function name="enum GskIOErrorCause" link="GskIO.html#GskIOErrorCause"/>
+    <function name="EVA_IO_READ_HOOK()" link="GskIO.html#EVA-IO-READ-HOOK--CAPS"/>
+    <function name="EVA_IO_WRITE_HOOK()" link="GskIO.html#EVA-IO-WRITE-HOOK--CAPS"/>
+    <function name="eva_io_block_read()" link="GskIO.html#eva-io-block-read"/>
+    <function name="eva_io_block_write()" link="GskIO.html#eva-io-block-write"/>
+    <function name="eva_io_unblock_read()" link="GskIO.html#eva-io-unblock-read"/>
+    <function name="eva_io_unblock_write()" link="GskIO.html#eva-io-unblock-write"/>
+    <function name="eva_io_has_read_hook()" link="GskIO.html#eva-io-has-read-hook"/>
+    <function name="eva_io_has_write_hook()" link="GskIO.html#eva-io-has-write-hook"/>
+    <function name="eva_io_trap_readable()" link="GskIO.html#eva-io-trap-readable"/>
+    <function name="eva_io_trap_writable()" link="GskIO.html#eva-io-trap-writable"/>
+    <function name="eva_io_untrap_readable()" link="GskIO.html#eva-io-untrap-readable"/>
+    <function name="eva_io_untrap_writable()" link="GskIO.html#eva-io-untrap-writable"/>
+    <function name="eva_io_shutdown ()" link="GskIO.html#eva-io-shutdown"/>
+    <function name="eva_io_read_shutdown()" link="GskIO.html#eva-io-read-shutdown"/>
+    <function name="eva_io_write_shutdown()" link="GskIO.html#eva-io-write-shutdown"/>
+    <function name="eva_io_close ()" link="GskIO.html#eva-io-close"/>
+    <function name="eva_io_notify_ready_to_read()" link="GskIO.html#eva-io-notify-ready-to-read"/>
+    <function name="eva_io_notify_ready_to_write()" link="GskIO.html#eva-io-notify-ready-to-write"/>
+    <function name="eva_io_notify_read_shutdown()" link="GskIO.html#eva-io-notify-read-shutdown"/>
+    <function name="eva_io_notify_write_shutdown()" link="GskIO.html#eva-io-notify-write-shutdown"/>
+    <function name="eva_io_notify_shutdown ()" link="GskIO.html#eva-io-notify-shutdown"/>
+    <function name="eva_io_notify_connected ()" link="GskIO.html#eva-io-notify-connected"/>
+    <function name="eva_io_is_polling_for_read()" link="GskIO.html#eva-io-is-polling-for-read"/>
+    <function name="eva_io_is_polling_for_write()" link="GskIO.html#eva-io-is-polling-for-write"/>
+    <function name="eva_io_get_is_connecting()" link="GskIO.html#eva-io-get-is-connecting"/>
+    <function name="eva_io_get_is_readable()" link="GskIO.html#eva-io-get-is-readable"/>
+    <function name="eva_io_get_is_writable()" link="GskIO.html#eva-io-get-is-writable"/>
+    <function name="eva_io_get_never_partial_reads()" link="GskIO.html#eva-io-get-never-partial-reads"/>
+    <function name="eva_io_get_never_partial_writes()" link="GskIO.html#eva-io-get-never-partial-writes"/>
+    <function name="eva_io_get_never_blocks_write()" link="GskIO.html#eva-io-get-never-blocks-write"/>
+    <function name="eva_io_get_never_blocks_read()" link="GskIO.html#eva-io-get-never-blocks-read"/>
+    <function name="eva_io_get_idle_notify_write()" link="GskIO.html#eva-io-get-idle-notify-write"/>
+    <function name="eva_io_get_idle_notify_read()" link="GskIO.html#eva-io-get-idle-notify-read"/>
+    <function name="eva_io_get_is_open()" link="GskIO.html#eva-io-get-is-open"/>
+    <function name="eva_io_get_is_read_shutting_down()" link="GskIO.html#eva-io-get-is-read-shutting-down"/>
+    <function name="eva_io_get_is_write_shutting_down()" link="GskIO.html#eva-io-get-is-write-shutting-down"/>
+    <function name="eva_io_get_shutdown_on_error()" link="GskIO.html#eva-io-get-shutdown-on-error"/>
+    <function name="eva_io_mark_is_connecting()" link="GskIO.html#eva-io-mark-is-connecting"/>
+    <function name="eva_io_mark_is_readable()" link="GskIO.html#eva-io-mark-is-readable"/>
+    <function name="eva_io_mark_is_writable()" link="GskIO.html#eva-io-mark-is-writable"/>
+    <function name="eva_io_mark_never_partial_reads()" link="GskIO.html#eva-io-mark-never-partial-reads"/>
+    <function name="eva_io_mark_never_partial_writes()" link="GskIO.html#eva-io-mark-never-partial-writes"/>
+    <function name="eva_io_mark_never_blocks_write()" link="GskIO.html#eva-io-mark-never-blocks-write"/>
+    <function name="eva_io_mark_never_blocks_read()" link="GskIO.html#eva-io-mark-never-blocks-read"/>
+    <function name="eva_io_mark_idle_notify_write()" link="GskIO.html#eva-io-mark-idle-notify-write"/>
+    <function name="eva_io_mark_idle_notify_read()" link="GskIO.html#eva-io-mark-idle-notify-read"/>
+    <function name="eva_io_mark_is_open()" link="GskIO.html#eva-io-mark-is-open"/>
+    <function name="eva_io_mark_shutdown_on_error()" link="GskIO.html#eva-io-mark-shutdown-on-error"/>
+    <function name="eva_io_clear_is_readable()" link="GskIO.html#eva-io-clear-is-readable"/>
+    <function name="eva_io_clear_is_writable()" link="GskIO.html#eva-io-clear-is-writable"/>
+    <function name="eva_io_clear_never_partial_reads()" link="GskIO.html#eva-io-clear-never-partial-reads"/>
+    <function name="eva_io_clear_never_partial_writes()" link="GskIO.html#eva-io-clear-never-partial-writes"/>
+    <function name="eva_io_clear_idle_notify_write()" link="GskIO.html#eva-io-clear-idle-notify-write"/>
+    <function name="eva_io_clear_idle_notify_read()" link="GskIO.html#eva-io-clear-idle-notify-read"/>
+    <function name="eva_io_clear_is_open()" link="GskIO.html#eva-io-clear-is-open"/>
+    <function name="eva_io_clear_shutdown_on_error()" link="GskIO.html#eva-io-clear-shutdown-on-error"/>
+    <function name="eva_io_set_idle_notify_write()" link="GskIO.html#eva-io-set-idle-notify-write"/>
+    <function name="eva_io_set_idle_notify_read()" link="GskIO.html#eva-io-set-idle-notify-read"/>
+    <function name="eva_io_set_error ()" link="GskIO.html#eva-io-set-error"/>
+    <function name="eva_io_set_gerror ()" link="GskIO.html#eva-io-set-gerror"/>
+    <function name="eva_io_error_cause_to_string ()" link="GskIO.html#eva-io-error-cause-to-string"/>
+    <function name="The &quot;on-connect&quot; signal" link="GskIO.html#GskIO-on-connect"/>
+    <function name="The &quot;on-error&quot; signal" link="GskIO.html#GskIO-on-error"/>
+    <function name="GskStreamClass" link="GskStream.html#GskStreamClass"/>
+    <function name="GskStream" link="GskStream.html#GskStream-struct"/>
+    <function name="eva_stream_read ()" link="GskStream.html#eva-stream-read"/>
+    <function name="eva_stream_write ()" link="GskStream.html#eva-stream-write"/>
+    <function name="eva_stream_read_buffer ()" link="GskStream.html#eva-stream-read-buffer"/>
+    <function name="eva_stream_write_buffer ()" link="GskStream.html#eva-stream-write-buffer"/>
+    <function name="eva_stream_attach ()" link="GskStream.html#eva-stream-attach"/>
+    <function name="eva_stream_attach_pair ()" link="GskStream.html#eva-stream-attach-pair"/>
+    <function name="eva_stream_get_is_connecting()" link="GskStream.html#eva-stream-get-is-connecting"/>
+    <function name="eva_stream_get_is_readable()" link="GskStream.html#eva-stream-get-is-readable"/>
+    <function name="eva_stream_get_is_writable()" link="GskStream.html#eva-stream-get-is-writable"/>
+    <function name="eva_stream_get_never_blocks_write()" link="GskStream.html#eva-stream-get-never-blocks-write"/>
+    <function name="eva_stream_get_never_blocks_read()" link="GskStream.html#eva-stream-get-never-blocks-read"/>
+    <function name="eva_stream_get_idle_notify_write()" link="GskStream.html#eva-stream-get-idle-notify-write"/>
+    <function name="eva_stream_get_idle_notify_read()" link="GskStream.html#eva-stream-get-idle-notify-read"/>
+    <function name="eva_stream_get_is_open()" link="GskStream.html#eva-stream-get-is-open"/>
+    <function name="eva_stream_get_never_partial_reads()" link="GskStream.html#eva-stream-get-never-partial-reads"/>
+    <function name="eva_stream_get_never_partial_writes()" link="GskStream.html#eva-stream-get-never-partial-writes"/>
+    <function name="eva_stream_mark_is_connecting()" link="GskStream.html#eva-stream-mark-is-connecting"/>
+    <function name="eva_stream_mark_is_readable()" link="GskStream.html#eva-stream-mark-is-readable"/>
+    <function name="eva_stream_mark_is_writable()" link="GskStream.html#eva-stream-mark-is-writable"/>
+    <function name="eva_stream_mark_never_blocks_write()" link="GskStream.html#eva-stream-mark-never-blocks-write"/>
+    <function name="eva_stream_mark_never_blocks_read()" link="GskStream.html#eva-stream-mark-never-blocks-read"/>
+    <function name="eva_stream_mark_idle_notify_write()" link="GskStream.html#eva-stream-mark-idle-notify-write"/>
+    <function name="eva_stream_mark_idle_notify_read()" link="GskStream.html#eva-stream-mark-idle-notify-read"/>
+    <function name="eva_stream_mark_is_open()" link="GskStream.html#eva-stream-mark-is-open"/>
+    <function name="eva_stream_mark_never_partial_reads()" link="GskStream.html#eva-stream-mark-never-partial-reads"/>
+    <function name="eva_stream_mark_never_partial_writes()" link="GskStream.html#eva-stream-mark-never-partial-writes"/>
+    <function name="eva_stream_clear_is_readable()" link="GskStream.html#eva-stream-clear-is-readable"/>
+    <function name="eva_stream_clear_is_writable()" link="GskStream.html#eva-stream-clear-is-writable"/>
+    <function name="eva_stream_clear_is_open()" link="GskStream.html#eva-stream-clear-is-open"/>
+    <function name="eva_stream_clear_idle_notify_write()" link="GskStream.html#eva-stream-clear-idle-notify-write"/>
+    <function name="eva_stream_clear_idle_notify_read()" link="GskStream.html#eva-stream-clear-idle-notify-read"/>
+    <function name="eva_stream_clear_never_partial_reads()" link="GskStream.html#eva-stream-clear-never-partial-reads"/>
+    <function name="eva_stream_clear_never_partial_writes()" link="GskStream.html#eva-stream-clear-never-partial-writes"/>
+    <function name="eva_stream_trap_readable" link="GskStream.html#eva-stream-trap-readable"/>
+    <function name="eva_stream_trap_writable" link="GskStream.html#eva-stream-trap-writable"/>
+    <function name="eva_stream_untrap_readable" link="GskStream.html#eva-stream-untrap-readable"/>
+    <function name="eva_stream_untrap_writable" link="GskStream.html#eva-stream-untrap-writable"/>
+    <function name="GskStreamConnection" link="eva-evastreamconnection.html#GskStreamConnection"/>
+    <function name="eva_stream_connection_new ()" link="eva-evastreamconnection.html#eva-stream-connection-new"/>
+    <function name="eva_stream_connection_get_atomic_read_size ()" link="eva-evastreamconnection.html#eva-stream-connection-get-atomic-read-size"/>
+    <function name="eva_stream_connection_set_atomic_read_size ()" link="eva-evastreamconnection.html#eva-stream-connection-set-atomic-read-size"/>
+    <function name="eva_stream_connection_get_max_buffered ()" link="eva-evastreamconnection.html#eva-stream-connection-get-max-buffered"/>
+    <function name="eva_stream_connection_set_max_buffered ()" link="eva-evastreamconnection.html#eva-stream-connection-set-max-buffered"/>
+    <function name="eva_stream_connection_shutdown ()" link="eva-evastreamconnection.html#eva-stream-connection-shutdown"/>
+    <function name="eva_stream_connection_detach ()" link="eva-evastreamconnection.html#eva-stream-connection-detach"/>
+    <function name="GskMainLoopChange" link="GskMainLoop.html#GskMainLoopChange"/>
+    <function name="GskMainLoopEvent" link="GskMainLoop.html#GskMainLoopEvent"/>
+    <function name="GskMainLoopWaitInfo" link="GskMainLoop.html#GskMainLoopWaitInfo"/>
+    <function name="GskSource" link="GskMainLoop.html#GskSource"/>
+    <function name="GskMainLoopContextList" link="GskMainLoop.html#GskMainLoopContextList"/>
+    <function name="enum GskMainLoopEventType" link="GskMainLoop.html#GskMainLoopEventType"/>
+    <function name="GskMainLoopClass" link="GskMainLoop.html#GskMainLoopClass"/>
+    <function name="GskMainLoop" link="GskMainLoop.html#GskMainLoop-struct"/>
+    <function name="GskMainLoopWaitPidFunc ()" link="GskMainLoop.html#GskMainLoopWaitPidFunc"/>
+    <function name="GskMainLoopIdleFunc ()" link="GskMainLoop.html#GskMainLoopIdleFunc"/>
+    <function name="GskMainLoopSignalFunc ()" link="GskMainLoop.html#GskMainLoopSignalFunc"/>
+    <function name="GskMainLoopTimeoutFunc ()" link="GskMainLoop.html#GskMainLoopTimeoutFunc"/>
+    <function name="GskMainLoopIOFunc ()" link="GskMainLoop.html#GskMainLoopIOFunc"/>
+    <function name="enum GskMainLoopCreateFlags" link="GskMainLoop.html#GskMainLoopCreateFlags"/>
+    <function name="eva_main_loop_new ()" link="GskMainLoop.html#eva-main-loop-new"/>
+    <function name="eva_main_loop_default ()" link="GskMainLoop.html#eva-main-loop-default"/>
+    <function name="eva_main_loop_run ()" link="GskMainLoop.html#eva-main-loop-run"/>
+    <function name="eva_main_loop_add_idle ()" link="GskMainLoop.html#eva-main-loop-add-idle"/>
+    <function name="eva_main_loop_add_signal ()" link="GskMainLoop.html#eva-main-loop-add-signal"/>
+    <function name="eva_main_loop_add_waitpid ()" link="GskMainLoop.html#eva-main-loop-add-waitpid"/>
+    <function name="eva_main_loop_add_io ()" link="GskMainLoop.html#eva-main-loop-add-io"/>
+    <function name="eva_source_adjust_io ()" link="GskMainLoop.html#eva-source-adjust-io"/>
+    <function name="eva_source_remove_io_events ()" link="GskMainLoop.html#eva-source-remove-io-events"/>
+    <function name="eva_source_add_io_events ()" link="GskMainLoop.html#eva-source-add-io-events"/>
+    <function name="eva_main_loop_add_timer ()" link="GskMainLoop.html#eva-main-loop-add-timer"/>
+    <function name="eva_main_loop_add_timer_absolute ()" link="GskMainLoop.html#eva-main-loop-add-timer-absolute"/>
+    <function name="eva_source_adjust_timer ()" link="GskMainLoop.html#eva-source-adjust-timer"/>
+    <function name="eva_source_remove ()" link="GskMainLoop.html#eva-source-remove"/>
+    <function name="eva_main_loop_add_context ()" link="GskMainLoop.html#eva-main-loop-add-context"/>
+    <function name="eva_main_loop_quit ()" link="GskMainLoop.html#eva-main-loop-quit"/>
+    <function name="eva_main_loop_should_continue ()" link="GskMainLoop.html#eva-main-loop-should-continue"/>
+    <function name="eva_source_peek_main_loop ()" link="GskMainLoop.html#eva-source-peek-main-loop"/>
+    <function name="eva_main_loop_destroy_all_sources ()" link="GskMainLoop.html#eva-main-loop-destroy-all-sources"/>
+    <function name="eva_main_loop_do_waitpid ()" link="GskMainLoop.html#eva-main-loop-do-waitpid"/>
+    <function name="GskNameResolver" link="eva-evanameresolver.html#GskNameResolver-struct"/>
+    <function name="GskNameResolverIface" link="eva-evanameresolver.html#GskNameResolverIface"/>
+    <function name="GskNameResolverTask" link="eva-evanameresolver.html#GskNameResolverTask"/>
+    <function name="GskNameResolverSuccessFunc ()" link="eva-evanameresolver.html#GskNameResolverSuccessFunc"/>
+    <function name="GskNameResolverFailureFunc ()" link="eva-evanameresolver.html#GskNameResolverFailureFunc"/>
+    <function name="enum GskNameResolverFamily" link="eva-evanameresolver.html#GskNameResolverFamily"/>
+    <function name="eva_name_resolver_family_get_by_name ()" link="eva-evanameresolver.html#eva-name-resolver-family-get-by-name"/>
+    <function name="eva_name_resolver_family_get_name ()" link="eva-evanameresolver.html#eva-name-resolver-family-get-name"/>
+    <function name="eva_name_resolver_lookup ()" link="eva-evanameresolver.html#eva-name-resolver-lookup"/>
+    <function name="eva_name_resolver_task_new ()" link="eva-evanameresolver.html#eva-name-resolver-task-new"/>
+    <function name="eva_name_resolver_task_cancel ()" link="eva-evanameresolver.html#eva-name-resolver-task-cancel"/>
+    <function name="eva_name_resolver_task_ref ()" link="eva-evanameresolver.html#eva-name-resolver-task-ref"/>
+    <function name="eva_name_resolver_task_unref ()" link="eva-evanameresolver.html#eva-name-resolver-task-unref"/>
+    <function name="eva_name_resolver_family_unique ()" link="eva-evanameresolver.html#eva-name-resolver-family-unique"/>
+    <function name="eva_name_resolver_add_family_name ()" link="eva-evanameresolver.html#eva-name-resolver-add-family-name"/>
+    <function name="GskNameResolverFamilyHandler ()" link="eva-evanameresolver.html#GskNameResolverFamilyHandler"/>
+    <function name="eva_name_resolver_add_family_resolver ()" link="eva-evanameresolver.html#eva-name-resolver-add-family-resolver"/>
+    <function name="eva_name_resolver_add_family_handler ()" link="eva-evanameresolver.html#eva-name-resolver-add-family-handler"/>
+    <function name="eva_fd_get_type ()" link="eva-evatypes.html#eva-fd-get-type"/>
+    <function name="eva_param_fd_get_type ()" link="eva-evatypes.html#eva-param-fd-get-type"/>
+    <function name="EVA_TYPE_FD" link="eva-evatypes.html#EVA-TYPE-FD--CAPS"/>
+    <function name="EVA_TYPE_PARAM_FD" link="eva-evatypes.html#EVA-TYPE-PARAM-FD--CAPS"/>
+    <function name="eva_param_spec_fd ()" link="eva-evatypes.html#eva-param-spec-fd"/>
+    <function name="GskBuffer" link="eva-evabuffer.html#GskBuffer"/>
+    <function name="GskBufferFragment" link="eva-evabuffer.html#GskBufferFragment"/>
+    <function name="eva_buffer_construct ()" link="eva-evabuffer.html#eva-buffer-construct"/>
+    <function name="eva_buffer_read ()" link="eva-evabuffer.html#eva-buffer-read"/>
+    <function name="eva_buffer_peek ()" link="eva-evabuffer.html#eva-buffer-peek"/>
+    <function name="eva_buffer_discard ()" link="eva-evabuffer.html#eva-buffer-discard"/>
+    <function name="eva_buffer_read_line ()" link="eva-evabuffer.html#eva-buffer-read-line"/>
+    <function name="eva_buffer_parse_string0 ()" link="eva-evabuffer.html#eva-buffer-parse-string0"/>
+    <function name="eva_buffer_peek_char ()" link="eva-evabuffer.html#eva-buffer-peek-char"/>
+    <function name="eva_buffer_read_char ()" link="eva-evabuffer.html#eva-buffer-read-char"/>
+    <function name="eva_buffer_append ()" link="eva-evabuffer.html#eva-buffer-append"/>
+    <function name="eva_buffer_append_string ()" link="eva-evabuffer.html#eva-buffer-append-string"/>
+    <function name="eva_buffer_append_char ()" link="eva-evabuffer.html#eva-buffer-append-char"/>
+    <function name="eva_buffer_append_string0 ()" link="eva-evabuffer.html#eva-buffer-append-string0"/>
+    <function name="eva_buffer_append_foreign ()" link="eva-evabuffer.html#eva-buffer-append-foreign"/>
+    <function name="eva_buffer_printf ()" link="eva-evabuffer.html#eva-buffer-printf"/>
+    <function name="eva_buffer_vprintf ()" link="eva-evabuffer.html#eva-buffer-vprintf"/>
+    <function name="eva_buffer_drain ()" link="eva-evabuffer.html#eva-buffer-drain"/>
+    <function name="eva_buffer_transfer ()" link="eva-evabuffer.html#eva-buffer-transfer"/>
+    <function name="eva_buffer_writev ()" link="eva-evabuffer.html#eva-buffer-writev"/>
+    <function name="eva_buffer_read_in_fd ()" link="eva-evabuffer.html#eva-buffer-read-in-fd"/>
+    <function name="eva_buffer_index_of ()" link="eva-evabuffer.html#eva-buffer-index-of"/>
+    <function name="eva_buffer_polystr_index_of ()" link="eva-evabuffer.html#eva-buffer-polystr-index-of"/>
+    <function name="eva_buffer_destruct ()" link="eva-evabuffer.html#eva-buffer-destruct"/>
+    <function name="eva_buffer_cleanup_recycling_bin ()" link="eva-evabuffer.html#eva-buffer-cleanup-recycling-bin"/>
+    <function name="GskBufferIterator" link="eva-evabuffer.html#GskBufferIterator"/>
+    <function name="eva_buffer_iterator_offset()" link="eva-evabuffer.html#eva-buffer-iterator-offset"/>
+    <function name="eva_buffer_iterator_construct ()" link="eva-evabuffer.html#eva-buffer-iterator-construct"/>
+    <function name="eva_buffer_iterator_peek ()" link="eva-evabuffer.html#eva-buffer-iterator-peek"/>
+    <function name="eva_buffer_iterator_read ()" link="eva-evabuffer.html#eva-buffer-iterator-read"/>
+    <function name="eva_buffer_iterator_skip ()" link="eva-evabuffer.html#eva-buffer-iterator-skip"/>
+    <function name="eva_buffer_iterator_find_char ()" link="eva-evabuffer.html#eva-buffer-iterator-find-char"/>
+    <function name="EVA_BUFFER_STATIC_INIT" link="eva-evabuffer.html#EVA-BUFFER-STATIC-INIT--CAPS"/>
+    <function name="eva_errno_is_ignorable ()" link="eva-evaerrno.html#eva-errno-is-ignorable"/>
+    <function name="eva_errno_from_fd ()" link="eva-evaerrno.html#eva-errno-from-fd"/>
+    <function name="eva_g_error_domain_quark" link="eva-evaerror.html#eva-g-error-domain-quark"/>
+    <function name="eva_error_code_type" link="eva-evaerror.html#eva-error-code-type"/>
+    <function name="EVA_G_ERROR_DOMAIN" link="eva-evaerror.html#EVA-G-ERROR-DOMAIN--CAPS"/>
+    <function name="EVA_TYPE_ERROR_CODE" link="eva-evaerror.html#EVA-TYPE-ERROR-CODE--CAPS"/>
+    <function name="enum GskErrorCode" link="eva-evaerror.html#GskErrorCode"/>
+    <function name="eva_error_code_from_errno ()" link="eva-evaerror.html#eva-error-code-from-errno"/>
+    <function name="eva_g_error_add_prefix ()" link="eva-evaerror.html#eva-g-error-add-prefix"/>
+    <function name="eva_fatal_user_error ()" link="eva-evaerror.html#eva-fatal-user-error"/>
+    <function name="eva_main_run ()" link="eva-evamain.html#eva-main-run"/>
+    <function name="eva_main_quit ()" link="eva-evamain.html#eva-main-quit"/>
+    <function name="eva_main_exit ()" link="eva-evamain.html#eva-main-exit"/>
+    <function name="eva_g_ptr_array_foreach ()" link="eva-evaghelpers.html#eva-g-ptr-array-foreach"/>
+    <function name="eva_g_tree_min ()" link="eva-evaghelpers.html#eva-g-tree-min"/>
+    <function name="eva_g_tree_max ()" link="eva-evaghelpers.html#eva-g-tree-max"/>
+    <function name="eva_g_tree_key_slist ()" link="eva-evaghelpers.html#eva-g-tree-key-slist"/>
+    <function name="eva_g_tree_value_slist ()" link="eva-evaghelpers.html#eva-g-tree-value-slist"/>
+    <function name="eva_g_hash_table_key_slist ()" link="eva-evaghelpers.html#eva-g-hash-table-key-slist"/>
+    <function name="eva_g_hash_table_value_slist ()" link="eva-evaghelpers.html#eva-g-hash-table-value-slist"/>
+    <function name="eva_strtoll ()" link="eva-evaghelpers.html#eva-strtoll"/>
+    <function name="eva_strtoull ()" link="eva-evaghelpers.html#eva-strtoull"/>
+    <function name="eva_strnlen ()" link="eva-evaghelpers.html#eva-strnlen"/>
+    <function name="eva_fd_set_nonblocking ()" link="eva-evaghelpers.html#eva-fd-set-nonblocking"/>
+    <function name="GskPacketQueueClass" link="GskPacketQueue.html#GskPacketQueueClass"/>
+    <function name="GskPacketQueue" link="GskPacketQueue.html#GskPacketQueue-struct"/>
+    <function name="eva_packet_queue_bind ()" link="GskPacketQueue.html#eva-packet-queue-bind"/>
+    <function name="eva_packet_queue_read ()" link="GskPacketQueue.html#eva-packet-queue-read"/>
+    <function name="eva_packet_queue_write ()" link="GskPacketQueue.html#eva-packet-queue-write"/>
+    <function name="eva_packet_queue_get_allow_address()" link="GskPacketQueue.html#eva-packet-queue-get-allow-address"/>
+    <function name="eva_packet_queue_get_allow_no_address()" link="GskPacketQueue.html#eva-packet-queue-get-allow-no-address"/>
+    <function name="eva_packet_queue_get_misses_packets()" link="GskPacketQueue.html#eva-packet-queue-get-misses-packets"/>
+    <function name="eva_packet_queue_get_is_readable()" link="GskPacketQueue.html#eva-packet-queue-get-is-readable"/>
+    <function name="eva_packet_queue_get_is_writable()" link="GskPacketQueue.html#eva-packet-queue-get-is-writable"/>
+    <function name="eva_packet_queue_peek_bound_address()" link="GskPacketQueue.html#eva-packet-queue-peek-bound-address"/>
+    <function name="eva_packet_queue_mark_allow_address()" link="GskPacketQueue.html#eva-packet-queue-mark-allow-address"/>
+    <function name="eva_packet_queue_mark_allow_no_address()" link="GskPacketQueue.html#eva-packet-queue-mark-allow-no-address"/>
+    <function name="eva_packet_queue_mark_misses_packets()" link="GskPacketQueue.html#eva-packet-queue-mark-misses-packets"/>
+    <function name="eva_packet_queue_mark_is_readable()" link="GskPacketQueue.html#eva-packet-queue-mark-is-readable"/>
+    <function name="eva_packet_queue_mark_is_writable()" link="GskPacketQueue.html#eva-packet-queue-mark-is-writable"/>
+    <function name="eva_packet_queue_clear_allow_address()" link="GskPacketQueue.html#eva-packet-queue-clear-allow-address"/>
+    <function name="eva_packet_queue_clear_allow_no_address()" link="GskPacketQueue.html#eva-packet-queue-clear-allow-no-address"/>
+    <function name="eva_packet_queue_clear_misses_packets()" link="GskPacketQueue.html#eva-packet-queue-clear-misses-packets"/>
+    <function name="eva_packet_queue_clear_is_readable()" link="GskPacketQueue.html#eva-packet-queue-clear-is-readable"/>
+    <function name="eva_packet_queue_clear_is_writable()" link="GskPacketQueue.html#eva-packet-queue-clear-is-writable"/>
+    <function name="eva_packet_queue_set_bound_addresss ()" link="GskPacketQueue.html#eva-packet-queue-set-bound-addresss"/>
+    <function name="GskPacket" link="eva-evapacket.html#GskPacket"/>
+    <function name="GskPacketDestroyFunc ()" link="eva-evapacket.html#GskPacketDestroyFunc"/>
+    <function name="eva_packet_new ()" link="eva-evapacket.html#eva-packet-new"/>
+    <function name="eva_packet_new_copy ()" link="eva-evapacket.html#eva-packet-new-copy"/>
+    <function name="eva_packet_set_src_address ()" link="eva-evapacket.html#eva-packet-set-src-address"/>
+    <function name="eva_packet_set_dst_address ()" link="eva-evapacket.html#eva-packet-set-dst-address"/>
+    <function name="eva_packet_unref ()" link="eva-evapacket.html#eva-packet-unref"/>
+    <function name="eva_packet_ref ()" link="eva-evapacket.html#eva-packet-ref"/>
+    <function name="GskStreamListenerAcceptFunc ()" link="GskStreamListener.html#GskStreamListenerAcceptFunc"/>
+    <function name="GskStreamListenerErrorFunc ()" link="GskStreamListener.html#GskStreamListenerErrorFunc"/>
+    <function name="GskStreamListenerClass" link="GskStreamListener.html#GskStreamListenerClass"/>
+    <function name="GskStreamListener" link="GskStreamListener.html#GskStreamListener-struct"/>
+    <function name="eva_stream_listener_handle_accept ()" link="GskStreamListener.html#eva-stream-listener-handle-accept"/>
+    <function name="eva_stream_listener_notify_accepted ()" link="GskStreamListener.html#eva-stream-listener-notify-accepted"/>
+    <function name="eva_stream_listener_notify_error ()" link="GskStreamListener.html#eva-stream-listener-notify-error"/>
+    <function name="eva_stream_new_connecting ()" link="eva-evastreamclient.html#eva-stream-new-connecting"/>
+    <function name="GskSocketAddressClass" link="GskSocketAddress.html#GskSocketAddressClass"/>
+    <function name="GskSocketAddress" link="GskSocketAddress.html#GskSocketAddress-struct"/>
+    <function name="GskSocketAddressIpv4" link="GskSocketAddress.html#GskSocketAddressIpv4-struct"/>
+    <function name="GskSocketAddressLocal" link="GskSocketAddress.html#GskSocketAddressLocal-struct"/>
+    <function name="GskSocketAddressIpv6" link="GskSocketAddress.html#GskSocketAddressIpv6-struct"/>
+    <function name="GskSocketAddressEthernet" link="GskSocketAddress.html#GskSocketAddressEthernet"/>
+    <function name="eva_socket_address_from_native ()" link="GskSocketAddress.html#eva-socket-address-from-native"/>
+    <function name="eva_socket_address_protocol_family ()" link="GskSocketAddress.html#eva-socket-address-protocol-family"/>
+    <function name="eva_socket_address_address_family ()" link="GskSocketAddress.html#eva-socket-address-address-family"/>
+    <function name="eva_socket_address_sizeof_native ()" link="GskSocketAddress.html#eva-socket-address-sizeof-native"/>
+    <function name="eva_socket_address_to_native ()" link="GskSocketAddress.html#eva-socket-address-to-native"/>
+    <function name="eva_socket_address_to_string ()" link="GskSocketAddress.html#eva-socket-address-to-string"/>
+    <function name="eva_socket_address_ipv4_localhost()" link="GskSocketAddress.html#eva-socket-address-ipv4-localhost"/>
+    <function name="eva_socket_address_ipv4_new ()" link="GskSocketAddress.html#eva-socket-address-ipv4-new"/>
+    <function name="eva_socket_address_ipv6_new ()" link="GskSocketAddress.html#eva-socket-address-ipv6-new"/>
+    <function name="eva_socket_address_ethernet_new ()" link="GskSocketAddress.html#eva-socket-address-ethernet-new"/>
+    <function name="eva_socket_address_local_new ()" link="GskSocketAddress.html#eva-socket-address-local-new"/>
+    <function name="eva_socket_address_system_supports_ipv6 ()" link="GskSocketAddress.html#eva-socket-address-system-supports-ipv6"/>
+    <function name="eva_socket_address_register_subclass ()" link="GskSocketAddress.html#eva-socket-address-register-subclass"/>
+    <function name="eva_socket_address_connect_fd ()" link="GskSocketAddress.html#eva-socket-address-connect-fd"/>
+    <function name="eva_socket_address_finish_fd ()" link="GskSocketAddress.html#eva-socket-address-finish-fd"/>
+    <function name="eva_socket_address_equals ()" link="GskSocketAddress.html#eva-socket-address-equals"/>
+    <function name="eva_socket_address_hash ()" link="GskSocketAddress.html#eva-socket-address-hash"/>
+    <function name="EVA_SOCKET_ADDRESS_REMOTE_QUARK" link="GskSocketAddress.html#EVA-SOCKET-ADDRESS-REMOTE-QUARK--CAPS"/>
+    <function name="EVA_SOCKET_ADDRESS_LOCAL_QUARK" link="GskSocketAddress.html#EVA-SOCKET-ADDRESS-LOCAL-QUARK--CAPS"/>
+    <function name="eva_log_init ()" link="eva-evalog.html#eva-log-init"/>
+    <function name="eva_log_trap_domain_to_file ()" link="eva-evalog.html#eva-log-trap-domain-to-file"/>
+    <function name="eva_debug()" link="eva-evalog.html#eva-debug"/>
+    <function name="eva_warning()" link="eva-evalog.html#eva-warning"/>
+    <function name="eva_error()" link="eva-evalog.html#eva-error"/>
+    <function name="eva_critical()" link="eva-evalog.html#eva-critical"/>
+    <function name="enum GskDebugFlags" link="eva-evadebug.html#GskDebugFlags"/>
+    <function name="eva_debugging_on" link="eva-evadebug.html#eva-debugging-on"/>
+    <function name="eva_debug_set_flags ()" link="eva-evadebug.html#eva-debug-set-flags"/>
+    <function name="eva_debug_add_flags ()" link="eva-evadebug.html#eva-debug-add-flags"/>
+    <function name="eva_debug_flags" link="eva-evadebug.html#eva-debug-flags"/>
+    <function name="eva_mkdir_p ()" link="eva-evautils.html#eva-mkdir-p"/>
+    <function name="eva_rm_rf ()" link="eva-evautils.html#eva-rm-rf"/>
+    <function name="eva_escape_memory ()" link="eva-evautils.html#eva-escape-memory"/>
+    <function name="eva_unescape_memory ()" link="eva-evautils.html#eva-unescape-memory"/>
+    <function name="eva_escape_memory_hex ()" link="eva-evautils.html#eva-escape-memory-hex"/>
+    <function name="eva_unescape_memory_hex ()" link="eva-evautils.html#eva-unescape-memory-hex"/>
+    <function name="eva_fd_set_close_on_exec ()" link="eva-evautils.html#eva-fd-set-close-on-exec"/>
+    <function name="eva_fd_clear_nonblocking ()" link="eva-evautils.html#eva-fd-clear-nonblocking"/>
+    <function name="eva_fd_is_nonblocking ()" link="eva-evautils.html#eva-fd-is-nonblocking"/>
+    <function name="eva_readn ()" link="eva-evautils.html#eva-readn"/>
+    <function name="eva_writen ()" link="eva-evautils.html#eva-writen"/>
+    <function name="Implementing the accept handler with a custom stream" link="tutorial-server.html#id2635583"/>
+    <function name="Implementing the accept handler by trapping the stream" link="tutorial-server.html#id2635704"/>
+    <function name="Sample Use of API" link="tutorial-client.html#id2635479"/>
+    <function name="Using GskHttpContent" link="tutorial-httpserver.html#id2636092"/>
+    <function name="Using GskHttpServer" link="tutorial-httpserver.html#id2636645"/>
+    <function name="Using GskUrlTransfer" link="tutorial-httpclient.html#id2636260"/>
+    <function name="Using GskHttpClient" link="tutorial-httpclient.html#id2637192"/>
+    <function name="GskPacketQueueFd" link="GskPacketQueueFd.html#GskPacketQueueFd-struct"/>
+    <function name="eva_packet_queue_fd_new ()" link="GskPacketQueueFd.html#eva-packet-queue-fd-new"/>
+    <function name="eva_packet_queue_fd_new_by_family ()" link="GskPacketQueueFd.html#eva-packet-queue-fd-new-by-family"/>
+    <function name="eva_packet_queue_fd_new_bound ()" link="GskPacketQueueFd.html#eva-packet-queue-fd-new-bound"/>
+    <function name="eva_packet_queue_fd_set_broadcast ()" link="GskPacketQueueFd.html#eva-packet-queue-fd-set-broadcast"/>
+    <function name="The &quot;file-descriptor&quot; property" link="GskPacketQueueFd.html#GskPacketQueueFd--file-descriptor"/>
+    <function name="EVA_STREAM_FD_GET_FD()" link="GskStreamFd.html#EVA-STREAM-FD-GET-FD--CAPS"/>
+    <function name="GskStreamFd" link="GskStreamFd.html#GskStreamFd-struct"/>
+    <function name="enum GskStreamFdFlags" link="GskStreamFd.html#GskStreamFdFlags"/>
+    <function name="eva_stream_fd_new ()" link="GskStreamFd.html#eva-stream-fd-new"/>
+    <function name="eva_stream_fd_new_auto ()" link="GskStreamFd.html#eva-stream-fd-new-auto"/>
+    <function name="eva_stream_fd_flags_guess ()" link="GskStreamFd.html#eva-stream-fd-flags-guess"/>
+    <function name="eva_stream_fd_pipe ()" link="GskStreamFd.html#eva-stream-fd-pipe"/>
+    <function name="eva_stream_fd_new_connecting ()" link="GskStreamFd.html#eva-stream-fd-new-connecting"/>
+    <function name="eva_stream_fd_new_read_file ()" link="GskStreamFd.html#eva-stream-fd-new-read-file"/>
+    <function name="eva_stream_fd_new_write_file ()" link="GskStreamFd.html#eva-stream-fd-new-write-file"/>
+    <function name="eva_stream_fd_new_create_file ()" link="GskStreamFd.html#eva-stream-fd-new-create-file"/>
+    <function name="eva_stream_fd_new_open ()" link="GskStreamFd.html#eva-stream-fd-new-open"/>
+    <function name="eva_stream_fd_duplex_pipe ()" link="GskStreamFd.html#eva-stream-fd-duplex-pipe"/>
+    <function name="eva_stream_fd_duplex_pipe_fd ()" link="GskStreamFd.html#eva-stream-fd-duplex-pipe-fd"/>
+    <function name="eva_stream_fd_new_from_symbolic_address ()" link="GskStreamFd.html#eva-stream-fd-new-from-symbolic-address"/>
+    <function name="The &quot;file-descriptor&quot; property" link="GskStreamFd.html#GskStreamFd--file-descriptor"/>
+    <function name="The &quot;is-pollable&quot; property" link="GskStreamFd.html#GskStreamFd--is-pollable"/>
+    <function name="The &quot;is-readable&quot; property" link="GskStreamFd.html#GskStreamFd--is-readable"/>
+    <function name="The &quot;is-writable&quot; property" link="GskStreamFd.html#GskStreamFd--is-writable"/>
+    <function name="GskStreamExternalTerminated ()" link="eva-GskStreamExternal.html#GskStreamExternalTerminated"/>
+    <function name="GskStreamExternalStderr ()" link="eva-GskStreamExternal.html#GskStreamExternalStderr"/>
+    <function name="GskStreamExternal" link="eva-GskStreamExternal.html#GskStreamExternal"/>
+    <function name="enum GskStreamExternalFlags" link="eva-GskStreamExternal.html#GskStreamExternalFlags"/>
+    <function name="eva_stream_external_new ()" link="eva-GskStreamExternal.html#eva-stream-external-new"/>
+    <function name="GskStreamListenerSocket" link="GskStreamListenerSocket.html#GskStreamListenerSocket-struct"/>
+    <function name="eva_stream_listener_socket_new_bind ()" link="GskStreamListenerSocket.html#eva-stream-listener-socket-new-bind"/>
+    <function name="eva_stream_listener_socket_new_bind_full ()" link="GskStreamListenerSocket.html#eva-stream-listener-socket-new-bind-full"/>
+    <function name="eva_stream_listener_socket_set_backlog ()" link="GskStreamListenerSocket.html#eva-stream-listener-socket-set-backlog"/>
+    <function name="eva_stream_listener_socket_new_from_fd ()" link="GskStreamListenerSocket.html#eva-stream-listener-socket-new-from-fd"/>
+    <function name="EVA_STREAM_LISTENER_SOCKET_USE_GLIB_MAIN_LOOP" link="GskStreamListenerSocket.html#EVA-STREAM-LISTENER-SOCKET-USE-GLIB-MAIN-LOOP--CAPS"/>
+    <function name="The &quot;file-descriptor&quot; property" link="GskStreamListenerSocket.html#GskStreamListenerSocket--file-descriptor"/>
+    <function name="The &quot;listening-address&quot; property" link="GskStreamListenerSocket.html#GskStreamListenerSocket--listening-address"/>
+    <function name="The &quot;may-reuse-address&quot; property" link="GskStreamListenerSocket.html#GskStreamListenerSocket--may-reuse-address"/>
+    <function name="The &quot;unlink-when-done&quot; property" link="GskStreamListenerSocket.html#GskStreamListenerSocket--unlink-when-done"/>
+    <function name="GskBufferStreamClass" link="eva-evabufferstream.html#GskBufferStreamClass"/>
+    <function name="GskBufferStream" link="eva-evabufferstream.html#GskBufferStream-struct"/>
+    <function name="eva_buffer_stream_new ()" link="eva-evabufferstream.html#eva-buffer-stream-new"/>
+    <function name="eva_buffer_stream_read_hook()" link="eva-evabufferstream.html#eva-buffer-stream-read-hook"/>
+    <function name="eva_buffer_stream_write_hook()" link="eva-evabufferstream.html#eva-buffer-stream-write-hook"/>
+    <function name="eva_buffer_stream_read_buffer_changed ()" link="eva-evabufferstream.html#eva-buffer-stream-read-buffer-changed"/>
+    <function name="eva_buffer_stream_write_buffer_changed ()" link="eva-evabufferstream.html#eva-buffer-stream-write-buffer-changed"/>
+    <function name="eva_buffer_stream_read_shutdown ()" link="eva-evabufferstream.html#eva-buffer-stream-read-shutdown"/>
+    <function name="eva_buffer_stream_changed ()" link="eva-evabufferstream.html#eva-buffer-stream-changed"/>
+    <function name="eva_buffer_stream_clear_strict_max_write()" link="eva-evabufferstream.html#eva-buffer-stream-clear-strict-max-write"/>
+    <function name="eva_buffer_stream_has_strict_max_write()" link="eva-evabufferstream.html#eva-buffer-stream-has-strict-max-write"/>
+    <function name="eva_buffer_stream_get_max_write_buffer()" link="eva-evabufferstream.html#eva-buffer-stream-get-max-write-buffer"/>
+    <function name="eva_buffer_stream_peek_write_buffer()" link="eva-evabufferstream.html#eva-buffer-stream-peek-write-buffer"/>
+    <function name="eva_buffer_stream_peek_read_buffer()" link="eva-evabufferstream.html#eva-buffer-stream-peek-read-buffer"/>
+    <function name="eva_buffer_stream_mark_strict_max_write()" link="eva-evabufferstream.html#eva-buffer-stream-mark-strict-max-write"/>
+    <function name="GskUrl" link="GskUrl.html#GskUrl-struct"/>
+    <function name="enum GskUrlScheme" link="GskUrl.html#GskUrlScheme"/>
+    <function name="EVA_URL_RESERVED_CHARSET" link="GskUrl.html#EVA-URL-RESERVED-CHARSET--CAPS"/>
+    <function name="EVA_URL_UNRESERVED_CHARSET" link="GskUrl.html#EVA-URL-UNRESERVED-CHARSET--CAPS"/>
+    <function name="eva_url_new ()" link="GskUrl.html#eva-url-new"/>
+    <function name="eva_url_new_in_context ()" link="GskUrl.html#eva-url-new-in-context"/>
+    <function name="eva_url_new_from_parts ()" link="GskUrl.html#eva-url-new-from-parts"/>
+    <function name="eva_url_new_relative ()" link="GskUrl.html#eva-url-new-relative"/>
+    <function name="eva_url_get_relative_path ()" link="GskUrl.html#eva-url-get-relative-path"/>
+    <function name="eva_url_get_port ()" link="GskUrl.html#eva-url-get-port"/>
+    <function name="eva_url_decode ()" link="GskUrl.html#eva-url-decode"/>
+    <function name="eva_url_decode_http ()" link="GskUrl.html#eva-url-decode-http"/>
+    <function name="eva_url_encode ()" link="GskUrl.html#eva-url-encode"/>
+    <function name="eva_url_encode_http ()" link="GskUrl.html#eva-url-encode-http"/>
+    <function name="eva_url_is_valid_fragment()" link="GskUrl.html#eva-url-is-valid-fragment"/>
+    <function name="eva_url_is_valid_generic_component ()" link="GskUrl.html#eva-url-is-valid-generic-component"/>
+    <function name="eva_url_is_valid_hostname ()" link="GskUrl.html#eva-url-is-valid-hostname"/>
+    <function name="eva_url_is_valid_path()" link="GskUrl.html#eva-url-is-valid-path"/>
+    <function name="eva_url_is_valid_query()" link="GskUrl.html#eva-url-is-valid-query"/>
+    <function name="eva_url_split_form_urlencoded ()" link="GskUrl.html#eva-url-split-form-urlencoded"/>
+    <function name="eva_url_to_string ()" link="GskUrl.html#eva-url-to-string"/>
+    <function name="GskUrlSuccess ()" link="GskUrl.html#GskUrlSuccess"/>
+    <function name="GskUrlFailure ()" link="GskUrl.html#GskUrlFailure"/>
+    <function name="eva_url_download ()" link="GskUrl.html#eva-url-download"/>
+    <function name="GskUrlParser ()" link="GskUrl.html#GskUrlParser"/>
+    <function name="GskUrlToString ()" link="GskUrl.html#GskUrlToString"/>
+    <function name="eva_url_scheme_get_unique ()" link="GskUrl.html#eva-url-scheme-get-unique"/>
+    <function name="eva_url_hash ()" link="GskUrl.html#eva-url-hash"/>
+    <function name="eva_url_equal ()" link="GskUrl.html#eva-url-equal"/>
+    <function name="GskUrlDownload" link="GskUrl.html#GskUrlDownload"/>
+    <function name="GskUrlDownloadMethod ()" link="GskUrl.html#GskUrlDownloadMethod"/>
+    <function name="eva_url_scheme_add_dl_method ()" link="GskUrl.html#eva-url-scheme-add-dl-method"/>
+    <function name="eva_url_download_success ()" link="GskUrl.html#eva-url-download-success"/>
+    <function name="eva_url_download_fail ()" link="GskUrl.html#eva-url-download-fail"/>
+    <function name="eva_url_download_peek_url ()" link="GskUrl.html#eva-url-download-peek-url"/>
+    <function name="eva_url_download_redirect ()" link="GskUrl.html#eva-url-download-redirect"/>
+    <function name="The &quot;fragment&quot; property" link="GskUrl.html#GskUrl--fragment"/>
+    <function name="The &quot;host&quot; property" link="GskUrl.html#GskUrl--host"/>
+    <function name="The &quot;password&quot; property" link="GskUrl.html#GskUrl--password"/>
+    <function name="The &quot;path&quot; property" link="GskUrl.html#GskUrl--path"/>
+    <function name="The &quot;port&quot; property" link="GskUrl.html#GskUrl--port"/>
+    <function name="The &quot;query&quot; property" link="GskUrl.html#GskUrl--query"/>
+    <function name="The &quot;user-name&quot; property" link="GskUrl.html#GskUrl--user-name"/>
+    <function name="GskUrlTransferRedirect" link="GskUrlTransfer.html#GskUrlTransferRedirect"/>
+    <function name="enum GskUrlTransferResult" link="GskUrlTransfer.html#GskUrlTransferResult"/>
+    <function name="EVA_URL_TRANSFER_N_RESULTS" link="GskUrlTransfer.html#EVA-URL-TRANSFER-N-RESULTS--CAPS"/>
+    <function name="eva_url_transfer_result_name ()" link="GskUrlTransfer.html#eva-url-transfer-result-name"/>
+    <function name="GskUrlTransferFunc ()" link="GskUrlTransfer.html#GskUrlTransferFunc"/>
+    <function name="GskUrlUploadFunc ()" link="GskUrlTransfer.html#GskUrlUploadFunc"/>
+    <function name="GskUrlTransfer" link="GskUrlTransfer.html#GskUrlTransfer-struct"/>
+    <function name="eva_url_transfer ()" link="GskUrlTransfer.html#eva-url-transfer"/>
+    <function name="eva_url_transfer_new ()" link="GskUrlTransfer.html#eva-url-transfer-new"/>
+    <function name="eva_url_transfer_set_handler ()" link="GskUrlTransfer.html#eva-url-transfer-set-handler"/>
+    <function name="eva_url_transfer_set_url ()" link="GskUrlTransfer.html#eva-url-transfer-set-url"/>
+    <function name="eva_url_transfer_set_upload ()" link="GskUrlTransfer.html#eva-url-transfer-set-upload"/>
+    <function name="eva_url_transfer_set_upload_packet ()" link="GskUrlTransfer.html#eva-url-transfer-set-upload-packet"/>
+    <function name="eva_url_transfer_set_oneshot_upload ()" link="GskUrlTransfer.html#eva-url-transfer-set-oneshot-upload"/>
+    <function name="eva_url_transfer_set_timeout ()" link="GskUrlTransfer.html#eva-url-transfer-set-timeout"/>
+    <function name="eva_url_transfer_clear_timeout ()" link="GskUrlTransfer.html#eva-url-transfer-clear-timeout"/>
+    <function name="eva_url_transfer_set_follow_redirects ()" link="GskUrlTransfer.html#eva-url-transfer-set-follow-redirects"/>
+    <function name="eva_url_transfer_set_address_hint ()" link="GskUrlTransfer.html#eva-url-transfer-set-address-hint"/>
+    <function name="eva_url_transfer_start ()" link="GskUrlTransfer.html#eva-url-transfer-start"/>
+    <function name="eva_url_transfer_cancel ()" link="GskUrlTransfer.html#eva-url-transfer-cancel"/>
+    <function name="eva_url_transfer_has_upload ()" link="GskUrlTransfer.html#eva-url-transfer-has-upload"/>
+    <function name="eva_url_transfer_create_upload ()" link="GskUrlTransfer.html#eva-url-transfer-create-upload"/>
+    <function name="eva_url_transfer_peek_expects_download_stream ()" link="GskUrlTransfer.html#eva-url-transfer-peek-expects-download-stream"/>
+    <function name="eva_url_transfer_is_done ()" link="GskUrlTransfer.html#eva-url-transfer-is-done"/>
+    <function name="eva_url_transfer_set_address ()" link="GskUrlTransfer.html#eva-url-transfer-set-address"/>
+    <function name="eva_url_transfer_add_redirect ()" link="GskUrlTransfer.html#eva-url-transfer-add-redirect"/>
+    <function name="eva_url_transfer_set_download ()" link="GskUrlTransfer.html#eva-url-transfer-set-download"/>
+    <function name="eva_url_transfer_set_request ()" link="GskUrlTransfer.html#eva-url-transfer-set-request"/>
+    <function name="eva_url_transfer_set_response ()" link="GskUrlTransfer.html#eva-url-transfer-set-response"/>
+    <function name="eva_url_transfer_set_error ()" link="GskUrlTransfer.html#eva-url-transfer-set-error"/>
+    <function name="eva_url_transfer_take_error ()" link="GskUrlTransfer.html#eva-url-transfer-take-error"/>
+    <function name="eva_url_transfer_notify_done ()" link="GskUrlTransfer.html#eva-url-transfer-notify-done"/>
+    <function name="eva_url_transfer_class_register ()" link="GskUrlTransfer.html#eva-url-transfer-class-register"/>
+    <function name="eva_url_transfer_get_state_string ()" link="GskUrlTransfer.html#eva-url-transfer-get-state-string"/>
+    <function name="eva_url_transfer_stream_new ()" link="GskUrlTransfer.html#eva-url-transfer-stream-new"/>
+    <function name="GskUrlTransferHttp" link="GskUrlTransferHttp.html#GskUrlTransferHttp-struct"/>
+    <function name="eva_url_transfer_http_set_ssl_cert ()" link="GskUrlTransferHttp.html#eva-url-transfer-http-set-ssl-cert"/>
+    <function name="eva_url_transfer_http_set_ssl_key ()" link="GskUrlTransferHttp.html#eva-url-transfer-http-set-ssl-key"/>
+    <function name="eva_url_transfer_http_set_ssl_password ()" link="GskUrlTransferHttp.html#eva-url-transfer-http-set-ssl-password"/>
+    <function name="eva_url_transfer_http_set_user_agent ()" link="GskUrlTransferHttp.html#eva-url-transfer-http-set-user-agent"/>
+    <function name="eva_url_transfer_http_add_extra_header ()" link="GskUrlTransferHttp.html#eva-url-transfer-http-add-extra-header"/>
+    <function name="eva_url_transfer_http_set_proxy_address ()" link="GskUrlTransferHttp.html#eva-url-transfer-http-set-proxy-address"/>
+    <function name="GskUrlTransferHttpRequestModifierFunc ()" link="GskUrlTransferHttp.html#GskUrlTransferHttpRequestModifierFunc"/>
+    <function name="eva_url_transfer_http_add_modifier ()" link="GskUrlTransferHttp.html#eva-url-transfer-http-add-modifier"/>
+    <function name="GskHttpAuthorization" link="GskHttpHeader.html#GskHttpAuthorization"/>
+    <function name="GskHttpAuthenticate" link="GskHttpHeader.html#GskHttpAuthenticate"/>
+    <function name="GskHttpCharSet" link="GskHttpHeader.html#GskHttpCharSet"/>
+    <function name="GskHttpCookie" link="GskHttpHeader.html#GskHttpCookie"/>
+    <function name="GskHttpLanguageSet" link="GskHttpHeader.html#GskHttpLanguageSet"/>
+    <function name="GskHttpMediaTypeSet" link="GskHttpHeader.html#GskHttpMediaTypeSet"/>
+    <function name="GskHttpContentEncodingSet" link="GskHttpHeader.html#GskHttpContentEncodingSet"/>
+    <function name="GskHttpTransferEncodingSet" link="GskHttpHeader.html#GskHttpTransferEncodingSet"/>
+    <function name="GskHttpRangeSet" link="GskHttpHeader.html#GskHttpRangeSet"/>
+    <function name="enum GskHttpStatus" link="GskHttpHeader.html#GskHttpStatus"/>
+    <function name="enum GskHttpVerb" link="GskHttpHeader.html#GskHttpVerb"/>
+    <function name="enum GskHttpRange" link="GskHttpHeader.html#GskHttpRange"/>
+    <function name="enum GskHttpContentEncoding" link="GskHttpHeader.html#GskHttpContentEncoding"/>
+    <function name="enum GskHttpTransferEncoding" link="GskHttpHeader.html#GskHttpTransferEncoding"/>
+    <function name="enum GskHttpConnection" link="GskHttpHeader.html#GskHttpConnection"/>
+    <function name="eva_http_media_type_set_new ()" link="GskHttpHeader.html#eva-http-media-type-set-new"/>
+    <function name="eva_http_media_type_set_free ()" link="GskHttpHeader.html#eva-http-media-type-set-free"/>
+    <function name="eva_http_char_set_new ()" link="GskHttpHeader.html#eva-http-char-set-new"/>
+    <function name="eva_http_char_set_free ()" link="GskHttpHeader.html#eva-http-char-set-free"/>
+    <function name="eva_http_content_encoding_set_new ()" link="GskHttpHeader.html#eva-http-content-encoding-set-new"/>
+    <function name="eva_http_content_encoding_set_free ()" link="GskHttpHeader.html#eva-http-content-encoding-set-free"/>
+    <function name="eva_http_transfer_encoding_set_new ()" link="GskHttpHeader.html#eva-http-transfer-encoding-set-new"/>
+    <function name="eva_http_transfer_encoding_set_free ()" link="GskHttpHeader.html#eva-http-transfer-encoding-set-free"/>
+    <function name="eva_http_range_set_new ()" link="GskHttpHeader.html#eva-http-range-set-new"/>
+    <function name="eva_http_range_set_free ()" link="GskHttpHeader.html#eva-http-range-set-free"/>
+    <function name="eva_http_language_set_new ()" link="GskHttpHeader.html#eva-http-language-set-new"/>
+    <function name="eva_http_language_set_free ()" link="GskHttpHeader.html#eva-http-language-set-free"/>
+    <function name="eva_http_authenticate_new_basic ()" link="GskHttpHeader.html#eva-http-authenticate-new-basic"/>
+    <function name="eva_http_authenticate_new_digest ()" link="GskHttpHeader.html#eva-http-authenticate-new-digest"/>
+    <function name="eva_http_authenticate_new_unknown ()" link="GskHttpHeader.html#eva-http-authenticate-new-unknown"/>
+    <function name="eva_http_authorization_new_basic ()" link="GskHttpHeader.html#eva-http-authorization-new-basic"/>
+    <function name="eva_http_authorization_new_respond_post ()" link="GskHttpHeader.html#eva-http-authorization-new-respond-post"/>
+    <function name="eva_http_authorization_new_unknown ()" link="GskHttpHeader.html#eva-http-authorization-new-unknown"/>
+    <function name="eva_http_authorization_peek_response_digest ()" link="GskHttpHeader.html#eva-http-authorization-peek-response-digest"/>
+    <function name="eva_http_authorization_copy ()" link="GskHttpHeader.html#eva-http-authorization-copy"/>
+    <function name="eva_http_authorization_new_digest ()" link="GskHttpHeader.html#eva-http-authorization-new-digest"/>
+    <function name="eva_http_authorization_new_respond ()" link="GskHttpHeader.html#eva-http-authorization-new-respond"/>
+    <function name="eva_http_authorization_set_nonce ()" link="GskHttpHeader.html#eva-http-authorization-set-nonce"/>
+    <function name="eva_http_cookie_new ()" link="GskHttpHeader.html#eva-http-cookie-new"/>
+    <function name="eva_http_cookie_copy ()" link="GskHttpHeader.html#eva-http-cookie-copy"/>
+    <function name="eva_http_cookie_free ()" link="GskHttpHeader.html#eva-http-cookie-free"/>
+    <function name="GskHttpHeaderClass" link="GskHttpHeader.html#GskHttpHeaderClass"/>
+    <function name="GskHttpHeader" link="GskHttpHeader.html#GskHttpHeader-struct"/>
+    <function name="enum GskHttpParseFlags" link="GskHttpHeader.html#GskHttpParseFlags"/>
+    <function name="eva_http_header_get_connection ()" link="GskHttpHeader.html#eva-http-header-get-connection"/>
+    <function name="eva_http_header_from_buffer ()" link="GskHttpHeader.html#eva-http-header-from-buffer"/>
+    <function name="eva_http_header_to_buffer ()" link="GskHttpHeader.html#eva-http-header-to-buffer"/>
+    <function name="eva_http_header_set_content_encoding ()" link="GskHttpHeader.html#eva-http-header-set-content-encoding"/>
+    <function name="eva_http_header_get_content_encoding()" link="GskHttpHeader.html#eva-http-header-get-content-encoding"/>
+    <function name="eva_http_header_set_date()" link="GskHttpHeader.html#eva-http-header-set-date"/>
+    <function name="eva_http_header_get_date()" link="GskHttpHeader.html#eva-http-header-get-date"/>
+    <function name="eva_http_header_add_misc ()" link="GskHttpHeader.html#eva-http-header-add-misc"/>
+    <function name="eva_http_header_lookup_misc ()" link="GskHttpHeader.html#eva-http-header-lookup-misc"/>
+    <function name="eva_http_header_remove_misc ()" link="GskHttpHeader.html#eva-http-header-remove-misc"/>
+    <function name="GskHttpHeaderLineParser" link="GskHttpHeader.html#GskHttpHeaderLineParser"/>
+    <function name="GskHttpHeaderLineParserFunc ()" link="GskHttpHeader.html#GskHttpHeaderLineParserFunc"/>
+    <function name="eva_http_header_get_parser_table ()" link="GskHttpHeader.html#eva-http-header-get-parser-table"/>
+    <function name="GskHttpHeaderPrintFunc ()" link="GskHttpHeader.html#GskHttpHeaderPrintFunc"/>
+    <function name="eva_http_header_print ()" link="GskHttpHeader.html#eva-http-header-print"/>
+    <function name="eva_http_header_set_connection_type()" link="GskHttpHeader.html#eva-http-header-set-connection-type"/>
+    <function name="eva_http_header_get_connection_type()" link="GskHttpHeader.html#eva-http-header-get-connection-type"/>
+    <function name="eva_http_header_set_transfer_encoding()" link="GskHttpHeader.html#eva-http-header-set-transfer-encoding"/>
+    <function name="eva_http_header_get_transfer_encoding()" link="GskHttpHeader.html#eva-http-header-get-transfer-encoding"/>
+    <function name="eva_http_header_get_content_type()" link="GskHttpHeader.html#eva-http-header-get-content-type"/>
+    <function name="eva_http_header_set_content_type()" link="GskHttpHeader.html#eva-http-header-set-content-type"/>
+    <function name="eva_http_header_get_content_subtype()" link="GskHttpHeader.html#eva-http-header-get-content-subtype"/>
+    <function name="eva_http_header_set_content_subtype()" link="GskHttpHeader.html#eva-http-header-set-content-subtype"/>
+    <function name="eva_http_header_set_content_length()" link="GskHttpHeader.html#eva-http-header-set-content-length"/>
+    <function name="eva_http_header_get_content_length()" link="GskHttpHeader.html#eva-http-header-get-content-length"/>
+    <function name="eva_http_header_get_content_charset()" link="GskHttpHeader.html#eva-http-header-get-content-charset"/>
+    <function name="eva_http_header_add_accepted_range ()" link="GskHttpHeader.html#eva-http-header-add-accepted-range"/>
+    <function name="eva_http_header_add_pragma ()" link="GskHttpHeader.html#eva-http-header-add-pragma"/>
+    <function name="eva_http_header_set_content_charset()" link="GskHttpHeader.html#eva-http-header-set-content-charset"/>
+    <function name="eva_http_header_set_range()" link="GskHttpHeader.html#eva-http-header-set-range"/>
+    <function name="eva_http_header_get_range_start()" link="GskHttpHeader.html#eva-http-header-get-range-start"/>
+    <function name="eva_http_header_get_range_end()" link="GskHttpHeader.html#eva-http-header-get-range-end"/>
+    <function name="eva_http_header_set_string ()" link="GskHttpHeader.html#eva-http-header-set-string"/>
+    <function name="eva_http_header_set_string_val ()" link="GskHttpHeader.html#eva-http-header-set-string-val"/>
+    <function name="eva_http_header_cut_string ()" link="GskHttpHeader.html#eva-http-header-cut-string"/>
+    <function name="eva_http_header_free_string ()" link="GskHttpHeader.html#eva-http-header-free-string"/>
+    <function name="eva_http_header_set_connection_string ()" link="GskHttpHeader.html#eva-http-header-set-connection-string"/>
+    <function name="eva_http_header_set_content_encoding_string ()" link="GskHttpHeader.html#eva-http-header-set-content-encoding-string"/>
+    <function name="eva_http_header_set_transfer_encoding_string ()" link="GskHttpHeader.html#eva-http-header-set-transfer-encoding-string"/>
+    <function name="eva_http_header_set_version ()" link="GskHttpHeader.html#eva-http-header-set-version"/>
+    <function name="The &quot;connection&quot; property" link="GskHttpHeader.html#GskHttpHeader--connection"/>
+    <function name="The &quot;connection-string&quot; property" link="GskHttpHeader.html#GskHttpHeader--connection-string"/>
+    <function name="The &quot;content-charset&quot; property" link="GskHttpHeader.html#GskHttpHeader--content-charset"/>
+    <function name="The &quot;content-encoding&quot; property" link="GskHttpHeader.html#GskHttpHeader--content-encoding"/>
+    <function name="The &quot;content-encoding-string&quot; property" link="GskHttpHeader.html#GskHttpHeader--content-encoding-string"/>
+    <function name="The &quot;content-length&quot; property" link="GskHttpHeader.html#GskHttpHeader--content-length"/>
+    <function name="The &quot;content-subtype&quot; property" link="GskHttpHeader.html#GskHttpHeader--content-subtype"/>
+    <function name="The &quot;content-type&quot; property" link="GskHttpHeader.html#GskHttpHeader--content-type"/>
+    <function name="The &quot;date&quot; property" link="GskHttpHeader.html#GskHttpHeader--date"/>
+    <function name="The &quot;major-version&quot; property" link="GskHttpHeader.html#GskHttpHeader--major-version"/>
+    <function name="The &quot;minor-version&quot; property" link="GskHttpHeader.html#GskHttpHeader--minor-version"/>
+    <function name="The &quot;range-end&quot; property" link="GskHttpHeader.html#GskHttpHeader--range-end"/>
+    <function name="The &quot;range-start&quot; property" link="GskHttpHeader.html#GskHttpHeader--range-start"/>
+    <function name="The &quot;transfer-encoding&quot; property" link="GskHttpHeader.html#GskHttpHeader--transfer-encoding"/>
+    <function name="The &quot;transfer-encoding-string&quot; property" link="GskHttpHeader.html#GskHttpHeader--transfer-encoding-string"/>
+    <function name="GskHttpRequest" link="GskHttpRequest.html#GskHttpRequest-struct"/>
+    <function name="eva_http_request_add_cookie ()" link="GskHttpRequest.html#eva-http-request-add-cookie"/>
+    <function name="eva_http_request_remove_cookie ()" link="GskHttpRequest.html#eva-http-request-remove-cookie"/>
+    <function name="eva_http_request_find_cookie ()" link="GskHttpRequest.html#eva-http-request-find-cookie"/>
+    <function name="eva_http_request_add_charsets ()" link="GskHttpRequest.html#eva-http-request-add-charsets"/>
+    <function name="eva_http_request_clear_charsets ()" link="GskHttpRequest.html#eva-http-request-clear-charsets"/>
+    <function name="eva_http_request_add_content_encodings ()" link="GskHttpRequest.html#eva-http-request-add-content-encodings"/>
+    <function name="eva_http_request_clear_content_encodings ()" link="GskHttpRequest.html#eva-http-request-clear-content-encodings"/>
+    <function name="eva_http_request_add_transfer_encodings ()" link="GskHttpRequest.html#eva-http-request-add-transfer-encodings"/>
+    <function name="eva_http_request_clear_transfer_encodings ()" link="GskHttpRequest.html#eva-http-request-clear-transfer-encodings"/>
+    <function name="eva_http_request_add_media ()" link="GskHttpRequest.html#eva-http-request-add-media"/>
+    <function name="eva_http_request_clear_media ()" link="GskHttpRequest.html#eva-http-request-clear-media"/>
+    <function name="eva_http_request_new_blank ()" link="GskHttpRequest.html#eva-http-request-new-blank"/>
+    <function name="eva_http_request_new ()" link="GskHttpRequest.html#eva-http-request-new"/>
+    <function name="eva_http_request_set_verb()" link="GskHttpRequest.html#eva-http-request-set-verb"/>
+    <function name="eva_http_request_get_verb()" link="GskHttpRequest.html#eva-http-request-get-verb"/>
+    <function name="eva_http_request_peek_from()" link="GskHttpRequest.html#eva-http-request-peek-from"/>
+    <function name="eva_http_request_set_from()" link="GskHttpRequest.html#eva-http-request-set-from"/>
+    <function name="eva_http_request_set_if_modified_since()" link="GskHttpRequest.html#eva-http-request-set-if-modified-since"/>
+    <function name="eva_http_request_get_if_modified_since()" link="GskHttpRequest.html#eva-http-request-get-if-modified-since"/>
+    <function name="eva_http_request_set_authorization ()" link="GskHttpRequest.html#eva-http-request-set-authorization"/>
+    <function name="eva_http_request_set_host()" link="GskHttpRequest.html#eva-http-request-set-host"/>
+    <function name="eva_http_request_set_user_agent()" link="GskHttpRequest.html#eva-http-request-set-user-agent"/>
+    <function name="eva_http_request_peek_user_agent()" link="GskHttpRequest.html#eva-http-request-peek-user-agent"/>
+    <function name="eva_http_request_peek_authorization ()" link="GskHttpRequest.html#eva-http-request-peek-authorization"/>
+    <function name="eva_http_request_cache_directive_free ()" link="GskHttpRequest.html#eva-http-request-cache-directive-free"/>
+    <function name="eva_http_request_cache_directive_new ()" link="GskHttpRequest.html#eva-http-request-cache-directive-new"/>
+    <function name="eva_http_request_parse_first_line ()" link="GskHttpRequest.html#eva-http-request-parse-first-line"/>
+    <function name="eva_http_request_set_cache_control ()" link="GskHttpRequest.html#eva-http-request-set-cache-control"/>
+    <function name="eva_http_request_has_content_body ()" link="GskHttpRequest.html#eva-http-request-has-content-body"/>
+    <function name="eva_http_parse_cgi_query_string ()" link="GskHttpRequest.html#eva-http-parse-cgi-query-string"/>
+    <function name="eva_http_request_parse_cgi_query_string ()" link="GskHttpRequest.html#eva-http-request-parse-cgi-query-string"/>
+    <function name="The &quot;host&quot; property" link="GskHttpRequest.html#GskHttpRequest--host"/>
+    <function name="The &quot;if-modified-since&quot; property" link="GskHttpRequest.html#GskHttpRequest--if-modified-since"/>
+    <function name="The &quot;max-forwards&quot; property" link="GskHttpRequest.html#GskHttpRequest--max-forwards"/>
+    <function name="The &quot;path&quot; property" link="GskHttpRequest.html#GskHttpRequest--path"/>
+    <function name="The &quot;referrer&quot; property" link="GskHttpRequest.html#GskHttpRequest--referrer"/>
+    <function name="The &quot;user-agent&quot; property" link="GskHttpRequest.html#GskHttpRequest--user-agent"/>
+    <function name="The &quot;verb&quot; property" link="GskHttpRequest.html#GskHttpRequest--verb"/>
+    <function name="GskHttpResponse" link="GskHttpResponse.html#GskHttpResponse-struct"/>
+    <function name="eva_http_response_new_blank ()" link="GskHttpResponse.html#eva-http-response-new-blank"/>
+    <function name="eva_http_response_new_redirect ()" link="GskHttpResponse.html#eva-http-response-new-redirect"/>
+    <function name="eva_http_response_from_request ()" link="GskHttpResponse.html#eva-http-response-from-request"/>
+    <function name="eva_http_response_process_first_line ()" link="GskHttpResponse.html#eva-http-response-process-first-line"/>
+    <function name="eva_http_response_set_status_code()" link="GskHttpResponse.html#eva-http-response-set-status-code"/>
+    <function name="eva_http_response_get_status_code()" link="GskHttpResponse.html#eva-http-response-get-status-code"/>
+    <function name="eva_http_response_set_allowed_verbs ()" link="GskHttpResponse.html#eva-http-response-set-allowed-verbs"/>
+    <function name="eva_http_response_get_allowed_verbs()" link="GskHttpResponse.html#eva-http-response-get-allowed-verbs"/>
+    <function name="eva_http_response_set_age()" link="GskHttpResponse.html#eva-http-response-set-age"/>
+    <function name="eva_http_response_get_age()" link="GskHttpResponse.html#eva-http-response-get-age"/>
+    <function name="eva_http_response_set_location()" link="GskHttpResponse.html#eva-http-response-set-location"/>
+    <function name="eva_http_response_peek_location()" link="GskHttpResponse.html#eva-http-response-peek-location"/>
+    <function name="eva_http_response_set_etag()" link="GskHttpResponse.html#eva-http-response-set-etag"/>
+    <function name="eva_http_response_peek_etag()" link="GskHttpResponse.html#eva-http-response-peek-etag"/>
+    <function name="eva_http_response_set_cache_control ()" link="GskHttpResponse.html#eva-http-response-set-cache-control"/>
+    <function name="eva_http_response_peek_cache_control()" link="GskHttpResponse.html#eva-http-response-peek-cache-control"/>
+    <function name="eva_http_response_set_last_modified()" link="GskHttpResponse.html#eva-http-response-set-last-modified"/>
+    <function name="eva_http_response_get_last_modified()" link="GskHttpResponse.html#eva-http-response-get-last-modified"/>
+    <function name="eva_http_response_set_expires()" link="GskHttpResponse.html#eva-http-response-set-expires"/>
+    <function name="eva_http_response_get_expires()" link="GskHttpResponse.html#eva-http-response-get-expires"/>
+    <function name="eva_http_response_set_md5 ()" link="GskHttpResponse.html#eva-http-response-set-md5"/>
+    <function name="eva_http_response_peek_md5 ()" link="GskHttpResponse.html#eva-http-response-peek-md5"/>
+    <function name="eva_http_response_set_server()" link="GskHttpResponse.html#eva-http-response-set-server"/>
+    <function name="eva_http_response_peek_server()" link="GskHttpResponse.html#eva-http-response-peek-server"/>
+    <function name="eva_http_response_set_retry_after ()" link="GskHttpResponse.html#eva-http-response-set-retry-after"/>
+    <function name="eva_http_response_set_no_retry_after ()" link="GskHttpResponse.html#eva-http-response-set-no-retry-after"/>
+    <function name="eva_http_response_set_authenticate ()" link="GskHttpResponse.html#eva-http-response-set-authenticate"/>
+    <function name="eva_http_response_peek_authenticate ()" link="GskHttpResponse.html#eva-http-response-peek-authenticate"/>
+    <function name="eva_http_response_has_content_body ()" link="GskHttpResponse.html#eva-http-response-has-content-body"/>
+    <function name="eva_http_response_cache_directive_free ()" link="GskHttpResponse.html#eva-http-response-cache-directive-free"/>
+    <function name="eva_http_response_cache_directive_new ()" link="GskHttpResponse.html#eva-http-response-cache-directive-new"/>
+    <function name="eva_http_response_cache_directive_set_no_cache_name ()" link="GskHttpResponse.html#eva-http-response-cache-directive-set-no-cache-name"/>
+    <function name="eva_http_response_cache_directive_set_private_name ()" link="GskHttpResponse.html#eva-http-response-cache-directive-set-private-name"/>
+    <function name="eva_http_response_get_content_subtype" link="GskHttpResponse.html#eva-http-response-get-content-subtype"/>
+    <function name="eva_http_response_get_content_type" link="GskHttpResponse.html#eva-http-response-get-content-type"/>
+    <function name="eva_http_response_set_content_subtype" link="GskHttpResponse.html#eva-http-response-set-content-subtype"/>
+    <function name="eva_http_response_set_content_type" link="GskHttpResponse.html#eva-http-response-set-content-type"/>
+    <function name="The &quot;age&quot; property" link="GskHttpResponse.html#GskHttpResponse--age"/>
+    <function name="The &quot;e-tag&quot; property" link="GskHttpResponse.html#GskHttpResponse--e-tag"/>
+    <function name="The &quot;expires&quot; property" link="GskHttpResponse.html#GskHttpResponse--expires"/>
+    <function name="The &quot;last-modified&quot; property" link="GskHttpResponse.html#GskHttpResponse--last-modified"/>
+    <function name="The &quot;location&quot; property" link="GskHttpResponse.html#GskHttpResponse--location"/>
+    <function name="The &quot;server&quot; property" link="GskHttpResponse.html#GskHttpResponse--server"/>
+    <function name="The &quot;status-code&quot; property" link="GskHttpResponse.html#GskHttpResponse--status-code"/>
+    <function name="GskHttpClientRequest" link="GskHttpClient.html#GskHttpClientRequest"/>
+    <function name="GskHttpClientResponse ()" link="GskHttpClient.html#GskHttpClientResponse"/>
+    <function name="GskHttpClientTrap ()" link="GskHttpClient.html#GskHttpClientTrap"/>
+    <function name="GskHttpClientClass" link="GskHttpClient.html#GskHttpClientClass"/>
+    <function name="GskHttpClient" link="GskHttpClient.html#GskHttpClient-struct"/>
+    <function name="EVA_HTTP_CLIENT_FAST_NOTIFY" link="GskHttpClient.html#EVA-HTTP-CLIENT-FAST-NOTIFY--CAPS"/>
+    <function name="EVA_HTTP_CLIENT_DEFERRED_SHUTDOWN" link="GskHttpClient.html#EVA-HTTP-CLIENT-DEFERRED-SHUTDOWN--CAPS"/>
+    <function name="EVA_HTTP_CLIENT_HOOK()" link="GskHttpClient.html#EVA-HTTP-CLIENT-HOOK--CAPS"/>
+    <function name="EVA_HTTP_CLIENT_IS_FAST()" link="GskHttpClient.html#EVA-HTTP-CLIENT-IS-FAST--CAPS"/>
+    <function name="eva_http_client_trap_requestable()" link="GskHttpClient.html#eva-http-client-trap-requestable"/>
+    <function name="eva_http_client_untrap_requestable()" link="GskHttpClient.html#eva-http-client-untrap-requestable"/>
+    <function name="eva_http_client_is_requestable()" link="GskHttpClient.html#eva-http-client-is-requestable"/>
+    <function name="eva_http_client_new ()" link="GskHttpClient.html#eva-http-client-new"/>
+    <function name="eva_http_client_notify_fast ()" link="GskHttpClient.html#eva-http-client-notify-fast"/>
+    <function name="eva_http_client_request ()" link="GskHttpClient.html#eva-http-client-request"/>
+    <function name="eva_http_client_shutdown_when_done ()" link="GskHttpClient.html#eva-http-client-shutdown-when-done"/>
+    <function name="eva_http_client_propagate_content_read_shutdown ()" link="GskHttpClient.html#eva-http-client-propagate-content-read-shutdown"/>
+    <function name="GskHttpServerTrap ()" link="GskHttpServer.html#GskHttpServerTrap"/>
+    <function name="GskHttpServerClass" link="GskHttpServer.html#GskHttpServerClass"/>
+    <function name="GskHttpServer" link="GskHttpServer.html#GskHttpServer-struct"/>
+    <function name="EVA_HTTP_SERVER_HOOK()" link="GskHttpServer.html#EVA-HTTP-SERVER-HOOK--CAPS"/>
+    <function name="eva_http_server_trap()" link="GskHttpServer.html#eva-http-server-trap"/>
+    <function name="eva_http_server_untrap()" link="GskHttpServer.html#eva-http-server-untrap"/>
+    <function name="eva_http_server_new ()" link="GskHttpServer.html#eva-http-server-new"/>
+    <function name="eva_http_server_get_request ()" link="GskHttpServer.html#eva-http-server-get-request"/>
+    <function name="eva_http_server_respond ()" link="GskHttpServer.html#eva-http-server-respond"/>
+    <function name="GskZlibDeflator" link="eva-GskZlibDeflator.html#GskZlibDeflator"/>
+    <function name="eva_zlib_deflator_new ()" link="eva-GskZlibDeflator.html#eva-zlib-deflator-new"/>
+    <function name="GskZlibInflator" link="eva-GskZlibInflator.html#GskZlibInflator"/>
+    <function name="eva_zlib_inflator_new ()" link="eva-GskZlibInflator.html#eva-zlib-inflator-new"/>
+    <function name="eva_zlib_error_to_eva_error ()" link="eva-evazlib.html#eva-zlib-error-to-eva-error"/>
+    <function name="eva_zlib_error_to_message ()" link="eva-evazlib.html#eva-zlib-error-to-message"/>
+    <function name="eva_stream_queue_new ()" link="eva-GskStreamQueue.html#eva-stream-queue-new"/>
+    <function name="eva_stream_queue_append_read_stream ()" link="eva-GskStreamQueue.html#eva-stream-queue-append-read-stream"/>
+    <function name="eva_stream_queue_append_write_stream ()" link="eva-GskStreamQueue.html#eva-stream-queue-append-write-stream"/>
+    <function name="eva_stream_queue_no_more_read_streams ()" link="eva-GskStreamQueue.html#eva-stream-queue-no-more-read-streams"/>
+    <function name="eva_stream_queue_no_more_write_streams ()" link="eva-GskStreamQueue.html#eva-stream-queue-no-more-write-streams"/>
+    <function name="EVA_STREAM_QUEUE_READ_EMPTY_HOOK()" link="eva-GskStreamQueue.html#EVA-STREAM-QUEUE-READ-EMPTY-HOOK--CAPS"/>
+    <function name="eva_stream_queue_trap_read_empty()" link="eva-GskStreamQueue.html#eva-stream-queue-trap-read-empty"/>
+    <function name="eva_stream_queue_untrap_read_empty()" link="eva-GskStreamQueue.html#eva-stream-queue-untrap-read-empty"/>
+    <function name="EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK()" link="eva-GskStreamQueue.html#EVA-STREAM-QUEUE-WRITE-EMPTY-HOOK--CAPS"/>
+    <function name="eva_stream_queue_trap_write_empty()" link="eva-GskStreamQueue.html#eva-stream-queue-trap-write-empty"/>
+    <function name="eva_stream_queue_untrap_write_empty()" link="eva-GskStreamQueue.html#eva-stream-queue-untrap-write-empty"/>
+    <function name="eva_memory_buffer_source_new ()" link="eva-evamemory.html#eva-memory-buffer-source-new"/>
+    <function name="eva_memory_slab_source_new ()" link="eva-evamemory.html#eva-memory-slab-source-new"/>
+    <function name="eva_memory_source_new_printf ()" link="eva-evamemory.html#eva-memory-source-new-printf"/>
+    <function name="eva_memory_source_new_vprintf ()" link="eva-evamemory.html#eva-memory-source-new-vprintf"/>
+    <function name="eva_memory_source_static_string ()" link="eva-evamemory.html#eva-memory-source-static-string"/>
+    <function name="eva_memory_source_static_string_n ()" link="eva-evamemory.html#eva-memory-source-static-string-n"/>
+    <function name="GskMemoryBufferCallback ()" link="eva-evamemory.html#GskMemoryBufferCallback"/>
+    <function name="eva_memory_buffer_sink_new ()" link="eva-evamemory.html#eva-memory-buffer-sink-new"/>
+    <function name="EVA_DNS_PORT" link="eva-evadns.html#EVA-DNS-PORT--CAPS"/>
+    <function name="GskDnsMessage" link="eva-evadns.html#GskDnsMessage"/>
+    <function name="GskDnsResourceRecord" link="eva-evadns.html#GskDnsResourceRecord"/>
+    <function name="GskDnsQuestion" link="eva-evadns.html#GskDnsQuestion"/>
+    <function name="enum GskDnsResourceRecordType" link="eva-evadns.html#GskDnsResourceRecordType"/>
+    <function name="enum GskDnsResourceClass" link="eva-evadns.html#GskDnsResourceClass"/>
+    <function name="EVA_DNS_SERIAL_LESS_THAN()" link="eva-evadns.html#EVA-DNS-SERIAL-LESS-THAN--CAPS"/>
+    <function name="eva_dns_rr_new_generic ()" link="eva-evadns.html#eva-dns-rr-new-generic"/>
+    <function name="eva_dns_rr_new_a ()" link="eva-evadns.html#eva-dns-rr-new-a"/>
+    <function name="eva_dns_rr_new_aaaa ()" link="eva-evadns.html#eva-dns-rr-new-aaaa"/>
+    <function name="eva_dns_rr_new_ns ()" link="eva-evadns.html#eva-dns-rr-new-ns"/>
+    <function name="eva_dns_rr_new_cname ()" link="eva-evadns.html#eva-dns-rr-new-cname"/>
+    <function name="eva_dns_rr_new_ptr ()" link="eva-evadns.html#eva-dns-rr-new-ptr"/>
+    <function name="eva_dns_rr_new_mx ()" link="eva-evadns.html#eva-dns-rr-new-mx"/>
+    <function name="eva_dns_rr_new_hinfo ()" link="eva-evadns.html#eva-dns-rr-new-hinfo"/>
+    <function name="eva_dns_rr_new_soa ()" link="eva-evadns.html#eva-dns-rr-new-soa"/>
+    <function name="eva_dns_rr_new_txt ()" link="eva-evadns.html#eva-dns-rr-new-txt"/>
+    <function name="eva_dns_rr_free ()" link="eva-evadns.html#eva-dns-rr-free"/>
+    <function name="eva_dns_rr_copy ()" link="eva-evadns.html#eva-dns-rr-copy"/>
+    <function name="eva_dns_rr_new_wildcard ()" link="eva-evadns.html#eva-dns-rr-new-wildcard"/>
+    <function name="eva_dns_question_new ()" link="eva-evadns.html#eva-dns-question-new"/>
+    <function name="eva_dns_question_copy ()" link="eva-evadns.html#eva-dns-question-copy"/>
+    <function name="eva_dns_question_free ()" link="eva-evadns.html#eva-dns-question-free"/>
+    <function name="eva_dns_rr_text_parse ()" link="eva-evadns.html#eva-dns-rr-text-parse"/>
+    <function name="eva_dns_rr_text_to_str ()" link="eva-evadns.html#eva-dns-rr-text-to-str"/>
+    <function name="eva_dns_question_text_to_str ()" link="eva-evadns.html#eva-dns-question-text-to-str"/>
+    <function name="eva_dns_rr_text_write ()" link="eva-evadns.html#eva-dns-rr-text-write"/>
+    <function name="enum GskDnsResponseCode" link="eva-evadns.html#GskDnsResponseCode"/>
+    <function name="eva_dns_message_new ()" link="eva-evadns.html#eva-dns-message-new"/>
+    <function name="eva_dns_message_parse_buffer ()" link="eva-evadns.html#eva-dns-message-parse-buffer"/>
+    <function name="eva_dns_message_parse_data ()" link="eva-evadns.html#eva-dns-message-parse-data"/>
+    <function name="eva_dns_message_write_buffer ()" link="eva-evadns.html#eva-dns-message-write-buffer"/>
+    <function name="eva_dns_message_to_packet ()" link="eva-evadns.html#eva-dns-message-to-packet"/>
+    <function name="eva_dns_message_append_question ()" link="eva-evadns.html#eva-dns-message-append-question"/>
+    <function name="eva_dns_message_append_answer ()" link="eva-evadns.html#eva-dns-message-append-answer"/>
+    <function name="eva_dns_message_append_auth ()" link="eva-evadns.html#eva-dns-message-append-auth"/>
+    <function name="eva_dns_message_append_addl ()" link="eva-evadns.html#eva-dns-message-append-addl"/>
+    <function name="eva_dns_message_remove_question ()" link="eva-evadns.html#eva-dns-message-remove-question"/>
+    <function name="eva_dns_message_remove_answer ()" link="eva-evadns.html#eva-dns-message-remove-answer"/>
+    <function name="eva_dns_message_remove_auth ()" link="eva-evadns.html#eva-dns-message-remove-auth"/>
+    <function name="eva_dns_message_remove_addl ()" link="eva-evadns.html#eva-dns-message-remove-addl"/>
+    <function name="eva_dns_message_unref ()" link="eva-evadns.html#eva-dns-message-unref"/>
+    <function name="eva_dns_message_ref ()" link="eva-evadns.html#eva-dns-message-ref"/>
+    <function name="eva_dns_dump_message_fp ()" link="eva-evadns.html#eva-dns-dump-message-fp"/>
+    <function name="eva_dns_dump_question_fp ()" link="eva-evadns.html#eva-dns-dump-question-fp"/>
+    <function name="eva_dns_parse_ip_address ()" link="eva-evadns.html#eva-dns-parse-ip-address"/>
+    <function name="eva_test_domain_name_validity ()" link="eva-evadns.html#eva-test-domain-name-validity"/>
+    <function name="GskDnsRRCache" link="eva-evadnsrrcache.html#GskDnsRRCache"/>
+    <function name="EVA_TYPE_DNS_RR_CACHE" link="eva-evadnsrrcache.html#EVA-TYPE-DNS-RR-CACHE--CAPS"/>
+    <function name="eva_dns_rr_cache_new ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-new"/>
+    <function name="eva_dns_rr_cache_insert ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-insert"/>
+    <function name="eva_dns_rr_cache_lookup_list ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-lookup-list"/>
+    <function name="eva_dns_rr_cache_lookup_one ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-lookup-one"/>
+    <function name="eva_dns_rr_cache_is_negative ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-is-negative"/>
+    <function name="eva_dns_rr_cache_unlock ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-unlock"/>
+    <function name="eva_dns_rr_cache_lock ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-lock"/>
+    <function name="eva_dns_rr_cache_mark_user ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-mark-user"/>
+    <function name="eva_dns_rr_cache_unmark_user ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-unmark-user"/>
+    <function name="eva_dns_rr_cache_add_negative ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-add-negative"/>
+    <function name="eva_dns_rr_cache_load_zone ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-load-zone"/>
+    <function name="eva_dns_rr_cache_get_ns_addr ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-get-ns-addr"/>
+    <function name="eva_dns_rr_cache_get_addr ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-get-addr"/>
+    <function name="eva_dns_rr_cache_ref ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-ref"/>
+    <function name="eva_dns_rr_cache_unref ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-unref"/>
+    <function name="eva_dns_rr_cache_flush ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-flush"/>
+    <function name="eva_dns_rr_cache_parse_etc_hosts_line ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-parse-etc-hosts-line"/>
+    <function name="eva_dns_rr_cache_parse_etc_hosts ()" link="eva-evadnsrrcache.html#eva-dns-rr-cache-parse-etc-hosts"/>
+    <function name="GskDnsClient" link="eva-evadnsclient.html#GskDnsClient-struct"/>
+    <function name="GskDnsClientClass" link="eva-evadnsclient.html#GskDnsClientClass"/>
+    <function name="enum GskDnsClientFlags" link="eva-evadnsclient.html#GskDnsClientFlags"/>
+    <function name="eva_dns_client_new ()" link="eva-evadnsclient.html#eva-dns-client-new"/>
+    <function name="eva_dns_client_add_searchpath ()" link="eva-evadnsclient.html#eva-dns-client-add-searchpath"/>
+    <function name="eva_dns_client_add_ns ()" link="eva-evadnsclient.html#eva-dns-client-add-ns"/>
+    <function name="eva_dns_client_set_cache ()" link="eva-evadnsclient.html#eva-dns-client-set-cache"/>
+    <function name="eva_dns_client_set_flags ()" link="eva-evadnsclient.html#eva-dns-client-set-flags"/>
+    <function name="eva_dns_client_get_flags ()" link="eva-evadnsclient.html#eva-dns-client-get-flags"/>
+    <function name="eva_dns_client_parse_system_files ()" link="eva-evadnsclient.html#eva-dns-client-parse-system-files"/>
+    <function name="GskDnsLocalResolverClass" link="eva-evadnslocalresolver.html#GskDnsLocalResolverClass"/>
+    <function name="GskDnsLocalResolver" link="eva-evadnslocalresolver.html#GskDnsLocalResolver-struct"/>
+    <function name="eva_dns_local_resolver_new ()" link="eva-evadnslocalresolver.html#eva-dns-local-resolver-new"/>
+    <function name="enum GskDnsLocalResult" link="eva-evadnslocalresolver.html#GskDnsLocalResult"/>
+    <function name="eva_dns_local_resolver_answer ()" link="eva-evadnslocalresolver.html#eva-dns-local-resolver-answer"/>
+    <function name="The &quot;resource-cache&quot; property" link="eva-evadnslocalresolver.html#GskDnsLocalResolver--resource-cache"/>
+    <function name="GskDnsResolverHints" link="eva-evadnsresolver.html#GskDnsResolverHints"/>
+    <function name="GskDnsResolverIface" link="eva-evadnsresolver.html#GskDnsResolverIface"/>
+    <function name="GskDnsResolver" link="eva-evadnsresolver.html#GskDnsResolver-struct"/>
+    <function name="GskDnsResolverTask" link="eva-evadnsresolver.html#GskDnsResolverTask"/>
+    <function name="GskDnsResolverLookupFunc ()" link="eva-evadnsresolver.html#GskDnsResolverLookupFunc"/>
+    <function name="GskDnsResolverRevLookupFunc ()" link="eva-evadnsresolver.html#GskDnsResolverRevLookupFunc"/>
+    <function name="GskDnsResolverResponseFunc ()" link="eva-evadnsresolver.html#GskDnsResolverResponseFunc"/>
+    <function name="GskDnsResolverFailFunc ()" link="eva-evadnsresolver.html#GskDnsResolverFailFunc"/>
+    <function name="eva_dns_resolver_resolve ()" link="eva-evadnsresolver.html#eva-dns-resolver-resolve"/>
+    <function name="eva_dns_resolver_cancel ()" link="eva-evadnsresolver.html#eva-dns-resolver-cancel"/>
+    <function name="eva_dns_resolver_lookup ()" link="eva-evadnsresolver.html#eva-dns-resolver-lookup"/>
+    <function name="eva_dns_resolver_rev_lookup ()" link="eva-evadnsresolver.html#eva-dns-resolver-rev-lookup"/>
+    <function name="eva_dns_resolver_add_name_resolver_iface ()" link="eva-evadnsresolver.html#eva-dns-resolver-add-name-resolver-iface"/>
+    <function name="GskDnsServerClass" link="eva-evadnsserver.html#GskDnsServerClass"/>
+    <function name="GskDnsServer" link="eva-evadnsserver.html#GskDnsServer-struct"/>
+    <function name="eva_dns_server_new ()" link="eva-evadnsserver.html#eva-dns-server-new"/>
+    <function name="eva_dns_server_peek_resolver ()" link="eva-evadnsserver.html#eva-dns-server-peek-resolver"/>
+    <function name="eva_dns_server_set_resolver ()" link="eva-evadnsserver.html#eva-dns-server-set-resolver"/>
+    <function name="The &quot;packet-queue&quot; property" link="eva-evadnsserver.html#GskDnsServer--packet-queue"/>
+    <function name="The &quot;resolver&quot; property" link="eva-evadnsserver.html#GskDnsServer--resolver"/>
+    <function name="GskStreamSsl" link="eva-evastreamssl.html#GskStreamSsl-struct"/>
+    <function name="eva_stream_ssl_new_client ()" link="eva-evastreamssl.html#eva-stream-ssl-new-client"/>
+    <function name="eva_stream_ssl_new_server ()" link="eva-evastreamssl.html#eva-stream-ssl-new-server"/>
+    <function name="eva_stream_ssl_peek_backend ()" link="eva-evastreamssl.html#eva-stream-ssl-peek-backend"/>
+    <function name="The &quot;cert-file&quot; property" link="eva-evastreamssl.html#GskStreamSsl--cert-file"/>
+    <function name="The &quot;is-client&quot; property" link="eva-evastreamssl.html#GskStreamSsl--is-client"/>
+    <function name="The &quot;key-file&quot; property" link="eva-evastreamssl.html#GskStreamSsl--key-file"/>
+    <function name="The &quot;password&quot; property" link="eva-evastreamssl.html#GskStreamSsl--password"/>
+    <function name="GskMimeMultipartPiece" link="eva-evamimemultipartpiece.html#GskMimeMultipartPiece"/>
+    <function name="eva_mime_multipart_piece_ref ()" link="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-ref"/>
+    <function name="eva_mime_multipart_piece_unref ()" link="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-unref"/>
+    <function name="eva_mime_multipart_piece_alloc ()" link="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-alloc"/>
+    <function name="eva_mime_multipart_piece_set_description ()" link="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-description"/>
+    <function name="eva_mime_multipart_piece_set_stream ()" link="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-stream"/>
+    <function name="eva_mime_multipart_piece_set_type ()" link="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-type"/>
+    <function name="eva_mime_multipart_piece_set_data ()" link="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-data"/>
+    <function name="eva_mime_multipart_piece_set_transfer_encoding ()" link="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-transfer-encoding"/>
+    <function name="eva_mime_multipart_piece_set_location ()" link="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-location"/>
+    <function name="eva_mime_multipart_piece_set_id ()" link="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-id"/>
+    <function name="GskMimeMultipartDecoderHook ()" link="eva-GskMimeMultipartDecoder.html#GskMimeMultipartDecoderHook"/>
+    <function name="enum GskMimeMultipartDecoderMode" link="eva-GskMimeMultipartDecoder.html#GskMimeMultipartDecoderMode"/>
+    <function name="GskMimeMultipartDecoderClass" link="eva-GskMimeMultipartDecoder.html#GskMimeMultipartDecoderClass"/>
+    <function name="GskMimeMultipartDecoder" link="eva-GskMimeMultipartDecoder.html#GskMimeMultipartDecoder"/>
+    <function name="eva_mime_multipart_decoder_new ()" link="eva-GskMimeMultipartDecoder.html#eva-mime-multipart-decoder-new"/>
+    <function name="eva_mime_multipart_decoder_set_mode ()" link="eva-GskMimeMultipartDecoder.html#eva-mime-multipart-decoder-set-mode"/>
+    <function name="eva_mime_multipart_decoder_get_piece ()" link="eva-GskMimeMultipartDecoder.html#eva-mime-multipart-decoder-get-piece"/>
+    <function name="eva_mime_multipart_decoder_trap()" link="eva-GskMimeMultipartDecoder.html#eva-mime-multipart-decoder-trap"/>
+    <function name="eva_mime_multipart_decoder_untrap()" link="eva-GskMimeMultipartDecoder.html#eva-mime-multipart-decoder-untrap"/>
+    <function name="eva_mime_multipart_decoder_block()" link="eva-GskMimeMultipartDecoder.html#eva-mime-multipart-decoder-block"/>
+    <function name="eva_mime_multipart_decoder_unblock()" link="eva-GskMimeMultipartDecoder.html#eva-mime-multipart-decoder-unblock"/>
+    <function name="GskXmlrpcArray" link="eva-evaxmlrpc.html#GskXmlrpcArray"/>
+    <function name="GskXmlrpcStruct" link="eva-evaxmlrpc.html#GskXmlrpcStruct"/>
+    <function name="GskXmlrpcValue" link="eva-evaxmlrpc.html#GskXmlrpcValue"/>
+    <function name="GskXmlrpcNamedValue" link="eva-evaxmlrpc.html#GskXmlrpcNamedValue"/>
+    <function name="GskXmlrpcRequest" link="eva-evaxmlrpc.html#GskXmlrpcRequest"/>
+    <function name="GskXmlrpcResponse" link="eva-evaxmlrpc.html#GskXmlrpcResponse"/>
+    <function name="GskXmlrpcParser" link="eva-evaxmlrpc.html#GskXmlrpcParser"/>
+    <function name="enum GskXmlrpcType" link="eva-evaxmlrpc.html#GskXmlrpcType"/>
+    <function name="eva_xmlrpc_struct_new ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-new"/>
+    <function name="eva_xmlrpc_struct_free ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-free"/>
+    <function name="eva_xmlrpc_struct_add_int32 ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-add-int32"/>
+    <function name="eva_xmlrpc_struct_add_boolean ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-add-boolean"/>
+    <function name="eva_xmlrpc_struct_add_double ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-add-double"/>
+    <function name="eva_xmlrpc_struct_add_string ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-add-string"/>
+    <function name="eva_xmlrpc_struct_add_date ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-add-date"/>
+    <function name="eva_xmlrpc_struct_add_data ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-add-data"/>
+    <function name="eva_xmlrpc_struct_add_struct ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-add-struct"/>
+    <function name="eva_xmlrpc_struct_add_array ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-add-array"/>
+    <function name="eva_xmlrpc_struct_peek_date ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-peek-date"/>
+    <function name="eva_xmlrpc_struct_peek_boolean ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-peek-boolean"/>
+    <function name="eva_xmlrpc_struct_peek_double ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-peek-double"/>
+    <function name="eva_xmlrpc_struct_peek_struct ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-peek-struct"/>
+    <function name="eva_xmlrpc_struct_peek_data ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-peek-data"/>
+    <function name="eva_xmlrpc_struct_peek_array ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-peek-array"/>
+    <function name="eva_xmlrpc_struct_peek_string ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-peek-string"/>
+    <function name="eva_xmlrpc_struct_peek_int32 ()" link="eva-evaxmlrpc.html#eva-xmlrpc-struct-peek-int32"/>
+    <function name="eva_xmlrpc_array_new ()" link="eva-evaxmlrpc.html#eva-xmlrpc-array-new"/>
+    <function name="eva_xmlrpc_array_free ()" link="eva-evaxmlrpc.html#eva-xmlrpc-array-free"/>
+    <function name="eva_xmlrpc_array_add_int32 ()" link="eva-evaxmlrpc.html#eva-xmlrpc-array-add-int32"/>
+    <function name="eva_xmlrpc_array_add_boolean ()" link="eva-evaxmlrpc.html#eva-xmlrpc-array-add-boolean"/>
+    <function name="eva_xmlrpc_array_add_double ()" link="eva-evaxmlrpc.html#eva-xmlrpc-array-add-double"/>
+    <function name="eva_xmlrpc_array_add_string ()" link="eva-evaxmlrpc.html#eva-xmlrpc-array-add-string"/>
+    <function name="eva_xmlrpc_array_add_date ()" link="eva-evaxmlrpc.html#eva-xmlrpc-array-add-date"/>
+    <function name="eva_xmlrpc_array_add_data ()" link="eva-evaxmlrpc.html#eva-xmlrpc-array-add-data"/>
+    <function name="eva_xmlrpc_array_add_struct ()" link="eva-evaxmlrpc.html#eva-xmlrpc-array-add-struct"/>
+    <function name="eva_xmlrpc_array_add_array ()" link="eva-evaxmlrpc.html#eva-xmlrpc-array-add-array"/>
+    <function name="eva_xmlrpc_request_new ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-new"/>
+    <function name="eva_xmlrpc_request_ref ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-ref"/>
+    <function name="eva_xmlrpc_request_unref ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-unref"/>
+    <function name="eva_xmlrpc_request_set_name ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-set-name"/>
+    <function name="eva_xmlrpc_request_add_int32 ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-add-int32"/>
+    <function name="eva_xmlrpc_request_add_boolean ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-add-boolean"/>
+    <function name="eva_xmlrpc_request_add_double ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-add-double"/>
+    <function name="eva_xmlrpc_request_add_string ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-add-string"/>
+    <function name="eva_xmlrpc_request_add_date ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-add-date"/>
+    <function name="eva_xmlrpc_request_add_data ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-add-data"/>
+    <function name="eva_xmlrpc_request_add_struct ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-add-struct"/>
+    <function name="eva_xmlrpc_request_add_array ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-add-array"/>
+    <function name="eva_xmlrpc_response_new ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-new"/>
+    <function name="eva_xmlrpc_response_ref ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-ref"/>
+    <function name="eva_xmlrpc_response_unref ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-unref"/>
+    <function name="eva_xmlrpc_response_add_int32 ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-add-int32"/>
+    <function name="eva_xmlrpc_response_add_boolean ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-add-boolean"/>
+    <function name="eva_xmlrpc_response_add_double ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-add-double"/>
+    <function name="eva_xmlrpc_response_add_string ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-add-string"/>
+    <function name="eva_xmlrpc_response_add_date ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-add-date"/>
+    <function name="eva_xmlrpc_response_add_data ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-add-data"/>
+    <function name="eva_xmlrpc_response_add_struct ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-add-struct"/>
+    <function name="eva_xmlrpc_response_add_array ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-add-array"/>
+    <function name="eva_xmlrpc_response_fault ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-fault"/>
+    <function name="eva_xmlrpc_parser_new ()" link="eva-evaxmlrpc.html#eva-xmlrpc-parser-new"/>
+    <function name="eva_xmlrpc_parser_feed ()" link="eva-evaxmlrpc.html#eva-xmlrpc-parser-feed"/>
+    <function name="eva_xmlrpc_parser_get_request ()" link="eva-evaxmlrpc.html#eva-xmlrpc-parser-get-request"/>
+    <function name="eva_xmlrpc_parser_get_response ()" link="eva-evaxmlrpc.html#eva-xmlrpc-parser-get-response"/>
+    <function name="eva_xmlrpc_parser_free ()" link="eva-evaxmlrpc.html#eva-xmlrpc-parser-free"/>
+    <function name="eva_xmlrpc_request_to_buffer ()" link="eva-evaxmlrpc.html#eva-xmlrpc-request-to-buffer"/>
+    <function name="eva_xmlrpc_response_to_buffer ()" link="eva-evaxmlrpc.html#eva-xmlrpc-response-to-buffer"/>
+    <function name="GskXmlrpcStreamClass" link="eva-GskXmlrpcStream.html#GskXmlrpcStreamClass"/>
+    <function name="GskXmlrpcStream" link="eva-GskXmlrpcStream.html#GskXmlrpcStream"/>
+    <function name="EVA_XMLRPC_STREAM_REQUEST_HOOK()" link="eva-GskXmlrpcStream.html#EVA-XMLRPC-STREAM-REQUEST-HOOK--CAPS"/>
+    <function name="eva_xmlrpc_stream_get_request ()" link="eva-GskXmlrpcStream.html#eva-xmlrpc-stream-get-request"/>
+    <function name="eva_xmlrpc_stream_respond ()" link="eva-GskXmlrpcStream.html#eva-xmlrpc-stream-respond"/>
+    <function name="GskXmlrpcResponseNotify ()" link="eva-GskXmlrpcStream.html#GskXmlrpcResponseNotify"/>
+    <function name="eva_xmlrpc_stream_make_request ()" link="eva-GskXmlrpcStream.html#eva-xmlrpc-stream-make-request"/>
+    <function name="GskMainLoopDevPoll" link="GskMainLoopDevPoll.html#GskMainLoopDevPoll-struct"/>
+    <function name="GskMainLoopKqueue" link="GskMainLoopKqueue.html#GskMainLoopKqueue-struct"/>
+    <function name="GskMainLoopPoll" link="GskMainLoopPoll.html#GskMainLoopPoll-struct"/>
+    <function name="GskMainLoopPollBaseClass" link="GskMainLoopPollBase.html#GskMainLoopPollBaseClass"/>
+    <function name="GskMainLoopPollBase" link="GskMainLoopPollBase.html#GskMainLoopPollBase-struct"/>
+    <function name="eva_main_loop_poll_base_wakeup ()" link="GskMainLoopPollBase.html#eva-main-loop-poll-base-wakeup"/>
+    <function name="GskMainLoopSelect" link="GskMainLoopSelect.html#GskMainLoopSelect-struct"/>
+    <function name="EVA_BASE64_GET_ENCODED_LEN()" link="eva-evabase64.html#EVA-BASE64-GET-ENCODED-LEN--CAPS"/>
+    <function name="EVA_BASE64_GET_MAX_DECODED_LEN()" link="eva-evabase64.html#EVA-BASE64-GET-MAX-DECODED-LEN--CAPS"/>
+    <function name="eva_base64_decode ()" link="eva-evabase64.html#eva-base64-decode"/>
+    <function name="eva_base64_decode_alloc ()" link="eva-evabase64.html#eva-base64-decode-alloc"/>
+    <function name="eva_base64_encode ()" link="eva-evabase64.html#eva-base64-encode"/>
+    <function name="eva_base64_encode_alloc ()" link="eva-evabase64.html#eva-base64-encode-alloc"/>
+    <function name="GskHash" link="eva-evahash.html#GskHash"/>
+    <function name="eva_hash_new_md5 ()" link="eva-evahash.html#eva-hash-new-md5"/>
+    <function name="eva_hash_new_sha1 ()" link="eva-evahash.html#eva-hash-new-sha1"/>
+    <function name="eva_hash_new_crc32 ()" link="eva-evahash.html#eva-hash-new-crc32"/>
+    <function name="eva_hash_feed ()" link="eva-evahash.html#eva-hash-feed"/>
+    <function name="eva_hash_feed_str ()" link="eva-evahash.html#eva-hash-feed-str"/>
+    <function name="eva_hash_done ()" link="eva-evahash.html#eva-hash-done"/>
+    <function name="eva_hash_get_size ()" link="eva-evahash.html#eva-hash-get-size"/>
+    <function name="eva_hash_get ()" link="eva-evahash.html#eva-hash-get"/>
+    <function name="eva_hash_get_hex ()" link="eva-evahash.html#eva-hash-get-hex"/>
+    <function name="eva_hash_destroy ()" link="eva-evahash.html#eva-hash-destroy"/>
+    <function name="EVA_MEM_POOL_FIXED_STATIC_INIT()" link="eva-evamempool.html#EVA-MEM-POOL-FIXED-STATIC-INIT--CAPS"/>
+    <function name="EVA_MEM_POOL_STATIC_INIT" link="eva-evamempool.html#EVA-MEM-POOL-STATIC-INIT--CAPS"/>
+    <function name="GskMemPool" link="eva-evamempool.html#GskMemPool"/>
+    <function name="GskMemPoolFixed" link="eva-evamempool.html#GskMemPoolFixed"/>
+    <function name="eva_mem_pool_construct ()" link="eva-evamempool.html#eva-mem-pool-construct"/>
+    <function name="eva_mem_pool_construct_with_scratch_buf ()" link="eva-evamempool.html#eva-mem-pool-construct-with-scratch-buf"/>
+    <function name="eva_mem_pool_alloc ()" link="eva-evamempool.html#eva-mem-pool-alloc"/>
+    <function name="eva_mem_pool_alloc0 ()" link="eva-evamempool.html#eva-mem-pool-alloc0"/>
+    <function name="eva_mem_pool_strdup ()" link="eva-evamempool.html#eva-mem-pool-strdup"/>
+    <function name="eva_mem_pool_destruct ()" link="eva-evamempool.html#eva-mem-pool-destruct"/>
+    <function name="eva_mem_pool_fixed_construct ()" link="eva-evamempool.html#eva-mem-pool-fixed-construct"/>
+    <function name="eva_mem_pool_fixed_alloc ()" link="eva-evamempool.html#eva-mem-pool-fixed-alloc"/>
+    <function name="eva_mem_pool_fixed_alloc0 ()" link="eva-evamempool.html#eva-mem-pool-fixed-alloc0"/>
+    <function name="eva_mem_pool_fixed_free ()" link="eva-evamempool.html#eva-mem-pool-fixed-free"/>
+    <function name="eva_mem_pool_fixed_destruct ()" link="eva-evamempool.html#eva-mem-pool-fixed-destruct"/>
+    <function name="GskNetworkInterface" link="eva-evanetworkinterface.html#GskNetworkInterface"/>
+    <function name="GskNetworkInterfaceSet" link="eva-evanetworkinterface.html#GskNetworkInterfaceSet"/>
+    <function name="enum GskNetworkInterfaceFlags" link="eva-evanetworkinterface.html#GskNetworkInterfaceFlags"/>
+    <function name="eva_network_interface_set_new ()" link="eva-evanetworkinterface.html#eva-network-interface-set-new"/>
+    <function name="eva_network_interface_set_destroy ()" link="eva-evanetworkinterface.html#eva-network-interface-set-destroy"/>
+    <function name="enum GskDateFormatMask" link="eva-evadate.html#GskDateFormatMask"/>
+    <function name="eva_date_parse ()" link="eva-evadate.html#eva-date-parse"/>
+    <function name="eva_date_parse_timet ()" link="eva-evadate.html#eva-date-parse-timet"/>
+    <function name="eva_date_print ()" link="eva-evadate.html#eva-date-print"/>
+    <function name="eva_date_print_timet ()" link="eva-evadate.html#eva-date-print-timet"/>
+    <function name="EVA_DATE_MAX_LENGTH" link="eva-evadate.html#EVA-DATE-MAX-LENGTH--CAPS"/>
+    <function name="EVA_LOG2_MAX_LIST_SIZE" link="eva-evalistmacros.html#EVA-LOG2-MAX-LIST-SIZE--CAPS"/>
+    <function name="EVA_STACK_PUSH()" link="eva-evalistmacros.html#EVA-STACK-PUSH--CAPS"/>
+    <function name="EVA_STACK_POP()" link="eva-evalistmacros.html#EVA-STACK-POP--CAPS"/>
+    <function name="EVA_STACK_INSERT_AFTER()" link="eva-evalistmacros.html#EVA-STACK-INSERT-AFTER--CAPS"/>
+    <function name="EVA_STACK_REVERSE()" link="eva-evalistmacros.html#EVA-STACK-REVERSE--CAPS"/>
+    <function name="EVA_STACK_FOREACH()" link="eva-evalistmacros.html#EVA-STACK-FOREACH--CAPS"/>
+    <function name="EVA_STACK_SORT()" link="eva-evalistmacros.html#EVA-STACK-SORT--CAPS"/>
+    <function name="EVA_STACK_GET_BOTTOM()" link="eva-evalistmacros.html#EVA-STACK-GET-BOTTOM--CAPS"/>
+    <function name="EVA_STACK_IS_EMPTY()" link="eva-evalistmacros.html#EVA-STACK-IS-EMPTY--CAPS"/>
+    <function name="EVA_QUEUE_ENQUEUE()" link="eva-evalistmacros.html#EVA-QUEUE-ENQUEUE--CAPS"/>
+    <function name="EVA_QUEUE_DEQUEUE()" link="eva-evalistmacros.html#EVA-QUEUE-DEQUEUE--CAPS"/>
+    <function name="EVA_QUEUE_PREPEND()" link="eva-evalistmacros.html#EVA-QUEUE-PREPEND--CAPS"/>
+    <function name="EVA_QUEUE_REVERSE()" link="eva-evalistmacros.html#EVA-QUEUE-REVERSE--CAPS"/>
+    <function name="EVA_QUEUE_SORT()" link="eva-evalistmacros.html#EVA-QUEUE-SORT--CAPS"/>
+    <function name="EVA_QUEUE_IS_EMPTY()" link="eva-evalistmacros.html#EVA-QUEUE-IS-EMPTY--CAPS"/>
+    <function name="EVA_LIST_PREPEND()" link="eva-evalistmacros.html#EVA-LIST-PREPEND--CAPS"/>
+    <function name="EVA_LIST_APPEND()" link="eva-evalistmacros.html#EVA-LIST-APPEND--CAPS"/>
+    <function name="EVA_LIST_REMOVE_FIRST()" link="eva-evalistmacros.html#EVA-LIST-REMOVE-FIRST--CAPS"/>
+    <function name="EVA_LIST_REMOVE_LAST()" link="eva-evalistmacros.html#EVA-LIST-REMOVE-LAST--CAPS"/>
+    <function name="EVA_LIST_REMOVE()" link="eva-evalistmacros.html#EVA-LIST-REMOVE--CAPS"/>
+    <function name="EVA_LIST_INSERT_AFTER()" link="eva-evalistmacros.html#EVA-LIST-INSERT-AFTER--CAPS"/>
+    <function name="EVA_LIST_INSERT_BEFORE()" link="eva-evalistmacros.html#EVA-LIST-INSERT-BEFORE--CAPS"/>
+    <function name="EVA_LIST_IS_EMPTY()" link="eva-evalistmacros.html#EVA-LIST-IS-EMPTY--CAPS"/>
+    <function name="EVA_LIST_REVERSE()" link="eva-evalistmacros.html#EVA-LIST-REVERSE--CAPS"/>
+    <function name="EVA_LIST_SORT()" link="eva-evalistmacros.html#EVA-LIST-SORT--CAPS"/>
+    <function name="EVA_RBTREE_INSERT()" link="eva-evarbtreemacros.html#EVA-RBTREE-INSERT--CAPS"/>
+    <function name="EVA_RBTREE_REMOVE()" link="eva-evarbtreemacros.html#EVA-RBTREE-REMOVE--CAPS"/>
+    <function name="EVA_RBTREE_LOOKUP()" link="eva-evarbtreemacros.html#EVA-RBTREE-LOOKUP--CAPS"/>
+    <function name="EVA_RBTREE_LOOKUP_COMPARATOR()" link="eva-evarbtreemacros.html#EVA-RBTREE-LOOKUP-COMPARATOR--CAPS"/>
+    <function name="EVA_RBTREE_FIRST()" link="eva-evarbtreemacros.html#EVA-RBTREE-FIRST--CAPS"/>
+    <function name="EVA_RBTREE_LAST()" link="eva-evarbtreemacros.html#EVA-RBTREE-LAST--CAPS"/>
+    <function name="EVA_RBTREE_NEXT()" link="eva-evarbtreemacros.html#EVA-RBTREE-NEXT--CAPS"/>
+    <function name="EVA_RBTREE_PREV()" link="eva-evarbtreemacros.html#EVA-RBTREE-PREV--CAPS"/>
+    <function name="EVA_RBTREE_SUPREMUM()" link="eva-evarbtreemacros.html#EVA-RBTREE-SUPREMUM--CAPS"/>
+    <function name="EVA_RBTREE_SUPREMUM_COMPARATOR()" link="eva-evarbtreemacros.html#EVA-RBTREE-SUPREMUM-COMPARATOR--CAPS"/>
+    <function name="EVA_RBTREE_INFIMUM()" link="eva-evarbtreemacros.html#EVA-RBTREE-INFIMUM--CAPS"/>
+    <function name="EVA_RBTREE_INFIMUM_COMPARATOR()" link="eva-evarbtreemacros.html#EVA-RBTREE-INFIMUM-COMPARATOR--CAPS"/>
+    <function name="EVA_RBCTREE_INSERT()" link="eva-evarbtreemacros.html#EVA-RBCTREE-INSERT--CAPS"/>
+    <function name="EVA_RBCTREE_REMOVE()" link="eva-evarbtreemacros.html#EVA-RBCTREE-REMOVE--CAPS"/>
+    <function name="EVA_RBCTREE_LOOKUP()" link="eva-evarbtreemacros.html#EVA-RBCTREE-LOOKUP--CAPS"/>
+    <function name="EVA_RBCTREE_LOOKUP_COMPARATOR()" link="eva-evarbtreemacros.html#EVA-RBCTREE-LOOKUP-COMPARATOR--CAPS"/>
+    <function name="EVA_RBCTREE_FIRST()" link="eva-evarbtreemacros.html#EVA-RBCTREE-FIRST--CAPS"/>
+    <function name="EVA_RBCTREE_LAST()" link="eva-evarbtreemacros.html#EVA-RBCTREE-LAST--CAPS"/>
+    <function name="EVA_RBCTREE_NEXT()" link="eva-evarbtreemacros.html#EVA-RBCTREE-NEXT--CAPS"/>
+    <function name="EVA_RBCTREE_PREV()" link="eva-evarbtreemacros.html#EVA-RBCTREE-PREV--CAPS"/>
+    <function name="EVA_RBCTREE_SUPREMUM()" link="eva-evarbtreemacros.html#EVA-RBCTREE-SUPREMUM--CAPS"/>
+    <function name="EVA_RBCTREE_SUPREMUM_COMPARATOR()" link="eva-evarbtreemacros.html#EVA-RBCTREE-SUPREMUM-COMPARATOR--CAPS"/>
+    <function name="EVA_RBCTREE_INFIMUM()" link="eva-evarbtreemacros.html#EVA-RBCTREE-INFIMUM--CAPS"/>
+    <function name="EVA_RBCTREE_INFIMUM_COMPARATOR()" link="eva-evarbtreemacros.html#EVA-RBCTREE-INFIMUM-COMPARATOR--CAPS"/>
+    <function name="EVA_RBCTREE_GET_BY_INDEX()" link="eva-evarbtreemacros.html#EVA-RBCTREE-GET-BY-INDEX--CAPS"/>
+    <function name="EVA_RBCTREE_GET_BY_INDEX_UNCHECKED()" link="eva-evarbtreemacros.html#EVA-RBCTREE-GET-BY-INDEX-UNCHECKED--CAPS"/>
+    <function name="EVA_RBCTREE_GET_NODE_INDEX()" link="eva-evarbtreemacros.html#EVA-RBCTREE-GET-NODE-INDEX--CAPS"/>
+    <function name="EVA_QSORT_STACK_MAX_SIZE" link="eva-evaqsortmacro.html#EVA-QSORT-STACK-MAX-SIZE--CAPS"/>
+    <function name="EVA_INSERTION_SORT_THRESHOLD" link="eva-evaqsortmacro.html#EVA-INSERTION-SORT-THRESHOLD--CAPS"/>
+    <function name="EVA_QSORT()" link="eva-evaqsortmacro.html#EVA-QSORT--CAPS"/>
+    <function name="EVA_QSORT_DEBUG()" link="eva-evaqsortmacro.html#EVA-QSORT-DEBUG--CAPS"/>
+    <function name="EVA_QSORT_FULL()" link="eva-evaqsortmacro.html#EVA-QSORT-FULL--CAPS"/>
+    <function name="EVA_QSELECT_FULL()" link="eva-evaqsortmacro.html#EVA-QSELECT-FULL--CAPS"/>
+    <function name="EVA_QSORT_ASSERT_STACK_SIZE()" link="eva-evaqsortmacro.html#EVA-QSORT-ASSERT-STACK-SIZE--CAPS"/>
+    <function name="EVA_INSERTION_SORT()" link="eva-evaqsortmacro.html#EVA-INSERTION-SORT--CAPS"/>
+    <function name="EVA_QSORT_SIMPLE_COMPARATOR()" link="eva-evaqsortmacro.html#EVA-QSORT-SIMPLE-COMPARATOR--CAPS"/>
+    <function name="GskTreeNode" link="eva-evatree.html#GskTreeNode"/>
+    <function name="GskTree" link="eva-evatree.html#GskTree"/>
+    <function name="eva_tree_new ()" link="eva-evatree.html#eva-tree-new"/>
+    <function name="eva_tree_ref ()" link="eva-evatree.html#eva-tree-ref"/>
+    <function name="eva_tree_unref ()" link="eva-evatree.html#eva-tree-unref"/>
+    <function name="eva_tree_new_full ()" link="eva-evatree.html#eva-tree-new-full"/>
+    <function name="eva_tree_insert ()" link="eva-evatree.html#eva-tree-insert"/>
+    <function name="eva_tree_replace ()" link="eva-evatree.html#eva-tree-replace"/>
+    <function name="eva_tree_lookup ()" link="eva-evatree.html#eva-tree-lookup"/>
+    <function name="eva_tree_remove ()" link="eva-evatree.html#eva-tree-remove"/>
+    <function name="eva_tree_n_nodes ()" link="eva-evatree.html#eva-tree-n-nodes"/>
+    <function name="eva_tree_node_first ()" link="eva-evatree.html#eva-tree-node-first"/>
+    <function name="eva_tree_node_last ()" link="eva-evatree.html#eva-tree-node-last"/>
+    <function name="eva_tree_node_find ()" link="eva-evatree.html#eva-tree-node-find"/>
+    <function name="eva_tree_node_next ()" link="eva-evatree.html#eva-tree-node-next"/>
+    <function name="eva_tree_node_prev ()" link="eva-evatree.html#eva-tree-node-prev"/>
+    <function name="eva_tree_node_peek_key ()" link="eva-evatree.html#eva-tree-node-peek-key"/>
+    <function name="eva_tree_node_peek_value ()" link="eva-evatree.html#eva-tree-node-peek-value"/>
+    <function name="eva_tree_node_is_removed ()" link="eva-evatree.html#eva-tree-node-is-removed"/>
+    <function name="eva_tree_node_visit ()" link="eva-evatree.html#eva-tree-node-visit"/>
+    <function name="eva_tree_node_unvisit ()" link="eva-evatree.html#eva-tree-node-unvisit"/>
+    <function name="eva_tree_validate ()" link="eva-evatree.html#eva-tree-validate"/>
+    <function name="GskForkFunc ()" link="eva-evafork.html#GskForkFunc"/>
+    <function name="eva_fork ()" link="eva-evafork.html#eva-fork"/>
+    <function name="eva_fork_add_cleanup_fd ()" link="eva-evafork.html#eva-fork-add-cleanup-fd"/>
+    <function name="eva_fork_remove_cleanup_fd ()" link="eva-evafork.html#eva-fork-remove-cleanup-fd"/>
+    <function name="eva_fork_child_cleanup ()" link="eva-evafork.html#eva-fork-child-cleanup"/>
+  </functions>
+</book>

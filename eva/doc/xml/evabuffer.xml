@@ -1,0 +1,793 @@
+<refentry id="eva-evabuffer">
+<refmeta>
+<refentrytitle role="top_of_page" id="eva-evabuffer.top_of_page">GskBuffer</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>EVA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GskBuffer</refname>
+<refpurpose>a fast, flexible in-memory data buffer</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="eva-evabuffer.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GskBuffer">GskBuffer</link>;
+                    <link linkend="GskBufferFragment">GskBufferFragment</link>;
+<link linkend="void">void</link>                <link linkend="eva-buffer-construct">eva_buffer_construct</link>                (<link linkend="GskBuffer">GskBuffer</link> *buffer);
+<link linkend="guint">guint</link>               <link linkend="eva-buffer-read">eva_buffer_read</link>                     (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="guint">guint</link> max_length);
+<link linkend="guint">guint</link>               <link linkend="eva-buffer-peek">eva_buffer_peek</link>                     (const <link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="guint">guint</link> max_length);
+<link linkend="int">int</link>                 <link linkend="eva-buffer-discard">eva_buffer_discard</link>                  (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="guint">guint</link> max_discard);
+<link linkend="char">char</link> *              <link linkend="eva-buffer-read-line">eva_buffer_read_line</link>                (<link linkend="GskBuffer">GskBuffer</link> *buffer);
+<link linkend="char">char</link> *              <link linkend="eva-buffer-parse-string0">eva_buffer_parse_string0</link>            (<link linkend="GskBuffer">GskBuffer</link> *buffer);
+<link linkend="int">int</link>                 <link linkend="eva-buffer-peek-char">eva_buffer_peek_char</link>                (const <link linkend="GskBuffer">GskBuffer</link> *buffer);
+<link linkend="int">int</link>                 <link linkend="eva-buffer-read-char">eva_buffer_read_char</link>                (<link linkend="GskBuffer">GskBuffer</link> *buffer);
+<link linkend="void">void</link>                <link linkend="eva-buffer-append">eva_buffer_append</link>                   (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="gconstpointer">gconstpointer</link> data,
+                                                         <link linkend="guint">guint</link> length);
+<link linkend="void">void</link>                <link linkend="eva-buffer-append-string">eva_buffer_append_string</link>            (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         const <link linkend="char">char</link> *string);
+<link linkend="void">void</link>                <link linkend="eva-buffer-append-char">eva_buffer_append_char</link>              (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="char">char</link> character);
+<link linkend="void">void</link>                <link linkend="eva-buffer-append-string0">eva_buffer_append_string0</link>           (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         const <link linkend="char">char</link> *string);
+<link linkend="void">void</link>                <link linkend="eva-buffer-append-foreign">eva_buffer_append_foreign</link>           (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="gconstpointer">gconstpointer</link> data,
+                                                         <link linkend="int">int</link> length,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy,
+                                                         <link linkend="gpointer">gpointer</link> destroy_data);
+<link linkend="void">void</link>                <link linkend="eva-buffer-printf">eva_buffer_printf</link>                   (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         const <link linkend="char">char</link> *format,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="eva-buffer-vprintf">eva_buffer_vprintf</link>                  (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         const <link linkend="char">char</link> *format,
+                                                         <link linkend="va-list">va_list</link> args);
+<link linkend="guint">guint</link>               <link linkend="eva-buffer-drain">eva_buffer_drain</link>                    (<link linkend="GskBuffer">GskBuffer</link> *dst,
+                                                         <link linkend="GskBuffer">GskBuffer</link> *src);
+<link linkend="guint">guint</link>               <link linkend="eva-buffer-transfer">eva_buffer_transfer</link>                 (<link linkend="GskBuffer">GskBuffer</link> *dst,
+                                                         <link linkend="GskBuffer">GskBuffer</link> *src,
+                                                         <link linkend="guint">guint</link> max_transfer);
+<link linkend="int">int</link>                 <link linkend="eva-buffer-writev">eva_buffer_writev</link>                   (<link linkend="GskBuffer">GskBuffer</link> *read_from,
+                                                         <link linkend="int">int</link> fd);
+<link linkend="int">int</link>                 <link linkend="eva-buffer-read-in-fd">eva_buffer_read_in_fd</link>               (<link linkend="GskBuffer">GskBuffer</link> *write_to,
+                                                         <link linkend="int">int</link> read_from);
+<link linkend="int">int</link>                 <link linkend="eva-buffer-index-of">eva_buffer_index_of</link>                 (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="char">char</link> char_to_find);
+<link linkend="int">int</link>                 <link linkend="eva-buffer-polystr-index-of">eva_buffer_polystr_index_of</link>         (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="char">char</link> **strings);
+<link linkend="void">void</link>                <link linkend="eva-buffer-destruct">eva_buffer_destruct</link>                 (<link linkend="GskBuffer">GskBuffer</link> *to_destroy);
+<link linkend="void">void</link>                <link linkend="eva-buffer-cleanup-recycling-bin">eva_buffer_cleanup_recycling_bin</link>    ();
+                    <link linkend="GskBufferIterator">GskBufferIterator</link>;
+#define             <link linkend="eva-buffer-iterator-offset">eva_buffer_iterator_offset</link>          (iterator)
+<link linkend="void">void</link>                <link linkend="eva-buffer-iterator-construct">eva_buffer_iterator_construct</link>       (<link linkend="GskBufferIterator">GskBufferIterator</link> *iterator,
+                                                         <link linkend="GskBuffer">GskBuffer</link> *to_iterate);
+<link linkend="guint">guint</link>               <link linkend="eva-buffer-iterator-peek">eva_buffer_iterator_peek</link>            (<link linkend="GskBufferIterator">GskBufferIterator</link> *iterator,
+                                                         <link linkend="gpointer">gpointer</link> out,
+                                                         <link linkend="guint">guint</link> max_length);
+<link linkend="guint">guint</link>               <link linkend="eva-buffer-iterator-read">eva_buffer_iterator_read</link>            (<link linkend="GskBufferIterator">GskBufferIterator</link> *iterator,
+                                                         <link linkend="gpointer">gpointer</link> out,
+                                                         <link linkend="guint">guint</link> max_length);
+<link linkend="guint">guint</link>               <link linkend="eva-buffer-iterator-skip">eva_buffer_iterator_skip</link>            (<link linkend="GskBufferIterator">GskBufferIterator</link> *iterator,
+                                                         <link linkend="guint">guint</link> max_length);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-buffer-iterator-find-char">eva_buffer_iterator_find_char</link>       (<link linkend="GskBufferIterator">GskBufferIterator</link> *iterator,
+                                                         <link linkend="char">char</link> c);
+#define             <link linkend="EVA-BUFFER-STATIC-INIT--CAPS">EVA_BUFFER_STATIC_INIT</link>
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="eva-evabuffer.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This code manages a binary data buffer.
+Data is maintained first-in first-out; so
+<link linkend="eva-buffer-append"><function>eva_buffer_append()</function></link> writes to the end of the buffer,
+and <link linkend="eva-buffer-read"><function>eva_buffer_read()</function></link> reads from the beginning.
+</para>
+</refsect1>
+
+<refsect1 id="eva-evabuffer.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GskBuffer" role="struct">
+<title>GskBuffer</title>
+<indexterm zone="GskBuffer"><primary sortas="GskBuffer">GskBuffer</primary></indexterm><programlisting>typedef struct {
+  guint			size;
+
+  GskBufferFragment    *first_frag;
+  GskBufferFragment    *last_frag;
+} GskBuffer;
+</programlisting>
+<para>
+A buffer is just a list of fragments and a size counter.
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="guint">guint</link>&#160;<structfield>size</structfield>;</term>
+<listitem><simpara>the number of bytes in the buffer total.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="GskBufferFragment">GskBufferFragment</link>&#160;*<structfield>first_frag</structfield>;</term>
+<listitem><simpara>the first fragment in the buffer (read end)
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="GskBufferFragment">GskBufferFragment</link>&#160;*<structfield>last_frag</structfield>;</term>
+<listitem><simpara>the last fragment in the buffer (write end)
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GskBufferFragment" role="struct">
+<title>GskBufferFragment</title>
+<indexterm zone="GskBufferFragment"><primary sortas="GskBufferFragment">GskBufferFragment</primary></indexterm><programlisting>typedef struct {
+  GskBufferFragment    *next;
+  char                 *buf;
+  guint                 buf_max_size;	/* allocation size of buf */
+  guint                 buf_start;	/* offset in buf of valid data */
+  guint                 buf_length;	/* length of valid data in buf */
+  
+  gboolean              is_foreign;
+  GDestroyNotify        destroy;
+  gpointer              destroy_data;
+} GskBufferFragment;
+</programlisting>
+<para>
+This structure should rarely be accessed directly,
+instead you should use the GskBuffer methods.
+They are exposed for optimization and debugging convenience.
+</para>
+<para>
+A single contiguous chunk of memory in the buffer.
+Each <link linkend="GskBufferFragment"><type>GskBufferFragment</type></link> is managed by a single buffer,
+but internally fragments are sometimes transferred whole between buffers.
+</para>
+<para>
+A foreign fragment is one which created with
+<link linkend="eva-buffer-append-foreign"><function>eva_buffer_append_foreign()</function></link>.  It means that eva
+will use the destroy method rather than the normal
+buffer pool, where data and the GskBufferFragment
+are allocated continguously.
+The headers of foreign fragments are pooled in a separate pool.
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="GskBufferFragment">GskBufferFragment</link>&#160;*<structfield>next</structfield>;</term>
+<listitem><simpara>next fragment in the buffer.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="char">char</link>&#160;*<structfield>buf</structfield>;</term>
+<listitem><simpara>raw data in the buffer
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint">guint</link>&#160;<structfield>buf_max_size</structfield>;</term>
+<listitem><simpara>maximum size of buffer, assuming buf_start==0.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint">guint</link>&#160;<structfield>buf_start</structfield>;</term>
+<listitem><simpara>offset in <parameter>buf</parameter> of first readable data.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint">guint</link>&#160;<structfield>buf_length</structfield>;</term>
+<listitem><simpara>number of bytes currently in the buffer.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gboolean">gboolean</link>&#160;<structfield>is_foreign</structfield>;</term>
+<listitem><simpara>is this fragment foreign?
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="GDestroyNotify">GDestroyNotify</link>&#160;<structfield>destroy</structfield>;</term>
+<listitem><simpara>function to free foreign data.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gpointer">gpointer</link>&#160;<structfield>destroy_data</structfield>;</term>
+<listitem><simpara>data to destroy to free buf, if foreign.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-construct" role="function">
+<title>eva_buffer_construct ()</title>
+<indexterm zone="eva-buffer-construct"><primary sortas="eva_buffer_construct">eva_buffer_construct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_construct                (<link linkend="GskBuffer">GskBuffer</link> *buffer);</programlisting>
+<para>
+Construct an empty buffer out of raw memory.
+(This is equivalent to filling the buffer with 0s)</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> buffer to initialize (as empty).
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-read" role="function">
+<title>eva_buffer_read ()</title>
+<indexterm zone="eva-buffer-read"><primary sortas="eva_buffer_read">eva_buffer_read</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_buffer_read                     (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="guint">guint</link> max_length);</programlisting>
+<para>
+Removes up to <parameter>max_length</parameter> data from the beginning of the buffer,
+and writes it to <parameter>data</parameter>.  The number of bytes actually read
+is returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> the buffer to read data from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> buffer to fill with up to <parameter>max_length</parameter> bytes of data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>max_length</parameter>&#160;:</term>
+<listitem><simpara> maximum number of bytes to read.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> number of bytes transferred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-peek" role="function">
+<title>eva_buffer_peek ()</title>
+<indexterm zone="eva-buffer-peek"><primary sortas="eva_buffer_peek">eva_buffer_peek</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_buffer_peek                     (const <link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="guint">guint</link> max_length);</programlisting>
+<para>
+Copies up to <parameter>max_length</parameter> data from the beginning of the buffer,
+and writes it to <parameter>data</parameter>.  The number of bytes actually copied
+is returned.
+</para>
+<para>
+This function is just like <link linkend="eva-buffer-read"><function>eva_buffer_read()</function></link> except that the 
+data is not removed from the buffer.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> the buffer to peek data from the front of.
+   This buffer is unchanged by the operation.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> buffer to fill with up to <parameter>max_length</parameter> bytes of data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>max_length</parameter>&#160;:</term>
+<listitem><simpara> maximum number of bytes to peek.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> number of bytes copied into data.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-discard" role="function">
+<title>eva_buffer_discard ()</title>
+<indexterm zone="eva-buffer-discard"><primary sortas="eva_buffer_discard">eva_buffer_discard</primary></indexterm><programlisting><link linkend="int">int</link>                 eva_buffer_discard                  (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="guint">guint</link> max_discard);</programlisting>
+<para>
+Removes up to <parameter>max_discard</parameter> data from the beginning of the buffer,
+and returns the number of bytes actually discarded.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> the buffer to discard data from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>max_discard</parameter>&#160;:</term>
+<listitem><simpara> maximum number of bytes to discard.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> number of bytes discarded.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-read-line" role="function">
+<title>eva_buffer_read_line ()</title>
+<indexterm zone="eva-buffer-read-line"><primary sortas="eva_buffer_read_line">eva_buffer_read_line</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_buffer_read_line                (<link linkend="GskBuffer">GskBuffer</link> *buffer);</programlisting>
+<para>
+Parse a newline (\n) terminated line from
+buffer and return it as a newly allocated string.
+The newline is changed to a NUL character.
+</para>
+<para>
+If the buffer does not contain a newline, then NULL is returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> buffer to read a line from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a newly allocated NUL-terminated string, or NULL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-parse-string0" role="function">
+<title>eva_buffer_parse_string0 ()</title>
+<indexterm zone="eva-buffer-parse-string0"><primary sortas="eva_buffer_parse_string0">eva_buffer_parse_string0</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_buffer_parse_string0            (<link linkend="GskBuffer">GskBuffer</link> *buffer);</programlisting>
+<para>
+Parse a NUL-terminated line from
+buffer and return it as a newly allocated string.
+</para>
+<para>
+If the buffer does not contain a newline, then NULL is returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> buffer to read a line from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a newly allocated NUL-terminated string, or NULL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-peek-char" role="function">
+<title>eva_buffer_peek_char ()</title>
+<indexterm zone="eva-buffer-peek-char"><primary sortas="eva_buffer_peek_char">eva_buffer_peek_char</primary></indexterm><programlisting><link linkend="int">int</link>                 eva_buffer_peek_char                (const <link linkend="GskBuffer">GskBuffer</link> *buffer);</programlisting>
+<para>
+Get the first byte in the buffer as a positive or 0 number.
+If the buffer is empty, -1 is returned.
+The buffer is unchanged.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> buffer to peek a single byte from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> an unsigned character or -1.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-read-char" role="function">
+<title>eva_buffer_read_char ()</title>
+<indexterm zone="eva-buffer-read-char"><primary sortas="eva_buffer_read_char">eva_buffer_read_char</primary></indexterm><programlisting><link linkend="int">int</link>                 eva_buffer_read_char                (<link linkend="GskBuffer">GskBuffer</link> *buffer);</programlisting>
+<para>
+Get the first byte in the buffer as a positive or 0 number,
+and remove the character from the buffer.
+If the buffer is empty, -1 is returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> buffer to read a single byte from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> an unsigned character or -1.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-append" role="function">
+<title>eva_buffer_append ()</title>
+<indexterm zone="eva-buffer-append"><primary sortas="eva_buffer_append">eva_buffer_append</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_append                   (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="gconstpointer">gconstpointer</link> data,
+                                                         <link linkend="guint">guint</link> length);</programlisting>
+<para>
+Append data into the buffer.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> the buffer to add data to.  Data is put at the end of the buffer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> binary data to add to the buffer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&#160;:</term>
+<listitem><simpara> length of <parameter>data</parameter> to add to the buffer.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-append-string" role="function">
+<title>eva_buffer_append_string ()</title>
+<indexterm zone="eva-buffer-append-string"><primary sortas="eva_buffer_append_string">eva_buffer_append_string</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_append_string            (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         const <link linkend="char">char</link> *string);</programlisting>
+<para>
+Append a string to the buffer.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> the buffer to add data to.  Data is put at the end of the buffer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>string</parameter>&#160;:</term>
+<listitem><simpara> NUL-terminated string to append to the buffer.
+ The NUL is not appended.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-append-char" role="function">
+<title>eva_buffer_append_char ()</title>
+<indexterm zone="eva-buffer-append-char"><primary sortas="eva_buffer_append_char">eva_buffer_append_char</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_append_char              (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="char">char</link> character);</programlisting>
+<para>
+Append a byte to a buffer.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> the buffer to add the byte to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>character</parameter>&#160;:</term>
+<listitem><simpara> the byte to add to the buffer.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-append-string0" role="function">
+<title>eva_buffer_append_string0 ()</title>
+<indexterm zone="eva-buffer-append-string0"><primary sortas="eva_buffer_append_string0">eva_buffer_append_string0</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_append_string0           (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         const <link linkend="char">char</link> *string);</programlisting>
+<para>
+Append a NUL-terminated string to the buffer.  The NUL is appended.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> the buffer to add data to.  Data is put at the end of the buffer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>string</parameter>&#160;:</term>
+<listitem><simpara> NUL-terminated string to append to the buffer;
+ NUL is appended.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-append-foreign" role="function">
+<title>eva_buffer_append_foreign ()</title>
+<indexterm zone="eva-buffer-append-foreign"><primary sortas="eva_buffer_append_foreign">eva_buffer_append_foreign</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_append_foreign           (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="gconstpointer">gconstpointer</link> data,
+                                                         <link linkend="int">int</link> length,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy,
+                                                         <link linkend="gpointer">gpointer</link> destroy_data);</programlisting>
+<para>
+This function allows data to be placed in a buffer without
+copying.  It is the callers' responsibility to ensure that
+<parameter>data</parameter> will remain valid until the destroy method is called.
+<parameter>destroy</parameter> may be omitted if <parameter>data</parameter> is permanent, for example,
+if appended a static string into a buffer.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> the buffer to append into.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> the data to append.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&#160;:</term>
+<listitem><simpara> length of <parameter>data</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy</parameter>&#160;:</term>
+<listitem><simpara> optional method to call when the data is no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> the argument to the destroy method.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-printf" role="function">
+<title>eva_buffer_printf ()</title>
+<indexterm zone="eva-buffer-printf"><primary sortas="eva_buffer_printf">eva_buffer_printf</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_printf                   (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         const <link linkend="char">char</link> *format,
+                                                         ...);</programlisting>
+<para>
+Append printf-style content to a buffer.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> the buffer to append to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>format</parameter>&#160;:</term>
+<listitem><simpara> printf-style format string describing what to append to buffer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara> values referenced by <parameter>format</parameter> string.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-vprintf" role="function">
+<title>eva_buffer_vprintf ()</title>
+<indexterm zone="eva-buffer-vprintf"><primary sortas="eva_buffer_vprintf">eva_buffer_vprintf</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_vprintf                  (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         const <link linkend="char">char</link> *format,
+                                                         <link linkend="va-list">va_list</link> args);</programlisting>
+<para>
+Append printf-style content to a buffer, given a va_list.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> the buffer to append to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>format</parameter>&#160;:</term>
+<listitem><simpara> printf-style format string describing what to append to buffer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>args</parameter>&#160;:</term>
+<listitem><simpara> values referenced by <parameter>format</parameter> string.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-drain" role="function">
+<title>eva_buffer_drain ()</title>
+<indexterm zone="eva-buffer-drain"><primary sortas="eva_buffer_drain">eva_buffer_drain</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_buffer_drain                    (<link linkend="GskBuffer">GskBuffer</link> *dst,
+                                                         <link linkend="GskBuffer">GskBuffer</link> *src);</programlisting>
+<para>
+Transfer all data from <parameter>src</parameter> to <parameter>dst</parameter>,
+leaving <parameter>src</parameter> empty.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dst</parameter>&#160;:</term>
+<listitem><simpara> buffer to add to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>src</parameter>&#160;:</term>
+<listitem><simpara> buffer to remove from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the number of bytes transferred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-transfer" role="function">
+<title>eva_buffer_transfer ()</title>
+<indexterm zone="eva-buffer-transfer"><primary sortas="eva_buffer_transfer">eva_buffer_transfer</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_buffer_transfer                 (<link linkend="GskBuffer">GskBuffer</link> *dst,
+                                                         <link linkend="GskBuffer">GskBuffer</link> *src,
+                                                         <link linkend="guint">guint</link> max_transfer);</programlisting>
+<para>
+Transfer data out of <parameter>src</parameter> and into <parameter>dst</parameter>.
+Data is removed from <parameter>src</parameter>.  The number of bytes
+transferred is returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dst</parameter>&#160;:</term>
+<listitem><simpara> place to copy data into.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>src</parameter>&#160;:</term>
+<listitem><simpara> place to read data from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>max_transfer</parameter>&#160;:</term>
+<listitem><simpara> maximum number of bytes to transfer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the number of bytes transferred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-writev" role="function">
+<title>eva_buffer_writev ()</title>
+<indexterm zone="eva-buffer-writev"><primary sortas="eva_buffer_writev">eva_buffer_writev</primary></indexterm><programlisting><link linkend="int">int</link>                 eva_buffer_writev                   (<link linkend="GskBuffer">GskBuffer</link> *read_from,
+                                                         <link linkend="int">int</link> fd);</programlisting>
+<para>
+Writes as much data as possible to the
+given file-descriptor using the writev(2)
+function to deal with multiple fragments
+efficiently, where available.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>read_from</parameter>&#160;:</term>
+<listitem><simpara> buffer to take data from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>fd</parameter>&#160;:</term>
+<listitem><simpara> file-descriptor to write data to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the number of bytes transferred,
+or -1 on a write error (consult errno).
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-read-in-fd" role="function">
+<title>eva_buffer_read_in_fd ()</title>
+<indexterm zone="eva-buffer-read-in-fd"><primary sortas="eva_buffer_read_in_fd">eva_buffer_read_in_fd</primary></indexterm><programlisting><link linkend="int">int</link>                 eva_buffer_read_in_fd               (<link linkend="GskBuffer">GskBuffer</link> *write_to,
+                                                         <link linkend="int">int</link> read_from);</programlisting>
+<para>
+Append data into the buffer directly from the
+given file-descriptor.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>write_to</parameter>&#160;:</term>
+<listitem><simpara> buffer to append data to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>read_from</parameter>&#160;:</term>
+<listitem><simpara> file-descriptor to read data from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the number of bytes transferred,
+or -1 on a read error (consult errno).
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-index-of" role="function">
+<title>eva_buffer_index_of ()</title>
+<indexterm zone="eva-buffer-index-of"><primary sortas="eva_buffer_index_of">eva_buffer_index_of</primary></indexterm><programlisting><link linkend="int">int</link>                 eva_buffer_index_of                 (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="char">char</link> char_to_find);</programlisting>
+<para>
+Scans for the first instance of the given character.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> buffer to scan.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>char_to_find</parameter>&#160;:</term>
+<listitem><simpara> a byte to look for.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> its index in the buffer, or -1 if the character
+is not in the buffer.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-polystr-index-of" role="function">
+<title>eva_buffer_polystr_index_of ()</title>
+<indexterm zone="eva-buffer-polystr-index-of"><primary sortas="eva_buffer_polystr_index_of">eva_buffer_polystr_index_of</primary></indexterm><programlisting><link linkend="int">int</link>                 eva_buffer_polystr_index_of         (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+                                                         <link linkend="char">char</link> **strings);</programlisting>
+<para>
+Scans for the first instance of any of the strings
+in the buffer.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&#160;:</term>
+<listitem><simpara> buffer to scan.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>strings</parameter>&#160;:</term>
+<listitem><simpara> NULL-terminated set of string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the index of that instance, or -1 if not found.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-destruct" role="function">
+<title>eva_buffer_destruct ()</title>
+<indexterm zone="eva-buffer-destruct"><primary sortas="eva_buffer_destruct">eva_buffer_destruct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_destruct                 (<link linkend="GskBuffer">GskBuffer</link> *to_destroy);</programlisting>
+<para>
+Remove all fragments from a buffer, leaving it empty.
+The buffer is guaranteed to not to be consuming any resources,
+but it also is allowed to start using it again.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>to_destroy</parameter>&#160;:</term>
+<listitem><simpara> the buffer to empty.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-cleanup-recycling-bin" role="function">
+<title>eva_buffer_cleanup_recycling_bin ()</title>
+<indexterm zone="eva-buffer-cleanup-recycling-bin"><primary sortas="eva_buffer_cleanup_recycling_bin">eva_buffer_cleanup_recycling_bin</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_cleanup_recycling_bin    ();</programlisting>
+<para>
+Free unused buffer fragments.  (Normally some are
+kept around to reduce strain on the global allocator.)</para>
+<para>
+</para></refsect2>
+<refsect2 id="GskBufferIterator" role="struct">
+<title>GskBufferIterator</title>
+<indexterm zone="GskBufferIterator"><primary sortas="GskBufferIterator">GskBufferIterator</primary></indexterm><programlisting>typedef struct {
+  GskBufferFragment *fragment;
+  guint in_cur;
+  guint cur_length;
+  const guint8 *cur_data;
+  guint offset;
+} GskBufferIterator;
+</programlisting>
+<para>
+An iterator which can be used to walk through a buffer.
+</para>
+<para>
+You MUST not modify the buffer that you are editing in any way.
+</para>
+<para>
+TODO: exceptions to the above may be feasible,
+but we have to see what the demands are...
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="GskBufferFragment">GskBufferFragment</link>&#160;*<structfield>fragment</structfield>;</term>
+<listitem><simpara>which fragment we are currently in.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint">guint</link>&#160;<structfield>in_cur</structfield>;</term>
+<listitem><simpara>the offset in bytes into <parameter>fragment</parameter>.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint">guint</link>&#160;<structfield>cur_length</structfield>;</term>
+<listitem><simpara>the length of fragment.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term>const&#160;<link linkend="guint8">guint8</link>&#160;*<structfield>cur_data</structfield>;</term>
+<listitem><simpara>the data of fragment.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint">guint</link>&#160;<structfield>offset</structfield>;</term>
+<listitem><simpara>the offset in bytes into the whole buffer.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-iterator-offset" role="macro">
+<title>eva_buffer_iterator_offset()</title>
+<indexterm zone="eva-buffer-iterator-offset"><primary sortas="eva_buffer_iterator_offset">eva_buffer_iterator_offset</primary></indexterm><programlisting>#define             eva_buffer_iterator_offset(iterator)</programlisting>
+<para>
+Get the offset in bytes into <link linkend="GskBuffer"><type>GskBuffer</type></link> that we
+are into the whole buffer.
+</para><variablelist role="params">
+<varlistentry><term><parameter>iterator</parameter>&#160;:</term>
+<listitem><simpara>the iterator to examine.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-iterator-construct" role="function">
+<title>eva_buffer_iterator_construct ()</title>
+<indexterm zone="eva-buffer-iterator-construct"><primary sortas="eva_buffer_iterator_construct">eva_buffer_iterator_construct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_iterator_construct       (<link linkend="GskBufferIterator">GskBufferIterator</link> *iterator,
+                                                         <link linkend="GskBuffer">GskBuffer</link> *to_iterate);</programlisting>
+<para>
+Initialize a new <link linkend="GskBufferIterator"><type>GskBufferIterator</type></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>iterator</parameter>&#160;:</term>
+<listitem><simpara> to initialize.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>to_iterate</parameter>&#160;:</term>
+<listitem><simpara> the buffer to walk through.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-iterator-peek" role="function">
+<title>eva_buffer_iterator_peek ()</title>
+<indexterm zone="eva-buffer-iterator-peek"><primary sortas="eva_buffer_iterator_peek">eva_buffer_iterator_peek</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_buffer_iterator_peek            (<link linkend="GskBufferIterator">GskBufferIterator</link> *iterator,
+                                                         <link linkend="gpointer">gpointer</link> out,
+                                                         <link linkend="guint">guint</link> max_length);</programlisting>
+<para>
+Peek data from the current position of an iterator.
+The iterator's position is not changed.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>iterator</parameter>&#160;:</term>
+<listitem><simpara> to peek data from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara> to copy data into.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>max_length</parameter>&#160;:</term>
+<listitem><simpara> maximum number of bytes to write to <parameter>out</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> number of bytes peeked into <parameter>out</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-iterator-read" role="function">
+<title>eva_buffer_iterator_read ()</title>
+<indexterm zone="eva-buffer-iterator-read"><primary sortas="eva_buffer_iterator_read">eva_buffer_iterator_read</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_buffer_iterator_read            (<link linkend="GskBufferIterator">GskBufferIterator</link> *iterator,
+                                                         <link linkend="gpointer">gpointer</link> out,
+                                                         <link linkend="guint">guint</link> max_length);</programlisting>
+<para>
+Peek data from the current position of an iterator.
+The iterator's position is updated to be at the end of
+the data read.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>iterator</parameter>&#160;:</term>
+<listitem><simpara> to read data from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara> to copy data into.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>max_length</parameter>&#160;:</term>
+<listitem><simpara> maximum number of bytes to write to <parameter>out</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> number of bytes read into <parameter>out</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-iterator-skip" role="function">
+<title>eva_buffer_iterator_skip ()</title>
+<indexterm zone="eva-buffer-iterator-skip"><primary sortas="eva_buffer_iterator_skip">eva_buffer_iterator_skip</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_buffer_iterator_skip            (<link linkend="GskBufferIterator">GskBufferIterator</link> *iterator,
+                                                         <link linkend="guint">guint</link> max_length);</programlisting>
+<para>
+Advance an iterator forward in the buffer,
+returning the number of bytes skipped.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>iterator</parameter>&#160;:</term>
+<listitem><simpara> to advance.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>max_length</parameter>&#160;:</term>
+<listitem><simpara> maximum number of bytes to skip forward.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> number of bytes skipped forward.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-buffer-iterator-find-char" role="function">
+<title>eva_buffer_iterator_find_char ()</title>
+<indexterm zone="eva-buffer-iterator-find-char"><primary sortas="eva_buffer_iterator_find_char">eva_buffer_iterator_find_char</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_buffer_iterator_find_char       (<link linkend="GskBufferIterator">GskBufferIterator</link> *iterator,
+                                                         <link linkend="char">char</link> c);</programlisting>
+<para>
+If it exists,
+skip forward to the next instance of <parameter>c</parameter> and return TRUE.
+Otherwise, do nothing and return FALSE.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>iterator</parameter>&#160;:</term>
+<listitem><simpara> to advance.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>c</parameter>&#160;:</term>
+<listitem><simpara> the character to look for.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> whether the character was found.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-BUFFER-STATIC-INIT--CAPS" role="macro">
+<title>EVA_BUFFER_STATIC_INIT</title>
+<indexterm zone="EVA-BUFFER-STATIC-INIT--CAPS"><primary sortas="EVA_BUFFER_STATIC_INIT">EVA_BUFFER_STATIC_INIT</primary></indexterm><programlisting>#define             EVA_BUFFER_STATIC_INIT</programlisting>
+<para>
+Macro which can be used to initialize an empty buffer.
+One can write:
+  GskBuffer buf = EVA_BUFFER_STATIC_INIT;
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

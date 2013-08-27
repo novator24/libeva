@@ -1,0 +1,125 @@
+<refentry id="eva-evafork">
+<refmeta>
+<refentrytitle role="top_of_page" id="eva-evafork.top_of_page">evafork</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>EVA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>evafork</refname>
+<refpurpose>Functions to call to clean up after forking.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="eva-evafork.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="int">int</link>                 (<link linkend="GskForkFunc">*GskForkFunc</link>)                      (<link linkend="gpointer">gpointer</link> data);
+<link linkend="gint">gint</link>                <link linkend="eva-fork">eva_fork</link>                            (<link linkend="GskForkFunc">GskForkFunc</link> action,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="eva-fork-add-cleanup-fd">eva_fork_add_cleanup_fd</link>             (<link linkend="int">int</link> fd);
+<link linkend="void">void</link>                <link linkend="eva-fork-remove-cleanup-fd">eva_fork_remove_cleanup_fd</link>          (<link linkend="int">int</link> fd);
+<link linkend="void">void</link>                <link linkend="eva-fork-child-cleanup">eva_fork_child_cleanup</link>              (void);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="eva-evafork.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This provides a way to register file descriptors that
+should be closed by the background thread.
+It also contains a eva-like wrapper to fork.. that is,
+a callback oriented fork interface.
+</para>
+</refsect1>
+
+<refsect1 id="eva-evafork.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GskForkFunc" role="function">
+<title>GskForkFunc ()</title>
+<indexterm zone="GskForkFunc"><primary sortas="GskForkFunc">GskForkFunc</primary></indexterm><programlisting><link linkend="int">int</link>                 (*GskForkFunc)                      (<link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Function to call from the background process.
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>data passed through <link linkend="eva-fork"><function>eva_fork()</function></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>the exit status of this process.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-fork" role="function">
+<title>eva_fork ()</title>
+<indexterm zone="eva-fork"><primary sortas="eva_fork">eva_fork</primary></indexterm><programlisting><link linkend="gint">gint</link>                eva_fork                            (<link linkend="GskForkFunc">GskForkFunc</link> action,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Fork a new thread, cleaning up loose file-descriptors,
+then running the background function,
+and exiting with the return value of the background function.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>action</parameter>&#160;:</term>
+<listitem><simpara> function to call from the background process.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> user-data to pass to <parameter>action</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> optional place to errors to be put.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the process-id of the background thread,
+or -1 on error.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-fork-add-cleanup-fd" role="function">
+<title>eva_fork_add_cleanup_fd ()</title>
+<indexterm zone="eva-fork-add-cleanup-fd"><primary sortas="eva_fork_add_cleanup_fd">eva_fork_add_cleanup_fd</primary></indexterm><programlisting><link linkend="void">void</link>                eva_fork_add_cleanup_fd             (<link linkend="int">int</link> fd);</programlisting>
+<para>
+Add a file-descriptor to the list that should be closed
+when <link linkend="fork"><function>fork()</function></link> is run.
+</para>
+<para>
+A file-descriptor must only be added once.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>fd</parameter>&#160;:</term>
+<listitem><simpara> a file descriptor that should be closed from a background thread.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-fork-remove-cleanup-fd" role="function">
+<title>eva_fork_remove_cleanup_fd ()</title>
+<indexterm zone="eva-fork-remove-cleanup-fd"><primary sortas="eva_fork_remove_cleanup_fd">eva_fork_remove_cleanup_fd</primary></indexterm><programlisting><link linkend="void">void</link>                eva_fork_remove_cleanup_fd          (<link linkend="int">int</link> fd);</programlisting>
+<para>
+Remove a file-descriptor from the list that should be closed
+when <link linkend="fork"><function>fork()</function></link> is run.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>fd</parameter>&#160;:</term>
+<listitem><simpara> remove a file descriptor that was previously registered
+to be closed on fork with <link linkend="eva-fork-add-cleanup-fd"><function>eva_fork_add_cleanup_fd()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-fork-child-cleanup" role="function">
+<title>eva_fork_child_cleanup ()</title>
+<indexterm zone="eva-fork-child-cleanup"><primary sortas="eva_fork_child_cleanup">eva_fork_child_cleanup</primary></indexterm><programlisting><link linkend="void">void</link>                eva_fork_child_cleanup              (void);</programlisting>
+<para>
+Do all cleanup that should follow a fork(2) system call
+from the child process.</para>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

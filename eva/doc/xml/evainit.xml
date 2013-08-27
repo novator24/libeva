@@ -1,0 +1,198 @@
+<refentry id="eva-evainit">
+<refmeta>
+<refentrytitle role="top_of_page" id="eva-evainit.top_of_page">Library Initialization</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>EVA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Library Initialization</refname>
+<refpurpose>Perform general initialization with limited argument parsing.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="eva-evainit.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GskInitInfo">GskInitInfo</link>;
+<link linkend="void">void</link>                <link linkend="eva-init-info-get-defaults">eva_init_info_get_defaults</link>          (<link linkend="GskInitInfo">GskInitInfo</link> *info);
+<link linkend="void">void</link>                <link linkend="eva-init">eva_init</link>                            (<link linkend="int">int</link> *argc,
+                                                         <link linkend="char">char</link> ***argv,
+                                                         <link linkend="GskInitInfo">GskInitInfo</link> *info);
+<link linkend="void">void</link>                <link linkend="eva-init-without-threads">eva_init_without_threads</link>            (<link linkend="int">int</link> *argc,
+                                                         <link linkend="char">char</link> ***argv);
+#define             <link linkend="eva-init-get-support-threads">eva_init_get_support_threads</link>        ()
+<link linkend="void">void</link>                <link linkend="eva-init-info-parse-args">eva_init_info_parse_args</link>            (<link linkend="GskInitInfo">GskInitInfo</link> *in_out,
+                                                         <link linkend="int">int</link> *argc,
+                                                         <link linkend="char">char</link> ***argv);
+<link linkend="void">void</link>                <link linkend="eva-init-raw">eva_init_raw</link>                        (<link linkend="GskInitInfo">GskInitInfo</link> *info);
+extern              _GskInitFlags <link linkend="eva-init-flags">eva_init_flags</link>;
+extern              gpointer <link linkend="eva-main-thread">eva_main_thread</link>;
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="eva-evainit.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Almost always one run <link linkend="eva-init"><function>eva_init()</function></link> at the top of main and forgets about it.
+But sometimes you wish to separate the parsing and the initialization
+so these routines give you more fine-grained control,
+by separating the parsing into <link linkend="eva-init-info-parse-args"><function>eva_init_info_parse_args()</function></link> and
+the real initialization into <link linkend="eva-init-raw"><function>eva_init_raw()</function></link>.
+</para>
+</refsect1>
+
+<refsect1 id="eva-evainit.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GskInitInfo" role="struct">
+<title>GskInitInfo</title>
+<indexterm zone="GskInitInfo"><primary sortas="GskInitInfo">GskInitInfo</primary></indexterm><programlisting>typedef struct {
+  char *prgname;
+  guint needs_threads : 1;
+} GskInitInfo;
+</programlisting>
+<para>
+Information about how to initialize EVA.
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="char">char</link>&#160;*<structfield>prgname</structfield>;</term>
+<listitem><simpara>The name of the program, may be NULL.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint">guint</link>&#160;<structfield>needs_threads</structfield>&#160;:&#160;1;</term>
+<listitem><simpara>Whether the program needs threads.  True by default.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-init-info-get-defaults" role="function">
+<title>eva_init_info_get_defaults ()</title>
+<indexterm zone="eva-init-info-get-defaults"><primary sortas="eva_init_info_get_defaults">eva_init_info_get_defaults</primary></indexterm><programlisting><link linkend="void">void</link>                eva_init_info_get_defaults          (<link linkend="GskInitInfo">GskInitInfo</link> *info);</programlisting>
+<para>
+Obtain the default initialization information.
+This should be run before <link linkend="eva-init"><function>eva_init()</function></link> or <link linkend="eva-init-info-parse-args"><function>eva_init_info_parse_args()</function></link>.
+</para>
+<para>
+This API has been deprecated for public use,
+because it doesn't allow us to expand
+GskInitInfo without breaking binary-compatibility.
+</para>
+<para>
+Use <link linkend="eva-init-info-new"><function>eva_init_info_new()</function></link> instead.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>info</parameter>&#160;:</term>
+<listitem><simpara> the <link linkend="GskInitInfo"><type>GskInitInfo</type></link> to fill.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-init" role="function">
+<title>eva_init ()</title>
+<indexterm zone="eva-init"><primary sortas="eva_init">eva_init</primary></indexterm><programlisting><link linkend="void">void</link>                eva_init                            (<link linkend="int">int</link> *argc,
+                                                         <link linkend="char">char</link> ***argv,
+                                                         <link linkend="GskInitInfo">GskInitInfo</link> *info);</programlisting>
+<para>
+Initialize the EVA library.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>argc</parameter>&#160;:</term>
+<listitem><simpara> a reference to <link linkend="main"><function>main()</function></link>'s argc;
+this will be decreased if arguments are parsed
+out of the argument array.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argv</parameter>&#160;:</term>
+<listitem><simpara> a reference to <link linkend="main"><function>main()</function></link>'s argc;
+this may have arguments removed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>info</parameter>&#160;:</term>
+<listitem><simpara> the <link linkend="GskInitInfo"><type>GskInitInfo</type></link> to use as hints,
+which will be filled with the
+actual initialization information used.
+If NULL, default initialization parameters
+will be used.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-init-without-threads" role="function">
+<title>eva_init_without_threads ()</title>
+<indexterm zone="eva-init-without-threads"><primary sortas="eva_init_without_threads">eva_init_without_threads</primary></indexterm><programlisting><link linkend="void">void</link>                eva_init_without_threads            (<link linkend="int">int</link> *argc,
+                                                         <link linkend="char">char</link> ***argv);</programlisting>
+<para>
+Initialize the EVA library indicating that you will not use threads.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>argc</parameter>&#160;:</term>
+<listitem><simpara> a reference to <link linkend="main"><function>main()</function></link>'s argc;
+this will be decreased if arguments are parsed
+out of the argument array.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argv</parameter>&#160;:</term>
+<listitem><simpara> a reference to <link linkend="main"><function>main()</function></link>'s argc;
+this may have arguments removed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-init-get-support-threads" role="macro">
+<title>eva_init_get_support_threads()</title>
+<indexterm zone="eva-init-get-support-threads"><primary sortas="eva_init_get_support_threads">eva_init_get_support_threads</primary></indexterm><programlisting>#define             eva_init_get_support_threads()</programlisting>
+<para>
+Ascertain whether thread support is necessary.
+</para></refsect2>
+<refsect2 id="eva-init-info-parse-args" role="function">
+<title>eva_init_info_parse_args ()</title>
+<indexterm zone="eva-init-info-parse-args"><primary sortas="eva_init_info_parse_args">eva_init_info_parse_args</primary></indexterm><programlisting><link linkend="void">void</link>                eva_init_info_parse_args            (<link linkend="GskInitInfo">GskInitInfo</link> *in_out,
+                                                         <link linkend="int">int</link> *argc,
+                                                         <link linkend="char">char</link> ***argv);</programlisting>
+<para>
+Parse/modify arguments and return their values in <parameter>in_out</parameter>.
+</para>
+<para>
+The only currently supported argument is --eva-debug=FLAGS.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>in_out</parameter>&#160;:</term>
+<listitem><simpara> the <link linkend="GskInitInfo"><type>GskInitInfo</type></link> to fill.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argc</parameter>&#160;:</term>
+<listitem><simpara> the argument count (may be modified)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argv</parameter>&#160;:</term>
+<listitem><simpara> the arguments (may be modified)
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-init-raw" role="function">
+<title>eva_init_raw ()</title>
+<indexterm zone="eva-init-raw"><primary sortas="eva_init_raw">eva_init_raw</primary></indexterm><programlisting><link linkend="void">void</link>                eva_init_raw                        (<link linkend="GskInitInfo">GskInitInfo</link> *info);</programlisting>
+<para>
+Initialize EVA.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>info</parameter>&#160;:</term>
+<listitem><simpara> information to use for initializing.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-init-flags" role="variable">
+<title>eva_init_flags</title>
+<indexterm zone="eva-init-flags"><primary sortas="eva_init_flags">eva_init_flags</primary></indexterm><programlisting>extern _GskInitFlags eva_init_flags;
+</programlisting>
+<para>
+Flags given to <link linkend="eva-init"><function>eva_init()</function></link>.
+</para></refsect2>
+<refsect2 id="eva-main-thread" role="variable">
+<title>eva_main_thread</title>
+<indexterm zone="eva-main-thread"><primary sortas="eva_main_thread">eva_main_thread</primary></indexterm><programlisting>extern gpointer eva_main_thread;
+</programlisting>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

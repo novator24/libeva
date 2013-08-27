@@ -1,0 +1,138 @@
+<refentry id="eva-evamacros">
+<refmeta>
+<refentrytitle role="top_of_page" id="eva-evamacros.top_of_page">Helpful Macros</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>EVA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Helpful Macros</refname>
+<refpurpose>Various macros to eliminate tedious typing,
+beyond those provided by glib.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="eva-evamacros.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="EVA-DECLARE-POOL-ALLOCATORS--CAPS">EVA_DECLARE_POOL_ALLOCATORS</link>         (Type, type, pool_count)
+#define             <link linkend="EVA-STRUCT-MEMBER-SIZE--CAPS">EVA_STRUCT_MEMBER_SIZE</link>              (type, member)
+#define             <link linkend="EVA-STRUCT-MEMBER-END-OFFSET--CAPS">EVA_STRUCT_MEMBER_END_OFFSET</link>        (struct, member)
+#define             <link linkend="gettext-macro">_</link>                                   (s)
+#define             <link linkend="EVA-SKIP-CHAR-TYPE--CAPS">EVA_SKIP_CHAR_TYPE</link>                  (ptr, condition)
+#define             <link linkend="EVA-SKIP-WHITESPACE--CAPS">EVA_SKIP_WHITESPACE</link>                 (char_ptr)
+#define             <link linkend="EVA-SKIP-NONWHITESPACE--CAPS">EVA_SKIP_NONWHITESPACE</link>              (char_ptr)
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="eva-evamacros.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="eva-evamacros.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="EVA-DECLARE-POOL-ALLOCATORS--CAPS" role="macro">
+<title>EVA_DECLARE_POOL_ALLOCATORS()</title>
+<indexterm zone="EVA-DECLARE-POOL-ALLOCATORS--CAPS"><primary sortas="EVA_DECLARE_POOL_ALLOCATORS">EVA_DECLARE_POOL_ALLOCATORS</primary></indexterm><programlisting>#define             EVA_DECLARE_POOL_ALLOCATORS(Type, type, pool_count)</programlisting>
+<para>
+Declare static inline functions type_free and type_alloc,
+(where type is the second parameter to this macro)
+which use GMemChunks to implement fast allocation.
+<parameter>Type</parameter> is the name of the name of structure to allocate;
+and <parameter>pool_count</parameter> is the number to allocate at once.
+</para><variablelist role="params">
+<varlistentry><term><parameter>Type</parameter>&#160;:</term>
+<listitem><simpara>Real type of the things to allocate.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara>Lowercased type name, for mangling into the function name.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pool_count</parameter>&#160;:</term>
+<listitem><simpara>Number of things to allocate at once.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-STRUCT-MEMBER-SIZE--CAPS" role="macro">
+<title>EVA_STRUCT_MEMBER_SIZE()</title>
+<indexterm zone="EVA-STRUCT-MEMBER-SIZE--CAPS"><primary sortas="EVA_STRUCT_MEMBER_SIZE">EVA_STRUCT_MEMBER_SIZE</primary></indexterm><programlisting>#define             EVA_STRUCT_MEMBER_SIZE(type, member)</programlisting>
+<para>
+Find size in bytes of a structure member.
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>member</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-STRUCT-MEMBER-END-OFFSET--CAPS" role="macro">
+<title>EVA_STRUCT_MEMBER_END_OFFSET()</title>
+<indexterm zone="EVA-STRUCT-MEMBER-END-OFFSET--CAPS"><primary sortas="EVA_STRUCT_MEMBER_END_OFFSET">EVA_STRUCT_MEMBER_END_OFFSET</primary></indexterm><programlisting>#define             EVA_STRUCT_MEMBER_END_OFFSET(struct, member)</programlisting>
+<para>
+Find offset of a member's end in bytes.
+</para><variablelist role="params">
+<varlistentry><term><parameter>struct</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>member</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gettext-macro" role="macro">
+<title>_()</title>
+<indexterm zone="gettext-macro"><primary sortas="">_</primary></indexterm><programlisting>#define             _(s)</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>s</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-SKIP-CHAR-TYPE--CAPS" role="macro">
+<title>EVA_SKIP_CHAR_TYPE()</title>
+<indexterm zone="EVA-SKIP-CHAR-TYPE--CAPS"><primary sortas="EVA_SKIP_CHAR_TYPE">EVA_SKIP_CHAR_TYPE</primary></indexterm><programlisting>#define             EVA_SKIP_CHAR_TYPE(ptr, condition)</programlisting>
+<para>
+Skip <parameter>ptr</parameter> along until it fails the <parameter>condition</parameter>.
+</para><variablelist role="params">
+<varlistentry><term><parameter>ptr</parameter>&#160;:</term>
+<listitem><simpara>pointer to a NUL-terminated string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>condition</parameter>&#160;:</term>
+<listitem><simpara>function predicate to test characters with.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-SKIP-WHITESPACE--CAPS" role="macro">
+<title>EVA_SKIP_WHITESPACE()</title>
+<indexterm zone="EVA-SKIP-WHITESPACE--CAPS"><primary sortas="EVA_SKIP_WHITESPACE">EVA_SKIP_WHITESPACE</primary></indexterm><programlisting>#define             EVA_SKIP_WHITESPACE(char_ptr)</programlisting>
+<para>
+Skip <parameter>char_ptr</parameter> along until it gets to a non-whitespace character, or the end of the string.
+</para><variablelist role="params">
+<varlistentry><term><parameter>char_ptr</parameter>&#160;:</term>
+<listitem><simpara>the pointer to advance.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-SKIP-NONWHITESPACE--CAPS" role="macro">
+<title>EVA_SKIP_NONWHITESPACE()</title>
+<indexterm zone="EVA-SKIP-NONWHITESPACE--CAPS"><primary sortas="EVA_SKIP_NONWHITESPACE">EVA_SKIP_NONWHITESPACE</primary></indexterm><programlisting>#define             EVA_SKIP_NONWHITESPACE(char_ptr)</programlisting>
+<para>
+Skip <parameter>char_ptr</parameter> along until it gets to a whitespace character, or the end of the string.
+</para><variablelist role="params">
+<varlistentry><term><parameter>char_ptr</parameter>&#160;:</term>
+<listitem><simpara>the pointer to advance.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

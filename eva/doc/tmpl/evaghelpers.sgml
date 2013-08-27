@@ -1,0 +1,125 @@
+<!-- ##### SECTION Title ##### -->
+Glib Helper Routines
+
+<!-- ##### SECTION Short_Description ##### -->
+Miscellaneous helper routines that could conceivably be moved to glib someday.
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+Provide various simple functions that we have found useful.
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION eva_g_ptr_array_foreach ##### -->
+<para>
+
+</para>
+
+@array: 
+@func: 
+@data: 
+
+
+<!-- ##### FUNCTION eva_g_tree_min ##### -->
+<para>
+
+</para>
+
+@tree: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_g_tree_max ##### -->
+<para>
+
+</para>
+
+@tree: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_g_tree_key_slist ##### -->
+<para>
+
+</para>
+
+@tree: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_g_tree_value_slist ##### -->
+<para>
+
+</para>
+
+@tree: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_g_hash_table_key_slist ##### -->
+<para>
+
+</para>
+
+@table: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_g_hash_table_value_slist ##### -->
+<para>
+
+</para>
+
+@table: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_strtoll ##### -->
+<para>
+
+</para>
+
+@str: 
+@endp: 
+@base: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_strtoull ##### -->
+<para>
+
+</para>
+
+@str: 
+@endp: 
+@base: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_strnlen ##### -->
+<para>
+
+</para>
+
+@ptr: 
+@max_len: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_fd_set_nonblocking ##### -->
+<para>
+
+</para>
+
+@fd: 
+@Returns: 
+
+

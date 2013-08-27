@@ -1,0 +1,28 @@
+<!-- ##### SECTION Title ##### -->
+GskImapClient
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### ENUM GskImapClientState ##### -->
+<para>
+
+</para>
+
+@EVA_IMAP_CLIENT_STATE_WAITING_FOR_GREETING: 
+@EVA_IMAP_CLIENT_STATE_NONAUTHENTICATED: 
+@EVA_IMAP_CLIENT_STATE_AUTHENTICATING: 
+@EVA_IMAP_CLIENT_STATE_AUTHENTICATED: 
+@EVA_IMAP_CLIENT_STATE_LOGGING_OUT: 
+@EVA_IMAP_CLIENT_STATE_LOGGED_OUT: 
+

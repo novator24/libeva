@@ -1,0 +1,188 @@
+<!-- ##### SECTION Title ##### -->
+evamempool
+
+<!-- ##### SECTION Short_Description ##### -->
+pooling memory allocators.
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+EVA provides two pooling memory allocators.
+The first allocator is allocate-only,
+and can allocate blocks of variable size.
+The second allocator is alloc-and-free,
+but must allocate blocks of a fixed-size,
+which must be chosen when you construct the pool.
+</para>
+<para>
+Both of these classes use the global allocator (g_new and g_free)
+as their underlying store.
+</para>
+<para>These may only be accessed by
+one thread at a time: you should make sure to have a mutex to lock
+if multiple threads have access to the same mempool.
+I suspect the majority of use cases already must be mutex-protected for
+other reasons, but stronger evidence is welcome.</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO EVA_MEM_POOL_FIXED_STATIC_INIT ##### -->
+<para>
+Initialize a fixed-length static mem-pool 
+member-wise given its elements' size.
+</para>
+<para>
+Example:
+<programlisting>
+static GskMemPoolFixed request_pool = EVA_MEM_POOL_FIXED_STATIC_INIT(sizeof (Request));
+...
+Request *request = eva_mem_pool_fixed_alloc (&amp;request_pool);
+...
+eva_mem_pool_fixed_free (request);
+</programlisting>
+</para>
+
+@size: the size of the mem-pool's elements.
+
+
+<!-- ##### MACRO EVA_MEM_POOL_STATIC_INIT ##### -->
+<para>
+Initialize a fixed-length static mem-pool 
+member-wise.
+</para>
+<para>
+Example:
+<programlisting>
+void foo ()
+{
+  GskMemPool mem_pool = EVA_MEM_POOL_STATIC_INIT;
+  void *garbage = eva_mem_pool_alloc (&amp;mem_pool, 20);
+  ...
+  eva_mem_pool_destruct (&amp;mem_pool);
+}
+</programlisting>
+</para>
+
+
+
+<!-- ##### STRUCT GskMemPool ##### -->
+<para>
+A memory pool.
+It should be created on the stack or inside another
+object.
+</para>
+
+
+<!-- ##### STRUCT GskMemPoolFixed ##### -->
+<para>
+A fixed-size memory pool.
+It should be created on the stack or inside another
+object.
+</para>
+
+
+<!-- ##### FUNCTION eva_mem_pool_construct ##### -->
+<para>
+
+</para>
+
+@pool: 
+
+
+<!-- ##### FUNCTION eva_mem_pool_construct_with_scratch_buf ##### -->
+<para>
+
+</para>
+
+@pool: 
+@buffer: 
+@buffer_size: 
+
+
+<!-- ##### FUNCTION eva_mem_pool_alloc ##### -->
+<para>
+
+</para>
+
+@pool: 
+@size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_mem_pool_alloc0 ##### -->
+<para>
+
+</para>
+
+@pool: 
+@size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_mem_pool_strdup ##### -->
+<para>
+
+</para>
+
+@pool: 
+@str: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_mem_pool_destruct ##### -->
+<para>
+
+</para>
+
+@pool: 
+
+
+<!-- ##### FUNCTION eva_mem_pool_fixed_construct ##### -->
+<para>
+
+</para>
+
+@pool: 
+@size: 
+
+
+<!-- ##### FUNCTION eva_mem_pool_fixed_alloc ##### -->
+<para>
+
+</para>
+
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_mem_pool_fixed_alloc0 ##### -->
+<para>
+
+</para>
+
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_mem_pool_fixed_free ##### -->
+<para>
+
+</para>
+
+@pool: 
+@from_pool: 
+
+
+<!-- ##### FUNCTION eva_mem_pool_fixed_destruct ##### -->
+<para>
+
+</para>
+
+@pool: 
+
+

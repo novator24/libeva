@@ -1,0 +1,88 @@
+<!-- ##### SECTION Title ##### -->
+evadate
+
+<!-- ##### SECTION Short_Description ##### -->
+Date parsing and printing code.
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+Code to parse and print dates in a number of standard documented
+formats.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM GskDateFormatMask ##### -->
+<para>
+Formats to accept when parsing with eva_date_parse().
+</para>
+
+@EVA_DATE_FORMAT_1123: 
+As per RFC 1123.
+@EVA_DATE_FORMAT_1036: 
+As per RFC 1036.
+@EVA_DATE_FORMAT_ANSI_C: 
+As per the ANSI C standard.
+@EVA_DATE_FORMAT_ISO8601: 
+@EVA_DATE_FORMAT_HTTP: 
+All formats permitted by the HTTP standard.
+
+<!-- ##### FUNCTION eva_date_parse ##### -->
+<para>
+
+</para>
+
+@date_str: 
+@tm_out: 
+@tzoffset_out: 
+@formats_allowed: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_date_parse_timet ##### -->
+<para>
+
+</para>
+
+@date_str: 
+@out: 
+@formats_allowed: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_date_print ##### -->
+<para>
+
+</para>
+
+@tm: 
+@date_str_out: 
+@date_str_max_len: 
+@format: 
+
+
+<!-- ##### FUNCTION eva_date_print_timet ##### -->
+<para>
+
+</para>
+
+@t: 
+@date_str_out: 
+@date_str_max_len: 
+@format: 
+
+
+<!-- ##### MACRO EVA_DATE_MAX_LENGTH ##### -->
+<para>
+Number of bytes required for any date format given in
+eva-date, including the terminating NUL.
+</para>
+
+
+

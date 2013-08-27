@@ -1,0 +1,83 @@
+<!-- ##### SECTION Title ##### -->
+evalispnode
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT GskLispNode ##### -->
+<para>
+
+</para>
+
+@is_atom: 
+@parent: 
+
+<!-- ##### MACRO EVA_TYPE_LISP_NODE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO EVA_LISP_NODE_IS_LIST ##### -->
+<para>
+
+</para>
+
+@node: 
+
+
+<!-- ##### FUNCTION eva_lisp_node_new_atom ##### -->
+<para>
+
+</para>
+
+@parent: 
+@txt: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_lisp_node_new_list ##### -->
+<para>
+
+</para>
+
+@parent: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_lisp_node_list_append ##### -->
+<para>
+
+</para>
+
+@list: 
+@child: 
+
+
+<!-- ##### FUNCTION eva_lisp_node_destroy ##### -->
+<para>
+
+</para>
+
+@lisp: 
+
+
+<!-- ##### FUNCTION eva_lisp_node_destroy_recursive ##### -->
+<para>
+
+</para>
+
+@lisp: 
+
+

@@ -1,0 +1,748 @@
+<refentry id="eva-evarbtreemacros">
+<refmeta>
+<refentrytitle role="top_of_page" id="eva-evarbtreemacros.top_of_page">evarbtreemacros</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>EVA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>evarbtreemacros</refname>
+<refpurpose>Flexible Red-Black Trees implemented as macros</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="eva-evarbtreemacros.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="EVA-RBTREE-INSERT--CAPS">EVA_RBTREE_INSERT</link>                   (tree, node, collision_node)
+#define             <link linkend="EVA-RBTREE-REMOVE--CAPS">EVA_RBTREE_REMOVE</link>                   (tree, node)
+#define             <link linkend="EVA-RBTREE-LOOKUP--CAPS">EVA_RBTREE_LOOKUP</link>                   (tree, key, out)
+#define             <link linkend="EVA-RBTREE-LOOKUP-COMPARATOR--CAPS">EVA_RBTREE_LOOKUP_COMPARATOR</link>        (tree, key, key_comparator, out)
+#define             <link linkend="EVA-RBTREE-FIRST--CAPS">EVA_RBTREE_FIRST</link>                    (tree, out)
+#define             <link linkend="EVA-RBTREE-LAST--CAPS">EVA_RBTREE_LAST</link>                     (tree, out)
+#define             <link linkend="EVA-RBTREE-NEXT--CAPS">EVA_RBTREE_NEXT</link>                     (tree, in, out)
+#define             <link linkend="EVA-RBTREE-PREV--CAPS">EVA_RBTREE_PREV</link>                     (tree, in, out)
+#define             <link linkend="EVA-RBTREE-SUPREMUM--CAPS">EVA_RBTREE_SUPREMUM</link>                 (tree, key, out)
+#define             <link linkend="EVA-RBTREE-SUPREMUM-COMPARATOR--CAPS">EVA_RBTREE_SUPREMUM_COMPARATOR</link>      (tree, key, key_comparator, out)
+#define             <link linkend="EVA-RBTREE-INFIMUM--CAPS">EVA_RBTREE_INFIMUM</link>                  (tree, key, out)
+#define             <link linkend="EVA-RBTREE-INFIMUM-COMPARATOR--CAPS">EVA_RBTREE_INFIMUM_COMPARATOR</link>       (tree, key, key_comparator, out)
+#define             <link linkend="EVA-RBCTREE-INSERT--CAPS">EVA_RBCTREE_INSERT</link>                  (tree, node, collision_node)
+#define             <link linkend="EVA-RBCTREE-REMOVE--CAPS">EVA_RBCTREE_REMOVE</link>                  (tree, node)
+#define             <link linkend="EVA-RBCTREE-LOOKUP--CAPS">EVA_RBCTREE_LOOKUP</link>                  (tree, key, out)
+#define             <link linkend="EVA-RBCTREE-LOOKUP-COMPARATOR--CAPS">EVA_RBCTREE_LOOKUP_COMPARATOR</link>       (tree, key, key_comparator, out)
+#define             <link linkend="EVA-RBCTREE-FIRST--CAPS">EVA_RBCTREE_FIRST</link>                   (tree, out)
+#define             <link linkend="EVA-RBCTREE-LAST--CAPS">EVA_RBCTREE_LAST</link>                    (tree, out)
+#define             <link linkend="EVA-RBCTREE-NEXT--CAPS">EVA_RBCTREE_NEXT</link>                    (tree, in, out)
+#define             <link linkend="EVA-RBCTREE-PREV--CAPS">EVA_RBCTREE_PREV</link>                    (tree, in, out)
+#define             <link linkend="EVA-RBCTREE-SUPREMUM--CAPS">EVA_RBCTREE_SUPREMUM</link>                (tree, key, out)
+#define             <link linkend="EVA-RBCTREE-SUPREMUM-COMPARATOR--CAPS">EVA_RBCTREE_SUPREMUM_COMPARATOR</link>     (tree, key, key_comparator, out)
+#define             <link linkend="EVA-RBCTREE-INFIMUM--CAPS">EVA_RBCTREE_INFIMUM</link>                 (tree, key, out)
+#define             <link linkend="EVA-RBCTREE-INFIMUM-COMPARATOR--CAPS">EVA_RBCTREE_INFIMUM_COMPARATOR</link>      (tree, key, key_comparator, out)
+#define             <link linkend="EVA-RBCTREE-GET-BY-INDEX--CAPS">EVA_RBCTREE_GET_BY_INDEX</link>            (tree, index, out)
+#define             <link linkend="EVA-RBCTREE-GET-BY-INDEX-UNCHECKED--CAPS">EVA_RBCTREE_GET_BY_INDEX_UNCHECKED</link>  (tree, index, out)
+#define             <link linkend="EVA-RBCTREE-GET-NODE-INDEX--CAPS">EVA_RBCTREE_GET_NODE_INDEX</link>          (tree, node, index_out)
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="eva-evarbtreemacros.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The macros defined here allow you to implement
+efficient red-black trees which put their data
+in existing node structures.
+Besides efficiency, this can be much more convenient
+because the same node may be a member of multiple trees.
+It shares these characteristics in
+common with the evalistmacros,
+so that a member of a rbtree may be a member of a eva-list,
+etc etc. all simultanteously.
+</para>
+<para>
+ TODO: Description of what an rbtree is.
+</para>
+<para>
+ The actual rbtree consists of a macro with eight arguments:
+ <variablelist>
+  <varlistentry>
+   <term>top</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>type*</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>is_red</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>set_is_red</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>parent</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>left</term>
+   <term>right</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>comparator</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+ </variablelist>
+</para>
+<para>
+ TODO: Description of what an rbctree is.
+</para>
+<para>
+ The actual rbctree consists of a macro with ten arguments:
+ <variablelist>
+  <varlistentry>
+   <term>top</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>type*</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>is_red</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>set_is_red</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>get_count</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>set_count</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>parent</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>left</term>
+   <term>right</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+  <varlistentry>
+   <term>comparator</term>
+   <listitem>
+    <para>
+    ...
+    </para>
+   </listitem>
+  </varlistentry>
+ </variablelist>
+</para>
+<para>
+ TODO: example use cases.
+</para>
+<para>
+ TODO: Some example programs.
+</para>
+</refsect1>
+
+<refsect1 id="eva-evarbtreemacros.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="EVA-RBTREE-INSERT--CAPS" role="macro">
+<title>EVA_RBTREE_INSERT()</title>
+<indexterm zone="EVA-RBTREE-INSERT--CAPS"><primary sortas="EVA_RBTREE_INSERT">EVA_RBTREE_INSERT</primary></indexterm><programlisting>#define             EVA_RBTREE_INSERT(tree, node, collision_node)</programlisting>
+<para>
+Add a new node into the rbtree, potentially removing another node of the same
+key, which will be returned in <parameter>collision_node</parameter>.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBTree (a macro that expands to eight arguments) to affect.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>node</parameter>&#160;:</term>
+<listitem><simpara>The node to insert.  It should not be in the tree initially.
+Its parent, left and right pointers will be initialized.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>collision_node</parameter>&#160;:</term>
+<listitem><simpara>A variable that will be set to NULL
+if there was no collision, or the node that was replaced
+if there was a collision.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBTREE-REMOVE--CAPS" role="macro">
+<title>EVA_RBTREE_REMOVE()</title>
+<indexterm zone="EVA-RBTREE-REMOVE--CAPS"><primary sortas="EVA_RBTREE_REMOVE">EVA_RBTREE_REMOVE</primary></indexterm><programlisting>#define             EVA_RBTREE_REMOVE(tree, node)</programlisting>
+<para>
+Remove a new from the tree.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBTree (a macro that expands to eight arguments) to affect.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>node</parameter>&#160;:</term>
+<listitem><simpara>The node to remove from the tree.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBTREE-LOOKUP--CAPS" role="macro">
+<title>EVA_RBTREE_LOOKUP()</title>
+<indexterm zone="EVA-RBTREE-LOOKUP--CAPS"><primary sortas="EVA_RBTREE_LOOKUP">EVA_RBTREE_LOOKUP</primary></indexterm><programlisting>#define             EVA_RBTREE_LOOKUP(tree, key, out)</programlisting>
+<para>
+Lookup a node in the tree.
+</para>
+<para>
+This will use the same comparator as the normal tree lookup,
+so the <parameter>key</parameter> should probably be something that looks like a node.
+See <link linkend="EVA-RBTREE-LOOKUP-COMPARATOR--CAPS"><type>EVA_RBTREE_LOOKUP_COMPARATOR</type></link> for a method to do the lookup
+using a key that is in a different format.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBTree (a macro that expands to eight arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara>A node whose equivalent we are trying to find.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>The node that was found, or NULL if no node was found.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBTREE-LOOKUP-COMPARATOR--CAPS" role="macro">
+<title>EVA_RBTREE_LOOKUP_COMPARATOR()</title>
+<indexterm zone="EVA-RBTREE-LOOKUP-COMPARATOR--CAPS"><primary sortas="EVA_RBTREE_LOOKUP_COMPARATOR">EVA_RBTREE_LOOKUP_COMPARATOR</primary></indexterm><programlisting>#define             EVA_RBTREE_LOOKUP_COMPARATOR(tree, key, key_comparator, out)</programlisting>
+<para>
+Lookup a node in the tree.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBTree (a macro that expands to eight arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara>A key to lookup.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key_comparator</parameter>&#160;:</term>
+<listitem><simpara>A macro that takes three arguments: 
+the <parameter>key</parameter>, a node from the tree, and a variable which should
+be set to -1,0,1 if the key is less than, equal to or greater than
+the node, respectively.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>The node that was found, or NULL if no node was found.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBTREE-FIRST--CAPS" role="macro">
+<title>EVA_RBTREE_FIRST()</title>
+<indexterm zone="EVA-RBTREE-FIRST--CAPS"><primary sortas="EVA_RBTREE_FIRST">EVA_RBTREE_FIRST</primary></indexterm><programlisting>#define             EVA_RBTREE_FIRST(tree, out)</programlisting>
+<para>
+Get the first element of the tree.
+(The first element is the least element,
+as determined by the comparator)
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBTree (a macro that expands to eight arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>A variable which will be set to the first element in the tree,
+or NULL if the tree is empty.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBTREE-LAST--CAPS" role="macro">
+<title>EVA_RBTREE_LAST()</title>
+<indexterm zone="EVA-RBTREE-LAST--CAPS"><primary sortas="EVA_RBTREE_LAST">EVA_RBTREE_LAST</primary></indexterm><programlisting>#define             EVA_RBTREE_LAST(tree, out)</programlisting>
+<para>
+Get the last element of the tree.
+(The last element is the greatest element,
+as determined by the comparator)
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBTree (a macro that expands to eight arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>A variable which will be set to the last element in the tree,
+or NULL if the tree is empty.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBTREE-NEXT--CAPS" role="macro">
+<title>EVA_RBTREE_NEXT()</title>
+<indexterm zone="EVA-RBTREE-NEXT--CAPS"><primary sortas="EVA_RBTREE_NEXT">EVA_RBTREE_NEXT</primary></indexterm><programlisting>#define             EVA_RBTREE_NEXT(tree, in, out)</programlisting>
+<para>
+Get the next element in the tree,
+after a given element.
+</para>
+<para><parameter>in</parameter> and <parameter>out</parameter> may be the same variable.</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBTree (a macro that expands to eight arguments) to traverse.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>in</parameter>&#160;:</term>
+<listitem><simpara>The starting element (must be non-NULL)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>A variable which will be set to the next element in the tree,
+or NULL if <parameter>in</parameter> was the last element.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBTREE-PREV--CAPS" role="macro">
+<title>EVA_RBTREE_PREV()</title>
+<indexterm zone="EVA-RBTREE-PREV--CAPS"><primary sortas="EVA_RBTREE_PREV">EVA_RBTREE_PREV</primary></indexterm><programlisting>#define             EVA_RBTREE_PREV(tree, in, out)</programlisting>
+<para>
+Get the previous element in the tree,
+after a given element.
+</para>
+<para><parameter>in</parameter> and <parameter>out</parameter> may be the same variable.</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBTree (a macro that expands to eight arguments) to traverse.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>in</parameter>&#160;:</term>
+<listitem><simpara>The starting element (must be non-NULL)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>A variable which will be set to the previous element in the tree,
+or NULL if <parameter>in</parameter> was the first element.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBTREE-SUPREMUM--CAPS" role="macro">
+<title>EVA_RBTREE_SUPREMUM()</title>
+<indexterm zone="EVA-RBTREE-SUPREMUM--CAPS"><primary sortas="EVA_RBTREE_SUPREMUM">EVA_RBTREE_SUPREMUM</primary></indexterm><programlisting>#define             EVA_RBTREE_SUPREMUM(tree, key, out)</programlisting>
+<para>
+Find the first node in the tree which is after or equal to <parameter>key</parameter>.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBTree (a macro that expands to eight arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara>The key to lookup.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>Set the the first node in the tree which is after or equal to
+<parameter>key</parameter>, according to the usual tree comparator, or NULL if no
+element is greater than or equal to <parameter>key</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBTREE-SUPREMUM-COMPARATOR--CAPS" role="macro">
+<title>EVA_RBTREE_SUPREMUM_COMPARATOR()</title>
+<indexterm zone="EVA-RBTREE-SUPREMUM-COMPARATOR--CAPS"><primary sortas="EVA_RBTREE_SUPREMUM_COMPARATOR">EVA_RBTREE_SUPREMUM_COMPARATOR</primary></indexterm><programlisting>#define             EVA_RBTREE_SUPREMUM_COMPARATOR(tree, key, key_comparator, out)</programlisting>
+<para>
+Find the first node in the tree which is after or equal to <parameter>key</parameter>.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBTree (a macro that expands to eight arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara>The key to lookup.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key_comparator</parameter>&#160;:</term>
+<listitem><simpara>A macro that takes three arguments: 
+the <parameter>key</parameter>, a node from the tree, and a variable which should
+be set to -1,0,1 if the key is less than, equal to or greater than
+the node, respectively.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>Set the the first node in the tree which is after or equal to
+<parameter>key</parameter>, according to <parameter>key_comparator</parameter>, or NULL if no
+element is greater than or equal to <parameter>key</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBTREE-INFIMUM--CAPS" role="macro">
+<title>EVA_RBTREE_INFIMUM()</title>
+<indexterm zone="EVA-RBTREE-INFIMUM--CAPS"><primary sortas="EVA_RBTREE_INFIMUM">EVA_RBTREE_INFIMUM</primary></indexterm><programlisting>#define             EVA_RBTREE_INFIMUM(tree, key, out)</programlisting>
+<para>
+Find the last node in the tree which is before or equal to <parameter>key</parameter>.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBTree (a macro that expands to eight arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara>The key to lookup.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>Set the the last node in the tree which is before or equal to
+<parameter>key</parameter>, according to the usual tree comparator, or NULL if no
+element is less than or equal to <parameter>key</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBTREE-INFIMUM-COMPARATOR--CAPS" role="macro">
+<title>EVA_RBTREE_INFIMUM_COMPARATOR()</title>
+<indexterm zone="EVA-RBTREE-INFIMUM-COMPARATOR--CAPS"><primary sortas="EVA_RBTREE_INFIMUM_COMPARATOR">EVA_RBTREE_INFIMUM_COMPARATOR</primary></indexterm><programlisting>#define             EVA_RBTREE_INFIMUM_COMPARATOR(tree, key, key_comparator, out)</programlisting>
+<para>
+Find the last node in the tree which is before or equal to <parameter>key</parameter>.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBTree (a macro that expands to eight arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara>The key to lookup.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key_comparator</parameter>&#160;:</term>
+<listitem><simpara>A macro that takes three arguments: 
+the <parameter>key</parameter>, a node from the tree, and a variable which should
+be set to -1,0,1 if the key is less than, equal to or greater than
+the node, respectively.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>Set the the last node in the tree which is before or equal to
+<parameter>key</parameter>, according to <parameter>key_comparator</parameter>, or NULL if no
+element is less than or equal to <parameter>key</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-INSERT--CAPS" role="macro">
+<title>EVA_RBCTREE_INSERT()</title>
+<indexterm zone="EVA-RBCTREE-INSERT--CAPS"><primary sortas="EVA_RBCTREE_INSERT">EVA_RBCTREE_INSERT</primary></indexterm><programlisting>#define             EVA_RBCTREE_INSERT(tree, node, collision_node)</programlisting>
+<para>
+Add a new node into the rbtree, potentially removing another node of the same
+key, which will be returned in <parameter>collision_node</parameter>.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to affect.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>node</parameter>&#160;:</term>
+<listitem><simpara>The node to insert.  It should not be in the tree initially.
+Its parent, left and right pointers will be initialized.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>collision_node</parameter>&#160;:</term>
+<listitem><simpara>A variable that will be set to NULL
+if there was no collision, or the node that was replaced
+if there was a collision.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-REMOVE--CAPS" role="macro">
+<title>EVA_RBCTREE_REMOVE()</title>
+<indexterm zone="EVA-RBCTREE-REMOVE--CAPS"><primary sortas="EVA_RBCTREE_REMOVE">EVA_RBCTREE_REMOVE</primary></indexterm><programlisting>#define             EVA_RBCTREE_REMOVE(tree, node)</programlisting>
+<para>
+Remove a new from the tree.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to affect.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>node</parameter>&#160;:</term>
+<listitem><simpara>The node to remove from the tree.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-LOOKUP--CAPS" role="macro">
+<title>EVA_RBCTREE_LOOKUP()</title>
+<indexterm zone="EVA-RBCTREE-LOOKUP--CAPS"><primary sortas="EVA_RBCTREE_LOOKUP">EVA_RBCTREE_LOOKUP</primary></indexterm><programlisting>#define             EVA_RBCTREE_LOOKUP(tree, key, out)</programlisting>
+<para>
+Lookup a node in the tree.
+</para>
+<para>
+This will use the same comparator as the normal tree lookup,
+so the <parameter>key</parameter> should probably be something that looks like a node.
+See <link linkend="EVA-RBCTREE-LOOKUP-COMPARATOR--CAPS"><type>EVA_RBCTREE_LOOKUP_COMPARATOR</type></link> for a method to do the lookup
+using a key that is in a different format.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara>A node whose equivalent we are trying to find.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>The node that was found, or NULL if no node was found.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-LOOKUP-COMPARATOR--CAPS" role="macro">
+<title>EVA_RBCTREE_LOOKUP_COMPARATOR()</title>
+<indexterm zone="EVA-RBCTREE-LOOKUP-COMPARATOR--CAPS"><primary sortas="EVA_RBCTREE_LOOKUP_COMPARATOR">EVA_RBCTREE_LOOKUP_COMPARATOR</primary></indexterm><programlisting>#define             EVA_RBCTREE_LOOKUP_COMPARATOR(tree, key, key_comparator, out)</programlisting>
+<para>
+Lookup a node in the tree.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara>A key to lookup.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key_comparator</parameter>&#160;:</term>
+<listitem><simpara>A macro that takes three arguments: 
+the <parameter>key</parameter>, a node from the tree, and a variable which should
+be set to -1,0,1 if the key is less than, equal to or greater than
+the node, respectively.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>The node that was found, or NULL if no node was found.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-FIRST--CAPS" role="macro">
+<title>EVA_RBCTREE_FIRST()</title>
+<indexterm zone="EVA-RBCTREE-FIRST--CAPS"><primary sortas="EVA_RBCTREE_FIRST">EVA_RBCTREE_FIRST</primary></indexterm><programlisting>#define             EVA_RBCTREE_FIRST(tree, out)</programlisting>
+<para>
+Get the first element of the tree.
+(The first element is the least element,
+as determined by the comparator)
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>A variable which will be set to the first element in the tree,
+or NULL if the tree is empty.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-LAST--CAPS" role="macro">
+<title>EVA_RBCTREE_LAST()</title>
+<indexterm zone="EVA-RBCTREE-LAST--CAPS"><primary sortas="EVA_RBCTREE_LAST">EVA_RBCTREE_LAST</primary></indexterm><programlisting>#define             EVA_RBCTREE_LAST(tree, out)</programlisting>
+<para>
+Get the last element of the tree.
+(The last element is the greatest element,
+as determined by the comparator)
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to eight arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>A variable which will be set to the last element in the tree,
+or NULL if the tree is empty.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-NEXT--CAPS" role="macro">
+<title>EVA_RBCTREE_NEXT()</title>
+<indexterm zone="EVA-RBCTREE-NEXT--CAPS"><primary sortas="EVA_RBCTREE_NEXT">EVA_RBCTREE_NEXT</primary></indexterm><programlisting>#define             EVA_RBCTREE_NEXT(tree, in, out)</programlisting>
+<para>
+Get the next element in the tree,
+after a given element.
+</para>
+<para><parameter>in</parameter> and <parameter>out</parameter> may be the same variable.</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to traverse.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>in</parameter>&#160;:</term>
+<listitem><simpara>The starting element (must be non-NULL)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>A variable which will be set to the next element in the tree,
+or NULL if <parameter>in</parameter> was the last element.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-PREV--CAPS" role="macro">
+<title>EVA_RBCTREE_PREV()</title>
+<indexterm zone="EVA-RBCTREE-PREV--CAPS"><primary sortas="EVA_RBCTREE_PREV">EVA_RBCTREE_PREV</primary></indexterm><programlisting>#define             EVA_RBCTREE_PREV(tree, in, out)</programlisting>
+<para>
+Get the previous element in the tree,
+after a given element.
+</para>
+<para><parameter>in</parameter> and <parameter>out</parameter> may be the same variable.</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to traverse.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>in</parameter>&#160;:</term>
+<listitem><simpara>The starting element (must be non-NULL)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>A variable which will be set to the previous element in the tree,
+or NULL if <parameter>in</parameter> was the first element.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-SUPREMUM--CAPS" role="macro">
+<title>EVA_RBCTREE_SUPREMUM()</title>
+<indexterm zone="EVA-RBCTREE-SUPREMUM--CAPS"><primary sortas="EVA_RBCTREE_SUPREMUM">EVA_RBCTREE_SUPREMUM</primary></indexterm><programlisting>#define             EVA_RBCTREE_SUPREMUM(tree, key, out)</programlisting>
+<para>
+Find the first node in the tree which is after or equal to <parameter>key</parameter>.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara>The key to lookup.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>Set the the first node in the tree which is after or equal to
+<parameter>key</parameter>, according to the usual tree comparator, or NULL if no
+element is greater than or equal to <parameter>key</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-SUPREMUM-COMPARATOR--CAPS" role="macro">
+<title>EVA_RBCTREE_SUPREMUM_COMPARATOR()</title>
+<indexterm zone="EVA-RBCTREE-SUPREMUM-COMPARATOR--CAPS"><primary sortas="EVA_RBCTREE_SUPREMUM_COMPARATOR">EVA_RBCTREE_SUPREMUM_COMPARATOR</primary></indexterm><programlisting>#define             EVA_RBCTREE_SUPREMUM_COMPARATOR(tree, key, key_comparator, out)</programlisting>
+<para>
+Find the first node in the tree which is after or equal to <parameter>key</parameter>.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara>The key to lookup.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key_comparator</parameter>&#160;:</term>
+<listitem><simpara>A macro that takes three arguments: 
+the <parameter>key</parameter>, a node from the tree, and a variable which should
+be set to -1,0,1 if the key is less than, equal to or greater than
+the node, respectively.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>Set the the first node in the tree which is after or equal to
+<parameter>key</parameter>, according to <parameter>key_comparator</parameter>, or NULL if no
+element is greater than or equal to <parameter>key</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-INFIMUM--CAPS" role="macro">
+<title>EVA_RBCTREE_INFIMUM()</title>
+<indexterm zone="EVA-RBCTREE-INFIMUM--CAPS"><primary sortas="EVA_RBCTREE_INFIMUM">EVA_RBCTREE_INFIMUM</primary></indexterm><programlisting>#define             EVA_RBCTREE_INFIMUM(tree, key, out)</programlisting>
+<para>
+Find the last node in the tree which is before or equal to <parameter>key</parameter>.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara>The key to lookup.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>Set the the last node in the tree which is before or equal to
+<parameter>key</parameter>, according to the usual tree comparator, or NULL if no
+element is less than or equal to <parameter>key</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-INFIMUM-COMPARATOR--CAPS" role="macro">
+<title>EVA_RBCTREE_INFIMUM_COMPARATOR()</title>
+<indexterm zone="EVA-RBCTREE-INFIMUM-COMPARATOR--CAPS"><primary sortas="EVA_RBCTREE_INFIMUM_COMPARATOR">EVA_RBCTREE_INFIMUM_COMPARATOR</primary></indexterm><programlisting>#define             EVA_RBCTREE_INFIMUM_COMPARATOR(tree, key, key_comparator, out)</programlisting>
+<para>
+Find the last node in the tree which is before or equal to <parameter>key</parameter>.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara>The key to lookup.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key_comparator</parameter>&#160;:</term>
+<listitem><simpara>A macro that takes three arguments: 
+the <parameter>key</parameter>, a node from the tree, and a variable which should
+be set to -1,0,1 if the key is less than, equal to or greater than
+the node, respectively.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>Set the the last node in the tree which is before or equal to
+<parameter>key</parameter>, according to <parameter>key_comparator</parameter>, or NULL if no
+element is less than or equal to <parameter>key</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-GET-BY-INDEX--CAPS" role="macro">
+<title>EVA_RBCTREE_GET_BY_INDEX()</title>
+<indexterm zone="EVA-RBCTREE-GET-BY-INDEX--CAPS"><primary sortas="EVA_RBCTREE_GET_BY_INDEX">EVA_RBCTREE_GET_BY_INDEX</primary></indexterm><programlisting>#define             EVA_RBCTREE_GET_BY_INDEX(tree, index, out)</programlisting>
+<para>
+Find the N-th node in the tree.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>index</parameter>&#160;:</term>
+<listitem><simpara>The index of the node which you want to find.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>variable to store the <parameter>index</parameter>-th node in,
+or NULL if <parameter>index</parameter> is out-of-range.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-GET-BY-INDEX-UNCHECKED--CAPS" role="macro">
+<title>EVA_RBCTREE_GET_BY_INDEX_UNCHECKED()</title>
+<indexterm zone="EVA-RBCTREE-GET-BY-INDEX-UNCHECKED--CAPS"><primary sortas="EVA_RBCTREE_GET_BY_INDEX_UNCHECKED">EVA_RBCTREE_GET_BY_INDEX_UNCHECKED</primary></indexterm><programlisting>#define             EVA_RBCTREE_GET_BY_INDEX_UNCHECKED(tree, index, out)</programlisting>
+<para>
+Find the N-th node in the tree, assuming that <parameter>index</parameter> is valid.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>index</parameter>&#160;:</term>
+<listitem><simpara>The index of the node which you want to find.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&#160;:</term>
+<listitem><simpara>variable to store the <parameter>index</parameter>-th node in.
+This routine will crash if <parameter>index</parameter> is out-of-range.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="EVA-RBCTREE-GET-NODE-INDEX--CAPS" role="macro">
+<title>EVA_RBCTREE_GET_NODE_INDEX()</title>
+<indexterm zone="EVA-RBCTREE-GET-NODE-INDEX--CAPS"><primary sortas="EVA_RBCTREE_GET_NODE_INDEX">EVA_RBCTREE_GET_NODE_INDEX</primary></indexterm><programlisting>#define             EVA_RBCTREE_GET_NODE_INDEX(tree, node, index_out)</programlisting>
+<para>
+Get the index of an arbitrary node.
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara>The RBCTree (a macro that expands to ten arguments) to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>node</parameter>&#160;:</term>
+<listitem><simpara>The node to obtain the index of.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>index_out</parameter>&#160;:</term>
+<listitem><simpara>variable to store the index of <parameter>node</parameter> in.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+<refsect1 id="eva-evarbtreemacros.see-also">
+<title>See Also</title>
+<para>
+evaqsortmacro
+</para>
+</refsect1>
+
+</refentry>

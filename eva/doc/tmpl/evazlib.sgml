@@ -1,0 +1,37 @@
+<!-- ##### SECTION Title ##### -->
+evazlib
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION eva_zlib_error_to_eva_error ##### -->
+<para>
+
+</para>
+
+@zlib_error_rv: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_zlib_error_to_message ##### -->
+<para>
+
+</para>
+
+@zlib_error_rv: 
+@Returns: 
+
+

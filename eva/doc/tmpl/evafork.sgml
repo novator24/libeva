@@ -1,0 +1,65 @@
+<!-- ##### SECTION Title ##### -->
+evafork
+
+<!-- ##### SECTION Short_Description ##### -->
+Functions to call to clean up after forking.
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+This provides a way to register file descriptors that
+should be closed by the background thread.
+It also contains a eva-like wrapper to fork.. that is,
+a callback oriented fork interface.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### USER_FUNCTION GskForkFunc ##### -->
+<para>
+Function to call from the background process.
+</para>
+
+@data: data passed through eva_fork().
+@Returns: the exit status of this process.
+
+
+<!-- ##### FUNCTION eva_fork ##### -->
+<para>
+
+</para>
+
+@action: 
+@data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_fork_add_cleanup_fd ##### -->
+<para>
+
+</para>
+
+@fd: 
+
+
+<!-- ##### FUNCTION eva_fork_remove_cleanup_fd ##### -->
+<para>
+
+</para>
+
+@fd: 
+
+
+<!-- ##### FUNCTION eva_fork_child_cleanup ##### -->
+<para>
+
+</para>
+
+
+

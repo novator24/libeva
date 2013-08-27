@@ -1,0 +1,315 @@
+<!-- ##### SECTION Title ##### -->
+evaftpcommon
+
+<!-- ##### SECTION Short_Description ##### -->
+basic ftp definitions
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+Structures and definitions for the FTP protocol implementation.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GskFtpCommand ##### -->
+<para>
+
+</para>
+
+@type: 
+@struct_type: 
+@transfer_mode: 
+@pathname: 
+@help_topic: 
+
+<!-- ##### ENUM GskFtpCommandType ##### -->
+<para>
+
+</para>
+
+@EVA_FTP_COMMAND_USER: 
+@EVA_FTP_COMMAND_PASS: 
+@EVA_FTP_COMMAND_ACCT: 
+@EVA_FTP_COMMAND_CWD: 
+@EVA_FTP_COMMAND_CDUP: 
+@EVA_FTP_COMMAND_SMNT: 
+@EVA_FTP_COMMAND_REIN: 
+@EVA_FTP_COMMAND_QUIT: 
+@EVA_FTP_COMMAND_PORT: 
+@EVA_FTP_COMMAND_PASV: 
+@EVA_FTP_COMMAND_TYPE: 
+@EVA_FTP_COMMAND_STRU: 
+@EVA_FTP_COMMAND_MODE: 
+@EVA_FTP_COMMAND_RETR: 
+@EVA_FTP_COMMAND_STOR: 
+@EVA_FTP_COMMAND_STOU: 
+@EVA_FTP_COMMAND_APPE: 
+@EVA_FTP_COMMAND_ALLO: 
+@EVA_FTP_COMMAND_REST: 
+@EVA_FTP_COMMAND_RNFR: 
+@EVA_FTP_COMMAND_RNTO: 
+@EVA_FTP_COMMAND_ABOR: 
+@EVA_FTP_COMMAND_DELE: 
+@EVA_FTP_COMMAND_RMD: 
+@EVA_FTP_COMMAND_MKD: 
+@EVA_FTP_COMMAND_PWD: 
+@EVA_FTP_COMMAND_LIST: 
+@EVA_FTP_COMMAND_NLST: 
+@EVA_FTP_COMMAND_SITE: 
+@EVA_FTP_COMMAND_SYST: 
+@EVA_FTP_COMMAND_STAT: 
+@EVA_FTP_COMMAND_HELP: 
+@EVA_FTP_COMMAND_NOOP: 
+
+<!-- ##### ENUM GskFtpCharType ##### -->
+<para>
+
+</para>
+
+@EVA_FTP_CHAR_TYPE_ASCII: 
+@EVA_FTP_CHAR_TYPE_EBCDIC: 
+@EVA_FTP_CHAR_TYPE_IMAGE: 
+
+<!-- ##### ENUM GskFtpTerminalType ##### -->
+<para>
+
+</para>
+
+@EVA_FTP_TERMINAL_NONPRINT: 
+@EVA_FTP_TERMINAL_TELNET: 
+@EVA_FTP_TERMINAL_CARRIAGE_CONTROL: 
+
+<!-- ##### ENUM GskFtpFileStructure ##### -->
+<para>
+
+</para>
+
+@EVA_FTP_FILE_STRUCTURE_FILE: 
+@EVA_FTP_FILE_STRUCTURE_RECORD: 
+@EVA_FTP_FILE_STRUCTURE_PAGE: 
+
+<!-- ##### ENUM GskFtpTransferMode ##### -->
+<para>
+
+</para>
+
+@EVA_FTP_TRANSFER_MODE_STREAM: 
+@EVA_FTP_TRANSFER_MODE_BLOCK: 
+@EVA_FTP_TRANSFER_MODE_COMPRESSED: 
+
+<!-- ##### FUNCTION eva_ftp_command_name ##### -->
+<para>
+
+</para>
+
+@command_type: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_new_user ##### -->
+<para>
+
+</para>
+
+@username: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_new_password ##### -->
+<para>
+
+</para>
+
+@username: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_new_account ##### -->
+<para>
+
+</para>
+
+@account: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_new_mount ##### -->
+<para>
+
+</para>
+
+@mount_point: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_new_rep_type ##### -->
+<para>
+
+</para>
+
+@char_type: 
+@terminal_type: 
+@byte_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_new_file_struct ##### -->
+<para>
+
+</para>
+
+@file_struct: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_new_transfer_mode ##### -->
+<para>
+
+</para>
+
+@transfer_mode: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_new_help ##### -->
+<para>
+
+</para>
+
+@topic: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_new_file ##### -->
+<para>
+
+</para>
+
+@cmd_type: 
+@path: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_new_simple ##### -->
+<para>
+
+</para>
+
+@cmd_type: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_parse ##### -->
+<para>
+
+</para>
+
+@parse: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_to_string ##### -->
+<para>
+
+</para>
+
+@command: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_append ##### -->
+<para>
+
+</para>
+
+@command: 
+@buffer: 
+
+
+<!-- ##### FUNCTION eva_ftp_command_destroy ##### -->
+<para>
+
+</para>
+
+@command: 
+
+
+<!-- ##### STRUCT GskFtpReply ##### -->
+<para>
+
+</para>
+
+@type: 
+@literal: 
+
+<!-- ##### FUNCTION eva_ftp_reply_new_simple ##### -->
+<para>
+
+</para>
+
+@type: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_reply_new_status ##### -->
+<para>
+
+</para>
+
+@type: 
+@message: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_reply_new_system ##### -->
+<para>
+
+</para>
+
+@system: 
+@additional: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_reply_new_ready_in_n ##### -->
+<para>
+
+</para>
+
+@num_minutes: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_reply_parse ##### -->
+<para>
+
+</para>
+
+@raw_string: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_reply_to_string ##### -->
+<para>
+
+</para>
+
+@reply: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_ftp_reply_append ##### -->
+<para>
+
+</para>
+
+@reply: 
+@buffer: 
+
+

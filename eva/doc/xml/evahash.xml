@@ -1,0 +1,229 @@
+<refentry id="eva-evahash">
+<refmeta>
+<refentrytitle role="top_of_page" id="eva-evahash.top_of_page">evahash</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>EVA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>evahash</refname>
+<refpurpose>hash computing objects</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="eva-evahash.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GskHash">GskHash</link>;
+<link linkend="GskHash">GskHash</link> *           <link linkend="eva-hash-new-md5">eva_hash_new_md5</link>                    (void);
+<link linkend="GskHash">GskHash</link> *           <link linkend="eva-hash-new-sha1">eva_hash_new_sha1</link>                   (void);
+<link linkend="GskHash">GskHash</link> *           <link linkend="eva-hash-new-crc32">eva_hash_new_crc32</link>                  (<link linkend="gboolean">gboolean</link> big_endian);
+<link linkend="void">void</link>                <link linkend="eva-hash-feed">eva_hash_feed</link>                       (<link linkend="GskHash">GskHash</link> *hash,
+                                                         <link linkend="gconstpointer">gconstpointer</link> data,
+                                                         <link linkend="guint">guint</link> length);
+<link linkend="void">void</link>                <link linkend="eva-hash-feed-str">eva_hash_feed_str</link>                   (<link linkend="GskHash">GskHash</link> *hash,
+                                                         const <link linkend="char">char</link> *str);
+<link linkend="void">void</link>                <link linkend="eva-hash-done">eva_hash_done</link>                       (<link linkend="GskHash">GskHash</link> *hash);
+<link linkend="guint">guint</link>               <link linkend="eva-hash-get-size">eva_hash_get_size</link>                   (<link linkend="GskHash">GskHash</link> *hash);
+<link linkend="void">void</link>                <link linkend="eva-hash-get">eva_hash_get</link>                        (<link linkend="GskHash">GskHash</link> *hash,
+                                                         <link linkend="guint8">guint8</link> *data_out);
+<link linkend="void">void</link>                <link linkend="eva-hash-get-hex">eva_hash_get_hex</link>                    (<link linkend="GskHash">GskHash</link> *hash,
+                                                         <link linkend="gchar">gchar</link> *hex_out);
+<link linkend="void">void</link>                <link linkend="eva-hash-destroy">eva_hash_destroy</link>                    (<link linkend="GskHash">GskHash</link> *hash);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="eva-evahash.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+These small objects can compute a hash-function
+of a stream of data incrementally.
+Just pass pieces of data to <link linkend="eva-hash-feed"><function>eva_hash_feed()</function></link>
+and it will keep track of the hash-objects state.
+Call <link linkend="eva-hash-done"><function>eva_hash_done()</function></link> to finish the hash off,
+then use <link linkend="eva-hash-get"><function>eva_hash_get()</function></link> or <link linkend="eva-hash-get-hex"><function>eva_hash_get_hex()</function></link> to
+get the value of the hash.
+</para>
+</refsect1>
+
+<refsect1 id="eva-evahash.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GskHash" role="struct">
+<title>GskHash</title>
+<indexterm zone="GskHash"><primary sortas="GskHash">GskHash</primary></indexterm><programlisting>typedef struct {
+  /* The size of the hash-key (in bytes) */
+  guint       size;
+} GskHash;
+</programlisting>
+<para>
+An abstract hashing object.
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="guint">guint</link>&#160;<structfield>size</structfield>;</term>
+<listitem><simpara>number of bytes in the hash.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-hash-new-md5" role="function">
+<title>eva_hash_new_md5 ()</title>
+<indexterm zone="eva-hash-new-md5"><primary sortas="eva_hash_new_md5">eva_hash_new_md5</primary></indexterm><programlisting><link linkend="GskHash">GskHash</link> *           eva_hash_new_md5                    (void);</programlisting>
+<para>
+Create a new MD5 hasher.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated hash object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-hash-new-sha1" role="function">
+<title>eva_hash_new_sha1 ()</title>
+<indexterm zone="eva-hash-new-sha1"><primary sortas="eva_hash_new_sha1">eva_hash_new_sha1</primary></indexterm><programlisting><link linkend="GskHash">GskHash</link> *           eva_hash_new_sha1                   (void);</programlisting>
+<para>
+Create a new SHA1 hasher.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated hash object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-hash-new-crc32" role="function">
+<title>eva_hash_new_crc32 ()</title>
+<indexterm zone="eva-hash-new-crc32"><primary sortas="eva_hash_new_crc32">eva_hash_new_crc32</primary></indexterm><programlisting><link linkend="GskHash">GskHash</link> *           eva_hash_new_crc32                  (<link linkend="gboolean">gboolean</link> big_endian);</programlisting>
+<para>
+Typically called as eva_hash_new_crc32(G_BYTE_ORDER == G_BIG_ENDIAN).</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>big_endian</parameter>&#160;:</term>
+<listitem><simpara> whether to compute a big-endian crc32 hash.
+(As opposed to a little endian hash).
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated hash object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-hash-feed" role="function">
+<title>eva_hash_feed ()</title>
+<indexterm zone="eva-hash-feed"><primary sortas="eva_hash_feed">eva_hash_feed</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hash_feed                       (<link linkend="GskHash">GskHash</link> *hash,
+                                                         <link linkend="gconstpointer">gconstpointer</link> data,
+                                                         <link linkend="guint">guint</link> length);</programlisting>
+<para>
+Affect the hash incrementally;
+hash the given binary data.
+</para>
+<para>
+You may call this function on little bits of data
+and it must have exactly the same effect
+is if you called it once with a larger
+slab of data.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&#160;:</term>
+<listitem><simpara> the hash to feed data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> binary data to accumulate in the hash.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&#160;:</term>
+<listitem><simpara> length of the binary data.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-hash-feed-str" role="function">
+<title>eva_hash_feed_str ()</title>
+<indexterm zone="eva-hash-feed-str"><primary sortas="eva_hash_feed_str">eva_hash_feed_str</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hash_feed_str                   (<link linkend="GskHash">GskHash</link> *hash,
+                                                         const <link linkend="char">char</link> *str);</programlisting>
+<para>
+Hash the given binary data (incrementally).
+</para>
+<para>
+You may mix calls to <link linkend="eva-hash-feed"><function>eva_hash_feed()</function></link> and <link linkend="eva-hash-feed-str"><function>eva_hash_feed_str()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&#160;:</term>
+<listitem><simpara> the hash to feed data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>str</parameter>&#160;:</term>
+<listitem><simpara> a NUL-terminated string to feed to the hash.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-hash-done" role="function">
+<title>eva_hash_done ()</title>
+<indexterm zone="eva-hash-done"><primary sortas="eva_hash_done">eva_hash_done</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hash_done                       (<link linkend="GskHash">GskHash</link> *hash);</programlisting>
+<para>
+Finish processing loose data for the hash.
+This may only be called once in
+the lifetime of the hash.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&#160;:</term>
+<listitem><simpara> the hash to finish.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-hash-get-size" role="function">
+<title>eva_hash_get_size ()</title>
+<indexterm zone="eva-hash-get-size"><primary sortas="eva_hash_get_size">eva_hash_get_size</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_hash_get_size                   (<link linkend="GskHash">GskHash</link> *hash);</programlisting>
+<para>
+Get the number of binary bytes that this
+function maps to.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&#160;:</term>
+<listitem><simpara> the hash to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the number of bytes of binary data in this hash.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-hash-get" role="function">
+<title>eva_hash_get ()</title>
+<indexterm zone="eva-hash-get"><primary sortas="eva_hash_get">eva_hash_get</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hash_get                        (<link linkend="GskHash">GskHash</link> *hash,
+                                                         <link linkend="guint8">guint8</link> *data_out);</programlisting>
+<para>
+Get a binary hash value.  This should be of the
+size returned by <link linkend="eva-hash-get-size"><function>eva_hash_get_size()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&#160;:</term>
+<listitem><simpara> the hash to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data_out</parameter>&#160;:</term>
+<listitem><simpara> binary buffer to fill with the hash value.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-hash-get-hex" role="function">
+<title>eva_hash_get_hex ()</title>
+<indexterm zone="eva-hash-get-hex"><primary sortas="eva_hash_get_hex">eva_hash_get_hex</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hash_get_hex                    (<link linkend="GskHash">GskHash</link> *hash,
+                                                         <link linkend="gchar">gchar</link> *hex_out);</programlisting>
+<para>
+Get a hex hash value.  This should be of the
+size returned by (<link linkend="eva-hash-get-size"><function>eva_hash_get_size()</function></link> * 2 + 1).</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&#160;:</term>
+<listitem><simpara> the hash to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>hex_out</parameter>&#160;:</term>
+<listitem><simpara> buffer to fill with a NUL-terminated hex hash value.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-hash-destroy" role="function">
+<title>eva_hash_destroy ()</title>
+<indexterm zone="eva-hash-destroy"><primary sortas="eva_hash_destroy">eva_hash_destroy</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hash_destroy                    (<link linkend="GskHash">GskHash</link> *hash);</programlisting>
+<para>
+Free memory used by the hash object.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&#160;:</term>
+<listitem><simpara> the hash function.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

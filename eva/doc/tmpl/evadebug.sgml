@@ -1,0 +1,94 @@
+<!-- ##### SECTION Title ##### -->
+Runtime Toggled Debug Logging
+
+<!-- ##### SECTION Short_Description ##### -->
+methods to quickly turn logging on and off for portions of EVA.
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+These functions allow you to programmitcally
+set the EVA debugging flags.  Usually, one
+sets these at runtime instead, by using the --eva-debug=FLAGS
+command-line argument to your program.
+</para>
+<para>
+In any event, EVA's debugging facilities are only available if
+EVA itself was configured with eva-debug support,
+by specifying <arg>--enable-eva-debug</arg> to 
+EVA's configure script.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM GskDebugFlags ##### -->
+<para>
+Flags which may be turned on to print debugging messages about
+them.
+</para>
+
+@EVA_DEBUG_IO: 
+I/O hook debugging.
+@EVA_DEBUG_STREAM: 
+Read/write debugging.
+@EVA_DEBUG_STREAM_LISTENER: 
+Server listener debugging.
+@EVA_DEBUG_STREAM_DATA: 
+Stream debugging by dumping all the data exchanged with
+the stream.
+@EVA_DEBUG_LIFETIME: 
+Debug object lifetime issues.
+@EVA_DEBUG_MAIN_LOOP: 
+Debug main-loop behavior.
+@EVA_DEBUG_DNS: 
+Debug name lookup behavior.
+@EVA_DEBUG_HOOK: 
+Debug hooks.
+@EVA_DEBUG_SSL: 
+Debug SSL (a secure transport layer, used by https).
+@EVA_DEBUG_HTTP: 
+Debug HTTP, the protocol used for web pages.
+@EVA_DEBUG_FTP: 
+@EVA_DEBUG_REQUEST: 
+@EVA_DEBUG_FD: 
+Debug file-descriptor usage.
+@EVA_DEBUG_ALL: 
+All debug flags.
+
+<!-- ##### VARIABLE eva_debugging_on ##### -->
+<para>
+Whether debugging is on.
+</para>
+<para>
+This corresponds with whether EVA's <program>configure</program>
+script was run with the <arg>--enable-eva-debug</arg> option.
+</para>
+
+
+<!-- ##### FUNCTION eva_debug_set_flags ##### -->
+<para>
+
+</para>
+
+@flags: 
+
+
+<!-- ##### FUNCTION eva_debug_add_flags ##### -->
+<para>
+
+</para>
+
+@flags: 
+
+
+<!-- ##### VARIABLE eva_debug_flags ##### -->
+<para>
+
+</para>
+
+

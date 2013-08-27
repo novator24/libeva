@@ -1,0 +1,159 @@
+<refentry id="eva-evalog">
+<refmeta>
+<refentrytitle role="top_of_page" id="eva-evalog.top_of_page">evalog</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>EVA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>evalog</refname>
+<refpurpose>convenient logging methods around the glib mechanism</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="eva-evalog.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="void">void</link>                <link linkend="eva-log-init">eva_log_init</link>                        (void);
+<link linkend="GskLogTrap">GskLogTrap</link> *        <link linkend="eva-log-trap-domain-to-file">eva_log_trap_domain_to_file</link>         (const <link linkend="char">char</link> *domain,
+                                                         <link linkend="GLogLevelFlags">GLogLevelFlags</link> level_mask,
+                                                         const <link linkend="char">char</link> *filename,
+                                                         const <link linkend="char">char</link> *output_format);
+#define             <link linkend="eva-debug">eva_debug</link>                           (domain, ...)
+#define             <link linkend="eva-warning">eva_warning</link>                         (domain, ...)
+#define             <link linkend="eva-error">eva_error</link>                           (domain, ...)
+#define             <link linkend="eva-critical">eva_critical</link>                        (domain, ...)
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="eva-evalog.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This file provide macros to allow logging to go to selected
+domains from a single compilation unit.
+</para>
+<para>
+Also, it contains methods to conveniently trap the logs to
+given files.
+</para>
+</refsect1>
+
+<refsect1 id="eva-evalog.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="eva-log-init" role="function">
+<title>eva_log_init ()</title>
+<indexterm zone="eva-log-init"><primary sortas="eva_log_init">eva_log_init</primary></indexterm><programlisting><link linkend="void">void</link>                eva_log_init                        (void);</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="eva-log-trap-domain-to-file" role="function">
+<title>eva_log_trap_domain_to_file ()</title>
+<indexterm zone="eva-log-trap-domain-to-file"><primary sortas="eva_log_trap_domain_to_file">eva_log_trap_domain_to_file</primary></indexterm><programlisting><link linkend="GskLogTrap">GskLogTrap</link> *        eva_log_trap_domain_to_file         (const <link linkend="char">char</link> *domain,
+                                                         <link linkend="GLogLevelFlags">GLogLevelFlags</link> level_mask,
+                                                         const <link linkend="char">char</link> *filename,
+                                                         const <link linkend="char">char</link> *output_format);</programlisting>
+<para>
+<parameter>domain</parameter>: the log-domain to trap, as passed to g_log
+or the eva_ family of log functions.
+<parameter>filename</parameter>: the filename to write the log to.
+<parameter>output_format</parameter>: a string giving the formatting
+to be used with the given trap.
+It may contain any of the following strings:
+   %{message}       the message itself.
+   %{NNNmessage}    the first NNN characters of message.
+   %{localtime:FMT} the time/date in local timezone, formatted as per FMT.
+   %{gmtime:FMT}    the time/date in gm, formatted as per FMT.
+                    (If :FMT is omitted, a default format string is used)
+   %{domain}        the log domain.
+   %{level}         the log level, as 'error', 'message', etc.
+   %{glevel}        approximately how glib does the level:
+                    'Debug', 'Info', '*Message*', '***Warning***',
+                    '***Critical***', '***ERROR***'.
+   %{Level}, %{LEVEL}  like %{level} with casing differences.
+   %{levelsuffix}   '.', '!', '!!!' depending on the severity.
+   %%               a percent symbol.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>domain</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>level_mask</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>filename</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>output_format</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-debug" role="macro">
+<title>eva_debug()</title>
+<indexterm zone="eva-debug"><primary sortas="eva_debug">eva_debug</primary></indexterm><programlisting>#define             eva_debug(domain, ...)</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>domain</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-warning" role="macro">
+<title>eva_warning()</title>
+<indexterm zone="eva-warning"><primary sortas="eva_warning">eva_warning</primary></indexterm><programlisting>#define             eva_warning(domain, ...)</programlisting>
+<para>
+Log a message at the WARNING priority level.
+Messages logged at this level can be fatal in debugging mode.
+</para><variablelist role="params">
+<varlistentry><term><parameter>domain</parameter>&#160;:</term>
+<listitem><simpara>the log-domain to use to categorize the message.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-error" role="macro">
+<title>eva_error()</title>
+<indexterm zone="eva-error"><primary sortas="eva_error">eva_error</primary></indexterm><programlisting>#define             eva_error(domain, ...)</programlisting>
+<para>
+Log a message at the WARNING priority level.
+Messages logged at this level are always fatal.
+</para><variablelist role="params">
+<varlistentry><term><parameter>domain</parameter>&#160;:</term>
+<listitem><simpara> the log-domain to use to categorize the message.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>printf-style format and arguments.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-critical" role="macro">
+<title>eva_critical()</title>
+<indexterm zone="eva-critical"><primary sortas="eva_critical">eva_critical</primary></indexterm><programlisting>#define             eva_critical(domain, ...)</programlisting>
+<para>
+Log a message at the CRITICAL priority level.
+Messages logged at this level can be fatal in debugging mode.
+</para><variablelist role="params">
+<varlistentry><term><parameter>domain</parameter>&#160;:</term>
+<listitem><simpara> the log-domain to use to categorize the message.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>printf-style format and arguments.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

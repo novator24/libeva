@@ -1,0 +1,76 @@
+<refentry id="eva-evamain">
+<refmeta>
+<refentrytitle role="top_of_page" id="eva-evamain.top_of_page">Trivial Main Functions.</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>EVA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Trivial Main Functions.</refname>
+<refpurpose>These are trivial interfaces to the main-loop.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="eva-evamain.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="int">int</link>                 <link linkend="eva-main-run">eva_main_run</link>                        ();
+<link linkend="void">void</link>                <link linkend="eva-main-quit">eva_main_quit</link>                       ();
+<link linkend="void">void</link>                <link linkend="eva-main-exit">eva_main_exit</link>                       (<link linkend="int">int</link> exit_status);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="eva-evamain.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+These function can be used to run the main loop
+for a fixed duration, or to quit / exit the program.
+</para>
+</refsect1>
+
+<refsect1 id="eva-evamain.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="eva-main-run" role="function">
+<title>eva_main_run ()</title>
+<indexterm zone="eva-main-run"><primary sortas="eva_main_run">eva_main_run</primary></indexterm><programlisting><link linkend="int">int</link>                 eva_main_run                        ();</programlisting>
+<para>
+Run the main loop until it terminates, returning the value which 
+should be returned by <link linkend="main"><function>main()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the exit code for this process.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-main-quit" role="function">
+<title>eva_main_quit ()</title>
+<indexterm zone="eva-main-quit"><primary sortas="eva_main_quit">eva_main_quit</primary></indexterm><programlisting><link linkend="void">void</link>                eva_main_quit                       ();</programlisting>
+<para>
+Quit the program by stopping <link linkend="eva-main-run"><function>eva_main_run()</function></link>.</para>
+<para>
+</para></refsect2>
+<refsect2 id="eva-main-exit" role="function">
+<title>eva_main_exit ()</title>
+<indexterm zone="eva-main-exit"><primary sortas="eva_main_exit">eva_main_exit</primary></indexterm><programlisting><link linkend="void">void</link>                eva_main_exit                       (<link linkend="int">int</link> exit_status);</programlisting>
+<para>
+Exit the program by stopping <link linkend="eva-main-run"><function>eva_main_run()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>exit_status</parameter>&#160;:</term>
+<listitem><simpara> desired exit-status code for this process.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

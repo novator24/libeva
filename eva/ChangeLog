@@ -1,0 +1,261 @@
+eva (1.0.63):
+  * dns memory leak (it would leak up to 2^16 hash-table entries before
+    reusing them)
+  * memory leak in local socket-addresses.
+  * add eva-analyze-successive-memdumps
+  * fix eva_escape functions properly handle situations
+    like "\0000", which should be two characters:
+    a NUL followed by a digit '0'.
+  * use g_slice for foreign buffer fragments
+  * fix to eva_rm_rf() with symlinks
+
+eva (1.0.62)
+  * bug fix in blocking of POST data.
+
+eva (1.0.61)
+  * eva_http_server_set_idle_timeout(),
+    eva_http_content_set_idle_timeout(): adjust the keepalive timeout
+
+eva (1.0.60)
+  * bug in eva_log_rotate_stdio_logs():
+    implement '%s' ourselves instead of using strftime.
+
+eva (1.0.59)
+  * add eva_log_rotate_stdio_logs()
+
+eva (1.0.58)
+  * add eva_http_client_propagate_content_read_shutdown();
+    use it from evaurltransferhttp.
+
+eva (1.0.57)
+  * evastreamconnection: use read_buffer on input stream if available.
+  * BUG: eva_http_request_parse_cgi_string() (and friends).
+    Skip past multiple '&' characters as intended.
+  * obey "mask" in eva_log_trap()
+
+eva (1.0.56)
+  * fix bug parsing content-charset (remove quotes if necessary)
+
+eva (1.0.55)
+  * add eva_lock_dir()
+
+eva (1.0.54)
+  * add eva_http_content_type_parse() function
+  * permit eva_io_set_gerror to specific a non-EVA domain (remove assertion)
+
+
+eva (1.0.53)
+  * eva_date_parse_timet() assert failed on some bad dates.
+
+eva (1.0.52)
+  * bug fix: eva_date_parse_timet() had a sign-error in its timezone
+    handling.
+  * add eva_buffer_append_repeated_char().
+  * http server fix
+
+eva (1.0.51)
+  * bug fix: evastreamlistenersocket: do not crash if remote or local addr
+    is unavailable.
+  * bug fix: EVA_QSELECT macro was broken
+  * bug fix: stream-fd was sometimes notifying after shutdown.
+  * minimal support for "100 Continue" messages in evahttpclient
+
+eva (1.0.50) NOT YET RELEASED
+
+eva (1.0.49)
+  * avoid using gettimeofday() if a suitable CPU timer is available.
+  * evapassfd: mechanism for passing file-descriptors between processes.
+
+eva (1.0.48)
+  * eva_zlib_inflator_new2() and
+    eva_zlib_deflator_new2() allow you to use gzip compression
+    and decompression.  These require zlib >= 1.2.0 to work right.
+
+eva (1.0.47)
+  * GskStreamWatchdog: a stream that closes automatically after
+    a certain amount of inactivity.
+  * eva_hook_set_poll(), etc: call the set_poll function even
+    if idle notification is enabled.
+
+eva (1.0.46)
+  * micro bug fix.
+
+eva (1.0.45)
+  * major fix in HttpServer if not enough data comes in.
+  * GskIO::print_errors.  Setting this flag in a GskIO
+    should print all errors that occur.  The default
+    is FALSE, but if EVA_PRINT_ERRORS=1 in the environment,
+    then the default will become TRUE.
+
+eva (1.0.44)
+  * minor possibly bug in HttpClient.
+
+eva (1.0.43)
+  * eva-throttle-proxy: --{half,full}-shutdowns options
+  * http-client bug fixes: was forgetting to clear a write
+    block in several key places.
+
+eva (1.0.42)
+  * eva-throttle-proxy: useful for testing.
+  * suppress warnings on http-server "X-Whatever" headers.
+
+eva (1.0.41)
+  * eva_main_loop_add_timer(), eva_source_adjust_timer()
+    take 64-bit arguments for the time in milliseconds,
+    so that we can handle really long timeouts.
+    (the old limit was 2^32 ms == 48.5 days)
+    (Additionally hacks were added for binary compatibility)
+  * eva_socket_address_new_local() is deprecated in favor of
+    eva_socket_address_local_new().  Likewise,
+    eva_socket_address_new_ethernet() is deprecated by
+    eva_socket_address_ethernet_new().
+  * GskSocketAddressSymbolic, a symbolic address
+    which can be used with eva_stream_fd_new_from_symbolic_address()
+    or eva_stream_new_connecting(), which will handle a
+    native or symbolic address without burdening the user.
+  * GskPersistentConnection is implemented in terms
+    of GskSocketAddressSymbolic, and its DOING_NAME_RESOLUTION state
+    is now unused.
+
+eva (1.0.40)
+  * minor bug fix (in rbtreemacros)
+
+eva (1.0.39)
+  * minor bug fix.
+
+eva (1.0.38)
+  * keep-alive improvements
+
+eva (1.0.37)
+  * randomize DNS results to support roundrobin DNS;
+    enabled by default.
+    Implement eva_dns_rr_cache_roundrobin()
+    and eva_name_resolver_set_dns_roundrobin().
+  * bugs in redirect handling for HTTP Url transfers.
+
+eva (1.0.36)
+  * bug fix:  eva_stream_write() on GskStreamExternal
+    was not handling contention properly.
+
+eva (1.0.35)
+  * bug fix:  try the nameservers in the order listed in resolv.conf,
+    instead of the reverse of that order.
+  * Provide EVA_QSELECT()
+
+eva (1.0.34)
+  * Provide EVA_QSORT(), a macro-based quicksort. (in evaqsortmacro.h)
+  * Provide stack, deque and list macro-based implementations.
+    (in evalistmacros.h)
+  * Add eva_g_error_add_prefix().
+
+eva (1.0.33)
+  * GskMemPoolFixed bug fix.
+  * expose eva/zlib/evazlib.h for its helper functions.
+
+eva (1.0.32)
+  * DNS bug fix.
+
+eva (1.0.30)
+  * BUG: bogus assertions in evadnsrrcache wrt to the is_deprecated flag.
+  * Make DNS warning/debugging messages go to their own log-domain. (Gsk-Dns)
+
+eva (1.0.10)
+
+  * BUILD BUG: sometimes -lreadline requires -ltermcap;
+    in any event, test linkage.
+  * MAJOR BUG: fixes in GskDnsClient list manipulation.
+    The bug caused (under duress)
+    "useless DNS message" warnings and segfaults.
+  * add eva_memory_source_new_vprintf()
+  * automatically delete stale unix-domain sockets if a server tries
+    to reuse the path.
+  * Change eva_name_resolve() to be deprecated,
+    in favor of more correctly named eva_name_resolver_task_new();
+    casual, non-cancelling users may use eva_name_resolver_lookup().
+  * minor SSL issues
+  * Add eva-netcat program, for debugging and as useful example code.
+
+eva (1.0.9)
+  * BUG: evahttpserver was creating 0-length chunks which looked
+    like EOF chunks.
+  * BUG: evamemory was shutting down while returning nonzero.
+    i think we decided that that wasn't allowed.
+  * add a line-based ring-buffer: GskLogRingBuffer.
+  * add generic logging traps (eva_log_trap_generic)
+  * add ring-buffer logging traps (eva_log_trap_ring_buffer)
+  * API change: change eva_log_trap_domain_to_file() to take
+    the set of log-levels trapped.
+  * BUG: evamimemultipart{decoder,encoder} both had serious bugs
+  * BUG: zlibdeflator didn't properly "finish" its data.
+    zlibinflator wasn't always giving shutdown notification, nor syncing.
+
+eva (1.0.8)
+  * allow user to set the DNS cache size
+  * build fixes
+  * BUG: GskStreamExternal was busy-looping.
+
+eva (1.0.7)
+  * include GskControlServer/GskControlClient
+    which provide a simple to implement generic control
+    interface.  We also provide the eva-control-client
+    program which can talk to such a server, in general.
+    Therefore, must programs will only need to implement the
+    server.  An example server has been added in src/programs.
+  * include GskHttpContent, a content database for implementing
+    normal HTTP servers, which usually want to provide different handlers
+    for various portions of the path/user-agent/virtual-host space.
+  * BUG: GskStreamExternal: re-fix bug that caused
+    stdin and stdout to be nonblocking.
+  * evadaemonize provides --foreground and --background options,
+    as well as restart-on-segv or assertion failure support.
+
+eva (1.0.6)
+  * compiler bug fix
+  * bug fixes to evalog.
+  * this version was botched.  do not use it.
+
+eva (1.0.5)
+  * API change:  GskPacket now has two addresses: a source and a destination
+    instead of a single multi-use address.
+  * change GskNetworkInterfaceSet::num_interfaces to an unsigned.
+  * evalog.h:  gmessage-based logging to files, using many domains. (daveb)
+  * SHA-256 support in evahash. (daveb)
+  * GskStreamListenerSocket has a parameter to remove the entry
+    from the file-system when done.
+
+eva (1.0.4)
+  * memory leak in evahttpclient and evahttpserver finalize routines
+
+eva (1.0.1)
+  * eva_socket_address_localhost() becomes a macro,
+    and more properly named eva_socket_address_loopback()
+    is added.  eva_ipv4_ip_address_{any,loopback} globals
+    are added, basically fixed as 0.0.0.0 and 127.0.0.1. (mrad)
+  * Force absolute URLs to have a slash (/) after the host. (daveb)
+  * Partial shutdown problem in HTTP client, noticed by Ted Witkamp. (daveb)
+  * HTTP Download include query string (twitkamp)
+  * shutdown-in-shutdown loop noticed by mrad. (daveb)
+  * eva_url_encode and eva_url_encode_http weren't escaping some
+    whitespace and other "non-unreserved" characters. (mrad)
+  * various solaris fixes reported by Jeremy Leader (at Overture).
+  * add eva_timegm() which does the opposite of gmtime() portably. (daveb)
+  * better handling of POLLHUP and POLLERR in GskMainLoop{Poll,Epoll}.
+    Now the POLLHUP flag is propagated to G_IO_IN and POLLERR
+    is propagated to G_IO_IN|G_IO_OUT.  This is roughly what
+    BSD and select(2) do, so it seems right for linux/poll,epoll as well.
+  * eva_tree_remove wasn't removing newly inserted keys when a node
+    with the same key was already being visited. (mrad)
+  * Allow hooks to be safely untrapped/retrapped during notification. (mrad)
+  * Allow hooks to defer shutdown notification when the hook is initialized
+    with eva_hook_mark_can_defer_shutdown, and the class's shutdown method
+    returns false. (mrad)
+
+ -- Dave Benson <daveb@ffem.org>  ???
+
+
+eva (1.0.0)
+
+  * Completely rewritten to use 'streams' and 'hooks' instead 
+    of 'actors'.
+
+ -- Dave Benson <daveb@ffem.org>  Tues Jan 13, 2004

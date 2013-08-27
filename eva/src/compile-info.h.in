@@ -1,0 +1,9 @@
+
+#define EVA_PKGCONFIG            "@PKG_CONFIG@"
+#define EVA_CC	                 "@EVA_CC@"
+#define EVA_COMPILE_ONLY_FLAG    "@EVA_COMPILE_ONLY_FLAG@"
+#define EVA_CFLAGS               "@EVA_CFLAGS@"
+#define EVA_LD_SHLIB             "@EVA_LD_SHLIB@"
+#define EVA_LD_SHLIB_FLAGS       "@EVA_LD_SHLIB_FLAGS@"
+#define EVA_LD_PROGRAM           "@EVA_LD_PROGRAM@"
+#define EVA_LD_PROGRAM_FLAGS     "@EVA_LD_PROGRAM_FLAGS@"

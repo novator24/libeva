@@ -1,0 +1,494 @@
+<refentry id="eva-evatree">
+<refmeta>
+<refentrytitle role="top_of_page" id="eva-evatree.top_of_page">evatree</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>EVA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>evatree</refname>
+<refpurpose>A robustly iterateable tree.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="eva-evatree.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GskTreeNode">GskTreeNode</link>;
+                    <link linkend="GskTree">GskTree</link>;
+<link linkend="GskTree">GskTree</link> *           <link linkend="eva-tree-new">eva_tree_new</link>                        (<link linkend="GCompareFunc">GCompareFunc</link> compare);
+<link linkend="GskTree">GskTree</link> *           <link linkend="eva-tree-ref">eva_tree_ref</link>                        (<link linkend="GskTree">GskTree</link> *tree);
+<link linkend="void">void</link>                <link linkend="eva-tree-unref">eva_tree_unref</link>                      (<link linkend="GskTree">GskTree</link> *tree);
+<link linkend="GskTree">GskTree</link> *           <link linkend="eva-tree-new-full">eva_tree_new_full</link>                   (<link linkend="GCompareDataFunc">GCompareDataFunc</link> compare,
+                                                         <link linkend="gpointer">gpointer</link> compare_data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> key_destroy_func,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> value_destroy_func);
+<link linkend="void">void</link>                <link linkend="eva-tree-insert">eva_tree_insert</link>                     (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="gpointer">gpointer</link> key,
+                                                         <link linkend="gpointer">gpointer</link> value);
+<link linkend="void">void</link>                <link linkend="eva-tree-replace">eva_tree_replace</link>                    (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="gpointer">gpointer</link> key,
+                                                         <link linkend="gpointer">gpointer</link> value);
+<link linkend="gpointer">gpointer</link>            <link linkend="eva-tree-lookup">eva_tree_lookup</link>                     (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="gpointer">gpointer</link> key);
+<link linkend="void">void</link>                <link linkend="eva-tree-remove">eva_tree_remove</link>                     (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="gpointer">gpointer</link> key);
+<link linkend="guint">guint</link>               <link linkend="eva-tree-n-nodes">eva_tree_n_nodes</link>                    (<link linkend="GskTree">GskTree</link> *tree);
+<link linkend="GskTreeNode">GskTreeNode</link> *       <link linkend="eva-tree-node-first">eva_tree_node_first</link>                 (<link linkend="GskTree">GskTree</link> *tree);
+<link linkend="GskTreeNode">GskTreeNode</link> *       <link linkend="eva-tree-node-last">eva_tree_node_last</link>                  (<link linkend="GskTree">GskTree</link> *tree);
+<link linkend="GskTreeNode">GskTreeNode</link> *       <link linkend="eva-tree-node-find">eva_tree_node_find</link>                  (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="gpointer">gpointer</link> search_key);
+<link linkend="GskTreeNode">GskTreeNode</link> *       <link linkend="eva-tree-node-next">eva_tree_node_next</link>                  (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="GskTreeNode">GskTreeNode</link> *node);
+<link linkend="GskTreeNode">GskTreeNode</link> *       <link linkend="eva-tree-node-prev">eva_tree_node_prev</link>                  (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="GskTreeNode">GskTreeNode</link> *node);
+<link linkend="gpointer">gpointer</link>            <link linkend="eva-tree-node-peek-key">eva_tree_node_peek_key</link>              (<link linkend="GskTreeNode">GskTreeNode</link> *node);
+<link linkend="gpointer">gpointer</link>            <link linkend="eva-tree-node-peek-value">eva_tree_node_peek_value</link>            (<link linkend="GskTreeNode">GskTreeNode</link> *node);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-tree-node-is-removed">eva_tree_node_is_removed</link>            (<link linkend="GskTreeNode">GskTreeNode</link> *node);
+<link linkend="void">void</link>                <link linkend="eva-tree-node-visit">eva_tree_node_visit</link>                 (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="GskTreeNode">GskTreeNode</link> *node);
+<link linkend="void">void</link>                <link linkend="eva-tree-node-unvisit">eva_tree_node_unvisit</link>               (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="GskTreeNode">GskTreeNode</link> *node);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-tree-validate">eva_tree_validate</link>                   (<link linkend="GskTree">GskTree</link> *tree);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="eva-evatree.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This tree provides an efficient map from any
+type of data which can be totally ordered to
+any type of data.
+</para>
+<para>
+The primary interesting feature is
+that one can iterate the trees in a robust manner
+using the <link linkend="GskTreeNode"><type>GskTreeNode</type></link>, which takes the place of an iterator.
+In particular, when walking around the tree,
+any nodes which are being visited cannot be destroyed
+until their are no more visitors.  Even though the nodes
+are destroyed, they will not be returned by
+<link linkend="eva-tree-lookup"><function>eva_tree_lookup()</function></link> or <link linkend="eva-tree-node-find"><function>eva_tree_node_find()</function></link>.
+But the node is in the tree, in the sense that
+<link linkend="eva-tree-node-next"><function>eva_tree_node_next()</function></link> and <link linkend="eva-tree-node-prev"><function>eva_tree_node_prev()</function></link> still work correctly.
+</para>
+<para>
+XXX: if walking a removed node, and a new node with the same key is added,
+should <link linkend="eva-tree-node-next"><function>eva_tree_node_next()</function></link> or <link linkend="eva-tree-node-prev"><function>eva_tree_node_prev()</function></link> or both or neither
+return the new node???
+</para>
+</refsect1>
+
+<refsect1 id="eva-evatree.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GskTreeNode" role="struct">
+<title>GskTreeNode</title>
+<indexterm zone="GskTreeNode"><primary sortas="GskTreeNode">GskTreeNode</primary></indexterm><programlisting>typedef struct _GskTreeNode GskTreeNode;</programlisting>
+<para>
+An opaque type representing a node of the tree.
+You should not hold on to a <link linkend="GskTreeNode"><type>GskTreeNode</type></link> unless you
+"own" a visit count on the node.
+</para></refsect2>
+<refsect2 id="GskTree" role="struct">
+<title>GskTree</title>
+<indexterm zone="GskTree"><primary sortas="GskTree">GskTree</primary></indexterm><programlisting>typedef struct _GskTree GskTree;</programlisting>
+<para>
+A map from keys to values implemented as a Red-Black tree.
+</para></refsect2>
+<refsect2 id="eva-tree-new" role="function">
+<title>eva_tree_new ()</title>
+<indexterm zone="eva-tree-new"><primary sortas="eva_tree_new">eva_tree_new</primary></indexterm><programlisting><link linkend="GskTree">GskTree</link> *           eva_tree_new                        (<link linkend="GCompareFunc">GCompareFunc</link> compare);</programlisting>
+<para>
+Create a new tree.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>compare</parameter>&#160;:</term>
+<listitem><simpara> function to compare two keys and return -1, 0, or +1
+to indicate their relative order.  Every distinct key
+must compare to a nonzero value (ie. the ordering is total).
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the new tree.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-ref" role="function">
+<title>eva_tree_ref ()</title>
+<indexterm zone="eva-tree-ref"><primary sortas="eva_tree_ref">eva_tree_ref</primary></indexterm><programlisting><link linkend="GskTree">GskTree</link> *           eva_tree_ref                        (<link linkend="GskTree">GskTree</link> *tree);</programlisting>
+<para>
+Increase the reference count on the tree.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> tree to add a reference to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the <parameter>tree</parameter>, as a convenience; it leads to nice looking code.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-unref" role="function">
+<title>eva_tree_unref ()</title>
+<indexterm zone="eva-tree-unref"><primary sortas="eva_tree_unref">eva_tree_unref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_tree_unref                      (<link linkend="GskTree">GskTree</link> *tree);</programlisting>
+<para>
+Decrease the reference count on the tree.
+Once its ref-count reached 0, it and all its nodes
+will be destroyed.  So it may be a good idea
+to hold a reference to a tree you are visiting!</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> tree to release your reference to.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-new-full" role="function">
+<title>eva_tree_new_full ()</title>
+<indexterm zone="eva-tree-new-full"><primary sortas="eva_tree_new_full">eva_tree_new_full</primary></indexterm><programlisting><link linkend="GskTree">GskTree</link> *           eva_tree_new_full                   (<link linkend="GCompareDataFunc">GCompareDataFunc</link> compare,
+                                                         <link linkend="gpointer">gpointer</link> compare_data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> key_destroy_func,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> value_destroy_func);</programlisting>
+<para>
+Create a new tree.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>compare</parameter>&#160;:</term>
+<listitem><simpara> function to compare two keys and return -1, 0, or +1
+to indicate their relative order.  Every distinct key
+must compare to a nonzero value (ie. the ordering is total).
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>compare_data</parameter>&#160;:</term>
+<listitem><simpara> data to pass as the third argument to <parameter>compare</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key_destroy_func</parameter>&#160;:</term>
+<listitem><simpara> function to destroy a key when it is removed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value_destroy_func</parameter>&#160;:</term>
+<listitem><simpara> function to destroy a value when it is removed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the new tree.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-insert" role="function">
+<title>eva_tree_insert ()</title>
+<indexterm zone="eva-tree-insert"><primary sortas="eva_tree_insert">eva_tree_insert</primary></indexterm><programlisting><link linkend="void">void</link>                eva_tree_insert                     (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="gpointer">gpointer</link> key,
+                                                         <link linkend="gpointer">gpointer</link> value);</programlisting>
+<para>
+Insert a new key/value pair into the tree.
+</para>
+<para>
+If the key is currently in the tree,
+the new key is destroyed, and the old value is destroyed,
+and the old value is replaced with the new value in the tree.
+(This is for compatibility with g_hash_table_insert
+and g_tree_insert.)
+</para>
+<para>
+See also <link linkend="eva-tree-replace"><function>eva_tree_replace()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> tree to insert a new element into.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> key of the new element.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> value of the new element.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-replace" role="function">
+<title>eva_tree_replace ()</title>
+<indexterm zone="eva-tree-replace"><primary sortas="eva_tree_replace">eva_tree_replace</primary></indexterm><programlisting><link linkend="void">void</link>                eva_tree_replace                    (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="gpointer">gpointer</link> key,
+                                                         <link linkend="gpointer">gpointer</link> value);</programlisting>
+<para>
+Insert a new key/value pair into the tree.
+</para>
+<para>
+If the key is currently in the tree,
+the old key and value are destroyed
+and replaced with this key.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> tree to insert a new element into.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> key of the new element.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> value of the new element.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-lookup" role="function">
+<title>eva_tree_lookup ()</title>
+<indexterm zone="eva-tree-lookup"><primary sortas="eva_tree_lookup">eva_tree_lookup</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_tree_lookup                     (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="gpointer">gpointer</link> key);</programlisting>
+<para>
+Find the value of a node in the tree, given a key.
+Or NULL if the node cannot be found.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> the tree to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> the key to look up.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the value of a matching node, or NULL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-remove" role="function">
+<title>eva_tree_remove ()</title>
+<indexterm zone="eva-tree-remove"><primary sortas="eva_tree_remove">eva_tree_remove</primary></indexterm><programlisting><link linkend="void">void</link>                eva_tree_remove                     (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="gpointer">gpointer</link> key);</programlisting>
+<para>
+The element with the given key will be removed from the tree.
+</para>
+<para>
+Note that if another iterator is visiting the node which
+is being deleted, then the key/value pair will not
+be destroyed until the last iterator has
+left the node.  An iterator may determine
+whether the node it is visiting has been removed
+by calling <link linkend="eva-tree-node-is-removed"><function>eva_tree_node_is_removed()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> the tree to remove an element from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> the key of the element to remove.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-n-nodes" role="function">
+<title>eva_tree_n_nodes ()</title>
+<indexterm zone="eva-tree-n-nodes"><primary sortas="eva_tree_n_nodes">eva_tree_n_nodes</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_tree_n_nodes                    (<link linkend="GskTree">GskTree</link> *tree);</programlisting>
+<para>
+Get the size of the tree, not including removed nodes, even
+if they are currently being visited.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> the tree to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the number of nodes in the tree.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-node-first" role="function">
+<title>eva_tree_node_first ()</title>
+<indexterm zone="eva-tree-node-first"><primary sortas="eva_tree_node_first">eva_tree_node_first</primary></indexterm><programlisting><link linkend="GskTreeNode">GskTreeNode</link> *       eva_tree_node_first                 (<link linkend="GskTree">GskTree</link> *tree);</programlisting>
+<para>
+Return the first node in the tree,
+and increment its visit count.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> the tree to begin iterating.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the first node in the tree, or NULL if the tree is empty.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-node-last" role="function">
+<title>eva_tree_node_last ()</title>
+<indexterm zone="eva-tree-node-last"><primary sortas="eva_tree_node_last">eva_tree_node_last</primary></indexterm><programlisting><link linkend="GskTreeNode">GskTreeNode</link> *       eva_tree_node_last                  (<link linkend="GskTree">GskTree</link> *tree);</programlisting>
+<para>
+Return the last node in the tree,
+and increment its visit count.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> the tree to begin iterating.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the last node in the tree, or NULL if the tree is empty.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-node-find" role="function">
+<title>eva_tree_node_find ()</title>
+<indexterm zone="eva-tree-node-find"><primary sortas="eva_tree_node_find">eva_tree_node_find</primary></indexterm><programlisting><link linkend="GskTreeNode">GskTreeNode</link> *       eva_tree_node_find                  (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="gpointer">gpointer</link> search_key);</programlisting>
+<para>
+Start iterating at the given key,
+or return NULL if the node cannot be found.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> the tree to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>search_key</parameter>&#160;:</term>
+<listitem><simpara> the key to look up.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the matching node, whose visit count has been incremented,
+or NULL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-node-next" role="function">
+<title>eva_tree_node_next ()</title>
+<indexterm zone="eva-tree-node-next"><primary sortas="eva_tree_node_next">eva_tree_node_next</primary></indexterm><programlisting><link linkend="GskTreeNode">GskTreeNode</link> *       eva_tree_node_next                  (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="GskTreeNode">GskTreeNode</link> *node);</programlisting>
+<para>
+Return the next node in the tree after <parameter>node</parameter>,
+and increment its visit count, while
+decrementing the visit count of the current node.
+</para>
+<para>
+Usually this is used to advance an iterator:
+  node = eva_tree_node_next(tree,node);</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> the tree to iterate through.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>node</parameter>&#160;:</term>
+<listitem><simpara> the current node.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the next node in the tree, or NULL if <parameter>node</parameter> is the last node.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-node-prev" role="function">
+<title>eva_tree_node_prev ()</title>
+<indexterm zone="eva-tree-node-prev"><primary sortas="eva_tree_node_prev">eva_tree_node_prev</primary></indexterm><programlisting><link linkend="GskTreeNode">GskTreeNode</link> *       eva_tree_node_prev                  (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="GskTreeNode">GskTreeNode</link> *node);</programlisting>
+<para>
+Return the previous node in the tree after <parameter>node</parameter>,
+and increment its visit count, while
+decrementing the visit count of the current node.
+</para>
+<para>
+Usually this is used to advance an iterator backward:
+  node = eva_tree_node_prev(tree,node);</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> the tree to iterate through.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>node</parameter>&#160;:</term>
+<listitem><simpara> the current node.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the previous node in the tree, or NULL if <parameter>node</parameter> is the last node.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-node-peek-key" role="function">
+<title>eva_tree_node_peek_key ()</title>
+<indexterm zone="eva-tree-node-peek-key"><primary sortas="eva_tree_node_peek_key">eva_tree_node_peek_key</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_tree_node_peek_key              (<link linkend="GskTreeNode">GskTreeNode</link> *node);</programlisting>
+<para>
+Get the key of a node you are visiting.
+It may have been removed by <link linkend="eva-tree-remove"><function>eva_tree_remove()</function></link>,
+but it will not have been destroyed until 
+the visit count has been reduced to 0.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>node</parameter>&#160;:</term>
+<listitem><simpara> visited node to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> key of the current tree node.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-node-peek-value" role="function">
+<title>eva_tree_node_peek_value ()</title>
+<indexterm zone="eva-tree-node-peek-value"><primary sortas="eva_tree_node_peek_value">eva_tree_node_peek_value</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_tree_node_peek_value            (<link linkend="GskTreeNode">GskTreeNode</link> *node);</programlisting>
+<para>
+Get the value of a node you are visiting.
+It may have been removed by <link linkend="eva-tree-remove"><function>eva_tree_remove()</function></link>,
+but it will not have been destroyed until 
+the visit count has been reduced to 0.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>node</parameter>&#160;:</term>
+<listitem><simpara> visited node to query.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> value of the current tree node.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-node-is-removed" role="function">
+<title>eva_tree_node_is_removed ()</title>
+<indexterm zone="eva-tree-node-is-removed"><primary sortas="eva_tree_node_is_removed">eva_tree_node_is_removed</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_tree_node_is_removed            (<link linkend="GskTreeNode">GskTreeNode</link> *node);</programlisting>
+<para>
+Check to see if a node which is being visited
+has been removed from the tree.
+</para>
+<para>
+(Note that if you are not visiting the node,
+then it should already have been freed,
+so it is only valid to call this on a node you
+are visiting.)</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>node</parameter>&#160;:</term>
+<listitem><simpara> a node to check.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> whether the node has been removed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-node-visit" role="function">
+<title>eva_tree_node_visit ()</title>
+<indexterm zone="eva-tree-node-visit"><primary sortas="eva_tree_node_visit">eva_tree_node_visit</primary></indexterm><programlisting><link linkend="void">void</link>                eva_tree_node_visit                 (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="GskTreeNode">GskTreeNode</link> *node);</programlisting>
+<para>
+Increment the visit count for a node.
+A non-zero visit count prevents the
+node's key and value from being deleted,
+even after the node is "removed" from the tree.
+</para>
+<para>
+The removed node may still be used to advance to "next"
+and "prev", however, you may iterate freely
+from a "removed" node, and you cannot get back to it.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> the tree that <parameter>node</parameter> is iterating.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>node</parameter>&#160;:</term>
+<listitem><simpara> the node in the tree that is being visited.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-node-unvisit" role="function">
+<title>eva_tree_node_unvisit ()</title>
+<indexterm zone="eva-tree-node-unvisit"><primary sortas="eva_tree_node_unvisit">eva_tree_node_unvisit</primary></indexterm><programlisting><link linkend="void">void</link>                eva_tree_node_unvisit               (<link linkend="GskTree">GskTree</link> *tree,
+                                                         <link linkend="GskTreeNode">GskTreeNode</link> *node);</programlisting>
+<para>
+Decrease the visit count on the node,
+indicating that you are done visiting it.
+</para>
+<para>
+If the node has been removed and you
+are the last visitor, its key and value will be deleted at this point.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> the tree that <parameter>node</parameter> is iterating.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>node</parameter>&#160;:</term>
+<listitem><simpara> the node in the tree which you want to stop visiting.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="eva-tree-validate" role="function">
+<title>eva_tree_validate ()</title>
+<indexterm zone="eva-tree-validate"><primary sortas="eva_tree_validate">eva_tree_validate</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_tree_validate                   (<link linkend="GskTree">GskTree</link> *tree);</programlisting>
+<para>
+Check the tree for integrity.
+This is only used for debugging.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>tree</parameter>&#160;:</term>
+<listitem><simpara> the tree to check.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> whether the tree was valid.
+If it returns FALSE, then there is either a
+bug in the tree code, or the comparison function
+isn't transitive.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

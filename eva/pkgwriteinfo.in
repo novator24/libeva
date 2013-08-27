@@ -1,0 +1,52 @@
+Package: eva
+Output-Package: eva1.0
+Section: libs
+Group: Development/Libraries
+Priority: low
+Home-Page: http://eva.sourceforge.net/
+Source-Url: http://download.sourceforge.net/eva/eva-@VERSION@.tar.gz
+Author: David Benson <daveb@ffem.org>
+Packager: Dave Benson
+Packager-Email: daveb@ffem.org
+Version: @VERSION@
+Release: 1
+License: LGPL
+Synopsis: a library for developing servers.
+Description: eva is a library which provides portable,
+ object-oriented, C interfaces to network facilities.
+
+Build: normal
+Configure-Flags: --enable-eva-debug
+
+Target: {MAIN}
+Files: /usr/lib/libeva*.so*
+Depends: libglib2.0-0, libssl0.9.7
+Which-Build: normal
+Synopsis: runtime files for eva.
+Description: Standard runtime libraries for endusers of EVA.
+
+Target: dev
+Synopsis: Development support for eva.
+Description: Install this package if you want to compile 
+ programs that use EVA.
+Depends: libglib2.0-dev, libssl-dev
+Files: /usr/include/eva-1.0/eva/*.h
+Files: /usr/include/eva-1.0/eva/common/*.h
+Files: /usr/include/eva-1.0/eva/hash/*.h
+Files: /usr/include/eva-1.0/eva/http/*.h
+Files: /usr/include/eva-1.0/eva/dns/*.h
+Files: /usr/include/eva-1.0/eva/url/*.h
+Files: /usr/include/eva-1.0/eva/xmlrpc/*.h
+Files: /usr/include/eva-1.0/eva/ssl/*.h
+Files: /usr/include/eva-1.0/eva/zlib/*.h
+Files: /usr/lib/libeva*.a
+Files: /usr/lib/pkgconfig/eva-1.0.pc
+Synopsis: files for developing with eva.
+Which-Build: normal
+Description: Libraries and headers required for developing with the EVA.
+
+Target: doc-html
+Synopsis: Documentation for eva.
+Description: This is HTML documentation for EVA.
+Doc: /usr/share/doc/eva-1.0/html/
+Which-Build: normal

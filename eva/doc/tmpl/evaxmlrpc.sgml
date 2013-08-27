@@ -1,0 +1,638 @@
+<!-- ##### SECTION Title ##### -->
+evaxmlrpc
+
+<!-- ##### SECTION Short_Description ##### -->
+XMLRPC definitions
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+This file contains types mapping to the XMLRPC
+standard fundamental types, structures, arrays and faults.
+It contains a generic parser that has no I/O dependencies.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+GskXmlrpcStream
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GskXmlrpcArray ##### -->
+<para>
+An array of XMLRPC values.
+Each may have a different type.
+</para>
+
+@values: the values in the array.
+
+<!-- ##### STRUCT GskXmlrpcStruct ##### -->
+<para>
+A structure, which is a set of named members.
+</para>
+
+@members: 
+
+<!-- ##### STRUCT GskXmlrpcValue ##### -->
+<para>
+A XMLRPC value that may be of any of the XMLRPC types.
+The type is included with the value.
+</para>
+
+@type: 
+
+<!-- ##### STRUCT GskXmlrpcNamedValue ##### -->
+<para>
+A name/value pair, appropriate as a structure member.
+</para>
+
+@name: the string, name, label.
+@value: the typed value.
+
+<!-- ##### STRUCT GskXmlrpcRequest ##### -->
+<para>
+An XMLRPC request (invocation).
+</para>
+
+@method_name: 
+@params: 
+@xmlrpc_stream: 
+
+<!-- ##### STRUCT GskXmlrpcResponse ##### -->
+<para>
+An XMLRPC response (return).
+</para>
+
+@params: 
+@has_fault: 
+@fault: 
+
+<!-- ##### STRUCT GskXmlrpcParser ##### -->
+<para>
+An object which can parse XMLRPC requests and responses,
+in any order.  It does no interpretation of the requests or responses.
+</para>
+
+
+<!-- ##### ENUM GskXmlrpcType ##### -->
+<para>
+The type of a XMLRPC value.
+</para>
+
+@EVA_XMLRPC_INT32: a 32-bit integer.
+@EVA_XMLRPC_BOOLEAN: a boolean value, written as 0 or 1.
+@EVA_XMLRPC_DOUBLE: a double-precission floating-point value.
+@EVA_XMLRPC_STRING: a string value, NUL-terminated.
+@EVA_XMLRPC_DATE: a date and time.
+@EVA_XMLRPC_BINARY_DATA: binary data, which will be transmitted as base64,
+but is always presented to the user as raw bytes.
+@EVA_XMLRPC_STRUCT: a set of named values.
+@EVA_XMLRPC_ARRAY: an array of values.
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_free ##### -->
+<para>
+
+</para>
+
+@structure: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_add_int32 ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_add_boolean ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_add_double ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_add_string ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_add_date ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_add_data ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@data: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_add_struct ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@substructure: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_add_array ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@array: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_peek_date ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@out: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_peek_boolean ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@out: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_peek_double ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@out: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_peek_struct ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_peek_data ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_peek_array ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_peek_string ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_struct_peek_int32 ##### -->
+<para>
+
+</para>
+
+@structure: 
+@member_name: 
+@out: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_array_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_array_free ##### -->
+<para>
+
+</para>
+
+@array: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_array_add_int32 ##### -->
+<para>
+
+</para>
+
+@array: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_array_add_boolean ##### -->
+<para>
+
+</para>
+
+@array: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_array_add_double ##### -->
+<para>
+
+</para>
+
+@array: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_array_add_string ##### -->
+<para>
+
+</para>
+
+@array: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_array_add_date ##### -->
+<para>
+
+</para>
+
+@array: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_array_add_data ##### -->
+<para>
+
+</para>
+
+@array: 
+@data: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_array_add_struct ##### -->
+<para>
+
+</para>
+
+@array: 
+@substructure: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_array_add_array ##### -->
+<para>
+
+</para>
+
+@array: 
+@subarray: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_new ##### -->
+<para>
+
+</para>
+
+@xmlrpc_stream: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_ref ##### -->
+<para>
+
+</para>
+
+@request: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_unref ##### -->
+<para>
+
+</para>
+
+@request: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_set_name ##### -->
+<para>
+
+</para>
+
+@request: 
+@name: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_add_int32 ##### -->
+<para>
+
+</para>
+
+@request: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_add_boolean ##### -->
+<para>
+
+</para>
+
+@request: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_add_double ##### -->
+<para>
+
+</para>
+
+@request: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_add_string ##### -->
+<para>
+
+</para>
+
+@request: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_add_date ##### -->
+<para>
+
+</para>
+
+@request: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_add_data ##### -->
+<para>
+
+</para>
+
+@request: 
+@data: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_add_struct ##### -->
+<para>
+
+</para>
+
+@request: 
+@substructure: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_add_array ##### -->
+<para>
+
+</para>
+
+@request: 
+@array: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_ref ##### -->
+<para>
+
+</para>
+
+@response: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_unref ##### -->
+<para>
+
+</para>
+
+@response: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_add_int32 ##### -->
+<para>
+
+</para>
+
+@response: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_add_boolean ##### -->
+<para>
+
+</para>
+
+@response: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_add_double ##### -->
+<para>
+
+</para>
+
+@response: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_add_string ##### -->
+<para>
+
+</para>
+
+@response: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_add_date ##### -->
+<para>
+
+</para>
+
+@response: 
+@value: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_add_data ##### -->
+<para>
+
+</para>
+
+@response: 
+@data: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_add_struct ##### -->
+<para>
+
+</para>
+
+@response: 
+@substructure: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_add_array ##### -->
+<para>
+
+</para>
+
+@response: 
+@array: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_fault ##### -->
+<para>
+
+</para>
+
+@response: 
+@structure: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_parser_new ##### -->
+<para>
+
+</para>
+
+@stream: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_parser_feed ##### -->
+<para>
+
+</para>
+
+@parser: 
+@text: 
+@len: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_parser_get_request ##### -->
+<para>
+
+</para>
+
+@parser: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_parser_get_response ##### -->
+<para>
+
+</para>
+
+@parser: 
+@Returns: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_parser_free ##### -->
+<para>
+
+</para>
+
+@parser: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_request_to_buffer ##### -->
+<para>
+
+</para>
+
+@request: 
+@buffer: 
+
+
+<!-- ##### FUNCTION eva_xmlrpc_response_to_buffer ##### -->
+<para>
+
+</para>
+
+@response: 
+@buffer: 
+
+
