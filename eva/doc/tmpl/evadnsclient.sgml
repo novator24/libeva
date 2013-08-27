@@ -22,19 +22,19 @@ since the default name resolver uses DNS.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskDnsClient ##### -->
+<!-- ##### STRUCT EvaDnsClient ##### -->
 <para>
 An instance of the DNS client.
 </para>
 
 
-<!-- ##### STRUCT GskDnsClientClass ##### -->
+<!-- ##### STRUCT EvaDnsClientClass ##### -->
 <para>
 The class of the DNS client.
 </para>
 
 
-<!-- ##### ENUM GskDnsClientFlags ##### -->
+<!-- ##### ENUM EvaDnsClientFlags ##### -->
 <para>
 Flags which affect how the DNS client operates.
 </para>

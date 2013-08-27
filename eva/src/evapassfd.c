@@ -157,7 +157,7 @@ int      eva_pass_fd_bind_receiver(const char   *path,
 
   if (DO_DELETE_STALE_SOCKET)
     {
-      GskSocketAddress *evaaddr = eva_socket_address_new_local (path);
+      EvaSocketAddress *evaaddr = eva_socket_address_new_local (path);
       _eva_socket_address_local_maybe_delete_stale_socket (evaaddr);
       g_object_unref (evaaddr);
     }

@@ -57,14 +57,14 @@
 </tr></table></div>
 <div class="refsynopsisdiv">
 <a name="eva-evadnsserver.synopsis"></a><h2>Synopsis</h2>
-<a name="GskDnsServer"></a><pre class="synopsis">
-                    <a class="link" href="eva-evadnsserver.html#GskDnsServerClass" title="GskDnsServerClass">GskDnsServerClass</a>;
-                    <a class="link" href="eva-evadnsserver.html#GskDnsServer-struct" title="GskDnsServer">GskDnsServer</a>;
-<a class="link" href="eva-evadnsserver.html#GskDnsServer">GskDnsServer</a> *      <a class="link" href="eva-evadnsserver.html#eva-dns-server-new" title="eva_dns_server_new ()">eva_dns_server_new</a>                  (<a class="link" href="eva-evadnsresolver.html#GskDnsResolver">GskDnsResolver</a> *resolver,
-                                                         <a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *packet_queue);
-<a class="link" href="eva-evadnsresolver.html#GskDnsResolver">GskDnsResolver</a> *    <a class="link" href="eva-evadnsserver.html#eva-dns-server-peek-resolver" title="eva_dns_server_peek_resolver ()">eva_dns_server_peek_resolver</a>        (<a class="link" href="eva-evadnsserver.html#GskDnsServer">GskDnsServer</a> *server);
-void                <a class="link" href="eva-evadnsserver.html#eva-dns-server-set-resolver" title="eva_dns_server_set_resolver ()">eva_dns_server_set_resolver</a>         (<a class="link" href="eva-evadnsserver.html#GskDnsServer">GskDnsServer</a> *server,
-                                                         <a class="link" href="eva-evadnsresolver.html#GskDnsResolver">GskDnsResolver</a> *resolver);
+<a name="EvaDnsServer"></a><pre class="synopsis">
+                    <a class="link" href="eva-evadnsserver.html#EvaDnsServerClass" title="EvaDnsServerClass">EvaDnsServerClass</a>;
+                    <a class="link" href="eva-evadnsserver.html#EvaDnsServer-struct" title="EvaDnsServer">EvaDnsServer</a>;
+<a class="link" href="eva-evadnsserver.html#EvaDnsServer">EvaDnsServer</a> *      <a class="link" href="eva-evadnsserver.html#eva-dns-server-new" title="eva_dns_server_new ()">eva_dns_server_new</a>                  (<a class="link" href="eva-evadnsresolver.html#EvaDnsResolver">EvaDnsResolver</a> *resolver,
+                                                         <a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *packet_queue);
+<a class="link" href="eva-evadnsresolver.html#EvaDnsResolver">EvaDnsResolver</a> *    <a class="link" href="eva-evadnsserver.html#eva-dns-server-peek-resolver" title="eva_dns_server_peek_resolver ()">eva_dns_server_peek_resolver</a>        (<a class="link" href="eva-evadnsserver.html#EvaDnsServer">EvaDnsServer</a> *server);
+void                <a class="link" href="eva-evadnsserver.html#eva-dns-server-set-resolver" title="eva_dns_server_set_resolver ()">eva_dns_server_set_resolver</a>         (<a class="link" href="eva-evadnsserver.html#EvaDnsServer">EvaDnsServer</a> *server,
+                                                         <a class="link" href="eva-evadnsresolver.html#EvaDnsResolver">EvaDnsResolver</a> *resolver);
 </pre>
 </div>
 <div class="refsect1" lang="en">
@@ -73,14 +73,14 @@ void                <a class="link" href="eva-evadnsserver.html#eva-dns-server-s
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----GskDnsServer
+   +----EvaDnsServer
 </pre>
 </div>
 <div class="refsect1" lang="en">
 <a name="eva-evadnsserver.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a class="link" href="eva-evadnsserver.html#GskDnsServer--packet-queue" title='The "packet-queue" property'>packet-queue</a>"             <a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a>*       : Read / Write / Construct Only
-  "<a class="link" href="eva-evadnsserver.html#GskDnsServer--resolver" title='The "resolver" property'>resolver</a>"                 <a class="link" href="eva-evadnsresolver.html#GskDnsResolver">GskDnsResolver</a>*       : Read / Write / Construct Only
+  "<a class="link" href="eva-evadnsserver.html#EvaDnsServer--packet-queue" title='The "packet-queue" property'>packet-queue</a>"             <a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a>*       : Read / Write / Construct Only
+  "<a class="link" href="eva-evadnsserver.html#EvaDnsServer--resolver" title='The "resolver" property'>resolver</a>"                 <a class="link" href="eva-evadnsresolver.html#EvaDnsResolver">EvaDnsResolver</a>*       : Read / Write / Construct Only
 </pre>
 </div>
 <div class="refsect1" lang="en">
@@ -94,16 +94,16 @@ a sensible resolver, or it can be used to implement wacky DNS hacks.
 <div class="refsect1" lang="en">
 <a name="eva-evadnsserver.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskDnsServerClass"></a><h3>GskDnsServerClass</h3>
-<pre class="programlisting">typedef struct _GskDnsServerClass GskDnsServerClass;</pre>
+<a name="EvaDnsServerClass"></a><h3>EvaDnsServerClass</h3>
+<pre class="programlisting">typedef struct _EvaDnsServerClass EvaDnsServerClass;</pre>
 <p>
 Base class for DNS servers.
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskDnsServer-struct"></a><h3>GskDnsServer</h3>
-<pre class="programlisting">typedef struct _GskDnsServer GskDnsServer;</pre>
+<a name="EvaDnsServer-struct"></a><h3>EvaDnsServer</h3>
+<pre class="programlisting">typedef struct _EvaDnsServer EvaDnsServer;</pre>
 <p>
 Base instance for DNS servers.
 A DNS server is packet-based and must handle an arbitrary
@@ -113,8 +113,8 @@ number of requests.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-server-new"></a><h3>eva_dns_server_new ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evadnsserver.html#GskDnsServer">GskDnsServer</a> *      eva_dns_server_new                  (<a class="link" href="eva-evadnsresolver.html#GskDnsResolver">GskDnsResolver</a> *resolver,
-                                                         <a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *packet_queue);</pre>
+<pre class="programlisting"><a class="link" href="eva-evadnsserver.html#EvaDnsServer">EvaDnsServer</a> *      eva_dns_server_new                  (<a class="link" href="eva-evadnsresolver.html#EvaDnsResolver">EvaDnsResolver</a> *resolver,
+                                                         <a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *packet_queue);</pre>
 <p>
 Allocate a DNS server using the optional <em class="parameter"><code>resolver</code></em> to answer questions.</p>
 <p>
@@ -143,7 +143,7 @@ Allocate a DNS server using the optional <em class="parameter"><code>resolver</c
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-server-peek-resolver"></a><h3>eva_dns_server_peek_resolver ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evadnsresolver.html#GskDnsResolver">GskDnsResolver</a> *    eva_dns_server_peek_resolver        (<a class="link" href="eva-evadnsserver.html#GskDnsServer">GskDnsServer</a> *server);</pre>
+<pre class="programlisting"><a class="link" href="eva-evadnsresolver.html#EvaDnsResolver">EvaDnsResolver</a> *    eva_dns_server_peek_resolver        (<a class="link" href="eva-evadnsserver.html#EvaDnsServer">EvaDnsServer</a> *server);</pre>
 <p>
 Obtain a peeked reference at the resolver which this server is using to
 answer questions.</p>
@@ -159,7 +159,7 @@ answer questions.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a GskDnsResolver if one is being used, or NULL.
+<td> a EvaDnsResolver if one is being used, or NULL.
 </td>
 </tr>
 </tbody>
@@ -168,8 +168,8 @@ answer questions.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-server-set-resolver"></a><h3>eva_dns_server_set_resolver ()</h3>
-<pre class="programlisting">void                eva_dns_server_set_resolver         (<a class="link" href="eva-evadnsserver.html#GskDnsServer">GskDnsServer</a> *server,
-                                                         <a class="link" href="eva-evadnsresolver.html#GskDnsResolver">GskDnsResolver</a> *resolver);</pre>
+<pre class="programlisting">void                eva_dns_server_set_resolver         (<a class="link" href="eva-evadnsserver.html#EvaDnsServer">EvaDnsServer</a> *server,
+                                                         <a class="link" href="eva-evadnsresolver.html#EvaDnsResolver">EvaDnsResolver</a> *resolver);</pre>
 <p>
 Set the DNS server's resolver.</p>
 <p>
@@ -194,14 +194,14 @@ Set the DNS server's resolver.</p>
 <div class="refsect1" lang="en">
 <a name="eva-evadnsserver.property-details"></a><h2>Property Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskDnsServer--packet-queue"></a><h3>The <code class="literal">"packet-queue"</code> property</h3>
-<pre class="programlisting">  "packet-queue"             <a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a>*       : Read / Write / Construct Only</pre>
+<a name="EvaDnsServer--packet-queue"></a><h3>The <code class="literal">"packet-queue"</code> property</h3>
+<pre class="programlisting">  "packet-queue"             <a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a>*       : Read / Write / Construct Only</pre>
 <p>raw i/o handle to use for requests/responses.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskDnsServer--resolver"></a><h3>The <code class="literal">"resolver"</code> property</h3>
-<pre class="programlisting">  "resolver"                 <a class="link" href="eva-evadnsresolver.html#GskDnsResolver">GskDnsResolver</a>*       : Read / Write / Construct Only</pre>
+<a name="EvaDnsServer--resolver"></a><h3>The <code class="literal">"resolver"</code> property</h3>
+<pre class="programlisting">  "resolver"                 <a class="link" href="eva-evadnsresolver.html#EvaDnsResolver">EvaDnsResolver</a>*       : Read / Write / Construct Only</pre>
 <p>DNS resolver to obtain responses from.</p>
 </div>
 </div>

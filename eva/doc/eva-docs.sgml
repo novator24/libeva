@@ -6,41 +6,41 @@
 <!ENTITY eva-evadebug SYSTEM "xml/evadebug.xml">
 <!ENTITY eva-evainit SYSTEM "xml/evainit.xml">
 <!ENTITY eva-evamacros SYSTEM "xml/evamacros.xml">
-<!ENTITY eva-GskIO SYSTEM "xml/evaio.xml">
-<!ENTITY eva-GskStream SYSTEM "xml/evastream.xml">
+<!ENTITY eva-EvaIO SYSTEM "xml/evaio.xml">
+<!ENTITY eva-EvaStream SYSTEM "xml/evastream.xml">
 <!ENTITY eva-evalog SYSTEM "xml/evalog.xml">
 <!ENTITY eva-evastreamconnection SYSTEM "xml/evastreamconnection.xml">
-<!ENTITY eva-GskMainLoop SYSTEM "xml/evamainloop.xml">
+<!ENTITY eva-EvaMainLoop SYSTEM "xml/evamainloop.xml">
 <!ENTITY eva-evanameresolver SYSTEM "xml/evanameresolver.xml">
 <!ENTITY eva-evanetworkinterface SYSTEM "xml/evanetworkinterface.xml">
-<!ENTITY eva-GskPacketQueue SYSTEM "xml/evapacketqueue.xml">
-<!ENTITY eva-GskPacketQueueFd SYSTEM "xml/evapacketqueuefd.xml">
-<!ENTITY eva-GskSimpleFilter SYSTEM "xml/evasimplefilter.xml">
-<!ENTITY eva-GskSocketAddressIpv6 SYSTEM "xml/evasocketaddress.xml">
-<!ENTITY eva-GskStreamFd SYSTEM "xml/evastreamfd.xml">
-<!ENTITY eva-GskStreamExternal SYSTEM "xml/evastreamexternal.xml">
-<!ENTITY eva-GskStreamListener SYSTEM "xml/evastreamlistener.xml">
-<!ENTITY eva-GskStreamListenerSocket SYSTEM "xml/evastreamlistenersocket.xml">
-<!ENTITY eva-GskBufferStream SYSTEM "xml/evabufferstream.xml">
+<!ENTITY eva-EvaPacketQueue SYSTEM "xml/evapacketqueue.xml">
+<!ENTITY eva-EvaPacketQueueFd SYSTEM "xml/evapacketqueuefd.xml">
+<!ENTITY eva-EvaSimpleFilter SYSTEM "xml/evasimplefilter.xml">
+<!ENTITY eva-EvaSocketAddressIpv6 SYSTEM "xml/evasocketaddress.xml">
+<!ENTITY eva-EvaStreamFd SYSTEM "xml/evastreamfd.xml">
+<!ENTITY eva-EvaStreamExternal SYSTEM "xml/evastreamexternal.xml">
+<!ENTITY eva-EvaStreamListener SYSTEM "xml/evastreamlistener.xml">
+<!ENTITY eva-EvaStreamListenerSocket SYSTEM "xml/evastreamlistenersocket.xml">
+<!ENTITY eva-EvaBufferStream SYSTEM "xml/evabufferstream.xml">
 <!ENTITY eva-evadnsclient SYSTEM "xml/evadnsclient.xml">
 <!ENTITY eva-evadnslocalresolver SYSTEM "xml/evadnslocalresolver.xml">
 <!ENTITY eva-evadnsresolver SYSTEM "xml/evadnsresolver.xml">
 <!ENTITY eva-evadnsserver SYSTEM "xml/evadnsserver.xml">
-<!ENTITY eva-GskHttpClient SYSTEM "xml/evahttpclient.xml">
-<!ENTITY eva-GskHttpHeader SYSTEM "xml/evahttpheader.xml">
-<!ENTITY eva-GskHttpResponse SYSTEM "xml/evahttpresponse.xml">
-<!ENTITY eva-GskHttpRequest SYSTEM "xml/evahttprequest.xml">
-<!ENTITY eva-GskHttpServer SYSTEM "xml/evahttpserver.xml">
-<!ENTITY eva-GskMainLoopDevPoll SYSTEM "xml/evamainloopdevpoll.xml">
-<!ENTITY eva-GskMainLoopKqueue SYSTEM "xml/evamainloopkqueue.xml">
-<!ENTITY eva-GskMainLoopPoll SYSTEM "xml/evamainlooppoll.xml">
-<!ENTITY eva-GskMainLoopPollBase SYSTEM "xml/evamainlooppollbase.xml">
-<!ENTITY eva-GskMainLoopSelect SYSTEM "xml/evamainloopselect.xml">
+<!ENTITY eva-EvaHttpClient SYSTEM "xml/evahttpclient.xml">
+<!ENTITY eva-EvaHttpHeader SYSTEM "xml/evahttpheader.xml">
+<!ENTITY eva-EvaHttpResponse SYSTEM "xml/evahttpresponse.xml">
+<!ENTITY eva-EvaHttpRequest SYSTEM "xml/evahttprequest.xml">
+<!ENTITY eva-EvaHttpServer SYSTEM "xml/evahttpserver.xml">
+<!ENTITY eva-EvaMainLoopDevPoll SYSTEM "xml/evamainloopdevpoll.xml">
+<!ENTITY eva-EvaMainLoopKqueue SYSTEM "xml/evamainloopkqueue.xml">
+<!ENTITY eva-EvaMainLoopPoll SYSTEM "xml/evamainlooppoll.xml">
+<!ENTITY eva-EvaMainLoopPollBase SYSTEM "xml/evamainlooppollbase.xml">
+<!ENTITY eva-EvaMainLoopSelect SYSTEM "xml/evamainloopselect.xml">
 <!ENTITY eva-evamimemultipartpiece SYSTEM "xml/evamimemultipartpiece.xml">
-<!ENTITY eva-GskMimeMultipartDecoder SYSTEM "xml/evamimemultipartdecoder.xml">
-<!ENTITY eva-GskUrl SYSTEM "xml/evaurl.xml">
-<!ENTITY eva-GskUrlTransfer SYSTEM "xml/evaurltransfer.xml">
-<!ENTITY eva-GskUrlTransferHttp SYSTEM "xml/evaurltransferhttp.xml">
+<!ENTITY eva-EvaMimeMultipartDecoder SYSTEM "xml/evamimemultipartdecoder.xml">
+<!ENTITY eva-EvaUrl SYSTEM "xml/evaurl.xml">
+<!ENTITY eva-EvaUrlTransfer SYSTEM "xml/evaurltransfer.xml">
+<!ENTITY eva-EvaUrlTransferHttp SYSTEM "xml/evaurltransferhttp.xml">
 <!ENTITY eva-evabuffer SYSTEM "xml/evabuffer.xml">
 <!ENTITY eva-evadns SYSTEM "xml/evadns.xml">
 <!ENTITY eva-evaerrno SYSTEM "xml/evaerrno.xml">
@@ -52,7 +52,7 @@
 <!ENTITY eva-evamempool SYSTEM "xml/evamempool.xml">
 <!ENTITY eva-evapacket SYSTEM "xml/evapacket.xml">
 <!ENTITY eva-evastreamclient SYSTEM "xml/evastreamclient.xml">
-<!ENTITY eva-GskStreamQueue SYSTEM "xml/evastreamqueue.xml">
+<!ENTITY eva-EvaStreamQueue SYSTEM "xml/evastreamqueue.xml">
 <!ENTITY eva-evatree SYSTEM "xml/evatree.xml">
 <!ENTITY eva-evatypes SYSTEM "xml/evatypes.xml">
 <!ENTITY eva-evabase64 SYSTEM "xml/evabase64.xml">
@@ -62,13 +62,13 @@
 <!ENTITY eva-evadnsrrcache SYSTEM "xml/evadnsrrcache.xml">
 <!ENTITY eva-evaftpcommon SYSTEM "xml/evaftpcommon.xml">
 <!ENTITY eva-zlib SYSTEM "xml/evazlib.xml">
-<!ENTITY eva-GskStreamSsl SYSTEM "xml/evastreamssl.xml">
+<!ENTITY eva-EvaStreamSsl SYSTEM "xml/evastreamssl.xml">
 <!ENTITY eva-evathreadpool SYSTEM "xml/evathreadpool.xml">
-<!ENTITY eva-GskZlibDeflator SYSTEM "xml/evazlibdeflator.xml">
-<!ENTITY eva-GskZlibInflator SYSTEM "xml/evazlibinflator.xml">
+<!ENTITY eva-EvaZlibDeflator SYSTEM "xml/evazlibdeflator.xml">
+<!ENTITY eva-EvaZlibInflator SYSTEM "xml/evazlibinflator.xml">
 <!ENTITY eva-evautils SYSTEM "xml/evautils.xml">
 <!ENTITY eva-evaxmlrpc SYSTEM "xml/evaxmlrpc.xml">
-<!ENTITY eva-GskXmlRpcStream SYSTEM "xml/evaxmlrpcstream.xml">
+<!ENTITY eva-EvaXmlRpcStream SYSTEM "xml/evaxmlrpcstream.xml">
 <!ENTITY eva-evarbtreemacros SYSTEM "xml/evarbtreemacros.xml">
 <!ENTITY eva-evalistmacros SYSTEM "xml/evalistmacros.xml">
 <!ENTITY eva-evaqsortmacro SYSTEM "xml/evaqsortmacro.xml">
@@ -89,10 +89,10 @@
     &eva-evahook;
     &eva-evainit;
     &eva-evamacros;
-    &eva-GskIO;
-    &eva-GskStream;
+    &eva-EvaIO;
+    &eva-EvaStream;
     &eva-evastreamconnection;
-    &eva-GskMainLoop;
+    &eva-EvaMainLoop;
     &eva-evanameresolver;
     &eva-evatypes;
     &eva-evabuffer;
@@ -100,11 +100,11 @@
     &eva-evaerror;
     &eva-evamain;
     &eva-evaghelpers;
-    &eva-GskPacketQueue;
+    &eva-EvaPacketQueue;
     &eva-evapacket;
-    &eva-GskStreamListener;
+    &eva-EvaStreamListener;
     &eva-evastreamclient;
-    &eva-GskSocketAddressIpv6;
+    &eva-EvaSocketAddressIpv6;
     &eva-evalog;
     &eva-tutorial-debugging-hints;
     &eva-evadebug;
@@ -126,27 +126,27 @@
 
   <chapter>
     <title>Standard Implementations</title>
-    &eva-GskPacketQueueFd;
-    &eva-GskStreamFd;
-    &eva-GskStreamExternal;
-    &eva-GskStreamListenerSocket;
-    &eva-GskBufferStream;
+    &eva-EvaPacketQueueFd;
+    &eva-EvaStreamFd;
+    &eva-EvaStreamExternal;
+    &eva-EvaStreamListenerSocket;
+    &eva-EvaBufferStream;
   </chapter>
 
   <chapter>
     <title>Standard Objects: the URL class</title>
-    &eva-GskUrl;
-    &eva-GskUrlTransfer;
-    &eva-GskUrlTransferHttp;
+    &eva-EvaUrl;
+    &eva-EvaUrlTransfer;
+    &eva-EvaUrlTransferHttp;
   </chapter>
 
   <chapter>
     <title>Standard Streams:  the HTTP client and server</title>
-    &eva-GskHttpHeader;
-    &eva-GskHttpRequest;
-    &eva-GskHttpResponse;
-    &eva-GskHttpClient;
-    &eva-GskHttpServer;
+    &eva-EvaHttpHeader;
+    &eva-EvaHttpRequest;
+    &eva-EvaHttpResponse;
+    &eva-EvaHttpClient;
+    &eva-EvaHttpServer;
   </chapter>
   <!---
   <chapter>
@@ -156,13 +156,13 @@
   -->
   <chapter>
     <title>Standard Streams:  standard compression algorithms</title>
-    &eva-GskZlibDeflator;
-    &eva-GskZlibInflator;
+    &eva-EvaZlibDeflator;
+    &eva-EvaZlibInflator;
     &eva-zlib;
   </chapter>
   <chapter>
     <title>Standard Streams:  utility streams</title>
-    &eva-GskStreamQueue;
+    &eva-EvaStreamQueue;
     &eva-evamemory;
   </chapter>
   <chapter>
@@ -176,25 +176,25 @@
   </chapter>
   <chapter>
     <title>SSL interface</title>
-    &eva-GskStreamSsl;
+    &eva-EvaStreamSsl;
   </chapter>
   <chapter>
     <title>MIME handling</title>
     &eva-evamimemultipartpiece;
-    &eva-GskMimeMultipartDecoder;
+    &eva-EvaMimeMultipartDecoder;
   </chapter>
   <chapter>
     <title>RPC protocols</title>
     &eva-evaxmlrpc;
-    &eva-GskXmlRpcStream;
+    &eva-EvaXmlRpcStream;
   </chapter>
   <chapter>
     <title>Main Loops</title>
-    &eva-GskMainLoopDevPoll;
-    &eva-GskMainLoopKqueue;
-    &eva-GskMainLoopPoll;
-    &eva-GskMainLoopPollBase;
-    &eva-GskMainLoopSelect;
+    &eva-EvaMainLoopDevPoll;
+    &eva-EvaMainLoopKqueue;
+    &eva-EvaMainLoopPoll;
+    &eva-EvaMainLoopPollBase;
+    &eva-EvaMainLoopSelect;
   </chapter>
   <chapter>
     <title>Odds and Ends</title>

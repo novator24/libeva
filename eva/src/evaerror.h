@@ -165,10 +165,10 @@ typedef enum
   EVA_ERROR_PREMATURE_EOF,
   EVA_ERROR_CORRUPT,
   EVA_ERROR_EXISTS,
-} GskErrorCode;
+} EvaErrorCode;
 
 
-GskErrorCode eva_error_code_from_errno (int errno_number);
+EvaErrorCode eva_error_code_from_errno (int errno_number);
 
 /* private */
 void _eva_error_init (void);

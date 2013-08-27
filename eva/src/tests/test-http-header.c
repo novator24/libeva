@@ -3,14 +3,14 @@
 #include "../evainit.h"
 #include <string.h>
 
-GskHttpHeader *
-header_copy_through_buffers (GskHttpHeader *header)
+EvaHttpHeader *
+header_copy_through_buffers (EvaHttpHeader *header)
 {
   gboolean is_request = EVA_IS_HTTP_REQUEST (header);
-  GskBuffer buffer1, buffer2;
+  EvaBuffer buffer1, buffer2;
   gpointer data1, data2;
   gsize len1, len2;
-  GskHttpHeader *header1, *header2;
+  EvaHttpHeader *header1, *header2;
   GError *error = NULL;
 
   eva_buffer_construct (&buffer1);
@@ -42,11 +42,11 @@ header_copy_through_buffers (GskHttpHeader *header)
   return header2;
 }
 
-static GskHttpHeader *
+static EvaHttpHeader *
 maybe_header_from_string(gboolean is_request, const char *str)
 {
-  GskBuffer buffer;
-  GskHttpHeader *header;
+  EvaBuffer buffer;
+  EvaHttpHeader *header;
   eva_buffer_construct (&buffer);
   eva_buffer_append_foreign (&buffer, str, strlen(str), NULL, NULL);
   header = eva_http_header_from_buffer (&buffer, is_request, 0, NULL);
@@ -54,16 +54,16 @@ maybe_header_from_string(gboolean is_request, const char *str)
   return header;
 }
 
-static GskHttpHeader *
+static EvaHttpHeader *
 header_from_string(gboolean is_request, const char *str)
 {
-  GskHttpHeader *header = maybe_header_from_string(is_request,str);
+  EvaHttpHeader *header = maybe_header_from_string(is_request,str);
   g_assert (header != NULL);
   return header;
 }
 
 static gboolean
-headers_equal (GskHttpHeader *h1, GskHttpHeader *h2)
+headers_equal (EvaHttpHeader *h1, EvaHttpHeader *h2)
 {
   if ( ( (EVA_IS_HTTP_REQUEST (h1) ? 1 : 0)
        ^ (EVA_IS_HTTP_REQUEST (h2) ? 1 : 0) ) != 0)
@@ -87,9 +87,9 @@ corruption_test (gboolean is_request,
     {
       guint n_changes = g_random_int_range (0, 100);
       char *txt = g_malloc (len + 1);
-      GskBuffer buffer = EVA_BUFFER_STATIC_INIT;
+      EvaBuffer buffer = EVA_BUFFER_STATIC_INIT;
       guint i;
-      GskHttpHeader *header;
+      EvaHttpHeader *header;
       strcpy (txt, header_text);
       for (i = 0; i < n_changes; i++)
         txt[g_random_int_range (0, len)] = g_random_int_range (0,256);
@@ -194,7 +194,7 @@ test_cgi_parsing (const char *query_string,
 
 int main(int argc, char **argv)
 {
-  GskHttpHeader *header0, *header1;
+  EvaHttpHeader *header0, *header1;
   GValue value;
 
   eva_init_without_threads (&argc, &argv);
@@ -266,7 +266,7 @@ int main(int argc, char **argv)
   g_object_unref (header1);
 
   {
-    GskHttpRequest *request;
+    EvaHttpRequest *request;
     header0 = header_from_string (TRUE,
 				  "GET / HTTP/1.1\r\n"
 				  "Accept-Language: swahili;q=4, cherokee;q=2, estonian\r\n"
@@ -289,7 +289,7 @@ int main(int argc, char **argv)
     g_object_unref (header1);
   }
   {
-    GskHttpRequest *request;
+    EvaHttpRequest *request;
     header0 = header_from_string (TRUE,
 				  "GET / HTTP/1.1\r\n"
 				  "Accept-Language: en-us\r\n"
@@ -306,7 +306,7 @@ int main(int argc, char **argv)
     g_object_unref (header1);
   }
   {
-    GskHttpRequest *request;
+    EvaHttpRequest *request;
     header0 = header_from_string (TRUE,
 				  "GET / HTTP/1.1\r\n"
 				  "Accept-Language: en-us,en;q=0.5\r\n"
@@ -326,7 +326,7 @@ int main(int argc, char **argv)
   }
   /* test cache-control in request */
  {
-    GskHttpRequest *request;
+    EvaHttpRequest *request;
     header0 = header_from_string (TRUE,
 				  "GET / HTTP/1.1\r\n"
 				  "Accept-Language: en-us\r\n"
@@ -364,9 +364,9 @@ int main(int argc, char **argv)
     header1 = header_copy_through_buffers (header0);
     for (iter = 0; iter < 2; iter++)
       {
-        GskHttpHeader *header = iter ? header1 : header0;
-        GskHttpResponse *response = EVA_HTTP_RESPONSE (header);
-        GskHttpCookie *set_cookie;
+        EvaHttpHeader *header = iter ? header1 : header0;
+        EvaHttpResponse *response = EVA_HTTP_RESPONSE (header);
+        EvaHttpCookie *set_cookie;
         g_assert (EVA_IS_HTTP_RESPONSE (header));
         g_assert (header->http_major_version == 1);
         g_assert (header->http_minor_version == 0);
@@ -423,9 +423,9 @@ int main(int argc, char **argv)
     header1 = header_copy_through_buffers (header0);
     for (iter = 0; iter < 2; iter++)
       {
-        GskHttpHeader *header = iter ? header1 : header0;
-        GskHttpResponse *response = EVA_HTTP_RESPONSE (header);
-        GskHttpCookie *set_cookie;
+        EvaHttpHeader *header = iter ? header1 : header0;
+        EvaHttpResponse *response = EVA_HTTP_RESPONSE (header);
+        EvaHttpCookie *set_cookie;
         g_assert (EVA_IS_HTTP_RESPONSE (header));
         g_assert (header->http_major_version == 1);
         g_assert (header->http_minor_version == 0);
@@ -482,9 +482,9 @@ int main(int argc, char **argv)
     header1 = header_copy_through_buffers (header0);
     for (iter = 0; iter < 2; iter++)
       {
-        GskHttpHeader *header = iter ? header1 : header0;
-        GskHttpResponse *response = EVA_HTTP_RESPONSE (header);
-        GskHttpCookie *set_cookie;
+        EvaHttpHeader *header = iter ? header1 : header0;
+        EvaHttpResponse *response = EVA_HTTP_RESPONSE (header);
+        EvaHttpCookie *set_cookie;
         g_assert (EVA_IS_HTTP_RESPONSE (header));
         g_assert (header->http_major_version == 1);
         g_assert (header->http_minor_version == 0);
@@ -542,9 +542,9 @@ int main(int argc, char **argv)
     header1 = header_copy_through_buffers (header0);
     for (iter = 0; iter < 2; iter++)
       {
-        GskHttpHeader *header = iter ? header1 : header0;
-        GskHttpResponse *response = EVA_HTTP_RESPONSE (header);
-        GskHttpCookie *set_cookie;
+        EvaHttpHeader *header = iter ? header1 : header0;
+        EvaHttpResponse *response = EVA_HTTP_RESPONSE (header);
+        EvaHttpCookie *set_cookie;
         g_assert (EVA_IS_HTTP_RESPONSE (header));
         g_assert (header->http_major_version == 1);
         g_assert (header->http_minor_version == 0);
@@ -640,9 +640,9 @@ int main(int argc, char **argv)
     header1 = header_copy_through_buffers (header0);
     for (iter = 0; iter < 2; iter++)
       {
-        GskHttpHeader *header = iter ? header1 : header0;
-        GskHttpResponse *response = EVA_HTTP_RESPONSE (header);
-        GskHttpCookie *set_cookie;
+        EvaHttpHeader *header = iter ? header1 : header0;
+        EvaHttpResponse *response = EVA_HTTP_RESPONSE (header);
+        EvaHttpCookie *set_cookie;
         g_assert (EVA_IS_HTTP_RESPONSE (header));
         g_assert (header->http_major_version == 1);
         g_assert (header->http_minor_version == 0);
@@ -712,8 +712,8 @@ int main(int argc, char **argv)
     header1 = header_copy_through_buffers (header0);
     for (iter = 0; iter < 2; iter++)
       {
-        GskHttpHeader *header = iter ? header1 : header0;
-        GskHttpResponse *response = EVA_HTTP_RESPONSE (header);
+        EvaHttpHeader *header = iter ? header1 : header0;
+        EvaHttpResponse *response = EVA_HTTP_RESPONSE (header);
         g_assert (EVA_IS_HTTP_RESPONSE (header));
         g_assert (header->http_major_version == 1);
         g_assert (header->http_minor_version == 0);
@@ -759,7 +759,7 @@ int main(int argc, char **argv)
 
   /* example from rfc 2617, page 5 */
   {
-    GskHttpResponse *res = EVA_HTTP_RESPONSE
+    EvaHttpResponse *res = EVA_HTTP_RESPONSE
       (header_from_string (FALSE,
                            "HTTP/1.0 401 Unauthorized\r\n"
                            "WWW-Authenticate: Basic realm=\"WallyWorld\"\r\n"
@@ -772,7 +772,7 @@ int main(int argc, char **argv)
   }
   /* example from rfc 2617, page 6 */
   {
-    GskHttpRequest *req = EVA_HTTP_REQUEST
+    EvaHttpRequest *req = EVA_HTTP_REQUEST
       (header_from_string (TRUE,
                            "GET / HTTP/1.1\r\n"
                            "Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==\r\n"
@@ -801,8 +801,8 @@ int main(int argc, char **argv)
                    "Pragma: dfasdfasdsadfasd\r\n"
                    "Max-forwards: 10\r\n"
                    "Keep-alive: 3\r\n"
-  //DATE_LINE_PARSER ("if-modified-since", GskHttpRequest, if_modified_since),
-  //DATE_LINE_PARSER ("date", GskHttpRequest, date),
+  //DATE_LINE_PARSER ("if-modified-since", EvaHttpRequest, if_modified_since),
+  //DATE_LINE_PARSER ("date", EvaHttpRequest, date),
                    "From: hi@mom.com\r\n"
                    "UA-Pixels: 320x200\r\n"
                    "Cookie: Cookie: $Version=\"1\"; Customer=\"WILE_E_COYOTE\"; $Path=\"/acme\"\r\n"

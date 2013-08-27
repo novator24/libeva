@@ -5,11 +5,11 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskMemPool GskMemPool;
-typedef struct _GskMemPoolFixed GskMemPoolFixed;
+typedef struct _EvaMemPool EvaMemPool;
+typedef struct _EvaMemPoolFixed EvaMemPoolFixed;
 
 /* --- Allocate-only Memory Pool --- */
-struct _GskMemPool
+struct _EvaMemPool
 {
   /*< private >*/
   gpointer all_chunk_list;
@@ -20,23 +20,23 @@ struct _GskMemPool
 #define EVA_MEM_POOL_STATIC_INIT                        { NULL, NULL, 0 }
 
 
-G_INLINE_FUNC void     eva_mem_pool_construct    (GskMemPool     *pool);
+G_INLINE_FUNC void     eva_mem_pool_construct    (EvaMemPool     *pool);
 G_INLINE_FUNC void     eva_mem_pool_construct_with_scratch_buf
-                                                 (GskMemPool     *pool,
+                                                 (EvaMemPool     *pool,
                                                   gpointer        buffer,
                                                   gsize           buffer_size);
-G_INLINE_FUNC gpointer eva_mem_pool_alloc        (GskMemPool     *pool,
+G_INLINE_FUNC gpointer eva_mem_pool_alloc        (EvaMemPool     *pool,
                                                   gsize           size);
-              gpointer eva_mem_pool_alloc0       (GskMemPool     *pool,
+              gpointer eva_mem_pool_alloc0       (EvaMemPool     *pool,
                                                   gsize           size);
-G_INLINE_FUNC gpointer eva_mem_pool_alloc_unaligned(GskMemPool   *pool,
+G_INLINE_FUNC gpointer eva_mem_pool_alloc_unaligned(EvaMemPool   *pool,
                                                   gsize           size);
-              char    *eva_mem_pool_strdup       (GskMemPool     *pool,
+              char    *eva_mem_pool_strdup       (EvaMemPool     *pool,
                                                   const char     *str);
-G_INLINE_FUNC void     eva_mem_pool_destruct     (GskMemPool     *pool);
+G_INLINE_FUNC void     eva_mem_pool_destruct     (EvaMemPool     *pool);
 
 /* --- Allocate and free Memory Pool --- */
-struct _GskMemPoolFixed
+struct _EvaMemPoolFixed
 {
   /*< private >*/
   gpointer slab_list;
@@ -50,22 +50,22 @@ struct _GskMemPoolFixed
                           { NULL, NULL, 0, size, NULL } 
 
 G_INLINE_FUNC void     eva_mem_pool_fixed_construct_with_scratch_buf
-                                                 (GskMemPoolFixed *pool,
+                                                 (EvaMemPoolFixed *pool,
                                                   gsize            elt_size,
                                                   gpointer         buffer,
                                                   gsize            buffer_n_elements);
-void     eva_mem_pool_fixed_construct (GskMemPoolFixed  *pool,
+void     eva_mem_pool_fixed_construct (EvaMemPoolFixed  *pool,
                                        gsize             size);
-gpointer eva_mem_pool_fixed_alloc     (GskMemPoolFixed  *pool);
-gpointer eva_mem_pool_fixed_alloc0    (GskMemPoolFixed  *pool);
-void     eva_mem_pool_fixed_free      (GskMemPoolFixed  *pool,
+gpointer eva_mem_pool_fixed_alloc     (EvaMemPoolFixed  *pool);
+gpointer eva_mem_pool_fixed_alloc0    (EvaMemPoolFixed  *pool);
+void     eva_mem_pool_fixed_free      (EvaMemPoolFixed  *pool,
                                        gpointer          from_pool);
-void     eva_mem_pool_fixed_destruct  (GskMemPoolFixed  *pool);
+void     eva_mem_pool_fixed_destruct  (EvaMemPoolFixed  *pool);
 
 
 
 /* private */
-gpointer eva_mem_pool_must_alloc (GskMemPool *pool,
+gpointer eva_mem_pool_must_alloc (EvaMemPool *pool,
                                   gsize       size);
 
 /* ------------------------------*/
@@ -77,14 +77,14 @@ gpointer eva_mem_pool_must_alloc (GskMemPool *pool,
   (* (gpointer*) (slab))
 
 #if defined(G_CAN_INLINE) || defined(EVA_INTERNAL_IMPLEMENT_INLINES)
-G_INLINE_FUNC void     eva_mem_pool_construct    (GskMemPool     *pool)
+G_INLINE_FUNC void     eva_mem_pool_construct    (EvaMemPool     *pool)
 {
   pool->all_chunk_list = NULL;
   pool->chunk = NULL;
   pool->chunk_left = 0;
 }
 G_INLINE_FUNC void     eva_mem_pool_construct_with_scratch_buf
-                                                 (GskMemPool     *pool,
+                                                 (EvaMemPool     *pool,
                                                   gpointer        buffer,
                                                   gsize           buffer_size)
 {
@@ -93,7 +93,7 @@ G_INLINE_FUNC void     eva_mem_pool_construct_with_scratch_buf
   pool->chunk_left = buffer_size;
 }
 
-G_INLINE_FUNC void     eva_mem_pool_align        (GskMemPool     *pool)
+G_INLINE_FUNC void     eva_mem_pool_align        (EvaMemPool     *pool)
 {
   guint mask = GPOINTER_TO_UINT (pool->chunk) & (sizeof(gpointer)-1);
   if (mask)
@@ -105,7 +105,7 @@ G_INLINE_FUNC void     eva_mem_pool_align        (GskMemPool     *pool)
     }
 }
 
-G_INLINE_FUNC gpointer eva_mem_pool_alloc_unaligned   (GskMemPool     *pool,
+G_INLINE_FUNC gpointer eva_mem_pool_alloc_unaligned   (EvaMemPool     *pool,
                                                        gsize           size)
 {
   char *rv;
@@ -122,14 +122,14 @@ G_INLINE_FUNC gpointer eva_mem_pool_alloc_unaligned   (GskMemPool     *pool,
     return eva_mem_pool_must_alloc (pool, size);
 }
 
-G_INLINE_FUNC gpointer eva_mem_pool_alloc            (GskMemPool     *pool,
+G_INLINE_FUNC gpointer eva_mem_pool_alloc            (EvaMemPool     *pool,
                                                       gsize           size)
 {
   eva_mem_pool_align (pool);
   return eva_mem_pool_alloc_unaligned (pool, size);
 }
 
-G_INLINE_FUNC void     eva_mem_pool_destruct     (GskMemPool     *pool)
+G_INLINE_FUNC void     eva_mem_pool_destruct     (EvaMemPool     *pool)
 {
   gpointer slab = pool->all_chunk_list;
   while (slab)
@@ -140,7 +140,7 @@ G_INLINE_FUNC void     eva_mem_pool_destruct     (GskMemPool     *pool)
     }
 }
 G_INLINE_FUNC void     eva_mem_pool_fixed_construct_with_scratch_buf
-                                                 (GskMemPoolFixed *pool,
+                                                 (EvaMemPoolFixed *pool,
                                                   gsize            elt_size,
                                                   gpointer         buffer,
                                                   gsize            buffer_n_elements)

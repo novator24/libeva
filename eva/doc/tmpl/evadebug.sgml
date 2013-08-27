@@ -26,7 +26,7 @@ EVA's configure script.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### ENUM GskDebugFlags ##### -->
+<!-- ##### ENUM EvaDebugFlags ##### -->
 <para>
 Flags which may be turned on to print debugging messages about
 them.

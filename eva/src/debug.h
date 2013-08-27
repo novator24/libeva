@@ -3,7 +3,7 @@
 #include "evadebug.h"
 
 /* Implement _EVA_DEBUG_PRINTF to output a g_message in
- * accordance with certain GskDebugFlags.
+ * accordance with certain EvaDebugFlags.
  */
 #ifdef EVA_DEBUG
 #define _EVA_DEBUG_PRINTF(flags,args) 				\

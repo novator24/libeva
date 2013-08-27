@@ -106,12 +106,12 @@ and the error-handlers.
 <pre class="programlisting">
 struct _MyClient
 {
-  GskNameResolverTask *name_lookup;
+  EvaNameResolverTask *name_lookup;
   int port;
-  GskStream *connection;
+  EvaStream *connection;
 
-  GskBuffer outgoing;
-  GskBuffer incoming;
+  EvaBuffer outgoing;
+  EvaBuffer incoming;
 
   GQueue *response_callbacks;
 

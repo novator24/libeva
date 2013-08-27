@@ -1,8 +1,8 @@
 
 #include <glib.h>
 
-typedef struct _GskQsortStackNode GskQsortStackNode;
-typedef struct _GskQsortStack GskQsortStack;
+typedef struct _EvaQsortStackNode EvaQsortStackNode;
+typedef struct _EvaQsortStack EvaQsortStack;
 
 /* Amount of stack to allocate: should be log2(max_array_size)+1.
    on 32-bit, this uses 33*8=264 bytes;
@@ -18,7 +18,7 @@ typedef struct _GskQsortStack GskQsortStack;
 /* Maximum number of elements to sort with insertion sort instead of qsort */
 #define EVA_INSERTION_SORT_THRESHOLD	4
 
-struct _GskQsortStackNode
+struct _EvaQsortStackNode
 {
   gsize start, len;
 };
@@ -46,9 +46,9 @@ struct _GskQsortStackNode
   G_STMT_START{                                                              \
     gint eva_rv;                                                             \
     guint eva_stack_size;                                                    \
-    GskQsortStackNode eva_stack[stack_size];                                 \
+    EvaQsortStackNode eva_stack[stack_size];                                 \
     type eva_tmp_swap;                                                       \
-    GskQsortStackNode eva_node;                                              \
+    EvaQsortStackNode eva_node;                                              \
     eva_node.start = 0;                                                      \
     eva_node.len = (n_elements);                                             \
     eva_stack_size = 0;                                                      \
@@ -57,7 +57,7 @@ struct _GskQsortStackNode
     else                                                                     \
       for(;;)                                                                \
         {                                                                    \
-          GskQsortStackNode eva_stack_nodes[2];                              \
+          EvaQsortStackNode eva_stack_nodes[2];                              \
           /* implement median-of-three; sort so that  */                     \
           /* *eva_a <= *eva_b <= *eva_c               */                     \
           type *eva_lo = array + eva_node.start;                             \
@@ -187,7 +187,7 @@ struct _GskQsortStackNode
           eva_stack_nodes[1].len = eva_hi - eva_a + 1;                       \
           if (eva_stack_nodes[0].len < eva_stack_nodes[1].len)               \
             {                                                                \
-              GskQsortStackNode eva_stack_node_tmp = eva_stack_nodes[0];     \
+              EvaQsortStackNode eva_stack_node_tmp = eva_stack_nodes[0];     \
               eva_stack_nodes[0] = eva_stack_nodes[1];                       \
               eva_stack_nodes[1] = eva_stack_node_tmp;                       \
             }                                                                \
@@ -224,9 +224,9 @@ struct _GskQsortStackNode
   G_STMT_START{                                                              \
     gint eva_rv;                                                             \
     guint eva_stack_size;                                                    \
-    GskQsortStackNode eva_stack[stack_size];                                 \
+    EvaQsortStackNode eva_stack[stack_size];                                 \
     type eva_tmp_swap;                                                       \
-    GskQsortStackNode eva_node;                                              \
+    EvaQsortStackNode eva_node;                                              \
     eva_node.start = 0;                                                      \
     eva_node.len = (n_elements);                                             \
     eva_stack_size = 0;                                                      \
@@ -235,7 +235,7 @@ struct _GskQsortStackNode
     else                                                                     \
       for(;;)                                                                \
         {                                                                    \
-          GskQsortStackNode eva_stack_nodes[2];                              \
+          EvaQsortStackNode eva_stack_nodes[2];                              \
           /* implement median-of-three; sort so that  */                     \
           /* *eva_a <= *eva_b <= *eva_c               */                     \
           type *eva_lo = array + eva_node.start;                             \
@@ -378,7 +378,7 @@ struct _GskQsortStackNode
             {                                                                \
               if (eva_stack_nodes[0].len < eva_stack_nodes[1].len)           \
                 {                                                            \
-                  GskQsortStackNode eva_stack_node_tmp = eva_stack_nodes[0]; \
+                  EvaQsortStackNode eva_stack_node_tmp = eva_stack_nodes[0]; \
                   eva_stack_nodes[0] = eva_stack_nodes[1];                   \
                   eva_stack_nodes[1] = eva_stack_node_tmp;                   \
                 }                                                            \

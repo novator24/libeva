@@ -19,7 +19,7 @@ reduce_n_pending ()
 }
 
 static void
-handle_successful_name_resolution (GskSocketAddress *address,
+handle_successful_name_resolution (EvaSocketAddress *address,
 				    gpointer          func_data)
 {
   char *str = eva_socket_address_to_string (address);
@@ -40,7 +40,7 @@ handle_failed_name_resolution (GError           *error,
 static gboolean
 do_lookup_and_schedule_next (gpointer data)
 {
-  GskNameResolverTask *task;
+  EvaNameResolverTask *task;
   char *line = eva_stdio_readline (fp);
   char *tab;
   const char *name;

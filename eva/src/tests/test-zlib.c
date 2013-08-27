@@ -13,7 +13,7 @@ struct _Result
 };
 
 static void
-memory_buffer_callback (GskBuffer              *buffer,
+memory_buffer_callback (EvaBuffer              *buffer,
 		        gpointer                data)
 {
   Result *res = data;
@@ -27,13 +27,13 @@ memory_buffer_callback (GskBuffer              *buffer,
 static void
 test_with_string (const char *str)
 {
-  GskStream *inflator;
-  GskStream *deflator;
-  GskStream *memory_input;
-  GskStream *memory_output;
+  EvaStream *inflator;
+  EvaStream *deflator;
+  EvaStream *memory_input;
+  EvaStream *memory_output;
   Result result = { FALSE, 0, NULL };
   GError *error = NULL;
-  GskMainLoop *loop;
+  EvaMainLoop *loop;
   loop = eva_main_loop_default ();
 
   memory_input = eva_memory_source_new_printf (str);

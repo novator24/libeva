@@ -2,7 +2,7 @@
 
 int main()
 {
-  GskPrefixTree *pt;
+  EvaPrefixTree *pt;
   GSList *all;
 
   pt = NULL;

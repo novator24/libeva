@@ -6,7 +6,7 @@
 #include "evamodule.h"
 #include "compile-info.h"
 
-struct _GskCompileContext
+struct _EvaCompileContext
 {
   char *tmp_dir;
   char *cc, *ld;
@@ -26,9 +26,9 @@ struct _GskCompileContext
  *
  * returns: the new compilation-context.
  */
-GskCompileContext *eva_compile_context_new ()
+EvaCompileContext *eva_compile_context_new ()
 {
-  GskCompileContext *rv = g_new (GskCompileContext, 1);
+  EvaCompileContext *rv = g_new (EvaCompileContext, 1);
   rv->tmp_dir = NULL;
   rv->cc = g_strdup (EVA_CC);
   rv->ld = g_strdup (EVA_LD_SHLIB);
@@ -52,7 +52,7 @@ GskCompileContext *eva_compile_context_new ()
  * this compilation-context.
  */
 void 
-eva_compile_context_add_cflags (GskCompileContext *context,
+eva_compile_context_add_cflags (EvaCompileContext *context,
                                 const char        *flags)
 {
   g_string_append_c (context->cflags, ' ');
@@ -68,7 +68,7 @@ eva_compile_context_add_cflags (GskCompileContext *context,
  * Add linker flags that you want used in
  * this compilation-context.
  */
-void               eva_compile_context_add_ldflags(GskCompileContext*context,
+void               eva_compile_context_add_ldflags(EvaCompileContext*context,
                                                    const char *flags)
 {
   g_string_append_c (context->ldflags, ' ');
@@ -84,7 +84,7 @@ void               eva_compile_context_add_ldflags(GskCompileContext*context,
  *
  * TODO error-handling.
  */
-void               eva_compile_context_add_pkg   (GskCompileContext*context,
+void               eva_compile_context_add_pkg   (EvaCompileContext*context,
                                                   const char *pkg)
 {
   g_ptr_array_add (context->packages, g_strdup (pkg));
@@ -107,7 +107,7 @@ void               eva_compile_context_add_pkg   (GskCompileContext*context,
  *
  * Set the directory to use for temporary files.
  */
-void               eva_compile_context_set_tmp_dir(GskCompileContext*context,
+void               eva_compile_context_set_tmp_dir(EvaCompileContext*context,
                                                    const char *tmp_dir)
 {
   char *t = g_strdup (tmp_dir);
@@ -124,7 +124,7 @@ void               eva_compile_context_set_tmp_dir(GskCompileContext*context,
  * created with this context.
  * The default is FALSE.
  */
-void               eva_compile_context_set_gdb    (GskCompileContext *context,
+void               eva_compile_context_set_gdb    (EvaCompileContext *context,
                                                    gboolean           support)
 {
   context->gdb_support = support;
@@ -141,7 +141,7 @@ void               eva_compile_context_set_gdb    (GskCompileContext *context,
  *
  * The default is FALSE.
  */
-void               eva_compile_context_set_verbose(GskCompileContext *context,
+void               eva_compile_context_set_verbose(EvaCompileContext *context,
                                                    gboolean           support)
 {
   context->verbose = support;
@@ -154,7 +154,7 @@ void               eva_compile_context_set_verbose(GskCompileContext *context,
  * Free memory used by the compilation context.
  */
 void
-eva_compile_context_free       (GskCompileContext *context)
+eva_compile_context_free       (EvaCompileContext *context)
 {
   g_free (context->tmp_dir);
   g_free (context->cc);
@@ -168,7 +168,7 @@ eva_compile_context_free       (GskCompileContext *context)
   g_free (context);
 }
 
-struct _GskModule
+struct _EvaModule
 {
   GModule *module;
   guint ref_count;
@@ -176,7 +176,7 @@ struct _GskModule
 };
 
 static gboolean
-run_pkg_config       (GskCompileContext *context,
+run_pkg_config       (EvaCompileContext *context,
                       const char        *prg_option,
                       char             **flags_out,
                       GError           **error)
@@ -218,7 +218,7 @@ run_pkg_config       (GskCompileContext *context,
 }
 
 static gboolean
-ensure_pkg_info_ok (GskCompileContext *context,
+ensure_pkg_info_ok (EvaCompileContext *context,
                     GError           **error)
 {
   if (context->package_ldflags == NULL)
@@ -258,8 +258,8 @@ ensure_pkg_info_ok (GskCompileContext *context,
  * If it is enabled, then they are deleted only once the module is closed.
  */
 
-GskModule *
-eva_module_compile  (GskCompileContext *context,
+EvaModule *
+eva_module_compile  (EvaCompileContext *context,
                      guint              n_sources,
                      char             **sources,
                      GModuleFlags       flags,
@@ -268,7 +268,7 @@ eva_module_compile  (GskCompileContext *context,
                      GError           **error)
 {
   GModule *module;
-  GskModule *rv;
+  EvaModule *rv;
   GString *linker_cmd;
   char *output_fname;
   char **to_kill_files;
@@ -373,7 +373,7 @@ eva_module_compile  (GskCompileContext *context,
       return NULL;
     }
 
-  rv = g_new (GskModule, 1);
+  rv = g_new (EvaModule, 1);
   rv->module = module;
   rv->ref_count = 1;
 
@@ -414,13 +414,13 @@ eva_module_compile  (GskCompileContext *context,
   return rv;
 }
 
-GskModule *
+EvaModule *
 eva_module_open (const char *filename,
                  GModuleFlags flags,
                  GError    **error)
 {
   GModule *module = g_module_open (filename, flags);
-  GskModule *rv;
+  EvaModule *rv;
   if (module == NULL)
     {
       g_set_error (error,
@@ -430,15 +430,15 @@ eva_module_open (const char *filename,
                    filename, g_module_error ());
       return NULL;
     }
-  rv = g_new (GskModule, 1);
+  rv = g_new (EvaModule, 1);
   rv->ref_count = 1;
   rv->files_to_kill = NULL;
   rv->module = module;
   return rv;
 }
 
-GskModule *
-eva_module_ref (GskModule *module)
+EvaModule *
+eva_module_ref (EvaModule *module)
 {
   g_return_val_if_fail (module->ref_count > 0, module);
   ++(module->ref_count);
@@ -446,7 +446,7 @@ eva_module_ref (GskModule *module)
 }
 
 void
-eva_module_unref (GskModule *module)
+eva_module_unref (EvaModule *module)
 {
   g_return_if_fail (module->ref_count > 0);
   if (--(module->ref_count) == 0)
@@ -464,7 +464,7 @@ eva_module_unref (GskModule *module)
 }
 
 gpointer
-eva_module_lookup (GskModule  *module,
+eva_module_lookup (EvaModule  *module,
                    const char *symbol_name)
 {
   gpointer rv;

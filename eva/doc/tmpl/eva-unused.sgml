@@ -119,7 +119,7 @@ evacommandtable
 
 
 <!-- ##### SECTION ./tmpl/evaftpclient.sgml:Title ##### -->
-GskFtpClient
+EvaFtpClient
 
 
 <!-- ##### SECTION ./tmpl/evahttp.sgml:Long_Description ##### -->
@@ -159,7 +159,7 @@ evahttp
 
 
 <!-- ##### SECTION ./tmpl/evaimapclient.sgml:Title ##### -->
-GskImapClient
+EvaImapClient
 
 
 <!-- ##### SECTION ./tmpl/evaimapcommon.sgml:Long_Description ##### -->
@@ -279,7 +279,7 @@ evalispoutput
 
 
 <!-- ##### SECTION ./tmpl/evamainloopselect.sgml.sgml:Title ##### -->
-GskMainLoopEpoll
+EvaMainLoopEpoll
 
 
 <!-- ##### SECTION ./tmpl/evaopensslbiostream.sgml:Long_Description ##### -->
@@ -359,7 +359,7 @@ evarpcprotocol
 
 
 <!-- ##### SECTION ./tmpl/evarpcstream.sgml:Title ##### -->
-GskRpcStream
+EvaRpcStream
 
 
 <!-- ##### SECTION ./tmpl/evaseekable.sgml:Long_Description ##### -->
@@ -399,7 +399,7 @@ evaseekable
 
 
 <!-- ##### SECTION ./tmpl/evasimpleparser.sgml:Title ##### -->
-GskSimpleParser
+EvaSimpleParser
 
 
 <!-- ##### SECTION ./tmpl/evasimpleparserstream.sgml:Long_Description ##### -->
@@ -419,7 +419,7 @@ GskSimpleParser
 
 
 <!-- ##### SECTION ./tmpl/evasimpleparserstream.sgml:Title ##### -->
-GskSimpleParserStream
+EvaSimpleParserStream
 
 
 <!-- ##### SECTION ./tmpl/evastreambio.sgml:Long_Description ##### -->
@@ -459,7 +459,7 @@ evastreambio
 
 
 <!-- ##### SECTION ./tmpl/evastringify.sgml:Title ##### -->
-GskStringifyIface
+EvaStringifyIface
 
 
 <!-- ##### SECTION ./tmpl/evatask.sgml:Long_Description ##### -->
@@ -599,7 +599,7 @@ evaxmlprocessor
 
 
 <!-- ##### SECTION ./tmpl/evaxmlstream.sgml:Title ##### -->
-GskXmlStream
+EvaXmlStream
 
 
 <!-- ##### SECTION ./tmpl/evaxmltoken.sgml:Long_Description ##### -->
@@ -1809,13 +1809,13 @@ evaxmltoken
 </para>
 
 
-<!-- ##### STRUCT GskBufferWalker ##### -->
+<!-- ##### STRUCT EvaBufferWalker ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskCInterpConfig ##### -->
+<!-- ##### STRUCT EvaCInterpConfig ##### -->
 <para>
 
 </para>
@@ -1826,7 +1826,7 @@ evaxmltoken
 @has_arrays: 
 @two_word_types: 
 
-<!-- ##### STRUCT GskCInterpStatement ##### -->
+<!-- ##### STRUCT EvaCInterpStatement ##### -->
 <para>
 
 </para>
@@ -1835,7 +1835,7 @@ evaxmltoken
 @parent: 
 @next: 
 
-<!-- ##### ENUM GskCInterpStatementType ##### -->
+<!-- ##### ENUM EvaCInterpStatementType ##### -->
 <para>
 
 </para>
@@ -1848,14 +1848,14 @@ evaxmltoken
 @EVA_C_INTERP_STATEMENT_DO_WHILE_LOOP: 
 @EVA_C_INTERP_STATEMENT_WHILE_LOOP: 
 
-<!-- ##### STRUCT GskCInterpValue ##### -->
+<!-- ##### STRUCT EvaCInterpValue ##### -->
 <para>
 
 </para>
 
 @type: 
 
-<!-- ##### ENUM GskCInterpValueType ##### -->
+<!-- ##### ENUM EvaCInterpValueType ##### -->
 <para>
 
 </para>
@@ -1864,19 +1864,19 @@ evaxmltoken
 @EVA_C_INTERP_VALUE_FUNCTION_CALL: 
 @EVA_C_INTERP_VALUE_OP_LIST: 
 
-<!-- ##### STRUCT GskCommandTable ##### -->
+<!-- ##### STRUCT EvaCommandTable ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskCommandTableDoneNotify ##### -->
+<!-- ##### STRUCT EvaCommandTableDoneNotify ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### USER_FUNCTION GskCommandTableEqual ##### -->
+<!-- ##### USER_FUNCTION EvaCommandTableEqual ##### -->
 <para>
 
 </para>
@@ -1888,14 +1888,14 @@ evaxmltoken
 @hook_type_data: 
 @Returns: 
 
-<!-- ##### ENUM GskCommandTableFlags ##### -->
+<!-- ##### ENUM EvaCommandTableFlags ##### -->
 <para>
 
 </para>
 
 @EVA_COMMAND_TABLE_NONBLOCKING: 
 
-<!-- ##### USER_FUNCTION GskCommandTableHash ##### -->
+<!-- ##### USER_FUNCTION EvaCommandTableHash ##### -->
 <para>
 
 </para>
@@ -1905,7 +1905,7 @@ evaxmltoken
 @hook_type_data: 
 @Returns: 
 
-<!-- ##### USER_FUNCTION GskCommandTableHashKey ##### -->
+<!-- ##### USER_FUNCTION EvaCommandTableHashKey ##### -->
 <para>
 
 </para>
@@ -1915,7 +1915,7 @@ evaxmltoken
 @hook_type_data: 
 @Returns: 
 
-<!-- ##### USER_FUNCTION GskCommandTableMarshal ##### -->
+<!-- ##### USER_FUNCTION EvaCommandTableMarshal ##### -->
 <para>
 
 </para>
@@ -1928,7 +1928,7 @@ evaxmltoken
 @hook: 
 @Param7: 
 
-<!-- ##### USER_FUNCTION GskCommandTableTask ##### -->
+<!-- ##### USER_FUNCTION EvaCommandTableTask ##### -->
 <para>
 
 </para>
@@ -1940,7 +1940,7 @@ evaxmltoken
 @args: 
 @Param6: 
 
-<!-- ##### USER_FUNCTION GskDnsRRCacheTrapFunc ##### -->
+<!-- ##### USER_FUNCTION EvaDnsRRCacheTrapFunc ##### -->
 <para>
 
 </para>
@@ -1950,13 +1950,13 @@ evaxmltoken
 @record: 
 @trap_data: 
 
-<!-- ##### STRUCT GskDnsRRTrap ##### -->
+<!-- ##### STRUCT EvaDnsRRTrap ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### USER_FUNCTION GskFtpClientHandleResponse ##### -->
+<!-- ##### USER_FUNCTION EvaFtpClientHandleResponse ##### -->
 <para>
 
 </para>
@@ -1966,7 +1966,7 @@ evaxmltoken
 @data: 
 @Returns: 
 
-<!-- ##### STRUCT GskHttpCacheDirective ##### -->
+<!-- ##### STRUCT EvaHttpCacheDirective ##### -->
 <para>
    [From RFC 2616; Section 14.9]
    The Cache-Control general-header field is used to specify directives
@@ -2211,7 +2211,7 @@ evaxmltoken
 @no_cache_name: 
    Intended for more detailed specification of no-cache data.
 
-<!-- ##### ENUM GskHttpEncoding ##### -->
+<!-- ##### ENUM EvaHttpEncoding ##### -->
 <para>
 Recognized content encodings.  See RFC 2616, Section 3.5.
 </para>
@@ -2223,7 +2223,7 @@ TODO: support gzip.
 @EVA_HTTP_ENCODING_CHUNKED: 
 @EVA_HTTP_ENCODING_UNRECOGNIZED: 
 
-<!-- ##### STRUCT GskHttpEncodingSet ##### -->
+<!-- ##### STRUCT EvaHttpEncodingSet ##### -->
 <para>
 
 </para>
@@ -2231,61 +2231,61 @@ TODO: support gzip.
 @encoding: 
 @quality: 
 
-<!-- ##### ARG GskHttpHeader:encoding ##### -->
+<!-- ##### ARG EvaHttpHeader:encoding ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG GskHttpHeader:encoding-string ##### -->
+<!-- ##### ARG EvaHttpHeader:encoding-string ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG GskHttpRequest:authorization ##### -->
+<!-- ##### ARG EvaHttpRequest:authorization ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG GskHttpRequest:proxy-authorization ##### -->
+<!-- ##### ARG EvaHttpRequest:proxy-authorization ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG GskHttpResponse:content-charset ##### -->
+<!-- ##### ARG EvaHttpResponse:content-charset ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG GskHttpResponse:content-encoding ##### -->
+<!-- ##### ARG EvaHttpResponse:content-encoding ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG GskHttpResponse:content-subtype ##### -->
+<!-- ##### ARG EvaHttpResponse:content-subtype ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG GskHttpResponse:content-type ##### -->
+<!-- ##### ARG EvaHttpResponse:content-type ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskHttpServerResponse ##### -->
+<!-- ##### STRUCT EvaHttpServerResponse ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ENUM GskImapClientState ##### -->
+<!-- ##### ENUM EvaImapClientState ##### -->
 <para>
 
 </para>
@@ -2297,7 +2297,7 @@ TODO: support gzip.
 @EVA_IMAP_CLIENT_STATE_LOGGING_OUT: 
 @EVA_IMAP_CLIENT_STATE_LOGGED_OUT: 
 
-<!-- ##### ENUM GskImapCommandType ##### -->
+<!-- ##### ENUM EvaImapCommandType ##### -->
 <para>
 
 </para>
@@ -2326,25 +2326,25 @@ TODO: support gzip.
 @EVA_IMAP_COMMAND_COPY: 
 @EVA_IMAP_COMMAND_UID: 
 
-<!-- ##### STRUCT GskKqueueEvent ##### -->
+<!-- ##### STRUCT EvaKqueueEvent ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskKqueueUpdate ##### -->
+<!-- ##### STRUCT EvaKqueueUpdate ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskLispLexer ##### -->
+<!-- ##### STRUCT EvaLispLexer ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskLispNode ##### -->
+<!-- ##### STRUCT EvaLispNode ##### -->
 <para>
 
 </para>
@@ -2352,32 +2352,32 @@ TODO: support gzip.
 @is_atom: 
 @parent: 
 
-<!-- ##### USER_FUNCTION GskMainLoopResultFunc ##### -->
+<!-- ##### USER_FUNCTION EvaMainLoopResultFunc ##### -->
 <para>
 Process the return-value of the run function.
 </para>
 
-@result_data: data returned by the #GskMainLoopRunFunc which was
+@result_data: data returned by the #EvaMainLoopRunFunc which was
 registered as the run_func parameter to to eva_main_loop_run_background().
 @run_data: data passed to eva_main_loop_run_background()
 (it was only the argument to the thread's function too).
 
-<!-- ##### USER_FUNCTION GskMainLoopRunFunc ##### -->
+<!-- ##### USER_FUNCTION EvaMainLoopRunFunc ##### -->
 <para>
 A function which will run in a background thread,
 possibly in a thread-pool.
 </para>
 
 @run_data: data passed to eva_main_loop_run_background().
-@Returns: opaque result data which will be passed to the #GskMainLoopResultFunc.
+@Returns: opaque result data which will be passed to the #EvaMainLoopResultFunc.
 
-<!-- ##### STRUCT GskQsortStack ##### -->
+<!-- ##### STRUCT EvaQsortStack ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskQsortStackNode ##### -->
+<!-- ##### STRUCT EvaQsortStackNode ##### -->
 <para>
 
 </para>
@@ -2385,7 +2385,7 @@ possibly in a thread-pool.
 @start: 
 @len: 
 
-<!-- ##### ENUM GskRpcCommandType ##### -->
+<!-- ##### ENUM EvaRpcCommandType ##### -->
 <para>
 
 </para>
@@ -2405,7 +2405,7 @@ possibly in a thread-pool.
 @EVA_RPC_COMMAND_SIGNAL_NOTIFY: 
 @EVA_RPC_COMMAND_CLASS_SIGNAL_NOTIFY: 
 
-<!-- ##### ENUM GskRpcError ##### -->
+<!-- ##### ENUM EvaRpcError ##### -->
 <para>
 
 </para>
@@ -2413,13 +2413,13 @@ possibly in a thread-pool.
 @EVA_RPC_ERROR_TYPE_NOT_FOUND: 
 @EVA_RPC_ERROR_TYPE_MISMATCH: 
 
-<!-- ##### UNION GskRpcMessage ##### -->
+<!-- ##### UNION EvaRpcMessage ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskRpcMessageFailure ##### -->
+<!-- ##### STRUCT EvaRpcMessageFailure ##### -->
 <para>
 
 </para>
@@ -2429,7 +2429,7 @@ possibly in a thread-pool.
 @command_id: 
 @error_code: 
 
-<!-- ##### STRUCT GskRpcMessageRequest ##### -->
+<!-- ##### STRUCT EvaRpcMessageRequest ##### -->
 <para>
 
 </para>
@@ -2438,7 +2438,7 @@ possibly in a thread-pool.
 @command_type: 
 @command_id: 
 
-<!-- ##### STRUCT GskRpcMessageSuccess ##### -->
+<!-- ##### STRUCT EvaRpcMessageSuccess ##### -->
 <para>
 
 </para>
@@ -2447,7 +2447,7 @@ possibly in a thread-pool.
 @command_type: 
 @command_id: 
 
-<!-- ##### ENUM GskRpcMessageType ##### -->
+<!-- ##### ENUM EvaRpcMessageType ##### -->
 <para>
 
 </para>
@@ -2456,19 +2456,19 @@ possibly in a thread-pool.
 @EVA_RPC_MESSAGE_SUCCESS: 
 @EVA_RPC_MESSAGE_FAILURE: 
 
-<!-- ##### TYPEDEF GskRpcObjectRef ##### -->
+<!-- ##### TYPEDEF EvaRpcObjectRef ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskSeekable ##### -->
+<!-- ##### STRUCT EvaSeekable ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskSeekableIface ##### -->
+<!-- ##### STRUCT EvaSeekableIface ##### -->
 <para>
 
 </para>
@@ -2479,7 +2479,7 @@ possibly in a thread-pool.
 @tell: 
 @get_length: 
 
-<!-- ##### ENUM GskSeekableMode ##### -->
+<!-- ##### ENUM EvaSeekableMode ##### -->
 <para>
 
 </para>
@@ -2488,7 +2488,7 @@ possibly in a thread-pool.
 @EVA_SEEKABLE_FROM_CURRENT: 
 @EVA_SEEKABLE_FROM_END: 
 
-<!-- ##### USER_FUNCTION GskSimpleParserCallback ##### -->
+<!-- ##### USER_FUNCTION EvaSimpleParserCallback ##### -->
 <para>
 
 </para>
@@ -2497,32 +2497,32 @@ possibly in a thread-pool.
 @parsed_buffer: 
 @parsed_buffer_length: 
 
-<!-- ##### ARG GskSimpleParserStream:command-table ##### -->
+<!-- ##### ARG EvaSimpleParserStream:command-table ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG GskSimpleParserStream:simple-parser ##### -->
+<!-- ##### ARG EvaSimpleParserStream:simple-parser ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskSourceKqueue ##### -->
+<!-- ##### STRUCT EvaSourceKqueue ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ENUM GskStreamListenerSocketFlags ##### -->
+<!-- ##### ENUM EvaStreamListenerSocketFlags ##### -->
 <para>
 
 </para>
 
 @EVA_STREAM_LISTENER_SOCKET_DONT_REUSE_ADDRESS: 
 
-<!-- ##### STRUCT GskTask ##### -->
+<!-- ##### STRUCT EvaTask ##### -->
 <para>
 
 </para>
@@ -2543,13 +2543,13 @@ possibly in a thread-pool.
 @data: 
 @destroy: 
 
-<!-- ##### STRUCT GskTaskCode ##### -->
+<!-- ##### STRUCT EvaTaskCode ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ENUM GskTaskCodeFlags ##### -->
+<!-- ##### ENUM EvaTaskCodeFlags ##### -->
 <para>
 
 </para>
@@ -2558,7 +2558,7 @@ possibly in a thread-pool.
 @EVA_TASK_CODE_POLYMORPHOUS_INPUT: 
 @EVA_TASK_CODE_POLYMORPHOUS_OUTPUT: 
 
-<!-- ##### STRUCT GskTaskCodeInfo ##### -->
+<!-- ##### STRUCT EvaTaskCodeInfo ##### -->
 <para>
 
 </para>
@@ -2579,14 +2579,14 @@ possibly in a thread-pool.
 @data: 
 @destroy_data: 
 
-<!-- ##### USER_FUNCTION GskTaskFunc ##### -->
+<!-- ##### USER_FUNCTION EvaTaskFunc ##### -->
 <para>
 
 </para>
 
 @task: 
 
-<!-- ##### USER_FUNCTION GskTaskHook ##### -->
+<!-- ##### USER_FUNCTION EvaTaskHook ##### -->
 <para>
 
 </para>
@@ -2594,7 +2594,7 @@ possibly in a thread-pool.
 @task: 
 @data: 
 
-<!-- ##### USER_FUNCTION GskTaskHookValues ##### -->
+<!-- ##### USER_FUNCTION EvaTaskHookValues ##### -->
 <para>
 
 </para>
@@ -2604,13 +2604,13 @@ possibly in a thread-pool.
 @values: 
 @data: 
 
-<!-- ##### STRUCT GskTaskSequence ##### -->
+<!-- ##### STRUCT EvaTaskSequence ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### USER_FUNCTION GskTaskStartFunc ##### -->
+<!-- ##### USER_FUNCTION EvaTaskStartFunc ##### -->
 <para>
 
 </para>
@@ -2619,19 +2619,19 @@ possibly in a thread-pool.
 @n_input_types: 
 @input_types: 
 
-<!-- ##### STRUCT GskUrlTransferHttpModifierNode ##### -->
+<!-- ##### STRUCT EvaUrlTransferHttpModifierNode ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskXdrContext ##### -->
+<!-- ##### STRUCT EvaXdrContext ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ENUM GskXdrFundamental ##### -->
+<!-- ##### ENUM EvaXdrFundamental ##### -->
 <para>
 
 </para>
@@ -2644,7 +2644,7 @@ possibly in a thread-pool.
 @EVA_XDR_FUNDAMENTAL_DOUBLE_FLOAT: 
 @EVA_XDR_FUNDAMENTAL_QUADRUPLE_FLOAT: 
 
-<!-- ##### STRUCT GskXdrType ##### -->
+<!-- ##### STRUCT EvaXdrType ##### -->
 <para>
 
 </para>
@@ -2653,7 +2653,7 @@ possibly in a thread-pool.
 @category: 
 @is_optional: 
 
-<!-- ##### ENUM GskXdrTypeCategory ##### -->
+<!-- ##### ENUM EvaXdrTypeCategory ##### -->
 <para>
 
 </para>
@@ -2669,13 +2669,13 @@ possibly in a thread-pool.
 @EVA_XDR_TYPE_CATEGORY_ARRAY_VARIABLE: 
 @EVA_XDR_TYPE_CATEGORY_STRING: 
 
-<!-- ##### STRUCT GskXmlConfig ##### -->
+<!-- ##### STRUCT EvaXmlConfig ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### USER_FUNCTION GskXmlEndElementHandler ##### -->
+<!-- ##### USER_FUNCTION EvaXmlEndElementHandler ##### -->
 <para>
 
 </para>
@@ -2683,7 +2683,7 @@ possibly in a thread-pool.
 @user_data: 
 @name: 
 
-<!-- ##### USER_FUNCTION GskXmlErrorFunc ##### -->
+<!-- ##### USER_FUNCTION EvaXmlErrorFunc ##### -->
 <para>
 
 </para>
@@ -2693,7 +2693,7 @@ possibly in a thread-pool.
 @message: 
 @data: 
 
-<!-- ##### USER_FUNCTION GskXmlGetType ##### -->
+<!-- ##### USER_FUNCTION EvaXmlGetType ##### -->
 <para>
 
 </para>
@@ -2702,26 +2702,26 @@ possibly in a thread-pool.
 @user_data: 
 @Returns: 
 
-<!-- ##### STRUCT GskXmlNamespace ##### -->
+<!-- ##### STRUCT EvaXmlNamespace ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskXmlParser ##### -->
+<!-- ##### STRUCT EvaXmlParser ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ENUM GskXmlParserFlags ##### -->
+<!-- ##### ENUM EvaXmlParserFlags ##### -->
 <para>
 
 </para>
 
 @EVA_XML_PARSER_READ_COMMENTS: 
 
-<!-- ##### ENUM GskXmlParserStatus ##### -->
+<!-- ##### ENUM EvaXmlParserStatus ##### -->
 <para>
 
 </para>
@@ -2734,13 +2734,13 @@ possibly in a thread-pool.
 @EVA_XML_PARSER_EOF: 
 @EVA_XML_PARSER_INTERNAL: 
 
-<!-- ##### STRUCT GskXmlProcessor ##### -->
+<!-- ##### STRUCT EvaXmlProcessor ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### USER_FUNCTION GskXmlStartElementHandler ##### -->
+<!-- ##### USER_FUNCTION EvaXmlStartElementHandler ##### -->
 <para>
 
 </para>
@@ -2749,7 +2749,7 @@ possibly in a thread-pool.
 @name: 
 @atts: 
 
-<!-- ##### USER_FUNCTION GskXmlTextHandler ##### -->
+<!-- ##### USER_FUNCTION EvaXmlTextHandler ##### -->
 <para>
 
 </para>
@@ -2758,13 +2758,13 @@ possibly in a thread-pool.
 @content: 
 @content_length: 
 
-<!-- ##### UNION GskXmlToken ##### -->
+<!-- ##### UNION EvaXmlToken ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskXmlTokenAny ##### -->
+<!-- ##### STRUCT EvaXmlTokenAny ##### -->
 <para>
 
 </para>
@@ -2774,7 +2774,7 @@ possibly in a thread-pool.
 @filename: 
 @lineno: 
 
-<!-- ##### STRUCT GskXmlTokenClose ##### -->
+<!-- ##### STRUCT EvaXmlTokenClose ##### -->
 <para>
 
 </para>
@@ -2785,7 +2785,7 @@ possibly in a thread-pool.
 @lineno: 
 @tag_name: 
 
-<!-- ##### STRUCT GskXmlTokenComment ##### -->
+<!-- ##### STRUCT EvaXmlTokenComment ##### -->
 <para>
 
 </para>
@@ -2796,7 +2796,7 @@ possibly in a thread-pool.
 @lineno: 
 @comment: 
 
-<!-- ##### STRUCT GskXmlTokenOpen ##### -->
+<!-- ##### STRUCT EvaXmlTokenOpen ##### -->
 <para>
 
 </para>
@@ -2809,7 +2809,7 @@ possibly in a thread-pool.
 @num_param: 
 @params: 
 
-<!-- ##### STRUCT GskXmlTokenText ##### -->
+<!-- ##### STRUCT EvaXmlTokenText ##### -->
 <para>
 
 </para>
@@ -2820,7 +2820,7 @@ possibly in a thread-pool.
 @lineno: 
 @text: 
 
-<!-- ##### USER_FUNCTION GskXmlTypeTestFunc ##### -->
+<!-- ##### USER_FUNCTION EvaXmlTypeTestFunc ##### -->
 <para>
 
 </para>
@@ -2829,7 +2829,7 @@ possibly in a thread-pool.
 @user_data: 
 @Returns: 
 
-<!-- ##### USER_FUNCTION GskXmlValueCallback ##### -->
+<!-- ##### USER_FUNCTION EvaXmlValueCallback ##### -->
 <para>
 
 </para>
@@ -2837,13 +2837,13 @@ possibly in a thread-pool.
 @value: 
 @user_data: 
 
-<!-- ##### STRUCT GskXmlrpcIncoming ##### -->
+<!-- ##### STRUCT EvaXmlrpcIncoming ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskXmlrpcOutgoing ##### -->
+<!-- ##### STRUCT EvaXmlrpcOutgoing ##### -->
 <para>
 
 </para>
@@ -3053,7 +3053,7 @@ possibly in a thread-pool.
 </para>
 
 
-<!-- ##### ENUM _GskInitFlags ##### -->
+<!-- ##### ENUM _EvaInitFlags ##### -->
 <para>
 
 </para>
@@ -4397,7 +4397,7 @@ to any address.
 </para>
 
 @port: the port on the local host the address should refer to.
-@Returns: the newly allocated #GskSocketAddressIpv4.
+@Returns: the newly allocated #EvaSocketAddressIpv4.
 
 <!-- ##### FUNCTION eva_socket_address_ipv4_get_type ##### -->
 <para>
@@ -4413,7 +4413,7 @@ on the given port.
 </para>
 
 @port: the port on the local host the address should refer to.
-@Returns: the newly allocated #GskSocketAddressIpv4.
+@Returns: the newly allocated #EvaSocketAddressIpv4.
 
 <!-- ##### FUNCTION eva_socket_address_ipv6_get_type ##### -->
 <para>

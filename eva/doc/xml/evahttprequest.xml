@@ -1,44 +1,44 @@
-<refentry id="GskHttpRequest">
+<refentry id="EvaHttpRequest">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskHttpRequest.top_of_page">GskHttpRequest</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaHttpRequest.top_of_page">EvaHttpRequest</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskHttpRequest</refname>
+<refname>EvaHttpRequest</refname>
 <refpurpose>An HTTP header that is sent from client to server.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskHttpRequest.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaHttpRequest.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskHttpRequest-struct">GskHttpRequest</link>;
-<link linkend="void">void</link>                <link linkend="eva-http-request-add-cookie">eva_http_request_add_cookie</link>         (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
-                                                         <link linkend="GskHttpCookie">GskHttpCookie</link> *cookie);
-<link linkend="void">void</link>                <link linkend="eva-http-request-remove-cookie">eva_http_request_remove_cookie</link>      (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
-                                                         <link linkend="GskHttpCookie">GskHttpCookie</link> *cookie);
-<link linkend="GskHttpCookie">GskHttpCookie</link> *     <link linkend="eva-http-request-find-cookie">eva_http_request_find_cookie</link>        (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
+                    <link linkend="EvaHttpRequest-struct">EvaHttpRequest</link>;
+<link linkend="void">void</link>                <link linkend="eva-http-request-add-cookie">eva_http_request_add_cookie</link>         (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
+                                                         <link linkend="EvaHttpCookie">EvaHttpCookie</link> *cookie);
+<link linkend="void">void</link>                <link linkend="eva-http-request-remove-cookie">eva_http_request_remove_cookie</link>      (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
+                                                         <link linkend="EvaHttpCookie">EvaHttpCookie</link> *cookie);
+<link linkend="EvaHttpCookie">EvaHttpCookie</link> *     <link linkend="eva-http-request-find-cookie">eva_http_request_find_cookie</link>        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
                                                          const <link linkend="char">char</link> *key);
-<link linkend="void">void</link>                <link linkend="eva-http-request-add-charsets">eva_http_request_add_charsets</link>       (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
-                                                         <link linkend="GskHttpCharSet">GskHttpCharSet</link> *char_sets);
-<link linkend="void">void</link>                <link linkend="eva-http-request-clear-charsets">eva_http_request_clear_charsets</link>     (<link linkend="GskHttpRequest">GskHttpRequest</link> *header);
+<link linkend="void">void</link>                <link linkend="eva-http-request-add-charsets">eva_http_request_add_charsets</link>       (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
+                                                         <link linkend="EvaHttpCharSet">EvaHttpCharSet</link> *char_sets);
+<link linkend="void">void</link>                <link linkend="eva-http-request-clear-charsets">eva_http_request_clear_charsets</link>     (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header);
 <link linkend="void">void</link>                <link linkend="eva-http-request-add-content-encodings">eva_http_request_add_content_encodings</link>
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
-                                                         <link linkend="GskHttpContentEncodingSet">GskHttpContentEncodingSet</link> *set);
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
+                                                         <link linkend="EvaHttpContentEncodingSet">EvaHttpContentEncodingSet</link> *set);
 <link linkend="void">void</link>                <link linkend="eva-http-request-clear-content-encodings">eva_http_request_clear_content_encodings</link>
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *header);
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header);
 <link linkend="void">void</link>                <link linkend="eva-http-request-add-transfer-encodings">eva_http_request_add_transfer_encodings</link>
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
-                                                         <link linkend="GskHttpTransferEncodingSet">GskHttpTransferEncodingSet</link> *set);
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
+                                                         <link linkend="EvaHttpTransferEncodingSet">EvaHttpTransferEncodingSet</link> *set);
 <link linkend="void">void</link>                <link linkend="eva-http-request-clear-transfer-encodings">eva_http_request_clear_transfer_encodings</link>
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *header);
-<link linkend="void">void</link>                <link linkend="eva-http-request-add-media">eva_http_request_add_media</link>          (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
-                                                         <link linkend="GskHttpMediaTypeSet">GskHttpMediaTypeSet</link> *set);
-<link linkend="void">void</link>                <link linkend="eva-http-request-clear-media">eva_http_request_clear_media</link>        (<link linkend="GskHttpRequest">GskHttpRequest</link> *header);
-<link linkend="GskHttpRequest">GskHttpRequest</link> *    <link linkend="eva-http-request-new-blank">eva_http_request_new_blank</link>          (void);
-<link linkend="GskHttpRequest">GskHttpRequest</link> *    <link linkend="eva-http-request-new">eva_http_request_new</link>                (<link linkend="GskHttpVerb">GskHttpVerb</link> verb,
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header);
+<link linkend="void">void</link>                <link linkend="eva-http-request-add-media">eva_http_request_add_media</link>          (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
+                                                         <link linkend="EvaHttpMediaTypeSet">EvaHttpMediaTypeSet</link> *set);
+<link linkend="void">void</link>                <link linkend="eva-http-request-clear-media">eva_http_request_clear_media</link>        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header);
+<link linkend="EvaHttpRequest">EvaHttpRequest</link> *    <link linkend="eva-http-request-new-blank">eva_http_request_new_blank</link>          (void);
+<link linkend="EvaHttpRequest">EvaHttpRequest</link> *    <link linkend="eva-http-request-new">eva_http_request_new</link>                (<link linkend="EvaHttpVerb">EvaHttpVerb</link> verb,
                                                          const <link linkend="char">char</link> *path);
 #define             <link linkend="eva-http-request-set-verb">eva_http_request_set_verb</link>           (request, verb)
 #define             <link linkend="eva-http-request-get-verb">eva_http_request_get_verb</link>           (request)
@@ -46,26 +46,26 @@
 #define             <link linkend="eva-http-request-set-from">eva_http_request_set_from</link>           (request, from)
 #define             <link linkend="eva-http-request-set-if-modified-since">eva_http_request_set_if_modified_since</link>(request, t)
 #define             <link linkend="eva-http-request-get-if-modified-since">eva_http_request_get_if_modified_since</link>(request)
-<link linkend="void">void</link>                <link linkend="eva-http-request-set-authorization">eva_http_request_set_authorization</link>  (<link linkend="GskHttpRequest">GskHttpRequest</link> *request,
+<link linkend="void">void</link>                <link linkend="eva-http-request-set-authorization">eva_http_request_set_authorization</link>  (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
                                                          <link linkend="gboolean">gboolean</link> is_proxy_auth,
-                                                         <link linkend="GskHttpAuthorization">GskHttpAuthorization</link> *auth);
+                                                         <link linkend="EvaHttpAuthorization">EvaHttpAuthorization</link> *auth);
 #define             <link linkend="eva-http-request-set-host">eva_http_request_set_host</link>           (request, host)
 #define             <link linkend="eva-http-request-set-user-agent">eva_http_request_set_user_agent</link>     (request, user_agent)
 #define             <link linkend="eva-http-request-peek-user-agent">eva_http_request_peek_user_agent</link>    (request)
-<link linkend="GskHttpAuthorization">GskHttpAuthorization</link> * <link linkend="eva-http-request-peek-authorization">eva_http_request_peek_authorization</link>
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *request,
+<link linkend="EvaHttpAuthorization">EvaHttpAuthorization</link> * <link linkend="eva-http-request-peek-authorization">eva_http_request_peek_authorization</link>
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
                                                          <link linkend="gboolean">gboolean</link> is_proxy_auth);
 <link linkend="void">void</link>                <link linkend="eva-http-request-cache-directive-free">eva_http_request_cache_directive_free</link>
-                                                        (<link linkend="GskHttpRequestCacheDirective">GskHttpRequestCacheDirective</link> *directive);
-<link linkend="GskHttpRequestCacheDirective">GskHttpRequestCacheDirective</link> * <link linkend="eva-http-request-cache-directive-new">eva_http_request_cache_directive_new</link>
+                                                        (<link linkend="EvaHttpRequestCacheDirective">EvaHttpRequestCacheDirective</link> *directive);
+<link linkend="EvaHttpRequestCacheDirective">EvaHttpRequestCacheDirective</link> * <link linkend="eva-http-request-cache-directive-new">eva_http_request_cache_directive_new</link>
                                                         (void);
-<link linkend="GskHttpRequestFirstLineStatus">GskHttpRequestFirstLineStatus</link>  <link linkend="eva-http-request-parse-first-line">eva_http_request_parse_first_line</link>
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *request,
+<link linkend="EvaHttpRequestFirstLineStatus">EvaHttpRequestFirstLineStatus</link>  <link linkend="eva-http-request-parse-first-line">eva_http_request_parse_first_line</link>
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
                                                          const <link linkend="char">char</link> *line,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="void">void</link>                <link linkend="eva-http-request-set-cache-control">eva_http_request_set_cache_control</link>  (<link linkend="GskHttpRequest">GskHttpRequest</link> *request,
-                                                         <link linkend="GskHttpRequestCacheDirective">GskHttpRequestCacheDirective</link> *directive);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-http-request-has-content-body">eva_http_request_has_content_body</link>   (<link linkend="GskHttpRequest">GskHttpRequest</link> *request);
+<link linkend="void">void</link>                <link linkend="eva-http-request-set-cache-control">eva_http_request_set_cache_control</link>  (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
+                                                         <link linkend="EvaHttpRequestCacheDirective">EvaHttpRequestCacheDirective</link> *directive);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-http-request-has-content-body">eva_http_request_has_content_body</link>   (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request);
 <link linkend="char">char</link> **             <link linkend="eva-http-parse-cgi-query-string">eva_http_parse_cgi_query_string</link>     (const <link linkend="char">char</link> *query_string,
                                                          <link linkend="GError">GError</link> **error);
 <link linkend="GHashTable">GHashTable</link> *        <link linkend="eva-http-request-parse-cgi-query-string">eva_http_request_parse_cgi_query_string</link>
@@ -73,12 +73,12 @@
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskHttpRequest.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaHttpRequest.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskHttpHeader">GskHttpHeader</link>
-         +----GskHttpRequest
+   +----<link linkend="EvaHttpHeader">EvaHttpHeader</link>
+         +----EvaHttpRequest
 </synopsis>
 </refsect1>
 
@@ -86,22 +86,22 @@
 
 
 
-<refsect1 id="GskHttpRequest.properties" role="properties">
+<refsect1 id="EvaHttpRequest.properties" role="properties">
 <title role="properties.title">Properties</title>
 <synopsis>
-  &quot;<link linkend="GskHttpRequest--host">host</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write
-  &quot;<link linkend="GskHttpRequest--if-modified-since">if-modified-since</link>&quot;        <link linkend="glong">glong</link>                 : Read / Write
-  &quot;<link linkend="GskHttpRequest--max-forwards">max-forwards</link>&quot;             <link linkend="glong">glong</link>                 : Read / Write
-  &quot;<link linkend="GskHttpRequest--path">path</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write
-  &quot;<link linkend="GskHttpRequest--referrer">referrer</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write
-  &quot;<link linkend="GskHttpRequest--user-agent">user-agent</link>&quot;               <link linkend="gchar">gchar</link>*                : Read / Write
-  &quot;<link linkend="GskHttpRequest--verb">verb</link>&quot;                     <link linkend="GskHttpVerb">GskHttpVerb</link>           : Read / Write
+  &quot;<link linkend="EvaHttpRequest--host">host</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaHttpRequest--if-modified-since">if-modified-since</link>&quot;        <link linkend="glong">glong</link>                 : Read / Write
+  &quot;<link linkend="EvaHttpRequest--max-forwards">max-forwards</link>&quot;             <link linkend="glong">glong</link>                 : Read / Write
+  &quot;<link linkend="EvaHttpRequest--path">path</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaHttpRequest--referrer">referrer</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaHttpRequest--user-agent">user-agent</link>&quot;               <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaHttpRequest--verb">verb</link>&quot;                     <link linkend="EvaHttpVerb">EvaHttpVerb</link>           : Read / Write
 </synopsis>
 </refsect1>
 
 
 
-<refsect1 id="GskHttpRequest.description" role="desc">
+<refsect1 id="EvaHttpRequest.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 A request is the first of two messages in an HTTP transaction.
@@ -110,24 +110,24 @@ and the desired path, and other assorted flags.
 </para>
 </refsect1>
 
-<refsect1 id="GskHttpRequest.details" role="details">
+<refsect1 id="EvaHttpRequest.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskHttpRequest-struct" role="struct">
-<title>GskHttpRequest</title>
-<indexterm zone="GskHttpRequest-struct"><primary sortas="GskHttpRequest">GskHttpRequest</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaHttpRequest-struct" role="struct">
+<title>EvaHttpRequest</title>
+<indexterm zone="EvaHttpRequest-struct"><primary sortas="EvaHttpRequest">EvaHttpRequest</primary></indexterm><programlisting>typedef struct {
   /* the command: GET, PUT, POST, HEAD, etc */
-  GskHttpVerb                   verb;
+  EvaHttpVerb                   verb;
 
   /* Note that HTTP/1.1 servers must accept the entire
    * URL being included in `path'! (maybe including http:// ... */
   char                         *path;
 
-  GskHttpCharSet           *accept_charsets;              /* Accept-CharSet */
-  GskHttpContentEncodingSet*accept_content_encodings;     /* Accept-Encoding */
-  GskHttpTransferEncodingSet*accept_transfer_encodings;   /* TE */
-  GskHttpMediaTypeSet      *accept_media_types;           /* Accept */
-  GskHttpAuthorization     *authorization;                /* Authorization */
-  GskHttpLanguageSet       *accept_languages;             /* Accept-Languages */
+  EvaHttpCharSet           *accept_charsets;              /* Accept-CharSet */
+  EvaHttpContentEncodingSet*accept_content_encodings;     /* Accept-Encoding */
+  EvaHttpTransferEncodingSet*accept_transfer_encodings;   /* TE */
+  EvaHttpMediaTypeSet      *accept_media_types;           /* Accept */
+  EvaHttpAuthorization     *authorization;                /* Authorization */
+  EvaHttpLanguageSet       *accept_languages;             /* Accept-Languages */
   char                     *host;                         /* Host */
 
   gboolean                  had_if_match;
@@ -142,7 +142,7 @@ and the desired path, and other assorted flags.
   /* List of Cookie: headers. */
   GSList                   *cookies;
 
-  GskHttpAuthorization     *proxy_authorization;
+  EvaHttpAuthorization     *proxy_authorization;
 
   int                       keep_alive_seconds;   /* -1 if not used */
 
@@ -159,14 +159,14 @@ and the desired path, and other assorted flags.
   char                     *ua_cpu;
   char                     *ua_language;
 
-  GskHttpRequestCacheDirective *cache_control;        /* Cache-Control */
-} GskHttpRequest;
+  EvaHttpRequestCacheDirective *cache_control;        /* Cache-Control */
+} EvaHttpRequest;
 </programlisting>
 <para>
 An instance of a HTTP request header.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskHttpVerb">GskHttpVerb</link>&#160;<structfield>verb</structfield>;</term>
+<term><link linkend="EvaHttpVerb">EvaHttpVerb</link>&#160;<structfield>verb</structfield>;</term>
 <listitem><simpara>type of request (the intended action).
 </simpara></listitem>
 </varlistentry>
@@ -176,32 +176,32 @@ An instance of a HTTP request header.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskHttpCharSet">GskHttpCharSet</link>&#160;*<structfield>accept_charsets</structfield>;</term>
+<term><link linkend="EvaHttpCharSet">EvaHttpCharSet</link>&#160;*<structfield>accept_charsets</structfield>;</term>
 <listitem><simpara>list of character-sets acceptable to the client.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskHttpContentEncodingSet">GskHttpContentEncodingSet</link>&#160;*<structfield>accept_content_encodings</structfield>;</term>
+<term><link linkend="EvaHttpContentEncodingSet">EvaHttpContentEncodingSet</link>&#160;*<structfield>accept_content_encodings</structfield>;</term>
 <listitem><simpara>list of content-encodings acceptable to the client.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskHttpTransferEncodingSet">GskHttpTransferEncodingSet</link>&#160;*<structfield>accept_transfer_encodings</structfield>;</term>
+<term><link linkend="EvaHttpTransferEncodingSet">EvaHttpTransferEncodingSet</link>&#160;*<structfield>accept_transfer_encodings</structfield>;</term>
 <listitem><simpara>list of transfer-encodings acceptable to the client.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskHttpMediaTypeSet">GskHttpMediaTypeSet</link>&#160;*<structfield>accept_media_types</structfield>;</term>
+<term><link linkend="EvaHttpMediaTypeSet">EvaHttpMediaTypeSet</link>&#160;*<structfield>accept_media_types</structfield>;</term>
 <listitem><simpara>list of media-types acceptable to the client.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskHttpAuthorization">GskHttpAuthorization</link>&#160;*<structfield>authorization</structfield>;</term>
+<term><link linkend="EvaHttpAuthorization">EvaHttpAuthorization</link>&#160;*<structfield>authorization</structfield>;</term>
 <listitem><simpara>optional authorization information.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskHttpLanguageSet">GskHttpLanguageSet</link>&#160;*<structfield>accept_languages</structfield>;</term>
+<term><link linkend="EvaHttpLanguageSet">EvaHttpLanguageSet</link>&#160;*<structfield>accept_languages</structfield>;</term>
 <listitem><simpara>
 </simpara></listitem>
 </varlistentry>
@@ -247,7 +247,7 @@ virtual hosting.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskHttpAuthorization">GskHttpAuthorization</link>&#160;*<structfield>proxy_authorization</structfield>;</term>
+<term><link linkend="EvaHttpAuthorization">EvaHttpAuthorization</link>&#160;*<structfield>proxy_authorization</structfield>;</term>
 <listitem><simpara>
 </simpara></listitem>
 </varlistentry>
@@ -287,15 +287,15 @@ virtual hosting.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskHttpRequestCacheDirective">GskHttpRequestCacheDirective</link>&#160;*<structfield>cache_control</structfield>;</term>
+<term><link linkend="EvaHttpRequestCacheDirective">EvaHttpRequestCacheDirective</link>&#160;*<structfield>cache_control</structfield>;</term>
 <listitem><simpara>
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-add-cookie" role="function">
 <title>eva_http_request_add_cookie ()</title>
-<indexterm zone="eva-http-request-add-cookie"><primary sortas="eva_http_request_add_cookie">eva_http_request_add_cookie</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_add_cookie         (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
-                                                         <link linkend="GskHttpCookie">GskHttpCookie</link> *cookie);</programlisting>
+<indexterm zone="eva-http-request-add-cookie"><primary sortas="eva_http_request_add_cookie">eva_http_request_add_cookie</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_add_cookie         (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
+                                                         <link linkend="EvaHttpCookie">EvaHttpCookie</link> *cookie);</programlisting>
 <para>
 Add a Cookie header line to a request.
 </para>
@@ -322,8 +322,8 @@ It will be freed when the request is freed.
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-remove-cookie" role="function">
 <title>eva_http_request_remove_cookie ()</title>
-<indexterm zone="eva-http-request-remove-cookie"><primary sortas="eva_http_request_remove_cookie">eva_http_request_remove_cookie</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_remove_cookie      (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
-                                                         <link linkend="GskHttpCookie">GskHttpCookie</link> *cookie);</programlisting>
+<indexterm zone="eva-http-request-remove-cookie"><primary sortas="eva_http_request_remove_cookie">eva_http_request_remove_cookie</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_remove_cookie      (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
+                                                         <link linkend="EvaHttpCookie">EvaHttpCookie</link> *cookie);</programlisting>
 <para>
 Remove a cookie from the request's list and delete it.</para>
 <para>
@@ -337,7 +337,7 @@ Remove a cookie from the request's list and delete it.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-find-cookie" role="function">
 <title>eva_http_request_find_cookie ()</title>
-<indexterm zone="eva-http-request-find-cookie"><primary sortas="eva_http_request_find_cookie">eva_http_request_find_cookie</primary></indexterm><programlisting><link linkend="GskHttpCookie">GskHttpCookie</link> *     eva_http_request_find_cookie        (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
+<indexterm zone="eva-http-request-find-cookie"><primary sortas="eva_http_request_find_cookie">eva_http_request_find_cookie</primary></indexterm><programlisting><link linkend="EvaHttpCookie">EvaHttpCookie</link> *     eva_http_request_find_cookie        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
                                                          const <link linkend="char">char</link> *key);</programlisting>
 <para>
 Find a cookie provided in the request by key.</para>
@@ -354,8 +354,8 @@ Find a cookie provided in the request by key.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-add-charsets" role="function">
 <title>eva_http_request_add_charsets ()</title>
-<indexterm zone="eva-http-request-add-charsets"><primary sortas="eva_http_request_add_charsets">eva_http_request_add_charsets</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_add_charsets       (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
-                                                         <link linkend="GskHttpCharSet">GskHttpCharSet</link> *char_sets);</programlisting>
+<indexterm zone="eva-http-request-add-charsets"><primary sortas="eva_http_request_add_charsets">eva_http_request_add_charsets</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_add_charsets       (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
+                                                         <link linkend="EvaHttpCharSet">EvaHttpCharSet</link> *char_sets);</programlisting>
 <para>
 Add Accept-CharSet headers to the header.
 The char-sets will be freed when <parameter>header</parameter>
@@ -389,12 +389,12 @@ See RFC 2616, Section 14.2.</para>
 <listitem><simpara> the request to affect.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>char_sets</parameter>&#160;:</term>
-<listitem><simpara> list of a <link linkend="GskHttpCharSet"><type>GskHttpCharSet</type></link>'s to indicate are accepted.
+<listitem><simpara> list of a <link linkend="EvaHttpCharSet"><type>EvaHttpCharSet</type></link>'s to indicate are accepted.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-clear-charsets" role="function">
 <title>eva_http_request_clear_charsets ()</title>
-<indexterm zone="eva-http-request-clear-charsets"><primary sortas="eva_http_request_clear_charsets">eva_http_request_clear_charsets</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_clear_charsets     (<link linkend="GskHttpRequest">GskHttpRequest</link> *header);</programlisting>
+<indexterm zone="eva-http-request-clear-charsets"><primary sortas="eva_http_request_clear_charsets">eva_http_request_clear_charsets</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_clear_charsets     (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header);</programlisting>
 <para>
 Delete all accepted char-sets from the HTTP request.
 </para>
@@ -410,11 +410,11 @@ character set.</para>
 <refsect2 id="eva-http-request-add-content-encodings" role="function">
 <title>eva_http_request_add_content_encodings ()</title>
 <indexterm zone="eva-http-request-add-content-encodings"><primary sortas="eva_http_request_add_content_encodings">eva_http_request_add_content_encodings</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_add_content_encodings
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
-                                                         <link linkend="GskHttpContentEncodingSet">GskHttpContentEncodingSet</link> *set);</programlisting>
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
+                                                         <link linkend="EvaHttpContentEncodingSet">EvaHttpContentEncodingSet</link> *set);</programlisting>
 <para>
 Add Accept-Encoding lines to the header.
-Each GskHttpContentEncodingSet represents a single
+Each EvaHttpContentEncodingSet represents a single
 possible encoding and an optional associated
 quality factor.
 </para>
@@ -436,7 +436,7 @@ See RFC 2616, Section 14.3.</para>
 <listitem><simpara> the request to affect.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>set</parameter>&#160;:</term>
-<listitem><simpara> list of a <link linkend="GskHttpContentEncodingSet"><type>GskHttpContentEncodingSet</type></link>'s to indicate are acceptable.
+<listitem><simpara> list of a <link linkend="EvaHttpContentEncodingSet"><type>EvaHttpContentEncodingSet</type></link>'s to indicate are acceptable.
   The list is taken over by the header;
   you must not free it or use it further.
 </simpara></listitem></varlistentry>
@@ -444,7 +444,7 @@ See RFC 2616, Section 14.3.</para>
 <refsect2 id="eva-http-request-clear-content-encodings" role="function">
 <title>eva_http_request_clear_content_encodings ()</title>
 <indexterm zone="eva-http-request-clear-content-encodings"><primary sortas="eva_http_request_clear_content_encodings">eva_http_request_clear_content_encodings</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_clear_content_encodings
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *header);</programlisting>
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header);</programlisting>
 <para>
 Delete all accepted encodings from the HTTP request.
 </para>
@@ -460,8 +460,8 @@ content encoding.</para>
 <refsect2 id="eva-http-request-add-transfer-encodings" role="function">
 <title>eva_http_request_add_transfer_encodings ()</title>
 <indexterm zone="eva-http-request-add-transfer-encodings"><primary sortas="eva_http_request_add_transfer_encodings">eva_http_request_add_transfer_encodings</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_add_transfer_encodings
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
-                                                         <link linkend="GskHttpTransferEncodingSet">GskHttpTransferEncodingSet</link> *set);</programlisting>
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
+                                                         <link linkend="EvaHttpTransferEncodingSet">EvaHttpTransferEncodingSet</link> *set);</programlisting>
 <para>
 The rules for conduct are the same as for character set,
 with the exception that the defaults are
@@ -482,7 +482,7 @@ See RFC 2616, Section 14.39.</para>
 <listitem><simpara> the request to affect.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>set</parameter>&#160;:</term>
-<listitem><simpara> list of a <link linkend="GskHttpTransferEncodingSet"><type>GskHttpTransferEncodingSet</type></link>'s to indicate are acceptable.
+<listitem><simpara> list of a <link linkend="EvaHttpTransferEncodingSet"><type>EvaHttpTransferEncodingSet</type></link>'s to indicate are acceptable.
   The list is taken over by the header;
   you must not free it or use it further.
 </simpara></listitem></varlistentry>
@@ -490,7 +490,7 @@ See RFC 2616, Section 14.39.</para>
 <refsect2 id="eva-http-request-clear-transfer-encodings" role="function">
 <title>eva_http_request_clear_transfer_encodings ()</title>
 <indexterm zone="eva-http-request-clear-transfer-encodings"><primary sortas="eva_http_request_clear_transfer_encodings">eva_http_request_clear_transfer_encodings</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_clear_transfer_encodings
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *header);</programlisting>
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header);</programlisting>
 <para>
 Delete all accepted transfer encodings from the HTTP request.
 </para>
@@ -505,8 +505,8 @@ no encoding for HTTP 1.0 clients and also 'chunked' for HTTP 1.1 clients.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-add-media" role="function">
 <title>eva_http_request_add_media ()</title>
-<indexterm zone="eva-http-request-add-media"><primary sortas="eva_http_request_add_media">eva_http_request_add_media</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_add_media          (<link linkend="GskHttpRequest">GskHttpRequest</link> *header,
-                                                         <link linkend="GskHttpMediaTypeSet">GskHttpMediaTypeSet</link> *set);</programlisting>
+<indexterm zone="eva-http-request-add-media"><primary sortas="eva_http_request_add_media">eva_http_request_add_media</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_add_media          (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header,
+                                                         <link linkend="EvaHttpMediaTypeSet">EvaHttpMediaTypeSet</link> *set);</programlisting>
 <para>
 Add Accept: headers to the header.
 The media-type-sets will be freed when <parameter>header</parameter>
@@ -534,12 +534,12 @@ See RFC 2616, Section 14.1.</para>
 <listitem><simpara> the request to affect.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>set</parameter>&#160;:</term>
-<listitem><simpara> list of a <link linkend="GskHttpMediaTypeSet"><type>GskHttpMediaTypeSet</type></link>'s to indicate are acceptable.
+<listitem><simpara> list of a <link linkend="EvaHttpMediaTypeSet"><type>EvaHttpMediaTypeSet</type></link>'s to indicate are acceptable.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-clear-media" role="function">
 <title>eva_http_request_clear_media ()</title>
-<indexterm zone="eva-http-request-clear-media"><primary sortas="eva_http_request_clear_media">eva_http_request_clear_media</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_clear_media        (<link linkend="GskHttpRequest">GskHttpRequest</link> *header);</programlisting>
+<indexterm zone="eva-http-request-clear-media"><primary sortas="eva_http_request_clear_media">eva_http_request_clear_media</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_clear_media        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *header);</programlisting>
 <para>
 Delete all accepted media-type-sets from the HTTP request.</para>
 <para>
@@ -550,7 +550,7 @@ Delete all accepted media-type-sets from the HTTP request.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-new-blank" role="function">
 <title>eva_http_request_new_blank ()</title>
-<indexterm zone="eva-http-request-new-blank"><primary sortas="eva_http_request_new_blank">eva_http_request_new_blank</primary></indexterm><programlisting><link linkend="GskHttpRequest">GskHttpRequest</link> *    eva_http_request_new_blank          (void);</programlisting>
+<indexterm zone="eva-http-request-new-blank"><primary sortas="eva_http_request_new_blank">eva_http_request_new_blank</primary></indexterm><programlisting><link linkend="EvaHttpRequest">EvaHttpRequest</link> *    eva_http_request_new_blank          (void);</programlisting>
 <para>
 Create a new empty HTTP request.</para>
 <para>
@@ -560,7 +560,7 @@ Create a new empty HTTP request.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-new" role="function">
 <title>eva_http_request_new ()</title>
-<indexterm zone="eva-http-request-new"><primary sortas="eva_http_request_new">eva_http_request_new</primary></indexterm><programlisting><link linkend="GskHttpRequest">GskHttpRequest</link> *    eva_http_request_new                (<link linkend="GskHttpVerb">GskHttpVerb</link> verb,
+<indexterm zone="eva-http-request-new"><primary sortas="eva_http_request_new">eva_http_request_new</primary></indexterm><programlisting><link linkend="EvaHttpRequest">EvaHttpRequest</link> *    eva_http_request_new                (<link linkend="EvaHttpVerb">EvaHttpVerb</link> verb,
                                                          const <link linkend="char">char</link> *path);</programlisting>
 <para>
 Create a new simple HTTP request.</para>
@@ -581,7 +581,7 @@ Create a new simple HTTP request.</para>
 <para>
 The verb is EVA's name for the type of action being requested.
 It is the very first word of the HTTP transaction.
-See <link linkend="GskHttpVerb"><type>GskHttpVerb</type></link> for a list.
+See <link linkend="EvaHttpVerb"><type>EvaHttpVerb</type></link> for a list.
 </para><variablelist role="params">
 <varlistentry><term><parameter>request</parameter>&#160;:</term>
 <listitem><simpara>the request to affect.
@@ -595,7 +595,7 @@ See <link linkend="GskHttpVerb"><type>GskHttpVerb</type></link> for a list.
 <indexterm zone="eva-http-request-get-verb"><primary sortas="eva_http_request_get_verb">eva_http_request_get_verb</primary></indexterm><programlisting>#define             eva_http_request_get_verb(request)</programlisting>
 <para>
 Get the type of action being requested.
-See <link linkend="GskHttpVerb"><type>GskHttpVerb</type></link> for a list.
+See <link linkend="EvaHttpVerb"><type>EvaHttpVerb</type></link> for a list.
 </para>
 <para>
 Every HTTP server should know GET and HEAD requested;
@@ -667,9 +667,9 @@ If this returns (time_t)-1 then there is no If-Modified-Since header.
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-set-authorization" role="function">
 <title>eva_http_request_set_authorization ()</title>
-<indexterm zone="eva-http-request-set-authorization"><primary sortas="eva_http_request_set_authorization">eva_http_request_set_authorization</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_set_authorization  (<link linkend="GskHttpRequest">GskHttpRequest</link> *request,
+<indexterm zone="eva-http-request-set-authorization"><primary sortas="eva_http_request_set_authorization">eva_http_request_set_authorization</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_set_authorization  (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
                                                          <link linkend="gboolean">gboolean</link> is_proxy_auth,
-                                                         <link linkend="GskHttpAuthorization">GskHttpAuthorization</link> *auth);</programlisting>
+                                                         <link linkend="EvaHttpAuthorization">EvaHttpAuthorization</link> *auth);</programlisting>
 <para>
 Set the authorization for this request.
 This is like a key to get access to certain entities.
@@ -726,8 +726,8 @@ Set the Host: header for the HTTP request.
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-peek-authorization" role="function">
 <title>eva_http_request_peek_authorization ()</title>
-<indexterm zone="eva-http-request-peek-authorization"><primary sortas="eva_http_request_peek_authorization">eva_http_request_peek_authorization</primary></indexterm><programlisting><link linkend="GskHttpAuthorization">GskHttpAuthorization</link> * eva_http_request_peek_authorization
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *request,
+<indexterm zone="eva-http-request-peek-authorization"><primary sortas="eva_http_request_peek_authorization">eva_http_request_peek_authorization</primary></indexterm><programlisting><link linkend="EvaHttpAuthorization">EvaHttpAuthorization</link> * eva_http_request_peek_authorization
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
                                                          <link linkend="gboolean">gboolean</link> is_proxy_auth);</programlisting>
 <para>
 Get the requested authorization information.</para>
@@ -746,9 +746,9 @@ or normal server authorization.
 <refsect2 id="eva-http-request-cache-directive-free" role="function">
 <title>eva_http_request_cache_directive_free ()</title>
 <indexterm zone="eva-http-request-cache-directive-free"><primary sortas="eva_http_request_cache_directive_free">eva_http_request_cache_directive_free</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_cache_directive_free
-                                                        (<link linkend="GskHttpRequestCacheDirective">GskHttpRequestCacheDirective</link> *directive);</programlisting>
+                                                        (<link linkend="EvaHttpRequestCacheDirective">EvaHttpRequestCacheDirective</link> *directive);</programlisting>
 <para>
-Deallocate a GskHttpRequestCacheDirective.</para>
+Deallocate a EvaHttpRequestCacheDirective.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>directive</parameter>&#160;:</term>
@@ -757,7 +757,7 @@ Deallocate a GskHttpRequestCacheDirective.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-cache-directive-new" role="function">
 <title>eva_http_request_cache_directive_new ()</title>
-<indexterm zone="eva-http-request-cache-directive-new"><primary sortas="eva_http_request_cache_directive_new">eva_http_request_cache_directive_new</primary></indexterm><programlisting><link linkend="GskHttpRequestCacheDirective">GskHttpRequestCacheDirective</link> * eva_http_request_cache_directive_new
+<indexterm zone="eva-http-request-cache-directive-new"><primary sortas="eva_http_request_cache_directive_new">eva_http_request_cache_directive_new</primary></indexterm><programlisting><link linkend="EvaHttpRequestCacheDirective">EvaHttpRequestCacheDirective</link> * eva_http_request_cache_directive_new
                                                         (void);</programlisting>
 <para>
 </para>
@@ -768,8 +768,8 @@ Deallocate a GskHttpRequestCacheDirective.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-parse-first-line" role="function">
 <title>eva_http_request_parse_first_line ()</title>
-<indexterm zone="eva-http-request-parse-first-line"><primary sortas="eva_http_request_parse_first_line">eva_http_request_parse_first_line</primary></indexterm><programlisting><link linkend="GskHttpRequestFirstLineStatus">GskHttpRequestFirstLineStatus</link>  eva_http_request_parse_first_line
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *request,
+<indexterm zone="eva-http-request-parse-first-line"><primary sortas="eva_http_request_parse_first_line">eva_http_request_parse_first_line</primary></indexterm><programlisting><link linkend="EvaHttpRequestFirstLineStatus">EvaHttpRequestFirstLineStatus</link>  eva_http_request_parse_first_line
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
                                                          const <link linkend="char">char</link> *line,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
@@ -790,8 +790,8 @@ Parse the first line of an HTTP request.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-set-cache-control" role="function">
 <title>eva_http_request_set_cache_control ()</title>
-<indexterm zone="eva-http-request-set-cache-control"><primary sortas="eva_http_request_set_cache_control">eva_http_request_set_cache_control</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_set_cache_control  (<link linkend="GskHttpRequest">GskHttpRequest</link> *request,
-                                                         <link linkend="GskHttpRequestCacheDirective">GskHttpRequestCacheDirective</link> *directive);</programlisting>
+<indexterm zone="eva-http-request-set-cache-control"><primary sortas="eva_http_request_set_cache_control">eva_http_request_set_cache_control</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_request_set_cache_control  (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
+                                                         <link linkend="EvaHttpRequestCacheDirective">EvaHttpRequestCacheDirective</link> *directive);</programlisting>
 <para>
 Set the cache-control flags in the header.
 Note that <parameter>directive</parameter> will be freed by the HTTP header when
@@ -807,7 +807,7 @@ it is destroyed.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-request-has-content-body" role="function">
 <title>eva_http_request_has_content_body ()</title>
-<indexterm zone="eva-http-request-has-content-body"><primary sortas="eva_http_request_has_content_body">eva_http_request_has_content_body</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_http_request_has_content_body   (<link linkend="GskHttpRequest">GskHttpRequest</link> *request);</programlisting>
+<indexterm zone="eva-http-request-has-content-body"><primary sortas="eva_http_request_has_content_body">eva_http_request_has_content_body</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_http_request_has_content_body   (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request);</programlisting>
 <para>
 Get whether this header should be accompanied by
 a content-body.</para>
@@ -853,46 +853,46 @@ returns: the key-value pairs of CGI data, NULL-terminated.
 </variablelist></refsect2>
 
 </refsect1>
-<refsect1 id="GskHttpRequest.property-details" role="property_details">
+<refsect1 id="EvaHttpRequest.property-details" role="property_details">
 <title role="property_details.title">Property Details</title>
-<refsect2 id="GskHttpRequest--host" role="property"><title>The <literal>&quot;host&quot;</literal> property</title>
-<indexterm zone="GskHttpRequest--host"><primary sortas="GskHttpRequest:host">GskHttpRequest:host</primary></indexterm><programlisting>  &quot;host&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaHttpRequest--host" role="property"><title>The <literal>&quot;host&quot;</literal> property</title>
+<indexterm zone="EvaHttpRequest--host"><primary sortas="EvaHttpRequest:host">EvaHttpRequest:host</primary></indexterm><programlisting>  &quot;host&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>Hostname.</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskHttpRequest--if-modified-since" role="property"><title>The <literal>&quot;if-modified-since&quot;</literal> property</title>
-<indexterm zone="GskHttpRequest--if-modified-since"><primary sortas="GskHttpRequest:if-modified-since">GskHttpRequest:if-modified-since</primary></indexterm><programlisting>  &quot;if-modified-since&quot;        <link linkend="glong">glong</link>                 : Read / Write</programlisting>
+<refsect2 id="EvaHttpRequest--if-modified-since" role="property"><title>The <literal>&quot;if-modified-since&quot;</literal> property</title>
+<indexterm zone="EvaHttpRequest--if-modified-since"><primary sortas="EvaHttpRequest:if-modified-since">EvaHttpRequest:if-modified-since</primary></indexterm><programlisting>  &quot;if-modified-since&quot;        <link linkend="glong">glong</link>                 : Read / Write</programlisting>
 <para>IMS tag.</para><para>Allowed values: &gt;= -1</para>
 <para>Default value: -1</para>
 </refsect2>
-<refsect2 id="GskHttpRequest--max-forwards" role="property"><title>The <literal>&quot;max-forwards&quot;</literal> property</title>
-<indexterm zone="GskHttpRequest--max-forwards"><primary sortas="GskHttpRequest:max-forwards">GskHttpRequest:max-forwards</primary></indexterm><programlisting>  &quot;max-forwards&quot;             <link linkend="glong">glong</link>                 : Read / Write</programlisting>
+<refsect2 id="EvaHttpRequest--max-forwards" role="property"><title>The <literal>&quot;max-forwards&quot;</literal> property</title>
+<indexterm zone="EvaHttpRequest--max-forwards"><primary sortas="EvaHttpRequest:max-forwards">EvaHttpRequest:max-forwards</primary></indexterm><programlisting>  &quot;max-forwards&quot;             <link linkend="glong">glong</link>                 : Read / Write</programlisting>
 <para>IMax-Forwards.</para><para>Allowed values: [-1,32]</para>
 <para>Default value: -1</para>
 </refsect2>
-<refsect2 id="GskHttpRequest--path" role="property"><title>The <literal>&quot;path&quot;</literal> property</title>
-<indexterm zone="GskHttpRequest--path"><primary sortas="GskHttpRequest:path">GskHttpRequest:path</primary></indexterm><programlisting>  &quot;path&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaHttpRequest--path" role="property"><title>The <literal>&quot;path&quot;</literal> property</title>
+<indexterm zone="EvaHttpRequest--path"><primary sortas="EvaHttpRequest:path">EvaHttpRequest:path</primary></indexterm><programlisting>  &quot;path&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>Path.</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskHttpRequest--referrer" role="property"><title>The <literal>&quot;referrer&quot;</literal> property</title>
-<indexterm zone="GskHttpRequest--referrer"><primary sortas="GskHttpRequest:referrer">GskHttpRequest:referrer</primary></indexterm><programlisting>  &quot;referrer&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaHttpRequest--referrer" role="property"><title>The <literal>&quot;referrer&quot;</literal> property</title>
+<indexterm zone="EvaHttpRequest--referrer"><primary sortas="EvaHttpRequest:referrer">EvaHttpRequest:referrer</primary></indexterm><programlisting>  &quot;referrer&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>Referrer.</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskHttpRequest--user-agent" role="property"><title>The <literal>&quot;user-agent&quot;</literal> property</title>
-<indexterm zone="GskHttpRequest--user-agent"><primary sortas="GskHttpRequest:user-agent">GskHttpRequest:user-agent</primary></indexterm><programlisting>  &quot;user-agent&quot;               <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaHttpRequest--user-agent" role="property"><title>The <literal>&quot;user-agent&quot;</literal> property</title>
+<indexterm zone="EvaHttpRequest--user-agent"><primary sortas="EvaHttpRequest:user-agent">EvaHttpRequest:user-agent</primary></indexterm><programlisting>  &quot;user-agent&quot;               <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>User Agent.</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskHttpRequest--verb" role="property"><title>The <literal>&quot;verb&quot;</literal> property</title>
-<indexterm zone="GskHttpRequest--verb"><primary sortas="GskHttpRequest:verb">GskHttpRequest:verb</primary></indexterm><programlisting>  &quot;verb&quot;                     <link linkend="GskHttpVerb">GskHttpVerb</link>           : Read / Write</programlisting>
+<refsect2 id="EvaHttpRequest--verb" role="property"><title>The <literal>&quot;verb&quot;</literal> property</title>
+<indexterm zone="EvaHttpRequest--verb"><primary sortas="EvaHttpRequest:verb">EvaHttpRequest:verb</primary></indexterm><programlisting>  &quot;verb&quot;                     <link linkend="EvaHttpVerb">EvaHttpVerb</link>           : Read / Write</programlisting>
 <para>verb.</para><para>Default value: EVA_HTTP_VERB_GET</para>
 </refsect2>
 </refsect1>
 
 
 
-<refsect1 id="GskHttpRequest.see-also">
+<refsect1 id="EvaHttpRequest.see-also">
 <title>See Also</title>
 <para>
-GskHttpHeader, GskHttpResponse
+EvaHttpHeader, EvaHttpResponse
 </para>
 </refsect1>
 

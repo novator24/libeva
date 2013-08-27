@@ -1,26 +1,26 @@
-<refentry id="eva-GskMimeMultipartEncoder">
+<refentry id="eva-EvaMimeMultipartEncoder">
 <refmeta>
-<refentrytitle role="top_of_page" id="eva-GskMimeMultipartEncoder.top_of_page">GskMimeMultipartEncoder</refentrytitle>
+<refentrytitle role="top_of_page" id="eva-EvaMimeMultipartEncoder.top_of_page">EvaMimeMultipartEncoder</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskMimeMultipartEncoder</refname>
+<refname>EvaMimeMultipartEncoder</refname>
 <refpurpose>encode several MIME pieces into one body.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="eva-GskMimeMultipartEncoder.synopsis" role="synopsis">
+<refsynopsisdiv id="eva-EvaMimeMultipartEncoder.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
 #define             <link linkend="EVA-MIME-MULTIPART-ENCODER-GOOD-BOUNDARY--CAPS">EVA_MIME_MULTIPART_ENCODER_GOOD_BOUNDARY</link>
-                    <link linkend="GskMimeMultipartEncoderClass">GskMimeMultipartEncoderClass</link>;
-                    <link linkend="GskMimeMultipartEncoder">GskMimeMultipartEncoder</link>;
-<link linkend="GskMimeMultipartEncoder">GskMimeMultipartEncoder</link> * <link linkend="eva-mime-multipart-encoder-new">eva_mime_multipart_encoder_new</link>
+                    <link linkend="EvaMimeMultipartEncoderClass">EvaMimeMultipartEncoderClass</link>;
+                    <link linkend="EvaMimeMultipartEncoder">EvaMimeMultipartEncoder</link>;
+<link linkend="EvaMimeMultipartEncoder">EvaMimeMultipartEncoder</link> * <link linkend="eva-mime-multipart-encoder-new">eva_mime_multipart_encoder_new</link>
                                                         (const <link linkend="char">char</link> *boundary);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-mime-multipart-encoder-add-part">eva_mime_multipart_encoder_add_part</link> (<link linkend="GskMimeMultipartEncoder">GskMimeMultipartEncoder</link> *encoder,
-                                                         <link linkend="GskMimeMultipartPiece">GskMimeMultipartPiece</link> *piece,
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-mime-multipart-encoder-add-part">eva_mime_multipart_encoder_add_part</link> (<link linkend="EvaMimeMultipartEncoder">EvaMimeMultipartEncoder</link> *encoder,
+                                                         <link linkend="EvaMimeMultipartPiece">EvaMimeMultipartPiece</link> *piece,
                                                          <link linkend="GError">GError</link> **error);
 #define             <link linkend="eva-mime-multipart-encoder-new-defaults">eva_mime_multipart_encoder_new_defaults</link>()
 #define             <link linkend="eva-mime-multipart-encoder-trap-part-needed">eva_mime_multipart_encoder_trap_part_needed</link>(encoder, func, data)
@@ -36,7 +36,7 @@
 
 
 
-<refsect1 id="eva-GskMimeMultipartEncoder.description" role="desc">
+<refsect1 id="eva-EvaMimeMultipartEncoder.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 Multipart MIME encodings are how mail attachments
@@ -45,7 +45,7 @@ from web servers.
 </para>
 </refsect1>
 
-<refsect1 id="eva-GskMimeMultipartEncoder.details" role="details">
+<refsect1 id="eva-EvaMimeMultipartEncoder.details" role="details">
 <title role="details.title">Details</title>
 <refsect2 id="EVA-MIME-MULTIPART-ENCODER-GOOD-BOUNDARY--CAPS" role="macro">
 <title>EVA_MIME_MULTIPART_ENCODER_GOOD_BOUNDARY</title>
@@ -54,25 +54,25 @@ from web servers.
 A string which can be used to construct an encoder
 that can handle any quoted-printable or base64 encoded chunk.
 </para></refsect2>
-<refsect2 id="GskMimeMultipartEncoderClass" role="struct">
-<title>GskMimeMultipartEncoderClass</title>
-<indexterm zone="GskMimeMultipartEncoderClass"><primary sortas="GskMimeMultipartEncoderClass">GskMimeMultipartEncoderClass</primary></indexterm><programlisting>typedef struct {
-  GskStreamClass stream_class;
-  void (*new_part_needed_set_poll) (GskMimeMultipartEncoder  *encoder,
+<refsect2 id="EvaMimeMultipartEncoderClass" role="struct">
+<title>EvaMimeMultipartEncoderClass</title>
+<indexterm zone="EvaMimeMultipartEncoderClass"><primary sortas="EvaMimeMultipartEncoderClass">EvaMimeMultipartEncoderClass</primary></indexterm><programlisting>typedef struct {
+  EvaStreamClass stream_class;
+  void (*new_part_needed_set_poll) (EvaMimeMultipartEncoder  *encoder,
 				    gboolean                  do_poll);
-  void (*new_part_needed_shutdown) (GskMimeMultipartEncoder  *encoder);
-} GskMimeMultipartEncoderClass;
+  void (*new_part_needed_shutdown) (EvaMimeMultipartEncoder  *encoder);
+} EvaMimeMultipartEncoderClass;
 </programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GskMimeMultipartEncoder" role="struct">
-<title>GskMimeMultipartEncoder</title>
-<indexterm zone="GskMimeMultipartEncoder"><primary sortas="GskMimeMultipartEncoder">GskMimeMultipartEncoder</primary></indexterm><programlisting>typedef struct {
-  GskStream      stream;
-  GskHook        new_part_needed;
+<refsect2 id="EvaMimeMultipartEncoder" role="struct">
+<title>EvaMimeMultipartEncoder</title>
+<indexterm zone="EvaMimeMultipartEncoder"><primary sortas="EvaMimeMultipartEncoder">EvaMimeMultipartEncoder</primary></indexterm><programlisting>typedef struct {
+  EvaStream      stream;
+  EvaHook        new_part_needed;
   GQueue        *outgoing_pieces;
-  GskStream     *active_stream;
-  GskBuffer      outgoing_data;
+  EvaStream     *active_stream;
+  EvaBuffer      outgoing_data;
 
   char          *boundary_str;
 
@@ -80,13 +80,13 @@ that can handle any quoted-printable or base64 encoded chunk.
   guint          blocked_active_stream : 1;
   guint          shutdown : 1;
   guint          wrote_terminator : 1;
-} GskMimeMultipartEncoder;
+} EvaMimeMultipartEncoder;
 </programlisting>
 <para>
 </para></refsect2>
 <refsect2 id="eva-mime-multipart-encoder-new" role="function">
 <title>eva_mime_multipart_encoder_new ()</title>
-<indexterm zone="eva-mime-multipart-encoder-new"><primary sortas="eva_mime_multipart_encoder_new">eva_mime_multipart_encoder_new</primary></indexterm><programlisting><link linkend="GskMimeMultipartEncoder">GskMimeMultipartEncoder</link> * eva_mime_multipart_encoder_new
+<indexterm zone="eva-mime-multipart-encoder-new"><primary sortas="eva_mime_multipart_encoder_new">eva_mime_multipart_encoder_new</primary></indexterm><programlisting><link linkend="EvaMimeMultipartEncoder">EvaMimeMultipartEncoder</link> * eva_mime_multipart_encoder_new
                                                         (const <link linkend="char">char</link> *boundary);</programlisting>
 <para>
 Create a read-only stream which encodes MIME pieces given
@@ -109,8 +109,8 @@ without restriction.
 </variablelist></refsect2>
 <refsect2 id="eva-mime-multipart-encoder-add-part" role="function">
 <title>eva_mime_multipart_encoder_add_part ()</title>
-<indexterm zone="eva-mime-multipart-encoder-add-part"><primary sortas="eva_mime_multipart_encoder_add_part">eva_mime_multipart_encoder_add_part</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_mime_multipart_encoder_add_part (<link linkend="GskMimeMultipartEncoder">GskMimeMultipartEncoder</link> *encoder,
-                                                         <link linkend="GskMimeMultipartPiece">GskMimeMultipartPiece</link> *piece,
+<indexterm zone="eva-mime-multipart-encoder-add-part"><primary sortas="eva_mime_multipart_encoder_add_part">eva_mime_multipart_encoder_add_part</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_mime_multipart_encoder_add_part (<link linkend="EvaMimeMultipartEncoder">EvaMimeMultipartEncoder</link> *encoder,
+                                                         <link linkend="EvaMimeMultipartPiece">EvaMimeMultipartPiece</link> *piece,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Add a new part to <parameter>encoder</parameter>.  The pieces will be transmitted in
@@ -173,10 +173,10 @@ is processed.
 
 
 
-<refsect1 id="eva-GskMimeMultipartEncoder.see-also">
+<refsect1 id="eva-EvaMimeMultipartEncoder.see-also">
 <title>See Also</title>
 <para>
-<link linkend="GskMimeMultipartDecoder"><type>GskMimeMultipartDecoder</type></link>
+<link linkend="EvaMimeMultipartDecoder"><type>EvaMimeMultipartDecoder</type></link>
 </para>
 </refsect1>
 

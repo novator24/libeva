@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskStreamQueue
+EvaStreamQueue
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -63,7 +63,7 @@ GskStreamQueue
 
 <!-- ##### MACRO EVA_STREAM_QUEUE_READ_EMPTY_HOOK ##### -->
 <para>
-GskHook which notifies as long as the queue's supply of readable streams is empty.
+EvaHook which notifies as long as the queue's supply of readable streams is empty.
 </para>
 
 @queue: queue whose hook should be returned.
@@ -98,7 +98,7 @@ The destroy function, if any, will be called (possibly not immediately)
 
 <!-- ##### MACRO EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK ##### -->
 <para>
-GskHook which notifies as long as the queue's supply of writable streams is empty.
+EvaHook which notifies as long as the queue's supply of writable streams is empty.
 </para>
 
 @queue: queue whose hook should be returned.

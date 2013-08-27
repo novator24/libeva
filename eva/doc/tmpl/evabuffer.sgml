@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskBuffer
+EvaBuffer
 
 <!-- ##### SECTION Short_Description ##### -->
 a fast, flexible in-memory data buffer
@@ -20,7 +20,7 @@ and eva_buffer_read() reads from the beginning.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskBuffer ##### -->
+<!-- ##### STRUCT EvaBuffer ##### -->
 <para>
 A buffer is just a list of fragments and a size counter.
 </para>
@@ -29,22 +29,22 @@ A buffer is just a list of fragments and a size counter.
 @first_frag: the first fragment in the buffer (read end)
 @last_frag: the last fragment in the buffer (write end)
 
-<!-- ##### STRUCT GskBufferFragment ##### -->
+<!-- ##### STRUCT EvaBufferFragment ##### -->
 <para>
 This structure should rarely be accessed directly,
-instead you should use the GskBuffer methods.
+instead you should use the EvaBuffer methods.
 They are exposed for optimization and debugging convenience.
 </para>
 <para>
 A single contiguous chunk of memory in the buffer.
-Each #GskBufferFragment is managed by a single buffer,
+Each #EvaBufferFragment is managed by a single buffer,
 but internally fragments are sometimes transferred whole between buffers.
 </para>
 <para>
 A foreign fragment is one which created with
 eva_buffer_append_foreign().  It means that eva
 will use the destroy method rather than the normal
-buffer pool, where data and the GskBufferFragment
+buffer pool, where data and the EvaBufferFragment
 are allocated continguously.
 The headers of foreign fragments are pooled in a separate pool.
 </para>
@@ -279,7 +279,7 @@ The headers of foreign fragments are pooled in a separate pool.
 
 
 
-<!-- ##### STRUCT GskBufferIterator ##### -->
+<!-- ##### STRUCT EvaBufferIterator ##### -->
 <para>
 An iterator which can be used to walk through a buffer.
 </para>
@@ -299,7 +299,7 @@ but we have to see what the demands are...
 
 <!-- ##### MACRO eva_buffer_iterator_offset ##### -->
 <para>
-Get the offset in bytes into #GskBuffer that we
+Get the offset in bytes into #EvaBuffer that we
 are into the whole buffer.
 </para>
 
@@ -361,7 +361,7 @@ are into the whole buffer.
 <para>
 Macro which can be used to initialize an empty buffer.
 One can write:
-  GskBuffer buf = EVA_BUFFER_STATIC_INIT;
+  EvaBuffer buf = EVA_BUFFER_STATIC_INIT;
 </para>
 
 

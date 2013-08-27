@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskMainLoopEpoll
+EvaMainLoopEpoll
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -16,7 +16,7 @@ GskMainLoopEpoll
 </para>
 
 
-<!-- ##### STRUCT GskMainLoopEpoll ##### -->
+<!-- ##### STRUCT EvaMainLoopEpoll ##### -->
 <para>
 
 </para>

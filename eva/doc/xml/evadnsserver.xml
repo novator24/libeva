@@ -12,15 +12,15 @@
 
 <refsynopsisdiv id="eva-evadnsserver.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
-<anchor id="GskDnsServer"/>
+<anchor id="EvaDnsServer"/>
 <synopsis>
-                    <link linkend="GskDnsServerClass">GskDnsServerClass</link>;
-                    <link linkend="GskDnsServer-struct">GskDnsServer</link>;
-<link linkend="GskDnsServer">GskDnsServer</link> *      <link linkend="eva-dns-server-new">eva_dns_server_new</link>                  (<link linkend="GskDnsResolver">GskDnsResolver</link> *resolver,
-                                                         <link linkend="GskPacketQueue">GskPacketQueue</link> *packet_queue);
-<link linkend="GskDnsResolver">GskDnsResolver</link> *    <link linkend="eva-dns-server-peek-resolver">eva_dns_server_peek_resolver</link>        (<link linkend="GskDnsServer">GskDnsServer</link> *server);
-<link linkend="void">void</link>                <link linkend="eva-dns-server-set-resolver">eva_dns_server_set_resolver</link>         (<link linkend="GskDnsServer">GskDnsServer</link> *server,
-                                                         <link linkend="GskDnsResolver">GskDnsResolver</link> *resolver);
+                    <link linkend="EvaDnsServerClass">EvaDnsServerClass</link>;
+                    <link linkend="EvaDnsServer-struct">EvaDnsServer</link>;
+<link linkend="EvaDnsServer">EvaDnsServer</link> *      <link linkend="eva-dns-server-new">eva_dns_server_new</link>                  (<link linkend="EvaDnsResolver">EvaDnsResolver</link> *resolver,
+                                                         <link linkend="EvaPacketQueue">EvaPacketQueue</link> *packet_queue);
+<link linkend="EvaDnsResolver">EvaDnsResolver</link> *    <link linkend="eva-dns-server-peek-resolver">eva_dns_server_peek_resolver</link>        (<link linkend="EvaDnsServer">EvaDnsServer</link> *server);
+<link linkend="void">void</link>                <link linkend="eva-dns-server-set-resolver">eva_dns_server_set_resolver</link>         (<link linkend="EvaDnsServer">EvaDnsServer</link> *server,
+                                                         <link linkend="EvaDnsResolver">EvaDnsResolver</link> *resolver);
 </synopsis>
 </refsynopsisdiv>
 
@@ -28,7 +28,7 @@
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----GskDnsServer
+   +----EvaDnsServer
 </synopsis>
 </refsect1>
 
@@ -39,8 +39,8 @@
 <refsect1 id="eva-evadnsserver.properties" role="properties">
 <title role="properties.title">Properties</title>
 <synopsis>
-  &quot;<link linkend="GskDnsServer--packet-queue">packet-queue</link>&quot;             <link linkend="GskPacketQueue">GskPacketQueue</link>*       : Read / Write / Construct Only
-  &quot;<link linkend="GskDnsServer--resolver">resolver</link>&quot;                 <link linkend="GskDnsResolver">GskDnsResolver</link>*       : Read / Write / Construct Only
+  &quot;<link linkend="EvaDnsServer--packet-queue">packet-queue</link>&quot;             <link linkend="EvaPacketQueue">EvaPacketQueue</link>*       : Read / Write / Construct Only
+  &quot;<link linkend="EvaDnsServer--resolver">resolver</link>&quot;                 <link linkend="EvaDnsResolver">EvaDnsResolver</link>*       : Read / Write / Construct Only
 </synopsis>
 </refsect1>
 
@@ -57,15 +57,15 @@ a sensible resolver, or it can be used to implement wacky DNS hacks.
 
 <refsect1 id="eva-evadnsserver.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskDnsServerClass" role="struct">
-<title>GskDnsServerClass</title>
-<indexterm zone="GskDnsServerClass"><primary sortas="GskDnsServerClass">GskDnsServerClass</primary></indexterm><programlisting>typedef struct _GskDnsServerClass GskDnsServerClass;</programlisting>
+<refsect2 id="EvaDnsServerClass" role="struct">
+<title>EvaDnsServerClass</title>
+<indexterm zone="EvaDnsServerClass"><primary sortas="EvaDnsServerClass">EvaDnsServerClass</primary></indexterm><programlisting>typedef struct _EvaDnsServerClass EvaDnsServerClass;</programlisting>
 <para>
 Base class for DNS servers.
 </para></refsect2>
-<refsect2 id="GskDnsServer-struct" role="struct">
-<title>GskDnsServer</title>
-<indexterm zone="GskDnsServer-struct"><primary sortas="GskDnsServer">GskDnsServer</primary></indexterm><programlisting>typedef struct _GskDnsServer GskDnsServer;</programlisting>
+<refsect2 id="EvaDnsServer-struct" role="struct">
+<title>EvaDnsServer</title>
+<indexterm zone="EvaDnsServer-struct"><primary sortas="EvaDnsServer">EvaDnsServer</primary></indexterm><programlisting>typedef struct _EvaDnsServer EvaDnsServer;</programlisting>
 <para>
 Base instance for DNS servers.
 A DNS server is packet-based and must handle an arbitrary
@@ -73,8 +73,8 @@ number of requests.
 </para></refsect2>
 <refsect2 id="eva-dns-server-new" role="function">
 <title>eva_dns_server_new ()</title>
-<indexterm zone="eva-dns-server-new"><primary sortas="eva_dns_server_new">eva_dns_server_new</primary></indexterm><programlisting><link linkend="GskDnsServer">GskDnsServer</link> *      eva_dns_server_new                  (<link linkend="GskDnsResolver">GskDnsResolver</link> *resolver,
-                                                         <link linkend="GskPacketQueue">GskPacketQueue</link> *packet_queue);</programlisting>
+<indexterm zone="eva-dns-server-new"><primary sortas="eva_dns_server_new">eva_dns_server_new</primary></indexterm><programlisting><link linkend="EvaDnsServer">EvaDnsServer</link> *      eva_dns_server_new                  (<link linkend="EvaDnsResolver">EvaDnsResolver</link> *resolver,
+                                                         <link linkend="EvaPacketQueue">EvaPacketQueue</link> *packet_queue);</programlisting>
 <para>
 Allocate a DNS server using the optional <parameter>resolver</parameter> to answer questions.</para>
 <para>
@@ -90,7 +90,7 @@ Allocate a DNS server using the optional <parameter>resolver</parameter> to answ
 </variablelist></refsect2>
 <refsect2 id="eva-dns-server-peek-resolver" role="function">
 <title>eva_dns_server_peek_resolver ()</title>
-<indexterm zone="eva-dns-server-peek-resolver"><primary sortas="eva_dns_server_peek_resolver">eva_dns_server_peek_resolver</primary></indexterm><programlisting><link linkend="GskDnsResolver">GskDnsResolver</link> *    eva_dns_server_peek_resolver        (<link linkend="GskDnsServer">GskDnsServer</link> *server);</programlisting>
+<indexterm zone="eva-dns-server-peek-resolver"><primary sortas="eva_dns_server_peek_resolver">eva_dns_server_peek_resolver</primary></indexterm><programlisting><link linkend="EvaDnsResolver">EvaDnsResolver</link> *    eva_dns_server_peek_resolver        (<link linkend="EvaDnsServer">EvaDnsServer</link> *server);</programlisting>
 <para>
 Obtain a peeked reference at the resolver which this server is using to
 answer questions.</para>
@@ -99,13 +99,13 @@ answer questions.</para>
 <varlistentry><term><parameter>server</parameter>&#160;:</term>
 <listitem><simpara> the server to inspect.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a GskDnsResolver if one is being used, or NULL.
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a EvaDnsResolver if one is being used, or NULL.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-server-set-resolver" role="function">
 <title>eva_dns_server_set_resolver ()</title>
-<indexterm zone="eva-dns-server-set-resolver"><primary sortas="eva_dns_server_set_resolver">eva_dns_server_set_resolver</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_server_set_resolver         (<link linkend="GskDnsServer">GskDnsServer</link> *server,
-                                                         <link linkend="GskDnsResolver">GskDnsResolver</link> *resolver);</programlisting>
+<indexterm zone="eva-dns-server-set-resolver"><primary sortas="eva_dns_server_set_resolver">eva_dns_server_set_resolver</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_server_set_resolver         (<link linkend="EvaDnsServer">EvaDnsServer</link> *server,
+                                                         <link linkend="EvaDnsResolver">EvaDnsResolver</link> *resolver);</programlisting>
 <para>
 Set the DNS server's resolver.</para>
 <para>
@@ -121,11 +121,11 @@ Set the DNS server's resolver.</para>
 </refsect1>
 <refsect1 id="eva-evadnsserver.property-details" role="property_details">
 <title role="property_details.title">Property Details</title>
-<refsect2 id="GskDnsServer--packet-queue" role="property"><title>The <literal>&quot;packet-queue&quot;</literal> property</title>
-<indexterm zone="GskDnsServer--packet-queue"><primary sortas="GskDnsServer:packet-queue">GskDnsServer:packet-queue</primary></indexterm><programlisting>  &quot;packet-queue&quot;             <link linkend="GskPacketQueue">GskPacketQueue</link>*       : Read / Write / Construct Only</programlisting>
+<refsect2 id="EvaDnsServer--packet-queue" role="property"><title>The <literal>&quot;packet-queue&quot;</literal> property</title>
+<indexterm zone="EvaDnsServer--packet-queue"><primary sortas="EvaDnsServer:packet-queue">EvaDnsServer:packet-queue</primary></indexterm><programlisting>  &quot;packet-queue&quot;             <link linkend="EvaPacketQueue">EvaPacketQueue</link>*       : Read / Write / Construct Only</programlisting>
 <para>raw i/o handle to use for requests/responses.</para></refsect2>
-<refsect2 id="GskDnsServer--resolver" role="property"><title>The <literal>&quot;resolver&quot;</literal> property</title>
-<indexterm zone="GskDnsServer--resolver"><primary sortas="GskDnsServer:resolver">GskDnsServer:resolver</primary></indexterm><programlisting>  &quot;resolver&quot;                 <link linkend="GskDnsResolver">GskDnsResolver</link>*       : Read / Write / Construct Only</programlisting>
+<refsect2 id="EvaDnsServer--resolver" role="property"><title>The <literal>&quot;resolver&quot;</literal> property</title>
+<indexterm zone="EvaDnsServer--resolver"><primary sortas="EvaDnsServer:resolver">EvaDnsServer:resolver</primary></indexterm><programlisting>  &quot;resolver&quot;                 <link linkend="EvaDnsResolver">EvaDnsResolver</link>*       : Read / Write / Construct Only</programlisting>
 <para>DNS resolver to obtain responses from.</para></refsect2>
 </refsect1>
 

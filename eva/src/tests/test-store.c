@@ -19,17 +19,17 @@ typedef struct _TestInfo TestInfo;
 struct _TestInfo
 {
   guint test_number;
-  GskStore *store;
+  EvaStore *store;
   char *key;
   TestObject *object;
-  GskStoreRequest *save_request;
-  GskStoreRequest *load_request;
-  GskStoreRequest *exists_request;
-  GskStoreRequest *delete_request;
+  EvaStoreRequest *save_request;
+  EvaStoreRequest *load_request;
+  EvaStoreRequest *exists_request;
+  EvaStoreRequest *delete_request;
 };
 
 static void
-handle_delete_request_done (GskRequest *delete_request, gpointer user_data)
+handle_delete_request_done (EvaRequest *delete_request, gpointer user_data)
 {
   TestInfo *test_info = (TestInfo *) user_data;
   guint parsed_number;
@@ -57,11 +57,11 @@ handle_delete_request_done (GskRequest *delete_request, gpointer user_data)
 }
 
 static void
-handle_exists_request_done (GskRequest *exists_request, gpointer user_data)
+handle_exists_request_done (EvaRequest *exists_request, gpointer user_data)
 {
   TestInfo *test_info = (TestInfo *) user_data;
   guint parsed_number;
-  GskStoreRequest *delete_request;
+  EvaStoreRequest *delete_request;
   GError *error = NULL;
 
   g_return_if_fail (exists_request == EVA_REQUEST (test_info->exists_request));
@@ -111,12 +111,12 @@ handle_exists_request_done (GskRequest *exists_request, gpointer user_data)
 }
 
 static void
-handle_load_request_done (GskRequest *load_request, gpointer user_data)
+handle_load_request_done (EvaRequest *load_request, gpointer user_data)
 {
   TestInfo *test_info = (TestInfo *) user_data;
   guint parsed_number;
   TestObject *loaded_object;
-  GskStoreRequest *exists_request;
+  EvaStoreRequest *exists_request;
   GError *error = NULL;
 
   g_return_if_fail (load_request == EVA_REQUEST (test_info->load_request));
@@ -169,10 +169,10 @@ handle_load_request_done (GskRequest *load_request, gpointer user_data)
 }
 
 static void
-handle_save_request_done (GskRequest *save_request, gpointer user_data)
+handle_save_request_done (EvaRequest *save_request, gpointer user_data)
 {
   TestInfo *test_info = (TestInfo *) user_data;
-  GskStoreRequest *load_request;
+  EvaStoreRequest *load_request;
   guint parsed_number;
   GError *error = NULL;
 
@@ -217,13 +217,13 @@ handle_save_request_done (GskRequest *save_request, gpointer user_data)
 }
 
 static void
-start_test (GskStore *store,
+start_test (EvaStore *store,
     guint test_number,
     double p)
 {
   TestInfo *test_info;
   TestObject *object;
-  GskStoreRequest *save_request;
+  EvaStoreRequest *save_request;
   char *key;
   GValue value = { 0, { { 0 }, { 0 } } };
   GError *error = NULL;
@@ -262,10 +262,10 @@ int
 main (int argc, char *argv[])
 {
   char *storedir;
-  GskStreamMap *stream_map;
-  GskStore *store;
-  GskStorageFormat *storage_format;
-  GskStoreFormatEntry *format_entry;
+  EvaStreamMap *stream_map;
+  EvaStore *store;
+  EvaStorageFormat *storage_format;
+  EvaStoreFormatEntry *format_entry;
   guint i;
 
   srand48 (1);

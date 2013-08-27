@@ -6,7 +6,7 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskLogTrap GskLogTrap;
+typedef struct _EvaLogTrap EvaLogTrap;
 
 /* Helper macros for using the gmessage system
    with many log-domains. */
@@ -45,28 +45,28 @@ void eva_log_rotate_stdio_logs (const char *output_file_template,
       %{levelsuffix}   '.', '!', '!!!' depending on the severity.
       %%               a percent symbol.
  */
-GskLogTrap *eva_log_trap_domain_to_file (const char *domain,
+EvaLogTrap *eva_log_trap_domain_to_file (const char *domain,
                                          GLogLevelFlags level_mask,
                                          const char *filename,
                                          const char *output_format);
 
-typedef void (*GskLogTrapFunc) (const char *domain,
+typedef void (*EvaLogTrapFunc) (const char *domain,
                                 GLogLevelFlags level,
                                 const char *raw_message,
                                 const char *formatted_message,
                                 gpointer    data);
 
-GskLogTrap *eva_log_trap_generic      (const char    *domain,
+EvaLogTrap *eva_log_trap_generic      (const char    *domain,
                                        GLogLevelFlags trap_mask,
                                        const char    *output_format,
-                                       GskLogTrapFunc func,
+                                       EvaLogTrapFunc func,
                                        gpointer       data,
                                        GDestroyNotify destroy);
-GskLogTrap *eva_log_trap_ring_buffer  (const char    *domain,
+EvaLogTrap *eva_log_trap_ring_buffer  (const char    *domain,
                                        GLogLevelFlags trap_mask,
-                                       GskLogRingBuffer *buffer,
+                                       EvaLogRingBuffer *buffer,
                                        const char       *output_format);
-GskLogTrap *eva_log_trap_ignore       (const char    *domain,
+EvaLogTrap *eva_log_trap_ignore       (const char    *domain,
                                        GLogLevelFlags trap_mask);
 
 /* indicate that the given logfile should

@@ -15,26 +15,26 @@ minimal need for input/output monitoring.
 For example, it can be used to proxy for a foreign source.
 We use it for this purpose in evaopensslbufferstream.c
 to make a connected pair of a BIO (the SSL i/o abstraction)
-and a #GskStream (which is really a GskBufferStream).
+and a #EvaStream (which is really a EvaBufferStream).
 </para>
 <para>
 Most functions in the API are intended only for
-"implementors", that is, users who are using a #GskBufferStream
-as an internal stream.  Most users who are given a #GskBufferStream
-which is returned as a #GskStream should not use this API,
+"implementors", that is, users who are using a #EvaBufferStream
+as an internal stream.  Most users who are given a #EvaBufferStream
+which is returned as a #EvaStream should not use this API,
 because it may conflict with the way the implementor of
 the function which returned it expects it to be used.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-GskStream.
+EvaStream.
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskBufferStreamClass ##### -->
+<!-- ##### STRUCT EvaBufferStreamClass ##### -->
 <para>
 The class which has the buffer methods.
 </para>
@@ -45,7 +45,7 @@ The class which has the buffer methods.
 @buffered_read_shutdown: 
 @buffered_write_shutdown: 
 
-<!-- ##### STRUCT GskBufferStream ##### -->
+<!-- ##### STRUCT EvaBufferStream ##### -->
 <para>
 The buffered stream.  All of its members are private
 and should be accessed through the methods below only.
@@ -71,7 +71,7 @@ This hook will be triggered as long as the stream's read-hook
 wants data and the buffer is empty.
 </para>
 
-@stream: the #GskBufferStream to get the read-hook for.
+@stream: the #EvaBufferStream to get the read-hook for.
 
 
 <!-- ##### MACRO eva_buffer_stream_write_hook ##### -->
@@ -81,7 +81,7 @@ This will be triggered as long as the write-buffer
 is non-empty.
 </para>
 
-@stream: the #GskBufferStream to get the write-hook for.
+@stream: the #EvaBufferStream to get the write-hook for.
 
 
 <!-- ##### FUNCTION eva_buffer_stream_read_buffer_changed ##### -->
@@ -128,7 +128,7 @@ max-write-buffer just used for polling purposes.
 
 <!-- ##### MACRO eva_buffer_stream_has_strict_max_write ##### -->
 <para>
-Whether the #GskBufferStream will strictly enforce
+Whether the #EvaBufferStream will strictly enforce
 the maximum write-buffer threshold by
 forcing writes beyond the maximum to get
 clipped (possibly to 0).

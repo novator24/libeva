@@ -5,12 +5,12 @@
 
 static GObjectClass *parent_class = NULL;
 
-typedef struct _GskStreamConnectionClass GskStreamConnectionClass;
-#define EVA_STREAM_CONNECTION_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_CONNECTION, GskStreamConnectionClass))
-#define EVA_STREAM_CONNECTION_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_CONNECTION, GskStreamConnectionClass))
+typedef struct _EvaStreamConnectionClass EvaStreamConnectionClass;
+#define EVA_STREAM_CONNECTION_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_CONNECTION, EvaStreamConnectionClass))
+#define EVA_STREAM_CONNECTION_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_CONNECTION, EvaStreamConnectionClass))
 #define EVA_IS_STREAM_CONNECTION_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_STREAM_CONNECTION))
 
-struct _GskStreamConnectionClass 
+struct _EvaStreamConnectionClass 
 {
   GObjectClass object_class;
 };
@@ -37,7 +37,7 @@ struct _GskStreamConnectionClass
 #define D(object, fctname) DEBUG(("stream-attach: %s[%p]: %s", G_OBJECT_TYPE_NAME (object), object, fctname))
 
 static inline void
-stream_connection_set_internal_write_block (GskStreamConnection *stream_connection,
+stream_connection_set_internal_write_block (EvaStreamConnection *stream_connection,
 				      gboolean    block)
 {
   if (stream_connection->write_side == NULL)
@@ -55,7 +55,7 @@ stream_connection_set_internal_write_block (GskStreamConnection *stream_connecti
 }
 
 static inline void
-stream_connection_set_internal_read_block (GskStreamConnection *stream_connection,
+stream_connection_set_internal_read_block (EvaStreamConnection *stream_connection,
 				      gboolean    block)
 {
   if (stream_connection->read_side == NULL)
@@ -72,7 +72,7 @@ stream_connection_set_internal_read_block (GskStreamConnection *stream_connectio
     }
 }
 static inline void
-check_internal_blocks (GskStreamConnection *stream_connection)
+check_internal_blocks (EvaStreamConnection *stream_connection)
 {
   guint size = stream_connection->buffer.size;
   stream_connection_set_internal_read_block (stream_connection, size > stream_connection->max_buffered);
@@ -80,7 +80,7 @@ check_internal_blocks (GskStreamConnection *stream_connection)
 }
 
 static void
-handle_error (GskStreamConnection *stream_connection,
+handle_error (EvaStreamConnection *stream_connection,
 	      GError     *error)
 {
   eva_stream_connection_shutdown (stream_connection);
@@ -102,7 +102,7 @@ handle_error (GskStreamConnection *stream_connection,
  * or because there was a buffer-to-buffer transfer (which are allowed
  * to be large).
  */
-void     eva_stream_connection_set_max_buffered   (GskStreamConnection *connection,
+void     eva_stream_connection_set_max_buffered   (EvaStreamConnection *connection,
 				                   guint                max_buffered)
 {
   connection->max_buffered = max_buffered;
@@ -120,7 +120,7 @@ void     eva_stream_connection_set_max_buffered   (GskStreamConnection *connecti
  *
  * returns: the maximum number of bytes.
  */
-guint    eva_stream_connection_get_max_buffered   (GskStreamConnection *connection)
+guint    eva_stream_connection_get_max_buffered   (EvaStreamConnection *connection)
 {
   return connection->max_buffered;
 }
@@ -135,7 +135,7 @@ guint    eva_stream_connection_get_max_buffered   (GskStreamConnection *connecti
  *
  * returns: the current number of bytes.
  */
-guint    eva_stream_connection_get_cur_buffered   (GskStreamConnection *connection)
+guint    eva_stream_connection_get_cur_buffered   (EvaStreamConnection *connection)
 {
   return connection->buffer.size;
 }
@@ -150,7 +150,7 @@ guint    eva_stream_connection_get_cur_buffered   (GskStreamConnection *connecti
  * an underlying source.  This is only
  * used if the input stream has no read_buffer method.
  */
-void     eva_stream_connection_set_atomic_read_size(GskStreamConnection *connection,
+void     eva_stream_connection_set_atomic_read_size(EvaStreamConnection *connection,
 				                   guint                atomic_read_size)
 {
   connection->atomic_read_size = atomic_read_size;
@@ -166,19 +166,19 @@ void     eva_stream_connection_set_atomic_read_size(GskStreamConnection *connect
  * returns: the size to read at a time.
  */
 guint
-eva_stream_connection_get_atomic_read_size(GskStreamConnection *connection)
+eva_stream_connection_get_atomic_read_size(EvaStreamConnection *connection)
 {
   return connection->atomic_read_size;
 }
 
 static gboolean
-handle_input_is_readable (GskIO         *io,
+handle_input_is_readable (EvaIO         *io,
 			  gpointer       data)
 {
   char *buf;
-  GskStreamConnection *stream_connection = data;
-  GskStream *read_side = stream_connection->read_side;
-  GskStream *write_side = stream_connection->write_side;
+  EvaStreamConnection *stream_connection = data;
+  EvaStream *read_side = stream_connection->read_side;
+  EvaStream *write_side = stream_connection->write_side;
   GError *error = NULL;
   guint num_read, num_written = 0;
   guint atomic_read_size = stream_connection->atomic_read_size;
@@ -257,10 +257,10 @@ handle_input_is_readable (GskIO         *io,
 }
 
 static gboolean
-handle_input_shutdown_read (GskIO     *io,
+handle_input_shutdown_read (EvaIO     *io,
 			    gpointer   data)
 {
-  GskStreamConnection *stream_connection = data;
+  EvaStreamConnection *stream_connection = data;
   D (io, "handle_input_shutdown_read");
   if (stream_connection->write_side != NULL)
     {
@@ -283,8 +283,8 @@ handle_input_shutdown_read (GskIO     *io,
 static void
 handle_input_is_readable_destroy (gpointer data)
 {
-  GskStreamConnection *stream_connection = data;
-  GskStream *read_side = stream_connection->read_side;
+  EvaStreamConnection *stream_connection = data;
+  EvaStream *read_side = stream_connection->read_side;
   D (read_side, "handle_input_is_readable_destroy");
   stream_connection->read_side = NULL;
   g_object_unref (stream_connection);
@@ -293,12 +293,12 @@ handle_input_is_readable_destroy (gpointer data)
 }
 
 static gboolean
-handle_output_is_writable (GskIO         *io,
+handle_output_is_writable (EvaIO         *io,
 			   gpointer       data)
 {
-  GskStreamConnection *stream_connection = data;
-  GskStream *write_side = stream_connection->write_side;
-  GskStream *read_side = stream_connection->read_side;
+  EvaStreamConnection *stream_connection = data;
+  EvaStream *write_side = stream_connection->write_side;
+  EvaStream *read_side = stream_connection->read_side;
   GError *error = NULL;
   g_return_val_if_fail (write_side == EVA_STREAM (io), FALSE);
 
@@ -340,10 +340,10 @@ handle_output_is_writable (GskIO         *io,
 }
 
 static gboolean
-handle_output_shutdown_write (GskIO     *io,
+handle_output_shutdown_write (EvaIO     *io,
 			      gpointer   data)
 {
-  GskStreamConnection *stream_connection = data;
+  EvaStreamConnection *stream_connection = data;
   D (stream_connection->write_side, "handle_output_shutdown_write");
   if (stream_connection->read_side != NULL)
     {
@@ -363,8 +363,8 @@ handle_output_shutdown_write (GskIO     *io,
 static void
 handle_output_is_writable_destroy (gpointer data)
 {
-  GskStreamConnection *stream_connection = data;
-  GskStream *write_side = stream_connection->write_side;
+  EvaStreamConnection *stream_connection = data;
+  EvaStream *write_side = stream_connection->write_side;
   D (write_side, "handle_output_is_writable_destroy");
   stream_connection->write_side = NULL;
   if (stream_connection->read_side != NULL)
@@ -379,13 +379,13 @@ handle_output_is_writable_destroy (gpointer data)
 static void
 eva_stream_connection_finalize (GObject *object)
 {
-  GskStreamConnection *connection = EVA_STREAM_CONNECTION (object);
+  EvaStreamConnection *connection = EVA_STREAM_CONNECTION (object);
   eva_buffer_destruct (&connection->buffer);
   parent_class->finalize (object);
 }
 
 static void
-eva_stream_connection_init (GskStreamConnection *stream_connection)
+eva_stream_connection_init (EvaStreamConnection *stream_connection)
 {
   stream_connection->max_buffered = DEFAULT_MAX_BUFFERED;
   stream_connection->atomic_read_size = DEFAULT_MAX_ATOMIC_READ;
@@ -393,7 +393,7 @@ eva_stream_connection_init (GskStreamConnection *stream_connection)
 }
 
 static void
-eva_stream_connection_class_init (GskStreamConnectionClass *class)
+eva_stream_connection_class_init (EvaStreamConnectionClass *class)
 {
   G_OBJECT_CLASS (class)->finalize = eva_stream_connection_finalize;
   parent_class = g_type_class_peek_parent (class);
@@ -406,19 +406,19 @@ GType eva_stream_connection_get_type()
     {
       static const GTypeInfo stream_connection_info =
       {
-	sizeof(GskStreamConnectionClass),
+	sizeof(EvaStreamConnectionClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_stream_connection_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskStreamConnection),
+	sizeof (EvaStreamConnection),
 	16,		/* n_preallocs */
 	(GInstanceInitFunc) eva_stream_connection_init,
 	NULL		/* value_table */
       };
       stream_connection_type = g_type_register_static (G_TYPE_OBJECT,
-                                                  "GskStreamConnection",
+                                                  "EvaStreamConnection",
 						  &stream_connection_info, 0);
     }
   return stream_connection_type;
@@ -437,12 +437,12 @@ GType eva_stream_connection_get_type()
  * returns: a reference at the connection.
  * You should use eventually call g_object_unref() on the connection.
  */
-GskStreamConnection *
-eva_stream_connection_new   (GskStream        *input_stream,
-			     GskStream        *output_stream,
+EvaStreamConnection *
+eva_stream_connection_new   (EvaStream        *input_stream,
+			     EvaStream        *output_stream,
 			     GError          **error)
 {
-  GskStreamConnection *stream_connection;
+  EvaStreamConnection *stream_connection;
 
   DEBUG (("stream-attach: attach: input=%s[%p], output=%s[%p]",
           G_OBJECT_TYPE_NAME (input_stream), input_stream,
@@ -491,7 +491,7 @@ eva_stream_connection_new   (GskStream        *input_stream,
  * Data held in the buffer will be lost.
  */
 void
-eva_stream_connection_detach (GskStreamConnection *connection)
+eva_stream_connection_detach (EvaStreamConnection *connection)
 {
   g_object_ref (connection);
 
@@ -513,10 +513,10 @@ eva_stream_connection_detach (GskStreamConnection *connection)
  * Shut down both ends of a connection.
  */
 void
-eva_stream_connection_shutdown (GskStreamConnection *connection)
+eva_stream_connection_shutdown (EvaStreamConnection *connection)
 {
-  GskStream *read_side = connection->read_side;
-  GskStream *write_side = connection->write_side;
+  EvaStream *read_side = connection->read_side;
+  EvaStream *write_side = connection->write_side;
   if (write_side)
     g_object_ref (write_side);
   if (read_side)

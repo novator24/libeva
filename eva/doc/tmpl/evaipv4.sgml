@@ -12,7 +12,7 @@ and functions.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-#GskSocketAddress, eva_socket_address_ipv4_new()
+#EvaSocketAddress, eva_socket_address_ipv4_new()
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
@@ -30,7 +30,7 @@ and functions.
 <!-- ##### MACRO eva_ipv4_ip_address_localhost ##### -->
 <para>
 The IP address of localhost: always <tt>127.0.0.1</tt>.
-For full generality, see #GskNetworkInterfaceSet.
+For full generality, see #EvaNetworkInterfaceSet.
 </para>
 
 

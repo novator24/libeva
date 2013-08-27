@@ -10,12 +10,12 @@ typedef struct _ResponseData ResponseData;
 struct _ResponseData
 {
   gboolean drained;
-  GskHttpResponse *response;
-  GskBuffer content;
+  EvaHttpResponse *response;
+  EvaBuffer content;
 };
 
 static void
-handle_buffer_done (GskBuffer *buffer, gpointer data)
+handle_buffer_done (EvaBuffer *buffer, gpointer data)
 {
   ResponseData *rd = data;
   eva_buffer_drain (&rd->content, buffer);
@@ -23,27 +23,27 @@ handle_buffer_done (GskBuffer *buffer, gpointer data)
 }
 
 static void
-handle_response (GskHttpRequest  *request,
-                 GskHttpResponse *response,
-                 GskStream       *input,
+handle_response (EvaHttpRequest  *request,
+                 EvaHttpResponse *response,
+                 EvaStream       *input,
                  gpointer         hook_data)
 {
   ResponseData *rd = hook_data;
-  GskStream *sink = eva_memory_buffer_sink_new (handle_buffer_done, rd, NULL);
+  EvaStream *sink = eva_memory_buffer_sink_new (handle_buffer_done, rd, NULL);
   rd->response = g_object_ref (response);
   eva_stream_attach (input, sink, NULL);
 }
 
 static void
-test_get (GskHttpContent   *content,
+test_get (EvaHttpContent   *content,
           const char       *path,
           const char       *user_agent,
-          GskHttpResponse **response_out,
+          EvaHttpResponse **response_out,
           char            **text_out)
 {
-  GskHttpClient *client = eva_http_client_new ();
-  GskHttpServer *server = eva_http_server_new ();
-  GskHttpRequest *request = eva_http_request_new (EVA_HTTP_VERB_GET, path);
+  EvaHttpClient *client = eva_http_client_new ();
+  EvaHttpServer *server = eva_http_server_new ();
+  EvaHttpRequest *request = eva_http_request_new (EVA_HTTP_VERB_GET, path);
   ResponseData rd = {FALSE, NULL, EVA_BUFFER_STATIC_INIT};
   eva_http_content_manage_server (content, server);
   if (user_agent != NULL)
@@ -62,8 +62,8 @@ test_get (GskHttpContent   *content,
 }
 
 static void
-add_static_text (GskHttpContent *content,
-                 const GskHttpContentId *id,
+add_static_text (EvaHttpContent *content,
+                 const EvaHttpContentId *id,
                  const char *static_string)
 {
   eva_http_content_add_data (content, id, static_string, strlen (static_string), NULL, NULL);
@@ -71,9 +71,9 @@ add_static_text (GskHttpContent *content,
 
 int main(int argc, char **argv)
 {
-  GskHttpContent *content;
-  GskHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
-  GskHttpResponse *response;
+  EvaHttpContent *content;
+  EvaHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
+  EvaHttpResponse *response;
   char *data;
   const char *type, *subtype;
   eva_init_without_threads (&argc, &argv);

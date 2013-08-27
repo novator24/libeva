@@ -5,13 +5,13 @@
 #include "../evainit.h"
 #include "../evamain.h"
 
-static GskNameResolverFamily family;
+static EvaNameResolverFamily family;
 
 
 static void next_name_resolution (void);
 
 static void
-got_name_successfully (GskSocketAddress *address,
+got_name_successfully (EvaSocketAddress *address,
 		       gpointer          unused)
 {
   char *str = eva_socket_address_to_string (address);
@@ -53,7 +53,7 @@ next_name_resolution (void)
         eva_main_quit ();
       else
         {
-          GskNameResolverTask *task;
+          EvaNameResolverTask *task;
           g_strstrip (buf);
           g_printerr ("looking up '%s'\n", buf);
           task = eva_name_resolve (family, buf, got_name_successfully, got_error, NULL, NULL);

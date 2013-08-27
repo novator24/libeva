@@ -6,15 +6,15 @@
 static GObjectClass *parent_class = NULL;
 
 /* forward declarations for the "POST-stream" */
-typedef struct _GskHttpServerPostStream GskHttpServerPostStream;
-static GskHttpServerPostStream *
-eva_http_server_post_stream_new (GskHttpServer         *server,
+typedef struct _EvaHttpServerPostStream EvaHttpServerPostStream;
+static EvaHttpServerPostStream *
+eva_http_server_post_stream_new (EvaHttpServer         *server,
 				 gboolean               is_chunked,
 				 gint                   length);
 static gboolean
-eva_http_server_post_stream_process (GskHttpServerPostStream *post_stream);
+eva_http_server_post_stream_process (EvaHttpServerPostStream *post_stream);
 static void
-eva_http_server_post_stream_detach (GskHttpServerPostStream *post_stream,
+eva_http_server_post_stream_detach (EvaHttpServerPostStream *post_stream,
 				    gboolean                 is_server_dying);
 
 /* amount of posted data to accumulate in the POST-data stream.
@@ -30,23 +30,23 @@ typedef enum
   DONE_READING
 } ResponseParseState;
 
-struct _GskHttpServerResponse
+struct _EvaHttpServerResponse
 {
-  GskHttpServer *server;
+  EvaHttpServer *server;
   GHashTable *request_parser_table;
 
-  GskHttpRequest *request;
-  GskHttpServerPostStream *post_data;
+  EvaHttpRequest *request;
+  EvaHttpServerPostStream *post_data;
 
   ResponseParseState parse_state;
 
   /* all outgoing data goes here first temporarily */
-  GskBuffer      outgoing;
+  EvaBuffer      outgoing;
   guint content_received;
 
   /* members from eva_http_server_respond */
-  GskHttpResponse *response;
-  GskStream *content;
+  EvaHttpResponse *response;
+  EvaStream *content;
 
   /* have we written all the content out */
   guint is_done_writing : 1;
@@ -65,20 +65,20 @@ struct _GskHttpServerResponse
   /* number of bytes of content written thus far */
   guint content_written;
 
-  GskHttpServerResponse *next;
+  EvaHttpServerResponse *next;
 };
-EVA_DECLARE_POOL_ALLOCATORS(GskHttpServerResponse, eva_http_server_response, 6)
+EVA_DECLARE_POOL_ALLOCATORS(EvaHttpServerResponse, eva_http_server_response, 6)
 
-struct _GskHttpServerPostStreamClass 
+struct _EvaHttpServerPostStreamClass 
 {
-  GskStreamClass stream_class;
+  EvaStreamClass stream_class;
 };
 
-struct _GskHttpServerPostStream 
+struct _EvaHttpServerPostStream 
 {
-  GskStream      stream;
-  GskBuffer      buffer;
-  GskHttpServer *server;
+  EvaStream      stream;
+  EvaBuffer      buffer;
+  EvaHttpServer *server;
   guint          blocking_server_write : 1;
 
   /* for Content-length: handling */
@@ -95,7 +95,7 @@ struct _GskHttpServerPostStream
 };
 
 static inline gboolean
-eva_http_server_response_is_done (GskHttpServerResponse *response)
+eva_http_server_response_is_done (EvaHttpServerResponse *response)
 {
   if (response->failed)
     return TRUE;
@@ -106,7 +106,7 @@ eva_http_server_response_is_done (GskHttpServerResponse *response)
 }
 
 static inline void
-eva_http_server_response_destroy (GskHttpServerResponse *response,
+eva_http_server_response_destroy (EvaHttpServerResponse *response,
 				  gboolean               is_server_dying)
 {
   if (response->request)
@@ -125,10 +125,10 @@ eva_http_server_response_destroy (GskHttpServerResponse *response,
   eva_http_server_response_free (response);
 }
 
-static void eva_http_server_prune_done_responses (GskHttpServer *server,
+static void eva_http_server_prune_done_responses (EvaHttpServer *server,
                                                   gboolean       may_read_shutdown);
 static inline void
-eva_http_server_response_fail (GskHttpServerResponse *response,
+eva_http_server_response_fail (EvaHttpServerResponse *response,
 			       const char            *explanation)
 {
   /* NOTE: someday we're probably going to want a callback here. */ 
@@ -151,10 +151,10 @@ eva_http_server_response_fail (GskHttpServerResponse *response,
 }
 
 static gboolean
-handle_content_is_readable (GskStream *content_stream, gpointer data)
+handle_content_is_readable (EvaStream *content_stream, gpointer data)
 {
-  GskHttpServer *server = EVA_HTTP_SERVER (data);
-  GskHttpServerResponse *trapped_response = server->trapped_response;
+  EvaHttpServer *server = EVA_HTTP_SERVER (data);
+  EvaHttpServerResponse *trapped_response = server->trapped_response;
   GError *error = NULL;
   gboolean was_empty;
   g_return_val_if_fail (trapped_response != NULL && trapped_response->content == content_stream, FALSE);
@@ -195,17 +195,17 @@ handle_error:
 }
 
 static gboolean
-should_close_after_this_response (GskHttpServerResponse *response)
+should_close_after_this_response (EvaHttpServerResponse *response)
 {
-  GskHttpHeader *resp = EVA_HTTP_HEADER (response->response);
+  EvaHttpHeader *resp = EVA_HTTP_HEADER (response->response);
   return eva_http_header_get_connection (resp) == EVA_HTTP_CONNECTION_CLOSE;
 }
 
 static gboolean
-handle_content_shutdown (GskStream *content_stream, gpointer data)
+handle_content_shutdown (EvaStream *content_stream, gpointer data)
 {
-  GskHttpServer *server = EVA_HTTP_SERVER (data);
-  GskHttpServerResponse *trapped_response = server->trapped_response;
+  EvaHttpServer *server = EVA_HTTP_SERVER (data);
+  EvaHttpServerResponse *trapped_response = server->trapped_response;
   gint content_length;
   g_return_val_if_fail (trapped_response != NULL && trapped_response->content == content_stream, FALSE);
   trapped_response->content = NULL;
@@ -249,14 +249,14 @@ handle_content_shutdown (GskStream *content_stream, gpointer data)
 static gboolean
 handle_keepalive_idle_timeout (gpointer data)
 {
-  GskHttpServer *server = EVA_HTTP_SERVER (data);
+  EvaHttpServer *server = EVA_HTTP_SERVER (data);
   server->keepalive_idle_timeout = NULL;
   eva_io_notify_shutdown (EVA_IO (server));
   return FALSE;
 }
 
 static inline void
-add_keepalive_idle_timeout (GskHttpServer *server)
+add_keepalive_idle_timeout (EvaHttpServer *server)
 {
   g_assert (server->keepalive_idle_timeout == NULL);
   g_assert (server->keepalive_idle_timeout_ms >= 0);
@@ -267,15 +267,15 @@ add_keepalive_idle_timeout (GskHttpServer *server)
 }
 
 static void
-eva_http_server_prune_done_responses (GskHttpServer *server,
+eva_http_server_prune_done_responses (EvaHttpServer *server,
                                       gboolean       may_read_shutdown)
 {
-  GskHttpServerResponse **pthis = &server->first_response;
-  GskHttpServerResponse *last = NULL;
-  GskHttpServerResponse *at;
+  EvaHttpServerResponse **pthis = &server->first_response;
+  EvaHttpServerResponse *last = NULL;
+  EvaHttpServerResponse *at;
   while (*pthis != NULL)
     {
-      GskHttpServerResponse *at = *pthis;
+      EvaHttpServerResponse *at = *pthis;
       if (eva_http_server_response_is_done (at))
 	{
           if (server->trapped_response == at)
@@ -343,19 +343,19 @@ eva_http_server_prune_done_responses (GskHttpServer *server,
 
 /* --- i/o implementation --- */
 static void
-eva_http_server_set_poll_read (GskIO *io, gboolean should_poll)
+eva_http_server_set_poll_read (EvaIO *io, gboolean should_poll)
 {
   EVA_HTTP_SERVER (io)->read_poll = should_poll;
 }
 
 static gboolean
-eva_http_server_shutdown_read   (GskIO      *io,
+eva_http_server_shutdown_read   (EvaIO      *io,
 				 GError    **error)
 {
-  GskHttpServer *server = EVA_HTTP_SERVER (io);
-  GskHttpServerResponse *at;
+  EvaHttpServer *server = EVA_HTTP_SERVER (io);
+  EvaHttpServerResponse *at;
   guint n_to_shutdown = 0;
-  GskStream **to_shutdown;
+  EvaStream **to_shutdown;
   guint i;
   for (at = server->first_response; at != NULL; at = at->next)
     if (!at->is_done_writing)
@@ -365,7 +365,7 @@ eva_http_server_shutdown_read   (GskIO      *io,
          && eva_io_get_is_readable (at->content))
           n_to_shutdown++;
       }
-  to_shutdown = g_newa (GskStream *, n_to_shutdown);
+  to_shutdown = g_newa (EvaStream *, n_to_shutdown);
   i = 0;
   for (at = server->first_response; at != NULL; at = at->next)
     if (!at->is_done_writing
@@ -382,17 +382,17 @@ eva_http_server_shutdown_read   (GskIO      *io,
 }
 
 static void
-eva_http_server_set_poll_write (GskIO *io, gboolean should_poll)
+eva_http_server_set_poll_write (EvaIO *io, gboolean should_poll)
 {
   EVA_HTTP_SERVER (io)->write_poll = should_poll;
 }
 
 static gboolean
-eva_http_server_shutdown_write  (GskIO      *io,
+eva_http_server_shutdown_write  (EvaIO      *io,
 				 GError    **error)
 {
-  GskHttpServer *server = EVA_HTTP_SERVER (io);
-  GskHttpServerResponse *at;
+  EvaHttpServer *server = EVA_HTTP_SERVER (io);
+  EvaHttpServerResponse *at;
   for (at = server->first_response; at != NULL; at = at->next)
     {
       if (at->parse_state == READING_POST)
@@ -415,13 +415,13 @@ eva_http_server_shutdown_write  (GskIO      *io,
 }
 
 static guint
-eva_http_server_raw_read      (GskStream     *stream,
+eva_http_server_raw_read      (EvaStream     *stream,
 			       gpointer       data,
 			       guint          length,
 			       GError       **error)
 {
-  GskHttpServer *server = EVA_HTTP_SERVER (stream);
-  GskHttpServerResponse *at;
+  EvaHttpServer *server = EVA_HTTP_SERVER (stream);
+  EvaHttpServerResponse *at;
   guint rv;
   for (at = server->first_response; at != NULL; at = at->next)
     {
@@ -478,10 +478,10 @@ eva_http_server_raw_read      (GskStream     *stream,
   return rv;
 }
 
-static GskHttpServerResponse *
-create_new_response (GskHttpServer *server)
+static EvaHttpServerResponse *
+create_new_response (EvaHttpServer *server)
 {
-  GskHttpServerResponse *response = eva_http_server_response_alloc ();
+  EvaHttpServerResponse *response = eva_http_server_response_alloc ();
   response->server = server;
   response->request_parser_table = NULL;
   response->request = NULL;
@@ -509,7 +509,7 @@ create_new_response (GskHttpServer *server)
 }
 
 static void
-first_line_parser_callback  (GskHttpServerResponse *response,
+first_line_parser_callback  (EvaHttpServerResponse *response,
 			     const char       *text)
 {
   GError *error = NULL;
@@ -520,7 +520,7 @@ first_line_parser_callback  (GskHttpServerResponse *response,
     {
     case EVA_HTTP_REQUEST_FIRST_LINE_ERROR:
       {
-        GskHttpRequest *request = response->request;
+        EvaHttpRequest *request = response->request;
         response->request = NULL;
         eva_io_set_gerror (EVA_IO (response->server), EVA_IO_ERROR_WRITE, error);
         if (request != NULL)
@@ -546,21 +546,21 @@ first_line_parser_callback  (GskHttpServerResponse *response,
 }
 
 static void
-header_line_parser_callback (GskHttpServerResponse *response,
+header_line_parser_callback (EvaHttpServerResponse *response,
 			     const char            *line)
 {
-  GskHttpHeaderLineParser *parser;
+  EvaHttpHeaderLineParser *parser;
   char *lowercase;
   const char *colon;
   unsigned i;
   const char *val;
   if (line[0] == 0)
     {
-      GskHttpVerb verb = response->request->verb;
+      EvaHttpVerb verb = response->request->verb;
       if (verb == EVA_HTTP_VERB_PUT
        || verb == EVA_HTTP_VERB_POST)
 	{
-	  GskHttpHeader *hdr = EVA_HTTP_HEADER (response->request);
+	  EvaHttpHeader *hdr = EVA_HTTP_HEADER (response->request);
 	  gboolean chunked = hdr->transfer_encoding_type == EVA_HTTP_TRANSFER_ENCODING_CHUNKED;
 	  gint content_length = hdr->content_length;
 	  response->post_data = eva_http_server_post_stream_new (response->server,
@@ -614,13 +614,13 @@ header_line_parser_callback (GskHttpServerResponse *response,
 #define MAX_STACK_ALLOC	4096
 
 static guint
-eva_http_server_raw_write     (GskStream     *stream,
+eva_http_server_raw_write     (EvaStream     *stream,
 			       gconstpointer  data,
 			       guint          length,
 			       GError       **error)
 {
-  GskHttpServer *server = EVA_HTTP_SERVER (stream);
-  GskHttpServerResponse *at;
+  EvaHttpServer *server = EVA_HTTP_SERVER (stream);
+  EvaHttpServerResponse *at;
   char stack_buf[MAX_STACK_ALLOC];
 
   if (length > 0 && server->keepalive_idle_timeout != NULL)
@@ -698,10 +698,10 @@ done:
 static void
 eva_http_server_finalize (GObject *object)
 {
-  GskHttpServer *server = EVA_HTTP_SERVER (object);
+  EvaHttpServer *server = EVA_HTTP_SERVER (object);
   while (server->first_response)
     {
-      GskHttpServerResponse *response = server->first_response;
+      EvaHttpServerResponse *response = server->first_response;
       server->first_response = response->next;
       eva_http_server_response_destroy (response, TRUE);
     }
@@ -717,9 +717,9 @@ eva_http_server_finalize (GObject *object)
 
 /* --- functions --- */
 static void
-eva_http_server_init (GskHttpServer *http_server)
+eva_http_server_init (EvaHttpServer *http_server)
 {
-  EVA_HOOK_INIT (http_server, GskHttpServer, has_request_hook, 0, 
+  EVA_HOOK_INIT (http_server, EvaHttpServer, has_request_hook, 0, 
 		 set_poll_request, shutdown_request);
   EVA_HOOK_MARK_FLAG (&http_server->has_request_hook, IS_AVAILABLE);
   http_server->keepalive_idle_timeout_ms = -1;
@@ -729,11 +729,11 @@ eva_http_server_init (GskHttpServer *http_server)
 }
 
 static void
-eva_http_server_class_init (GskHttpServerClass *class)
+eva_http_server_class_init (EvaHttpServerClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
-  GskIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
   stream_class->raw_read = eva_http_server_raw_read;
   stream_class->raw_write = eva_http_server_raw_write;
@@ -742,7 +742,7 @@ eva_http_server_class_init (GskHttpServerClass *class)
   io_class->shutdown_read = eva_http_server_shutdown_read;
   io_class->set_poll_write = eva_http_server_set_poll_write;
   io_class->shutdown_write = eva_http_server_shutdown_write;
-  EVA_HOOK_CLASS_INIT (object_class, "request", GskHttpServer, has_request_hook);
+  EVA_HOOK_CLASS_INIT (object_class, "request", EvaHttpServer, has_request_hook);
 }
 
 GType eva_http_server_get_type()
@@ -752,38 +752,38 @@ GType eva_http_server_get_type()
     {
       static const GTypeInfo http_server_info =
       {
-	sizeof(GskHttpServerClass),
+	sizeof(EvaHttpServerClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_http_server_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskHttpServer),
+	sizeof (EvaHttpServer),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_http_server_init,
 	NULL		/* value_table */
       };
       http_server_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                 "GskHttpServer",
+                                                 "EvaHttpServer",
 						 &http_server_info, 0);
     }
   return http_server_type;
 }
 
 /* === Implementation of Post/Put data streams === */
-typedef struct _GskHttpServerPostStreamClass GskHttpServerPostStreamClass;
+typedef struct _EvaHttpServerPostStreamClass EvaHttpServerPostStreamClass;
 GType eva_http_server_post_stream_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_HTTP_SERVER_POST_STREAM			(eva_http_server_post_stream_get_type ())
-#define EVA_HTTP_SERVER_POST_STREAM(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_HTTP_SERVER_POST_STREAM, GskHttpServerPostStream))
-#define EVA_HTTP_SERVER_POST_STREAM_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_HTTP_SERVER_POST_STREAM, GskHttpServerPostStreamClass))
-#define EVA_HTTP_SERVER_POST_STREAM_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_HTTP_SERVER_POST_STREAM, GskHttpServerPostStreamClass))
+#define EVA_HTTP_SERVER_POST_STREAM(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_HTTP_SERVER_POST_STREAM, EvaHttpServerPostStream))
+#define EVA_HTTP_SERVER_POST_STREAM_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_HTTP_SERVER_POST_STREAM, EvaHttpServerPostStreamClass))
+#define EVA_HTTP_SERVER_POST_STREAM_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_HTTP_SERVER_POST_STREAM, EvaHttpServerPostStreamClass))
 #define EVA_IS_HTTP_SERVER_POST_STREAM(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_HTTP_SERVER_POST_STREAM))
 #define EVA_IS_HTTP_SERVER_POST_STREAM_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_HTTP_SERVER_POST_STREAM))
 
 static GObjectClass *post_stream_parent_class = NULL;
 
 static inline void
-check_unblock_server (GskHttpServerPostStream *post_stream)
+check_unblock_server (EvaHttpServerPostStream *post_stream)
 {
   if (post_stream->server
    && post_stream->blocking_server_write
@@ -802,12 +802,12 @@ check_unblock_server (GskHttpServerPostStream *post_stream)
 }
 
 static guint
-eva_http_server_post_stream_raw_read        (GskStream     *stream,
+eva_http_server_post_stream_raw_read        (EvaStream     *stream,
 					     gpointer       data,
 					     guint          length,
 					     GError       **error)
 {
-  GskHttpServerPostStream *post_stream = EVA_HTTP_SERVER_POST_STREAM (stream);
+  EvaHttpServerPostStream *post_stream = EVA_HTTP_SERVER_POST_STREAM (stream);
   guint rv = MIN (length, post_stream->buffer.size);
   eva_buffer_read (&post_stream->buffer, data, rv);
   check_unblock_server (post_stream);
@@ -815,11 +815,11 @@ eva_http_server_post_stream_raw_read        (GskStream     *stream,
 }
 
 static guint
-eva_http_server_post_stream_raw_read_buffer (GskStream     *stream,
-					     GskBuffer     *buffer,
+eva_http_server_post_stream_raw_read_buffer (EvaStream     *stream,
+					     EvaBuffer     *buffer,
 					     GError       **error)
 {
-  GskHttpServerPostStream *post_stream = EVA_HTTP_SERVER_POST_STREAM (stream);
+  EvaHttpServerPostStream *post_stream = EVA_HTTP_SERVER_POST_STREAM (stream);
   guint rv = eva_buffer_drain (buffer, &post_stream->buffer);
   check_unblock_server (post_stream);
   return rv;
@@ -828,22 +828,22 @@ eva_http_server_post_stream_raw_read_buffer (GskStream     *stream,
 static void
 eva_http_server_post_stream_finalize (GObject *object)
 {
-  GskHttpServerPostStream *post_stream = EVA_HTTP_SERVER_POST_STREAM (object);
+  EvaHttpServerPostStream *post_stream = EVA_HTTP_SERVER_POST_STREAM (object);
   eva_buffer_destruct (&post_stream->buffer);
   post_stream_parent_class->finalize (object);
 }
 
 static void
-eva_http_server_post_stream_init (GskHttpServerPostStream *server_post_stream)
+eva_http_server_post_stream_init (EvaHttpServerPostStream *server_post_stream)
 {
   eva_stream_mark_is_readable (server_post_stream);
 }
 
 static void
-eva_http_server_post_stream_class_init (GskHttpServerPostStreamClass *class)
+eva_http_server_post_stream_class_init (EvaHttpServerPostStreamClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   post_stream_parent_class = g_type_class_peek_parent (class);
   stream_class->raw_read = eva_http_server_post_stream_raw_read;
   stream_class->raw_read_buffer = eva_http_server_post_stream_raw_read_buffer;
@@ -857,30 +857,30 @@ GType eva_http_server_post_stream_get_type()
     {
       static const GTypeInfo http_server_post_stream_info =
       {
-	sizeof(GskHttpServerPostStreamClass),
+	sizeof(EvaHttpServerPostStreamClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_http_server_post_stream_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskHttpServerPostStream),
+	sizeof (EvaHttpServerPostStream),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_http_server_post_stream_init,
 	NULL		/* value_table */
       };
       http_server_post_stream_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskHttpServerPostStream",
+                                                  "EvaHttpServerPostStream",
 						  &http_server_post_stream_info, 0);
     }
   return http_server_post_stream_type;
 }
 
-static GskHttpServerPostStream *
-eva_http_server_post_stream_new (GskHttpServer         *server,
+static EvaHttpServerPostStream *
+eva_http_server_post_stream_new (EvaHttpServer         *server,
 				 gboolean               is_chunked,
 				 gint                   length)
 {
-  GskHttpServerPostStream *rv;
+  EvaHttpServerPostStream *rv;
   rv = g_object_new (EVA_TYPE_HTTP_SERVER_POST_STREAM, NULL);
   rv->server = server;
   if (is_chunked)
@@ -906,9 +906,9 @@ eva_http_server_post_stream_new (GskHttpServer         *server,
 /* Process data for Transfer-Encoding: chunked.
    Returns whether the stream has ended. */
 static inline gboolean
-process_chunked (GskHttpServerPostStream *post_stream)
+process_chunked (EvaHttpServerPostStream *post_stream)
 {
-  GskBuffer *orig = &post_stream->server->incoming;
+  EvaBuffer *orig = &post_stream->server->incoming;
   for (;;)
     {
       if (post_stream->is_in_chunk_header)
@@ -961,9 +961,9 @@ process_chunked (GskHttpServerPostStream *post_stream)
 /* Process data for Transfer-Encoding: identity.
    Returns whether the stream has ended. */
 static inline gboolean
-process_unencoded (GskHttpServerPostStream *post_stream)
+process_unencoded (EvaHttpServerPostStream *post_stream)
 {
-  GskBuffer *orig = &post_stream->server->incoming;
+  EvaBuffer *orig = &post_stream->server->incoming;
   if (post_stream->has_length)
     {
       guint xfer = MIN (orig->size, post_stream->cur_size);
@@ -980,7 +980,7 @@ process_unencoded (GskHttpServerPostStream *post_stream)
 
 /* Returns whether the post-data is over */
 static gboolean
-eva_http_server_post_stream_process (GskHttpServerPostStream *post_stream)
+eva_http_server_post_stream_process (EvaHttpServerPostStream *post_stream)
 {
   gboolean ended;
   if (post_stream->is_chunked)
@@ -1007,7 +1007,7 @@ eva_http_server_post_stream_process (GskHttpServerPostStream *post_stream)
 }
 
 static void
-eva_http_server_post_stream_detach (GskHttpServerPostStream *post_stream,
+eva_http_server_post_stream_detach (EvaHttpServerPostStream *post_stream,
 				    gboolean                 is_server_dying)
 {
   if (!is_server_dying && post_stream->blocking_server_write)
@@ -1031,7 +1031,7 @@ eva_http_server_post_stream_detach (GskHttpServerPostStream *post_stream,
  *
  * returns: the newly allocated server.
  */
-GskHttpServer *
+EvaHttpServer *
 eva_http_server_new (void)
 {
   return g_object_new (EVA_TYPE_HTTP_SERVER, NULL);
@@ -1053,19 +1053,19 @@ eva_http_server_new (void)
  * returns: whether a request was successfully dequeued.
  */
 gboolean
-eva_http_server_get_request (GskHttpServer   *server,
-			     GskHttpRequest **request_out,
-			     GskStream      **post_data_out)
+eva_http_server_get_request (EvaHttpServer   *server,
+			     EvaHttpRequest **request_out,
+			     EvaStream      **post_data_out)
 {
-  GskHttpServerResponse *sresponse;
+  EvaHttpServerResponse *sresponse;
   for (sresponse = server->first_response;
        sresponse != NULL;
        sresponse = sresponse->next)
     {
       if (!sresponse->user_fetched)
 	{
-	  GskHttpRequest *request = sresponse->request;
-	  GskHttpServerPostStream *post_data = sresponse->post_data;
+	  EvaHttpRequest *request = sresponse->request;
+	  EvaHttpServerPostStream *post_data = sresponse->post_data;
 	  *request_out = g_object_ref (request);
 	  if (post_data_out)
 	    {
@@ -1091,12 +1091,12 @@ eva_http_server_get_request (GskHttpServer   *server,
  * Give a response to a client's request.
  */
 void
-eva_http_server_respond     (GskHttpServer   *server,
-			     GskHttpRequest  *request,
-			     GskHttpResponse *response,
-			     GskStream       *content)
+eva_http_server_respond     (EvaHttpServer   *server,
+			     EvaHttpRequest  *request,
+			     EvaHttpResponse *response,
+			     EvaStream       *content)
 {
-  GskHttpServerResponse *sresponse;
+  EvaHttpServerResponse *sresponse;
   g_return_if_fail (content == NULL || !eva_hook_is_trapped (EVA_IO_READ_HOOK (content)));
   g_return_if_fail (response != NULL);
   for (sresponse = server->first_response;
@@ -1148,7 +1148,7 @@ eva_http_server_respond     (GskHttpServer   *server,
    when the server went idle, as opposed to from
    the current time. */
 void
-eva_http_server_set_idle_timeout (GskHttpServer *server,
+eva_http_server_set_idle_timeout (EvaHttpServer *server,
                                   gint           millis)
 {
   if (millis < 0)

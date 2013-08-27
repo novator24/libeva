@@ -14,26 +14,26 @@ enum
 #define IMPLEMENT_DNS_RESOLVER_IFACE    0
 
 /*
- * A GskDnsResolver which never defers to the network,
+ * A EvaDnsResolver which never defers to the network,
  * or blocks. 
  */
 static GObjectClass *parent_class = NULL;
 
-struct _GskDnsLocalResolverClass
+struct _EvaDnsLocalResolverClass
 {
   GObjectClass		object_class;
 };
 
-struct _GskDnsLocalResolver
+struct _EvaDnsLocalResolver
 {
   GObject		object;
-  GskDnsRRCache        *rr_cache;
+  EvaDnsRRCache        *rr_cache;
 };
 
 static void
 eva_dns_local_resolver_finalize (GObject *object)
 {
-  GskDnsLocalResolver *resolver = EVA_DNS_LOCAL_RESOLVER (object);
+  EvaDnsLocalResolver *resolver = EVA_DNS_LOCAL_RESOLVER (object);
   if (resolver->rr_cache != NULL)
     eva_dns_rr_cache_unref (resolver->rr_cache);
   (*parent_class->finalize) (object);
@@ -42,7 +42,7 @@ eva_dns_local_resolver_finalize (GObject *object)
 #if IMPLEMENT_DNS_RESOLVER_IFACE
 /* Note: this function should never be called... */
 static void
-eva_dns_local_resolver_resolve_cancel  (GskDnsResolver            *resolver,
+eva_dns_local_resolver_resolve_cancel  (EvaDnsResolver            *resolver,
 			                gpointer                   task)
 {
   g_return_if_fail (EVA_IS_DNS_LOCAL_RESOLVER (resolver));
@@ -65,10 +65,10 @@ eva_dns_local_resolver_resolve_cancel  (GskDnsResolver            *resolver,
  *
  * returns: the result of the query.
  */
-GskDnsLocalResult
-eva_dns_local_resolver_answer        (GskDnsRRCache      *rr_cache,
-				      GskDnsQuestion     *question,
-				      GskDnsMessage      *results)
+EvaDnsLocalResult
+eva_dns_local_resolver_answer        (EvaDnsRRCache      *rr_cache,
+				      EvaDnsQuestion     *question,
+				      EvaDnsMessage      *results)
 {
   const char *name = question->query_name;
   GSList *list;
@@ -121,7 +121,7 @@ retry_lookup_name:
 
   for (at = list; at != NULL; at = at->next)
     {
-      GskDnsResourceRecord *record = at->data;
+      EvaDnsResourceRecord *record = at->data;
       if (record->type == question->query_type
        || record->type == EVA_DNS_RR_CANONICAL_NAME
        || question->query_type == EVA_DNS_RR_WILDCARD)
@@ -149,17 +149,17 @@ retry_lookup_name:
 
 #if IMPLEMENT_DNS_RESOLVER_IFACE
 static gpointer
-eva_dns_local_resolver_real_resolve (GskDnsResolver               *resolver,
+eva_dns_local_resolver_real_resolve (EvaDnsResolver               *resolver,
 				     gboolean                      recursive,
 				     GSList                       *questions,
-				     GskDnsResolverResponseFunc    func,
-				     GskDnsResolverFailFunc        on_fail,
+				     EvaDnsResolverResponseFunc    func,
+				     EvaDnsResolverFailFunc        on_fail,
 				     gpointer                      func_data,
 				     GDestroyNotify                destroy,
-				     GskDnsResolverHints          *hints)
+				     EvaDnsResolverHints          *hints)
 {
-  GskDnsLocalResolver *local_resolver = EVA_DNS_LOCAL_RESOLVER (resolver);
-  GskDnsMessage *allocator = eva_dns_message_new (0, FALSE);
+  EvaDnsLocalResolver *local_resolver = EVA_DNS_LOCAL_RESOLVER (resolver);
+  EvaDnsMessage *allocator = eva_dns_message_new (0, FALSE);
   GSList *negatives = NULL;
   gboolean got_something = FALSE;
 
@@ -171,7 +171,7 @@ eva_dns_local_resolver_real_resolve (GskDnsResolver               *resolver,
 
   while (questions != NULL)
     {
-      GskDnsQuestion *question = (GskDnsQuestion*)(questions->data);
+      EvaDnsQuestion *question = (EvaDnsQuestion*)(questions->data);
       switch (eva_dns_local_resolver_answer (local_resolver->rr_cache,
 					     question, allocator))
 	{
@@ -238,12 +238,12 @@ eva_dns_local_resolver_set_property (GObject        *object,
 			             const GValue   *value,
 			             GParamSpec     *pspec)
 {
-  GskDnsLocalResolver *local_resolver = EVA_DNS_LOCAL_RESOLVER (object);
+  EvaDnsLocalResolver *local_resolver = EVA_DNS_LOCAL_RESOLVER (object);
   switch (property_id)
     {
     case PROP_RR_CACHE:
       {
-	GskDnsRRCache *rr_cache = g_value_get_boxed (value);
+	EvaDnsRRCache *rr_cache = g_value_get_boxed (value);
 	if (rr_cache)
 	  eva_dns_rr_cache_ref (rr_cache);
 	if (local_resolver->rr_cache)
@@ -258,14 +258,14 @@ eva_dns_local_resolver_set_property (GObject        *object,
 }
 
 static void
-eva_dns_local_resolver_init (GskDnsLocalResolver *resolver)
+eva_dns_local_resolver_init (EvaDnsLocalResolver *resolver)
 {
   resolver->rr_cache = NULL;
 }
 
 #if IMPLEMENT_DNS_RESOLVER_IFACE
 static void
-eva_dns_local_resolver_resolver_init (GskDnsResolverIface *iface)
+eva_dns_local_resolver_resolver_init (EvaDnsResolverIface *iface)
 {
   iface->resolve = eva_dns_local_resolver_real_resolve;
   iface->cancel = eva_dns_local_resolver_resolve_cancel;
@@ -311,19 +311,19 @@ eva_dns_local_resolver_get_type()
     {
       static const GTypeInfo dns_local_resolver_info =
       {
-	sizeof(GskDnsLocalResolverClass),
+	sizeof(EvaDnsLocalResolverClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_dns_local_resolver_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskDnsLocalResolver),
+	sizeof (EvaDnsLocalResolver),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_dns_local_resolver_init,
 	NULL		/* value_table */
       };
       dns_local_resolver_type = g_type_register_static (G_TYPE_OBJECT,
-                                                  "GskDnsLocalResolver",
+                                                  "EvaDnsLocalResolver",
 						  &dns_local_resolver_info, 0);
     }
   return dns_local_resolver_type;
@@ -337,10 +337,10 @@ eva_dns_local_resolver_get_type()
  *
  * returns: the newly allocated resolver.
  */
-GskDnsResolver *
-eva_dns_local_resolver_new   (GskDnsRRCache *rr_cache)
+EvaDnsResolver *
+eva_dns_local_resolver_new   (EvaDnsRRCache *rr_cache)
 {
-  GskDnsLocalResolver *resolver;
+  EvaDnsLocalResolver *resolver;
   if (rr_cache)
     resolver = g_object_new (EVA_TYPE_DNS_LOCAL_RESOLVER,
 			     "resource-cache", rr_cache,

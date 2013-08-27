@@ -181,7 +181,7 @@ static gboolean add_time_to_log (gpointer data)
 
 void eva_debug_alloc_add_log_time_update_idle (void)
 {
-  GskMainLoop *main_loop = eva_main_loop_default ();
+  EvaMainLoop *main_loop = eva_main_loop_default ();
   eva_main_loop_add_idle (main_loop, add_time_to_log, main_loop,NULL);
 }
 
@@ -682,9 +682,9 @@ void eva_set_debug_mem_output_filename (const char *filename)
 /* --- object lifetime timers --- */
 typedef struct
 {
-  GskSource *source;
+  EvaSource *source;
   GObject *object;	/* weak reference */
-  GskDebugObjectTimedOut func;
+  EvaDebugObjectTimedOut func;
   gpointer data;
   GDestroyNotify destroy;
 } TimeoutData;
@@ -715,7 +715,7 @@ static gboolean handle_timeout (gpointer data)
 
 void eva_debug_set_object_timeout (GObject *object,
                                    guint    max_duration_millis,
-                                   GskDebugObjectTimedOut func,
+                                   EvaDebugObjectTimedOut func,
                                    gpointer data,
                                    GDestroyNotify destroy)
 {

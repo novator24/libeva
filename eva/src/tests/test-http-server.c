@@ -22,13 +22,13 @@ struct _PathInfo
 static GArray *path_info = NULL;
 
 static gboolean
-handle_request (GskHttpServer *server)
+handle_request (EvaHttpServer *server)
 {
-  GskHttpRequest *request;
-  GskStream *posted_data;
+  EvaHttpRequest *request;
+  EvaStream *posted_data;
   GError *error = NULL;
-  GskStream *stream = NULL;
-  GskHttpResponse *response = NULL;
+  EvaStream *stream = NULL;
+  EvaHttpResponse *response = NULL;
   guint i;
   if (!eva_http_server_get_request (server, &request, &posted_data))
     return TRUE;
@@ -116,12 +116,12 @@ respond:
 }
 
 static gboolean
-handle_on_accept (GskStream         *stream,
+handle_on_accept (EvaStream         *stream,
                   gpointer           data,
                   GError           **error)
 {
   GError *e = NULL;
-  GskHttpServer *http_server;
+  EvaHttpServer *http_server;
   g_assert (data == NULL);
   http_server = eva_http_server_new ();
   eva_http_server_trap (http_server,
@@ -160,8 +160,8 @@ usage (const char *err)
 
 int main (int argc, char **argv)
 {
-  GskStreamListener *listener;
-  GskSocketAddress *bind_addr;
+  EvaStreamListener *listener;
+  EvaSocketAddress *bind_addr;
   GError *error = NULL;
   int i;
   int port = 0;

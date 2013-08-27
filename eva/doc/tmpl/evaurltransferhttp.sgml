@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskUrlTransferHttp
+EvaUrlTransferHttp
 
 <!-- ##### SECTION Short_Description ##### -->
 An HTTP- or HTTPS-based transfer.
@@ -12,13 +12,13 @@ In particular, this class defines many HTTP specific configurations.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-#GskUrlTransfer.
+#EvaUrlTransfer.
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskUrlTransferHttp ##### -->
+<!-- ##### STRUCT EvaUrlTransferHttp ##### -->
 <para>
 
 </para>
@@ -79,7 +79,7 @@ In particular, this class defines many HTTP specific configurations.
 @proxy_address: 
 
 
-<!-- ##### USER_FUNCTION GskUrlTransferHttpRequestModifierFunc ##### -->
+<!-- ##### USER_FUNCTION EvaUrlTransferHttpRequestModifierFunc ##### -->
 <para>
 
 </para>

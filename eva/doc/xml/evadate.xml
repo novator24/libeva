@@ -14,22 +14,22 @@
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-enum                <link linkend="GskDateFormatMask">GskDateFormatMask</link>;
+enum                <link linkend="EvaDateFormatMask">EvaDateFormatMask</link>;
 <link linkend="gboolean">gboolean</link>            <link linkend="eva-date-parse">eva_date_parse</link>                      (const <link linkend="char">char</link> *date_str,
                                                          <link linkend="struct-tm">struct tm</link> *tm_out,
                                                          <link linkend="int">int</link> *tzoffset_out,
-                                                         <link linkend="GskDateFormatMask">GskDateFormatMask</link> formats_allowed);
+                                                         <link linkend="EvaDateFormatMask">EvaDateFormatMask</link> formats_allowed);
 <link linkend="gboolean">gboolean</link>            <link linkend="eva-date-parse-timet">eva_date_parse_timet</link>                (const <link linkend="char">char</link> *date_str,
                                                          <link linkend="time-t">time_t</link> *out,
-                                                         <link linkend="GskDateFormatMask">GskDateFormatMask</link> formats_allowed);
+                                                         <link linkend="EvaDateFormatMask">EvaDateFormatMask</link> formats_allowed);
 <link linkend="void">void</link>                <link linkend="eva-date-print">eva_date_print</link>                      (const <link linkend="struct-tm">struct tm</link> *tm,
                                                          <link linkend="char">char</link> *date_str_out,
                                                          <link linkend="int">int</link> date_str_max_len,
-                                                         <link linkend="GskDateFormatMask">GskDateFormatMask</link> format);
+                                                         <link linkend="EvaDateFormatMask">EvaDateFormatMask</link> format);
 <link linkend="void">void</link>                <link linkend="eva-date-print-timet">eva_date_print_timet</link>                (<link linkend="time-t">time_t</link> t,
                                                          <link linkend="char">char</link> *date_str_out,
                                                          <link linkend="int">int</link> date_str_max_len,
-                                                         <link linkend="GskDateFormatMask">GskDateFormatMask</link> format);
+                                                         <link linkend="EvaDateFormatMask">EvaDateFormatMask</link> format);
 #define             <link linkend="EVA-DATE-MAX-LENGTH--CAPS">EVA_DATE_MAX_LENGTH</link>
 </synopsis>
 </refsynopsisdiv>
@@ -52,9 +52,9 @@ formats.
 
 <refsect1 id="eva-evadate.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskDateFormatMask" role="enum">
-<title>enum GskDateFormatMask</title>
-<indexterm zone="GskDateFormatMask"><primary sortas="GskDateFormatMask">GskDateFormatMask</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaDateFormatMask" role="enum">
+<title>enum EvaDateFormatMask</title>
+<indexterm zone="EvaDateFormatMask"><primary sortas="EvaDateFormatMask">EvaDateFormatMask</primary></indexterm><programlisting>typedef enum
 {
   /* rfc 822, obsoleted by rfc 1123:
    *     Sun, 06 Nov 1994 08:49:37 GMT
@@ -101,7 +101,7 @@ formats.
   EVA_DATE_FORMAT_HTTP = (EVA_DATE_FORMAT_1123 
                         | EVA_DATE_FORMAT_1036
 			| EVA_DATE_FORMAT_ANSI_C)
-} GskDateFormatMask;
+} EvaDateFormatMask;
 </programlisting>
 <para>
 Formats to accept when parsing with <link linkend="eva-date-parse"><function>eva_date_parse()</function></link>.
@@ -141,7 +141,7 @@ All formats permitted by the HTTP standard.
 <indexterm zone="eva-date-parse"><primary sortas="eva_date_parse">eva_date_parse</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_date_parse                      (const <link linkend="char">char</link> *date_str,
                                                          <link linkend="struct-tm">struct tm</link> *tm_out,
                                                          <link linkend="int">int</link> *tzoffset_out,
-                                                         <link linkend="GskDateFormatMask">GskDateFormatMask</link> formats_allowed);</programlisting>
+                                                         <link linkend="EvaDateFormatMask">EvaDateFormatMask</link> formats_allowed);</programlisting>
 <para>
 Parse a date to a struct tm.</para>
 <para>
@@ -168,7 +168,7 @@ The parser will try to find a date in any of the allowed formats.
 <title>eva_date_parse_timet ()</title>
 <indexterm zone="eva-date-parse-timet"><primary sortas="eva_date_parse_timet">eva_date_parse_timet</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_date_parse_timet                (const <link linkend="char">char</link> *date_str,
                                                          <link linkend="time-t">time_t</link> *out,
-                                                         <link linkend="GskDateFormatMask">GskDateFormatMask</link> formats_allowed);</programlisting>
+                                                         <link linkend="EvaDateFormatMask">EvaDateFormatMask</link> formats_allowed);</programlisting>
 <para>
 Parse a date to a unix time.</para>
 <para>
@@ -192,7 +192,7 @@ The parser will try to find a date in any of the allowed formats.
 <indexterm zone="eva-date-print"><primary sortas="eva_date_print">eva_date_print</primary></indexterm><programlisting><link linkend="void">void</link>                eva_date_print                      (const <link linkend="struct-tm">struct tm</link> *tm,
                                                          <link linkend="char">char</link> *date_str_out,
                                                          <link linkend="int">int</link> date_str_max_len,
-                                                         <link linkend="GskDateFormatMask">GskDateFormatMask</link> format);</programlisting>
+                                                         <link linkend="EvaDateFormatMask">EvaDateFormatMask</link> format);</programlisting>
 <para>
 Print the date to a buffer, in the format requested.</para>
 <para>
@@ -217,7 +217,7 @@ to prevent clipping.
 <indexterm zone="eva-date-print-timet"><primary sortas="eva_date_print_timet">eva_date_print_timet</primary></indexterm><programlisting><link linkend="void">void</link>                eva_date_print_timet                (<link linkend="time-t">time_t</link> t,
                                                          <link linkend="char">char</link> *date_str_out,
                                                          <link linkend="int">int</link> date_str_max_len,
-                                                         <link linkend="GskDateFormatMask">GskDateFormatMask</link> format);</programlisting>
+                                                         <link linkend="EvaDateFormatMask">EvaDateFormatMask</link> format);</programlisting>
 <para>
 Print the date to a buffer, in the format requested.</para>
 <para>

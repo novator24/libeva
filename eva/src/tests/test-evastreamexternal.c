@@ -6,9 +6,9 @@
 int
 main (int argc, char **argv)
 {
-  GskBufferStream *input_buffer;
-  GskBufferStream *output_buffer;
-  GskStream *external;
+  EvaBufferStream *input_buffer;
+  EvaBufferStream *output_buffer;
+  EvaStream *external;
   const char *args[10];
   const char *desired_output;
   char tmp[1024];

@@ -5,7 +5,7 @@
 #include "evafilestreammap.h"
 
 static char *
-make_filename (GskFileStreamMap *self, const char *key)
+make_filename (EvaFileStreamMap *self, const char *key)
 {
   char *encoded, *filename;
 
@@ -19,12 +19,12 @@ make_filename (GskFileStreamMap *self, const char *key)
 
 /*
  *
- * GskFileStreamMapRequest
+ * EvaFileStreamMapRequest
  *
  */
 
-typedef GskStreamMapRequestClass        GskFileStreamMapRequestClass;
-typedef struct _GskFileStreamMapRequest GskFileStreamMapRequest;
+typedef EvaStreamMapRequestClass        EvaFileStreamMapRequestClass;
+typedef struct _EvaFileStreamMapRequest EvaFileStreamMapRequest;
 
 GType eva_file_stream_map_request_get_type (void) G_GNUC_CONST;
 
@@ -33,27 +33,27 @@ GType eva_file_stream_map_request_get_type (void) G_GNUC_CONST;
 #define EVA_FILE_STREAM_MAP_REQUEST(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
 			       EVA_TYPE_FILE_STREAM_MAP_REQUEST, \
-			       GskFileStreamMapRequest))
+			       EvaFileStreamMapRequest))
 #define EVA_IS_FILE_STREAM_MAP_REQUEST(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_FILE_STREAM_MAP_REQUEST))
 
-struct _GskFileStreamMapRequest
+struct _EvaFileStreamMapRequest
 {
-  GskStreamMapRequest stream_map_request;
+  EvaStreamMapRequest stream_map_request;
 
-  GskFileStreamMap *file_stream_map;
-  GskStream *set_read_stream;
+  EvaFileStreamMap *file_stream_map;
+  EvaStream *set_read_stream;
 };
 
 static GObjectClass *eva_file_stream_map_request_parent_class = NULL;
 
-/* GskRequest methods. */
+/* EvaRequest methods. */
 
 static void
-eva_file_stream_map_request_start (GskRequest *request)
+eva_file_stream_map_request_start (EvaRequest *request)
 {
-  GskFileStreamMapRequest *self = EVA_FILE_STREAM_MAP_REQUEST (request);
-  GskFileStreamMap *file_stream_map = self->file_stream_map;
+  EvaFileStreamMapRequest *self = EVA_FILE_STREAM_MAP_REQUEST (request);
+  EvaFileStreamMap *file_stream_map = self->file_stream_map;
   char *key = self->stream_map_request.key;
   GError *error = NULL;
   char *filename;
@@ -96,7 +96,7 @@ eva_file_stream_map_request_start (GskRequest *request)
 static void
 eva_file_stream_map_request_finalize (GObject *object)
 {
-  GskFileStreamMapRequest *self = EVA_FILE_STREAM_MAP_REQUEST (object);
+  EvaFileStreamMapRequest *self = EVA_FILE_STREAM_MAP_REQUEST (object);
 
   if (self->file_stream_map)
     g_object_unref (self->file_stream_map);
@@ -107,7 +107,7 @@ eva_file_stream_map_request_finalize (GObject *object)
 }
 
 static void
-eva_file_stream_map_request_class_init (GskRequestClass *request_class)
+eva_file_stream_map_request_class_init (EvaRequestClass *request_class)
 {
   eva_file_stream_map_request_parent_class =
     g_type_class_peek_parent (request_class);
@@ -126,31 +126,31 @@ eva_file_stream_map_request_get_type (void)
     {
       static const GTypeInfo type_info =
 	{
-	  sizeof (GskFileStreamMapRequestClass),
+	  sizeof (EvaFileStreamMapRequestClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) eva_file_stream_map_request_class_init,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskFileStreamMapRequest),
+	  sizeof (EvaFileStreamMapRequest),
 	  0,		/* n_preallocs */
 	  (GInstanceInitFunc) NULL,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (EVA_TYPE_STREAM_MAP_REQUEST,
-				     "GskFileStreamMapRequest",
+				     "EvaFileStreamMapRequest",
 				     &type_info,
 				     0);
     }
   return type;
 }
 
-static inline GskStreamMapRequest *
-eva_file_stream_map_request_new (GskFileStreamMap        *file_stream_map,
+static inline EvaStreamMapRequest *
+eva_file_stream_map_request_new (EvaFileStreamMap        *file_stream_map,
 				 const char              *key,
-				 GskStreamMapRequestType  request_type)
+				 EvaStreamMapRequestType  request_type)
 {
-  GskFileStreamMapRequest *request;
+  EvaFileStreamMapRequest *request;
 
   g_return_val_if_fail (file_stream_map, NULL);
   g_return_val_if_fail (key, NULL);
@@ -164,21 +164,21 @@ eva_file_stream_map_request_new (GskFileStreamMap        *file_stream_map,
 }
 
 /*
- * GskFileStreamMap
+ * EvaFileStreamMap
  */
 
 static GObjectClass *eva_file_stream_map_parent_class = NULL;
 
 /*
- * GskStreamMap interface.
+ * EvaStreamMap interface.
  */
 
-static GskStream *
-eva_file_stream_map_get (GskStreamMap  *stream_map,
+static EvaStream *
+eva_file_stream_map_get (EvaStreamMap  *stream_map,
 			 const char    *key,
 			 GError       **error)
 {
-  GskFileStreamMap *self = EVA_FILE_STREAM_MAP (stream_map);
+  EvaFileStreamMap *self = EVA_FILE_STREAM_MAP (stream_map);
   char *filename;
 
   g_return_val_if_fail (key, NULL);
@@ -187,12 +187,12 @@ eva_file_stream_map_get (GskStreamMap  *stream_map,
   return eva_stream_fd_new_read_file (filename, error);
 }
 
-static GskStream *
-eva_file_stream_map_set (GskStreamMap *stream_map,
+static EvaStream *
+eva_file_stream_map_set (EvaStreamMap *stream_map,
 			 const char   *key,
 			 GError      **error)
 {
-  GskFileStreamMap *self = EVA_FILE_STREAM_MAP (stream_map);
+  EvaFileStreamMap *self = EVA_FILE_STREAM_MAP (stream_map);
   char *filename;
 
   g_return_val_if_fail (key, NULL);
@@ -201,8 +201,8 @@ eva_file_stream_map_set (GskStreamMap *stream_map,
   return eva_stream_fd_new_write_file (filename, TRUE, TRUE, error);
 }
 
-static GskStreamMapRequest *
-eva_file_stream_map_delete (GskStreamMap  *stream_map,
+static EvaStreamMapRequest *
+eva_file_stream_map_delete (EvaStreamMap  *stream_map,
 			    const char    *key,
 			    GError       **error)
 {
@@ -212,8 +212,8 @@ eva_file_stream_map_delete (GskStreamMap  *stream_map,
 					  EVA_STREAM_MAP_REQUEST_DELETE);
 }
 
-static GskStreamMapRequest *
-eva_file_stream_map_exists (GskStreamMap  *stream_map,
+static EvaStreamMapRequest *
+eva_file_stream_map_exists (EvaStreamMap  *stream_map,
 			    const char    *key,
 			    GError       **error)
 {
@@ -224,8 +224,8 @@ eva_file_stream_map_exists (GskStreamMap  *stream_map,
 }
 
 #if 0
-static GskStreamMapRequest *
-eva_file_stream_map_lock (GskStreamMap *map, const char *key, GError **error)
+static EvaStreamMapRequest *
+eva_file_stream_map_lock (EvaStreamMap *map, const char *key, GError **error)
 {
   /* TODO */
   (void) map;
@@ -234,8 +234,8 @@ eva_file_stream_map_lock (GskStreamMap *map, const char *key, GError **error)
   return NULL;
 }
 
-static GskStreamMapRequest *
-eva_file_stream_map_unlock (GskStreamMap *map, const char *key, GError **error)
+static EvaStreamMapRequest *
+eva_file_stream_map_unlock (EvaStreamMap *map, const char *key, GError **error)
 {
   /* TODO */
   (void) map;
@@ -252,7 +252,7 @@ eva_file_stream_map_unlock (GskStreamMap *map, const char *key, GError **error)
 static void
 eva_file_stream_map_finalize (GObject *object)
 {
-  GskFileStreamMap *self = EVA_FILE_STREAM_MAP (object);
+  EvaFileStreamMap *self = EVA_FILE_STREAM_MAP (object);
 
   if (self->directory)
     g_free (self->directory);
@@ -261,7 +261,7 @@ eva_file_stream_map_finalize (GObject *object)
 }
 
 static void
-eva_file_stream_map_stream_map_init (GskStreamMapIface *stream_map_iface)
+eva_file_stream_map_stream_map_init (EvaStreamMapIface *stream_map_iface)
 {
   stream_map_iface->get = eva_file_stream_map_get;
   stream_map_iface->set = eva_file_stream_map_set;
@@ -294,19 +294,19 @@ eva_file_stream_map_get_type (void)
 	};
       static const GTypeInfo info =
 	{
-	  sizeof (GskFileStreamMapClass),
+	  sizeof (EvaFileStreamMapClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) eva_file_stream_map_class_init,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskFileStreamMap),
+	  sizeof (EvaFileStreamMap),
 	  0,		/* n_preallocs */
 	  (GInstanceInitFunc) NULL,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (G_TYPE_OBJECT,
-				     "GskFileStreamMap",
+				     "EvaFileStreamMap",
 				     &info,
 				     0);
       g_type_add_interface_static (type,
@@ -316,10 +316,10 @@ eva_file_stream_map_get_type (void)
   return type;
 }
 
-GskFileStreamMap *
+EvaFileStreamMap *
 eva_file_stream_map_new (const char *directory)
 {
-  GskFileStreamMap *file_stream_map;
+  EvaFileStreamMap *file_stream_map;
 
   file_stream_map = g_object_new (EVA_TYPE_FILE_STREAM_MAP, NULL);
   file_stream_map->directory = g_strdup (directory);

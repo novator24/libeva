@@ -1,29 +1,29 @@
-<refentry id="GskUrlTransferFile">
+<refentry id="EvaUrlTransferFile">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskUrlTransferFile.top_of_page">GskUrlTransferFile</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaUrlTransferFile.top_of_page">EvaUrlTransferFile</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskUrlTransferFile</refname>
+<refname>EvaUrlTransferFile</refname>
 <refpurpose></refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskUrlTransferFile.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaUrlTransferFile.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskUrlTransferFile-struct">GskUrlTransferFile</link>;
+                    <link linkend="EvaUrlTransferFile-struct">EvaUrlTransferFile</link>;
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskUrlTransferFile.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaUrlTransferFile.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskUrlTransfer">GskUrlTransfer</link>
-         +----GskUrlTransferFile
+   +----<link linkend="EvaUrlTransfer">EvaUrlTransfer</link>
+         +----EvaUrlTransferFile
 </synopsis>
 </refsect1>
 
@@ -34,17 +34,17 @@
 
 
 
-<refsect1 id="GskUrlTransferFile.description" role="desc">
+<refsect1 id="EvaUrlTransferFile.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 </para>
 </refsect1>
 
-<refsect1 id="GskUrlTransferFile.details" role="details">
+<refsect1 id="EvaUrlTransferFile.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskUrlTransferFile-struct" role="struct">
-<title>GskUrlTransferFile</title>
-<indexterm zone="GskUrlTransferFile-struct"><primary sortas="GskUrlTransferFile">GskUrlTransferFile</primary></indexterm><programlisting>typedef struct _GskUrlTransferFile GskUrlTransferFile;</programlisting>
+<refsect2 id="EvaUrlTransferFile-struct" role="struct">
+<title>EvaUrlTransferFile</title>
+<indexterm zone="EvaUrlTransferFile-struct"><primary sortas="EvaUrlTransferFile">EvaUrlTransferFile</primary></indexterm><programlisting>typedef struct _EvaUrlTransferFile EvaUrlTransferFile;</programlisting>
 <para>
 </para></refsect2>
 

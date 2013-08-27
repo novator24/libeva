@@ -8,25 +8,25 @@ An interface that DNS resolvers provide.
 <para>
 This is an interface which classes that provide DNS lookups 
 may implement.  It provides an easy way to conform
-to the #GskNameResolver interface.
+to the #EvaNameResolver interface.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-GskDnsLocalResolver and GskDnsClient.
+EvaDnsLocalResolver and EvaDnsClient.
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskDnsResolverHints ##### -->
+<!-- ##### STRUCT EvaDnsResolverHints ##### -->
 <para>
 
 </para>
 
 @address: 
 
-<!-- ##### STRUCT GskDnsResolverIface ##### -->
+<!-- ##### STRUCT EvaDnsResolverIface ##### -->
 <para>
 The interface for DNS resolvers.
 </para>
@@ -39,19 +39,19 @@ the resolver can operate without blocking, it may return NULL,
 after having called the success or failure callback.
 @cancel: a method to cancel a still running DNS task.
 
-<!-- ##### STRUCT GskDnsResolver ##### -->
+<!-- ##### STRUCT EvaDnsResolver ##### -->
 <para>
 Any object which implements this interface.
 </para>
 
 
-<!-- ##### STRUCT GskDnsResolverTask ##### -->
+<!-- ##### STRUCT EvaDnsResolverTask ##### -->
 <para>
 An opaque structure which represents a DNS resolving task.
 </para>
 
 
-<!-- ##### USER_FUNCTION GskDnsResolverLookupFunc ##### -->
+<!-- ##### USER_FUNCTION EvaDnsResolverLookupFunc ##### -->
 <para>
 Function to call when an address is found from a name.
 </para>
@@ -60,7 +60,7 @@ Function to call when an address is found from a name.
 @func_data: data passed to eva_dns_resolver_lookup().
 
 
-<!-- ##### USER_FUNCTION GskDnsResolverRevLookupFunc ##### -->
+<!-- ##### USER_FUNCTION EvaDnsResolverRevLookupFunc ##### -->
 <para>
 Function to call when an name is found from an address.
 </para>
@@ -69,23 +69,23 @@ Function to call when an name is found from an address.
 @func_data: data passed to eva_dns_resolver_rev_lookup().
 
 
-<!-- ##### USER_FUNCTION GskDnsResolverResponseFunc ##### -->
+<!-- ##### USER_FUNCTION EvaDnsResolverResponseFunc ##### -->
 <para>
 Handle a list of DNS results.
-This has all the sections of a #GskDnsMessage
+This has all the sections of a #EvaDnsMessage
 except the questions.
 </para>
 
 @answers: 
 Direct answers to the questions posed to eva_dns_resolver_resolve().
-(A GSList of #GskDnsResourceRecord's)
+(A GSList of #EvaDnsResourceRecord's)
 @authority: 
 Information about the authority of the @answers.
-(A GSList of #GskDnsResourceRecord's)
+(A GSList of #EvaDnsResourceRecord's)
 @additional: 
 Supporting data, for example, the numeric address of a nameserver.
 (To try to save the client from making more queries.)
-(A GSList of #GskDnsResourceRecord's)
+(A GSList of #EvaDnsResourceRecord's)
 @neg_questions: 
 @func_data: 
 Data passed to eva_dns_resolver_resolve().
@@ -93,10 +93,10 @@ Data passed to eva_dns_resolver_resolve().
 @negatives: 
 Questions which were definitely answered in the negative,
 meaning that the name authoritatively does not exist.
-(A GSList of #GskDnsQuestion's)
+(A GSList of #EvaDnsQuestion's)
 
 
-<!-- ##### USER_FUNCTION GskDnsResolverFailFunc ##### -->
+<!-- ##### USER_FUNCTION EvaDnsResolverFailFunc ##### -->
 <para>
 Called when a DNS resolution fails.
 </para>

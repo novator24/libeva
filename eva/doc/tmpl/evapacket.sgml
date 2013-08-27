@@ -10,7 +10,7 @@ A reference-counted binary piece of data with a destroy-notify
 to allow arbitrary memory management.
 </para>
 <para>
-It may optionally have two #GskSocketAddress to denote the source
+It may optionally have two #EvaSocketAddress to denote the source
 and destination of the packet.
 </para>
 
@@ -22,7 +22,7 @@ and destination of the packet.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskPacket ##### -->
+<!-- ##### STRUCT EvaPacket ##### -->
 <para>
 A packet of binary data, optionally associated with
 a particular host.
@@ -35,11 +35,11 @@ a particular host.
 @destroy: destroy notification.
 @destroy_data: data to invoke destroy on.
 
-<!-- ##### USER_FUNCTION GskPacketDestroyFunc ##### -->
+<!-- ##### USER_FUNCTION EvaPacketDestroyFunc ##### -->
 <para>
 The actual function prototype of destroy.
 This is only useful if you want to examine the whole
-GskPacket from your destroy function.
+EvaPacket from your destroy function.
 </para>
 
 @destroy_data: as passed to eva_packet_new()

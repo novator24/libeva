@@ -1,30 +1,30 @@
-<refentry id="GskMainLoopDevPoll">
+<refentry id="EvaMainLoopDevPoll">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskMainLoopDevPoll.top_of_page">GskMainLoopDevPoll</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaMainLoopDevPoll.top_of_page">EvaMainLoopDevPoll</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskMainLoopDevPoll</refname>
+<refname>EvaMainLoopDevPoll</refname>
 <refpurpose>/dev/poll based event loop.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskMainLoopDevPoll.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaMainLoopDevPoll.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskMainLoopDevPoll-struct">GskMainLoopDevPoll</link>;
+                    <link linkend="EvaMainLoopDevPoll-struct">EvaMainLoopDevPoll</link>;
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskMainLoopDevPoll.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaMainLoopDevPoll.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskMainLoop">GskMainLoop</link>
-         +----<link linkend="GskMainLoopPollBase">GskMainLoopPollBase</link>
-               +----GskMainLoopDevPoll
+   +----<link linkend="EvaMainLoop">EvaMainLoop</link>
+         +----<link linkend="EvaMainLoopPollBase">EvaMainLoopPollBase</link>
+               +----EvaMainLoopDevPoll
 </synopsis>
 </refsect1>
 
@@ -35,7 +35,7 @@
 
 
 
-<refsect1 id="GskMainLoopDevPoll.description" role="desc">
+<refsect1 id="EvaMainLoopDevPoll.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 This is an event loop which is implemented in terms
@@ -43,11 +43,11 @@ of the /dev/poll mechanism, which can be found on Solaris.
 </para>
 </refsect1>
 
-<refsect1 id="GskMainLoopDevPoll.details" role="details">
+<refsect1 id="EvaMainLoopDevPoll.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskMainLoopDevPoll-struct" role="struct">
-<title>GskMainLoopDevPoll</title>
-<indexterm zone="GskMainLoopDevPoll-struct"><primary sortas="GskMainLoopDevPoll">GskMainLoopDevPoll</primary></indexterm><programlisting>typedef struct _GskMainLoopDevPoll GskMainLoopDevPoll;</programlisting>
+<refsect2 id="EvaMainLoopDevPoll-struct" role="struct">
+<title>EvaMainLoopDevPoll</title>
+<indexterm zone="EvaMainLoopDevPoll-struct"><primary sortas="EvaMainLoopDevPoll">EvaMainLoopDevPoll</primary></indexterm><programlisting>typedef struct _EvaMainLoopDevPoll EvaMainLoopDevPoll;</programlisting>
 <para>
 A /dev/poll-based main-loop.
 </para></refsect2>

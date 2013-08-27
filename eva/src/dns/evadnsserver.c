@@ -9,17 +9,17 @@ enum
   PROP_RESOLVER
 };
 
-struct _GskDnsServerClass 
+struct _EvaDnsServerClass 
 {
   GObjectClass		base_class;
 };
-struct _GskDnsServer 
+struct _EvaDnsServer 
 {
   GObject		base_instance;
 
-  GskPacketQueue       *packet_queue;
+  EvaPacketQueue       *packet_queue;
 
-  GskDnsResolver       *resolver;
+  EvaDnsResolver       *resolver;
   guint                 recursion_available : 1;
   guint                 is_blocking_write : 1;
 
@@ -37,22 +37,22 @@ typedef struct _ServerTask ServerTask;
 struct _ServerTask
 {
   /* bookkeeping data */
-  GskDnsResolverTask *task;
-  GskDnsServer *server;
+  EvaDnsResolverTask *task;
+  EvaDnsServer *server;
 
   /* whether we are used the recursing cache */
   gboolean doing_recursive_lookup;
 
   /* the message and where it came from */
-  GskSocketAddress *return_address;
-  GskDnsMessage *question;
+  EvaSocketAddress *return_address;
+  EvaDnsMessage *question;
 };
 
 static void
 eva_dns_server_transmit_packet (ServerTask   *task,
-				GskPacket    *packet)
+				EvaPacket    *packet)
 {
-  GskDnsServer *server = task->server;
+  EvaDnsServer *server = task->server;
   if (server->first_outgoing_packet == NULL)
     {
       GError *error = NULL;
@@ -84,12 +84,12 @@ eva_dns_server_transmit_packet (ServerTask   *task,
 }
 
 static GSList *
-duplicate_rr_list (GSList *rr_list, GskDnsMessage *message)
+duplicate_rr_list (GSList *rr_list, EvaDnsMessage *message)
 {
   GSList *rv = NULL;
   while (rr_list != NULL)
     {
-      GskDnsResourceRecord *rr = rr_list->data;
+      EvaDnsResourceRecord *rr = rr_list->data;
       rr_list = rr_list->next;
       rv = g_slist_prepend (rv, eva_dns_rr_copy (rr, message));
     }
@@ -104,8 +104,8 @@ server_task_resolve_result(GSList             *answers,
 			   gpointer            func_data)
 {
   ServerTask *server_task = func_data;
-  GskDnsMessage *response;
-  GskPacket *packet;
+  EvaDnsMessage *response;
+  EvaPacket *packet;
   response = eva_dns_message_new (server_task->question->id, FALSE);
   response->recursion_desired = server_task->question->recursion_desired;
   response->recursion_available = server_task->question->recursion_desired
@@ -128,8 +128,8 @@ server_task_on_fail (GError             *error,
 		     gpointer            func_data)
 {
   ServerTask *server_task = func_data;
-  GskDnsMessage *response;
-  GskPacket *packet;
+  EvaDnsMessage *response;
+  EvaPacket *packet;
   response = eva_dns_message_new (server_task->question->id, FALSE);
 
   if (error->domain != EVA_G_ERROR_DOMAIN)
@@ -172,15 +172,15 @@ server_task_destroy (gpointer            func_data)
 }
 
 static void
-server_handle_incoming_messages(GskDnsMessage    *message,
-				GskSocketAddress *socket_address,
+server_handle_incoming_messages(EvaDnsMessage    *message,
+				EvaSocketAddress *socket_address,
 				gpointer          user_data)
 {
-  GskDnsServer *server = EVA_DNS_SERVER (user_data);
+  EvaDnsServer *server = EVA_DNS_SERVER (user_data);
   ServerTask *server_task;
-  GskDnsResolverTask *task;
-  GskDnsResolver *resolver;
-  GskDnsResolverHints hints;
+  EvaDnsResolverTask *task;
+  EvaDnsResolver *resolver;
+  EvaDnsResolverHints hints;
 
   if (!message->is_query)
     return;
@@ -214,23 +214,23 @@ server_handle_incoming_messages(GskDnsMessage    *message,
 }
 
 static void
-cancel_all_server_tasks (GskDnsServer *server)
+cancel_all_server_tasks (EvaDnsServer *server)
 {
   while (server->tasks != NULL)
     eva_dns_resolver_cancel (server->resolver,
-			     (GskDnsResolverTask *) (server->tasks->data));
+			     (EvaDnsResolverTask *) (server->tasks->data));
 
 }
 
 /* --- i/o handlers --- */
 static gboolean
-eva_dns_server_handle_readable (GskIO        *io,
+eva_dns_server_handle_readable (EvaIO        *io,
 				gpointer      data)
 {
-  GskDnsServer *server = EVA_DNS_SERVER (data);
+  EvaDnsServer *server = EVA_DNS_SERVER (data);
   GError *error = NULL;
-  GskPacket *packet = eva_packet_queue_read (server->packet_queue, TRUE, &error);
-  GskDnsMessage *message;
+  EvaPacket *packet = eva_packet_queue_read (server->packet_queue, TRUE, &error);
+  EvaDnsMessage *message;
   guint used;
   if (!packet)
     {
@@ -257,20 +257,20 @@ eva_dns_server_handle_readable (GskIO        *io,
 }
 
 static gboolean
-eva_dns_server_handle_readable_shutdown (GskIO        *io,
+eva_dns_server_handle_readable_shutdown (EvaIO        *io,
 				         gpointer      data)
 {
-  GskDnsServer *server = EVA_DNS_SERVER (data);
+  EvaDnsServer *server = EVA_DNS_SERVER (data);
   g_return_val_if_fail (EVA_IS_DNS_SERVER (server), FALSE);
   return FALSE;
 }
 
 static gboolean
-eva_dns_server_handle_writable (GskIO        *io,
+eva_dns_server_handle_writable (EvaIO        *io,
 				gpointer      data)
 {
-  GskDnsServer *server = EVA_DNS_SERVER (data);
-  GskPacket *packet;
+  EvaDnsServer *server = EVA_DNS_SERVER (data);
+  EvaPacket *packet;
   GError *error = NULL;
   if (server->first_outgoing_packet == NULL)
     {
@@ -302,10 +302,10 @@ eva_dns_server_handle_writable (GskIO        *io,
 }
 
 static gboolean
-eva_dns_server_handle_writable_shutdown (GskIO        *io,
+eva_dns_server_handle_writable_shutdown (EvaIO        *io,
 				         gpointer      data)
 {
-  GskDnsServer *server = EVA_DNS_SERVER (data);
+  EvaDnsServer *server = EVA_DNS_SERVER (data);
   cancel_all_server_tasks (server);
   return FALSE;
 }
@@ -317,8 +317,8 @@ eva_dns_server_constructor (GType                  type,
 		            GObjectConstructParam *c_properties)
 {
   GObject *rv = (*parent_class->constructor) (type, n_c_properties, c_properties);
-  GskDnsServer *server = EVA_DNS_SERVER (rv);
-  GskIO *io;
+  EvaDnsServer *server = EVA_DNS_SERVER (rv);
+  EvaIO *io;
   if (server->packet_queue == NULL)
     {
       g_object_unref (rv);
@@ -345,12 +345,12 @@ eva_dns_server_get_property (GObject        *object,
 			     GValue         *value,
 			     GParamSpec     *pspec)
 {
-  GskDnsServer *server = EVA_DNS_SERVER (object);
+  EvaDnsServer *server = EVA_DNS_SERVER (object);
   switch (property_id)
     {
     case PROP_PACKET_QUEUE:
       {
-	GskPacketQueue *queue = server->packet_queue;
+	EvaPacketQueue *queue = server->packet_queue;
 	if (queue)
 	  g_value_set_object (value, g_object_ref (queue));
 	else
@@ -359,7 +359,7 @@ eva_dns_server_get_property (GObject        *object,
       }
     case PROP_RESOLVER:
       {
-	GskDnsResolver *resolver = server->resolver;
+	EvaDnsResolver *resolver = server->resolver;
 	if (resolver)
 	  g_value_set_object (value, g_object_ref (resolver));
 	else
@@ -375,13 +375,13 @@ eva_dns_server_set_property (GObject        *object,
 			     const GValue   *value,
 			     GParamSpec     *pspec)
 {
-  GskDnsServer *server = EVA_DNS_SERVER (object);
+  EvaDnsServer *server = EVA_DNS_SERVER (object);
   switch (property_id)
     {
     case PROP_PACKET_QUEUE:
       {
-	GskPacketQueue *queue = server->packet_queue;
-	GskPacketQueue *new_queue = g_value_get_object (value);
+	EvaPacketQueue *queue = server->packet_queue;
+	EvaPacketQueue *new_queue = g_value_get_object (value);
 	if (new_queue)
 	  g_object_ref (new_queue);
 	if (queue)
@@ -391,8 +391,8 @@ eva_dns_server_set_property (GObject        *object,
       }
     case PROP_RESOLVER:
       {
-	GskDnsResolver *resolver = server->resolver;
-	GskDnsResolver *new_resolver = g_value_get_object (value);
+	EvaDnsResolver *resolver = server->resolver;
+	EvaDnsResolver *new_resolver = g_value_get_object (value);
 	if (new_resolver)
 	  g_object_ref (new_resolver);
 	if (resolver)
@@ -413,13 +413,13 @@ eva_dns_server_finalize (GObject *object)
 
 /* --- class functions --- */
 static void
-eva_dns_server_init (GskDnsServer *dns_server)
+eva_dns_server_init (EvaDnsServer *dns_server)
 {
   (void) dns_server;
 }
 
 static void
-eva_dns_server_class_init (GskDnsServerClass *dns_server_class)
+eva_dns_server_class_init (EvaDnsServerClass *dns_server_class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (dns_server_class);
   GParamSpec *pspec;
@@ -452,19 +452,19 @@ eva_dns_server_get_type()
     {
       static const GTypeInfo dns_server_info =
       {
-	sizeof(GskDnsServerClass),
+	sizeof(EvaDnsServerClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_dns_server_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskDnsServer),
+	sizeof (EvaDnsServer),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_dns_server_init,
 	NULL		/* value_table */
       };
       dns_server_type = g_type_register_static (G_TYPE_OBJECT,
-                                                  "GskDnsServer",
+                                                  "EvaDnsServer",
 						  &dns_server_info, 0);
     }
   return dns_server_type;
@@ -479,11 +479,11 @@ eva_dns_server_get_type()
  *
  * returns: the newly allocated DNS server.
  */
-GskDnsServer *
-eva_dns_server_new           (GskDnsResolver     *resolver,
-			      GskPacketQueue     *queue)
+EvaDnsServer *
+eva_dns_server_new           (EvaDnsResolver     *resolver,
+			      EvaPacketQueue     *queue)
 {
-  GskDnsServer *server;
+  EvaDnsServer *server;
   g_return_val_if_fail (queue != NULL, NULL);
   if (resolver)
     server = g_object_new (EVA_TYPE_DNS_SERVER,
@@ -503,10 +503,10 @@ eva_dns_server_new           (GskDnsResolver     *resolver,
  * Obtain a peeked reference at the resolver which this server is using to
  * answer questions.
  *
- * returns: a GskDnsResolver if one is being used, or NULL.
+ * returns: a EvaDnsResolver if one is being used, or NULL.
  */
-GskDnsResolver *
-eva_dns_server_peek_resolver (GskDnsServer       *server)
+EvaDnsResolver *
+eva_dns_server_peek_resolver (EvaDnsServer       *server)
 {
   return server->resolver;
 }
@@ -519,8 +519,8 @@ eva_dns_server_peek_resolver (GskDnsServer       *server)
  * Set the DNS server's resolver.
  */
 void
-eva_dns_server_set_resolver (GskDnsServer       *server,
-			     GskDnsResolver     *resolver)
+eva_dns_server_set_resolver (EvaDnsServer       *server,
+			     EvaDnsResolver     *resolver)
 {
   if (resolver != NULL)
     g_object_ref (resolver);

@@ -24,33 +24,33 @@
 #ifndef __EVA_STREAM_WATCHDOG_H_
 #define __EVA_STREAM_WATCHDOG_H_
 
-typedef struct _GskStreamWatchdogClass GskStreamWatchdogClass;
-typedef struct _GskStreamWatchdog GskStreamWatchdog;
+typedef struct _EvaStreamWatchdogClass EvaStreamWatchdogClass;
+typedef struct _EvaStreamWatchdog EvaStreamWatchdog;
 
 #include "evastream.h"
 #include "evamainloop.h"
 
 GType eva_stream_watchdog_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_STREAM_WATCHDOG              (eva_stream_watchdog_get_type ())
-#define EVA_STREAM_WATCHDOG(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_WATCHDOG, GskStreamWatchdog))
-#define EVA_STREAM_WATCHDOG_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_WATCHDOG, GskStreamWatchdogClass))
-#define EVA_STREAM_WATCHDOG_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_WATCHDOG, GskStreamWatchdogClass))
+#define EVA_STREAM_WATCHDOG(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_WATCHDOG, EvaStreamWatchdog))
+#define EVA_STREAM_WATCHDOG_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_WATCHDOG, EvaStreamWatchdogClass))
+#define EVA_STREAM_WATCHDOG_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_WATCHDOG, EvaStreamWatchdogClass))
 #define EVA_IS_STREAM_WATCHDOG(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STREAM_WATCHDOG))
 #define EVA_IS_STREAM_WATCHDOG_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_STREAM_WATCHDOG))
 
-struct _GskStreamWatchdogClass
+struct _EvaStreamWatchdogClass
 {
-  GskStreamClass base_class;
+  EvaStreamClass base_class;
 };
-struct _GskStreamWatchdog
+struct _EvaStreamWatchdog
 {
-  GskStream base_instance;
-  GskStream *underlying;
-  GskSource *timeout;
+  EvaStream base_instance;
+  EvaStream *underlying;
+  EvaSource *timeout;
   guint max_inactivity_millis;
 };
 
-GskStream *eva_stream_watchdog_new (GskStream       *underlying_stream,
+EvaStream *eva_stream_watchdog_new (EvaStream       *underlying_stream,
                                     guint            max_inactivity_millis);
 
 #endif

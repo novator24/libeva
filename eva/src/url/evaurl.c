@@ -38,10 +38,10 @@ typedef enum
   EVA_URL_INTERPRETATION_ABSOLUTE, /* same host, absolute url */
   EVA_URL_INTERPRETATION_REMOTE,   /* url on remote host */
   EVA_URL_INTERPRETATION_UNKNOWN
-} GskUrlInterpretation;
+} EvaUrlInterpretation;
 
 static const char *
-eva_url_scheme_name (GskUrlScheme scheme)
+eva_url_scheme_name (EvaUrlScheme scheme)
 {
   switch (scheme)
     {
@@ -85,7 +85,7 @@ eva_url_is_valid_generic_component (const char *str, char *bad_char_out)
 }
 
 static inline gboolean
-url_check_is_valid (GskUrl *url, GError **error)
+url_check_is_valid (EvaUrl *url, GError **error)
 {
   char bad_char;
   if (url->host && !eva_url_is_valid_hostname (url->host, &bad_char))
@@ -119,15 +119,15 @@ url_check_is_valid (GskUrl *url, GError **error)
   return TRUE;
 }
 
-static GskUrl *
-eva_url_new_from_scheme_specific  (GskUrlScheme       scheme,
+static EvaUrl *
+eva_url_new_from_scheme_specific  (EvaUrlScheme       scheme,
 				   const char        *spec,
 				   GError           **error)
 {
   int num_slashes;
   const char *start = spec;
-  GskUrlInterpretation interpretation = EVA_URL_INTERPRETATION_UNKNOWN;
-  GskUrl *url;
+  EvaUrlInterpretation interpretation = EVA_URL_INTERPRETATION_UNKNOWN;
+  EvaUrl *url;
 
   char *host, *user_name, *password, *path, *query, *fragment;
   int port;
@@ -234,7 +234,7 @@ eva_url_new_from_scheme_specific  (GskUrlScheme       scheme,
 	  spec = end_hostport;
           if (*spec == 0)
             {
-              GskUrl *url;
+              EvaUrl *url;
               url = eva_url_new_from_parts (scheme, host, port,
                                             NULL, NULL, "/", NULL, NULL);
               g_free (host);
@@ -333,7 +333,7 @@ error:
  * returns: the URL as a string.  This must be freed by the caller.
  */
 char *
-eva_url_get_relative_path (GskUrl *url)
+eva_url_get_relative_path (EvaUrl *url)
 {
   GString *string = g_string_new ("");
   g_string_append (string, url->path);
@@ -368,8 +368,8 @@ eva_url_get_relative_path (GskUrl *url)
  *
  * returns: a reference to a new URL object.
  */
-GskUrl *
-eva_url_new_from_parts      (GskUrlScheme     scheme,
+EvaUrl *
+eva_url_new_from_parts      (EvaUrlScheme     scheme,
 			     const char      *host,
 			     int              port,
 			     const char      *user_name,
@@ -378,7 +378,7 @@ eva_url_new_from_parts      (GskUrlScheme     scheme,
 			     const char      *query,
 			     const char      *fragment)
 {
-  GskUrl *url = g_object_new (EVA_TYPE_URL, NULL);
+  EvaUrl *url = g_object_new (EVA_TYPE_URL, NULL);
   url->scheme = scheme;
   url->scheme_name = (char *) eva_url_scheme_name (scheme);
   url->host = g_strdup (host);
@@ -394,7 +394,7 @@ eva_url_new_from_parts      (GskUrlScheme     scheme,
 static void
 eva_url_finalize(GObject *object)
 {
-  GskUrl *url = EVA_URL (object);
+  EvaUrl *url = EVA_URL (object);
   if (url->scheme == EVA_URL_SCHEME_OTHER)
     g_free (url->scheme_name);
   g_free (url->host);
@@ -409,7 +409,7 @@ typedef struct _UrlSchemeTableEntry UrlSchemeTableEntry;
 struct _UrlSchemeTableEntry
 {
   char        *name;
-  GskUrlScheme scheme;
+  EvaUrlScheme scheme;
 };
 
 static void
@@ -431,7 +431,7 @@ static int pstrcmp (const void *a, const void *b)
 
 static gboolean lookup_scheme_from_name (const char     *scheme_start,
                                          const char     *scheme_end,
-					 GskUrlScheme   *scheme_out)
+					 EvaUrlScheme   *scheme_out)
 {
   static UrlSchemeTableEntry table[] = {
     /* MUST BE SORTED */
@@ -465,12 +465,12 @@ static gboolean lookup_scheme_from_name (const char     *scheme_start,
  *
  * returns: a reference to a new URL object, or NULL if an error occurred.
  */
-GskUrl       *eva_url_new           (const char      *spec,
+EvaUrl       *eva_url_new           (const char      *spec,
 				     GError         **error)
 {
   const char *scheme_start;
   const char *scheme_end;
-  GskUrlScheme scheme;
+  EvaUrlScheme scheme;
 
   scheme_start = spec;
   skip_scheme (&spec);
@@ -518,13 +518,13 @@ GskUrl       *eva_url_new           (const char      *spec,
  *
  * returns: a newly allocated URL object.
  */
-GskUrl       *eva_url_new_in_context(const char      *spec,
-                                     GskUrlScheme     context,
+EvaUrl       *eva_url_new_in_context(const char      *spec,
+                                     EvaUrlScheme     context,
 				     GError         **error)
 {
   const char *scheme_start;
   const char *scheme_end;
-  GskUrlScheme scheme;
+  EvaUrlScheme scheme;
   scheme_start = spec;
   skip_scheme (&spec);
   scheme_end = spec;
@@ -566,8 +566,8 @@ GskUrl       *eva_url_new_in_context(const char      *spec,
  *
  * returns: a newly allocated URL object.
  */
-GskUrl *
-eva_url_new_relative  (GskUrl     *base_url,
+EvaUrl *
+eva_url_new_relative  (EvaUrl     *base_url,
 		       const char *location,
 		       GError    **error)
 {
@@ -611,7 +611,7 @@ eva_url_new_relative  (GskUrl     *base_url,
       char *path;
       guint path_len;
       char bad_char;
-      GskUrl *rv;
+      EvaUrl *rv;
       if (query_start)
 	{
           query_start++;
@@ -699,7 +699,7 @@ eva_url_new_relative  (GskUrl     *base_url,
  * returns: the newly allocated string.
  */
 char *
-eva_url_to_string (const GskUrl *url)
+eva_url_to_string (const EvaUrl *url)
 {
   guint len = strlen (url->scheme_name)
             + 4         /* :/// (max) */
@@ -777,7 +777,7 @@ eva_url_to_string (const GskUrl *url)
  * returns: the port as an integer, or 0 if no port could be computed.
  */
 guint
-eva_url_get_port (const GskUrl *url)
+eva_url_get_port (const EvaUrl *url)
 {
   if (url->port == 0)
     {
@@ -817,7 +817,7 @@ eva_url_get_property (GObject        *object,
 		      GValue         *value,
 		      GParamSpec     *pspec)
 {
-  GskUrl *url = EVA_URL (object);
+  EvaUrl *url = EVA_URL (object);
   switch (property_id)
     {
     case PROP_HOST:
@@ -854,7 +854,7 @@ eva_url_set_property (GObject        *object,
 		      const GValue   *value,
 		      GParamSpec     *pspec)
 {
-  GskUrl *url = EVA_URL (object);
+  EvaUrl *url = EVA_URL (object);
   switch (property_id)
     {
     case PROP_HOST:
@@ -891,13 +891,13 @@ eva_url_set_property (GObject        *object,
 }
 
 static void
-eva_url_init (GskUrl *url)
+eva_url_init (EvaUrl *url)
 {
   url->scheme = EVA_URL_SCHEME_OTHER;
 }
 
 static void
-eva_url_class_init (GskUrlClass *class)
+eva_url_class_init (EvaUrlClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   GParamSpec *pspec;
@@ -963,19 +963,19 @@ eva_url_get_type()
     {
       static const GTypeInfo url_info =
       {
-	sizeof(GskUrlClass),
+	sizeof(EvaUrlClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_url_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskUrl),
+	sizeof (EvaUrl),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_url_init,
 	NULL		/* value_table */
       };
       url_type = g_type_register_static (G_TYPE_OBJECT,
-                                                  "GskUrl",
+                                                  "EvaUrl",
 						  &url_info, 0);
     }
   return url_type;
@@ -993,7 +993,7 @@ eva_url_get_type()
  *
  * returns: the hash code.
  */
-guint           eva_url_hash                (const GskUrl    *url)
+guint           eva_url_hash                (const EvaUrl    *url)
 {
   guint rv = 0;
   rv += g_str_hash (url->scheme_name);
@@ -1030,8 +1030,8 @@ static inline gboolean safe_strs_equal (const char *a, const char *b)
  *
  * returns: whether the URLs are the same.
  */
-gboolean eva_url_equal (const GskUrl *a,
-                        const GskUrl *b)
+gboolean eva_url_equal (const EvaUrl *a,
+                        const EvaUrl *b)
 {
   return safe_strs_equal (a->scheme_name, b->scheme_name)
       && safe_strs_equal (a->host, b->host)

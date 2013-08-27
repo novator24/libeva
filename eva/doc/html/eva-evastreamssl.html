@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskStreamSsl</title>
+<title>EvaStreamSsl</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch10.html" title="SSL interface">
@@ -50,30 +50,30 @@
 <a name="eva-evastreamssl"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="eva-evastreamssl.top_of_page"></a>GskStreamSsl</span></h2>
-<p>GskStreamSsl</p>
+<h2><span class="refentrytitle"><a name="eva-evastreamssl.top_of_page"></a>EvaStreamSsl</span></h2>
+<p>EvaStreamSsl</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
 <a name="eva-evastreamssl.synopsis"></a><h2>Synopsis</h2>
-<a name="GskStreamSsl"></a><pre class="synopsis">
-                    <a class="link" href="eva-evastreamssl.html#GskStreamSsl-struct" title="GskStreamSsl">GskStreamSsl</a>;
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="eva-evastreamssl.html#eva-stream-ssl-new-client" title="eva_stream_ssl_new_client ()">eva_stream_ssl_new_client</a>           (const char *cert_file,
+<a name="EvaStreamSsl"></a><pre class="synopsis">
+                    <a class="link" href="eva-evastreamssl.html#EvaStreamSsl-struct" title="EvaStreamSsl">EvaStreamSsl</a>;
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="eva-evastreamssl.html#eva-stream-ssl-new-client" title="eva_stream_ssl_new_client ()">eva_stream_ssl_new_client</a>           (const char *cert_file,
                                                          const char *key_file,
                                                          const char *password,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *transport,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *transport,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="eva-evastreamssl.html#eva-stream-ssl-new-server" title="eva_stream_ssl_new_server ()">eva_stream_ssl_new_server</a>           (const char *cert_file,
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="eva-evastreamssl.html#eva-stream-ssl-new-server" title="eva_stream_ssl_new_server ()">eva_stream_ssl_new_server</a>           (const char *cert_file,
                                                          const char *key_file,
                                                          const char *password,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *transport,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *transport,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="eva-evastreamssl.html#eva-stream-ssl-peek-backend" title="eva_stream_ssl_peek_backend ()">eva_stream_ssl_peek_backend</a>         (<a class="link" href="eva-evastreamssl.html#GskStreamSsl">GskStreamSsl</a> *ssl);
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="eva-evastreamssl.html#eva-stream-ssl-peek-backend" title="eva_stream_ssl_peek_backend ()">eva_stream_ssl_peek_backend</a>         (<a class="link" href="eva-evastreamssl.html#EvaStreamSsl">EvaStreamSsl</a> *ssl);
 </pre>
 </div>
 <div class="refsect1" lang="en">
@@ -82,24 +82,24 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a>
-         +----<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a>
-               +----GskStreamSsl
+   +----<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a>
+         +----<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a>
+               +----EvaStreamSsl
 </pre>
 </div>
 <div class="refsect1" lang="en">
 <a name="eva-evastreamssl.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a class="link" href="eva-evastreamssl.html#GskStreamSsl--cert-file" title='The "cert-file" property'>cert-file</a>"                <a
+  "<a class="link" href="eva-evastreamssl.html#EvaStreamSsl--cert-file" title='The "cert-file" property'>cert-file</a>"                <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write / Construct Only
-  "<a class="link" href="eva-evastreamssl.html#GskStreamSsl--is-client" title='The "is-client" property'>is-client</a>"                <a
+  "<a class="link" href="eva-evastreamssl.html#EvaStreamSsl--is-client" title='The "is-client" property'>is-client</a>"                <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>              : Read / Write / Construct Only
-  "<a class="link" href="eva-evastreamssl.html#GskStreamSsl--key-file" title='The "key-file" property'>key-file</a>"                 <a
+  "<a class="link" href="eva-evastreamssl.html#EvaStreamSsl--key-file" title='The "key-file" property'>key-file</a>"                 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write / Construct Only
-  "<a class="link" href="eva-evastreamssl.html#GskStreamSsl--password" title='The "password" property'>password</a>"                 <a
+  "<a class="link" href="eva-evastreamssl.html#EvaStreamSsl--password" title='The "password" property'>password</a>"                 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Write / Construct Only
 </pre>
@@ -112,8 +112,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 <div class="refsect1" lang="en">
 <a name="eva-evastreamssl.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskStreamSsl-struct"></a><h3>GskStreamSsl</h3>
-<pre class="programlisting">typedef struct _GskStreamSsl GskStreamSsl;</pre>
+<a name="EvaStreamSsl-struct"></a><h3>EvaStreamSsl</h3>
+<pre class="programlisting">typedef struct _EvaStreamSsl EvaStreamSsl;</pre>
 <p>
 A SSL client or server.
 </p>
@@ -121,10 +121,10 @@ A SSL client or server.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-ssl-new-client"></a><h3>eva_stream_ssl_new_client ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_ssl_new_client           (const char *cert_file,
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_ssl_new_client           (const char *cert_file,
                                                          const char *key_file,
                                                          const char *password,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *transport,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *transport,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -176,10 +176,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-ssl-new-server"></a><h3>eva_stream_ssl_new_server ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_ssl_new_server           (const char *cert_file,
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_ssl_new_server           (const char *cert_file,
                                                          const char *key_file,
                                                          const char *password,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *transport,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *transport,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -231,7 +231,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-stream-ssl-peek-backend"></a><h3>eva_stream_ssl_peek_backend ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_ssl_peek_backend         (<a class="link" href="eva-evastreamssl.html#GskStreamSsl">GskStreamSsl</a> *ssl);</pre>
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_ssl_peek_backend         (<a class="link" href="eva-evastreamssl.html#EvaStreamSsl">EvaStreamSsl</a> *ssl);</pre>
 <p>
 Get a reference to the backend stream, which
 should be connected to the underlying transport
@@ -260,7 +260,7 @@ without SSL protection).
 <div class="refsect1" lang="en">
 <a name="eva-evastreamssl.property-details"></a><h2>Property Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskStreamSsl--cert-file"></a><h3>The <code class="literal">"cert-file"</code> property</h3>
+<a name="EvaStreamSsl--cert-file"></a><h3>The <code class="literal">"cert-file"</code> property</h3>
 <pre class="programlisting">  "cert-file"                <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write / Construct Only</pre>
@@ -269,7 +269,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamSsl--is-client"></a><h3>The <code class="literal">"is-client"</code> property</h3>
+<a name="EvaStreamSsl--is-client"></a><h3>The <code class="literal">"is-client"</code> property</h3>
 <pre class="programlisting">  "is-client"                <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>              : Read / Write / Construct Only</pre>
@@ -278,7 +278,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamSsl--key-file"></a><h3>The <code class="literal">"key-file"</code> property</h3>
+<a name="EvaStreamSsl--key-file"></a><h3>The <code class="literal">"key-file"</code> property</h3>
 <pre class="programlisting">  "key-file"                 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Read / Write / Construct Only</pre>
@@ -287,7 +287,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskStreamSsl--password"></a><h3>The <code class="literal">"password"</code> property</h3>
+<a name="EvaStreamSsl--password"></a><h3>The <code class="literal">"password"</code> property</h3>
 <pre class="programlisting">  "password"                 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a>*                : Write / Construct Only</pre>

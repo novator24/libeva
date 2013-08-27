@@ -20,7 +20,7 @@
         daveb@ffem.org <Dave Benson>
 */
 
-/* GskNetworkInterface:  find information about network devices on this host. */
+/* EvaNetworkInterface:  find information about network devices on this host. */
 
 #ifndef __EVA_NETWORK_INTERFACES_H_
 #define __EVA_NETWORK_INTERFACES_H_
@@ -29,8 +29,8 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskNetworkInterface GskNetworkInterface;
-typedef struct _GskNetworkInterfaceSet GskNetworkInterfaceSet;
+typedef struct _EvaNetworkInterface EvaNetworkInterface;
+typedef struct _EvaNetworkInterfaceSet EvaNetworkInterfaceSet;
 
 typedef enum
 {
@@ -39,9 +39,9 @@ typedef enum
   EVA_NETWORK_INTERFACE_NON_LOOPBACK		= (1<<2),
   EVA_NETWORK_INTERFACE_HAS_BROADCAST		= (1<<3),
   EVA_NETWORK_INTERFACE_HAS_MULTICAST		= (1<<4)
-} GskNetworkInterfaceFlags;
+} EvaNetworkInterfaceFlags;
 
-struct _GskNetworkInterface
+struct _EvaNetworkInterface
 {
   const char *ifname;
 
@@ -55,29 +55,29 @@ struct _GskNetworkInterface
   unsigned is_promiscuous : 1;
 
   /* ip-address if the interface is up. */
-  GskSocketAddress *address;
+  EvaSocketAddress *address;
 
   /* if !is_loopback, this is the device's MAC address. */
-  GskSocketAddress *hw_address;
+  EvaSocketAddress *hw_address;
 
   /* if is_point_to_point, this is the address of the other end of
    * the connection.
    */
-  GskSocketAddress *p2p_address;
+  EvaSocketAddress *p2p_address;
 
   /* if supports_broadcast, this is the broadcast address. */
-  GskSocketAddress *broadcast;
+  EvaSocketAddress *broadcast;
 };
 
-struct _GskNetworkInterfaceSet
+struct _EvaNetworkInterfaceSet
 {
   guint num_interfaces;
-  GskNetworkInterface *interfaces;
+  EvaNetworkInterface *interfaces;
 };
 
-GskNetworkInterfaceSet *
-           eva_network_interface_set_new    (GskNetworkInterfaceFlags  flags);
-void       eva_network_interface_set_destroy(GskNetworkInterfaceSet   *set);
+EvaNetworkInterfaceSet *
+           eva_network_interface_set_new    (EvaNetworkInterfaceFlags  flags);
+void       eva_network_interface_set_destroy(EvaNetworkInterfaceSet   *set);
 
 G_END_DECLS
 

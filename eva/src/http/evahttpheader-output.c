@@ -28,11 +28,11 @@ typedef struct
 {
   int         status_code;
   const char *description;
-} GskHttpStatusDescription;
+} EvaHttpStatusDescription;
 
 static gint
-status_description_comparator(const GskHttpStatusDescription *desc_a,
-                              const GskHttpStatusDescription *desc_b)
+status_description_comparator(const EvaHttpStatusDescription *desc_a,
+                              const EvaHttpStatusDescription *desc_b)
 {
   int a = desc_a->status_code;
   int b = desc_b->status_code;
@@ -46,7 +46,7 @@ status_description_comparator(const GskHttpStatusDescription *desc_a,
 static const char* 
 get_http_status_description(int id)
 {
-  static GskHttpStatusDescription descriptions[] = {
+  static EvaHttpStatusDescription descriptions[] = {
     {EVA_HTTP_STATUS_CONTINUE, "Continue"},
     {EVA_HTTP_STATUS_SWITCHING_PROTOCOLS, "Switching Protocols"},
     {200, "OK"},
@@ -88,7 +88,7 @@ get_http_status_description(int id)
     {504, "Gateway Time-out"},
     {505, "HTTP Version not supported"}
   };
-  GskHttpStatusDescription *description;
+  EvaHttpStatusDescription *description;
 
   description = bsearch (&id,
 			 descriptions,
@@ -103,10 +103,10 @@ get_http_status_description(int id)
 
 /* TODO: make this more efficient */
 static void
-print_request_first_line(GskHttpVerb            verb,
+print_request_first_line(EvaHttpVerb            verb,
                          const char            *path,
 			 int                    http_minor_version,
-			 GskHttpHeaderPrintFunc print_func,
+			 EvaHttpHeaderPrintFunc print_func,
 			 gpointer               data)
 {
   guint len = strlen (path) + 100;
@@ -124,7 +124,7 @@ print_request_first_line(GskHttpVerb            verb,
 static void
 print_response_first_line(int                    code,
 			  int                    http_minor_version,
-			  GskHttpHeaderPrintFunc print_func,
+			  EvaHttpHeaderPrintFunc print_func,
 			  gpointer               data)
 {
   /* Assert: all status strings must be short enough!!!! */
@@ -139,7 +139,7 @@ print_response_first_line(int                    code,
 
 /* NOTE: must sync with cookie_to_string */
 static guint
-cookie_max_length (GskHttpCookie *cookie)
+cookie_max_length (EvaHttpCookie *cookie)
 {
   guint rv = 0;
   if (!cookie->key || !cookie->value)
@@ -162,7 +162,7 @@ cookie_max_length (GskHttpCookie *cookie)
 
 
 static guint
-cookie_to_string (GskHttpCookie *cookie,
+cookie_to_string (EvaHttpCookie *cookie,
 		  char          *buf_at,
 		  guint          remaining)
 
@@ -215,7 +215,7 @@ cookie_to_string (GskHttpCookie *cookie,
 static void
 print_cookielist    (const char             *header,
 		     GSList                 *cookie_list,
-		     GskHttpHeaderPrintFunc  print_func,
+		     EvaHttpHeaderPrintFunc  print_func,
 		     gpointer                data)
 {
   if (cookie_list)
@@ -247,11 +247,11 @@ print_cookielist    (const char             *header,
 }
 
 static void
-eva_http_char_set_append_list (GskHttpCharSet        *set,
-			       GskHttpHeaderPrintFunc print_func,
+eva_http_char_set_append_list (EvaHttpCharSet        *set,
+			       EvaHttpHeaderPrintFunc print_func,
 			       gpointer               print_data)
 {
-  GskHttpCharSet *at;
+  EvaHttpCharSet *at;
   guint approx_len = 20;
   guint cur_len;
   char *buf;
@@ -281,11 +281,11 @@ eva_http_char_set_append_list (GskHttpCharSet        *set,
 
 
 static void
-eva_http_content_encoding_set_append_list (GskHttpContentEncodingSet     *set,
-				           GskHttpHeaderPrintFunc  print_func,
+eva_http_content_encoding_set_append_list (EvaHttpContentEncodingSet     *set,
+				           EvaHttpHeaderPrintFunc  print_func,
 				           gpointer                print_data)
 {
-  GskHttpContentEncodingSet *at;
+  EvaHttpContentEncodingSet *at;
   guint approx_len = 30;
   guint cur_len;
   char *buf;
@@ -337,11 +337,11 @@ eva_http_content_encoding_set_append_list (GskHttpContentEncodingSet     *set,
 }
 
 static void
-eva_http_transfer_encoding_set_append_list (GskHttpTransferEncodingSet *set,
-				            GskHttpHeaderPrintFunc  print_func,
+eva_http_transfer_encoding_set_append_list (EvaHttpTransferEncodingSet *set,
+				            EvaHttpHeaderPrintFunc  print_func,
 				            gpointer                print_data)
 {
-  GskHttpTransferEncodingSet *at;
+  EvaHttpTransferEncodingSet *at;
   guint approx_len = 30;
   guint cur_len;
   char *buf;
@@ -389,8 +389,8 @@ eva_http_transfer_encoding_set_append_list (GskHttpTransferEncodingSet *set,
 }
 
 static void
-eva_http_range_set_append_list    (GskHttpRangeSet    *list,
-				   GskHttpHeaderPrintFunc  print_func,
+eva_http_range_set_append_list    (EvaHttpRangeSet    *list,
+				   EvaHttpHeaderPrintFunc  print_func,
 				   gpointer                print_data)
 {
   /* XXX: implement this!!! */
@@ -401,11 +401,11 @@ eva_http_range_set_append_list    (GskHttpRangeSet    *list,
 #define QUALITY_MAX_LEN		64
 
 static void
-eva_http_language_set_append_list    (GskHttpLanguageSet     *list,
-				      GskHttpHeaderPrintFunc  print_func,
+eva_http_language_set_append_list    (EvaHttpLanguageSet     *list,
+				      EvaHttpHeaderPrintFunc  print_func,
 				      gpointer                print_data)
 {
-  GskHttpLanguageSet *at;
+  EvaHttpLanguageSet *at;
   guint max_len = strlen ("Accept-Language: ");
   char *line, *line_at;
 
@@ -444,8 +444,8 @@ eva_http_language_set_append_list    (GskHttpLanguageSet     *list,
 }
 
 static void
-eva_http_media_type_set_append_list    (GskHttpMediaTypeSet    *list,
-				        GskHttpHeaderPrintFunc  print_func,
+eva_http_media_type_set_append_list    (EvaHttpMediaTypeSet    *list,
+				        EvaHttpHeaderPrintFunc  print_func,
 				        gpointer                print_data)
 {
   /* XXX: implement this!!! */
@@ -454,7 +454,7 @@ eva_http_media_type_set_append_list    (GskHttpMediaTypeSet    *list,
 
 static void
 eva_http_append_if_matches (char                   **matches,
-			    GskHttpHeaderPrintFunc   print_func,
+			    EvaHttpHeaderPrintFunc   print_func,
 			    gpointer                 print_data)
 {
   guint i;
@@ -481,7 +481,7 @@ eva_http_append_if_matches (char                   **matches,
 
 static void
 print_allowed_verb (guint                    allowed,
-		    GskHttpHeaderPrintFunc   print_func,
+		    EvaHttpHeaderPrintFunc   print_func,
 		    gpointer                 print_data)
 
 {
@@ -517,7 +517,7 @@ print_content_type (const char      *type,
 		    const char      *subtype,
 		    const char      *charset,
 		    GSList          *additional,
-		    GskHttpHeaderPrintFunc print_func,
+		    EvaHttpHeaderPrintFunc print_func,
 		    gpointer print_data)
 {
   guint approx_len = 20
@@ -572,7 +572,7 @@ print_content_type (const char      *type,
 static void
 print_date_line (const char            *tag,
 		 time_t                 date,
-		 GskHttpHeaderPrintFunc print_func,
+		 EvaHttpHeaderPrintFunc print_func,
 		 gpointer               print_data)
 {
   char tmp[256];
@@ -588,7 +588,7 @@ print_date_line (const char            *tag,
 static void
 print_retry_after (gboolean                is_relative,
 		   long                    t,
-		   GskHttpHeaderPrintFunc  print_func,
+		   EvaHttpHeaderPrintFunc  print_func,
 		   gpointer                print_data)
 {
   if (is_relative)
@@ -602,8 +602,8 @@ print_retry_after (gboolean                is_relative,
 }
 
 static void
-print_response_cache_control(GskHttpResponseCacheDirective  *cache_dir,
-                             GskHttpHeaderPrintFunc          print_func,
+print_response_cache_control(EvaHttpResponseCacheDirective  *cache_dir,
+                             EvaHttpHeaderPrintFunc          print_func,
                              gpointer                        print_data)
 {
   char numbuf[64];
@@ -674,8 +674,8 @@ print_response_cache_control(GskHttpResponseCacheDirective  *cache_dir,
 
 
 static void
-print_request_cache_control (GskHttpRequestCacheDirective *cache_dir,
-                             GskHttpHeaderPrintFunc        print_func,
+print_request_cache_control (EvaHttpRequestCacheDirective *cache_dir,
+                             EvaHttpHeaderPrintFunc        print_func,
                              gpointer                      print_data)
 {
   char numbuf[64];
@@ -736,7 +736,7 @@ print_request_cache_control (GskHttpRequestCacheDirective *cache_dir,
 static void
 print_header_line (const char             *tag,
 		   const char             *value,
-		   GskHttpHeaderPrintFunc  print_func,
+		   EvaHttpHeaderPrintFunc  print_func,
 		   gpointer                print_data)
 {
   guint len_tag = strlen (tag);
@@ -752,7 +752,7 @@ print_header_line (const char             *tag,
 typedef struct _PrintInfo PrintInfo;
 struct _PrintInfo
 {
-  GskHttpHeaderPrintFunc print_func;
+  EvaHttpHeaderPrintFunc print_func;
   gpointer               print_data;
 };
 
@@ -781,14 +781,14 @@ append_key_value_to_print_info (gpointer         key,
  * and allow better streaming.
  */
 void
-eva_http_header_print(GskHttpHeader          *http_header,
-		      GskHttpHeaderPrintFunc  print_func,
+eva_http_header_print(EvaHttpHeader          *http_header,
+		      EvaHttpHeaderPrintFunc  print_func,
 		      gpointer                print_data)
 {
   const char *type;
   GEnumValue *enum_value;
-  GskHttpRequest *request = NULL;
-  GskHttpResponse *response = NULL;
+  EvaHttpRequest *request = NULL;
+  EvaHttpResponse *response = NULL;
   GSList *list;
   if (eva_http_verb_class == NULL)
     init_classes ();
@@ -1095,7 +1095,7 @@ eva_http_header_print(GskHttpHeader          *http_header,
  * Appends an HTTP header into a buffer.
  */
 static inline void
-add_newline_to_buffer (GskBuffer *buffer)
+add_newline_to_buffer (EvaBuffer *buffer)
 {
   eva_buffer_append (buffer, "\r\n", 2);
 }
@@ -1104,14 +1104,14 @@ static void
 write_header_line_to_buffer_print_func (const char      *text,
 					gpointer         buffer_ptr)
 {
-  GskBuffer *buffer = buffer_ptr;
+  EvaBuffer *buffer = buffer_ptr;
   eva_buffer_append_string (buffer, text);
   add_newline_to_buffer (buffer);
 }
 
 void
-eva_http_header_to_buffer (GskHttpHeader *header,
-                           GskBuffer     *output)
+eva_http_header_to_buffer (EvaHttpHeader *header,
+                           EvaBuffer     *output)
 {
   eva_http_header_print (header, write_header_line_to_buffer_print_func, output);
   add_newline_to_buffer (output);

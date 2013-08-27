@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskHttpServer
+EvaHttpServer
 
 <!-- ##### SECTION Short_Description ##### -->
 The server end of an HTTP connection.
@@ -7,19 +7,19 @@ The server end of an HTTP connection.
 <!-- ##### SECTION Long_Description ##### -->
 <para>
 This class manages incoming requests (including post-data),
-and outgoing responses (by passing a supplied #GskStream
+and outgoing responses (by passing a supplied #EvaStream
 as HTTP content).
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-GskHttpClient
+EvaHttpClient
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### USER_FUNCTION GskHttpServerTrap ##### -->
+<!-- ##### USER_FUNCTION EvaHttpServerTrap ##### -->
 <para>
 Function which will be called when the server has a request ready.
 </para>
@@ -29,7 +29,7 @@ Function which will be called when the server has a request ready.
 @Returns: whether to keep the trap active.
 
 
-<!-- ##### STRUCT GskHttpServerClass ##### -->
+<!-- ##### STRUCT EvaHttpServerClass ##### -->
 <para>
 Virtual functions which are implemented by an
 HTTP server.
@@ -41,7 +41,7 @@ notify on the HTTP trap.
 @shutdown_request: function to call to stop
 accepting requests.
 
-<!-- ##### STRUCT GskHttpServer ##### -->
+<!-- ##### STRUCT EvaHttpServer ##### -->
 <para>
 Stream which is the server end of an HTTP connection.
 </para>

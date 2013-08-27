@@ -25,9 +25,9 @@
 #include <stdio.h>
 #include <string.h>
 
-void random_slice(GskBuffer* buf)
+void random_slice(EvaBuffer* buf)
 {
-  GskBuffer tmpbuf;
+  EvaBuffer tmpbuf;
   char *copy, *copy_at;
   guint orig_size = buf->size;
   eva_buffer_construct (&tmpbuf);
@@ -54,7 +54,7 @@ void random_slice(GskBuffer* buf)
   g_free (copy_at);
 }
 
-void count(GskBuffer* buf, int start, int end)
+void count(EvaBuffer* buf, int start, int end)
 {
   char b[1024];
   while (start <= end)
@@ -64,7 +64,7 @@ void count(GskBuffer* buf, int start, int end)
     }
 }
 
-void decount(GskBuffer* buf, int start, int end)
+void decount(EvaBuffer* buf, int start, int end)
 {
   char b[1024];
   while (start <= end)
@@ -81,7 +81,7 @@ void decount(GskBuffer* buf, int start, int end)
 int main(int argc, char** argv)
 {
 
-  GskBuffer evabuffer;
+  EvaBuffer evabuffer;
   char buf[1024];
   char *str;
 
@@ -129,7 +129,7 @@ int main(int argc, char** argv)
   g_assert (memcmp (buf, "hellotesthello", 14) == 0);
   g_assert (evabuffer.size == 0);
 
-  /* Test that the foreign data really is not being stored in the GskBuffer */
+  /* Test that the foreign data really is not being stored in the EvaBuffer */
   {
     char test_str[5];
     strcpy (test_str, "test");
@@ -149,7 +149,7 @@ int main(int argc, char** argv)
 
   /* Test str_index_of */
   {
-    GskBuffer buffer = EVA_BUFFER_STATIC_INIT;
+    EvaBuffer buffer = EVA_BUFFER_STATIC_INIT;
     eva_buffer_append_foreign (&buffer, "abc", 3, NULL, NULL);
     eva_buffer_append_foreign (&buffer, "def", 3, NULL, NULL);
     eva_buffer_append_foreign (&buffer, "gad", 3, NULL, NULL);

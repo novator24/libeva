@@ -1,31 +1,31 @@
-<refentry id="GskHttpResponse">
+<refentry id="EvaHttpResponse">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskHttpResponse.top_of_page">GskHttpResponse</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaHttpResponse.top_of_page">EvaHttpResponse</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskHttpResponse</refname>
+<refname>EvaHttpResponse</refname>
 <refpurpose>An HTTP header that is sent from server to client.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskHttpResponse.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaHttpResponse.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskHttpResponse-struct">GskHttpResponse</link>;
-<link linkend="GskHttpResponse">GskHttpResponse</link> *   <link linkend="eva-http-response-new-blank">eva_http_response_new_blank</link>         (void);
-<link linkend="GskHttpResponse">GskHttpResponse</link> *   <link linkend="eva-http-response-new-redirect">eva_http_response_new_redirect</link>      (const <link linkend="char">char</link> *location);
-<link linkend="GskHttpResponse">GskHttpResponse</link> *   <link linkend="eva-http-response-from-request">eva_http_response_from_request</link>      (<link linkend="GskHttpRequest">GskHttpRequest</link> *request,
-                                                         <link linkend="GskHttpStatus">GskHttpStatus</link> status_code,
+                    <link linkend="EvaHttpResponse-struct">EvaHttpResponse</link>;
+<link linkend="EvaHttpResponse">EvaHttpResponse</link> *   <link linkend="eva-http-response-new-blank">eva_http_response_new_blank</link>         (void);
+<link linkend="EvaHttpResponse">EvaHttpResponse</link> *   <link linkend="eva-http-response-new-redirect">eva_http_response_new_redirect</link>      (const <link linkend="char">char</link> *location);
+<link linkend="EvaHttpResponse">EvaHttpResponse</link> *   <link linkend="eva-http-response-from-request">eva_http_response_from_request</link>      (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
+                                                         <link linkend="EvaHttpStatus">EvaHttpStatus</link> status_code,
                                                          <link linkend="gint64">gint64</link> length);
 <link linkend="gboolean">gboolean</link>            <link linkend="eva-http-response-process-first-line">eva_http_response_process_first_line</link>
-                                                        (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
+                                                        (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
                                                          const <link linkend="char">char</link> *line);
 #define             <link linkend="eva-http-response-set-status-code">eva_http_response_set_status_code</link>   (response, status)
 #define             <link linkend="eva-http-response-get-status-code">eva_http_response_get_status_code</link>   (response)
-<link linkend="void">void</link>                <link linkend="eva-http-response-set-allowed-verbs">eva_http_response_set_allowed_verbs</link> (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
+<link linkend="void">void</link>                <link linkend="eva-http-response-set-allowed-verbs">eva_http_response_set_allowed_verbs</link> (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
                                                          <link linkend="guint">guint</link> allowed);
 #define             <link linkend="eva-http-response-get-allowed-verbs">eva_http_response_get_allowed_verbs</link> (header)
 #define             <link linkend="eva-http-response-set-age">eva_http_response_set_age</link>           (response, age)
@@ -34,41 +34,41 @@
 #define             <link linkend="eva-http-response-peek-location">eva_http_response_peek_location</link>     (response)
 #define             <link linkend="eva-http-response-set-etag">eva_http_response_set_etag</link>          (response, etag)
 #define             <link linkend="eva-http-response-peek-etag">eva_http_response_peek_etag</link>         (response)
-<link linkend="void">void</link>                <link linkend="eva-http-response-set-cache-control">eva_http_response_set_cache_control</link> (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
-                                                         <link linkend="GskHttpResponseCacheDirective">GskHttpResponseCacheDirective</link> *directive);
+<link linkend="void">void</link>                <link linkend="eva-http-response-set-cache-control">eva_http_response_set_cache_control</link> (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
+                                                         <link linkend="EvaHttpResponseCacheDirective">EvaHttpResponseCacheDirective</link> *directive);
 #define             <link linkend="eva-http-response-peek-cache-control">eva_http_response_peek_cache_control</link>(response)
 #define             <link linkend="eva-http-response-set-last-modified">eva_http_response_set_last_modified</link> (response, last_modified)
 #define             <link linkend="eva-http-response-get-last-modified">eva_http_response_get_last_modified</link> (response)
 #define             <link linkend="eva-http-response-set-expires">eva_http_response_set_expires</link>       (response, expires)
 #define             <link linkend="eva-http-response-get-expires">eva_http_response_get_expires</link>       (response)
-<link linkend="void">void</link>                <link linkend="eva-http-response-set-md5">eva_http_response_set_md5</link>           (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
+<link linkend="void">void</link>                <link linkend="eva-http-response-set-md5">eva_http_response_set_md5</link>           (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
                                                          const <link linkend="guint8">guint8</link> *md5sum);
-const <link linkend="guint8">guint8</link> *      <link linkend="eva-http-response-peek-md5">eva_http_response_peek_md5</link>          (<link linkend="GskHttpResponse">GskHttpResponse</link> *response);
+const <link linkend="guint8">guint8</link> *      <link linkend="eva-http-response-peek-md5">eva_http_response_peek_md5</link>          (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response);
 #define             <link linkend="eva-http-response-set-server">eva_http_response_set_server</link>        (response, server)
 #define             <link linkend="eva-http-response-peek-server">eva_http_response_peek_server</link>       (response)
-<link linkend="void">void</link>                <link linkend="eva-http-response-set-retry-after">eva_http_response_set_retry_after</link>   (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
+<link linkend="void">void</link>                <link linkend="eva-http-response-set-retry-after">eva_http_response_set_retry_after</link>   (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
                                                          <link linkend="gboolean">gboolean</link> is_relative,
                                                          <link linkend="glong">glong</link> time);
 <link linkend="void">void</link>                <link linkend="eva-http-response-set-no-retry-after">eva_http_response_set_no_retry_after</link>
-                                                        (<link linkend="GskHttpResponse">GskHttpResponse</link> *response);
-<link linkend="void">void</link>                <link linkend="eva-http-response-set-authenticate">eva_http_response_set_authenticate</link>  (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
+                                                        (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response);
+<link linkend="void">void</link>                <link linkend="eva-http-response-set-authenticate">eva_http_response_set_authenticate</link>  (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
                                                          <link linkend="gboolean">gboolean</link> is_proxy_auth,
-                                                         <link linkend="GskHttpAuthenticate">GskHttpAuthenticate</link> *auth);
-<link linkend="GskHttpAuthenticate">GskHttpAuthenticate</link> * <link linkend="eva-http-response-peek-authenticate">eva_http_response_peek_authenticate</link>
-                                                        (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
+                                                         <link linkend="EvaHttpAuthenticate">EvaHttpAuthenticate</link> *auth);
+<link linkend="EvaHttpAuthenticate">EvaHttpAuthenticate</link> * <link linkend="eva-http-response-peek-authenticate">eva_http_response_peek_authenticate</link>
+                                                        (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
                                                          <link linkend="gboolean">gboolean</link> is_proxy_auth);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-http-response-has-content-body">eva_http_response_has_content_body</link>  (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
-                                                         <link linkend="GskHttpRequest">GskHttpRequest</link> *request);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-http-response-has-content-body">eva_http_response_has_content_body</link>  (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
+                                                         <link linkend="EvaHttpRequest">EvaHttpRequest</link> *request);
 <link linkend="void">void</link>                <link linkend="eva-http-response-cache-directive-free">eva_http_response_cache_directive_free</link>
-                                                        (<link linkend="GskHttpResponseCacheDirective">GskHttpResponseCacheDirective</link> *directive);
-<link linkend="GskHttpResponseCacheDirective">GskHttpResponseCacheDirective</link> * <link linkend="eva-http-response-cache-directive-new">eva_http_response_cache_directive_new</link>
+                                                        (<link linkend="EvaHttpResponseCacheDirective">EvaHttpResponseCacheDirective</link> *directive);
+<link linkend="EvaHttpResponseCacheDirective">EvaHttpResponseCacheDirective</link> * <link linkend="eva-http-response-cache-directive-new">eva_http_response_cache_directive_new</link>
                                                         (void);
 <link linkend="void">void</link>                <link linkend="eva-http-response-cache-directive-set-no-cache-name">eva_http_response_cache_directive_set_no_cache_name</link>
-                                                        (<link linkend="GskHttpResponseCacheDirective">GskHttpResponseCacheDirective</link> *directive,
+                                                        (<link linkend="EvaHttpResponseCacheDirective">EvaHttpResponseCacheDirective</link> *directive,
                                                          const <link linkend="char">char</link> *name,
                                                          <link linkend="gsize">gsize</link> name_len);
 <link linkend="void">void</link>                <link linkend="eva-http-response-cache-directive-set-private-name">eva_http_response_cache_directive_set_private_name</link>
-                                                        (<link linkend="GskHttpResponseCacheDirective">GskHttpResponseCacheDirective</link> *directive,
+                                                        (<link linkend="EvaHttpResponseCacheDirective">EvaHttpResponseCacheDirective</link> *directive,
                                                          const <link linkend="char">char</link> *name,
                                                          <link linkend="gsize">gsize</link> name_len);
 #define             <link linkend="eva-http-response-get-content-subtype">eva_http_response_get_content_subtype</link>
@@ -78,12 +78,12 @@ const <link linkend="guint8">guint8</link> *      <link linkend="eva-http-respon
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskHttpResponse.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaHttpResponse.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskHttpHeader">GskHttpHeader</link>
-         +----GskHttpResponse
+   +----<link linkend="EvaHttpHeader">EvaHttpHeader</link>
+         +----EvaHttpResponse
 </synopsis>
 </refsect1>
 
@@ -91,22 +91,22 @@ const <link linkend="guint8">guint8</link> *      <link linkend="eva-http-respon
 
 
 
-<refsect1 id="GskHttpResponse.properties" role="properties">
+<refsect1 id="EvaHttpResponse.properties" role="properties">
 <title role="properties.title">Properties</title>
 <synopsis>
-  &quot;<link linkend="GskHttpResponse--age">age</link>&quot;                      <link linkend="glong">glong</link>                 : Read / Write
-  &quot;<link linkend="GskHttpResponse--e-tag">e-tag</link>&quot;                    <link linkend="gchar">gchar</link>*                : Read / Write
-  &quot;<link linkend="GskHttpResponse--expires">expires</link>&quot;                  <link linkend="glong">glong</link>                 : Read / Write
-  &quot;<link linkend="GskHttpResponse--last-modified">last-modified</link>&quot;            <link linkend="glong">glong</link>                 : Read / Write
-  &quot;<link linkend="GskHttpResponse--location">location</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write
-  &quot;<link linkend="GskHttpResponse--server">server</link>&quot;                   <link linkend="gchar">gchar</link>*                : Read / Write
-  &quot;<link linkend="GskHttpResponse--status-code">status-code</link>&quot;              <link linkend="GskHttpStatus">GskHttpStatus</link>         : Read / Write
+  &quot;<link linkend="EvaHttpResponse--age">age</link>&quot;                      <link linkend="glong">glong</link>                 : Read / Write
+  &quot;<link linkend="EvaHttpResponse--e-tag">e-tag</link>&quot;                    <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaHttpResponse--expires">expires</link>&quot;                  <link linkend="glong">glong</link>                 : Read / Write
+  &quot;<link linkend="EvaHttpResponse--last-modified">last-modified</link>&quot;            <link linkend="glong">glong</link>                 : Read / Write
+  &quot;<link linkend="EvaHttpResponse--location">location</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaHttpResponse--server">server</link>&quot;                   <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaHttpResponse--status-code">status-code</link>&quot;              <link linkend="EvaHttpStatus">EvaHttpStatus</link>         : Read / Write
 </synopsis>
 </refsect1>
 
 
 
-<refsect1 id="GskHttpResponse.description" role="desc">
+<refsect1 id="EvaHttpResponse.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 A response is the last of two messages in an HTTP transaction.
@@ -115,17 +115,17 @@ It may also include often information about the content.
 </para>
 </refsect1>
 
-<refsect1 id="GskHttpResponse.details" role="details">
+<refsect1 id="EvaHttpResponse.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskHttpResponse-struct" role="struct">
-<title>GskHttpResponse</title>
-<indexterm zone="GskHttpResponse-struct"><primary sortas="GskHttpResponse">GskHttpResponse</primary></indexterm><programlisting>typedef struct _GskHttpResponse GskHttpResponse;</programlisting>
+<refsect2 id="EvaHttpResponse-struct" role="struct">
+<title>EvaHttpResponse</title>
+<indexterm zone="EvaHttpResponse-struct"><primary sortas="EvaHttpResponse">EvaHttpResponse</primary></indexterm><programlisting>typedef struct _EvaHttpResponse EvaHttpResponse;</programlisting>
 <para>
 An instance of a HTTP response header.
 </para></refsect2>
 <refsect2 id="eva-http-response-new-blank" role="function">
 <title>eva_http_response_new_blank ()</title>
-<indexterm zone="eva-http-response-new-blank"><primary sortas="eva_http_response_new_blank">eva_http_response_new_blank</primary></indexterm><programlisting><link linkend="GskHttpResponse">GskHttpResponse</link> *   eva_http_response_new_blank         (void);</programlisting>
+<indexterm zone="eva-http-response-new-blank"><primary sortas="eva_http_response_new_blank">eva_http_response_new_blank</primary></indexterm><programlisting><link linkend="EvaHttpResponse">EvaHttpResponse</link> *   eva_http_response_new_blank         (void);</programlisting>
 <para>
 Create a new, empty default response.</para>
 <para>
@@ -135,7 +135,7 @@ Create a new, empty default response.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-response-new-redirect" role="function">
 <title>eva_http_response_new_redirect ()</title>
-<indexterm zone="eva-http-response-new-redirect"><primary sortas="eva_http_response_new_redirect">eva_http_response_new_redirect</primary></indexterm><programlisting><link linkend="GskHttpResponse">GskHttpResponse</link> *   eva_http_response_new_redirect      (const <link linkend="char">char</link> *location);</programlisting>
+<indexterm zone="eva-http-response-new-redirect"><primary sortas="eva_http_response_new_redirect">eva_http_response_new_redirect</primary></indexterm><programlisting><link linkend="EvaHttpResponse">EvaHttpResponse</link> *   eva_http_response_new_redirect      (const <link linkend="char">char</link> *location);</programlisting>
 <para>
 Create a redirection HTTP response header.
 </para>
@@ -151,8 +151,8 @@ We use the 302 ("Found") status code.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-response-from-request" role="function">
 <title>eva_http_response_from_request ()</title>
-<indexterm zone="eva-http-response-from-request"><primary sortas="eva_http_response_from_request">eva_http_response_from_request</primary></indexterm><programlisting><link linkend="GskHttpResponse">GskHttpResponse</link> *   eva_http_response_from_request      (<link linkend="GskHttpRequest">GskHttpRequest</link> *request,
-                                                         <link linkend="GskHttpStatus">GskHttpStatus</link> status_code,
+<indexterm zone="eva-http-response-from-request"><primary sortas="eva_http_response_from_request">eva_http_response_from_request</primary></indexterm><programlisting><link linkend="EvaHttpResponse">EvaHttpResponse</link> *   eva_http_response_from_request      (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
+                                                         <link linkend="EvaHttpStatus">EvaHttpStatus</link> status_code,
                                                          <link linkend="gint64">gint64</link> length);</programlisting>
 <para>
 Create a response which macthes the request,
@@ -174,7 +174,7 @@ with a caller-supplied status code and optional length.</para>
 <refsect2 id="eva-http-response-process-first-line" role="function">
 <title>eva_http_response_process_first_line ()</title>
 <indexterm zone="eva-http-response-process-first-line"><primary sortas="eva_http_response_process_first_line">eva_http_response_process_first_line</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_http_response_process_first_line
-                                                        (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
+                                                        (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
                                                          const <link linkend="char">char</link> *line);</programlisting>
 <para>
 Parse the first line of an HTTP response.</para>
@@ -194,7 +194,7 @@ Parse the first line of an HTTP response.</para>
 <indexterm zone="eva-http-response-set-status-code"><primary sortas="eva_http_response_set_status_code">eva_http_response_set_status_code</primary></indexterm><programlisting>#define             eva_http_response_set_status_code(response, status)</programlisting>
 <para>
 Set what kind of response is going to be given.
-See <link linkend="GskHttpStatus"><type>GskHttpStatus</type></link> for a description of all the status codes
+See <link linkend="EvaHttpStatus"><type>EvaHttpStatus</type></link> for a description of all the status codes
 defined in HTTP/1.1 (RFC 2616).
 </para><variablelist role="params">
 <varlistentry><term><parameter>response</parameter>&#160;:</term>
@@ -216,7 +216,7 @@ Query the status code from a response.
 </variablelist></refsect2>
 <refsect2 id="eva-http-response-set-allowed-verbs" role="function">
 <title>eva_http_response_set_allowed_verbs ()</title>
-<indexterm zone="eva-http-response-set-allowed-verbs"><primary sortas="eva_http_response_set_allowed_verbs">eva_http_response_set_allowed_verbs</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_set_allowed_verbs (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
+<indexterm zone="eva-http-response-set-allowed-verbs"><primary sortas="eva_http_response_set_allowed_verbs">eva_http_response_set_allowed_verbs</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_set_allowed_verbs (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
                                                          <link linkend="guint">guint</link> allowed);</programlisting>
 <para>
 Set the Allow: header to indicate a particular set of HTTP verbs
@@ -347,8 +347,8 @@ ETag field.
 </variablelist></refsect2>
 <refsect2 id="eva-http-response-set-cache-control" role="function">
 <title>eva_http_response_set_cache_control ()</title>
-<indexterm zone="eva-http-response-set-cache-control"><primary sortas="eva_http_response_set_cache_control">eva_http_response_set_cache_control</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_set_cache_control (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
-                                                         <link linkend="GskHttpResponseCacheDirective">GskHttpResponseCacheDirective</link> *directive);</programlisting>
+<indexterm zone="eva-http-response-set-cache-control"><primary sortas="eva_http_response_set_cache_control">eva_http_response_set_cache_control</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_set_cache_control (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
+                                                         <link linkend="EvaHttpResponseCacheDirective">EvaHttpResponseCacheDirective</link> *directive);</programlisting>
 <para>
 Set the cache-control flags in the header.
 Note that <parameter>directive</parameter> will be freed by the HTTP header when
@@ -366,7 +366,7 @@ it is destroyed.</para>
 <title>eva_http_response_peek_cache_control()</title>
 <indexterm zone="eva-http-response-peek-cache-control"><primary sortas="eva_http_response_peek_cache_control">eva_http_response_peek_cache_control</primary></indexterm><programlisting>#define             eva_http_response_peek_cache_control(response)</programlisting>
 <para>
-Obtain the <link linkend="GskHttpCacheDirective"><type>GskHttpCacheDirective</type></link> associated with the
+Obtain the <link linkend="EvaHttpCacheDirective"><type>EvaHttpCacheDirective</type></link> associated with the
 response.
 </para><variablelist role="params">
 <varlistentry><term><parameter>response</parameter>&#160;:</term>
@@ -440,7 +440,7 @@ Get the expiration time for this content, or -1 if no expiration time given.
 </variablelist></refsect2>
 <refsect2 id="eva-http-response-set-md5" role="function">
 <title>eva_http_response_set_md5 ()</title>
-<indexterm zone="eva-http-response-set-md5"><primary sortas="eva_http_response_set_md5">eva_http_response_set_md5</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_set_md5           (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
+<indexterm zone="eva-http-response-set-md5"><primary sortas="eva_http_response_set_md5">eva_http_response_set_md5</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_set_md5           (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
                                                          const <link linkend="guint8">guint8</link> *md5sum);</programlisting>
 <para>
 Set the MD5 field of the HTTP response to the given <parameter>md5sum</parameter>.
@@ -458,7 +458,7 @@ If this is NULL, unset the MD5 field.
 </variablelist></refsect2>
 <refsect2 id="eva-http-response-peek-md5" role="function">
 <title>eva_http_response_peek_md5 ()</title>
-<indexterm zone="eva-http-response-peek-md5"><primary sortas="eva_http_response_peek_md5">eva_http_response_peek_md5</primary></indexterm><programlisting>const <link linkend="guint8">guint8</link> *      eva_http_response_peek_md5          (<link linkend="GskHttpResponse">GskHttpResponse</link> *response);</programlisting>
+<indexterm zone="eva-http-response-peek-md5"><primary sortas="eva_http_response_peek_md5">eva_http_response_peek_md5</primary></indexterm><programlisting>const <link linkend="guint8">guint8</link> *      eva_http_response_peek_md5          (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response);</programlisting>
 <para>
 Get the MD5 sum associated with this response.
 (It should be the MD5 sum of the content stream).
@@ -505,7 +505,7 @@ This field is optional, but is helpful for debugging, etc.
 </variablelist></refsect2>
 <refsect2 id="eva-http-response-set-retry-after" role="function">
 <title>eva_http_response_set_retry_after ()</title>
-<indexterm zone="eva-http-response-set-retry-after"><primary sortas="eva_http_response_set_retry_after">eva_http_response_set_retry_after</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_set_retry_after   (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
+<indexterm zone="eva-http-response-set-retry-after"><primary sortas="eva_http_response_set_retry_after">eva_http_response_set_retry_after</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_set_retry_after   (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
                                                          <link linkend="gboolean">gboolean</link> is_relative,
                                                          <link linkend="glong">glong</link> time);</programlisting>
 <para>
@@ -536,7 +536,7 @@ the current time; otherwise, it's unix time (ie seconds after Jan 1 1970, GMT).
 <refsect2 id="eva-http-response-set-no-retry-after" role="function">
 <title>eva_http_response_set_no_retry_after ()</title>
 <indexterm zone="eva-http-response-set-no-retry-after"><primary sortas="eva_http_response_set_no_retry_after">eva_http_response_set_no_retry_after</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_set_no_retry_after
-                                                        (<link linkend="GskHttpResponse">GskHttpResponse</link> *response);</programlisting>
+                                                        (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response);</programlisting>
 <para>
 Clear the Retry-After header for this response.</para>
 <para>
@@ -547,9 +547,9 @@ Clear the Retry-After header for this response.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-response-set-authenticate" role="function">
 <title>eva_http_response_set_authenticate ()</title>
-<indexterm zone="eva-http-response-set-authenticate"><primary sortas="eva_http_response_set_authenticate">eva_http_response_set_authenticate</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_set_authenticate  (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
+<indexterm zone="eva-http-response-set-authenticate"><primary sortas="eva_http_response_set_authenticate">eva_http_response_set_authenticate</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_set_authenticate  (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
                                                          <link linkend="gboolean">gboolean</link> is_proxy_auth,
-                                                         <link linkend="GskHttpAuthenticate">GskHttpAuthenticate</link> *auth);</programlisting>
+                                                         <link linkend="EvaHttpAuthenticate">EvaHttpAuthenticate</link> *auth);</programlisting>
 <para>
 Set the authentication for this response.
 This is like a key to get access to certain entities.
@@ -572,8 +572,8 @@ See sections 14.8 for normal Authorization and 14.34.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-response-peek-authenticate" role="function">
 <title>eva_http_response_peek_authenticate ()</title>
-<indexterm zone="eva-http-response-peek-authenticate"><primary sortas="eva_http_response_peek_authenticate">eva_http_response_peek_authenticate</primary></indexterm><programlisting><link linkend="GskHttpAuthenticate">GskHttpAuthenticate</link> * eva_http_response_peek_authenticate
-                                                        (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
+<indexterm zone="eva-http-response-peek-authenticate"><primary sortas="eva_http_response_peek_authenticate">eva_http_response_peek_authenticate</primary></indexterm><programlisting><link linkend="EvaHttpAuthenticate">EvaHttpAuthenticate</link> * eva_http_response_peek_authenticate
+                                                        (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
                                                          <link linkend="gboolean">gboolean</link> is_proxy_auth);</programlisting>
 <para>
 Get the responseed authentication information.</para>
@@ -591,8 +591,8 @@ or normal server authentication.
 </variablelist></refsect2>
 <refsect2 id="eva-http-response-has-content-body" role="function">
 <title>eva_http_response_has_content_body ()</title>
-<indexterm zone="eva-http-response-has-content-body"><primary sortas="eva_http_response_has_content_body">eva_http_response_has_content_body</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_http_response_has_content_body  (<link linkend="GskHttpResponse">GskHttpResponse</link> *response,
-                                                         <link linkend="GskHttpRequest">GskHttpRequest</link> *request);</programlisting>
+<indexterm zone="eva-http-response-has-content-body"><primary sortas="eva_http_response_has_content_body">eva_http_response_has_content_body</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_http_response_has_content_body  (<link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
+                                                         <link linkend="EvaHttpRequest">EvaHttpRequest</link> *request);</programlisting>
 <para>
 Find out whether a HTTP Response should be
 accompanied by a body.
@@ -615,9 +615,9 @@ by a body of data.
 <refsect2 id="eva-http-response-cache-directive-free" role="function">
 <title>eva_http_response_cache_directive_free ()</title>
 <indexterm zone="eva-http-response-cache-directive-free"><primary sortas="eva_http_response_cache_directive_free">eva_http_response_cache_directive_free</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_cache_directive_free
-                                                        (<link linkend="GskHttpResponseCacheDirective">GskHttpResponseCacheDirective</link> *directive);</programlisting>
+                                                        (<link linkend="EvaHttpResponseCacheDirective">EvaHttpResponseCacheDirective</link> *directive);</programlisting>
 <para>
-Deallocate a GskHttpResponseCacheDirective.</para>
+Deallocate a EvaHttpResponseCacheDirective.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>directive</parameter>&#160;:</term>
@@ -626,7 +626,7 @@ Deallocate a GskHttpResponseCacheDirective.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-response-cache-directive-new" role="function">
 <title>eva_http_response_cache_directive_new ()</title>
-<indexterm zone="eva-http-response-cache-directive-new"><primary sortas="eva_http_response_cache_directive_new">eva_http_response_cache_directive_new</primary></indexterm><programlisting><link linkend="GskHttpResponseCacheDirective">GskHttpResponseCacheDirective</link> * eva_http_response_cache_directive_new
+<indexterm zone="eva-http-response-cache-directive-new"><primary sortas="eva_http_response_cache_directive_new">eva_http_response_cache_directive_new</primary></indexterm><programlisting><link linkend="EvaHttpResponseCacheDirective">EvaHttpResponseCacheDirective</link> * eva_http_response_cache_directive_new
                                                         (void);</programlisting>
 <para>
 </para>
@@ -638,7 +638,7 @@ Deallocate a GskHttpResponseCacheDirective.</para>
 <refsect2 id="eva-http-response-cache-directive-set-no-cache-name" role="function">
 <title>eva_http_response_cache_directive_set_no_cache_name ()</title>
 <indexterm zone="eva-http-response-cache-directive-set-no-cache-name"><primary sortas="eva_http_response_cache_directive_set_no_cache_name">eva_http_response_cache_directive_set_no_cache_name</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_cache_directive_set_no_cache_name
-                                                        (<link linkend="GskHttpResponseCacheDirective">GskHttpResponseCacheDirective</link> *directive,
+                                                        (<link linkend="EvaHttpResponseCacheDirective">EvaHttpResponseCacheDirective</link> *directive,
                                                          const <link linkend="char">char</link> *name,
                                                          <link linkend="gsize">gsize</link> name_len);</programlisting>
 <para>
@@ -673,7 +673,7 @@ good luck.</para>
 <refsect2 id="eva-http-response-cache-directive-set-private-name" role="function">
 <title>eva_http_response_cache_directive_set_private_name ()</title>
 <indexterm zone="eva-http-response-cache-directive-set-private-name"><primary sortas="eva_http_response_cache_directive_set_private_name">eva_http_response_cache_directive_set_private_name</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_response_cache_directive_set_private_name
-                                                        (<link linkend="GskHttpResponseCacheDirective">GskHttpResponseCacheDirective</link> *directive,
+                                                        (<link linkend="EvaHttpResponseCacheDirective">EvaHttpResponseCacheDirective</link> *directive,
                                                          const <link linkend="char">char</link> *name,
                                                          <link linkend="gsize">gsize</link> name_len);</programlisting>
 <para>
@@ -712,47 +712,47 @@ Intended for more detailed specification of private cache data.</para>
 </para></refsect2>
 
 </refsect1>
-<refsect1 id="GskHttpResponse.property-details" role="property_details">
+<refsect1 id="EvaHttpResponse.property-details" role="property_details">
 <title role="property_details.title">Property Details</title>
-<refsect2 id="GskHttpResponse--age" role="property"><title>The <literal>&quot;age&quot;</literal> property</title>
-<indexterm zone="GskHttpResponse--age"><primary sortas="GskHttpResponse:age">GskHttpResponse:age</primary></indexterm><programlisting>  &quot;age&quot;                      <link linkend="glong">glong</link>                 : Read / Write</programlisting>
+<refsect2 id="EvaHttpResponse--age" role="property"><title>The <literal>&quot;age&quot;</literal> property</title>
+<indexterm zone="EvaHttpResponse--age"><primary sortas="EvaHttpResponse:age">EvaHttpResponse:age</primary></indexterm><programlisting>  &quot;age&quot;                      <link linkend="glong">glong</link>                 : Read / Write</programlisting>
 <para>Age of content.</para><para>Allowed values: &gt;= -1</para>
 <para>Default value: -1</para>
 </refsect2>
-<refsect2 id="GskHttpResponse--e-tag" role="property"><title>The <literal>&quot;e-tag&quot;</literal> property</title>
-<indexterm zone="GskHttpResponse--e-tag"><primary sortas="GskHttpResponse:e-tag">GskHttpResponse:e-tag</primary></indexterm><programlisting>  &quot;e-tag&quot;                    <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaHttpResponse--e-tag" role="property"><title>The <literal>&quot;e-tag&quot;</literal> property</title>
+<indexterm zone="EvaHttpResponse--e-tag"><primary sortas="EvaHttpResponse:e-tag">EvaHttpResponse:e-tag</primary></indexterm><programlisting>  &quot;e-tag&quot;                    <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>Unique identifier for this content.</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskHttpResponse--expires" role="property"><title>The <literal>&quot;expires&quot;</literal> property</title>
-<indexterm zone="GskHttpResponse--expires"><primary sortas="GskHttpResponse:expires">GskHttpResponse:expires</primary></indexterm><programlisting>  &quot;expires&quot;                  <link linkend="glong">glong</link>                 : Read / Write</programlisting>
+<refsect2 id="EvaHttpResponse--expires" role="property"><title>The <literal>&quot;expires&quot;</literal> property</title>
+<indexterm zone="EvaHttpResponse--expires"><primary sortas="EvaHttpResponse:expires">EvaHttpResponse:expires</primary></indexterm><programlisting>  &quot;expires&quot;                  <link linkend="glong">glong</link>                 : Read / Write</programlisting>
 <para>Length of time to wait for content to expire.</para><para>Allowed values: &gt;= -1</para>
 <para>Default value: -1</para>
 </refsect2>
-<refsect2 id="GskHttpResponse--last-modified" role="property"><title>The <literal>&quot;last-modified&quot;</literal> property</title>
-<indexterm zone="GskHttpResponse--last-modified"><primary sortas="GskHttpResponse:last-modified">GskHttpResponse:last-modified</primary></indexterm><programlisting>  &quot;last-modified&quot;            <link linkend="glong">glong</link>                 : Read / Write</programlisting>
+<refsect2 id="EvaHttpResponse--last-modified" role="property"><title>The <literal>&quot;last-modified&quot;</literal> property</title>
+<indexterm zone="EvaHttpResponse--last-modified"><primary sortas="EvaHttpResponse:last-modified">EvaHttpResponse:last-modified</primary></indexterm><programlisting>  &quot;last-modified&quot;            <link linkend="glong">glong</link>                 : Read / Write</programlisting>
 <para>Time this content was last changed.</para><para>Allowed values: &gt;= -1</para>
 <para>Default value: -1</para>
 </refsect2>
-<refsect2 id="GskHttpResponse--location" role="property"><title>The <literal>&quot;location&quot;</literal> property</title>
-<indexterm zone="GskHttpResponse--location"><primary sortas="GskHttpResponse:location">GskHttpResponse:location</primary></indexterm><programlisting>  &quot;location&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaHttpResponse--location" role="property"><title>The <literal>&quot;location&quot;</literal> property</title>
+<indexterm zone="EvaHttpResponse--location"><primary sortas="EvaHttpResponse:location">EvaHttpResponse:location</primary></indexterm><programlisting>  &quot;location&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>The URL of the content, for redirect responses.</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskHttpResponse--server" role="property"><title>The <literal>&quot;server&quot;</literal> property</title>
-<indexterm zone="GskHttpResponse--server"><primary sortas="GskHttpResponse:server">GskHttpResponse:server</primary></indexterm><programlisting>  &quot;server&quot;                   <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaHttpResponse--server" role="property"><title>The <literal>&quot;server&quot;</literal> property</title>
+<indexterm zone="EvaHttpResponse--server"><primary sortas="EvaHttpResponse:server">EvaHttpResponse:server</primary></indexterm><programlisting>  &quot;server&quot;                   <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>Name of this webserver program.</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskHttpResponse--status-code" role="property"><title>The <literal>&quot;status-code&quot;</literal> property</title>
-<indexterm zone="GskHttpResponse--status-code"><primary sortas="GskHttpResponse:status-code">GskHttpResponse:status-code</primary></indexterm><programlisting>  &quot;status-code&quot;              <link linkend="GskHttpStatus">GskHttpStatus</link>         : Read / Write</programlisting>
+<refsect2 id="EvaHttpResponse--status-code" role="property"><title>The <literal>&quot;status-code&quot;</literal> property</title>
+<indexterm zone="EvaHttpResponse--status-code"><primary sortas="EvaHttpResponse:status-code">EvaHttpResponse:status-code</primary></indexterm><programlisting>  &quot;status-code&quot;              <link linkend="EvaHttpStatus">EvaHttpStatus</link>         : Read / Write</programlisting>
 <para>HTTP status code.</para><para>Default value: EVA_HTTP_STATUS_OK</para>
 </refsect2>
 </refsect1>
 
 
 
-<refsect1 id="GskHttpResponse.see-also">
+<refsect1 id="EvaHttpResponse.see-also">
 <title>See Also</title>
 <para>
-GskHttpHeader, GskHttpRequest
+EvaHttpHeader, EvaHttpRequest
 </para>
 </refsect1>
 

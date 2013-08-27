@@ -1,43 +1,43 @@
-<refentry id="eva-GskSocketAddressSymbolicIpv4">
+<refentry id="eva-EvaSocketAddressSymbolicIpv4">
 <refmeta>
-<refentrytitle role="top_of_page" id="eva-GskSocketAddressSymbolicIpv4.top_of_page">GskSocketAddressSymbolicIpv4</refentrytitle>
+<refentrytitle role="top_of_page" id="eva-EvaSocketAddressSymbolicIpv4.top_of_page">EvaSocketAddressSymbolicIpv4</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskSocketAddressSymbolicIpv4</refname>
+<refname>EvaSocketAddressSymbolicIpv4</refname>
 <refpurpose>A symbolic IPv4 socket-address description.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="eva-GskSocketAddressSymbolicIpv4.synopsis" role="synopsis">
+<refsynopsisdiv id="eva-EvaSocketAddressSymbolicIpv4.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-<link linkend="void">void</link>                (<link linkend="GskSocketAddressSymbolicResolveFunc">*GskSocketAddressSymbolicResolveFunc</link>)
-                                                        (<link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link> *orig,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *resolved,
+<link linkend="void">void</link>                (<link linkend="EvaSocketAddressSymbolicResolveFunc">*EvaSocketAddressSymbolicResolveFunc</link>)
+                                                        (<link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link> *orig,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *resolved,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="void">void</link>                (<link linkend="GskSocketAddressSymbolicErrorFunc">*GskSocketAddressSymbolicErrorFunc</link>)
-                                                        (<link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link> *orig,
+<link linkend="void">void</link>                (<link linkend="EvaSocketAddressSymbolicErrorFunc">*EvaSocketAddressSymbolicErrorFunc</link>)
+                                                        (<link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link> *orig,
                                                          const <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-                    <link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link>;
-                    <link linkend="GskSocketAddressSymbolicIpv4">GskSocketAddressSymbolicIpv4</link>;
-<link linkend="GskSocketAddress">GskSocketAddress</link> *  <link linkend="eva-socket-address-symbolic-ipv4-new">eva_socket_address_symbolic_ipv4_new</link>
+                    <link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link>;
+                    <link linkend="EvaSocketAddressSymbolicIpv4">EvaSocketAddressSymbolicIpv4</link>;
+<link linkend="EvaSocketAddress">EvaSocketAddress</link> *  <link linkend="eva-socket-address-symbolic-ipv4-new">eva_socket_address_symbolic_ipv4_new</link>
                                                         (const <link linkend="char">char</link> *name,
                                                          <link linkend="guint16">guint16</link> port);
 <link linkend="gpointer">gpointer</link>            <link linkend="eva-socket-address-symbolic-create-name-resolver">eva_socket_address_symbolic_create_name_resolver</link>
-                                                        (<link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link> *symbolic);
+                                                        (<link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link> *symbolic);
 <link linkend="void">void</link>                <link linkend="eva-socket-address-symbolic-start-resolution">eva_socket_address_symbolic_start_resolution</link>
-                                                        (<link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link> *symbolic,
+                                                        (<link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link> *symbolic,
                                                          <link linkend="gpointer">gpointer</link> name_resolver,
-                                                         <link linkend="GskSocketAddressSymbolicResolveFunc">GskSocketAddressSymbolicResolveFunc</link> r,
-                                                         <link linkend="GskSocketAddressSymbolicErrorFunc">GskSocketAddressSymbolicErrorFunc</link> e,
+                                                         <link linkend="EvaSocketAddressSymbolicResolveFunc">EvaSocketAddressSymbolicResolveFunc</link> r,
+                                                         <link linkend="EvaSocketAddressSymbolicErrorFunc">EvaSocketAddressSymbolicErrorFunc</link> e,
                                                          <link linkend="gpointer">gpointer</link> user_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
 <link linkend="void">void</link>                <link linkend="eva-socket-address-symbolic-cancel-resolution">eva_socket_address_symbolic_cancel_resolution</link>
-                                                        (<link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link> *symbolic,
+                                                        (<link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link> *symbolic,
                                                          <link linkend="gpointer">gpointer</link> name_resolver);
 </synopsis>
 </refsynopsisdiv>
@@ -50,7 +50,7 @@
 
 
 
-<refsect1 id="eva-GskSocketAddressSymbolicIpv4.description" role="desc">
+<refsect1 id="eva-EvaSocketAddressSymbolicIpv4.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 This is a TCP or UDP socket-address in IPv4 space, as represented
@@ -64,13 +64,13 @@ However, most interfaces will handle this for you.
 </para>
 </refsect1>
 
-<refsect1 id="eva-GskSocketAddressSymbolicIpv4.details" role="details">
+<refsect1 id="eva-EvaSocketAddressSymbolicIpv4.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskSocketAddressSymbolicResolveFunc" role="function">
-<title>GskSocketAddressSymbolicResolveFunc ()</title>
-<indexterm zone="GskSocketAddressSymbolicResolveFunc"><primary sortas="GskSocketAddressSymbolicResolveFunc">GskSocketAddressSymbolicResolveFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskSocketAddressSymbolicResolveFunc)
-                                                        (<link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link> *orig,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *resolved,
+<refsect2 id="EvaSocketAddressSymbolicResolveFunc" role="function">
+<title>EvaSocketAddressSymbolicResolveFunc ()</title>
+<indexterm zone="EvaSocketAddressSymbolicResolveFunc"><primary sortas="EvaSocketAddressSymbolicResolveFunc">EvaSocketAddressSymbolicResolveFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaSocketAddressSymbolicResolveFunc)
+                                                        (<link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link> *orig,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *resolved,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 A callback which will be invoked when
@@ -90,10 +90,10 @@ was invoked.
 <listitem><simpara>opaque data passed in to <link linkend="eva-socket-address-symbolic-create-name-resolver"><function>eva_socket_address_symbolic_create_name_resolver()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskSocketAddressSymbolicErrorFunc" role="function">
-<title>GskSocketAddressSymbolicErrorFunc ()</title>
-<indexterm zone="GskSocketAddressSymbolicErrorFunc"><primary sortas="GskSocketAddressSymbolicErrorFunc">GskSocketAddressSymbolicErrorFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskSocketAddressSymbolicErrorFunc)
-                                                        (<link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link> *orig,
+<refsect2 id="EvaSocketAddressSymbolicErrorFunc" role="function">
+<title>EvaSocketAddressSymbolicErrorFunc ()</title>
+<indexterm zone="EvaSocketAddressSymbolicErrorFunc"><primary sortas="EvaSocketAddressSymbolicErrorFunc">EvaSocketAddressSymbolicErrorFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaSocketAddressSymbolicErrorFunc)
+                                                        (<link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link> *orig,
                                                          const <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
@@ -112,18 +112,18 @@ was invoked.
 <listitem><simpara>opaque data passed in to <link linkend="eva-socket-address-symbolic-create-name-resolver"><function>eva_socket_address_symbolic_create_name_resolver()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskSocketAddressSymbolic" role="struct">
-<title>GskSocketAddressSymbolic</title>
-<indexterm zone="GskSocketAddressSymbolic"><primary sortas="GskSocketAddressSymbolic">GskSocketAddressSymbolic</primary></indexterm><programlisting>typedef struct {
-  GskSocketAddress      socket_address;
+<refsect2 id="EvaSocketAddressSymbolic" role="struct">
+<title>EvaSocketAddressSymbolic</title>
+<indexterm zone="EvaSocketAddressSymbolic"><primary sortas="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</primary></indexterm><programlisting>typedef struct {
+  EvaSocketAddress      socket_address;
   char                 *name;
-} GskSocketAddressSymbolic;
+} EvaSocketAddressSymbolic;
 </programlisting>
 <para>
 A symbolic socket-addresss.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskSocketAddress">GskSocketAddress</link>&#160;<structfield>socket_address</structfield>;</term>
+<term><link linkend="EvaSocketAddress">EvaSocketAddress</link>&#160;<structfield>socket_address</structfield>;</term>
 <listitem><simpara>
 </simpara></listitem>
 </varlistentry>
@@ -133,18 +133,18 @@ A symbolic socket-addresss.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskSocketAddressSymbolicIpv4" role="struct">
-<title>GskSocketAddressSymbolicIpv4</title>
-<indexterm zone="GskSocketAddressSymbolicIpv4"><primary sortas="GskSocketAddressSymbolicIpv4">GskSocketAddressSymbolicIpv4</primary></indexterm><programlisting>typedef struct {
-  GskSocketAddressSymbolic base_instance;
+<refsect2 id="EvaSocketAddressSymbolicIpv4" role="struct">
+<title>EvaSocketAddressSymbolicIpv4</title>
+<indexterm zone="EvaSocketAddressSymbolicIpv4"><primary sortas="EvaSocketAddressSymbolicIpv4">EvaSocketAddressSymbolicIpv4</primary></indexterm><programlisting>typedef struct {
+  EvaSocketAddressSymbolic base_instance;
   guint16                  port;
-} GskSocketAddressSymbolicIpv4;
+} EvaSocketAddressSymbolicIpv4;
 </programlisting>
 <para>
 A symbolic socket-addresss in ipv4 space.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link>&#160;<structfield>base_instance</structfield>;</term>
+<term><link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link>&#160;<structfield>base_instance</structfield>;</term>
 <listitem><simpara>
 </simpara></listitem>
 </varlistentry>
@@ -156,7 +156,7 @@ A symbolic socket-addresss in ipv4 space.
 </variablelist></refsect2>
 <refsect2 id="eva-socket-address-symbolic-ipv4-new" role="function">
 <title>eva_socket_address_symbolic_ipv4_new ()</title>
-<indexterm zone="eva-socket-address-symbolic-ipv4-new"><primary sortas="eva_socket_address_symbolic_ipv4_new">eva_socket_address_symbolic_ipv4_new</primary></indexterm><programlisting><link linkend="GskSocketAddress">GskSocketAddress</link> *  eva_socket_address_symbolic_ipv4_new
+<indexterm zone="eva-socket-address-symbolic-ipv4-new"><primary sortas="eva_socket_address_symbolic_ipv4_new">eva_socket_address_symbolic_ipv4_new</primary></indexterm><programlisting><link linkend="EvaSocketAddress">EvaSocketAddress</link> *  eva_socket_address_symbolic_ipv4_new
                                                         (const <link linkend="char">char</link> *name,
                                                          <link linkend="guint16">guint16</link> port);</programlisting>
 <para>
@@ -173,7 +173,7 @@ A symbolic socket-addresss in ipv4 space.
 <refsect2 id="eva-socket-address-symbolic-create-name-resolver" role="function">
 <title>eva_socket_address_symbolic_create_name_resolver ()</title>
 <indexterm zone="eva-socket-address-symbolic-create-name-resolver"><primary sortas="eva_socket_address_symbolic_create_name_resolver">eva_socket_address_symbolic_create_name_resolver</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_socket_address_symbolic_create_name_resolver
-                                                        (<link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link> *symbolic);</programlisting>
+                                                        (<link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link> *symbolic);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>symbolic</parameter>&#160;:</term>
@@ -185,10 +185,10 @@ A symbolic socket-addresss in ipv4 space.
 <refsect2 id="eva-socket-address-symbolic-start-resolution" role="function">
 <title>eva_socket_address_symbolic_start_resolution ()</title>
 <indexterm zone="eva-socket-address-symbolic-start-resolution"><primary sortas="eva_socket_address_symbolic_start_resolution">eva_socket_address_symbolic_start_resolution</primary></indexterm><programlisting><link linkend="void">void</link>                eva_socket_address_symbolic_start_resolution
-                                                        (<link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link> *symbolic,
+                                                        (<link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link> *symbolic,
                                                          <link linkend="gpointer">gpointer</link> name_resolver,
-                                                         <link linkend="GskSocketAddressSymbolicResolveFunc">GskSocketAddressSymbolicResolveFunc</link> r,
-                                                         <link linkend="GskSocketAddressSymbolicErrorFunc">GskSocketAddressSymbolicErrorFunc</link> e,
+                                                         <link linkend="EvaSocketAddressSymbolicResolveFunc">EvaSocketAddressSymbolicResolveFunc</link> r,
+                                                         <link linkend="EvaSocketAddressSymbolicErrorFunc">EvaSocketAddressSymbolicErrorFunc</link> e,
                                                          <link linkend="gpointer">gpointer</link> user_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -215,7 +215,7 @@ A symbolic socket-addresss in ipv4 space.
 <refsect2 id="eva-socket-address-symbolic-cancel-resolution" role="function">
 <title>eva_socket_address_symbolic_cancel_resolution ()</title>
 <indexterm zone="eva-socket-address-symbolic-cancel-resolution"><primary sortas="eva_socket_address_symbolic_cancel_resolution">eva_socket_address_symbolic_cancel_resolution</primary></indexterm><programlisting><link linkend="void">void</link>                eva_socket_address_symbolic_cancel_resolution
-                                                        (<link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link> *symbolic,
+                                                        (<link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link> *symbolic,
                                                          <link linkend="gpointer">gpointer</link> name_resolver);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -231,10 +231,10 @@ A symbolic socket-addresss in ipv4 space.
 
 
 
-<refsect1 id="eva-GskSocketAddressSymbolicIpv4.see-also">
+<refsect1 id="eva-EvaSocketAddressSymbolicIpv4.see-also">
 <title>See Also</title>
 <para>
-<link linkend="GskSocketAddressSymbolic"><type>GskSocketAddressSymbolic</type></link>, which has generic instructions
+<link linkend="EvaSocketAddressSymbolic"><type>EvaSocketAddressSymbolic</type></link>, which has generic instructions
 about making a symbolic socket-address into a native one.
 </para>
 </refsect1>

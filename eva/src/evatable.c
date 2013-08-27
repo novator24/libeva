@@ -47,7 +47,7 @@ typedef struct _TreeNode TreeNode;
 struct _TableUserData
 {
   guint ref_count;
-  GskTableMergeFunc merge;
+  EvaTableMergeFunc merge;
   gpointer user_data;
   GDestroyNotify destroy;
 };
@@ -72,11 +72,11 @@ struct _MergeTask
       gboolean is_red;
     } unstarted;
     struct {
-      GskTableFile *output;
+      EvaTableFile *output;
       gboolean has_last_queryable_key;
-      GskTableBuffer last_queryable_key;
+      EvaTableBuffer last_queryable_key;
       struct {
-        GskTableReader *reader;
+        EvaTableReader *reader;
       } inputs[2];
       MergeTask *next_run;
     } started;
@@ -85,7 +85,7 @@ struct _MergeTask
 
 struct _FileInfo
 {
-  GskTableFile *file;
+  EvaTableFile *file;
   guint ref_count;
   guint64 first_input_entry, n_input_entries;
   MergeTask *prev_task;         /* possible merge task with prior file */
@@ -95,8 +95,8 @@ struct _FileInfo
 
 struct _TreeNode
 {
-  GskTableBuffer key;
-  GskTableBuffer value;
+  EvaTableBuffer key;
+  EvaTableBuffer value;
   TreeNode *left, *right, *parent;
   guint is_red : 1;
 };
@@ -107,7 +107,7 @@ struct _TreeNode
   MergeTask *, table->run_list, info.started.next_run
 
 /* always runs the table->run_list task */
-typedef gboolean (*RunTaskFunc) (GskTable   *table,
+typedef gboolean (*RunTaskFunc) (EvaTable   *table,
                                  guint       iterations,
                                  GError    **error);
 typedef struct _RunTaskFuncs RunTaskFuncs;
@@ -129,20 +129,20 @@ struct _RunTaskFuncs
       nolen_merge
       len_merge      */
 static RunTaskFuncs *
-              table_options_get_run_funcs    (const GskTableOptions *options,
+              table_options_get_run_funcs    (const EvaTableOptions *options,
                                               gboolean        *has_len_out,
                                               GError         **error);
-static GskTableFileFactory *
-              table_options_get_file_factory (const GskTableOptions *,
+static EvaTableFileFactory *
+              table_options_get_file_factory (const EvaTableOptions *,
                                               GError **error);
 
-typedef TreeNode *(*InMemoryTreeLookupFunc) (GskTable     *table,
+typedef TreeNode *(*InMemoryTreeLookupFunc) (EvaTable     *table,
                                              guint         key_len,
                                              const guint8 *key_data);
-typedef int       (*TreeNodeCompareFunc)    (GskTable     *table,
+typedef int       (*TreeNodeCompareFunc)    (EvaTable     *table,
                                              TreeNode     *a,
                                              TreeNode     *b);
-struct _GskTable
+struct _EvaTable
 {
   char *dir;
   int lock_fd;
@@ -151,20 +151,20 @@ struct _GskTable
   gboolean has_len;
   union
   {
-    GskTableCompareFunc with_len;
-    GskTableCompareFuncNoLen no_len;
+    EvaTableCompareFunc with_len;
+    EvaTableCompareFuncNoLen no_len;
   } compare;
   union
   {
-    GskTableMergeFunc with_len;
-    GskTableMergeFuncNoLen no_len;
+    EvaTableMergeFunc with_len;
+    EvaTableMergeFuncNoLen no_len;
   } merge;
   union
   {
-    GskTableSimplifyFunc with_len;
-    GskTableSimplifyFuncNoLen no_len;
+    EvaTableSimplifyFunc with_len;
+    EvaTableSimplifyFuncNoLen no_len;
   } simplify;
-  GskTableValueIsStableFunc is_stable_func;
+  EvaTableValueIsStableFunc is_stable_func;
   RunTaskFuncs *run_funcs;
   InMemoryTreeLookupFunc in_memory_tree_lookup;
   TreeNodeCompareFunc tree_node_compare;
@@ -183,7 +183,7 @@ struct _GskTable
   guint8 *journal_mmap;
   guint journal_len;                    /* current offset in journal */
   guint journal_size;                   /* size of journal data */
-  GskTableJournalMode journal_mode;
+  EvaTableJournalMode journal_mode;
   guint journal_flush_index;
 
   /* files */
@@ -216,15 +216,15 @@ struct _GskTable
   gssize value_fixed_length;             /* or -1 */
 
   /* buffers */
-  GskTableBuffer result_buffers[2];
-  GskTableBuffer merge_buffer;
-  GskTableBuffer simplify_buffer;
-  GskTableFileQuery file_query;
+  EvaTableBuffer result_buffers[2];
+  EvaTableBuffer merge_buffer;
+  EvaTableBuffer simplify_buffer;
+  EvaTableFileQuery file_query;
   guint file_query_key_len;
   const guint8 *file_query_key_data;
 
   /* file factory */
-  GskTableFileFactory *file_factory;
+  EvaTableFileFactory *file_factory;
 
   /* tunables */
   guint max_running_tasks;
@@ -266,19 +266,19 @@ struct _GskTable
   
 
 static inline void
-set_buffer (GskTableBuffer *buffer,
+set_buffer (EvaTableBuffer *buffer,
             guint           len,
             const guint8   *data)
 {
   memcpy (eva_table_buffer_set_len (buffer, len), data, len);
 }
 static inline void
-copy_buffer (GskTableBuffer *buffer,
-             const GskTableBuffer *src)
+copy_buffer (EvaTableBuffer *buffer,
+             const EvaTableBuffer *src)
 {
   set_buffer (buffer, src->len, src->data);
 }
-static void create_unstarted_merge_task (GskTable *table,
+static void create_unstarted_merge_task (EvaTable *table,
                                          FileInfo *prev,
                                          FileInfo *next);
 
@@ -310,7 +310,7 @@ file_info_unref (FileInfo *fi, const char *dir, gboolean erase)
 
 /* --- data structure invariant checking --- */
 static gboolean
-are_files_contiguous (GskTable *table)
+are_files_contiguous (EvaTable *table)
 {
   guint64 last_end = 0;
   FileInfo *fi;
@@ -325,13 +325,13 @@ are_files_contiguous (GskTable *table)
 #define CHECK_FILES_CONTIGUOUS(table) g_assert (are_files_contiguous (table))
 
 /* --- journal management --- */
-static gboolean read_journal  (GskTable    *table,
+static gboolean read_journal  (EvaTable    *table,
                                GError     **error);
-static gboolean reset_journal (GskTable    *table,
+static gboolean reset_journal (EvaTable    *table,
                                GError     **error);
 
 static inline void
-kill_unstarted_merge_task (GskTable *table,
+kill_unstarted_merge_task (EvaTable *table,
                            MergeTask *to_kill)
 {
   g_assert (to_kill->inputs[0]->next_task == to_kill);
@@ -343,7 +343,7 @@ kill_unstarted_merge_task (GskTable *table,
 }
 
 static void
-create_unstarted_merge_task (GskTable *table,
+create_unstarted_merge_task (EvaTable *table,
                              FileInfo *prev,
                              FileInfo *next)
 {
@@ -393,7 +393,7 @@ uint64_equal (gconstpointer a, gconstpointer b)
 }
 
 static gboolean
-kill_unknown_files (GskTable *table,
+kill_unknown_files (EvaTable *table,
                     GError  **error)
 {
   GDir *dirlist;
@@ -421,7 +421,7 @@ kill_unknown_files (GskTable *table,
       g_hash_table_insert (known_ids, &fi->file->id, fi->file);
       if (fi->next_task != NULL && fi->next_task->is_started)
         {
-          GskTableFile *output = fi->next_task->info.started.output;
+          EvaTableFile *output = fi->next_task->info.started.output;
 #if DEBUG_OLD_FILE_DELETION
           g_message ("note merge output file "ID_FMT"", output->id);
 #endif
@@ -471,7 +471,7 @@ kill_unknown_files (GskTable *table,
 }
 
 static gboolean
-read_journal (GskTable  *table,
+read_journal (EvaTable  *table,
               GError   **error)
 {
   int fd = open (table->journal_cur_fname, O_RDWR);
@@ -485,10 +485,10 @@ read_journal (GskTable  *table,
   const guint8 *at;
   guint64 n_input_entries;
   FileInfo **file_infos;
-  GskTableFileFactory *file_factory = table->file_factory;
+  EvaTableFileFactory *file_factory = table->file_factory;
   guint file_index;
   guint64 max_file_id = 0;
-  GskTableJournalMode old_journal_mode;
+  EvaTableJournalMode old_journal_mode;
   if (fd < 0)
     {
       g_set_error (error, EVA_G_ERROR_DOMAIN, EVA_ERROR_FILE_OPEN,
@@ -697,7 +697,7 @@ read_journal (GskTable  *table,
       for (j = 0; j < 2; j++)
         {
           /* restore reader */
-          GskTableReader *reader;
+          EvaTableReader *reader;
           reader = eva_table_file_recreate_reader (inputs[j].file_info->file,
                                                    table->dir,
                                                    inputs[j].reader_state_len,
@@ -776,7 +776,7 @@ read_journal (GskTable  *table,
     }
   else
     {
-      /* since the GskTable object is zeroed, the list is already empty */
+      /* since the EvaTable object is zeroed, the list is already empty */
     }
   table->n_old_files = n_files;
   table->old_files = file_infos;
@@ -891,7 +891,7 @@ resize_journal (gint       journal_fd,
 }
 
 static gboolean
-reset_journal (GskTable   *table,
+reset_journal (EvaTable   *table,
                GError    **error)
 {
   guint i;
@@ -1116,7 +1116,7 @@ static inline gint compare_memory (guint a_len, const guint8 *a_data,
 }
 
 static TreeNode *
-in_memory_tree_lookup_memcmp (GskTable     *table,
+in_memory_tree_lookup_memcmp (EvaTable     *table,
                               guint         key_len,
                               const guint8 *key_data)
 {
@@ -1129,7 +1129,7 @@ in_memory_tree_lookup_memcmp (GskTable     *table,
   return found;
 }
 static TreeNode *
-in_memory_tree_lookup_with_len (GskTable     *table,
+in_memory_tree_lookup_with_len (EvaTable     *table,
                                 guint         key_len,
                                 const guint8 *key_data)
 {
@@ -1145,7 +1145,7 @@ in_memory_tree_lookup_with_len (GskTable     *table,
 }
 
 static TreeNode *
-in_memory_tree_lookup_no_len (GskTable     *table,
+in_memory_tree_lookup_no_len (EvaTable     *table,
                               guint         key_len,
                               const guint8 *key_data)
 {
@@ -1158,13 +1158,13 @@ in_memory_tree_lookup_no_len (GskTable     *table,
   return found;
 }
 
-static int tree_node_compare_memcmp (GskTable *table,
+static int tree_node_compare_memcmp (EvaTable *table,
                                      TreeNode *a,
                                      TreeNode *b)
 {
   return compare_memory (a->key.len, a->key.data, b->key.len, b->key.data);
 }
-static int tree_node_compare_with_len (GskTable *table,
+static int tree_node_compare_with_len (EvaTable *table,
                                        TreeNode *a,
                                        TreeNode *b)
 {
@@ -1172,7 +1172,7 @@ static int tree_node_compare_with_len (GskTable *table,
                                   b->key.len, b->key.data,
                                   table->user_data);
 }
-static int tree_node_compare_no_len (GskTable *table,
+static int tree_node_compare_no_len (EvaTable *table,
                                      TreeNode *a,
                                      TreeNode *b)
 {
@@ -1184,7 +1184,7 @@ static int tree_node_compare_no_len (GskTable *table,
    the pool in forward order, pointerwise comparisons
    are equivalent to timewise comparisons,
    so this comparison is the appropriate (and cheapest) test. */
-static int tree_node_compare_memcmp_nomerge (GskTable *table,
+static int tree_node_compare_memcmp_nomerge (EvaTable *table,
                                      TreeNode *a,
                                      TreeNode *b)
 {
@@ -1193,7 +1193,7 @@ static int tree_node_compare_memcmp_nomerge (GskTable *table,
     rv = (a < b) ? -1 : (a > b) ? 1 : 0;
   return rv;
 }
-static int tree_node_compare_with_len_nomerge (GskTable *table,
+static int tree_node_compare_with_len_nomerge (EvaTable *table,
                                        TreeNode *a,
                                        TreeNode *b)
 {
@@ -1204,7 +1204,7 @@ static int tree_node_compare_with_len_nomerge (GskTable *table,
     rv = (a < b) ? -1 : (a > b) ? 1 : 0;
   return rv;
 }
-static int tree_node_compare_no_len_nomerge (GskTable *table,
+static int tree_node_compare_no_len_nomerge (EvaTable *table,
                                      TreeNode *a,
                                      TreeNode *b)
 {
@@ -1219,7 +1219,7 @@ file_query_compare_memcmp (guint         test_key_len,
                            const guint8 *test_key,
                            gpointer      compare_data)
 {
-  GskTable *table = compare_data;
+  EvaTable *table = compare_data;
   guint a_len = table->file_query_key_len;
   const guint8 *a = table->file_query_key_data;
   guint b_len = test_key_len;
@@ -1240,7 +1240,7 @@ file_query_compare_no_len (guint         test_key_len,
                            const guint8 *test_key,
                            gpointer      compare_data)
 {
-  GskTable *table = compare_data;
+  EvaTable *table = compare_data;
   const guint8 *a = table->file_query_key_data;
   const guint8 *b = test_key;
   return table->compare.no_len (a, b, table->user_data);
@@ -1250,7 +1250,7 @@ file_query_compare_with_len (guint         test_key_len,
                              const guint8 *test_key,
                              gpointer      compare_data)
 {
-  GskTable *table = compare_data;
+  EvaTable *table = compare_data;
   guint a_len = table->file_query_key_len;
   const guint8 *a = table->file_query_key_data;
   guint b_len = test_key_len;
@@ -1266,7 +1266,7 @@ file_query_compare_with_len (guint         test_key_len,
  * @new_flags: whether to create or open an existing table.
  * @error: place to put the error if something goes wrong.
  *
- * Create a new GskTable object.
+ * Create a new EvaTable object.
  * Only one table may use a directory at a time.
  *
  * @options gives both compare, merge and delete
@@ -1279,18 +1279,18 @@ file_query_compare_with_len (guint         test_key_len,
  *
  * returns: the newly created table object, or NULL on error.
  */
-GskTable *
+EvaTable *
 eva_table_new         (const char            *dir,
-                       const GskTableOptions *options,
-                       GskTableNewFlags       new_flags,
+                       const EvaTableOptions *options,
+                       EvaTableNewFlags       new_flags,
                        GError               **error)
 {
   gboolean did_mkdir;
-  GskTable *table;
+  EvaTable *table;
   RunTaskFuncs *run_funcs;
   gboolean has_len;
   int lock_fd;
-  GskTableFileFactory *factory;
+  EvaTableFileFactory *factory;
 
   run_funcs = table_options_get_run_funcs (options, &has_len, error);
   if (run_funcs == NULL)
@@ -1326,7 +1326,7 @@ eva_table_new         (const char            *dir,
   if (lock_fd < 0)
     return FALSE;
 
-  table = g_new0 (GskTable, 1);
+  table = g_new0 (EvaTable, 1);
   table->dir = g_strdup (dir);
   table->lock_fd = lock_fd;
   table->run_funcs = run_funcs;
@@ -1418,17 +1418,17 @@ eva_table_new         (const char            *dir,
 
 /* --- starting a merge-task */
 static gboolean
-start_merge_task (GskTable   *table,
+start_merge_task (EvaTable   *table,
                   MergeTask  *merge_task,
                   GError    **error)
 {
   FileInfo *prev = merge_task->inputs[0];
   FileInfo *next = merge_task->inputs[1];
-  GskTableFileHints file_hints = EVA_TABLE_FILE_HINTS_DEFAULTS;
+  EvaTableFileHints file_hints = EVA_TABLE_FILE_HINTS_DEFAULTS;
   guint64 output_file_id;
-  GskTableFile *output;
+  EvaTableFile *output;
   guint input;
-  GskTableReader *readers[2];
+  EvaTableReader *readers[2];
   guint64 n_input_entries = prev->file->n_entries + next->file->n_entries;
 #if DEBUG_MERGE_TASKS
   g_message ("starting mergetask between "ID_FMT" and "ID_FMT" [%"G_GUINT64_FORMAT" input entries]",
@@ -1513,7 +1513,7 @@ start_merge_task (GskTable   *table,
 }
 
 static gboolean
-maybe_start_tasks (GskTable *table,
+maybe_start_tasks (EvaTable *table,
                    GError  **error)
 {
   while (table->n_running_tasks < table->max_running_tasks
@@ -1531,7 +1531,7 @@ maybe_start_tasks (GskTable *table,
 }
 
 static inline gboolean
-run_merge_task (GskTable   *table,
+run_merge_task (EvaTable   *table,
                 guint       count,
                 gboolean    flush,
                 GError    **error)
@@ -1560,7 +1560,7 @@ run_merge_task (GskTable   *table,
 
 static gboolean
 dump_tree_recursively (TreeNode    *node,
-                       GskTableFile *file,
+                       EvaTableFile *file,
                        GError     **error)
 {
   if (node->left != NULL
@@ -1577,12 +1577,12 @@ dump_tree_recursively (TreeNode    *node,
 }
 
 static gboolean
-flush_tree (GskTable   *table,
+flush_tree (EvaTable   *table,
             GError    **error)
 {
   guint64 id = ++(table->last_file_id);
-  GskTableFileHints file_hints = EVA_TABLE_FILE_HINTS_DEFAULTS;
-  GskTableFile *file = eva_table_file_factory_create_file (table->file_factory,
+  EvaTableFileHints file_hints = EVA_TABLE_FILE_HINTS_DEFAULTS;
+  EvaTableFile *file = eva_table_file_factory_create_file (table->file_factory,
                                                            table->dir,
                                                            id,
                                                            &file_hints,
@@ -1639,7 +1639,7 @@ flush_tree (GskTable   *table,
  * @value_data:
  * @error: place to put the error if something goes wrong.
  *
- * Add a new key/value pair to a GskTable.
+ * Add a new key/value pair to a EvaTable.
  * If the key already exists, the semantics are dependent
  * on the merge function; if no merge function is given,
  * then both rows will exist in the table.
@@ -1647,7 +1647,7 @@ flush_tree (GskTable   *table,
  * returns: whether the addition was successful.
  */
 gboolean
-eva_table_add         (GskTable              *table,
+eva_table_add         (EvaTable              *table,
                        guint                  key_len,
                        const guint8          *key_data,
                        guint                  value_len,
@@ -1670,7 +1670,7 @@ eva_table_add         (GskTable              *table,
   if (found)
     {
       /* Merge the old data with the new data. */
-      GskTableMergeResult merge_result;
+      EvaTableMergeResult merge_result;
       if (table->has_len)
         merge_result = table->merge.with_len (key_len, key_data,
                                        found->value.len, found->value.data,
@@ -1791,7 +1791,7 @@ eva_table_add         (GskTable              *table,
 }
 
 static inline int
-do_compare (GskTable *table,
+do_compare (EvaTable *table,
             guint     a_len,
             const guint8 *a_data,
             guint     b_len,
@@ -1806,7 +1806,7 @@ do_compare (GskTable *table,
 }
 
 gboolean
-eva_table_query       (GskTable              *table,
+eva_table_query       (EvaTable              *table,
                        guint                  key_len,
                        const guint8          *key_data,
                        gboolean              *found_value_out,
@@ -1816,10 +1816,10 @@ eva_table_query       (GskTable              *table,
 {
   gboolean reverse = table->query_reverse_chronologically;
   gboolean has_result = FALSE;
-  GskTableBuffer *result_buffers = table->result_buffers;       /* [2] */
-  GskTableBuffer *result = result_buffers;
-  GskTableBuffer *other_result = result_buffers+1;
-  GskTableFileQuery *query = &table->file_query;
+  EvaTableBuffer *result_buffers = table->result_buffers;       /* [2] */
+  EvaTableBuffer *result = result_buffers;
+  EvaTableBuffer *other_result = result_buffers+1;
+  EvaTableFileQuery *query = &table->file_query;
   FileInfo *fi;
   gboolean use_merge_tasks = TRUE;
   gpointer user_data = table->user_data;
@@ -1898,7 +1898,7 @@ handle_file_query_result:
           if (has_result)
             {
               /* merge values */
-              GskTableMergeResult merge_result;
+              EvaTableMergeResult merge_result;
               if (reverse)
                 merge_result
                   = table->has_len ?
@@ -1943,7 +1943,7 @@ handle_file_query_result:
                   break;
                 case EVA_TABLE_MERGE_SUCCESS:
                   {
-                    GskTableBuffer *tmp = result;
+                    EvaTableBuffer *tmp = result;
                     result = other_result;
                     other_result = tmp;
                     break;
@@ -1989,7 +1989,7 @@ handle_file_query_result:
           if (has_result)
             {
               /* merge */
-              GskTableMergeResult merge_result;
+              EvaTableMergeResult merge_result;
               merge_result
                 = table->has_len
                      ? table->merge.with_len (key_len, key_data,
@@ -2011,7 +2011,7 @@ handle_file_query_result:
                   break;
                 case EVA_TABLE_MERGE_SUCCESS:
                   {
-                    GskTableBuffer *tmp = result;
+                    EvaTableBuffer *tmp = result;
                     result = other_result;
                     other_result = tmp;
                     break;
@@ -2051,13 +2051,13 @@ failed:
 }
 
 const char *
-eva_table_peek_dir    (GskTable              *table)
+eva_table_peek_dir    (EvaTable              *table)
 {
   return table->dir;
 }
 
 void
-eva_table_destroy     (GskTable              *table)
+eva_table_destroy     (EvaTable              *table)
 {
   guint i;
   FileInfo *fi, *next=NULL;
@@ -2076,13 +2076,13 @@ eva_table_destroy     (GskTable              *table)
   eva_table_buffer_clear (&table->result_buffers[1]);
   eva_table_buffer_clear (&table->merge_buffer);
   eva_table_buffer_clear (&table->simplify_buffer);
-  g_slice_free (GskTable, table);
+  g_slice_free (EvaTable, table);
 }
 
 
 
 static gboolean
-merge_task_done (GskTable    *table,
+merge_task_done (EvaTable    *table,
                  MergeTask   *task,
                  GError     **error)
 {
@@ -2159,7 +2159,7 @@ static RunTaskFuncs all_run_task_funcs[2][2][2] = /* has_len, has_compare, has_m
       DEFINE_RUN_TASK_FUNCS(haslen_compare_merge) } } };
 #undef DEFINE_RUN_TASK_FUNCS
 
-static RunTaskFuncs *table_options_get_run_funcs (const GskTableOptions *options,
+static RunTaskFuncs *table_options_get_run_funcs (const EvaTableOptions *options,
                                                   gboolean        *has_len_out,
                                                   GError         **error)
 {
@@ -2197,8 +2197,8 @@ static RunTaskFuncs *table_options_get_run_funcs (const GskTableOptions *options
 /* placeholder until there's actually some tunable stuff
    in flat file-factory (there certainly could be:
    chunk_size, compression_level) */
-static GskTableFileFactory *
-table_options_get_file_factory (const GskTableOptions *options,
+static EvaTableFileFactory *
+table_options_get_file_factory (const EvaTableOptions *options,
                                 GError               **error)
 {
   return eva_table_file_factory_new_flat ();

@@ -28,7 +28,7 @@ struct _TreeNode
 #define DUMP_RBCTREE(t)
 #endif
 
-GskMemPoolFixed tree_node_pool = EVA_MEM_POOL_FIXED_STATIC_INIT(sizeof(TreeNode));
+EvaMemPoolFixed tree_node_pool = EVA_MEM_POOL_FIXED_STATIC_INIT(sizeof(TreeNode));
 
 static gboolean
 add_tree (TreeNode **ptop,

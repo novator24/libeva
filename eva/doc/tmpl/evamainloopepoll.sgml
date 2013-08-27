@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskMainLoopEpoll
+EvaMainLoopEpoll
 
 <!-- ##### SECTION Short_Description ##### -->
 a libepoll-based event loop.
@@ -19,7 +19,7 @@ multiplexing method.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskMainLoopEpoll ##### -->
+<!-- ##### STRUCT EvaMainLoopEpoll ##### -->
 <para>
 
 </para>

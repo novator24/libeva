@@ -21,13 +21,13 @@
 
 */
 
-/* GskMainLoopPollBase: A main loop based around a system call like poll(2)
+/* EvaMainLoopPollBase: A main loop based around a system call like poll(2)
  *    or select(2) that calls a `poll' function with a collection of file
  *    descriptors.  This class implements signal handling and process-end
  *    notification using the normal unix EINTR mechanism.
  */
 
-/* NOTE: everything here is private, except GskMainLoopPollBaseClass,
+/* NOTE: everything here is private, except EvaMainLoopPollBaseClass,
  *       which is protected. (this exposition is to permit derivation)
  */
  
@@ -36,7 +36,7 @@
 #define __EVA_MAIN_LOOP_POLL_BASE_H_
 
 
-/* This is a derived class of GskMainLoop that uses
+/* This is a derived class of EvaMainLoop that uses
  * poll(2) or select(2) or similar internally.
  */
 
@@ -53,50 +53,50 @@ G_BEGIN_DECLS
 /* --- type macros --- */
 GType eva_main_loop_poll_base_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MAIN_LOOP_POLL_BASE			(eva_main_loop_poll_base_get_type ())
-#define EVA_MAIN_LOOP_POLL_BASE(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MAIN_LOOP_POLL_BASE, GskMainLoopPollBase))
-#define EVA_MAIN_LOOP_POLL_BASE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MAIN_LOOP_POLL_BASE, GskMainLoopPollBaseClass))
-#define EVA_MAIN_LOOP_POLL_BASE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MAIN_LOOP_POLL_BASE, GskMainLoopPollBaseClass))
+#define EVA_MAIN_LOOP_POLL_BASE(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MAIN_LOOP_POLL_BASE, EvaMainLoopPollBase))
+#define EVA_MAIN_LOOP_POLL_BASE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MAIN_LOOP_POLL_BASE, EvaMainLoopPollBaseClass))
+#define EVA_MAIN_LOOP_POLL_BASE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MAIN_LOOP_POLL_BASE, EvaMainLoopPollBaseClass))
 #define EVA_IS_MAIN_LOOP_POLL_BASE(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_MAIN_LOOP_POLL_BASE))
 #define EVA_IS_MAIN_LOOP_POLL_BASE_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_MAIN_LOOP_POLL_BASE))
 
 /* --- Typedefs & structures --- */
-typedef struct _GskMainLoopPollBase GskMainLoopPollBase;
-typedef struct _GskMainLoopPollBaseClass GskMainLoopPollBaseClass;
+typedef struct _EvaMainLoopPollBase EvaMainLoopPollBase;
+typedef struct _EvaMainLoopPollBaseClass EvaMainLoopPollBaseClass;
 
 
-/* --- GskMainLoopPollBase structures --- */
-struct _GskMainLoopPollBaseClass 
+/* --- EvaMainLoopPollBase structures --- */
+struct _EvaMainLoopPollBaseClass 
 {
-  GskMainLoopClass    main_loop_class;
+  EvaMainLoopClass    main_loop_class;
 
-  void              (*config_fd)       (GskMainLoopPollBase   *main_loop,
+  void              (*config_fd)       (EvaMainLoopPollBase   *main_loop,
                                         int                    fd,
 					GIOCondition           old_io_conditions,
 				        GIOCondition           io_conditions);
 
   /* returns FALSE if the poll function has an error.
    */
-  gboolean          (*do_polling)      (GskMainLoopPollBase   *main_loop,
+  gboolean          (*do_polling)      (EvaMainLoopPollBase   *main_loop,
 				        int                    max_timeout,
 				        guint                  max_events,
 				        guint                 *num_events_out,
-                                        GskMainLoopEvent      *events);
+                                        EvaMainLoopEvent      *events);
 };
 
-struct _GskMainLoopPollBase
+struct _EvaMainLoopPollBase
 {
-  GskMainLoop  	   main_loop;
+  EvaMainLoop  	   main_loop;
 
   /*< private >*/
 
   /* signals that have been raised, as int's */
-  GskBuffer        signal_ids;
+  EvaBuffer        signal_ids;
 
   /* process-termination notifications in the queue */
-  GskBuffer        process_term_notifications;
+  EvaBuffer        process_term_notifications;
 
   /* a pipe which can be written to wake up the main-loop synchronously */
-  GskSource       *wakeup_read_pipe;
+  EvaSource       *wakeup_read_pipe;
   gint             wakeup_read_fd;
   gint             wakeup_write_fd;
   
@@ -106,7 +106,7 @@ struct _GskMainLoopPollBase
 };
 
 /* this function is multi-thread and signal safe! */
-void eva_main_loop_poll_base_wakeup (GskMainLoopPollBase *poll_base);
+void eva_main_loop_poll_base_wakeup (EvaMainLoopPollBase *poll_base);
 
 G_END_DECLS
 

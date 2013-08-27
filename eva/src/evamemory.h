@@ -7,18 +7,18 @@ G_BEGIN_DECLS
 
 /* --- streams which can be read from --- */
 /* NOTE: buffer will be drained */
-GskStream *eva_memory_buffer_source_new (GskBuffer              *buffer);
+EvaStream *eva_memory_buffer_source_new (EvaBuffer              *buffer);
 
-GskStream *eva_memory_slab_source_new   (gconstpointer           data,
+EvaStream *eva_memory_slab_source_new   (gconstpointer           data,
 					 guint                   data_len,
 					 GDestroyNotify          destroy,
 					 gpointer                destroy_data);
-GskStream *eva_memory_source_new_printf (const char             *format,
+EvaStream *eva_memory_source_new_printf (const char             *format,
 					 ...) G_GNUC_PRINTF(1,2);
-GskStream *eva_memory_source_new_vprintf(const char             *format,
+EvaStream *eva_memory_source_new_vprintf(const char             *format,
                                          va_list                 args);
-GskStream *eva_memory_source_static_string (const char *str);
-GskStream *eva_memory_source_static_string_n (const char *str,
+EvaStream *eva_memory_source_static_string (const char *str);
+EvaStream *eva_memory_source_static_string_n (const char *str,
 					      guint       length);
 
 /* --- streams which can be written to --- */
@@ -27,9 +27,9 @@ GskStream *eva_memory_source_static_string_n (const char *str,
  * you may use any methods on buffer you want -- it will
  * be destructed immediately after this callback.
  */
-typedef void (*GskMemoryBufferCallback) (GskBuffer              *buffer,
+typedef void (*EvaMemoryBufferCallback) (EvaBuffer              *buffer,
 					 gpointer                data);
-GskStream *eva_memory_buffer_sink_new   (GskMemoryBufferCallback callback,
+EvaStream *eva_memory_buffer_sink_new   (EvaMemoryBufferCallback callback,
 					 gpointer                data,
 					 GDestroyNotify          destroy);
 

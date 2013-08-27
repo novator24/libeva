@@ -8,50 +8,50 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskPacketQueue GskPacketQueue;
-typedef struct _GskPacketQueueClass GskPacketQueueClass;
+typedef struct _EvaPacketQueue EvaPacketQueue;
+typedef struct _EvaPacketQueueClass EvaPacketQueueClass;
 /* --- type macros --- */
 GType eva_packet_queue_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_PACKET_QUEUE	           (eva_packet_queue_get_type ())
-#define EVA_PACKET_QUEUE(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_PACKET_QUEUE, GskPacketQueue))
-#define EVA_PACKET_QUEUE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_PACKET_QUEUE, GskPacketQueueClass))
-#define EVA_PACKET_QUEUE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_PACKET_QUEUE, GskPacketQueueClass))
+#define EVA_PACKET_QUEUE(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_PACKET_QUEUE, EvaPacketQueue))
+#define EVA_PACKET_QUEUE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_PACKET_QUEUE, EvaPacketQueueClass))
+#define EVA_PACKET_QUEUE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_PACKET_QUEUE, EvaPacketQueueClass))
 #define EVA_IS_PACKET_QUEUE(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_PACKET_QUEUE))
 #define EVA_IS_PACKET_QUEUE_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_PACKET_QUEUE))
 
 /* --- structures --- */
-struct _GskPacketQueueClass 
+struct _EvaPacketQueueClass 
 {
-  GskIOClass io_class;
-  gboolean   (*bind)  (GskPacketQueue    *queue,
-		       GskSocketAddress  *addr,
+  EvaIOClass io_class;
+  gboolean   (*bind)  (EvaPacketQueue    *queue,
+		       EvaSocketAddress  *addr,
 		       GError           **error);
-  GskPacket *(*read)  (GskPacketQueue    *queue,
+  EvaPacket *(*read)  (EvaPacketQueue    *queue,
 		       gboolean           save_address,
 		       GError           **error);
-  gboolean   (*write) (GskPacketQueue    *queue,
-		       GskPacket         *out,
+  gboolean   (*write) (EvaPacketQueue    *queue,
+		       EvaPacket         *out,
 		       GError           **error);
 
 };
-struct _GskPacketQueue 
+struct _EvaPacketQueue 
 {
-  GskIO      io;
+  EvaIO      io;
   guint      allow_address : 1;
   guint      allow_no_address : 1;
   guint      misses_packets : 1;
-  GskSocketAddress *bound_address;
+  EvaSocketAddress *bound_address;
 };
 
 /* --- prototypes --- */
-gboolean   eva_packet_queue_bind  (GskPacketQueue    *queue,
-				   GskSocketAddress  *address,
+gboolean   eva_packet_queue_bind  (EvaPacketQueue    *queue,
+				   EvaSocketAddress  *address,
 		                   GError           **error);
-GskPacket *eva_packet_queue_read  (GskPacketQueue    *queue,
+EvaPacket *eva_packet_queue_read  (EvaPacketQueue    *queue,
 				   gboolean           save_address,
 		                   GError           **error);
-gboolean   eva_packet_queue_write (GskPacketQueue    *queue,
-		                   GskPacket         *out,
+gboolean   eva_packet_queue_write (EvaPacketQueue    *queue,
+		                   EvaPacket         *out,
 		                   GError           **error);
 #define eva_packet_queue_get_allow_address(queue)       _eva_packet_queue_get(queue,allow_address)
 #define eva_packet_queue_get_allow_no_address(queue)    _eva_packet_queue_get(queue,allow_no_address)
@@ -80,8 +80,8 @@ gboolean   eva_packet_queue_write (GskPacketQueue    *queue,
 #define _eva_packet_queue_get_io(queue, field)  _eva_packet_queue_get(queue,io.field)
 #define _eva_packet_queue_mark_io(queue, field)  _eva_packet_queue_mark(queue,io.field)
 #define _eva_packet_queue_clear_io(queue, field)  _eva_packet_queue_clear(queue,io.field)
-void eva_packet_queue_set_bound_addresss (GskPacketQueue   *queue,
-					  GskSocketAddress *address);
+void eva_packet_queue_set_bound_addresss (EvaPacketQueue   *queue,
+					  EvaSocketAddress *address);
 
 G_END_DECLS
 

@@ -5,7 +5,7 @@
 
 /*
  *
- * GskAsyncCache
+ * EvaAsyncCache
  *
  */
 
@@ -28,9 +28,9 @@ struct _CacheNode
   gboolean dirty;
 };
 
-typedef struct _GskAsyncCachePrivate GskAsyncCachePrivate;
+typedef struct _EvaAsyncCachePrivate EvaAsyncCachePrivate;
 
-struct _GskAsyncCachePrivate
+struct _EvaAsyncCachePrivate
 {
   GHashTable *lookup;
   guint num_keys;
@@ -46,10 +46,10 @@ static GObjectClass *eva_async_cache_parent_class = NULL;
  */
 
 static __inline__ void
-cache_node_real_free (GskAsyncCache *cache, CacheNode *node)
+cache_node_real_free (EvaAsyncCache *cache, CacheNode *node)
 {
-  GskAsyncCacheClass *async_cache_class = EVA_ASYNC_CACHE_GET_CLASS (cache);
-  GskAsyncCachePrivate *private = (GskAsyncCachePrivate *) cache->private;
+  EvaAsyncCacheClass *async_cache_class = EVA_ASYNC_CACHE_GET_CLASS (cache);
+  EvaAsyncCachePrivate *private = (EvaAsyncCachePrivate *) cache->private;
 
   g_return_if_fail (async_cache_class);
   g_return_if_fail (async_cache_class->key_destroy_func);
@@ -66,9 +66,9 @@ cache_node_real_free (GskAsyncCache *cache, CacheNode *node)
 
 /* Remove the node from the destroy queue. */
 static void
-cache_node_remove_from_destroy_queue (GskAsyncCache *cache, CacheNode *node)
+cache_node_remove_from_destroy_queue (EvaAsyncCache *cache, CacheNode *node)
 {
-  GskAsyncCachePrivate *private = (GskAsyncCachePrivate *) cache->private;
+  EvaAsyncCachePrivate *private = (EvaAsyncCachePrivate *) cache->private;
 
   g_return_if_fail (private);
 
@@ -94,9 +94,9 @@ cache_node_remove_from_destroy_queue (GskAsyncCache *cache, CacheNode *node)
 /* Free a node, removing it from the cache's lookup.
  */
 static void
-cache_node_free (GskAsyncCache *cache, CacheNode *node)
+cache_node_free (EvaAsyncCache *cache, CacheNode *node)
 {
-  GskAsyncCachePrivate *private = (GskAsyncCachePrivate *) cache->private;
+  EvaAsyncCachePrivate *private = (EvaAsyncCachePrivate *) cache->private;
 
   g_return_if_fail (private);
   g_return_if_fail (node->refcount == 0);
@@ -113,7 +113,7 @@ cache_node_free (GskAsyncCache *cache, CacheNode *node)
 static void
 cache_node_obliterate (gpointer key, gpointer value, gpointer user_data)
 {
-  GskAsyncCache *cache = EVA_ASYNC_CACHE (user_data);
+  EvaAsyncCache *cache = EVA_ASYNC_CACHE (user_data);
   CacheNode *node = value;
 
   (void) key;
@@ -126,7 +126,7 @@ cache_node_obliterate (gpointer key, gpointer value, gpointer user_data)
 static gboolean
 cache_node_flush (gpointer key, gpointer value, gpointer user_data)
 {
-  GskAsyncCache *cache = EVA_ASYNC_CACHE (user_data);
+  EvaAsyncCache *cache = EVA_ASYNC_CACHE (user_data);
   CacheNode *node = value;
 
   (void) key;
@@ -145,9 +145,9 @@ cache_node_flush (gpointer key, gpointer value, gpointer user_data)
 }
 
 static void
-run_destroy_queue (GskAsyncCache *cache)
+run_destroy_queue (EvaAsyncCache *cache)
 {
-  GskAsyncCachePrivate *private = (GskAsyncCachePrivate *) cache->private;
+  EvaAsyncCachePrivate *private = (EvaAsyncCachePrivate *) cache->private;
   CacheNode *node;
 
   while (private->destroy_first && private->num_keys >= cache->max_keys)
@@ -169,10 +169,10 @@ run_destroy_queue (GskAsyncCache *cache)
 }
 
 static CacheNode *
-cache_node_new (GskAsyncCache *cache, gpointer key, const GValue *value)
+cache_node_new (EvaAsyncCache *cache, gpointer key, const GValue *value)
 {
-  GskAsyncCacheClass *async_cache_class = EVA_ASYNC_CACHE_GET_CLASS (cache);
-  GskAsyncCachePrivate *private = (GskAsyncCachePrivate *) cache->private;
+  EvaAsyncCacheClass *async_cache_class = EVA_ASYNC_CACHE_GET_CLASS (cache);
+  EvaAsyncCachePrivate *private = (EvaAsyncCachePrivate *) cache->private;
   CacheNode *node;
 
   g_return_val_if_fail (async_cache_class->key_dup_func, NULL);
@@ -205,7 +205,7 @@ cache_node_expired (CacheNode *node)
 }
 
 static void
-cache_node_ref (GskAsyncCache *cache, CacheNode *node)
+cache_node_ref (EvaAsyncCache *cache, CacheNode *node)
 {
   if (node->refcount == 0)
     cache_node_remove_from_destroy_queue (cache, node);
@@ -213,9 +213,9 @@ cache_node_ref (GskAsyncCache *cache, CacheNode *node)
 }
 
 static void
-cache_node_unref (GskAsyncCache *cache, CacheNode *node)
+cache_node_unref (EvaAsyncCache *cache, CacheNode *node)
 {
-  GskAsyncCachePrivate *private = (GskAsyncCachePrivate *) cache->private;
+  EvaAsyncCachePrivate *private = (EvaAsyncCachePrivate *) cache->private;
 
   g_return_if_fail (private);
   g_return_if_fail (node->refcount > 0);
@@ -258,10 +258,10 @@ cache_node_unref (GskAsyncCache *cache, CacheNode *node)
  * Public interface.
  */
 
-GskValueRequest *
-eva_async_cache_ref_value (GskAsyncCache *cache, gpointer key)
+EvaValueRequest *
+eva_async_cache_ref_value (EvaAsyncCache *cache, gpointer key)
 {
-  GskAsyncCacheRequest *request;
+  EvaAsyncCacheRequest *request;
 
   request = g_object_new (EVA_TYPE_ASYNC_CACHE_REQUEST, NULL);
   request->cache = cache;
@@ -273,9 +273,9 @@ eva_async_cache_ref_value (GskAsyncCache *cache, gpointer key)
 }
 
 gboolean
-eva_async_cache_unref_value (GskAsyncCache *cache, gpointer key)
+eva_async_cache_unref_value (EvaAsyncCache *cache, gpointer key)
 {
-  GskAsyncCachePrivate *private = (GskAsyncCachePrivate *) cache->private;
+  EvaAsyncCachePrivate *private = (EvaAsyncCachePrivate *) cache->private;
   CacheNode *node;
 
   g_return_val_if_fail (private, FALSE);
@@ -292,9 +292,9 @@ eva_async_cache_unref_value (GskAsyncCache *cache, gpointer key)
 }
 
 void
-eva_async_cache_flush (GskAsyncCache *cache)
+eva_async_cache_flush (EvaAsyncCache *cache)
 {
-  GskAsyncCachePrivate *private = (GskAsyncCachePrivate *) cache->private;
+  EvaAsyncCachePrivate *private = (EvaAsyncCachePrivate *) cache->private;
 
   g_return_if_fail (private);
   g_return_if_fail (private->lookup);
@@ -307,8 +307,8 @@ eva_async_cache_flush (GskAsyncCache *cache)
 static void
 eva_async_cache_finalize (GObject *object)
 {
-  GskAsyncCache *cache = EVA_ASYNC_CACHE (object);
-  GskAsyncCachePrivate *private = (GskAsyncCachePrivate *) cache->private;
+  EvaAsyncCache *cache = EVA_ASYNC_CACHE (object);
+  EvaAsyncCachePrivate *private = (EvaAsyncCachePrivate *) cache->private;
 
   g_return_if_fail (private);
   g_return_if_fail (private->lookup);
@@ -324,12 +324,12 @@ eva_async_cache_finalize (GObject *object)
 }
 
 static void
-eva_async_cache_init (GskAsyncCache *cache)
+eva_async_cache_init (EvaAsyncCache *cache)
 {
-  GskAsyncCacheClass *async_cache_class = EVA_ASYNC_CACHE_GET_CLASS (cache);
-  GskAsyncCachePrivate *private;
+  EvaAsyncCacheClass *async_cache_class = EVA_ASYNC_CACHE_GET_CLASS (cache);
+  EvaAsyncCachePrivate *private;
 
-  private = g_new0 (GskAsyncCachePrivate, 1);
+  private = g_new0 (EvaAsyncCachePrivate, 1);
   private->lookup = g_hash_table_new (async_cache_class->key_hash_func,
 				      async_cache_class->key_equal_func);
   cache->private = private;
@@ -350,19 +350,19 @@ eva_async_cache_get_type (void)
     {
       static const GTypeInfo type_info =
 	{
-	  sizeof (GskAsyncCacheClass),
+	  sizeof (EvaAsyncCacheClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) eva_async_cache_class_init,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskAsyncCache),
+	  sizeof (EvaAsyncCache),
 	  0,		/* n_preallocs */
 	  (GInstanceInitFunc) eva_async_cache_init,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (G_TYPE_OBJECT,
-				     "GskAsyncCache",
+				     "EvaAsyncCache",
 				     &type_info,
 				     0);
     }
@@ -371,17 +371,17 @@ eva_async_cache_get_type (void)
 
 /*
  *
- * GskAsyncCacheRequest
+ * EvaAsyncCacheRequest
  *
  */
 
 static GObjectClass *eva_async_cache_request_parent_class = NULL;
 
 static void
-eva_async_cache_request_cancelled (GskRequest *request_parent)
+eva_async_cache_request_cancelled (EvaRequest *request_parent)
 {
-  GskAsyncCacheRequest *request = EVA_ASYNC_CACHE_REQUEST (request_parent);
-  GskValueRequest *delegated_request = request->delegated_request;
+  EvaAsyncCacheRequest *request = EVA_ASYNC_CACHE_REQUEST (request_parent);
+  EvaValueRequest *delegated_request = request->delegated_request;
 
   g_return_if_fail (eva_request_get_is_cancellable (delegated_request));
   eva_request_clear_is_running (request);
@@ -391,13 +391,13 @@ eva_async_cache_request_cancelled (GskRequest *request_parent)
   g_object_unref (request);
 }
 
-/* GskAsyncCacheLoadedFunc */
+/* EvaAsyncCacheLoadedFunc */
 static void
-delegated_request_done (GskRequest *delegated_request,
+delegated_request_done (EvaRequest *delegated_request,
 			gpointer    user_data)
 {
-  GskValueRequest *value_request = EVA_VALUE_REQUEST (delegated_request);
-  GskAsyncCacheRequest *request = EVA_ASYNC_CACHE_REQUEST (user_data);
+  EvaValueRequest *value_request = EVA_VALUE_REQUEST (delegated_request);
+  EvaAsyncCacheRequest *request = EVA_ASYNC_CACHE_REQUEST (user_data);
 
   g_return_if_fail (value_request);
   g_return_if_fail (request);
@@ -440,14 +440,14 @@ delegated_request_done (GskRequest *delegated_request,
 }
 
 static void
-eva_async_cache_request_start (GskRequest *request_parent)
+eva_async_cache_request_start (EvaRequest *request_parent)
 {
-  GskAsyncCacheRequest *request = EVA_ASYNC_CACHE_REQUEST (request_parent);
-  GskAsyncCache *cache = request->cache;
-  GskAsyncCachePrivate *private = cache->private;
+  EvaAsyncCacheRequest *request = EVA_ASYNC_CACHE_REQUEST (request_parent);
+  EvaAsyncCache *cache = request->cache;
+  EvaAsyncCachePrivate *private = cache->private;
   gpointer key = request->key;
   CacheNode *node;
-  GskValueRequest *delegated_request;
+  EvaValueRequest *delegated_request;
   GError *error = NULL;
 
   g_return_if_fail (!eva_request_get_is_running (request));
@@ -506,13 +506,13 @@ eva_async_cache_request_start (GskRequest *request_parent)
 static void
 eva_async_cache_request_finalize (GObject *object)
 {
-  GskAsyncCacheRequest *request = EVA_ASYNC_CACHE_REQUEST (object);
+  EvaAsyncCacheRequest *request = EVA_ASYNC_CACHE_REQUEST (object);
 
   if (request->cache)
     {
       if (request->key)
 	{
-	  GskAsyncCacheClass *async_cache_class =
+	  EvaAsyncCacheClass *async_cache_class =
 	    EVA_ASYNC_CACHE_GET_CLASS (request->cache);
 
 	  g_return_if_fail (async_cache_class);
@@ -526,7 +526,7 @@ eva_async_cache_request_finalize (GObject *object)
 }
 
 static void
-eva_async_cache_request_class_init (GskRequestClass *request_class)
+eva_async_cache_request_class_init (EvaRequestClass *request_class)
 {
   eva_async_cache_request_parent_class =
     g_type_class_peek_parent (request_class);
@@ -543,19 +543,19 @@ eva_async_cache_request_get_type (void)
     {
       static const GTypeInfo type_info =
 	{
-	  sizeof (GskAsyncCacheRequestClass),
+	  sizeof (EvaAsyncCacheRequestClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) eva_async_cache_request_class_init,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskAsyncCacheRequest),
+	  sizeof (EvaAsyncCacheRequest),
 	  0,		/* n_preallocs */
 	  (GInstanceInitFunc) NULL,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (EVA_TYPE_VALUE_REQUEST,
-				     "GskAsyncCacheRequest",
+				     "EvaAsyncCacheRequest",
 				     &type_info,
 				     0);
     }

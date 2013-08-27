@@ -3,21 +3,21 @@
 #include "evatree.h"
 #include "evamacros.h"
 
-struct _GskTreeNode
+struct _EvaTreeNode
 {
   guint red : 1;
   guint is_removed : 1;
   guint visit_count : 30;
-  GskTreeNode *left;
-  GskTreeNode *right;
-  GskTreeNode *parent;
+  EvaTreeNode *left;
+  EvaTreeNode *right;
+  EvaTreeNode *parent;
   gpointer key;
   gpointer value;
 };
 
-struct _GskTree
+struct _EvaTree
 {
-  GskTreeNode *top;
+  EvaTreeNode *top;
   GCompareDataFunc compare;
   gpointer compare_data;
   guint ref_count;
@@ -34,11 +34,11 @@ struct _GskTree
  * Indeed page 263, is the start of chapter 14, Red-Black Trees.
  */
 
-EVA_DECLARE_POOL_ALLOCATORS(GskTree, eva_tree, 8)
-EVA_DECLARE_POOL_ALLOCATORS(GskTreeNode, eva_tree_node, 32)
+EVA_DECLARE_POOL_ALLOCATORS(EvaTree, eva_tree, 8)
+EVA_DECLARE_POOL_ALLOCATORS(EvaTreeNode, eva_tree_node, 32)
 
 static inline gboolean
-is_node_red (GskTreeNode *node)
+is_node_red (EvaTreeNode *node)
 {
   return node ? node->red : FALSE;
 }
@@ -63,13 +63,13 @@ s/TMP/left/g;
  *
  * returns: the new tree.
  */
-GskTree *
+EvaTree *
 eva_tree_new_full  (GCompareDataFunc compare,
 		    gpointer         compare_data,
 		    GDestroyNotify   key_destroy_func,
 		    GDestroyNotify   value_destroy_func)
 {
-  GskTree *tree = eva_tree_alloc ();
+  EvaTree *tree = eva_tree_alloc ();
   tree->compare = compare;
   tree->compare_data = compare_data;
   tree->key_destroy_func = key_destroy_func;
@@ -90,7 +90,7 @@ eva_tree_new_full  (GCompareDataFunc compare,
  *
  * returns: the new tree.
  */
-GskTree *
+EvaTree *
 eva_tree_new (GCompareFunc     compare)
 {
   return eva_tree_new_full ((GCompareDataFunc) compare, NULL, NULL, NULL);
@@ -112,10 +112,10 @@ eva_tree_new (GCompareFunc     compare)
  * Algorithms:266.
  */
 static void
-eva_tree_left_rot(GskTree     *tree,
-		  GskTreeNode *x)
+eva_tree_left_rot(EvaTree     *tree,
+		  EvaTreeNode *x)
 {
-  GskTreeNode *y = x->right;
+  EvaTreeNode *y = x->right;
 
   x->right = y->left;
   if (y->left)
@@ -132,10 +132,10 @@ eva_tree_left_rot(GskTree     *tree,
 }
 
 static void
-eva_tree_right_rot(GskTree     *tree,
-                   GskTreeNode *x)
+eva_tree_right_rot(EvaTree     *tree,
+                   EvaTreeNode *x)
 {
-  GskTreeNode *y = x->left;
+  EvaTreeNode *y = x->left;
   x->left = y->right;
   if (y->right)
     y->right->parent = x;
@@ -150,11 +150,11 @@ eva_tree_right_rot(GskTree     *tree,
   x->parent = y;
 }
 
-static inline GskTreeNode *
-eva_tree_search_internal (GskTree *tree,
+static inline EvaTreeNode *
+eva_tree_search_internal (EvaTree *tree,
 			  gpointer key)
 {
-  GskTreeNode *at = tree->top;
+  EvaTreeNode *at = tree->top;
   while (at)
     {
       int c = tree->compare (at->key, key, tree->compare_data);
@@ -168,11 +168,11 @@ eva_tree_search_internal (GskTree *tree,
   return NULL;
 }
 
-static inline GskTreeNode *
-eva_tree_node_next_internal (GskTree      *tree,
-			     GskTreeNode  *node)
+static inline EvaTreeNode *
+eva_tree_node_next_internal (EvaTree      *tree,
+			     EvaTreeNode  *node)
 {
-  GskTreeNode *parent;
+  EvaTreeNode *parent;
   g_return_val_if_fail (node != NULL, NULL);
   if (node->right)
     {
@@ -190,11 +190,11 @@ eva_tree_node_next_internal (GskTree      *tree,
   return parent;
 }
 
-static inline GskTreeNode *
-eva_tree_node_prev_internal (GskTree      *tree,
-			     GskTreeNode  *node)
+static inline EvaTreeNode *
+eva_tree_node_prev_internal (EvaTree      *tree,
+			     EvaTreeNode  *node)
 {
-  GskTreeNode *parent;
+  EvaTreeNode *parent;
   g_return_val_if_fail (node != NULL, NULL);
   if (node->left)
     {
@@ -219,15 +219,15 @@ eva_tree_node_prev_internal (GskTree      *tree,
  * Algorithms:268.
  */
 static void
-eva_tree_insert_fixup(GskTree      *tree,
-		      GskTreeNode  *x)
+eva_tree_insert_fixup(EvaTree      *tree,
+		      EvaTreeNode  *x)
 {
   x->red = 1;
   while (tree->top != x && x->parent->red)
     {
       if (x->parent == x->parent->parent->left)
 	{
-	  GskTreeNode *y = x->parent->parent->right;
+	  EvaTreeNode *y = x->parent->parent->right;
 	  if (is_node_red (y))
 	    {
 	      x->parent->red = 0;
@@ -249,7 +249,7 @@ eva_tree_insert_fixup(GskTree      *tree,
 	}
       else
 	{
-	  GskTreeNode *y = x->parent->parent->left;
+	  EvaTreeNode *y = x->parent->parent->left;
 	  if (is_node_red (y))
 	    {
 	      x->parent->red = 0;
@@ -273,14 +273,14 @@ eva_tree_insert_fixup(GskTree      *tree,
   tree->top->red = 0;
 }
 
-static GskTreeNode *
-mknode(GskTree      *tree,
-       GskTreeNode  *parent,
+static EvaTreeNode *
+mknode(EvaTree      *tree,
+       EvaTreeNode  *parent,
        gpointer      key,
        gpointer      value,
        gboolean      is_left_child)
 {
-  GskTreeNode *rv = eva_tree_node_alloc ();
+  EvaTreeNode *rv = eva_tree_node_alloc ();
   rv->key = key;
   rv->value = value;
   rv->left = rv->right = NULL;
@@ -315,9 +315,9 @@ mknode(GskTree      *tree,
 }
 
 static inline gint
-compare_nodes (GskTree     *tree,
-	       GskTreeNode *a,
-	       GskTreeNode *b)
+compare_nodes (EvaTree     *tree,
+	       EvaTreeNode *a,
+	       EvaTreeNode *b)
 {
   gint rv = (*tree->compare) (a->key, b->key, tree->compare_data);
   if (rv != 0)
@@ -364,13 +364,13 @@ compare_nodes (GskTree     *tree,
  * See also eva_tree_replace().
  */
 void
-eva_tree_insert (GskTree     *tree, 
+eva_tree_insert (EvaTree     *tree, 
 		 gpointer     key,
 		 gpointer     value)
 {
-  GskTreeNode search_node;
-  GskTreeNode *parent = NULL;
-  GskTreeNode *at = tree->top;
+  EvaTreeNode search_node;
+  EvaTreeNode *parent = NULL;
+  EvaTreeNode *at = tree->top;
   gboolean was_last_left = FALSE;
 
   INIT_SEARCH_NODE (search_node, key);
@@ -416,13 +416,13 @@ eva_tree_insert (GskTree     *tree,
  * and replaced with this key.
  */
 void
-eva_tree_replace (GskTree     *tree,
+eva_tree_replace (EvaTree     *tree,
 		  gpointer     key,
 		  gpointer     value)
 {
-  GskTreeNode search_node;
-  GskTreeNode *parent;
-  GskTreeNode *at;
+  EvaTreeNode search_node;
+  EvaTreeNode *parent;
+  EvaTreeNode *at;
   gboolean was_last_left = FALSE;
   INIT_SEARCH_NODE (search_node, key);
   parent = NULL;
@@ -459,16 +459,16 @@ eva_tree_replace (GskTree     *tree,
 
 /* Algorithms:274. */
 static void
-eva_tree_delete_fixup (GskTree     *tree, 
-		       GskTreeNode *x,
-		       GskTreeNode *nullpar)
+eva_tree_delete_fixup (EvaTree     *tree, 
+		       EvaTreeNode *x,
+		       EvaTreeNode *nullpar)
 {
   while (x != tree->top && !is_node_red (x))
     {
-      GskTreeNode *xparent = x ? x->parent : nullpar;
+      EvaTreeNode *xparent = x ? x->parent : nullpar;
       if (x == xparent->left)
 	{
-	  GskTreeNode *w = xparent->right;
+	  EvaTreeNode *w = xparent->right;
 	  if (is_node_red (w))
 	    {
 	      w->red = 0;
@@ -500,7 +500,7 @@ eva_tree_delete_fixup (GskTree     *tree,
 	}
       else
 	{
-	  GskTreeNode *w = xparent->left;
+	  EvaTreeNode *w = xparent->left;
 	  if (w->red)
 	    {
 	      w->red = 0;
@@ -537,11 +537,11 @@ eva_tree_delete_fixup (GskTree     *tree,
 
 /* Algorithms:273. */
 static void
-eva_tree_cut_node(GskTree     *tree,
-		  GskTreeNode *z)
+eva_tree_cut_node(EvaTree     *tree,
+		  EvaTreeNode *z)
 {
-  GskTreeNode *x, *y;
-  GskTreeNode *nulpar = 0;	/* Used to emulate sentinel nodes */
+  EvaTreeNode *x, *y;
+  EvaTreeNode *nulpar = 0;	/* Used to emulate sentinel nodes */
   int fixup;
   if (z->left == NULL || z->right == NULL)
     y = z;
@@ -594,8 +594,8 @@ eva_tree_cut_node(GskTree     *tree,
 }
 
 static void
-eva_tree_node_destroy (GskTree     *tree,
-		       GskTreeNode *node)
+eva_tree_node_destroy (EvaTree     *tree,
+		       EvaTreeNode *node)
 {
   if (tree->key_destroy_func)
     tree->key_destroy_func (node->key);
@@ -623,10 +623,10 @@ eva_tree_node_destroy (GskTree     *tree,
  * by calling eva_tree_node_is_removed().
  */
 void
-eva_tree_remove (GskTree     *tree,
+eva_tree_remove (EvaTree     *tree,
 		 gpointer     key)
 {
-  GskTreeNode *node = eva_tree_search_internal (tree, key);
+  EvaTreeNode *node = eva_tree_search_internal (tree, key);
   if (node == NULL)
     return;
 
@@ -638,7 +638,7 @@ eva_tree_remove (GskTree     *tree,
 
   for (;;)
     {
-      GskTreeNode *prev = eva_tree_node_prev_internal (tree, node);
+      EvaTreeNode *prev = eva_tree_node_prev_internal (tree, node);
       if (prev == NULL ||
 	  tree->compare (prev->key, key, tree->compare_data) != 0)
 	break;
@@ -647,7 +647,7 @@ eva_tree_remove (GskTree     *tree,
 
   do
     {
-      GskTreeNode *next = eva_tree_node_next_internal (tree, node);
+      EvaTreeNode *next = eva_tree_node_next_internal (tree, node);
       if (node->visit_count > 0)
 	{
 	  if (!node->is_removed)
@@ -677,10 +677,10 @@ eva_tree_remove (GskTree     *tree,
  * returns: the value of a matching node, or NULL.
  */
 gpointer
-eva_tree_lookup (GskTree *tree,
+eva_tree_lookup (EvaTree *tree,
 		 gpointer key)
 {
-  GskTreeNode *node = eva_tree_search_internal (tree, key);
+  EvaTreeNode *node = eva_tree_search_internal (tree, key);
   g_return_val_if_fail (!(node && node->is_removed), NULL);
   return node == NULL ? NULL : node->value;
 }
@@ -696,10 +696,10 @@ eva_tree_lookup (GskTree *tree,
  */
 
 /* Algorithms:249 */
-GskTreeNode *
-eva_tree_node_first (GskTree    *tree)
+EvaTreeNode *
+eva_tree_node_first (EvaTree    *tree)
 {
-  GskTreeNode *node = tree->top;
+  EvaTreeNode *node = tree->top;
   if (node == NULL)
     return NULL;
   while (node->left)
@@ -727,10 +727,10 @@ eva_tree_node_first (GskTree    *tree)
  * returns: the last node in the tree, or NULL if the tree is empty.
  */
 
-GskTreeNode *
-eva_tree_node_last (GskTree    *tree)
+EvaTreeNode *
+eva_tree_node_last (EvaTree    *tree)
 {
-  GskTreeNode *node = tree->top;
+  EvaTreeNode *node = tree->top;
   if (node == NULL)
     return NULL;
   while (node->right)
@@ -758,11 +758,11 @@ eva_tree_node_last (GskTree    *tree)
  * returns: the matching node, whose visit count has been incremented,
  * or NULL.
  */
-GskTreeNode *
-eva_tree_node_find (GskTree *tree,
+EvaTreeNode *
+eva_tree_node_find (EvaTree *tree,
 		    gpointer search_key)
 {
-  GskTreeNode *node = eva_tree_search_internal (tree, search_key);
+  EvaTreeNode *node = eva_tree_search_internal (tree, search_key);
   g_return_val_if_fail (!(node && node->is_removed), NULL);
   if (node != NULL)
     ++(node->visit_count);
@@ -784,11 +784,11 @@ eva_tree_node_find (GskTree *tree,
  * returns: the next node in the tree, or NULL if @node is the last node.
  */
 
-GskTreeNode *
-eva_tree_node_next (GskTree *tree,
-		    GskTreeNode *node)
+EvaTreeNode *
+eva_tree_node_next (EvaTree *tree,
+		    EvaTreeNode *node)
 {
-  GskTreeNode *next;
+  EvaTreeNode *next;
   g_return_val_if_fail (node != NULL, NULL);
   for (next = eva_tree_node_next_internal (tree, node);
        next != NULL && next->is_removed;
@@ -815,11 +815,11 @@ eva_tree_node_next (GskTree *tree,
  *
  * returns: the previous node in the tree, or NULL if @node is the last node.
  */
-GskTreeNode *
-eva_tree_node_prev (GskTree *tree,
-		    GskTreeNode *node)
+EvaTreeNode *
+eva_tree_node_prev (EvaTree *tree,
+		    EvaTreeNode *node)
 {
-  GskTreeNode *prev;
+  EvaTreeNode *prev;
   g_return_val_if_fail (node != NULL, NULL);
   for (prev = eva_tree_node_prev_internal (tree, node);
        prev != NULL && prev->is_removed;
@@ -844,7 +844,7 @@ eva_tree_node_prev (GskTree *tree,
  * returns: key of the current tree node.
  */
 gpointer
-eva_tree_node_peek_key   (GskTreeNode     *node)
+eva_tree_node_peek_key   (EvaTreeNode     *node)
 {
   return node->key;
 }
@@ -861,7 +861,7 @@ eva_tree_node_peek_key   (GskTreeNode     *node)
  * returns: value of the current tree node.
  */
 gpointer
-eva_tree_node_peek_value (GskTreeNode     *node)
+eva_tree_node_peek_value (EvaTreeNode     *node)
 {
   return node->value;
 }
@@ -881,7 +881,7 @@ eva_tree_node_peek_value (GskTreeNode     *node)
  * returns: whether the node has been removed.
  */
 gboolean
-eva_tree_node_is_removed (GskTreeNode     *node)
+eva_tree_node_is_removed (EvaTreeNode     *node)
 {
   return node->is_removed;
 }
@@ -901,8 +901,8 @@ eva_tree_node_is_removed (GskTreeNode     *node)
  * from a "removed" node, and you cannot get back to it.
  */
 void
-eva_tree_node_visit (GskTree     *tree,
-		     GskTreeNode *node)
+eva_tree_node_visit (EvaTree     *tree,
+		     EvaTreeNode *node)
 {
   g_return_if_fail (node->visit_count > 0);
   ++(node->visit_count);
@@ -920,8 +920,8 @@ eva_tree_node_visit (GskTree     *tree,
  * are the last visitor, its key and value will be deleted at this point.
  */
 void
-eva_tree_node_unvisit (GskTree     *tree,
-		       GskTreeNode *node)
+eva_tree_node_unvisit (EvaTree     *tree,
+		       EvaTreeNode *node)
 {
   g_return_if_fail (node->visit_count > 0);
   if (--(node->visit_count) == 0 && node->is_removed)
@@ -937,14 +937,14 @@ eva_tree_node_unvisit (GskTree     *tree,
  *
  * Destroy the tree and all its nodes.
  *
- * Any GskTreeNode's that you are visiting are destroyed immediately!
+ * Any EvaTreeNode's that you are visiting are destroyed immediately!
  */
 void
-eva_tree_clear (GskTree    *tree)
+eva_tree_clear (EvaTree    *tree)
 {
   if (tree->top)
     {
-      GskTreeNode *top = tree->top;
+      EvaTreeNode *top = tree->top;
       tree->top = NULL;
       eva_tree_node_destroy (tree, top);
       tree->n_alive = tree->n_nodes = 0;
@@ -961,7 +961,7 @@ eva_tree_clear (GskTree    *tree)
  * to hold a reference to a tree you are visiting!
  */
 void
-eva_tree_unref (GskTree   *tree)
+eva_tree_unref (EvaTree   *tree)
 {
   g_return_if_fail (tree->ref_count > 0);
   if (--(tree->ref_count) == 0)
@@ -979,8 +979,8 @@ eva_tree_unref (GskTree   *tree)
  *
  * returns: the @tree, as a convenience; it leads to nice looking code.
  */
-GskTree *
-eva_tree_ref (GskTree   *tree)
+EvaTree *
+eva_tree_ref (EvaTree   *tree)
 {
   g_return_val_if_fail (tree->ref_count > 0, NULL);
   ++(tree->ref_count);
@@ -997,22 +997,22 @@ eva_tree_ref (GskTree   *tree)
  * returns: the number of nodes in the tree.
  */
 guint
-eva_tree_n_nodes (GskTree *tree)
+eva_tree_n_nodes (EvaTree *tree)
 {
   return tree->n_nodes;
 }
 
 /* Returns black height, or -1 if bad. */
 static int
-eva_tree_node_check (GskTree* tree,
-		     GskTreeNode *n,
-		     GskTreeNode **min_out,
-		     GskTreeNode **max_out)
+eva_tree_node_check (EvaTree* tree,
+		     EvaTreeNode *n,
+		     EvaTreeNode **min_out,
+		     EvaTreeNode **max_out)
 {
   int black_height = 0;
   if (n->left)
     {
-      GskTreeNode *tmp_max;
+      EvaTreeNode *tmp_max;
       black_height = eva_tree_node_check (tree, n->left, min_out, &tmp_max);
       if (black_height == -1)
 	return -1;
@@ -1026,7 +1026,7 @@ eva_tree_node_check (GskTree* tree,
     return -1;
   if (n->right)
     {
-      GskTreeNode *tmp_min;
+      EvaTreeNode *tmp_min;
       int bh2 = eva_tree_node_check (tree, n->right, &tmp_min, max_out);
       if (bh2 == -1)
 	return -1;
@@ -1069,7 +1069,7 @@ eva_tree_node_check (GskTree* tree,
  * isn't transitive.
  */
 gboolean
-eva_tree_validate (GskTree *tree)
+eva_tree_validate (EvaTree *tree)
 {
   if (tree->top == NULL)
     return TRUE;

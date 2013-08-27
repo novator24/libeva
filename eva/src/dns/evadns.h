@@ -26,14 +26,14 @@
 /* XXX: read about Inverse queries (1034, 3.7.2), Status queries (1034, 3.8).  */
 
 
-/* XXX: decide:           is a GskDnsZone structure a good idea?
+/* XXX: decide:           is a EvaDnsZone structure a good idea?
  *                        cf 1034, 4.2.1, for a list of what's needed
  *                        to comprise a dns zone.
  */
 
 /* XXX: EVA_DNS_RR_WELL_KNOWN_SERVICE */
 
-/* GskDnsMessage & friends: basic DNS protocol; client & server */
+/* EvaDnsMessage & friends: basic DNS protocol; client & server */
 
 
 /* Well-known port for name-servers.  */
@@ -43,9 +43,9 @@
  * and RFC 1035, Implementation and Specification.
  */
 
-typedef struct _GskDnsMessage GskDnsMessage;
-typedef struct _GskDnsResourceRecord GskDnsResourceRecord;
-typedef struct _GskDnsQuestion GskDnsQuestion;
+typedef struct _EvaDnsMessage EvaDnsMessage;
+typedef struct _EvaDnsResourceRecord EvaDnsResourceRecord;
+typedef struct _EvaDnsQuestion EvaDnsQuestion;
 
 #include "../evabuffer.h"
 #include "../evapacket.h"
@@ -54,13 +54,13 @@ typedef struct _GskDnsQuestion GskDnsQuestion;
 /* RFC 1034, 3.6:  Each node has a set of resource information,
  *                 which may be empty.
  *
- * A GskDnsResourceRecord is one element of that set.
+ * A EvaDnsResourceRecord is one element of that set.
  *
  * All the terminology, and many comments, are from that section.
  */
 
 
-/* GskDnsResourceRecordType: AKA RTYPE: 
+/* EvaDnsResourceRecordType: AKA RTYPE: 
  *       Types of `RR's or `ResourceRecord's (values match RFC 1035, 3.2.2)
  */
 typedef enum
@@ -106,10 +106,10 @@ typedef enum
   /* A `*' record:  matches anything. */
   EVA_DNS_RR_WILDCARD = 255
 
-} GskDnsResourceRecordType;
+} EvaDnsResourceRecordType;
 
 
-/* GskDnsResourceRecordClass: AKA RCLASS:
+/* EvaDnsResourceRecordClass: AKA RCLASS:
  *       Types of networks the RR can apply to (values from 1035, 3.2.4)
  */
 typedef enum
@@ -127,14 +127,14 @@ typedef enum
 
   /* `*': any system */
   EVA_DNS_CLASS_WILDCARD = 255
-} GskDnsResourceClass;
+} EvaDnsResourceClass;
 
-struct _GskDnsResourceRecord
+struct _EvaDnsResourceRecord
 {
-  GskDnsResourceRecordType  type;
+  EvaDnsResourceRecordType  type;
   char                     *owner;     /* where the resource_record is found */
   guint32                   time_to_live;
-  GskDnsResourceClass       record_class;
+  EvaDnsResourceClass       record_class;
 
   /* rdata: record type specific data */
   union
@@ -219,48 +219,48 @@ struct _GskDnsResourceRecord
   } rdata;
 
   /* private */
-  GskDnsMessage *allocator;
+  EvaDnsMessage *allocator;
 };
 
 /* Test whether serial_1 is less that serial_2.  See RFC 1982.  */
 #define EVA_DNS_SERIAL_LESS_THAN(serial_1, serial_2)		\
   (((gint32) ((guint32)(serial_1) - (guint32)(serial_2))) < 0)
 
-/* --- constructing GskDnsResourceRecords --- */
-GskDnsResourceRecord *eva_dns_rr_new_generic (GskDnsMessage        *allocator,
+/* --- constructing EvaDnsResourceRecords --- */
+EvaDnsResourceRecord *eva_dns_rr_new_generic (EvaDnsMessage        *allocator,
 					      const char           *owner,
 					      guint32               ttl);
-GskDnsResourceRecord *eva_dns_rr_new_a       (const char           *owner,
+EvaDnsResourceRecord *eva_dns_rr_new_a       (const char           *owner,
 					      guint32               ttl,
 					      const guint8         *ip_address,
-					      GskDnsMessage        *allocator);
-GskDnsResourceRecord *eva_dns_rr_new_aaaa    (const char           *owner,
+					      EvaDnsMessage        *allocator);
+EvaDnsResourceRecord *eva_dns_rr_new_aaaa    (const char           *owner,
                                               guint32               ttl,
                                               const guint8         *address,
-                                              GskDnsMessage        *allocator);
-GskDnsResourceRecord *eva_dns_rr_new_ns      (const char           *owner,
+                                              EvaDnsMessage        *allocator);
+EvaDnsResourceRecord *eva_dns_rr_new_ns      (const char           *owner,
 					      guint32               ttl,
 					      const char           *name_server,
-					      GskDnsMessage        *allocator);
-GskDnsResourceRecord *eva_dns_rr_new_cname   (const char           *owner,
+					      EvaDnsMessage        *allocator);
+EvaDnsResourceRecord *eva_dns_rr_new_cname   (const char           *owner,
 					      guint32               ttl,
 					      const char           *canonical_name,
-					      GskDnsMessage        *allocator);
-GskDnsResourceRecord *eva_dns_rr_new_ptr     (const char           *owner,
+					      EvaDnsMessage        *allocator);
+EvaDnsResourceRecord *eva_dns_rr_new_ptr     (const char           *owner,
 					      guint32               ttl,
 					      const char           *ptr,
-					      GskDnsMessage        *allocator);
-GskDnsResourceRecord *eva_dns_rr_new_mx      (const char           *owner,
+					      EvaDnsMessage        *allocator);
+EvaDnsResourceRecord *eva_dns_rr_new_mx      (const char           *owner,
 					      guint32               ttl,
 					      int                   preference,
 					      const char           *mail_host,
-					      GskDnsMessage        *allocator);
-GskDnsResourceRecord *eva_dns_rr_new_hinfo   (const char           *owner,
+					      EvaDnsMessage        *allocator);
+EvaDnsResourceRecord *eva_dns_rr_new_hinfo   (const char           *owner,
 					      guint32               ttl,
 					      const char           *cpu,
 					      const char           *os,
-					      GskDnsMessage        *allocator);
-GskDnsResourceRecord *eva_dns_rr_new_soa     (const char           *owner,
+					      EvaDnsMessage        *allocator);
+EvaDnsResourceRecord *eva_dns_rr_new_soa     (const char           *owner,
 					      guint32               ttl,
 					      const char           *mname,
 					      const char           *rname,
@@ -269,63 +269,63 @@ GskDnsResourceRecord *eva_dns_rr_new_soa     (const char           *owner,
 					      guint32               retry_time,
 					      guint32               expire_time,
 					      guint32               minimum_time,
-					      GskDnsMessage        *allocator);
-GskDnsResourceRecord *eva_dns_rr_new_txt     (const char           *owner,
+					      EvaDnsMessage        *allocator);
+EvaDnsResourceRecord *eva_dns_rr_new_txt     (const char           *owner,
 					      guint32               ttl,
 					      const char           *text,
-					      GskDnsMessage        *allocator);
-void                  eva_dns_rr_free        (GskDnsResourceRecord *record);
+					      EvaDnsMessage        *allocator);
+void                  eva_dns_rr_free        (EvaDnsResourceRecord *record);
 
-GskDnsResourceRecord *eva_dns_rr_copy        (GskDnsResourceRecord *record,
-					      GskDnsMessage        *allocator);
+EvaDnsResourceRecord *eva_dns_rr_copy        (EvaDnsResourceRecord *record,
+					      EvaDnsMessage        *allocator);
 
 /* queries only */
 
-GskDnsResourceRecord *eva_dns_rr_new_wildcard(const char    *owner,
+EvaDnsResourceRecord *eva_dns_rr_new_wildcard(const char    *owner,
 					      guint          ttl,
-					      GskDnsMessage *allocator);
+					      EvaDnsMessage *allocator);
 
 /* TODO: EVA_DNS_RR_ZONE_TRANSFER EVA_DNS_RR_ZONE_MAILB */
 
-/* --- GskDnsQuestion --- */
-struct _GskDnsQuestion
+/* --- EvaDnsQuestion --- */
+struct _EvaDnsQuestion
 {
   /* The domain name for which information is being requested. */
   char                     *query_name;
 
   /* The type of query we are asking. */
-  GskDnsResourceRecordType  query_type;
+  EvaDnsResourceRecordType  query_type;
 
   /* The domain where the query applies. */
-  GskDnsResourceClass       query_class;
+  EvaDnsResourceClass       query_class;
 
 
   /*< private >*/
-  GskDnsMessage            *allocator;
+  EvaDnsMessage            *allocator;
 };
 
-GskDnsQuestion *eva_dns_question_new (const char               *query_name,
-				      GskDnsResourceRecordType  query_type,
-				      GskDnsResourceClass       query_class,
-				      GskDnsMessage            *allocator);
-GskDnsQuestion *eva_dns_question_copy(GskDnsQuestion           *question,
-				      GskDnsMessage            *allocator);
-void            eva_dns_question_free(GskDnsQuestion           *question);
+EvaDnsQuestion *eva_dns_question_new (const char               *query_name,
+				      EvaDnsResourceRecordType  query_type,
+				      EvaDnsResourceClass       query_class,
+				      EvaDnsMessage            *allocator);
+EvaDnsQuestion *eva_dns_question_copy(EvaDnsQuestion           *question,
+				      EvaDnsMessage            *allocator);
+void            eva_dns_question_free(EvaDnsQuestion           *question);
 
 
 /* --- Outputting and parsing text DNS resource records --- */
 /* cf RFC 1034, Section 3.6.1. */
 
-GskDnsResourceRecord *eva_dns_rr_text_parse (const char           *record,
+EvaDnsResourceRecord *eva_dns_rr_text_parse (const char           *record,
 			                     const char           *last_owner,
 					     const char           *origin,
 			                     char                **err_msg,
-					     GskDnsMessage        *allocator);
-char                 *eva_dns_rr_text_to_str(GskDnsResourceRecord *rr,
+					     EvaDnsMessage        *allocator);
+char                 *eva_dns_rr_text_to_str(EvaDnsResourceRecord *rr,
 					     const char           *last_owner);
-char           *eva_dns_question_text_to_str(GskDnsQuestion       *question);
-void                  eva_dns_rr_text_write (GskDnsResourceRecord *rr,
-					     GskBuffer            *out_buffer,
+char           *eva_dns_question_text_to_str(EvaDnsQuestion       *question);
+void                  eva_dns_rr_text_write (EvaDnsResourceRecord *rr,
+					     EvaBuffer            *out_buffer,
 					     const char           *last_owner);
 
 
@@ -339,13 +339,13 @@ typedef enum
   EVA_DNS_RESPONSE_ERROR_NAME_ERROR       =3,
   EVA_DNS_RESPONSE_ERROR_NOT_IMPLEMENTED  =4,
   EVA_DNS_RESPONSE_ERROR_REFUSED          =5
-} GskDnsResponseCode;
+} EvaDnsResponseCode;
 
 /* DNS messages, divided into queries & answers.
  *
  * cf. RFC 1034, Section 3.7.
  */
-struct _GskDnsMessage
+struct _EvaDnsMessage
 {
   /* Header: fixed data about all queries */
   guint16       id;       /* used by requestor to match queries and replies */
@@ -368,74 +368,74 @@ struct _GskDnsMessage
 
   /* Question: Carries the query name and other query parameters. */
   /* `qtype' (names are from RFC 1034, section 3.7.1): the query type */
-  GSList       *questions;	/* of GskDnsQuestion */
+  GSList       *questions;	/* of EvaDnsQuestion */
 
   /* Answer: Carries RRs which directly answer the query. */
-  GskDnsResponseCode error_code;
-  GSList       *answers;	/* of GskDnsResourceRecord */
+  EvaDnsResponseCode error_code;
+  GSList       *answers;	/* of EvaDnsResourceRecord */
 
   /* Authority: Carries RRs which describe other authoritative servers.
    *            May optionally carry the SOA RR for the authoritative
    *            data in the answer section.
    */
-  GSList       *authority;	/* of GskDnsResourceRecord */
+  GSList       *authority;	/* of EvaDnsResourceRecord */
 
   /* Additional: Carries RRs which may be helpful in using the RRs in the
    *             other sections.
    */
-  GSList       *additional;	/* of GskDnsResourceRecord */
+  GSList       *additional;	/* of EvaDnsResourceRecord */
 
   /*< private >*/
   guint         ref_count;
-  GMemChunk    *qr_pool;  /* for GskDnsQuestion and GskDnsResourceRecord */
+  GMemChunk    *qr_pool;  /* for EvaDnsQuestion and EvaDnsResourceRecord */
   GStringChunk *str_pool; /* for all strings */
   GHashTable   *offset_to_str;   /* for decompressing only */
 };
 
 /* --- binary dns messages --- */
-GskDnsMessage *eva_dns_message_new           (guint16        id,
+EvaDnsMessage *eva_dns_message_new           (guint16        id,
 					      gboolean       is_request);
-GskDnsMessage *eva_dns_message_parse_buffer  (GskBuffer     *buffer);
-GskDnsMessage *eva_dns_message_parse_data    (const guint8  *data,
+EvaDnsMessage *eva_dns_message_parse_buffer  (EvaBuffer     *buffer);
+EvaDnsMessage *eva_dns_message_parse_data    (const guint8  *data,
 				              guint          length,
 				              guint         *bytes_used_out);
-void           eva_dns_message_write_buffer  (GskDnsMessage *message,
-				              GskBuffer     *buffer,
+void           eva_dns_message_write_buffer  (EvaDnsMessage *message,
+				              EvaBuffer     *buffer,
 				              gboolean       compress);
-GskPacket     *eva_dns_message_to_packet     (GskDnsMessage *message);
+EvaPacket     *eva_dns_message_to_packet     (EvaDnsMessage *message);
 
 /* --- adjusting DnsMessages --- */
 /* (Just manipulate the lists directly, if there are a lot of changes to make.) */
 
 /* the DnsMessage will free the added object */
-void           eva_dns_message_append_question (GskDnsMessage        *message,
-						GskDnsQuestion       *question);
-void           eva_dns_message_append_answer   (GskDnsMessage        *message,
-						GskDnsResourceRecord *answer);
-void           eva_dns_message_append_auth     (GskDnsMessage        *message,
-						GskDnsResourceRecord *auth);
-void           eva_dns_message_append_addl     (GskDnsMessage        *message,
-						GskDnsResourceRecord *addl);
+void           eva_dns_message_append_question (EvaDnsMessage        *message,
+						EvaDnsQuestion       *question);
+void           eva_dns_message_append_answer   (EvaDnsMessage        *message,
+						EvaDnsResourceRecord *answer);
+void           eva_dns_message_append_auth     (EvaDnsMessage        *message,
+						EvaDnsResourceRecord *auth);
+void           eva_dns_message_append_addl     (EvaDnsMessage        *message,
+						EvaDnsResourceRecord *addl);
 
 /* calling these functions will free the second parameter */
-void           eva_dns_message_remove_question (GskDnsMessage        *message,
-						GskDnsQuestion       *question);
-void           eva_dns_message_remove_answer   (GskDnsMessage        *message,
-						GskDnsResourceRecord *answer);
-void           eva_dns_message_remove_auth     (GskDnsMessage        *message,
-						GskDnsResourceRecord *auth);
-void           eva_dns_message_remove_addl     (GskDnsMessage        *message,
-						GskDnsResourceRecord *addl);
+void           eva_dns_message_remove_question (EvaDnsMessage        *message,
+						EvaDnsQuestion       *question);
+void           eva_dns_message_remove_answer   (EvaDnsMessage        *message,
+						EvaDnsResourceRecord *answer);
+void           eva_dns_message_remove_auth     (EvaDnsMessage        *message,
+						EvaDnsResourceRecord *auth);
+void           eva_dns_message_remove_addl     (EvaDnsMessage        *message,
+						EvaDnsResourceRecord *addl);
 
 /* refcounting */
-void           eva_dns_message_unref           (GskDnsMessage        *message);
-void           eva_dns_message_ref             (GskDnsMessage        *message);
+void           eva_dns_message_unref           (EvaDnsMessage        *message);
+void           eva_dns_message_ref             (EvaDnsMessage        *message);
 
 
 /* for debugging: dump the message human-readably to a file pointer. */
-void           eva_dns_dump_message_fp         (GskDnsMessage        *message,
+void           eva_dns_dump_message_fp         (EvaDnsMessage        *message,
 					        FILE                 *fp);
-void           eva_dns_dump_question_fp        (GskDnsQuestion       *question,
+void           eva_dns_dump_question_fp        (EvaDnsQuestion       *question,
 					        FILE                 *fp);
 
 /*< private >*/

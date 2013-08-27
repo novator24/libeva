@@ -14,8 +14,8 @@
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskStreamListenerSsl">GskStreamListenerSsl</link>;
-<link linkend="GskStreamListener">GskStreamListener</link> * <link linkend="eva-stream-listener-ssl-new">eva_stream_listener_ssl_new</link>         (<link linkend="GskStreamListener">GskStreamListener</link> *underlying,
+                    <link linkend="EvaStreamListenerSsl">EvaStreamListenerSsl</link>;
+<link linkend="EvaStreamListener">EvaStreamListener</link> * <link linkend="eva-stream-listener-ssl-new">eva_stream_listener_ssl_new</link>         (<link linkend="EvaStreamListener">EvaStreamListener</link> *underlying,
                                                          const <link linkend="char">char</link> *cert_file,
                                                          const <link linkend="char">char</link> *key_file);
 </synopsis>
@@ -33,27 +33,27 @@
 <title role="desc.title">Description</title>
 <para>
 Accept SSL encrypted connections on top of a raw transport layer
-<link linkend="GskStreamListener"><type>GskStreamListener</type></link>.
+<link linkend="EvaStreamListener"><type>EvaStreamListener</type></link>.
 </para>
 </refsect1>
 
 <refsect1 id="eva-evastreamlistenerssl.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskStreamListenerSsl" role="struct">
-<title>GskStreamListenerSsl</title>
-<indexterm zone="GskStreamListenerSsl"><primary sortas="GskStreamListenerSsl">GskStreamListenerSsl</primary></indexterm><programlisting>typedef struct {
-  GskStreamListener      stream_listener;
+<refsect2 id="EvaStreamListenerSsl" role="struct">
+<title>EvaStreamListenerSsl</title>
+<indexterm zone="EvaStreamListenerSsl"><primary sortas="EvaStreamListenerSsl">EvaStreamListenerSsl</primary></indexterm><programlisting>typedef struct {
+  EvaStreamListener      stream_listener;
   char *cert_file;
   char *key_file;
   char *password;
-  GskStreamListener *underlying;
-} GskStreamListenerSsl;
+  EvaStreamListener *underlying;
+} EvaStreamListenerSsl;
 </programlisting>
 <para>
 The SSL listener.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskStreamListener">GskStreamListener</link>&#160;<structfield>stream_listener</structfield>;</term>
+<term><link linkend="EvaStreamListener">EvaStreamListener</link>&#160;<structfield>stream_listener</structfield>;</term>
 <listitem><simpara>the parent instance.
 </simpara></listitem>
 </varlistentry>
@@ -73,14 +73,14 @@ The SSL listener.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskStreamListener">GskStreamListener</link>&#160;*<structfield>underlying</structfield>;</term>
+<term><link linkend="EvaStreamListener">EvaStreamListener</link>&#160;*<structfield>underlying</structfield>;</term>
 <listitem><simpara>the raw underlying stream-listener.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-listener-ssl-new" role="function">
 <title>eva_stream_listener_ssl_new ()</title>
-<indexterm zone="eva-stream-listener-ssl-new"><primary sortas="eva_stream_listener_ssl_new">eva_stream_listener_ssl_new</primary></indexterm><programlisting><link linkend="GskStreamListener">GskStreamListener</link> * eva_stream_listener_ssl_new         (<link linkend="GskStreamListener">GskStreamListener</link> *underlying,
+<indexterm zone="eva-stream-listener-ssl-new"><primary sortas="eva_stream_listener_ssl_new">eva_stream_listener_ssl_new</primary></indexterm><programlisting><link linkend="EvaStreamListener">EvaStreamListener</link> * eva_stream_listener_ssl_new         (<link linkend="EvaStreamListener">EvaStreamListener</link> *underlying,
                                                          const <link linkend="char">char</link> *cert_file,
                                                          const <link linkend="char">char</link> *key_file);</programlisting>
 <para>

@@ -1,87 +1,87 @@
-<refentry id="eva-GskHttpContent">
+<refentry id="eva-EvaHttpContent">
 <refmeta>
-<refentrytitle role="top_of_page" id="eva-GskHttpContent.top_of_page">GskHttpContent</refentrytitle>
+<refentrytitle role="top_of_page" id="eva-EvaHttpContent.top_of_page">EvaHttpContent</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskHttpContent</refname>
+<refname>EvaHttpContent</refname>
 <refpurpose>content database often useful for implementing http servers.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="eva-GskHttpContent.synopsis" role="synopsis">
+<refsynopsisdiv id="eva-EvaHttpContent.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
 #define             <link linkend="EVA-HTTP-CONTENT-ID-INIT--CAPS">EVA_HTTP_CONTENT_ID_INIT</link>
-                    <link linkend="GskHttpContent">GskHttpContent</link>;
-enum                <link linkend="GskHttpContentAction">GskHttpContentAction</link>;
-<link linkend="void">void</link>                (<link linkend="GskHttpContentCGIFunc">*GskHttpContentCGIFunc</link>)            (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         <link linkend="GskHttpContentHandler">GskHttpContentHandler</link> *handler,
-                                                         <link linkend="GskHttpServer">GskHttpServer</link> *server,
-                                                         <link linkend="GskHttpRequest">GskHttpRequest</link> *request,
+                    <link linkend="EvaHttpContent">EvaHttpContent</link>;
+enum                <link linkend="EvaHttpContentAction">EvaHttpContentAction</link>;
+<link linkend="void">void</link>                (<link linkend="EvaHttpContentCGIFunc">*EvaHttpContentCGIFunc</link>)            (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         <link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> *handler,
+                                                         <link linkend="EvaHttpServer">EvaHttpServer</link> *server,
+                                                         <link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
                                                          <link linkend="guint">guint</link> n_vars,
-                                                         <link linkend="GskMimeMultipartPiece">GskMimeMultipartPiece</link> **vars,
+                                                         <link linkend="EvaMimeMultipartPiece">EvaMimeMultipartPiece</link> **vars,
                                                          <link linkend="gpointer">gpointer</link> data);
-enum                <link linkend="GskHttpContentFileType">GskHttpContentFileType</link>;
-<link linkend="GskHttpContentResult">GskHttpContentResult</link>  (<link linkend="GskHttpContentFunc">*GskHttpContentFunc</link>)             (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         <link linkend="GskHttpContentHandler">GskHttpContentHandler</link> *handler,
-                                                         <link linkend="GskHttpServer">GskHttpServer</link> *server,
-                                                         <link linkend="GskHttpRequest">GskHttpRequest</link> *request,
-                                                         <link linkend="GskStream">GskStream</link> *post_data,
+enum                <link linkend="EvaHttpContentFileType">EvaHttpContentFileType</link>;
+<link linkend="EvaHttpContentResult">EvaHttpContentResult</link>  (<link linkend="EvaHttpContentFunc">*EvaHttpContentFunc</link>)             (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         <link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> *handler,
+                                                         <link linkend="EvaHttpServer">EvaHttpServer</link> *server,
+                                                         <link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
+                                                         <link linkend="EvaStream">EvaStream</link> *post_data,
                                                          <link linkend="gpointer">gpointer</link> data);
-                    <link linkend="GskHttpContentHandler">GskHttpContentHandler</link>;
-                    <link linkend="GskHttpContentId">GskHttpContentId</link>;
-enum                <link linkend="GskHttpContentResult">GskHttpContentResult</link>;
-<link linkend="void">void</link>                <link linkend="eva-http-content-add-data">eva_http_content_add_data</link>           (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         const <link linkend="GskHttpContentId">GskHttpContentId</link> *id,
+                    <link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link>;
+                    <link linkend="EvaHttpContentId">EvaHttpContentId</link>;
+enum                <link linkend="EvaHttpContentResult">EvaHttpContentResult</link>;
+<link linkend="void">void</link>                <link linkend="eva-http-content-add-data">eva_http_content_add_data</link>           (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         const <link linkend="EvaHttpContentId">EvaHttpContentId</link> *id,
                                                          <link linkend="gconstpointer">gconstpointer</link> data,
                                                          <link linkend="guint">guint</link> data_len,
                                                          <link linkend="gpointer">gpointer</link> destroy_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="void">void</link>                <link linkend="eva-http-content-add-data-by-path">eva_http_content_add_data_by_path</link>   (<link linkend="GskHttpContent">GskHttpContent</link> *content,
+<link linkend="void">void</link>                <link linkend="eva-http-content-add-data-by-path">eva_http_content_add_data_by_path</link>   (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
                                                          const <link linkend="char">char</link> *path,
                                                          <link linkend="gconstpointer">gconstpointer</link> data,
                                                          <link linkend="guint">guint</link> data_len,
                                                          <link linkend="gpointer">gpointer</link> destroy_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="void">void</link>                <link linkend="eva-http-content-add-file">eva_http_content_add_file</link>           (<link linkend="GskHttpContent">GskHttpContent</link> *content,
+<link linkend="void">void</link>                <link linkend="eva-http-content-add-file">eva_http_content_add_file</link>           (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
                                                          const <link linkend="char">char</link> *path,
                                                          const <link linkend="char">char</link> *fs_path,
-                                                         <link linkend="GskHttpContentFileType">GskHttpContentFileType</link> type);
-<link linkend="void">void</link>                <link linkend="eva-http-content-add-handler">eva_http_content_add_handler</link>        (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         const <link linkend="GskHttpContentId">GskHttpContentId</link> *id,
-                                                         <link linkend="GskHttpContentHandler">GskHttpContentHandler</link> *handler,
-                                                         <link linkend="GskHttpContentAction">GskHttpContentAction</link> action);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-http-content-get-mime-type">eva_http_content_get_mime_type</link>      (<link linkend="GskHttpContent">GskHttpContent</link> *content,
+                                                         <link linkend="EvaHttpContentFileType">EvaHttpContentFileType</link> type);
+<link linkend="void">void</link>                <link linkend="eva-http-content-add-handler">eva_http_content_add_handler</link>        (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         const <link linkend="EvaHttpContentId">EvaHttpContentId</link> *id,
+                                                         <link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> *handler,
+                                                         <link linkend="EvaHttpContentAction">EvaHttpContentAction</link> action);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-http-content-get-mime-type">eva_http_content_get_mime_type</link>      (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
                                                          const <link linkend="char">char</link> *path,
                                                          const <link linkend="char">char</link> **type_out,
                                                          const <link linkend="char">char</link> **subtype_out);
-<link linkend="GskHttpContentHandler">GskHttpContentHandler</link> * <link linkend="eva-http-content-handler-new">eva_http_content_handler_new</link>    (<link linkend="GskHttpContentFunc">GskHttpContentFunc</link> func,
+<link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> * <link linkend="eva-http-content-handler-new">eva_http_content_handler_new</link>    (<link linkend="EvaHttpContentFunc">EvaHttpContentFunc</link> func,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="GskHttpContentHandler">GskHttpContentHandler</link> * <link linkend="eva-http-content-handler-new-cgi">eva_http_content_handler_new_cgi</link>
-                                                        (<link linkend="GskHttpContentCGIFunc">GskHttpContentCGIFunc</link> func,
+<link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> * <link linkend="eva-http-content-handler-new-cgi">eva_http_content_handler_new_cgi</link>
+                                                        (<link linkend="EvaHttpContentCGIFunc">EvaHttpContentCGIFunc</link> func,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="void">void</link>                <link linkend="eva-http-content-handler-ref">eva_http_content_handler_ref</link>        (<link linkend="GskHttpContentHandler">GskHttpContentHandler</link> *handler);
-<link linkend="void">void</link>                <link linkend="eva-http-content-handler-unref">eva_http_content_handler_unref</link>      (<link linkend="GskHttpContentHandler">GskHttpContentHandler</link> *handler);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-http-content-listen">eva_http_content_listen</link>             (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+<link linkend="void">void</link>                <link linkend="eva-http-content-handler-ref">eva_http_content_handler_ref</link>        (<link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> *handler);
+<link linkend="void">void</link>                <link linkend="eva-http-content-handler-unref">eva_http_content_handler_unref</link>      (<link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> *handler);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-http-content-listen">eva_http_content_listen</link>             (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="void">void</link>                <link linkend="eva-http-content-manage-server">eva_http_content_manage_server</link>      (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         <link linkend="GskHttpServer">GskHttpServer</link> *server);
-<link linkend="GskHttpContent">GskHttpContent</link> *    <link linkend="eva-http-content-new">eva_http_content_new</link>                (void);
-<link linkend="void">void</link>                <link linkend="eva-http-content-respond">eva_http_content_respond</link>            (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         <link linkend="GskHttpServer">GskHttpServer</link> *server,
-                                                         <link linkend="GskHttpRequest">GskHttpRequest</link> *request,
-                                                         <link linkend="GskStream">GskStream</link> *post_data);
+<link linkend="void">void</link>                <link linkend="eva-http-content-manage-server">eva_http_content_manage_server</link>      (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         <link linkend="EvaHttpServer">EvaHttpServer</link> *server);
+<link linkend="EvaHttpContent">EvaHttpContent</link> *    <link linkend="eva-http-content-new">eva_http_content_new</link>                (void);
+<link linkend="void">void</link>                <link linkend="eva-http-content-respond">eva_http_content_respond</link>            (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         <link linkend="EvaHttpServer">EvaHttpServer</link> *server,
+                                                         <link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
+                                                         <link linkend="EvaStream">EvaStream</link> *post_data);
 <link linkend="void">void</link>                <link linkend="eva-http-content-set-default-mime-type">eva_http_content_set_default_mime_type</link>
-                                                        (<link linkend="GskHttpContent">GskHttpContent</link> *content,
+                                                        (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
                                                          const <link linkend="char">char</link> *type,
                                                          const <link linkend="char">char</link> *subtype);
-<link linkend="void">void</link>                <link linkend="eva-http-content-set-mime-type">eva_http_content_set_mime_type</link>      (<link linkend="GskHttpContent">GskHttpContent</link> *content,
+<link linkend="void">void</link>                <link linkend="eva-http-content-set-mime-type">eva_http_content_set_mime_type</link>      (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
                                                          const <link linkend="char">char</link> *prefix,
                                                          const <link linkend="char">char</link> *suffix,
                                                          const <link linkend="char">char</link> *type,
@@ -97,7 +97,7 @@ enum                <link linkend="GskHttpContentResult">GskHttpContentResult</l
 
 
 
-<refsect1 id="eva-GskHttpContent.description" role="desc">
+<refsect1 id="eva-EvaHttpContent.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 This class provides a convenient way to provide handlers
@@ -113,29 +113,29 @@ It also provides mime-type registration.
 </para>
 </refsect1>
 
-<refsect1 id="eva-GskHttpContent.details" role="details">
+<refsect1 id="eva-EvaHttpContent.details" role="details">
 <title role="details.title">Details</title>
 <refsect2 id="EVA-HTTP-CONTENT-ID-INIT--CAPS" role="macro">
 <title>EVA_HTTP_CONTENT_ID_INIT</title>
 <indexterm zone="EVA-HTTP-CONTENT-ID-INIT--CAPS"><primary sortas="EVA_HTTP_CONTENT_ID_INIT">EVA_HTTP_CONTENT_ID_INIT</primary></indexterm><programlisting>#define             EVA_HTTP_CONTENT_ID_INIT</programlisting>
 <para>
-Initialize a blank <link linkend="GskHttpContentId"><type>GskHttpContentId</type></link>.
+Initialize a blank <link linkend="EvaHttpContentId"><type>EvaHttpContentId</type></link>.
 (Alternately, use memset)
 </para></refsect2>
-<refsect2 id="GskHttpContent" role="struct">
-<title>GskHttpContent</title>
-<indexterm zone="GskHttpContent"><primary sortas="GskHttpContent">GskHttpContent</primary></indexterm><programlisting>typedef struct _GskHttpContent GskHttpContent;</programlisting>
+<refsect2 id="EvaHttpContent" role="struct">
+<title>EvaHttpContent</title>
+<indexterm zone="EvaHttpContent"><primary sortas="EvaHttpContent">EvaHttpContent</primary></indexterm><programlisting>typedef struct _EvaHttpContent EvaHttpContent;</programlisting>
 <para>
 An opaque type that keeps all the content hooks for the database.
 </para></refsect2>
-<refsect2 id="GskHttpContentAction" role="enum">
-<title>enum GskHttpContentAction</title>
-<indexterm zone="GskHttpContentAction"><primary sortas="GskHttpContentAction">GskHttpContentAction</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaHttpContentAction" role="enum">
+<title>enum EvaHttpContentAction</title>
+<indexterm zone="EvaHttpContentAction"><primary sortas="EvaHttpContentAction">EvaHttpContentAction</primary></indexterm><programlisting>typedef enum
 {
   EVA_HTTP_CONTENT_PREPEND,
   EVA_HTTP_CONTENT_APPEND,
   EVA_HTTP_CONTENT_REPLACE
-} GskHttpContentAction;
+} EvaHttpContentAction;
 </programlisting>
 <para>
 How to affect existing handlers, if your content-id
@@ -160,14 +160,14 @@ Try this handler first, before the others have tried.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskHttpContentCGIFunc" role="function">
-<title>GskHttpContentCGIFunc ()</title>
-<indexterm zone="GskHttpContentCGIFunc"><primary sortas="GskHttpContentCGIFunc">GskHttpContentCGIFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskHttpContentCGIFunc)            (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         <link linkend="GskHttpContentHandler">GskHttpContentHandler</link> *handler,
-                                                         <link linkend="GskHttpServer">GskHttpServer</link> *server,
-                                                         <link linkend="GskHttpRequest">GskHttpRequest</link> *request,
+<refsect2 id="EvaHttpContentCGIFunc" role="function">
+<title>EvaHttpContentCGIFunc ()</title>
+<indexterm zone="EvaHttpContentCGIFunc"><primary sortas="EvaHttpContentCGIFunc">EvaHttpContentCGIFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaHttpContentCGIFunc)            (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         <link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> *handler,
+                                                         <link linkend="EvaHttpServer">EvaHttpServer</link> *server,
+                                                         <link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
                                                          <link linkend="guint">guint</link> n_vars,
-                                                         <link linkend="GskMimeMultipartPiece">GskMimeMultipartPiece</link> **vars,
+                                                         <link linkend="EvaMimeMultipartPiece">EvaMimeMultipartPiece</link> **vars,
                                                          <link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
 Function that decides how to process a CGI request.
@@ -179,7 +179,7 @@ Function that decides how to process a CGI request.
 <listitem><simpara>the content handler.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>server</parameter>&#160;:</term>
-<listitem><simpara>the GskHttpServer that got the request.
+<listitem><simpara>the EvaHttpServer that got the request.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>request</parameter>&#160;:</term>
 <listitem><simpara>the request we parsed.
@@ -195,14 +195,14 @@ Function that decides how to process a CGI request.
 when the handler was created.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskHttpContentFileType" role="enum">
-<title>enum GskHttpContentFileType</title>
-<indexterm zone="GskHttpContentFileType"><primary sortas="GskHttpContentFileType">GskHttpContentFileType</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaHttpContentFileType" role="enum">
+<title>enum EvaHttpContentFileType</title>
+<indexterm zone="EvaHttpContentFileType"><primary sortas="EvaHttpContentFileType">EvaHttpContentFileType</primary></indexterm><programlisting>typedef enum
 {
   EVA_HTTP_CONTENT_FILE_EXACT,
   EVA_HTTP_CONTENT_FILE_DIR,
   EVA_HTTP_CONTENT_FILE_DIR_TREE
-} GskHttpContentFileType;
+} EvaHttpContentFileType;
 </programlisting>
 <para>
 What type of file structure is being mapped.
@@ -226,13 +226,13 @@ A deep directory is mapped.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskHttpContentFunc" role="function">
-<title>GskHttpContentFunc ()</title>
-<indexterm zone="GskHttpContentFunc"><primary sortas="GskHttpContentFunc">GskHttpContentFunc</primary></indexterm><programlisting><link linkend="GskHttpContentResult">GskHttpContentResult</link>  (*GskHttpContentFunc)             (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         <link linkend="GskHttpContentHandler">GskHttpContentHandler</link> *handler,
-                                                         <link linkend="GskHttpServer">GskHttpServer</link> *server,
-                                                         <link linkend="GskHttpRequest">GskHttpRequest</link> *request,
-                                                         <link linkend="GskStream">GskStream</link> *post_data,
+<refsect2 id="EvaHttpContentFunc" role="function">
+<title>EvaHttpContentFunc ()</title>
+<indexterm zone="EvaHttpContentFunc"><primary sortas="EvaHttpContentFunc">EvaHttpContentFunc</primary></indexterm><programlisting><link linkend="EvaHttpContentResult">EvaHttpContentResult</link>  (*EvaHttpContentFunc)             (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         <link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> *handler,
+                                                         <link linkend="EvaHttpServer">EvaHttpServer</link> *server,
+                                                         <link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
+                                                         <link linkend="EvaStream">EvaStream</link> *post_data,
                                                          <link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
 Function that decides how to process a generic request.
@@ -244,7 +244,7 @@ Function that decides how to process a generic request.
 <listitem><simpara>the content handler.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>server</parameter>&#160;:</term>
-<listitem><simpara>the GskHttpServer that got the request.
+<listitem><simpara>the EvaHttpServer that got the request.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>request</parameter>&#160;:</term>
 <listitem><simpara>the request we parsed.
@@ -260,22 +260,22 @@ when the handler was created.
 or fail.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskHttpContentHandler" role="struct">
-<title>GskHttpContentHandler</title>
-<indexterm zone="GskHttpContentHandler"><primary sortas="GskHttpContentHandler">GskHttpContentHandler</primary></indexterm><programlisting>typedef struct _GskHttpContentHandler GskHttpContentHandler;</programlisting>
+<refsect2 id="EvaHttpContentHandler" role="struct">
+<title>EvaHttpContentHandler</title>
+<indexterm zone="EvaHttpContentHandler"><primary sortas="EvaHttpContentHandler">EvaHttpContentHandler</primary></indexterm><programlisting>typedef struct _EvaHttpContentHandler EvaHttpContentHandler;</programlisting>
 <para>
 An opaque type that houses either a generic HTTP handler,
 or a CGI handler.
 </para></refsect2>
-<refsect2 id="GskHttpContentId" role="struct">
-<title>GskHttpContentId</title>
-<indexterm zone="GskHttpContentId"><primary sortas="GskHttpContentId">GskHttpContentId</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaHttpContentId" role="struct">
+<title>EvaHttpContentId</title>
+<indexterm zone="EvaHttpContentId"><primary sortas="EvaHttpContentId">EvaHttpContentId</primary></indexterm><programlisting>typedef struct {
   const char *host;
   const char *user_agent_prefix;
   const char *path;
   const char *path_prefix;
   const char *path_suffix;
-} GskHttpContentId;
+} EvaHttpContentId;
 </programlisting>
 <para>
 Match information:  describes which requests will try this handler.
@@ -306,14 +306,14 @@ Match information:  describes which requests will try this handler.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskHttpContentResult" role="enum">
-<title>enum GskHttpContentResult</title>
-<indexterm zone="GskHttpContentResult"><primary sortas="GskHttpContentResult">GskHttpContentResult</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaHttpContentResult" role="enum">
+<title>enum EvaHttpContentResult</title>
+<indexterm zone="EvaHttpContentResult"><primary sortas="EvaHttpContentResult">EvaHttpContentResult</primary></indexterm><programlisting>typedef enum
 {
   EVA_HTTP_CONTENT_OK,
   EVA_HTTP_CONTENT_CHAIN,
   EVA_HTTP_CONTENT_ERROR        /* causes a 500 error to result */
-} GskHttpContentResult;
+} EvaHttpContentResult;
 </programlisting>
 <para>
 Possible results from trying an http handler.
@@ -336,8 +336,8 @@ Possible results from trying an http handler.
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-add-data" role="function">
 <title>eva_http_content_add_data ()</title>
-<indexterm zone="eva-http-content-add-data"><primary sortas="eva_http_content_add_data">eva_http_content_add_data</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_add_data           (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         const <link linkend="GskHttpContentId">GskHttpContentId</link> *id,
+<indexterm zone="eva-http-content-add-data"><primary sortas="eva_http_content_add_data">eva_http_content_add_data</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_add_data           (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         const <link linkend="EvaHttpContentId">EvaHttpContentId</link> *id,
                                                          <link linkend="gconstpointer">gconstpointer</link> data,
                                                          <link linkend="guint">guint</link> data_len,
                                                          <link linkend="gpointer">gpointer</link> destroy_data,
@@ -367,7 +367,7 @@ Add fixed data to the HTTP content database.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-add-data-by-path" role="function">
 <title>eva_http_content_add_data_by_path ()</title>
-<indexterm zone="eva-http-content-add-data-by-path"><primary sortas="eva_http_content_add_data_by_path">eva_http_content_add_data_by_path</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_add_data_by_path   (<link linkend="GskHttpContent">GskHttpContent</link> *content,
+<indexterm zone="eva-http-content-add-data-by-path"><primary sortas="eva_http_content_add_data_by_path">eva_http_content_add_data_by_path</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_add_data_by_path   (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
                                                          const <link linkend="char">char</link> *path,
                                                          <link linkend="gconstpointer">gconstpointer</link> data,
                                                          <link linkend="guint">guint</link> data_len,
@@ -398,10 +398,10 @@ Add fixed data to the HTTP content database.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-add-file" role="function">
 <title>eva_http_content_add_file ()</title>
-<indexterm zone="eva-http-content-add-file"><primary sortas="eva_http_content_add_file">eva_http_content_add_file</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_add_file           (<link linkend="GskHttpContent">GskHttpContent</link> *content,
+<indexterm zone="eva-http-content-add-file"><primary sortas="eva_http_content_add_file">eva_http_content_add_file</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_add_file           (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
                                                          const <link linkend="char">char</link> *path,
                                                          const <link linkend="char">char</link> *fs_path,
-                                                         <link linkend="GskHttpContentFileType">GskHttpContentFileType</link> type);</programlisting>
+                                                         <link linkend="EvaHttpContentFileType">EvaHttpContentFileType</link> type);</programlisting>
 <para>
 Add data from files from the native filesystem.</para>
 <para>
@@ -422,10 +422,10 @@ or a directory, or a directory tree.
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-add-handler" role="function">
 <title>eva_http_content_add_handler ()</title>
-<indexterm zone="eva-http-content-add-handler"><primary sortas="eva_http_content_add_handler">eva_http_content_add_handler</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_add_handler        (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         const <link linkend="GskHttpContentId">GskHttpContentId</link> *id,
-                                                         <link linkend="GskHttpContentHandler">GskHttpContentHandler</link> *handler,
-                                                         <link linkend="GskHttpContentAction">GskHttpContentAction</link> action);</programlisting>
+<indexterm zone="eva-http-content-add-handler"><primary sortas="eva_http_content_add_handler">eva_http_content_add_handler</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_add_handler        (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         const <link linkend="EvaHttpContentId">EvaHttpContentId</link> *id,
+                                                         <link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> *handler,
+                                                         <link linkend="EvaHttpContentAction">EvaHttpContentAction</link> action);</programlisting>
 <para>
 Add the handler to the content database.
 This increases the ref-count on the handler,
@@ -453,7 +453,7 @@ the currently registered handlers.
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-get-mime-type" role="function">
 <title>eva_http_content_get_mime_type ()</title>
-<indexterm zone="eva-http-content-get-mime-type"><primary sortas="eva_http_content_get_mime_type">eva_http_content_get_mime_type</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_http_content_get_mime_type      (<link linkend="GskHttpContent">GskHttpContent</link> *content,
+<indexterm zone="eva-http-content-get-mime-type"><primary sortas="eva_http_content_get_mime_type">eva_http_content_get_mime_type</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_http_content_get_mime_type      (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
                                                          const <link linkend="char">char</link> *path,
                                                          const <link linkend="char">char</link> **type_out,
                                                          const <link linkend="char">char</link> **subtype_out);</programlisting>
@@ -476,14 +476,14 @@ the currently registered handlers.
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-handler-new" role="function">
 <title>eva_http_content_handler_new ()</title>
-<indexterm zone="eva-http-content-handler-new"><primary sortas="eva_http_content_handler_new">eva_http_content_handler_new</primary></indexterm><programlisting><link linkend="GskHttpContentHandler">GskHttpContentHandler</link> * eva_http_content_handler_new    (<link linkend="GskHttpContentFunc">GskHttpContentFunc</link> func,
+<indexterm zone="eva-http-content-handler-new"><primary sortas="eva_http_content_handler_new">eva_http_content_handler_new</primary></indexterm><programlisting><link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> * eva_http_content_handler_new    (<link linkend="EvaHttpContentFunc">EvaHttpContentFunc</link> func,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
 Allocate a new content handler.
 </para>
 <para>
-This should be added to a GskHttpContent
+This should be added to a EvaHttpContent
 using <link linkend="eva-http-content-add-handler"><function>eva_http_content_add_handler()</function></link>
 and then unrefed with <link linkend="eva-http-content-handler-unref"><function>eva_http_content_handler_unref()</function></link>.</para>
 <para>
@@ -504,15 +504,15 @@ handle the HTTP request.
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-handler-new-cgi" role="function">
 <title>eva_http_content_handler_new_cgi ()</title>
-<indexterm zone="eva-http-content-handler-new-cgi"><primary sortas="eva_http_content_handler_new_cgi">eva_http_content_handler_new_cgi</primary></indexterm><programlisting><link linkend="GskHttpContentHandler">GskHttpContentHandler</link> * eva_http_content_handler_new_cgi
-                                                        (<link linkend="GskHttpContentCGIFunc">GskHttpContentCGIFunc</link> func,
+<indexterm zone="eva-http-content-handler-new-cgi"><primary sortas="eva_http_content_handler_new_cgi">eva_http_content_handler_new_cgi</primary></indexterm><programlisting><link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> * eva_http_content_handler_new_cgi
+                                                        (<link linkend="EvaHttpContentCGIFunc">EvaHttpContentCGIFunc</link> func,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
 Allocate a new content handler.
 </para>
 <para>
-This should be added to a GskHttpContent
+This should be added to a EvaHttpContent
 using <link linkend="eva-http-content-add-handler"><function>eva_http_content_add_handler()</function></link>
 and then unrefed with <link linkend="eva-http-content-handler-unref"><function>eva_http_content_handler_unref()</function></link>.</para>
 <para>
@@ -533,7 +533,7 @@ handle the CGI request.
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-handler-ref" role="function">
 <title>eva_http_content_handler_ref ()</title>
-<indexterm zone="eva-http-content-handler-ref"><primary sortas="eva_http_content_handler_ref">eva_http_content_handler_ref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_handler_ref        (<link linkend="GskHttpContentHandler">GskHttpContentHandler</link> *handler);</programlisting>
+<indexterm zone="eva-http-content-handler-ref"><primary sortas="eva_http_content_handler_ref">eva_http_content_handler_ref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_handler_ref        (<link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> *handler);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>handler</parameter>&#160;:</term>
@@ -542,7 +542,7 @@ handle the CGI request.
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-handler-unref" role="function">
 <title>eva_http_content_handler_unref ()</title>
-<indexterm zone="eva-http-content-handler-unref"><primary sortas="eva_http_content_handler_unref">eva_http_content_handler_unref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_handler_unref      (<link linkend="GskHttpContentHandler">GskHttpContentHandler</link> *handler);</programlisting>
+<indexterm zone="eva-http-content-handler-unref"><primary sortas="eva_http_content_handler_unref">eva_http_content_handler_unref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_handler_unref      (<link linkend="EvaHttpContentHandler">EvaHttpContentHandler</link> *handler);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>handler</parameter>&#160;:</term>
@@ -551,8 +551,8 @@ handle the CGI request.
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-listen" role="function">
 <title>eva_http_content_listen ()</title>
-<indexterm zone="eva-http-content-listen"><primary sortas="eva_http_content_listen">eva_http_content_listen</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_http_content_listen             (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+<indexterm zone="eva-http-content-listen"><primary sortas="eva_http_content_listen">eva_http_content_listen</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_http_content_listen             (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Start an HTTP server listening on the given port,
@@ -573,22 +573,22 @@ using content from the given content database.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-manage-server" role="function">
 <title>eva_http_content_manage_server ()</title>
-<indexterm zone="eva-http-content-manage-server"><primary sortas="eva_http_content_manage_server">eva_http_content_manage_server</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_manage_server      (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         <link linkend="GskHttpServer">GskHttpServer</link> *server);</programlisting>
+<indexterm zone="eva-http-content-manage-server"><primary sortas="eva_http_content_manage_server">eva_http_content_manage_server</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_manage_server      (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         <link linkend="EvaHttpServer">EvaHttpServer</link> *server);</programlisting>
 <para>
-Handle requests on the given server, using the GskHttpContent.</para>
+Handle requests on the given server, using the EvaHttpContent.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>content</parameter>&#160;:</term>
 <listitem><simpara> the content database which will handle requests.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>server</parameter>&#160;:</term>
-<listitem><simpara> a GskHttpServer to manage.
+<listitem><simpara> a EvaHttpServer to manage.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-new" role="function">
 <title>eva_http_content_new ()</title>
-<indexterm zone="eva-http-content-new"><primary sortas="eva_http_content_new">eva_http_content_new</primary></indexterm><programlisting><link linkend="GskHttpContent">GskHttpContent</link> *    eva_http_content_new                (void);</programlisting>
+<indexterm zone="eva-http-content-new"><primary sortas="eva_http_content_new">eva_http_content_new</primary></indexterm><programlisting><link linkend="EvaHttpContent">EvaHttpContent</link> *    eva_http_content_new                (void);</programlisting>
 <para>
 Allocate a new, empty content set.</para>
 <para>
@@ -598,13 +598,13 @@ Allocate a new, empty content set.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-respond" role="function">
 <title>eva_http_content_respond ()</title>
-<indexterm zone="eva-http-content-respond"><primary sortas="eva_http_content_respond">eva_http_content_respond</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_respond            (<link linkend="GskHttpContent">GskHttpContent</link> *content,
-                                                         <link linkend="GskHttpServer">GskHttpServer</link> *server,
-                                                         <link linkend="GskHttpRequest">GskHttpRequest</link> *request,
-                                                         <link linkend="GskStream">GskStream</link> *post_data);</programlisting>
+<indexterm zone="eva-http-content-respond"><primary sortas="eva_http_content_respond">eva_http_content_respond</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_respond            (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
+                                                         <link linkend="EvaHttpServer">EvaHttpServer</link> *server,
+                                                         <link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
+                                                         <link linkend="EvaStream">EvaStream</link> *post_data);</programlisting>
 <para>
 Respond to the given HTTP query,
-using the registered content in the GskHttpContent.</para>
+using the registered content in the EvaHttpContent.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>content</parameter>&#160;:</term>
@@ -623,7 +623,7 @@ using the registered content in the GskHttpContent.</para>
 <refsect2 id="eva-http-content-set-default-mime-type" role="function">
 <title>eva_http_content_set_default_mime_type ()</title>
 <indexterm zone="eva-http-content-set-default-mime-type"><primary sortas="eva_http_content_set_default_mime_type">eva_http_content_set_default_mime_type</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_set_default_mime_type
-                                                        (<link linkend="GskHttpContent">GskHttpContent</link> *content,
+                                                        (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
                                                          const <link linkend="char">char</link> *type,
                                                          const <link linkend="char">char</link> *subtype);</programlisting>
 <para>
@@ -651,7 +651,7 @@ with prefix==suffix==NULL.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-content-set-mime-type" role="function">
 <title>eva_http_content_set_mime_type ()</title>
-<indexterm zone="eva-http-content-set-mime-type"><primary sortas="eva_http_content_set_mime_type">eva_http_content_set_mime_type</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_set_mime_type      (<link linkend="GskHttpContent">GskHttpContent</link> *content,
+<indexterm zone="eva-http-content-set-mime-type"><primary sortas="eva_http_content_set_mime_type">eva_http_content_set_mime_type</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_content_set_mime_type      (<link linkend="EvaHttpContent">EvaHttpContent</link> *content,
                                                          const <link linkend="char">char</link> *prefix,
                                                          const <link linkend="char">char</link> *suffix,
                                                          const <link linkend="char">char</link> *type,

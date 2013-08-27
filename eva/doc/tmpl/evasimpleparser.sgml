@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskSimpleParser
+EvaSimpleParser
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -21,7 +21,7 @@ GskSimpleParser
 
 
 
-<!-- ##### USER_FUNCTION GskSimpleParserCallback ##### -->
+<!-- ##### USER_FUNCTION EvaSimpleParserCallback ##### -->
 <para>
 
 </para>

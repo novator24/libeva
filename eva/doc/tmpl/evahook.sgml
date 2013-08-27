@@ -8,8 +8,8 @@ structure inside a GObject.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-GskHook is to be used as a member of a GObject.
-Its class must have at least a #GskHookSetPollFunc member,
+EvaHook is to be used as a member of a GObject.
+Its class must have at least a #EvaHookSetPollFunc member,
 and for hooks which have a corresponding shutdown method,
 that should be in the class as well.
 </para>
@@ -21,14 +21,14 @@ and it also must not waste cpu notifying us if the event is not trapped.
 </para>
 
 <para>
-Therefore, #GskHook has two components:
-(1) methods to make it easy to write classes which have GskHooks in them.
+Therefore, #EvaHook has two components:
+(1) methods to make it easy to write classes which have EvaHooks in them.
 (2) methods to be exposed to an end user of such a class:
 meaning, ways to trap, untrap, block, unblock the events.
 </para>
 
 <para>
-To implement a class which contains a #GskHook,
+To implement a class which contains a #EvaHook,
 traditionally, you should have a set_poll method of the class
 which should just turn on or off whether the class
 tries to call eva_hook_notify().
@@ -58,20 +58,20 @@ will only be run after eva_hook_notify_shutdown() is called in that case.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-#GskIO, #GskStream
+#EvaIO, #EvaStream
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskHook ##### -->
+<!-- ##### STRUCT EvaHook ##### -->
 <para>
 A structure which you can embed in a GObject.
 All of its members are private.
 </para>
 
 
-<!-- ##### USER_FUNCTION GskHookFunc ##### -->
+<!-- ##### USER_FUNCTION EvaHookFunc ##### -->
 <para>
 To be called when the hook is triggered.
 </para>
@@ -81,7 +81,7 @@ To be called when the hook is triggered.
 @Returns: whether the hook should stay trapped.
 
 
-<!-- ##### USER_FUNCTION GskHookSetPollFunc ##### -->
+<!-- ##### USER_FUNCTION EvaHookSetPollFunc ##### -->
 <para>
 To be called when the class should start or stop
 calling #eva_hook_notify.
@@ -91,11 +91,11 @@ calling #eva_hook_notify.
 @do_polling: whether to trigger the hook.
 
 
-<!-- ##### USER_FUNCTION GskHookShutdownFunc ##### -->
+<!-- ##### USER_FUNCTION EvaHookShutdownFunc ##### -->
 <para>
 This function is how the "shutdown" method in a class will
 be invoked (if the hook WAS NOT created
-with #EVA_HOOK_CAN_HAVE_SHUTDOWN_ERROR; see #GskHookShutdownErrorFunc).
+with #EVA_HOOK_CAN_HAVE_SHUTDOWN_ERROR; see #EvaHookShutdownErrorFunc).
 </para>
 <para>
 EVA automatically untraps after this is over,
@@ -105,11 +105,11 @@ since there is no more potential for this hook to trigger.
 @object: the object whose hook should shut down.
 
 
-<!-- ##### USER_FUNCTION GskHookShutdownErrorFunc ##### -->
+<!-- ##### USER_FUNCTION EvaHookShutdownErrorFunc ##### -->
 <para>
 This function is how the "shutdown" method in a class will
 be invoked (if the hook WAS NOT created
-without #EVA_HOOK_CAN_HAVE_SHUTDOWN_ERROR; see #GskHookShutdownErrorFunc).
+without #EVA_HOOK_CAN_HAVE_SHUTDOWN_ERROR; see #EvaHookShutdownErrorFunc).
 </para>
 <para>
 This function returns with whether the shutdown completed successfully.
@@ -126,7 +126,7 @@ object itself later.)
 @Returns: whether shutdown succeeds.
 
 
-<!-- ##### ENUM GskHookFlags ##### -->
+<!-- ##### ENUM EvaHookFlags ##### -->
 <para>
 Flags which can be read about any hook.
 See EVA_HOOK_TEST_FLAG(), EVA_HOOK_SET_FLAG()
@@ -163,7 +163,7 @@ Get a pointer to the GObject which owns this hook.
 
 <!-- ##### MACRO EVA_HOOK_TEST_FLAG ##### -->
 <para>
-Test if a particular flag in the GskHook is set.
+Test if a particular flag in the EvaHook is set.
 </para>
 
 @hook: the hook to test.
@@ -175,7 +175,7 @@ its EVA_HOOK prefix.
 <para>
 Set the bit of the hook to TRUE.  This should
 only be used by implementors of 
-GskHook-containing objects.
+EvaHook-containing objects.
 </para>
 
 <!-- # Unused Parameters # -->
@@ -188,7 +188,7 @@ its EVA_HOOK prefix.
 <para>
 Set the bit of the hook to FALSE.  This should
 only be used by implementors of 
-GskHook-containing objects.
+EvaHook-containing objects.
 </para>
 
 @hook: the hook to affect.
@@ -410,7 +410,7 @@ This should only be used for GObject instance init functions.
 @object: a pointer to an instance of a GObject.
 @struct: name of type for this init function.
 @member: member name of hook inside of type @struct.
-@flags: @GskHookFlags which apply to this hook.
+@flags: @EvaHookFlags which apply to this hook.
 @set_poll: member function of type gboolean(*)(GObject*, gpointer)
 in the class whose name is @struct with Class appended.
 to call to specify whether or not the hook should be triggered.
@@ -429,7 +429,7 @@ in the base class.
 @object: a pointer to an instance of a GObject.
 @struct: name of type for this init function.
 @member: member name of hook inside of type @struct.
-@flags: @GskHookFlags which apply to this hook.
+@flags: @EvaHookFlags which apply to this hook.
 @set_poll: member function of type gboolean(*)(GObject*, gpointer)
 in the class whose name is @struct with Class appended.
 to call to specify whether or not the hook should be triggered.

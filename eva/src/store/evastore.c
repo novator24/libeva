@@ -5,8 +5,8 @@
 #include "../evastreamtransferrequest.h"
 #include "evastore.h"
 
-static GskStoreFormatEntry *
-get_format_entry_for_type (GskStore *store, GType value_type, GError **error)
+static EvaStoreFormatEntry *
+get_format_entry_for_type (EvaStore *store, GType value_type, GError **error)
 {
   GPtrArray *format_entries = store->format_entries;
   guint i;
@@ -17,7 +17,7 @@ get_format_entry_for_type (GskStore *store, GType value_type, GError **error)
     {
       for (i = 0; i < format_entries->len; ++i)
 	{
-	  GskStoreFormatEntry *entry = g_ptr_array_index (format_entries, i);
+	  EvaStoreFormatEntry *entry = g_ptr_array_index (format_entries, i);
 	  if (entry->value_type == value_type)
 	    return entry;
 	}
@@ -28,8 +28,8 @@ get_format_entry_for_type (GskStore *store, GType value_type, GError **error)
   return NULL;
 }
 
-static GskStoreFormatEntry *
-get_format_entry_for_id (GskStore *store, guint32 format_id, GError **error)
+static EvaStoreFormatEntry *
+get_format_entry_for_id (EvaStore *store, guint32 format_id, GError **error)
 {
   GPtrArray *format_entries = store->format_entries;
   guint i;
@@ -38,7 +38,7 @@ get_format_entry_for_id (GskStore *store, guint32 format_id, GError **error)
   g_return_val_if_fail (format_entries, NULL);
   for (i = 0; i < format_entries->len; ++i)
     {
-      GskStoreFormatEntry *entry = g_ptr_array_index (format_entries, i);
+      EvaStoreFormatEntry *entry = g_ptr_array_index (format_entries, i);
       if (entry->format_id == format_id)
 	return entry;
     }
@@ -55,17 +55,17 @@ typedef struct _SaveInfo SaveInfo;
 
 struct _SaveInfo
 {
-  GskStreamTransferRequest *xfer_request;
+  EvaStreamTransferRequest *xfer_request;
 };
 
-/* Signal handler invoked when the GskStreamTransferRequest is done
+/* Signal handler invoked when the EvaStreamTransferRequest is done
  * transferring the stream of serialized data to the write-stream
- * from the GskStreamMap.
+ * from the EvaStreamMap.
  */
 static void
-save_handle_xfer_request_done (GskRequest *xfer_request, gpointer user_data)
+save_handle_xfer_request_done (EvaRequest *xfer_request, gpointer user_data)
 {
-  GskStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
+  EvaStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
   SaveInfo *save_info = (SaveInfo *) store_request->private;
 
   g_return_if_fail (store_request->request_type == EVA_STORE_REQUEST_SAVE);
@@ -86,10 +86,10 @@ save_handle_xfer_request_done (GskRequest *xfer_request, gpointer user_data)
 }
 
 static void
-save_start (GskStoreRequest *store_request)
+save_start (EvaStoreRequest *store_request)
 {
   SaveInfo *save_info = (SaveInfo *) store_request->private;
-  GskStreamTransferRequest *xfer_request;
+  EvaStreamTransferRequest *xfer_request;
 
   g_return_if_fail (store_request->request_type == EVA_STORE_REQUEST_SAVE);
   xfer_request = save_info->xfer_request;
@@ -103,18 +103,18 @@ save_start (GskStoreRequest *store_request)
   eva_request_start (xfer_request);
 }
 
-GskStoreRequest *
-eva_store_save (GskStore      *store,
+EvaStoreRequest *
+eva_store_save (EvaStore      *store,
 		const char    *key,
 		const GValue  *value,
 		GError       **error)
 {
-  GskStreamMap *stream_map = store->stream_map;
-  GskStoreFormatEntry *format_entry;
-  GskStream *serialize_stream;
-  GskStream *write_stream;
-  GskStreamTransferRequest *xfer_request;
-  GskStoreRequest *store_request;
+  EvaStreamMap *stream_map = store->stream_map;
+  EvaStoreFormatEntry *format_entry;
+  EvaStream *serialize_stream;
+  EvaStream *write_stream;
+  EvaStreamTransferRequest *xfer_request;
+  EvaStoreRequest *store_request;
   SaveInfo *save_info;
 
   format_entry = get_format_entry_for_type (store, G_VALUE_TYPE (value), error);
@@ -145,7 +145,7 @@ eva_store_save (GskStore      *store,
   g_object_unref (serialize_stream);
   g_object_unref (write_stream);
 
-/* HACK: maybe GskStreamTransferRequest should support this. */
+/* HACK: maybe EvaStreamTransferRequest should support this. */
   {
     guint32 format_id_out = format_entry->format_id;
 
@@ -178,15 +178,15 @@ typedef struct _LoadInfo LoadInfo;
 struct _LoadInfo
 {
   GType value_type;
-  GskStream *read_stream;
-  GskStore *store;
+  EvaStream *read_stream;
+  EvaStore *store;
 };
 
 static void
-load_handle_deserialize_request_done (GskRequest *request, gpointer user_data)
+load_handle_deserialize_request_done (EvaRequest *request, gpointer user_data)
 {
-  GskStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
-  GskValueRequest *deserialize_request = EVA_VALUE_REQUEST (request);
+  EvaStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
+  EvaValueRequest *deserialize_request = EVA_VALUE_REQUEST (request);
   GError *error = NULL;
   const GValue *value;
 
@@ -219,14 +219,14 @@ load_handle_deserialize_request_done (GskRequest *request, gpointer user_data)
 }
 
 static gboolean
-load_handle_input_is_readable (GskIO *io, gpointer user_data)
+load_handle_input_is_readable (EvaIO *io, gpointer user_data)
 {
-  GskStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
+  EvaStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
   LoadInfo *load_info = (LoadInfo *) store_request->private;
-  GskStream *read_stream;
+  EvaStream *read_stream;
   guint32 format_id;
-  GskStoreFormatEntry *format_entry;
-  GskValueRequest *deserialize_request;
+  EvaStoreFormatEntry *format_entry;
+  EvaValueRequest *deserialize_request;
   GError *error = NULL;
   guint num_read;
 
@@ -292,9 +292,9 @@ load_handle_input_is_readable (GskIO *io, gpointer user_data)
 }
 
 static gboolean
-load_handle_input_shutdown_read (GskIO *io, gpointer user_data)
+load_handle_input_shutdown_read (EvaIO *io, gpointer user_data)
 {
-  GskStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
+  EvaStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
   GError *error;
 
   (void) io;
@@ -313,7 +313,7 @@ load_handle_input_shutdown_read (GskIO *io, gpointer user_data)
 static void
 load_handle_input_is_readable_destroy (gpointer user_data)
 {
-  GskStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
+  EvaStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
   LoadInfo *load_info = (LoadInfo *) store_request->private;
 
   g_return_if_fail (store_request->request_type == EVA_STORE_REQUEST_LOAD);
@@ -325,10 +325,10 @@ load_handle_input_is_readable_destroy (gpointer user_data)
 }
 
 static void
-load_start (GskStoreRequest *store_request)
+load_start (EvaStoreRequest *store_request)
 {
   LoadInfo *load_info = (LoadInfo *) store_request->private;
-  GskStream *read_stream;
+  EvaStream *read_stream;
 
   g_return_if_fail (store_request->request_type == EVA_STORE_REQUEST_LOAD);
   g_return_if_fail (load_info);
@@ -345,15 +345,15 @@ load_start (GskStoreRequest *store_request)
 			load_handle_input_is_readable_destroy);
 }
 
-GskStoreRequest *
-eva_store_load (GskStore    *store,
+EvaStoreRequest *
+eva_store_load (EvaStore    *store,
 		const char  *key,
 		GType        value_type,
 		GError     **error)
 {
-  GskStreamMap *stream_map = store->stream_map;
-  GskStream *read_stream;
-  GskStoreRequest *store_request;
+  EvaStreamMap *stream_map = store->stream_map;
+  EvaStream *read_stream;
+  EvaStoreRequest *store_request;
   LoadInfo *load_info;
 
   read_stream = eva_stream_map_get (stream_map, key, error);
@@ -386,14 +386,14 @@ typedef struct _DeleteInfo DeleteInfo;
 
 struct _DeleteInfo
 {
-  GskStreamMapRequest *delete_request;
+  EvaStreamMapRequest *delete_request;
 };
 
-/* Signal handler invoked when the GskStreamMapRequest is done. */
+/* Signal handler invoked when the EvaStreamMapRequest is done. */
 static void
-delete_handle_request_done (GskRequest *delete_request, gpointer user_data)
+delete_handle_request_done (EvaRequest *delete_request, gpointer user_data)
 {
-  GskStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
+  EvaStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
   DeleteInfo *delete_info = (DeleteInfo *) store_request->private;
 
   g_return_if_fail (store_request->request_type == EVA_STORE_REQUEST_DELETE);
@@ -415,7 +415,7 @@ delete_handle_request_done (GskRequest *delete_request, gpointer user_data)
 }
 
 static void
-delete_start (GskStoreRequest *store_request)
+delete_start (EvaStoreRequest *store_request)
 {
   DeleteInfo *delete_info = (DeleteInfo *) store_request->private;
 
@@ -430,15 +430,15 @@ delete_start (GskStoreRequest *store_request)
   eva_request_start (delete_info->delete_request);
 }
 
-GskStoreRequest *
-eva_store_delete (GskStore    *store,
+EvaStoreRequest *
+eva_store_delete (EvaStore    *store,
 		  const char  *key,
 		  GError     **error)
 {
-  GskStreamMap *stream_map = store->stream_map;
-  GskStreamMapRequest *delete_request;
+  EvaStreamMap *stream_map = store->stream_map;
+  EvaStreamMapRequest *delete_request;
   DeleteInfo *delete_info;
-  GskStoreRequest *store_request;
+  EvaStoreRequest *store_request;
 
   delete_request = eva_stream_map_delete (stream_map, key, error);
   if (delete_request == NULL)
@@ -467,14 +467,14 @@ typedef struct _ExistsInfo ExistsInfo;
 
 struct _ExistsInfo
 {
-  GskStreamMapRequest *exists_request;
+  EvaStreamMapRequest *exists_request;
 };
 
-/* Signal handler invoked when the GskStreamMapRequest is done. */
+/* Signal handler invoked when the EvaStreamMapRequest is done. */
 static void
-exists_handle_request_done (GskRequest *exists_request, gpointer user_data)
+exists_handle_request_done (EvaRequest *exists_request, gpointer user_data)
 {
-  GskStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
+  EvaStoreRequest *store_request = EVA_STORE_REQUEST (user_data);
   ExistsInfo *exists_info = (ExistsInfo *) store_request->private;
 
   g_return_if_fail (store_request->request_type == EVA_STORE_REQUEST_EXISTS);
@@ -499,7 +499,7 @@ exists_handle_request_done (GskRequest *exists_request, gpointer user_data)
 }
 
 static void
-exists_start (GskStoreRequest *store_request)
+exists_start (EvaStoreRequest *store_request)
 {
   ExistsInfo *exists_info = (ExistsInfo *) store_request->private;
 
@@ -514,15 +514,15 @@ exists_start (GskStoreRequest *store_request)
   eva_request_start (exists_info->exists_request);
 }
 
-GskStoreRequest *
-eva_store_exists (GskStore    *store,
+EvaStoreRequest *
+eva_store_exists (EvaStore    *store,
 		  const char  *key,
 		  GError     **error)
 {
-  GskStreamMap *stream_map = store->stream_map;
-  GskStreamMapRequest *exists_request;
+  EvaStreamMap *stream_map = store->stream_map;
+  EvaStreamMapRequest *exists_request;
   ExistsInfo *exists_info;
-  GskStoreRequest *store_request;
+  EvaStoreRequest *store_request;
 
   exists_request = eva_stream_map_exists (stream_map, key, error);
   if (exists_request == NULL)
@@ -549,19 +549,19 @@ eva_store_get_type (void)
     {
       static const GTypeInfo info =
 	{
-	  sizeof (GskStoreClass),
+	  sizeof (EvaStoreClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) NULL,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskStore),
+	  sizeof (EvaStore),
 	  0,		/* n_preallocs */
 	  (GInstanceInitFunc) NULL,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (G_TYPE_OBJECT,
-				     "GskStore",
+				     "EvaStore",
 				     &info,
 				     0);
     }
@@ -570,19 +570,19 @@ eva_store_get_type (void)
 
 /*
  *
- * GskStoreRequest
+ * EvaStoreRequest
  *
  */
 
 static GObjectClass *eva_store_request_parent_class = NULL;
 
-/* GskRequest methods. */
+/* EvaRequest methods. */
 /* TODO: cancelled methods */
 
 static void
-eva_store_request_cancelled (GskRequest *request)
+eva_store_request_cancelled (EvaRequest *request)
 {
-  GskStoreRequest *store_request = EVA_STORE_REQUEST (request);
+  EvaStoreRequest *store_request = EVA_STORE_REQUEST (request);
   switch (store_request->request_type)
     {
       case EVA_STORE_REQUEST_LOAD:
@@ -604,9 +604,9 @@ eva_store_request_cancelled (GskRequest *request)
 }
 
 static void
-eva_store_request_start (GskRequest *request)
+eva_store_request_start (EvaRequest *request)
 {
-  GskStoreRequest *store_request = EVA_STORE_REQUEST (request);
+  EvaStoreRequest *store_request = EVA_STORE_REQUEST (request);
   switch (store_request->request_type)
     {
       case EVA_STORE_REQUEST_LOAD:
@@ -632,7 +632,7 @@ eva_store_request_start (GskRequest *request)
 static void
 eva_store_request_finalize (GObject *object)
 {
-  GskStoreRequest *store_request = EVA_STORE_REQUEST (object);
+  EvaStoreRequest *store_request = EVA_STORE_REQUEST (object);
 
   if (store_request->key)
     g_free (store_request->key);
@@ -659,7 +659,7 @@ eva_store_request_finalize (GObject *object)
 }
 
 static void
-eva_store_request_class_init (GskRequestClass *request_class)
+eva_store_request_class_init (EvaRequestClass *request_class)
 {
   eva_store_request_parent_class = g_type_class_peek_parent (request_class);
 
@@ -676,19 +676,19 @@ eva_store_request_get_type (void)
     {
       static const GTypeInfo type_info =
 	{
-	  sizeof (GskStoreRequestClass),
+	  sizeof (EvaStoreRequestClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) eva_store_request_class_init,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskStoreRequest),
+	  sizeof (EvaStoreRequest),
 	  0,		/* n_preallocs */
 	  (GInstanceInitFunc) NULL,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (EVA_TYPE_VALUE_REQUEST,
-				     "GskStoreRequest",
+				     "EvaStoreRequest",
 				     &type_info,
 				     0);
     }
@@ -697,7 +697,7 @@ eva_store_request_get_type (void)
 
 /*
  *
- * GskStoreFormatEntry
+ * EvaStoreFormatEntry
  *
  */
 
@@ -708,7 +708,7 @@ static GObjectClass *eva_store_format_entry_parent_class = NULL;
 static void
 eva_store_format_entry_finalize (GObject *object)
 {
-  GskStoreFormatEntry *store_format_entry = EVA_STORE_FORMAT_ENTRY (object);
+  EvaStoreFormatEntry *store_format_entry = EVA_STORE_FORMAT_ENTRY (object);
 
   if (store_format_entry->storage_format)
     g_object_unref (store_format_entry->storage_format);
@@ -731,19 +731,19 @@ eva_store_format_entry_get_type (void)
     {
       static const GTypeInfo type_info =
 	{
-	  sizeof (GskStoreFormatEntryClass),
+	  sizeof (EvaStoreFormatEntryClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) eva_store_format_entry_class_init,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskStoreFormatEntry),
+	  sizeof (EvaStoreFormatEntry),
 	  0,		/* n_preallocs */
 	  (GInstanceInitFunc) NULL,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (G_TYPE_OBJECT,
-				     "GskStoreFormatEntry",
+				     "EvaStoreFormatEntry",
 				     &type_info,
 				     0);
     }

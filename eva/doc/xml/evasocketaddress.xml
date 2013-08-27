@@ -1,6 +1,6 @@
-<refentry id="GskSocketAddress">
+<refentry id="EvaSocketAddress">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskSocketAddress.top_of_page">Socket Addresses.</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaSocketAddress.top_of_page">Socket Addresses.</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
@@ -10,37 +10,37 @@
 <refpurpose>The location of a socket endpoint, in some domain.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskSocketAddress.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaSocketAddress.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
-<anchor id="GskSocketAddressIpv4"/><anchor id="GskSocketAddressLocal"/><anchor id="GskSocketAddressIpv6"/>
+<anchor id="EvaSocketAddressIpv4"/><anchor id="EvaSocketAddressLocal"/><anchor id="EvaSocketAddressIpv6"/>
 <synopsis>
-                    <link linkend="GskSocketAddressClass">GskSocketAddressClass</link>;
-                    <link linkend="GskSocketAddress-struct">GskSocketAddress</link>;
-                    <link linkend="GskSocketAddressIpv4-struct">GskSocketAddressIpv4</link>;
-                    <link linkend="GskSocketAddressLocal-struct">GskSocketAddressLocal</link>;
-                    <link linkend="GskSocketAddressIpv6-struct">GskSocketAddressIpv6</link>;
-                    <link linkend="GskSocketAddressEthernet">GskSocketAddressEthernet</link>;
-<link linkend="GskSocketAddress">GskSocketAddress</link> *  <link linkend="eva-socket-address-from-native">eva_socket_address_from_native</link>      (<link linkend="gconstpointer">gconstpointer</link> native_data,
+                    <link linkend="EvaSocketAddressClass">EvaSocketAddressClass</link>;
+                    <link linkend="EvaSocketAddress-struct">EvaSocketAddress</link>;
+                    <link linkend="EvaSocketAddressIpv4-struct">EvaSocketAddressIpv4</link>;
+                    <link linkend="EvaSocketAddressLocal-struct">EvaSocketAddressLocal</link>;
+                    <link linkend="EvaSocketAddressIpv6-struct">EvaSocketAddressIpv6</link>;
+                    <link linkend="EvaSocketAddressEthernet">EvaSocketAddressEthernet</link>;
+<link linkend="EvaSocketAddress">EvaSocketAddress</link> *  <link linkend="eva-socket-address-from-native">eva_socket_address_from_native</link>      (<link linkend="gconstpointer">gconstpointer</link> native_data,
                                                          <link linkend="gsize">gsize</link> native_size);
-<link linkend="gint">gint</link>                <link linkend="eva-socket-address-protocol-family">eva_socket_address_protocol_family</link>  (<link linkend="GskSocketAddress">GskSocketAddress</link> *address);
-<link linkend="gint">gint</link>                <link linkend="eva-socket-address-address-family">eva_socket_address_address_family</link>   (<link linkend="GskSocketAddress">GskSocketAddress</link> *address);
-<link linkend="guint">guint</link>               <link linkend="eva-socket-address-sizeof-native">eva_socket_address_sizeof_native</link>    (<link linkend="GskSocketAddress">GskSocketAddress</link> *address);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-socket-address-to-native">eva_socket_address_to_native</link>        (<link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+<link linkend="gint">gint</link>                <link linkend="eva-socket-address-protocol-family">eva_socket_address_protocol_family</link>  (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);
+<link linkend="gint">gint</link>                <link linkend="eva-socket-address-address-family">eva_socket_address_address_family</link>   (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);
+<link linkend="guint">guint</link>               <link linkend="eva-socket-address-sizeof-native">eva_socket_address_sizeof_native</link>    (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-socket-address-to-native">eva_socket_address_to_native</link>        (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="gpointer">gpointer</link> output,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="char">char</link> *              <link linkend="eva-socket-address-to-string">eva_socket_address_to_string</link>        (<link linkend="GskSocketAddress">GskSocketAddress</link> *address);
+<link linkend="char">char</link> *              <link linkend="eva-socket-address-to-string">eva_socket_address_to_string</link>        (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);
 #define             <link linkend="eva-socket-address-ipv4-localhost">eva_socket_address_ipv4_localhost</link>   (port)
-<link linkend="GskSocketAddress">GskSocketAddress</link> *  <link linkend="eva-socket-address-ipv4-new">eva_socket_address_ipv4_new</link>         (const <link linkend="guint8">guint8</link> *ip_address,
+<link linkend="EvaSocketAddress">EvaSocketAddress</link> *  <link linkend="eva-socket-address-ipv4-new">eva_socket_address_ipv4_new</link>         (const <link linkend="guint8">guint8</link> *ip_address,
                                                          <link linkend="guint16">guint16</link> port);
-<link linkend="GskSocketAddress">GskSocketAddress</link> *  <link linkend="eva-socket-address-ipv6-new">eva_socket_address_ipv6_new</link>         (const <link linkend="guint8">guint8</link> *address,
+<link linkend="EvaSocketAddress">EvaSocketAddress</link> *  <link linkend="eva-socket-address-ipv6-new">eva_socket_address_ipv6_new</link>         (const <link linkend="guint8">guint8</link> *address,
                                                          <link linkend="guint16">guint16</link> port);
-<link linkend="GskSocketAddress">GskSocketAddress</link> *  <link linkend="eva-socket-address-ethernet-new">eva_socket_address_ethernet_new</link>     (const <link linkend="guint8">guint8</link> *mac_addr);
-<link linkend="GskSocketAddress">GskSocketAddress</link> *  <link linkend="eva-socket-address-local-new">eva_socket_address_local_new</link>        (const <link linkend="char">char</link> *path);
+<link linkend="EvaSocketAddress">EvaSocketAddress</link> *  <link linkend="eva-socket-address-ethernet-new">eva_socket_address_ethernet_new</link>     (const <link linkend="guint8">guint8</link> *mac_addr);
+<link linkend="EvaSocketAddress">EvaSocketAddress</link> *  <link linkend="eva-socket-address-local-new">eva_socket_address_local_new</link>        (const <link linkend="char">char</link> *path);
 <link linkend="gboolean">gboolean</link>            <link linkend="eva-socket-address-system-supports-ipv6">eva_socket_address_system_supports_ipv6</link>
                                                         (void);
 <link linkend="void">void</link>                <link linkend="eva-socket-address-register-subclass">eva_socket_address_register_subclass</link>
-                                                        (<link linkend="GskSocketAddressClass">GskSocketAddressClass</link> *klass);
-<link linkend="int">int</link>                 <link linkend="eva-socket-address-connect-fd">eva_socket_address_connect_fd</link>       (<link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+                                                        (<link linkend="EvaSocketAddressClass">EvaSocketAddressClass</link> *klass);
+<link linkend="int">int</link>                 <link linkend="eva-socket-address-connect-fd">eva_socket_address_connect_fd</link>       (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="gboolean">gboolean</link> *is_connected,
                                                          <link linkend="GError">GError</link> **error);
 <link linkend="gboolean">gboolean</link>            <link linkend="eva-socket-address-finish-fd">eva_socket_address_finish_fd</link>        (<link linkend="int">int</link> fd,
@@ -53,29 +53,29 @@
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskSocketAddress.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaSocketAddress.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----GskSocketAddress
-         +----<link linkend="GskSocketAddressIpv4">GskSocketAddressIpv4</link>
-         +----<link linkend="GskSocketAddressIpv6">GskSocketAddressIpv6</link>
-         +----<link linkend="GskSocketAddressLocal">GskSocketAddressLocal</link>
+   +----EvaSocketAddress
+         +----<link linkend="EvaSocketAddressIpv4">EvaSocketAddressIpv4</link>
+         +----<link linkend="EvaSocketAddressIpv6">EvaSocketAddressIpv6</link>
+         +----<link linkend="EvaSocketAddressLocal">EvaSocketAddressLocal</link>
 </synopsis>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskSocketAddress">GskSocketAddress</link>
-         +----GskSocketAddressIpv4
+   +----<link linkend="EvaSocketAddress">EvaSocketAddress</link>
+         +----EvaSocketAddressIpv4
 </synopsis>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskSocketAddress">GskSocketAddress</link>
-         +----GskSocketAddressLocal
+   +----<link linkend="EvaSocketAddress">EvaSocketAddress</link>
+         +----EvaSocketAddressLocal
 </synopsis>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskSocketAddress">GskSocketAddress</link>
-         +----GskSocketAddressIpv6
+   +----<link linkend="EvaSocketAddress">EvaSocketAddress</link>
+         +----EvaSocketAddressIpv6
 </synopsis>
 </refsect1>
 
@@ -86,33 +86,33 @@
 
 
 
-<refsect1 id="GskSocketAddress.description" role="desc">
+<refsect1 id="EvaSocketAddress.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 This is a <link linkend="GObject"><type>GObject</type></link> equivalent of sockaddr_t.
 </para>
 </refsect1>
 
-<refsect1 id="GskSocketAddress.details" role="details">
+<refsect1 id="EvaSocketAddress.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskSocketAddressClass" role="struct">
-<title>GskSocketAddressClass</title>
-<indexterm zone="GskSocketAddressClass"><primary sortas="GskSocketAddressClass">GskSocketAddressClass</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaSocketAddressClass" role="struct">
+<title>EvaSocketAddressClass</title>
+<indexterm zone="EvaSocketAddressClass"><primary sortas="EvaSocketAddressClass">EvaSocketAddressClass</primary></indexterm><programlisting>typedef struct {
   GObjectClass object_class;
   gsize sizeof_native_address;
   gint protocol_family;		/* eg PF_INET, PF_LOCAL etc */
   gint address_family;		/* eg AF_INET, AF_LOCAL etc */
-  gboolean (*to_native)  (GskSocketAddress *address,
+  gboolean (*to_native)  (EvaSocketAddress *address,
 			  gpointer          output);
-  gboolean (*from_native)(GskSocketAddress *address,
+  gboolean (*from_native)(EvaSocketAddress *address,
 			  gconstpointer     sockaddr_data,
 			  gsize             sockaddr_length);
-  char    *(*to_string)  (GskSocketAddress *address);
+  char    *(*to_string)  (EvaSocketAddress *address);
   /* note: both addresses will be of exactly the same type */
-  gboolean (*equals)     (GskSocketAddress *addr1,
-			  GskSocketAddress *addr2);
-  guint    (*hash)       (GskSocketAddress *addr);
-} GskSocketAddressClass;
+  gboolean (*equals)     (EvaSocketAddress *addr1,
+			  EvaSocketAddress *addr2);
+  guint    (*hash)       (EvaSocketAddress *addr);
+} EvaSocketAddressClass;
 </programlisting>
 <para>
 The base-class for all types of socket-addresses.
@@ -156,7 +156,7 @@ this type in the native OS representation.
 </varlistentry>
 <varlistentry>
 <term><structfield>equals</structfield>&#160;()</term>
-<listitem><simpara>Test if this is equal to another <link linkend="GskSocketAddress"><type>GskSocketAddress</type></link>
+<listitem><simpara>Test if this is equal to another <link linkend="EvaSocketAddress"><type>EvaSocketAddress</type></link>
 of this exact type are equal.
 </simpara></listitem>
 </varlistentry>
@@ -166,46 +166,46 @@ of this exact type are equal.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskSocketAddress-struct" role="struct">
-<title>GskSocketAddress</title>
-<indexterm zone="GskSocketAddress-struct"><primary sortas="GskSocketAddress">GskSocketAddress</primary></indexterm><programlisting>typedef struct _GskSocketAddress GskSocketAddress;</programlisting>
+<refsect2 id="EvaSocketAddress-struct" role="struct">
+<title>EvaSocketAddress</title>
+<indexterm zone="EvaSocketAddress-struct"><primary sortas="EvaSocketAddress">EvaSocketAddress</primary></indexterm><programlisting>typedef struct _EvaSocketAddress EvaSocketAddress;</programlisting>
 <para>
 The base instance for all socket addresses.
 </para></refsect2>
-<refsect2 id="GskSocketAddressIpv4-struct" role="struct">
-<title>GskSocketAddressIpv4</title>
-<indexterm zone="GskSocketAddressIpv4-struct"><primary sortas="GskSocketAddressIpv4">GskSocketAddressIpv4</primary></indexterm><programlisting>typedef struct _GskSocketAddressIpv4 GskSocketAddressIpv4;</programlisting>
+<refsect2 id="EvaSocketAddressIpv4-struct" role="struct">
+<title>EvaSocketAddressIpv4</title>
+<indexterm zone="EvaSocketAddressIpv4-struct"><primary sortas="EvaSocketAddressIpv4">EvaSocketAddressIpv4</primary></indexterm><programlisting>typedef struct _EvaSocketAddressIpv4 EvaSocketAddressIpv4;</programlisting>
 <para>
 An IPv4 Socket Address.  This is a 4-byte host IP address
 and a 2-byte port number (as a guint16).
 </para></refsect2>
-<refsect2 id="GskSocketAddressLocal-struct" role="struct">
-<title>GskSocketAddressLocal</title>
-<indexterm zone="GskSocketAddressLocal-struct"><primary sortas="GskSocketAddressLocal">GskSocketAddressLocal</primary></indexterm><programlisting>typedef struct _GskSocketAddressLocal GskSocketAddressLocal;</programlisting>
+<refsect2 id="EvaSocketAddressLocal-struct" role="struct">
+<title>EvaSocketAddressLocal</title>
+<indexterm zone="EvaSocketAddressLocal-struct"><primary sortas="EvaSocketAddressLocal">EvaSocketAddressLocal</primary></indexterm><programlisting>typedef struct _EvaSocketAddressLocal EvaSocketAddressLocal;</programlisting>
 <para>
 A local socket, often called a UNIX-domain socket.
 </para></refsect2>
-<refsect2 id="GskSocketAddressIpv6-struct" role="struct">
-<title>GskSocketAddressIpv6</title>
-<indexterm zone="GskSocketAddressIpv6-struct"><primary sortas="GskSocketAddressIpv6">GskSocketAddressIpv6</primary></indexterm><programlisting>typedef struct _GskSocketAddressIpv6 GskSocketAddressIpv6;</programlisting>
+<refsect2 id="EvaSocketAddressIpv6-struct" role="struct">
+<title>EvaSocketAddressIpv6</title>
+<indexterm zone="EvaSocketAddressIpv6-struct"><primary sortas="EvaSocketAddressIpv6">EvaSocketAddressIpv6</primary></indexterm><programlisting>typedef struct _EvaSocketAddressIpv6 EvaSocketAddressIpv6;</programlisting>
 <para>
 An IPv6 Socket Address.  For now, the IPv6 implementation is unfinished.
 </para></refsect2>
-<refsect2 id="GskSocketAddressEthernet" role="struct">
-<title>GskSocketAddressEthernet</title>
-<indexterm zone="GskSocketAddressEthernet"><primary sortas="GskSocketAddressEthernet">GskSocketAddressEthernet</primary></indexterm><programlisting>typedef struct {
-  GskSocketAddress      socket_address;
+<refsect2 id="EvaSocketAddressEthernet" role="struct">
+<title>EvaSocketAddressEthernet</title>
+<indexterm zone="EvaSocketAddressEthernet"><primary sortas="EvaSocketAddressEthernet">EvaSocketAddressEthernet</primary></indexterm><programlisting>typedef struct {
+  EvaSocketAddress      socket_address;
   guint8                mac_address[6];
-} GskSocketAddressEthernet;
+} EvaSocketAddressEthernet;
 </programlisting>
 <para>
 </para></refsect2>
 <refsect2 id="eva-socket-address-from-native" role="function">
 <title>eva_socket_address_from_native ()</title>
-<indexterm zone="eva-socket-address-from-native"><primary sortas="eva_socket_address_from_native">eva_socket_address_from_native</primary></indexterm><programlisting><link linkend="GskSocketAddress">GskSocketAddress</link> *  eva_socket_address_from_native      (<link linkend="gconstpointer">gconstpointer</link> native_data,
+<indexterm zone="eva-socket-address-from-native"><primary sortas="eva_socket_address_from_native">eva_socket_address_from_native</primary></indexterm><programlisting><link linkend="EvaSocketAddress">EvaSocketAddress</link> *  eva_socket_address_from_native      (<link linkend="gconstpointer">gconstpointer</link> native_data,
                                                          <link linkend="gsize">gsize</link> native_size);</programlisting>
 <para>
-Allocate a new GskSocketAddress based on
+Allocate a new EvaSocketAddress based on
 native_data, if we know how.</para>
 <para>
 </para><variablelist role="params">
@@ -215,12 +215,12 @@ native_data, if we know how.</para>
 <varlistentry><term><parameter>native_size</parameter>&#160;:</term>
 <listitem><simpara> length of native_data.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new GskSocketAddress or NULL if we could not interpret the sockaddr.
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new EvaSocketAddress or NULL if we could not interpret the sockaddr.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-socket-address-protocol-family" role="function">
 <title>eva_socket_address_protocol_family ()</title>
-<indexterm zone="eva-socket-address-protocol-family"><primary sortas="eva_socket_address_protocol_family">eva_socket_address_protocol_family</primary></indexterm><programlisting><link linkend="gint">gint</link>                eva_socket_address_protocol_family  (<link linkend="GskSocketAddress">GskSocketAddress</link> *address);</programlisting>
+<indexterm zone="eva-socket-address-protocol-family"><primary sortas="eva_socket_address_protocol_family">eva_socket_address_protocol_family</primary></indexterm><programlisting><link linkend="gint">gint</link>                eva_socket_address_protocol_family  (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);</programlisting>
 <para>
 Get the PF_* macro value corresponding to this address.</para>
 <para>
@@ -233,7 +233,7 @@ Get the PF_* macro value corresponding to this address.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-socket-address-address-family" role="function">
 <title>eva_socket_address_address_family ()</title>
-<indexterm zone="eva-socket-address-address-family"><primary sortas="eva_socket_address_address_family">eva_socket_address_address_family</primary></indexterm><programlisting><link linkend="gint">gint</link>                eva_socket_address_address_family   (<link linkend="GskSocketAddress">GskSocketAddress</link> *address);</programlisting>
+<indexterm zone="eva-socket-address-address-family"><primary sortas="eva_socket_address_address_family">eva_socket_address_address_family</primary></indexterm><programlisting><link linkend="gint">gint</link>                eva_socket_address_address_family   (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);</programlisting>
 <para>
 Get the AF_* macro value corresponding to this address.</para>
 <para>
@@ -246,7 +246,7 @@ Get the AF_* macro value corresponding to this address.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-socket-address-sizeof-native" role="function">
 <title>eva_socket_address_sizeof_native ()</title>
-<indexterm zone="eva-socket-address-sizeof-native"><primary sortas="eva_socket_address_sizeof_native">eva_socket_address_sizeof_native</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_socket_address_sizeof_native    (<link linkend="GskSocketAddress">GskSocketAddress</link> *address);</programlisting>
+<indexterm zone="eva-socket-address-sizeof-native"><primary sortas="eva_socket_address_sizeof_native">eva_socket_address_sizeof_native</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_socket_address_sizeof_native    (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);</programlisting>
 <para>
 Determine how many bytes of storage the sockaddr_t
 based on this object will require.</para>
@@ -260,7 +260,7 @@ based on this object will require.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-socket-address-to-native" role="function">
 <title>eva_socket_address_to_native ()</title>
-<indexterm zone="eva-socket-address-to-native"><primary sortas="eva_socket_address_to_native">eva_socket_address_to_native</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_socket_address_to_native        (<link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+<indexterm zone="eva-socket-address-to-native"><primary sortas="eva_socket_address_to_native">eva_socket_address_to_native</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_socket_address_to_native        (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="gpointer">gpointer</link> output,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
@@ -281,7 +281,7 @@ Convert a socket-address to its native form.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-socket-address-to-string" role="function">
 <title>eva_socket_address_to_string ()</title>
-<indexterm zone="eva-socket-address-to-string"><primary sortas="eva_socket_address_to_string">eva_socket_address_to_string</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_socket_address_to_string        (<link linkend="GskSocketAddress">GskSocketAddress</link> *address);</programlisting>
+<indexterm zone="eva-socket-address-to-string"><primary sortas="eva_socket_address_to_string">eva_socket_address_to_string</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_socket_address_to_string        (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);</programlisting>
 <para>
 Convert a socket-address to a newly allocated string,
 which the caller must free.</para>
@@ -303,12 +303,12 @@ on the given port.
 <varlistentry><term><parameter>port</parameter>&#160;:</term>
 <listitem><simpara>the port on the local host the address should refer to.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>the newly allocated <link linkend="GskSocketAddressIpv4"><type>GskSocketAddressIpv4</type></link>.
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>the newly allocated <link linkend="EvaSocketAddressIpv4"><type>EvaSocketAddressIpv4</type></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-socket-address-ipv4-new" role="function">
 <title>eva_socket_address_ipv4_new ()</title>
-<indexterm zone="eva-socket-address-ipv4-new"><primary sortas="eva_socket_address_ipv4_new">eva_socket_address_ipv4_new</primary></indexterm><programlisting><link linkend="GskSocketAddress">GskSocketAddress</link> *  eva_socket_address_ipv4_new         (const <link linkend="guint8">guint8</link> *ip_address,
+<indexterm zone="eva-socket-address-ipv4-new"><primary sortas="eva_socket_address_ipv4_new">eva_socket_address_ipv4_new</primary></indexterm><programlisting><link linkend="EvaSocketAddress">EvaSocketAddress</link> *  eva_socket_address_ipv4_new         (const <link linkend="guint8">guint8</link> *ip_address,
                                                          <link linkend="guint16">guint16</link> port);</programlisting>
 <para>
 Allocate a new IPv4 address given a numeric IP and port number.</para>
@@ -320,12 +320,12 @@ Allocate a new IPv4 address given a numeric IP and port number.</para>
 <varlistentry><term><parameter>port</parameter>&#160;:</term>
 <listitem><simpara> the port number.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new GskSocketAddress
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new EvaSocketAddress
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-socket-address-ipv6-new" role="function">
 <title>eva_socket_address_ipv6_new ()</title>
-<indexterm zone="eva-socket-address-ipv6-new"><primary sortas="eva_socket_address_ipv6_new">eva_socket_address_ipv6_new</primary></indexterm><programlisting><link linkend="GskSocketAddress">GskSocketAddress</link> *  eva_socket_address_ipv6_new         (const <link linkend="guint8">guint8</link> *address,
+<indexterm zone="eva-socket-address-ipv6-new"><primary sortas="eva_socket_address_ipv6_new">eva_socket_address_ipv6_new</primary></indexterm><programlisting><link linkend="EvaSocketAddress">EvaSocketAddress</link> *  eva_socket_address_ipv6_new         (const <link linkend="guint8">guint8</link> *address,
                                                          <link linkend="guint16">guint16</link> port);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -340,7 +340,7 @@ Allocate a new IPv4 address given a numeric IP and port number.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-socket-address-ethernet-new" role="function">
 <title>eva_socket_address_ethernet_new ()</title>
-<indexterm zone="eva-socket-address-ethernet-new"><primary sortas="eva_socket_address_ethernet_new">eva_socket_address_ethernet_new</primary></indexterm><programlisting><link linkend="GskSocketAddress">GskSocketAddress</link> *  eva_socket_address_ethernet_new     (const <link linkend="guint8">guint8</link> *mac_addr);</programlisting>
+<indexterm zone="eva-socket-address-ethernet-new"><primary sortas="eva_socket_address_ethernet_new">eva_socket_address_ethernet_new</primary></indexterm><programlisting><link linkend="EvaSocketAddress">EvaSocketAddress</link> *  eva_socket_address_ethernet_new     (const <link linkend="guint8">guint8</link> *mac_addr);</programlisting>
 <para>
 Allocate a new socket address corresponding to an
 ethernet device.</para>
@@ -354,7 +354,7 @@ ethernet device.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-socket-address-local-new" role="function">
 <title>eva_socket_address_local_new ()</title>
-<indexterm zone="eva-socket-address-local-new"><primary sortas="eva_socket_address_local_new">eva_socket_address_local_new</primary></indexterm><programlisting><link linkend="GskSocketAddress">GskSocketAddress</link> *  eva_socket_address_local_new        (const <link linkend="char">char</link> *path);</programlisting>
+<indexterm zone="eva-socket-address-local-new"><primary sortas="eva_socket_address_local_new">eva_socket_address_local_new</primary></indexterm><programlisting><link linkend="EvaSocketAddress">EvaSocketAddress</link> *  eva_socket_address_local_new        (const <link linkend="char">char</link> *path);</programlisting>
 <para>
 Create a socket-address which is associated with a path
 in the local filesystem.  Such socket-addresses
@@ -384,7 +384,7 @@ but it is better to avoid the term unix for a generic concept.</para>
 <refsect2 id="eva-socket-address-register-subclass" role="function">
 <title>eva_socket_address_register_subclass ()</title>
 <indexterm zone="eva-socket-address-register-subclass"><primary sortas="eva_socket_address_register_subclass">eva_socket_address_register_subclass</primary></indexterm><programlisting><link linkend="void">void</link>                eva_socket_address_register_subclass
-                                                        (<link linkend="GskSocketAddressClass">GskSocketAddressClass</link> *klass);</programlisting>
+                                                        (<link linkend="EvaSocketAddressClass">EvaSocketAddressClass</link> *klass);</programlisting>
 <para>
 Add the class to a per address-family hash table
 for use converting from native.</para>
@@ -396,7 +396,7 @@ for use converting from native.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-socket-address-connect-fd" role="function">
 <title>eva_socket_address_connect_fd ()</title>
-<indexterm zone="eva-socket-address-connect-fd"><primary sortas="eva_socket_address_connect_fd">eva_socket_address_connect_fd</primary></indexterm><programlisting><link linkend="int">int</link>                 eva_socket_address_connect_fd       (<link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+<indexterm zone="eva-socket-address-connect-fd"><primary sortas="eva_socket_address_connect_fd">eva_socket_address_connect_fd</primary></indexterm><programlisting><link linkend="int">int</link>                 eva_socket_address_connect_fd       (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="gboolean">gboolean</link> *is_connected,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
@@ -459,14 +459,14 @@ This is principally used with <link linkend="eva-socket-address-hash"><type>eva_
 to make a hash-table mapping from socket-addresses.
 </para>
 <para>
-(This just uses the virtual method of GskSocketAddressClass)</para>
+(This just uses the virtual method of EvaSocketAddressClass)</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>address_a_ptr</parameter>&#160;:</term>
-<listitem><simpara> a pointer to a <link linkend="GskSocketAddress"><type>GskSocketAddress</type></link>.
+<listitem><simpara> a pointer to a <link linkend="EvaSocketAddress"><type>EvaSocketAddress</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>address_b_ptr</parameter>&#160;:</term>
-<listitem><simpara> a pointer to a <link linkend="GskSocketAddress"><type>GskSocketAddress</type></link>.
+<listitem><simpara> a pointer to a <link linkend="EvaSocketAddress"><type>EvaSocketAddress</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> whether the addresses are equal.
 </simpara></listitem></varlistentry>
@@ -483,11 +483,11 @@ This is principally used with <link linkend="eva-socket-address-equals"><type>ev
 to make a hash-table mapping from socket-addresses.
 </para>
 <para>
-(This just uses the virtual method of GskSocketAddressClass)</para>
+(This just uses the virtual method of EvaSocketAddressClass)</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>address_ptr</parameter>&#160;:</term>
-<listitem><simpara> a pointer to a <link linkend="GskSocketAddress"><type>GskSocketAddress</type></link>.
+<listitem><simpara> a pointer to a <link linkend="EvaSocketAddress"><type>EvaSocketAddress</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the hash value for the socket-address.
 </simpara></listitem></varlistentry>

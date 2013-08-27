@@ -13,18 +13,18 @@ struct _T2MPData
 };
 
 static gboolean
-handle_new_multipart_piece (GskMimeMultipartDecoder *decoder,
+handle_new_multipart_piece (EvaMimeMultipartDecoder *decoder,
 			    gpointer data)
 {
   T2MPData *tdata = data;
-  GskMimeMultipartPiece *piece = eva_mime_multipart_decoder_get_piece (decoder);
+  EvaMimeMultipartPiece *piece = eva_mime_multipart_decoder_get_piece (decoder);
   if (piece)
     g_ptr_array_add (tdata->ptr_array, piece);
   return TRUE;
 }
 
 static gboolean
-handle_multipart_shutdown (GskMimeMultipartDecoder *decoder,
+handle_multipart_shutdown (EvaMimeMultipartDecoder *decoder,
 			   gpointer data)
 {
   T2MPData *tdata = data;
@@ -35,8 +35,8 @@ handle_multipart_shutdown (GskMimeMultipartDecoder *decoder,
 GPtrArray *text_to_mime_pieces (const char *text, const char *bdy)
 {
   const char *pairs[3];
-  GskMimeMultipartDecoder *decoder;
-  GskStream *feed;
+  EvaMimeMultipartDecoder *decoder;
+  EvaStream *feed;
   T2MPData data;
   pairs[0] = "boundary";
   pairs[1] = bdy;
@@ -72,7 +72,7 @@ void free_mime_pieces (GPtrArray *array)
 int main (int argc, char **argv)
 {
   GPtrArray *array;
-  GskMimeMultipartPiece *piece;
+  EvaMimeMultipartPiece *piece;
   const char *tmp_txt;
 
   eva_init_without_threads (&argc, &argv);

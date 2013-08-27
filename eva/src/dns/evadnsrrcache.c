@@ -23,7 +23,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <errno.h>
-#define G_LOG_DOMAIN    "Gsk-Dns"
+#define G_LOG_DOMAIN    "Eva-Dns"
 #include "evadnsrrcache.h"
 #include "../evaghelpers.h"
 #include "../evamacros.h"
@@ -79,7 +79,7 @@ typedef enum
 typedef struct _RRList RRList;
 struct _RRList
 {
-  GskDnsResourceRecord rr;
+  EvaDnsResourceRecord rr;
   RRListMagic magic;
   guint expire_time;
   guint byte_size;
@@ -116,7 +116,7 @@ struct _RRList
                                         && !(rr_list)->is_from_user \
                                         && !(rr_list)->is_deprecated)
 
-struct _GskDnsRRCache
+struct _EvaDnsRRCache
 {
   GHashTable         *owner_to_rr_list;
 
@@ -157,7 +157,7 @@ compare_rr_list_by_expire_time (const RRList *a,
 /* Set the expiration time on an rr_list,
    possibly updating the by-expire-time tree. */
 static inline void
-set_expire_time (GskDnsRRCache *rr_cache,
+set_expire_time (EvaDnsRRCache *rr_cache,
                  RRList        *rr_list,
                  guint          expire_time)
 {
@@ -189,14 +189,14 @@ typedef struct
   guint n_rr;
   guint n_user_rr;
   guint n_locked_nonuser;
-  GskDnsRRCache *rr_cache;
+  EvaDnsRRCache *rr_cache;
 } CheckInvariantForeachInfo;
 
 static void
 check_invariant_owner_to_rr_list_foreach (gpointer key, gpointer value, gpointer data)
 {
   CheckInvariantForeachInfo *info = data;
-  GskDnsRRCache *rr_cache = info->rr_cache;
+  EvaDnsRRCache *rr_cache = info->rr_cache;
   RRList *at = value;
   g_assert (key); g_assert (value);
   g_assert (at->owner_prev == NULL);
@@ -221,7 +221,7 @@ check_invariant_owner_to_rr_list_foreach (gpointer key, gpointer value, gpointer
 }
   
 static void
-assert_invariants (GskDnsRRCache *rr_cache)
+assert_invariants (EvaDnsRRCache *rr_cache)
 {
   RRList *at;
   CheckInvariantForeachInfo info = { 0, 0, 0, 0, rr_cache };
@@ -270,13 +270,13 @@ assert_invariants (GskDnsRRCache *rr_cache)
  *
  * Create a new, empty DNS cache.
  *
- * returns: the new GskDnsRRCache.
+ * returns: the new EvaDnsRRCache.
  */
-GskDnsRRCache *
+EvaDnsRRCache *
 eva_dns_rr_cache_new        (guint64                  max_bytes,
 			     guint                    max_records)
 {
-  GskDnsRRCache *rv = g_new (GskDnsRRCache, 1);
+  EvaDnsRRCache *rv = g_new (EvaDnsRRCache, 1);
   rv->owner_to_rr_list = g_hash_table_new (g_str_hash, g_str_equal);
   rv->rr_list_by_expire_time
     = g_tree_new ((GCompareFunc) compare_rr_list_by_expire_time);
@@ -300,7 +300,7 @@ eva_dns_rr_cache_new        (guint64                  max_bytes,
  * Set whether to randomize returns if more than one record exists.
  */
 void
-eva_dns_rr_cache_roundrobin (GskDnsRRCache *rr_cache,
+eva_dns_rr_cache_roundrobin (EvaDnsRRCache *rr_cache,
                              gboolean       do_roundrobin)
 {
   rr_cache->is_roundrobin = do_roundrobin;
@@ -308,7 +308,7 @@ eva_dns_rr_cache_roundrobin (GskDnsRRCache *rr_cache,
 
 
 static inline void
-remove_from_lru_list (GskDnsRRCache *rr_cache, RRList *at)
+remove_from_lru_list (EvaDnsRRCache *rr_cache, RRList *at)
 {
   if (at->lru_prev != NULL)
     at->lru_prev->lru_next = at->lru_next;
@@ -328,7 +328,7 @@ remove_from_lru_list (GskDnsRRCache *rr_cache, RRList *at)
 }
 
 static inline void
-prepend_to_lru_list (GskDnsRRCache *rr_cache, RRList *at)
+prepend_to_lru_list (EvaDnsRRCache *rr_cache, RRList *at)
 {
   at->lru_prev = NULL;
   at->lru_next = rr_cache->lru_first;
@@ -340,7 +340,7 @@ prepend_to_lru_list (GskDnsRRCache *rr_cache, RRList *at)
 }
 
 static void
-remove_owner_to_rr_list_entry (GskDnsRRCache *rr_cache,
+remove_owner_to_rr_list_entry (EvaDnsRRCache *rr_cache,
                                const char    *owner)
 {
   char *lc_owner;
@@ -358,7 +358,7 @@ remove_owner_to_rr_list_entry (GskDnsRRCache *rr_cache,
 }
 
 static void
-change_owner_to_rr_list_entry (GskDnsRRCache *rr_cache,
+change_owner_to_rr_list_entry (EvaDnsRRCache *rr_cache,
                                RRList        *new_head)
 {
   char *lc_owner;
@@ -369,7 +369,7 @@ change_owner_to_rr_list_entry (GskDnsRRCache *rr_cache,
 }
 
 static RRList *
-lookup_owner_to_rr_list_entry (GskDnsRRCache *rr_cache, 
+lookup_owner_to_rr_list_entry (EvaDnsRRCache *rr_cache, 
                                const char *owner)
 {
   char *lc_owner;
@@ -385,7 +385,7 @@ lookup_owner_to_rr_list_entry (GskDnsRRCache *rr_cache,
  * a new rrcache, if possible.
  */
 static void
-ensure_space (GskDnsRRCache   *rr_cache,
+ensure_space (EvaDnsRRCache   *rr_cache,
 	      guint            num_records,
 	      guint            byte_size)
 {
@@ -455,9 +455,9 @@ typedef enum
 } UpdateResult;
 
 static UpdateResult
-update_record (GskDnsRRCache        *rr_cache,
+update_record (EvaDnsRRCache        *rr_cache,
 	       RRList               *list,
-	       const GskDnsResourceRecord *record,
+	       const EvaDnsResourceRecord *record,
 	       gboolean              is_authoritative,
 	       gulong                cur_time)
 {
@@ -636,7 +636,7 @@ update_record (GskDnsRRCache        *rr_cache,
  * need in order to make a copy of this record.
  */
 static guint
-compute_byte_size (const GskDnsResourceRecord *record)
+compute_byte_size (const EvaDnsResourceRecord *record)
 {
   int str_length = strlen (record->owner) + 1;
   switch (record->type)
@@ -687,7 +687,7 @@ compute_byte_size_for_negative_record (const char *owner)
  */
 static void
 flatten_rr (RRList               *out,
-	    const GskDnsResourceRecord *record,
+	    const EvaDnsResourceRecord *record,
 	    gulong                cur_time)
 {
   char *str_slab = (char *) (out + 1);
@@ -748,8 +748,8 @@ flatten_rr (RRList               *out,
 static void
 flatten_negative_rr (RRList               *out,
 		     const char           *owner,
-		     GskDnsResourceRecordType type,
-		     GskDnsResourceClass   class,
+		     EvaDnsResourceRecordType type,
+		     EvaDnsResourceClass   class,
 		     gboolean              is_authoritative,
 		     glong                 expire_time)
 {
@@ -789,9 +789,9 @@ flatten_negative_rr (RRList               *out,
  * A new copy of the record is returned; if you wish to guarantee that
  * the record is not deleted, you should call eva_dns_rr_cache_lock() on it.
  */
-GskDnsResourceRecord *
-eva_dns_rr_cache_insert     (GskDnsRRCache     *rr_cache,
-			     const GskDnsResourceRecord    *record,
+EvaDnsResourceRecord *
+eva_dns_rr_cache_insert     (EvaDnsRRCache     *rr_cache,
+			     const EvaDnsResourceRecord    *record,
 			     gboolean                 is_authoritative,
 			     gulong                   cur_time)
 {
@@ -930,9 +930,9 @@ eva_dns_rr_cache_insert     (GskDnsRRCache     *rr_cache,
 
 /* NOTE: do not match cnames here */
 static gboolean
-record_matches_query (GskDnsResourceRecord    *record,
-		      GskDnsResourceRecordType query_type,
-		      GskDnsResourceClass      query_class)
+record_matches_query (EvaDnsResourceRecord    *record,
+		      EvaDnsResourceRecordType query_type,
+		      EvaDnsResourceClass      query_class)
 {
   if (query_class != EVA_DNS_CLASS_WILDCARD
    && query_class != record->record_class)
@@ -960,15 +960,15 @@ record_matches_query (GskDnsResourceRecord    *record,
  * or because we don't have a relevant record on file.
  * You may call eva_dns_rr_cache_is_negative() to distinguish these cases.
  *
- * returns: a list of #GskDnsResourceRecord which you must
+ * returns: a list of #EvaDnsResourceRecord which you must
  * call eva_dns_rr_cache_lock() on if you want to keep around.
  * However, you must call g_slist_free() on the list itself.
  */
 GSList *
-eva_dns_rr_cache_lookup_list(GskDnsRRCache           *rr_cache,
+eva_dns_rr_cache_lookup_list(EvaDnsRRCache           *rr_cache,
 			     const char              *owner,
-			     GskDnsResourceRecordType query_type,
-			     GskDnsResourceClass      query_class)
+			     EvaDnsResourceRecordType query_type,
+			     EvaDnsResourceClass      query_class)
 {
   GSList *rv = NULL;
   RRList *at;
@@ -1007,15 +1007,15 @@ eva_dns_rr_cache_lookup_list(GskDnsRRCache           *rr_cache,
  * or because we don't have a relevant record on file.
  * You may call eva_dns_rr_cache_is_negative() to distinguish these cases.
  *
- * returns: a pointer to a #GskDnsResourceRecord.
+ * returns: a pointer to a #EvaDnsResourceRecord.
  * You must call eva_dns_rr_cache_lock() on it if you want to keep it around.
  */
-GskDnsResourceRecord *
-eva_dns_rr_cache_lookup_one (GskDnsRRCache           *rr_cache,
+EvaDnsResourceRecord *
+eva_dns_rr_cache_lookup_one (EvaDnsRRCache           *rr_cache,
 			     const char              *owner,
-			     GskDnsResourceRecordType query_type,
-			     GskDnsResourceClass      query_class,
-                             GskDnsRRCacheLookupFlags flags)
+			     EvaDnsResourceRecordType query_type,
+			     EvaDnsResourceClass      query_class,
+                             EvaDnsRRCacheLookupFlags flags)
 
 {
   RRList *at;
@@ -1102,8 +1102,8 @@ eva_dns_rr_cache_lookup_one (GskDnsRRCache           *rr_cache,
  * or resources grow sufficiently scarce.
  */
 void
-eva_dns_rr_cache_unlock     (GskDnsRRCache           *rr_cache,
-			     GskDnsResourceRecord    *record)
+eva_dns_rr_cache_unlock     (EvaDnsRRCache           *rr_cache,
+			     EvaDnsResourceRecord    *record)
 {
   RRList *rr_list = (RRList *) record;
   char *lc_owner;
@@ -1185,8 +1185,8 @@ eva_dns_rr_cache_unlock     (GskDnsRRCache           *rr_cache,
  * if memory requirements are violated as a result.
  */
 void
-eva_dns_rr_cache_lock       (GskDnsRRCache           *rr_cache,
-			     GskDnsResourceRecord    *record)
+eva_dns_rr_cache_lock       (EvaDnsRRCache           *rr_cache,
+			     EvaDnsResourceRecord    *record)
 {
   RRList *rr_list = (RRList *) record;
   gboolean was_in_lru = RR_LIST_IS_IN_LRU_LIST (rr_list);
@@ -1228,8 +1228,8 @@ eva_dns_rr_cache_lock       (GskDnsRRCache           *rr_cache,
  * flag is already set.
  */
 void
-eva_dns_rr_cache_mark_user  (GskDnsRRCache           *rr_cache,
-			     GskDnsResourceRecord    *record)
+eva_dns_rr_cache_mark_user  (EvaDnsRRCache           *rr_cache,
+			     EvaDnsResourceRecord    *record)
 {
   RRList *rr_list = (RRList *) record;
   g_return_if_fail (rr_list->magic == RR_LIST_MAGIC);
@@ -1249,8 +1249,8 @@ eva_dns_rr_cache_mark_user  (GskDnsRRCache           *rr_cache,
  * Undo the affect of eva_dns_rr_cache_mark_user().
  */
 void
-eva_dns_rr_cache_unmark_user  (GskDnsRRCache           *rr_cache,
-			       GskDnsResourceRecord    *record)
+eva_dns_rr_cache_unmark_user  (EvaDnsRRCache           *rr_cache,
+			       EvaDnsResourceRecord    *record)
 {
   RRList *rr_list = (RRList *) record;
   g_return_if_fail (rr_list->magic == RR_LIST_MAGIC);
@@ -1277,12 +1277,12 @@ eva_dns_rr_cache_unmark_user  (GskDnsRRCache           *rr_cache,
  * returns: whether the cache has sufficient information to resolve the name.
  */
 gboolean
-eva_dns_rr_cache_get_addr   (GskDnsRRCache           *rr_cache,
+eva_dns_rr_cache_get_addr   (EvaDnsRRCache           *rr_cache,
 			     const char              *host,
-			     GskSocketAddressIpv4   **address)
+			     EvaSocketAddressIpv4   **address)
 {
-  GskDnsResourceRecord *record;
-  GskSocketAddress *addr;
+  EvaDnsResourceRecord *record;
+  EvaSocketAddress *addr;
   record = eva_dns_rr_cache_lookup_one (rr_cache,
 					host,
 					EVA_DNS_RR_HOST_ADDRESS,
@@ -1313,10 +1313,10 @@ eva_dns_rr_cache_get_addr   (GskDnsRRCache           *rr_cache,
  */
 /* TODO: could probably be made faster */
 gboolean
-eva_dns_rr_cache_get_ns_addr(GskDnsRRCache           *rr_cache,
+eva_dns_rr_cache_get_ns_addr(EvaDnsRRCache           *rr_cache,
 			     const char              *host,
 			     const char             **ns_name_out,
-			     GskSocketAddressIpv4   **address_out)
+			     EvaSocketAddressIpv4   **address_out)
 {
   GSList *record_list;
   GSList *at;
@@ -1331,7 +1331,7 @@ retry:
 					      EVA_DNS_CLASS_INTERNET);
   if (record_list == NULL)
     {
-      GskDnsResourceRecord *record;
+      EvaDnsResourceRecord *record;
       record = eva_dns_rr_cache_lookup_one (rr_cache,
 					    host,
 					    EVA_DNS_RR_CANONICAL_NAME,
@@ -1359,7 +1359,7 @@ retry:
 
   for (at = record_list; at != NULL; at = at->next)
     {
-      GskDnsResourceRecord *record = at->data;
+      EvaDnsResourceRecord *record = at->data;
       if (ns_name_out != NULL)
 	*ns_name_out = record->owner;
 
@@ -1390,10 +1390,10 @@ retry:
  * The DNS specification refers to this as 'negative caching'.
  */
 void
-eva_dns_rr_cache_add_negative(GskDnsRRCache           *rr_cache,
+eva_dns_rr_cache_add_negative(EvaDnsRRCache           *rr_cache,
 			      const char              *owner,
-			      GskDnsResourceRecordType query_type,
-			      GskDnsResourceClass      query_class,
+			      EvaDnsResourceRecordType query_type,
+			      EvaDnsResourceClass      query_class,
 			      gulong                   expire_time,
 			      gboolean                 is_authoritative)
 {
@@ -1527,10 +1527,10 @@ eva_dns_rr_cache_add_negative(GskDnsRRCache           *rr_cache,
  *   FALSE means either a positive entry or no entry exists in the cache.
  */
 gboolean
-eva_dns_rr_cache_is_negative (GskDnsRRCache           *rr_cache,
+eva_dns_rr_cache_is_negative (EvaDnsRRCache           *rr_cache,
 			      const char              *owner,
-			      GskDnsResourceRecordType query_type,
-			      GskDnsResourceClass      query_class)
+			      EvaDnsResourceRecordType query_type,
+			      EvaDnsResourceClass      query_class)
 {
   RRList *owner_list;
   RRList *at;
@@ -1559,8 +1559,8 @@ eva_dns_rr_cache_is_negative (GskDnsRRCache           *rr_cache,
  *
  * returns: @rr_cache, for convenience.
  */ 
-GskDnsRRCache *
-eva_dns_rr_cache_ref        (GskDnsRRCache           *rr_cache)
+EvaDnsRRCache *
+eva_dns_rr_cache_ref        (EvaDnsRRCache           *rr_cache)
 {
   g_return_val_if_fail (rr_cache->ref_count > 0, rr_cache);
   ++(rr_cache->ref_count);
@@ -1587,7 +1587,7 @@ free_name_and_rr_list (char *name, RRList *owner_list)
  * The cache will be destroyed when the reference count gets to 0.
  */
 void
-eva_dns_rr_cache_unref      (GskDnsRRCache           *rr_cache)
+eva_dns_rr_cache_unref      (EvaDnsRRCache           *rr_cache)
 {
   g_return_if_fail (rr_cache->ref_count > 0);
   --(rr_cache->ref_count);
@@ -1611,7 +1611,7 @@ eva_dns_rr_cache_unref      (GskDnsRRCache           *rr_cache)
  * try to ensure that we are using an acceptable amount of memory.
  */
 void
-eva_dns_rr_cache_flush      (GskDnsRRCache           *rr_cache,
+eva_dns_rr_cache_flush      (EvaDnsRRCache           *rr_cache,
 			     gulong                   cur_time)
 {
   for (;;)
@@ -1662,7 +1662,7 @@ eva_dns_rr_cache_flush      (GskDnsRRCache           *rr_cache,
 /* See RFC 1035, Section 5. */
 
 static gboolean
-process_zone_file_command (GskDnsRRCache   *rr_cache,
+process_zone_file_command (EvaDnsRRCache   *rr_cache,
 			   const char      *command,
 			   const char      *default_origin,
 			   char           **cur_alt_origin_in_out,
@@ -1672,7 +1672,7 @@ process_zone_file_command (GskDnsRRCache   *rr_cache,
 			   const char      *filename,
 			   int              lineno)
 {
-  GskDnsResourceRecord *rr;
+  EvaDnsResourceRecord *rr;
   char *err_message = NULL;
   const char *origin;
   if (*cur_alt_origin_in_out == NULL)
@@ -1744,7 +1744,7 @@ process_zone_file_command (GskDnsRRCache   *rr_cache,
       return TRUE;
     }
   {
-    GskDnsResourceRecord *cache_rr;
+    EvaDnsResourceRecord *cache_rr;
     /* XXX: is setting is_authoritative really correct here??? */
     cache_rr = eva_dns_rr_cache_insert (rr_cache, rr, TRUE, cur_time);
     eva_dns_rr_cache_mark_user (rr_cache, cache_rr);
@@ -1805,7 +1805,7 @@ make_relative_path (const char *base_file,
  * returns: whether the zone file was parsed successfully.
  */
 gboolean
-eva_dns_rr_cache_load_zone(GskDnsRRCache           *rr_cache,
+eva_dns_rr_cache_load_zone(EvaDnsRRCache           *rr_cache,
 			   const char              *filename,
 			   const char              *default_origin,
 			   GError                 **error)
@@ -1951,13 +1951,13 @@ fail:
  * returns: whether the line was parsed successfully.
  */
 gboolean
-eva_dns_rr_cache_parse_etc_hosts_line(GskDnsRRCache      *rr_cache,
+eva_dns_rr_cache_parse_etc_hosts_line(EvaDnsRRCache      *rr_cache,
 				      const char         *text)
 {
   guint8 addr[4];
   const char *end;
-  GskDnsResourceRecord *rr;
-  GskDnsResourceRecord *in_cache;
+  EvaDnsResourceRecord *rr;
+  EvaDnsResourceRecord *in_cache;
   char *canon_name;
   GTimeVal tv;
   g_get_current_time (&tv);
@@ -2037,7 +2037,7 @@ eva_dns_rr_cache_parse_etc_hosts_line(GskDnsRRCache      *rr_cache,
  * but all that other stuff is obsolete anyway ;)
  */
 gboolean
-eva_dns_rr_cache_parse_etc_hosts   (GskDnsRRCache     *rr_cache,
+eva_dns_rr_cache_parse_etc_hosts   (EvaDnsRRCache     *rr_cache,
 				    const char        *filename,
 				    gboolean           may_be_missing)
 {
@@ -2076,7 +2076,7 @@ eva_dns_rr_cache_get_type ()
 {
   static GType type = 0;
   if (type == 0)
-    type = g_boxed_type_register_static ("GskDnsRRCache",
+    type = g_boxed_type_register_static ("EvaDnsRRCache",
 					 (GBoxedCopyFunc) eva_dns_rr_cache_ref,
 					 (GBoxedFreeFunc) eva_dns_rr_cache_unref);
   return type;

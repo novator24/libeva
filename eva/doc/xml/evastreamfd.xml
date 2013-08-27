@@ -1,62 +1,62 @@
-<refentry id="GskStreamFd">
+<refentry id="EvaStreamFd">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskStreamFd.top_of_page">GskStreamFd</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaStreamFd.top_of_page">EvaStreamFd</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskStreamFd</refname>
-<refpurpose>a file-descriptor based GskStream</refpurpose>
+<refname>EvaStreamFd</refname>
+<refpurpose>a file-descriptor based EvaStream</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskStreamFd.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaStreamFd.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
 #define             <link linkend="EVA-STREAM-FD-GET-FD--CAPS">EVA_STREAM_FD_GET_FD</link>                (stream)
-                    <link linkend="GskStreamFd-struct">GskStreamFd</link>;
-enum                <link linkend="GskStreamFdFlags">GskStreamFdFlags</link>;
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-stream-fd-new">eva_stream_fd_new</link>                   (<link linkend="gint">gint</link> fd,
-                                                         <link linkend="GskStreamFdFlags">GskStreamFdFlags</link> flags);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-stream-fd-new-auto">eva_stream_fd_new_auto</link>              (<link linkend="gint">gint</link> fd);
-<link linkend="GskStreamFdFlags">GskStreamFdFlags</link>    <link linkend="eva-stream-fd-flags-guess">eva_stream_fd_flags_guess</link>           (<link linkend="gint">gint</link> fd);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-stream-fd-pipe">eva_stream_fd_pipe</link>                  (<link linkend="GskStream">GskStream</link> **read_side_out,
-                                                         <link linkend="GskStream">GskStream</link> **write_side_out,
+                    <link linkend="EvaStreamFd-struct">EvaStreamFd</link>;
+enum                <link linkend="EvaStreamFdFlags">EvaStreamFdFlags</link>;
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-stream-fd-new">eva_stream_fd_new</link>                   (<link linkend="gint">gint</link> fd,
+                                                         <link linkend="EvaStreamFdFlags">EvaStreamFdFlags</link> flags);
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-stream-fd-new-auto">eva_stream_fd_new_auto</link>              (<link linkend="gint">gint</link> fd);
+<link linkend="EvaStreamFdFlags">EvaStreamFdFlags</link>    <link linkend="eva-stream-fd-flags-guess">eva_stream_fd_flags_guess</link>           (<link linkend="gint">gint</link> fd);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-stream-fd-pipe">eva_stream_fd_pipe</link>                  (<link linkend="EvaStream">EvaStream</link> **read_side_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **write_side_out,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-stream-fd-new-connecting">eva_stream_fd_new_connecting</link>        (<link linkend="gint">gint</link> fd);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-stream-fd-new-read-file">eva_stream_fd_new_read_file</link>         (const <link linkend="char">char</link> *filename,
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-stream-fd-new-connecting">eva_stream_fd_new_connecting</link>        (<link linkend="gint">gint</link> fd);
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-stream-fd-new-read-file">eva_stream_fd_new_read_file</link>         (const <link linkend="char">char</link> *filename,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-stream-fd-new-write-file">eva_stream_fd_new_write_file</link>        (const <link linkend="char">char</link> *filename,
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-stream-fd-new-write-file">eva_stream_fd_new_write_file</link>        (const <link linkend="char">char</link> *filename,
                                                          <link linkend="gboolean">gboolean</link> may_create,
                                                          <link linkend="gboolean">gboolean</link> should_truncate,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-stream-fd-new-create-file">eva_stream_fd_new_create_file</link>       (const <link linkend="char">char</link> *filename,
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-stream-fd-new-create-file">eva_stream_fd_new_create_file</link>       (const <link linkend="char">char</link> *filename,
                                                          <link linkend="gboolean">gboolean</link> may_exist,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-stream-fd-new-open">eva_stream_fd_new_open</link>              (const <link linkend="char">char</link> *filename,
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-stream-fd-new-open">eva_stream_fd_new_open</link>              (const <link linkend="char">char</link> *filename,
                                                          <link linkend="guint">guint</link> open_flags,
                                                          <link linkend="guint">guint</link> permission,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-stream-fd-duplex-pipe">eva_stream_fd_duplex_pipe</link>           (<link linkend="GskStream">GskStream</link> **side_a_out,
-                                                         <link linkend="GskStream">GskStream</link> **side_b_out,
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-stream-fd-duplex-pipe">eva_stream_fd_duplex_pipe</link>           (<link linkend="EvaStream">EvaStream</link> **side_a_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **side_b_out,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-stream-fd-duplex-pipe-fd">eva_stream_fd_duplex_pipe_fd</link>        (<link linkend="GskStream">GskStream</link> **side_a_out,
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-stream-fd-duplex-pipe-fd">eva_stream_fd_duplex_pipe_fd</link>        (<link linkend="EvaStream">EvaStream</link> **side_a_out,
                                                          <link linkend="int">int</link> *side_b_fd_out,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-stream-fd-new-from-symbolic-address">eva_stream_fd_new_from_symbolic_address</link>
-                                                        (<link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link> *symbolic,
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-stream-fd-new-from-symbolic-address">eva_stream_fd_new_from_symbolic_address</link>
+                                                        (<link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link> *symbolic,
                                                          <link linkend="GError">GError</link> **error);
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskStreamFd.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaStreamFd.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskIO">GskIO</link>
-         +----<link linkend="GskStream">GskStream</link>
-               +----GskStreamFd
+   +----<link linkend="EvaIO">EvaIO</link>
+         +----<link linkend="EvaStream">EvaStream</link>
+               +----EvaStreamFd
 </synopsis>
 </refsect1>
 
@@ -64,46 +64,46 @@ enum                <link linkend="GskStreamFdFlags">GskStreamFdFlags</link>;
 
 
 
-<refsect1 id="GskStreamFd.properties" role="properties">
+<refsect1 id="EvaStreamFd.properties" role="properties">
 <title role="properties.title">Properties</title>
 <synopsis>
-  &quot;<link linkend="GskStreamFd--file-descriptor">file-descriptor</link>&quot;          <link linkend="GskFd">GskFd</link>                 : Read / Write / Construct Only
-  &quot;<link linkend="GskStreamFd--is-pollable">is-pollable</link>&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only
-  &quot;<link linkend="GskStreamFd--is-readable">is-readable</link>&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only
-  &quot;<link linkend="GskStreamFd--is-writable">is-writable</link>&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only
+  &quot;<link linkend="EvaStreamFd--file-descriptor">file-descriptor</link>&quot;          <link linkend="EvaFd">EvaFd</link>                 : Read / Write / Construct Only
+  &quot;<link linkend="EvaStreamFd--is-pollable">is-pollable</link>&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only
+  &quot;<link linkend="EvaStreamFd--is-readable">is-readable</link>&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only
+  &quot;<link linkend="EvaStreamFd--is-writable">is-writable</link>&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only
 </synopsis>
 </refsect1>
 
 
 
-<refsect1 id="GskStreamFd.description" role="desc">
+<refsect1 id="EvaStreamFd.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
-a GskStream that can be used for files and sockets.
+a EvaStream that can be used for files and sockets.
 </para>
 </refsect1>
 
-<refsect1 id="GskStreamFd.details" role="details">
+<refsect1 id="EvaStreamFd.details" role="details">
 <title role="details.title">Details</title>
 <refsect2 id="EVA-STREAM-FD-GET-FD--CAPS" role="macro">
 <title>EVA_STREAM_FD_GET_FD()</title>
 <indexterm zone="EVA-STREAM-FD-GET-FD--CAPS"><primary sortas="EVA_STREAM_FD_GET_FD">EVA_STREAM_FD_GET_FD</primary></indexterm><programlisting>#define             EVA_STREAM_FD_GET_FD(stream)</programlisting>
 <para>
-Get underlying file-descriptor from a <link linkend="GskStreamFd"><type>GskStreamFd</type></link>.
+Get underlying file-descriptor from a <link linkend="EvaStreamFd"><type>EvaStreamFd</type></link>.
 </para><variablelist role="params">
 <varlistentry><term><parameter>stream</parameter>&#160;:</term>
 <listitem><simpara>the stream.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskStreamFd-struct" role="struct">
-<title>GskStreamFd</title>
-<indexterm zone="GskStreamFd-struct"><primary sortas="GskStreamFd">GskStreamFd</primary></indexterm><programlisting>typedef struct _GskStreamFd GskStreamFd;</programlisting>
+<refsect2 id="EvaStreamFd-struct" role="struct">
+<title>EvaStreamFd</title>
+<indexterm zone="EvaStreamFd-struct"><primary sortas="EvaStreamFd">EvaStreamFd</primary></indexterm><programlisting>typedef struct _EvaStreamFd EvaStreamFd;</programlisting>
 <para>
 An instance of a file-descriptor based stream.
 </para></refsect2>
-<refsect2 id="GskStreamFdFlags" role="enum">
-<title>enum GskStreamFdFlags</title>
-<indexterm zone="GskStreamFdFlags"><primary sortas="GskStreamFdFlags">GskStreamFdFlags</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaStreamFdFlags" role="enum">
+<title>enum EvaStreamFdFlags</title>
+<indexterm zone="EvaStreamFdFlags"><primary sortas="EvaStreamFdFlags">EvaStreamFdFlags</primary></indexterm><programlisting>typedef enum
 {
   EVA_STREAM_FD_IS_READABLE     = (1&lt;&lt;0),
   EVA_STREAM_FD_IS_WRITABLE     = (1&lt;&lt;1),
@@ -114,16 +114,16 @@ An instance of a file-descriptor based stream.
   EVA_STREAM_FD_FOR_NEW_SOCKET  = EVA_STREAM_FD_IS_READWRITE
                                 | EVA_STREAM_FD_IS_POLLABLE
 			        | EVA_STREAM_FD_IS_SHUTDOWNABLE
-} GskStreamFdFlags;
+} EvaStreamFdFlags;
 </programlisting>
 <para>
 </para></refsect2>
 <refsect2 id="eva-stream-fd-new" role="function">
 <title>eva_stream_fd_new ()</title>
-<indexterm zone="eva-stream-fd-new"><primary sortas="eva_stream_fd_new">eva_stream_fd_new</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_stream_fd_new                   (<link linkend="gint">gint</link> fd,
-                                                         <link linkend="GskStreamFdFlags">GskStreamFdFlags</link> flags);</programlisting>
+<indexterm zone="eva-stream-fd-new"><primary sortas="eva_stream_fd_new">eva_stream_fd_new</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_stream_fd_new                   (<link linkend="gint">gint</link> fd,
+                                                         <link linkend="EvaStreamFdFlags">EvaStreamFdFlags</link> flags);</programlisting>
 <para>
-Create a new GskStream based on an already open file descriptor.</para>
+Create a new EvaStream based on an already open file descriptor.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>fd</parameter>&#160;:</term>
@@ -132,12 +132,12 @@ Create a new GskStream based on an already open file descriptor.</para>
 <varlistentry><term><parameter>flags</parameter>&#160;:</term>
 <listitem><simpara> information about how to use the file descriptor.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new GskStream
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new EvaStream
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-fd-new-auto" role="function">
 <title>eva_stream_fd_new_auto ()</title>
-<indexterm zone="eva-stream-fd-new-auto"><primary sortas="eva_stream_fd_new_auto">eva_stream_fd_new_auto</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_stream_fd_new_auto              (<link linkend="gint">gint</link> fd);</programlisting>
+<indexterm zone="eva-stream-fd-new-auto"><primary sortas="eva_stream_fd_new_auto">eva_stream_fd_new_auto</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_stream_fd_new_auto              (<link linkend="gint">gint</link> fd);</programlisting>
 <para>
 Try to guess the nature of the file-descriptor using <link linkend="fstat"><function>fstat()</function></link>,
 <link linkend="isatty"><function>isatty()</function></link>.</para>
@@ -146,12 +146,12 @@ Try to guess the nature of the file-descriptor using <link linkend="fstat"><func
 <varlistentry><term><parameter>fd</parameter>&#160;:</term>
 <listitem><simpara> the file-descriptor to use as the basis for a stream.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new GskStream which will free <parameter>fd</parameter> when it is closed.
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new EvaStream which will free <parameter>fd</parameter> when it is closed.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-fd-flags-guess" role="function">
 <title>eva_stream_fd_flags_guess ()</title>
-<indexterm zone="eva-stream-fd-flags-guess"><primary sortas="eva_stream_fd_flags_guess">eva_stream_fd_flags_guess</primary></indexterm><programlisting><link linkend="GskStreamFdFlags">GskStreamFdFlags</link>    eva_stream_fd_flags_guess           (<link linkend="gint">gint</link> fd);</programlisting>
+<indexterm zone="eva-stream-fd-flags-guess"><primary sortas="eva_stream_fd_flags_guess">eva_stream_fd_flags_guess</primary></indexterm><programlisting><link linkend="EvaStreamFdFlags">EvaStreamFdFlags</link>    eva_stream_fd_flags_guess           (<link linkend="gint">gint</link> fd);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>fd</parameter>&#160;:</term>
@@ -162,8 +162,8 @@ Try to guess the nature of the file-descriptor using <link linkend="fstat"><func
 </variablelist></refsect2>
 <refsect2 id="eva-stream-fd-pipe" role="function">
 <title>eva_stream_fd_pipe ()</title>
-<indexterm zone="eva-stream-fd-pipe"><primary sortas="eva_stream_fd_pipe">eva_stream_fd_pipe</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_stream_fd_pipe                  (<link linkend="GskStream">GskStream</link> **read_side_out,
-                                                         <link linkend="GskStream">GskStream</link> **write_side_out,
+<indexterm zone="eva-stream-fd-pipe"><primary sortas="eva_stream_fd_pipe">eva_stream_fd_pipe</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_stream_fd_pipe                  (<link linkend="EvaStream">EvaStream</link> **read_side_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **write_side_out,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Call the pipe(2) system call to make a half-duplex connection
@@ -185,23 +185,23 @@ The newly allocated streams are returned.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-fd-new-connecting" role="function">
 <title>eva_stream_fd_new_connecting ()</title>
-<indexterm zone="eva-stream-fd-new-connecting"><primary sortas="eva_stream_fd_new_connecting">eva_stream_fd_new_connecting</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_stream_fd_new_connecting        (<link linkend="gint">gint</link> fd);</programlisting>
+<indexterm zone="eva-stream-fd-new-connecting"><primary sortas="eva_stream_fd_new_connecting">eva_stream_fd_new_connecting</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_stream_fd_new_connecting        (<link linkend="gint">gint</link> fd);</programlisting>
 <para>
-Create a new GskStream based on a socket which is still in the process of connecting.</para>
+Create a new EvaStream based on a socket which is still in the process of connecting.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>fd</parameter>&#160;:</term>
 <listitem><simpara> the raw file descriptor.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new GskStream
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new EvaStream
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-fd-new-read-file" role="function">
 <title>eva_stream_fd_new_read_file ()</title>
-<indexterm zone="eva-stream-fd-new-read-file"><primary sortas="eva_stream_fd_new_read_file">eva_stream_fd_new_read_file</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_stream_fd_new_read_file         (const <link linkend="char">char</link> *filename,
+<indexterm zone="eva-stream-fd-new-read-file"><primary sortas="eva_stream_fd_new_read_file">eva_stream_fd_new_read_file</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_stream_fd_new_read_file         (const <link linkend="char">char</link> *filename,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
-Open a file for reading as a <link linkend="GskStream"><type>GskStream</type></link>.
+Open a file for reading as a <link linkend="EvaStream"><type>EvaStream</type></link>.
 The stream is not writable.</para>
 <para>
 </para><variablelist role="params">
@@ -211,17 +211,17 @@ The stream is not writable.</para>
 <varlistentry><term><parameter>error</parameter>&#160;:</term>
 <listitem><simpara> optional error return value.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new GskStream
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new EvaStream
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-fd-new-write-file" role="function">
 <title>eva_stream_fd_new_write_file ()</title>
-<indexterm zone="eva-stream-fd-new-write-file"><primary sortas="eva_stream_fd_new_write_file">eva_stream_fd_new_write_file</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_stream_fd_new_write_file        (const <link linkend="char">char</link> *filename,
+<indexterm zone="eva-stream-fd-new-write-file"><primary sortas="eva_stream_fd_new_write_file">eva_stream_fd_new_write_file</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_stream_fd_new_write_file        (const <link linkend="char">char</link> *filename,
                                                          <link linkend="gboolean">gboolean</link> may_create,
                                                          <link linkend="gboolean">gboolean</link> should_truncate,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
-Open a file for writing as a <link linkend="GskStream"><type>GskStream</type></link>.
+Open a file for writing as a <link linkend="EvaStream"><type>EvaStream</type></link>.
 The stream is not readable.</para>
 <para>
 </para><variablelist role="params">
@@ -237,16 +237,16 @@ The stream is not readable.</para>
 <varlistentry><term><parameter>error</parameter>&#160;:</term>
 <listitem><simpara> optional error return value.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new GskStream
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new EvaStream
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-fd-new-create-file" role="function">
 <title>eva_stream_fd_new_create_file ()</title>
-<indexterm zone="eva-stream-fd-new-create-file"><primary sortas="eva_stream_fd_new_create_file">eva_stream_fd_new_create_file</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_stream_fd_new_create_file       (const <link linkend="char">char</link> *filename,
+<indexterm zone="eva-stream-fd-new-create-file"><primary sortas="eva_stream_fd_new_create_file">eva_stream_fd_new_create_file</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_stream_fd_new_create_file       (const <link linkend="char">char</link> *filename,
                                                          <link linkend="gboolean">gboolean</link> may_exist,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
-Create a file for writing as a <link linkend="GskStream"><type>GskStream</type></link>.
+Create a file for writing as a <link linkend="EvaStream"><type>EvaStream</type></link>.
 The stream is not readable.</para>
 <para>
 </para><variablelist role="params">
@@ -259,17 +259,17 @@ The stream is not readable.</para>
 <varlistentry><term><parameter>error</parameter>&#160;:</term>
 <listitem><simpara> optional error return value.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new GskStream
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new EvaStream
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-fd-new-open" role="function">
 <title>eva_stream_fd_new_open ()</title>
-<indexterm zone="eva-stream-fd-new-open"><primary sortas="eva_stream_fd_new_open">eva_stream_fd_new_open</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_stream_fd_new_open              (const <link linkend="char">char</link> *filename,
+<indexterm zone="eva-stream-fd-new-open"><primary sortas="eva_stream_fd_new_open">eva_stream_fd_new_open</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_stream_fd_new_open              (const <link linkend="char">char</link> *filename,
                                                          <link linkend="guint">guint</link> open_flags,
                                                          <link linkend="guint">guint</link> permission,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
-Open a file as a <link linkend="GskStream"><type>GskStream</type></link>; this interface strongly
+Open a file as a <link linkend="EvaStream"><type>EvaStream</type></link>; this interface strongly
 reflects its underlying open(2) implementation.
 Using <link linkend="eva-stream-fd-new-read-file"><function>eva_stream_fd_new_read_file()</function></link>
 and <link linkend="eva-stream-fd-new-write-file"><function>eva_stream_fd_new_write_file()</function></link> may be more portable ultimately.</para>
@@ -287,17 +287,17 @@ and <link linkend="eva-stream-fd-new-write-file"><function>eva_stream_fd_new_wri
 <varlistentry><term><parameter>error</parameter>&#160;:</term>
 <listitem><simpara> optional error return value.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new GskStream
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new EvaStream
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-fd-duplex-pipe" role="function">
 <title>eva_stream_fd_duplex_pipe ()</title>
-<indexterm zone="eva-stream-fd-duplex-pipe"><primary sortas="eva_stream_fd_duplex_pipe">eva_stream_fd_duplex_pipe</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_stream_fd_duplex_pipe           (<link linkend="GskStream">GskStream</link> **side_a_out,
-                                                         <link linkend="GskStream">GskStream</link> **side_b_out,
+<indexterm zone="eva-stream-fd-duplex-pipe"><primary sortas="eva_stream_fd_duplex_pipe">eva_stream_fd_duplex_pipe</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_stream_fd_duplex_pipe           (<link linkend="EvaStream">EvaStream</link> **side_a_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **side_b_out,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Create a pair of file-descriptors that 
-are connected to eachother, and make GskStreamFds around them.</para>
+are connected to eachother, and make EvaStreamFds around them.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>side_a_out</parameter>&#160;:</term>
@@ -314,12 +314,12 @@ are connected to eachother, and make GskStreamFds around them.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-fd-duplex-pipe-fd" role="function">
 <title>eva_stream_fd_duplex_pipe_fd ()</title>
-<indexterm zone="eva-stream-fd-duplex-pipe-fd"><primary sortas="eva_stream_fd_duplex_pipe_fd">eva_stream_fd_duplex_pipe_fd</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_stream_fd_duplex_pipe_fd        (<link linkend="GskStream">GskStream</link> **side_a_out,
+<indexterm zone="eva-stream-fd-duplex-pipe-fd"><primary sortas="eva_stream_fd_duplex_pipe_fd">eva_stream_fd_duplex_pipe_fd</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_stream_fd_duplex_pipe_fd        (<link linkend="EvaStream">EvaStream</link> **side_a_out,
                                                          <link linkend="int">int</link> *side_b_fd_out,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Create a pair of file-descriptors that 
-are connected to eachother, and make a GskStreamFd around one of them.</para>
+are connected to eachother, and make a EvaStreamFd around one of them.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>side_a_out</parameter>&#160;:</term>
@@ -336,8 +336,8 @@ are connected to eachother, and make a GskStreamFd around one of them.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-fd-new-from-symbolic-address" role="function">
 <title>eva_stream_fd_new_from_symbolic_address ()</title>
-<indexterm zone="eva-stream-fd-new-from-symbolic-address"><primary sortas="eva_stream_fd_new_from_symbolic_address">eva_stream_fd_new_from_symbolic_address</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_stream_fd_new_from_symbolic_address
-                                                        (<link linkend="GskSocketAddressSymbolic">GskSocketAddressSymbolic</link> *symbolic,
+<indexterm zone="eva-stream-fd-new-from-symbolic-address"><primary sortas="eva_stream_fd_new_from_symbolic_address">eva_stream_fd_new_from_symbolic_address</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_stream_fd_new_from_symbolic_address
+                                                        (<link linkend="EvaSocketAddressSymbolic">EvaSocketAddressSymbolic</link> *symbolic,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Create a stream connecting to a symbolic socket-address.</para>
@@ -349,26 +349,26 @@ Create a stream connecting to a symbolic socket-address.</para>
 <varlistentry><term><parameter>error</parameter>&#160;:</term>
 <listitem><simpara> optional error return value.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new GskStream
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new EvaStream
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 
 </refsect1>
-<refsect1 id="GskStreamFd.property-details" role="property_details">
+<refsect1 id="EvaStreamFd.property-details" role="property_details">
 <title role="property_details.title">Property Details</title>
-<refsect2 id="GskStreamFd--file-descriptor" role="property"><title>The <literal>&quot;file-descriptor&quot;</literal> property</title>
-<indexterm zone="GskStreamFd--file-descriptor"><primary sortas="GskStreamFd:file-descriptor">GskStreamFd:file-descriptor</primary></indexterm><programlisting>  &quot;file-descriptor&quot;          <link linkend="GskFd">GskFd</link>                 : Read / Write / Construct Only</programlisting>
+<refsect2 id="EvaStreamFd--file-descriptor" role="property"><title>The <literal>&quot;file-descriptor&quot;</literal> property</title>
+<indexterm zone="EvaStreamFd--file-descriptor"><primary sortas="EvaStreamFd:file-descriptor">EvaStreamFd:file-descriptor</primary></indexterm><programlisting>  &quot;file-descriptor&quot;          <link linkend="EvaFd">EvaFd</link>                 : Read / Write / Construct Only</programlisting>
 <para>for reading and/or writing.</para></refsect2>
-<refsect2 id="GskStreamFd--is-pollable" role="property"><title>The <literal>&quot;is-pollable&quot;</literal> property</title>
-<indexterm zone="GskStreamFd--is-pollable"><primary sortas="GskStreamFd:is-pollable">GskStreamFd:is-pollable</primary></indexterm><programlisting>  &quot;is-pollable&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only</programlisting>
+<refsect2 id="EvaStreamFd--is-pollable" role="property"><title>The <literal>&quot;is-pollable&quot;</literal> property</title>
+<indexterm zone="EvaStreamFd--is-pollable"><primary sortas="EvaStreamFd:is-pollable">EvaStreamFd:is-pollable</primary></indexterm><programlisting>  &quot;is-pollable&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only</programlisting>
 <para>whether the file descriptor is pollable.</para><para>Default value: FALSE</para>
 </refsect2>
-<refsect2 id="GskStreamFd--is-readable" role="property"><title>The <literal>&quot;is-readable&quot;</literal> property</title>
-<indexterm zone="GskStreamFd--is-readable"><primary sortas="GskStreamFd:is-readable">GskStreamFd:is-readable</primary></indexterm><programlisting>  &quot;is-readable&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only</programlisting>
+<refsect2 id="EvaStreamFd--is-readable" role="property"><title>The <literal>&quot;is-readable&quot;</literal> property</title>
+<indexterm zone="EvaStreamFd--is-readable"><primary sortas="EvaStreamFd:is-readable">EvaStreamFd:is-readable</primary></indexterm><programlisting>  &quot;is-readable&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only</programlisting>
 <para>is the FD readable.</para><para>Default value: FALSE</para>
 </refsect2>
-<refsect2 id="GskStreamFd--is-writable" role="property"><title>The <literal>&quot;is-writable&quot;</literal> property</title>
-<indexterm zone="GskStreamFd--is-writable"><primary sortas="GskStreamFd:is-writable">GskStreamFd:is-writable</primary></indexterm><programlisting>  &quot;is-writable&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only</programlisting>
+<refsect2 id="EvaStreamFd--is-writable" role="property"><title>The <literal>&quot;is-writable&quot;</literal> property</title>
+<indexterm zone="EvaStreamFd--is-writable"><primary sortas="EvaStreamFd:is-writable">EvaStreamFd:is-writable</primary></indexterm><programlisting>  &quot;is-writable&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only</programlisting>
 <para>is the FD writable.</para><para>Default value: FALSE</para>
 </refsect2>
 </refsect1>

@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskHttpRequest
+EvaHttpRequest
 
 <!-- ##### SECTION Short_Description ##### -->
 An HTTP header that is sent from client to server.
@@ -13,13 +13,13 @@ and the desired path, and other assorted flags.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-GskHttpHeader, GskHttpResponse
+EvaHttpHeader, EvaHttpResponse
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskHttpRequest ##### -->
+<!-- ##### STRUCT EvaHttpRequest ##### -->
 <para>
 An instance of a HTTP request header.
 </para>
@@ -51,37 +51,37 @@ virtual hosting.
 @ua_language: 
 @cache_control: 
 
-<!-- ##### ARG GskHttpRequest:host ##### -->
+<!-- ##### ARG EvaHttpRequest:host ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpRequest:if-modified-since ##### -->
+<!-- ##### ARG EvaHttpRequest:if-modified-since ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpRequest:max-forwards ##### -->
+<!-- ##### ARG EvaHttpRequest:max-forwards ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpRequest:path ##### -->
+<!-- ##### ARG EvaHttpRequest:path ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpRequest:referrer ##### -->
+<!-- ##### ARG EvaHttpRequest:referrer ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpRequest:user-agent ##### -->
+<!-- ##### ARG EvaHttpRequest:user-agent ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpRequest:verb ##### -->
+<!-- ##### ARG EvaHttpRequest:verb ##### -->
 <para>
 
 </para>
@@ -204,7 +204,7 @@ virtual hosting.
 <para>
 The verb is EVA's name for the type of action being requested.
 It is the very first word of the HTTP transaction.
-See #GskHttpVerb for a list.
+See #EvaHttpVerb for a list.
 </para>
 
 @request: the request to affect.
@@ -214,7 +214,7 @@ See #GskHttpVerb for a list.
 <!-- ##### MACRO eva_http_request_get_verb ##### -->
 <para>
 Get the type of action being requested.
-See #GskHttpVerb for a list.
+See #EvaHttpVerb for a list.
 </para>
 <para>
 Every HTTP server should know GET and HEAD requested;

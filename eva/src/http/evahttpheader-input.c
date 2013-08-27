@@ -11,7 +11,7 @@
 #include "../common/evabase64.h"
 
 #undef G_LOG_DOMAIN
-#define G_LOG_DOMAIN    "Gsk-Http-Parser"
+#define G_LOG_DOMAIN    "Eva-Http-Parser"
 
 /* TODO: unified set of parsing macros for http-header-ish stuff,
    similar to those used in the authenticate/authorization code
@@ -32,12 +32,12 @@
  *
  * returns: whether the line was the start of a valid HTTP-request.
  */
-GskHttpRequestFirstLineStatus
-eva_http_request_parse_first_line (GskHttpRequest *request,
+EvaHttpRequestFirstLineStatus
+eva_http_request_parse_first_line (EvaHttpRequest *request,
 				   const char     *line,
                                    GError        **error)
 {
-  GskHttpHeader *header = EVA_HTTP_HEADER (request);
+  EvaHttpHeader *header = EVA_HTTP_HEADER (request);
   int verb_length = 0;
   int request_start, request_length;
   int at;
@@ -136,10 +136,10 @@ eva_http_request_parse_first_line (GskHttpRequest *request,
  * returns: whether the line was the start of a valid HTTP-response.
  */
 gboolean
-eva_http_response_process_first_line (GskHttpResponse *response,
+eva_http_response_process_first_line (EvaHttpResponse *response,
                                       const char      *line)
 {
-  GskHttpHeader *header = EVA_HTTP_HEADER (response);
+  EvaHttpHeader *header = EVA_HTTP_HEADER (response);
   while (*line && isspace (*line))
     line++;
   if (g_strncasecmp (line, "http/", 5) != 0)
@@ -188,7 +188,7 @@ eva_http_response_process_first_line (GskHttpResponse *response,
 }
 
 static gboolean
-parse_uint (GskHttpHeader *header,
+parse_uint (EvaHttpHeader *header,
 	    const char    *value,
             gpointer       data)
 {
@@ -198,7 +198,7 @@ parse_uint (GskHttpHeader *header,
 }
 
 static gboolean
-parse_uint64 (GskHttpHeader *header,
+parse_uint64 (EvaHttpHeader *header,
 	      const char    *value,
               gpointer       data)
 {
@@ -208,7 +208,7 @@ parse_uint64 (GskHttpHeader *header,
 }
 
 static gboolean
-parse_date   (GskHttpHeader *header,
+parse_date   (EvaHttpHeader *header,
               const char    *value,
               gpointer       data)
 {
@@ -224,7 +224,7 @@ parse_date   (GskHttpHeader *header,
 
 
 static gboolean
-parse_string (GskHttpHeader *header,
+parse_string (EvaHttpHeader *header,
 	      const char    *value,
               gpointer       data)
 {
@@ -249,7 +249,7 @@ str0cpy (char *dst,
 
 /* general header handlers */
 static gboolean
-handle_transfer_encoding (GskHttpHeader *header,
+handle_transfer_encoding (EvaHttpHeader *header,
 			  const char    *value,
 			  gpointer data)
 {
@@ -258,7 +258,7 @@ handle_transfer_encoding (GskHttpHeader *header,
 }
 
 static gboolean
-handle_content_encoding  (GskHttpHeader *header,
+handle_content_encoding  (EvaHttpHeader *header,
 			  const char    *value,
 			  gpointer data)
 {
@@ -267,7 +267,7 @@ handle_content_encoding  (GskHttpHeader *header,
 }
 
 static gboolean
-handle_connection (GskHttpHeader *header,
+handle_connection (EvaHttpHeader *header,
 		   const char *value,
 		   gpointer data)
 {
@@ -276,13 +276,13 @@ handle_connection (GskHttpHeader *header,
 }
 
 static gboolean
-handle_response_cache_control (GskHttpHeader *header,
+handle_response_cache_control (EvaHttpHeader *header,
                                const char    *value,
                                gpointer       data)
 {
   const char                    *at = value;
   guint                          length = 0;
-  GskHttpResponseCacheDirective *control;
+  EvaHttpResponseCacheDirective *control;
 
   control = eva_http_response_cache_directive_new ();
   control->is_public = 0;
@@ -371,13 +371,13 @@ handle_response_cache_control (GskHttpHeader *header,
         }
 
 static gboolean
-handle_request_cache_control (GskHttpHeader *header,
+handle_request_cache_control (EvaHttpHeader *header,
                               const char    *value,
                               gpointer       data)
 {
   const char *at = value;
   guint length = 0;
-  GskHttpRequestCacheDirective *control;
+  EvaHttpRequestCacheDirective *control;
 
   control = eva_http_request_cache_directive_new ();
   while (*at != '\0')
@@ -460,7 +460,7 @@ handle_request_cache_control (GskHttpHeader *header,
    is the 'no-cache' pragma, which we don't
    have any special support for. */
 static gboolean
-handle_pragma    (GskHttpHeader *header,
+handle_pragma    (EvaHttpHeader *header,
                   const char    *value,
                   gpointer       data)
 {
@@ -470,11 +470,11 @@ handle_pragma    (GskHttpHeader *header,
 
 /* request handlers */
 static gboolean
-handle_ua_pixels (GskHttpHeader *header,
+handle_ua_pixels (EvaHttpHeader *header,
 	          const char *value,
 	          gpointer data)
 {
-  GskHttpRequest *request = EVA_HTTP_REQUEST (header);
+  EvaHttpRequest *request = EVA_HTTP_REQUEST (header);
   return sscanf (value, "%ux%u", &request->ua_width, &request->ua_height) == 2;
 }
 
@@ -661,7 +661,7 @@ parse_cookies (const char *value)
       g_return_val_if_fail (value_start != NULL, NULL);
 
       {
-        GskHttpCookie *cookie;
+        EvaHttpCookie *cookie;
         const char *key = CUT_ONTO_STACK (key_start, key_end);
         const char *value = CUT_ONTO_STACK (value_start, value_end);
         const char *path = CUT_ONTO_STACK (path_start, path_end);
@@ -691,12 +691,12 @@ error:
 }
 
 static gboolean
-handle_cookie (GskHttpHeader *header,
+handle_cookie (EvaHttpHeader *header,
 	       const char *value,
 	       gpointer data)
 {
   GSList *cookie_list = parse_cookies (value);
-  GskHttpRequest *request = EVA_HTTP_REQUEST (header);
+  EvaHttpRequest *request = EVA_HTTP_REQUEST (header);
   request->cookies = g_slist_concat (request->cookies, cookie_list);
   return cookie_list ? TRUE : FALSE;
 }
@@ -705,7 +705,7 @@ handle_cookie (GskHttpHeader *header,
   G_STMT_START{ g_warning arglist; return FALSE; }G_STMT_END
 
 static gboolean
-handle_range (GskHttpHeader *header,
+handle_range (EvaHttpHeader *header,
 	      const char *value,
 	      gpointer data)
 {
@@ -786,11 +786,11 @@ parse_str_quality (const char **pstr,
  *
  * See RFC 2616, Section 3.4
  */
-static GskHttpCharSet *
+static EvaHttpCharSet *
 parse_charset (const char **pstr)
 {
   char *charset;
-  GskHttpCharSet *rv;
+  EvaHttpCharSet *rv;
   gfloat quality = -1;
   if (!parse_str_quality (pstr, &charset, &quality))
     return NULL;
@@ -801,13 +801,13 @@ parse_charset (const char **pstr)
 
 
 static gboolean
-handle_accept_charset (GskHttpHeader *header,
+handle_accept_charset (EvaHttpHeader *header,
 		       const char *value,
 		       gpointer data)
 {
   while (*value != '\0')
     {
-      GskHttpCharSet *set;
+      EvaHttpCharSet *set;
       const char *start;
       while (*value != '\0' && (isspace (*value) || *value == ','))
         value++;
@@ -820,11 +820,11 @@ handle_accept_charset (GskHttpHeader *header,
   return TRUE;
 }
 
-static GskHttpContentEncodingSet *
+static EvaHttpContentEncodingSet *
 parse_content_encoding (const char **pstr)
 {
   gfloat quality = -1;
-  GskHttpContentEncoding encoding;
+  EvaHttpContentEncoding encoding;
   const char *str = *pstr;
 
   while (*str != '\0' && isspace (*str))
@@ -870,13 +870,13 @@ parse_content_encoding (const char **pstr)
 /* handle Accept-Encoding:
    which should really be Accept-Content-Encoding[s]: */
 static gboolean
-handle_accept_encoding (GskHttpHeader *header,
+handle_accept_encoding (EvaHttpHeader *header,
 			const char *value,
 			gpointer data)
 {
   while (*value != '\0')
     {
-      GskHttpContentEncodingSet *encoding;
+      EvaHttpContentEncodingSet *encoding;
       const char *start;
       while (*value != '\0' && (isspace (*value) || *value == ','))
         value++;
@@ -889,11 +889,11 @@ handle_accept_encoding (GskHttpHeader *header,
   return TRUE;
 }
 
-static GskHttpTransferEncodingSet *
+static EvaHttpTransferEncodingSet *
 parse_transfer_encoding (const char **pstr)
 {
   gfloat quality = -1;
-  GskHttpTransferEncoding encoding;
+  EvaHttpTransferEncoding encoding;
   const char *str = *pstr;
 
   while (*str != '\0' && isspace (*str))
@@ -935,13 +935,13 @@ parse_transfer_encoding (const char **pstr)
 /* TE:  is an ugly header-line, that should really been Accept-Transfer-Encoding;
    (and Accept-Encoding should probably be Accept-Content-Encoding, but.. too late!) */
 static gboolean
-handle_te               (GskHttpHeader *header,
+handle_te               (EvaHttpHeader *header,
 			 const char *value,
 			 gpointer data)
 {
   while (*value != '\0')
     {
-      GskHttpTransferEncodingSet *encoding;
+      EvaHttpTransferEncodingSet *encoding;
       const char *start;
       while (*value != '\0' && (isspace (*value) || *value == ','))
         value++;
@@ -955,7 +955,7 @@ handle_te               (GskHttpHeader *header,
 }
 
 static gboolean
-handle_accept_ranges (GskHttpHeader *header,
+handle_accept_ranges (EvaHttpHeader *header,
 		      const char *value,
 		      gpointer data)
 {
@@ -971,7 +971,7 @@ handle_accept_ranges (GskHttpHeader *header,
     return FALSE;
 }
 
-static GskHttpLanguageSet *
+static EvaHttpLanguageSet *
 parse_language_set_list (const char *value)
 {
   /* Parse
@@ -981,7 +981,7 @@ parse_language_set_list (const char *value)
    * See RFC 2616, Section 14.4.
    */
 #define IS_8ALPHA	isalnum	/* XXX: lookup 8ALPHA */
-  GskHttpLanguageSet *rv = NULL;	/* initially maintained in reverse order */
+  EvaHttpLanguageSet *rv = NULL;	/* initially maintained in reverse order */
 
 #define ERROR(str)	G_STMT_START{ g_warning("parse language-sets: %s", str); goto error; }G_STMT_END
 
@@ -990,7 +990,7 @@ parse_language_set_list (const char *value)
       const char *language_start, *language_end;
       char *language;
       double quality = -1.0;
-      GskHttpLanguageSet *set;
+      EvaHttpLanguageSet *set;
 
       EVA_SKIP_WHITESPACE (value);
       language_start = value;
@@ -1050,10 +1050,10 @@ parse_language_set_list (const char *value)
 
   /* reverse the order of rv */
   {
-    GskHttpLanguageSet *last = NULL;
+    EvaHttpLanguageSet *last = NULL;
     while (rv)
       {
-	GskHttpLanguageSet *next = rv->next;
+	EvaHttpLanguageSet *next = rv->next;
 	rv->next = last;
 	last = rv;
 	rv = next;
@@ -1066,7 +1066,7 @@ parse_language_set_list (const char *value)
 error:
   while (rv)
     {
-      GskHttpLanguageSet *next = rv->next;
+      EvaHttpLanguageSet *next = rv->next;
       eva_http_language_set_free (rv);
       rv = next;
     }
@@ -1074,13 +1074,13 @@ error:
 }
 
 static gboolean
-handle_accept_language (GskHttpHeader *header,
+handle_accept_language (EvaHttpHeader *header,
 		        const char *value,
 		        gpointer data)
 {
-  GskHttpLanguageSet *set = parse_language_set_list (value);
-  GskHttpLanguageSet *last;
-  GskHttpRequest *request = EVA_HTTP_REQUEST (header);
+  EvaHttpLanguageSet *set = parse_language_set_list (value);
+  EvaHttpLanguageSet *last;
+  EvaHttpRequest *request = EVA_HTTP_REQUEST (header);
   if (set == NULL)
     HEADER_HANDLER_FAIL(("error language-set from %s", value));
 
@@ -1098,7 +1098,7 @@ handle_accept_language (GskHttpHeader *header,
   return TRUE;
 }
 
-static GskHttpMediaTypeSet *
+static EvaHttpMediaTypeSet *
 parse_media_type (const char **pstr)
 {
   /* Parse
@@ -1177,13 +1177,13 @@ parse_media_type (const char **pstr)
 }
 
 static gboolean
-handle_accept (GskHttpHeader *header,
+handle_accept (EvaHttpHeader *header,
 	       const char *value,
 	       gpointer data)
 {
   while (*value != '\0')
     {
-      GskHttpMediaTypeSet *media_type;
+      EvaHttpMediaTypeSet *media_type;
       const char *start;
       while (*value != '\0' && (isspace (*value) || *value == ','))
         value++;
@@ -1223,11 +1223,11 @@ strip_double_quotes (char *str)
 }
 
 static gboolean
-handle_if_match (GskHttpHeader *header,
+handle_if_match (EvaHttpHeader *header,
 		 const char *value,
 		 gpointer data)
 {
-  GskHttpRequest *request = EVA_HTTP_REQUEST (header);
+  EvaHttpRequest *request = EVA_HTTP_REQUEST (header);
   char **at;
   char **old_if_match = request->if_match;
   request->if_match = g_strsplit (value, ",", 0);
@@ -1240,18 +1240,18 @@ handle_if_match (GskHttpHeader *header,
 
 /* responses */
 static gboolean
-handle_set_cookie (GskHttpHeader *header,
+handle_set_cookie (EvaHttpHeader *header,
 		   const char *value,
 		   gpointer    data)
 {
   GSList *cookie_list = parse_cookies (value);
-  GskHttpResponse *response = EVA_HTTP_RESPONSE (header);
+  EvaHttpResponse *response = EVA_HTTP_RESPONSE (header);
   response->set_cookies = g_slist_concat (response->set_cookies, cookie_list);
   return cookie_list ? TRUE : FALSE;
 }
 
 static gboolean
-handle_age (GskHttpHeader *header,
+handle_age (EvaHttpHeader *header,
 	    const char *value,
 	    gpointer    data)
 {
@@ -1263,7 +1263,7 @@ handle_age (GskHttpHeader *header,
 }
 
 static gboolean
-handle_allow (GskHttpHeader *header,
+handle_allow (EvaHttpHeader *header,
 	      const char    *value,
 	      gpointer       data)
 {
@@ -1320,11 +1320,11 @@ handle_allow (GskHttpHeader *header,
 }
 
 static gboolean
-handle_expires        (GskHttpHeader *header,
+handle_expires        (EvaHttpHeader *header,
 		       const char *value,
 		       gpointer data)
 {
-  GskHttpResponse *response = EVA_HTTP_RESPONSE (header);
+  EvaHttpResponse *response = EVA_HTTP_RESPONSE (header);
   if (!eva_date_parse_timet (value, &response->expires, EVA_DATE_FORMAT_HTTP))
     {
       response->expires = (time_t)-1;
@@ -1334,11 +1334,11 @@ handle_expires        (GskHttpHeader *header,
 }
 
 static gboolean
-handle_content_md5sum (GskHttpHeader *header,
+handle_content_md5sum (EvaHttpHeader *header,
 		       const char *value,
 		       gpointer data)
 {
-  GskHttpResponse *response = EVA_HTTP_RESPONSE (header);
+  EvaHttpResponse *response = EVA_HTTP_RESPONSE (header);
 
   if (response->has_md5sum)
     return FALSE;
@@ -1372,8 +1372,8 @@ content_type_parse_token(const char **start_out,
 }
 
 gboolean eva_http_content_type_parse (const char *content_type_header,
-                                      GskHttpContentTypeParseFlags flags,
-                                      GskHttpContentTypeInfo *out,
+                                      EvaHttpContentTypeParseFlags flags,
+                                      EvaHttpContentTypeInfo *out,
                                       GError                **error)
 {
   const char *value = content_type_header;
@@ -1490,11 +1490,11 @@ gboolean eva_http_content_type_parse (const char *content_type_header,
 }
 
 static gboolean
-handle_content_type (GskHttpHeader *header,
+handle_content_type (EvaHttpHeader *header,
 		     const char *value,
 		     gpointer data)
 {
-  GskHttpContentTypeInfo type_info;
+  EvaHttpContentTypeInfo type_info;
   GError *error = NULL;
   GSList *addl = NULL;
   guint i;
@@ -1529,7 +1529,7 @@ handle_content_type (GskHttpHeader *header,
 }
 
 static gboolean
-handle_content_language (GskHttpHeader *header,
+handle_content_language (EvaHttpHeader *header,
 			 const char *value,
 			 gpointer data)
 {
@@ -1540,11 +1540,11 @@ handle_content_language (GskHttpHeader *header,
 }
 
 static gboolean
-handle_retry_after (GskHttpHeader *header,
+handle_retry_after (EvaHttpHeader *header,
 		    const char *value,
 		    gpointer data)
 {
-  GskHttpResponse *response = EVA_HTTP_RESPONSE (header);
+  EvaHttpResponse *response = EVA_HTTP_RESPONSE (header);
   if (response->has_retry_after)
     return FALSE;
   response->has_retry_after = 1;
@@ -1627,7 +1627,7 @@ is_key (const char *start, guint len, const char *str)
      &&  str[len] == '\0';
 }
 
-static GskHttpAuthenticate *
+static EvaHttpAuthenticate *
 eva_http_authenticate_parse (const char *value)
 {
   char *auth_scheme = NULL;
@@ -1640,7 +1640,7 @@ eva_http_authenticate_parse (const char *value)
   char *qop = NULL;
   const char *at = value;
   const char *start;
-  GskHttpAuthenticate *rv;
+  EvaHttpAuthenticate *rv;
 
   EVA_SKIP_WHITESPACE (at);
   if (*at == 0)
@@ -1708,7 +1708,7 @@ eva_http_authenticate_parse (const char *value)
   return rv;
 }
 
-static GskHttpAuthorization *
+static EvaHttpAuthorization *
 eva_http_authorization_parse (const char *value)
 {
   char *auth_scheme = NULL;
@@ -1724,7 +1724,7 @@ eva_http_authorization_parse (const char *value)
   char *entity_digest = NULL;
   const char *at = value;
   const char *start;
-  GskHttpAuthorization *rv;
+  EvaHttpAuthorization *rv;
 
   EVA_SKIP_WHITESPACE (at);
   if (*at == 0)
@@ -1812,12 +1812,12 @@ eva_http_authorization_parse (const char *value)
 }
 
 static gboolean
-handle_www_authenticate (GskHttpHeader *header,
+handle_www_authenticate (EvaHttpHeader *header,
 		         const char *value,
 		         gpointer data)
 {
 
-  GskHttpAuthenticate *auth = eva_http_authenticate_parse (value);
+  EvaHttpAuthenticate *auth = eva_http_authenticate_parse (value);
   if (auth == NULL)
     return FALSE;
   eva_http_response_set_authenticate (EVA_HTTP_RESPONSE (header), FALSE, auth);
@@ -1826,11 +1826,11 @@ handle_www_authenticate (GskHttpHeader *header,
 }
 
 static gboolean
-handle_authorization (GskHttpHeader *header,
+handle_authorization (EvaHttpHeader *header,
 		      const char *value,
 		      gpointer data)
 {
-  GskHttpAuthorization *auth = eva_http_authorization_parse (value);
+  EvaHttpAuthorization *auth = eva_http_authorization_parse (value);
   if (auth == NULL)
     return FALSE;
   eva_http_request_set_authorization (EVA_HTTP_REQUEST (header), FALSE, auth);
@@ -1868,34 +1868,34 @@ G_LOCK_DEFINE_STATIC (table_table);
  { name, parse_date, GUINT_TO_POINTER (G_STRUCT_OFFSET(struct, member)) }
 #define GENERIC_LINE_PARSER(name, func)		\
  { name, func, NULL }
-static GskHttpHeaderLineParser common_parsers[] =
+static EvaHttpHeaderLineParser common_parsers[] =
 {
   GENERIC_LINE_PARSER ("accept-ranges", handle_accept_ranges),
-  UINT64_LINE_PARSER ("content-length", GskHttpHeader, content_length),
+  UINT64_LINE_PARSER ("content-length", EvaHttpHeader, content_length),
   GENERIC_LINE_PARSER ("transfer-encoding", handle_transfer_encoding),
   GENERIC_LINE_PARSER ("content-encoding", handle_content_encoding),
   GENERIC_LINE_PARSER ("connection", handle_connection),
-  DATE_LINE_PARSER ("date", GskHttpHeader, date),
+  DATE_LINE_PARSER ("date", EvaHttpHeader, date),
   GENERIC_LINE_PARSER ("content-type", handle_content_type),
   GENERIC_LINE_PARSER ("content-language", handle_content_language),
   GENERIC_LINE_PARSER ("pragma", handle_pragma)
 };
 
-static GskHttpHeaderLineParser request_parsers[] =
+static EvaHttpHeaderLineParser request_parsers[] =
 {
-  UINT_LINE_PARSER ("max-forwards", GskHttpRequest, max_forwards),
-  UINT_LINE_PARSER ("keep-alive", GskHttpRequest, keep_alive_seconds),
-  DATE_LINE_PARSER ("if-modified-since", GskHttpRequest, if_modified_since),
-  STRING_LINE_PARSER ("host", GskHttpRequest, host),
-  STRING_LINE_PARSER ("referer", GskHttpRequest, referrer),
-  STRING_LINE_PARSER ("from", GskHttpRequest, from),
-  STRING_LINE_PARSER ("user-agent", GskHttpRequest, user_agent),
-  //STRING_LINE_PARSER ("authorization", GskHttpRequest, authorization.credentials),
+  UINT_LINE_PARSER ("max-forwards", EvaHttpRequest, max_forwards),
+  UINT_LINE_PARSER ("keep-alive", EvaHttpRequest, keep_alive_seconds),
+  DATE_LINE_PARSER ("if-modified-since", EvaHttpRequest, if_modified_since),
+  STRING_LINE_PARSER ("host", EvaHttpRequest, host),
+  STRING_LINE_PARSER ("referer", EvaHttpRequest, referrer),
+  STRING_LINE_PARSER ("from", EvaHttpRequest, from),
+  STRING_LINE_PARSER ("user-agent", EvaHttpRequest, user_agent),
+  //STRING_LINE_PARSER ("authorization", EvaHttpRequest, authorization.credentials),
   GENERIC_LINE_PARSER ("ua-pixels", handle_ua_pixels),
-  STRING_LINE_PARSER ("ua-color", GskHttpRequest, ua_color),
-  STRING_LINE_PARSER ("ua-language", GskHttpRequest, ua_language),
-  STRING_LINE_PARSER ("ua-os", GskHttpRequest, ua_os),
-  STRING_LINE_PARSER ("ua-cpu", GskHttpRequest, ua_cpu),
+  STRING_LINE_PARSER ("ua-color", EvaHttpRequest, ua_color),
+  STRING_LINE_PARSER ("ua-language", EvaHttpRequest, ua_language),
+  STRING_LINE_PARSER ("ua-os", EvaHttpRequest, ua_os),
+  STRING_LINE_PARSER ("ua-cpu", EvaHttpRequest, ua_cpu),
   GENERIC_LINE_PARSER ("cookie", handle_cookie),
   GENERIC_LINE_PARSER ("range", handle_range),
   GENERIC_LINE_PARSER ("accept-charset", handle_accept_charset),
@@ -1908,13 +1908,13 @@ static GskHttpHeaderLineParser request_parsers[] =
   GENERIC_LINE_PARSER ("authorization", handle_authorization),
 };
 
-static GskHttpHeaderLineParser response_parsers[] =
+static EvaHttpHeaderLineParser response_parsers[] =
 {
-  DATE_LINE_PARSER ("last-modified", GskHttpResponse, last_modified),
-  STRING_LINE_PARSER ("e-tag", GskHttpResponse, etag),
-  STRING_LINE_PARSER ("etag", GskHttpResponse, etag),/* encountered on the web */
-  STRING_LINE_PARSER ("location", GskHttpResponse, location),
-  STRING_LINE_PARSER ("server", GskHttpResponse, server),
+  DATE_LINE_PARSER ("last-modified", EvaHttpResponse, last_modified),
+  STRING_LINE_PARSER ("e-tag", EvaHttpResponse, etag),
+  STRING_LINE_PARSER ("etag", EvaHttpResponse, etag),/* encountered on the web */
+  STRING_LINE_PARSER ("location", EvaHttpResponse, location),
+  STRING_LINE_PARSER ("server", EvaHttpResponse, server),
   GENERIC_LINE_PARSER ("set-cookie", handle_set_cookie),
   GENERIC_LINE_PARSER ("content-range", handle_range),
   GENERIC_LINE_PARSER ("age", handle_age),
@@ -1931,7 +1931,7 @@ static GskHttpHeaderLineParser response_parsers[] =
  * @is_request: whether to get the parse table for request (versus for responses).
  *
  * Obtain a hash-table which maps lowercased HTTP header keys
- * to #GskHttpHeaderLineParser's.  There are different maps
+ * to #EvaHttpHeaderLineParser's.  There are different maps
  * for requests and responses.
  *
  * returns: the hash-table mapping, which is global and should not be freed.
@@ -1964,8 +1964,8 @@ eva_http_header_get_parser_table (gboolean is_request)
 }
 
 static void
-snip_between (GskBufferIterator *start,
-	      GskBufferIterator *end,
+snip_between (EvaBufferIterator *start,
+	      EvaBufferIterator *end,
               gsize *line_size,
 	      char **line_mem,
 	      gboolean *line_mem_from_stack)
@@ -2002,19 +2002,19 @@ snip_between (GskBufferIterator *start,
  *
  * returns: a new reference to the header.
  */
-GskHttpHeader  *
-eva_http_header_from_buffer (GskBuffer     *input,
+EvaHttpHeader  *
+eva_http_header_from_buffer (EvaBuffer     *input,
 			     gboolean       is_request,
-			     GskHttpParseFlags flags,
+			     EvaHttpParseFlags flags,
                              GError        **error)
 {
-  GskBufferIterator iterator;
-  GskBufferIterator newline;
+  EvaBufferIterator iterator;
+  EvaBufferIterator newline;
   gsize line_size = 4096;
   char *line_mem = g_alloca (line_size);
   gboolean line_mem_from_stack = TRUE;
   GType header_type;
-  GskHttpHeader *rv;
+  EvaHttpHeader *rv;
   GHashTable *parser_table;
   gboolean save_errors = ((flags & EVA_HTTP_PARSE_SAVE_ERRORS) != 0);
 
@@ -2076,7 +2076,7 @@ eva_http_header_from_buffer (GskBuffer     *input,
     {
       /* Assert:  newline == iterator */
       char *at, *colon;
-      GskHttpHeaderLineParser *parser;
+      EvaHttpHeaderLineParser *parser;
 
       if (!eva_buffer_iterator_find_char (&newline, '\n'))
 	ERROR_RETURN ();

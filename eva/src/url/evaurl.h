@@ -28,15 +28,15 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskUrl GskUrl;
-typedef struct _GskUrlClass GskUrlClass;
+typedef struct _EvaUrl EvaUrl;
+typedef struct _EvaUrlClass EvaUrlClass;
 
 /* --- type macros --- */
 GType eva_url_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_URL			(eva_url_get_type ())
-#define EVA_URL(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_URL, GskUrl))
-#define EVA_URL_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_URL, GskUrlClass))
-#define EVA_URL_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_URL, GskUrlClass))
+#define EVA_URL(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_URL, EvaUrl))
+#define EVA_URL_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_URL, EvaUrlClass))
+#define EVA_URL_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_URL, EvaUrlClass))
 #define EVA_IS_URL(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_URL))
 #define EVA_IS_URL_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_URL))
 
@@ -48,19 +48,19 @@ typedef enum
   EVA_URL_SCHEME_HTTPS,
   EVA_URL_SCHEME_FTP,
   EVA_URL_SCHEME_OTHER = 0x10000,
-} GskUrlScheme;
+} EvaUrlScheme;
 
 /* --- structures --- */
-struct _GskUrlClass
+struct _EvaUrlClass
 {
   GObjectClass                  parent_class;
 };
 
-struct _GskUrl
+struct _EvaUrl
 {
   GObject                       parent_instance;
 
-  GskUrlScheme			scheme;
+  EvaUrlScheme			scheme;
   char                         *scheme_name;
 
   /* The place where the resource can be obtained.
@@ -110,12 +110,12 @@ struct _GskUrl
 	"-_.!~*'()"
 
 /* --- public methods --- */
-GskUrl         *eva_url_new                 (const char      *spec,
+EvaUrl         *eva_url_new                 (const char      *spec,
 					     GError         **error);
-GskUrl         *eva_url_new_in_context      (const char      *spec,
-                                             GskUrlScheme     context,
+EvaUrl         *eva_url_new_in_context      (const char      *spec,
+                                             EvaUrlScheme     context,
 					     GError         **error);
-GskUrl         *eva_url_new_from_parts      (GskUrlScheme     scheme,
+EvaUrl         *eva_url_new_from_parts      (EvaUrlScheme     scheme,
 					     const char      *host,
 					     int              port,
 					     const char      *user_name,
@@ -123,24 +123,24 @@ GskUrl         *eva_url_new_from_parts      (GskUrlScheme     scheme,
 					     const char      *path,
 					     const char      *query,
 					     const char      *fragment);
-GskUrl         *eva_url_new_relative        (GskUrl          *base_url,
+EvaUrl         *eva_url_new_relative        (EvaUrl          *base_url,
 					     const char      *location,
 					     GError         **error);
 
-char           *eva_url_get_relative_path   (GskUrl          *url);
+char           *eva_url_get_relative_path   (EvaUrl          *url);
 
-guint           eva_url_get_port            (const GskUrl    *url);
+guint           eva_url_get_port            (const EvaUrl    *url);
 
 /* Url-encoding helper functions. */
 char           *eva_url_decode              (const char      *encoded);
 char           *eva_url_encode              (const char      *decoded);
 
 
-char           *eva_url_to_string           (const GskUrl    *url);
+char           *eva_url_to_string           (const EvaUrl    *url);
 
-guint           eva_url_hash                (const GskUrl    *url);
-gboolean        eva_url_equal               (const GskUrl    *a,
-                                             const GskUrl    *b);
+guint           eva_url_hash                (const EvaUrl    *url);
+gboolean        eva_url_equal               (const EvaUrl    *a,
+                                             const EvaUrl    *b);
 
 /* These do what is typically thought of
  * as "url encoding" in http-land... namely SPACE maps to '+'
@@ -175,44 +175,44 @@ gboolean eva_url_is_valid_hostname          (const char *str,
 	eva_url_is_valid_generic_component(str, bad_char_out)
 
 /* Downloading URLs */
-typedef void (*GskUrlSuccess) (GskStream        *stream,
+typedef void (*EvaUrlSuccess) (EvaStream        *stream,
 			       gpointer          user_data);
-typedef void (*GskUrlFailure) (GError           *error,
+typedef void (*EvaUrlFailure) (GError           *error,
 			       gpointer          user_data);
-void           eva_url_download             (GskUrl          *url,
-					     GskUrlSuccess    success_func,
-					     GskUrlFailure    failure_func,
+void           eva_url_download             (EvaUrl          *url,
+					     EvaUrlSuccess    success_func,
+					     EvaUrlFailure    failure_func,
 					     gpointer         user_data);
 
 /* --- protected methods --- */
 /* Allocating new url schemes. */
-typedef GskUrl *(*GskUrlParser) (GskUrlScheme     scheme,
+typedef EvaUrl *(*EvaUrlParser) (EvaUrlScheme     scheme,
 				 const char      *url,
 				 gpointer         data);
-typedef char   *(*GskUrlToString) (GskUrl        *url,
+typedef char   *(*EvaUrlToString) (EvaUrl        *url,
 				   gpointer       data);
-GskUrlScheme    eva_url_scheme_get_unique   (const char      *url_scheme,
+EvaUrlScheme    eva_url_scheme_get_unique   (const char      *url_scheme,
 					     guint            default_port,
-					     GskUrlParser     parse_func,
-					     GskUrlToString   print_func,
+					     EvaUrlParser     parse_func,
+					     EvaUrlToString   print_func,
 					     gpointer         data);
 
 /* registering new download methods */
-typedef struct _GskUrlDownload GskUrlDownload;
-typedef void  (*GskUrlDownloadMethod)       (GskUrlDownload  *download,
+typedef struct _EvaUrlDownload EvaUrlDownload;
+typedef void  (*EvaUrlDownloadMethod)       (EvaUrlDownload  *download,
 					     gpointer         download_data);
-void            eva_url_scheme_add_dl_method(GskUrlScheme     scheme,
-					     GskUrlDownloadMethod download_method,
+void            eva_url_scheme_add_dl_method(EvaUrlScheme     scheme,
+					     EvaUrlDownloadMethod download_method,
 					     gpointer         download_data);
 
 /* protected: (called (eventually) by DownloadMethod) */
-void            eva_url_download_success    (GskUrlDownload  *download,
-			                     GskStream       *stream);
-void            eva_url_download_fail       (GskUrlDownload  *download,
+void            eva_url_download_success    (EvaUrlDownload  *download,
+			                     EvaStream       *stream);
+void            eva_url_download_fail       (EvaUrlDownload  *download,
 			                     GError          *error);
-GskUrl         *eva_url_download_peek_url   (GskUrlDownload  *download);
-void            eva_url_download_redirect   (GskUrlDownload  *download,
-					     GskUrl          *new_url);
+EvaUrl         *eva_url_download_peek_url   (EvaUrlDownload  *download);
+void            eva_url_download_redirect   (EvaUrlDownload  *download,
+					     EvaUrl          *new_url);
 
 /*< private >*/
 gboolean eva_url_is_valid_generic_component (const char *str,

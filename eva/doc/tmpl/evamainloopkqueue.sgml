@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskMainLoopKqueue
+EvaMainLoopKqueue
 
 <!-- ##### SECTION Short_Description ##### -->
 a kqueue-based event loop.
@@ -18,7 +18,7 @@ a generic event filter for BSD.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskMainLoopKqueue ##### -->
+<!-- ##### STRUCT EvaMainLoopKqueue ##### -->
 <para>
 The kqueue(2)-based main-loop.
 </para>

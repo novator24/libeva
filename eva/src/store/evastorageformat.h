@@ -2,7 +2,7 @@
 #define __EVA_STORAGE_FORMAT_H_
 
 /*
- * GskStorageFormat -- interface for things that can serialize/deserialize
+ * EvaStorageFormat -- interface for things that can serialize/deserialize
  * values to/from streams.
  */
 
@@ -11,8 +11,8 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskStorageFormatIface GskStorageFormatIface;
-typedef struct _GskStorageFormat      GskStorageFormat;
+typedef struct _EvaStorageFormatIface EvaStorageFormatIface;
+typedef struct _EvaStorageFormat      EvaStorageFormat;
 
 GType eva_storage_format_get_type (void) G_GNUC_CONST;
 
@@ -20,30 +20,30 @@ GType eva_storage_format_get_type (void) G_GNUC_CONST;
 #define EVA_STORAGE_FORMAT(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
 			       EVA_TYPE_STORAGE_FORMAT, \
-			       GskStorageFormat))
+			       EvaStorageFormat))
 #define EVA_STORAGE_FORMAT_GET_IFACE(obj) \
   (G_TYPE_INSTANCE_GET_INTERFACE ((obj), \
 				  EVA_TYPE_STORAGE_FORMAT, \
-				  GskStorageFormatIface))
+				  EvaStorageFormatIface))
 #define EVA_IS_STORAGE_FORMAT(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STORAGE_FORMAT))
 
-struct _GskStorageFormatIface
+struct _EvaStorageFormatIface
 {
   GTypeInterface base_iface;
 
   /* Return a read-only stream that can be deserialized into an
    * equivalent value.
    */
-  GskStream *       (*serialize)   (GskStorageFormat  *format,
+  EvaStream *       (*serialize)   (EvaStorageFormat  *format,
 				    const GValue      *value,
 				    GError           **error);
 
   /* Return a request to deserialize a value of type value_type from
    * a read-only stream.
    */
-  GskValueRequest * (*deserialize) (GskStorageFormat  *format,
-				    GskStream         *stream,
+  EvaValueRequest * (*deserialize) (EvaStorageFormat  *format,
+				    EvaStream         *stream,
 				    GType              value_type,
 				    GError           **error);
 };
@@ -53,12 +53,12 @@ struct _GskStorageFormatIface
  */
 
 G_INLINE_FUNC
-GskStream *       eva_storage_format_serialize   (gpointer       format,
+EvaStream *       eva_storage_format_serialize   (gpointer       format,
 						  const GValue  *value,
 						  GError       **error);
 G_INLINE_FUNC
-GskValueRequest * eva_storage_format_deserialize (gpointer       format,
-						  GskStream     *stream,
+EvaValueRequest * eva_storage_format_deserialize (gpointer       format,
+						  EvaStream     *stream,
 						  GType          value_type,
 						  GError       **error);
 
@@ -68,12 +68,12 @@ GskValueRequest * eva_storage_format_deserialize (gpointer       format,
 
 #if defined (G_CAN_INLINE) || defined (__EVA_STORAGE_FORMAT_C__)
 
-G_INLINE_FUNC GskStream *
+G_INLINE_FUNC EvaStream *
 eva_storage_format_serialize (gpointer       format,
 			      const GValue  *value,
 			      GError       **error)
 {
-  GskStorageFormatIface *iface;
+  EvaStorageFormatIface *iface;
 
   g_return_val_if_fail (format, NULL);
   g_return_val_if_fail (EVA_IS_STORAGE_FORMAT (format), NULL);
@@ -84,13 +84,13 @@ eva_storage_format_serialize (gpointer       format,
   return (*iface->serialize) (EVA_STORAGE_FORMAT (format), value, error);
 }
 
-G_INLINE_FUNC GskValueRequest *
+G_INLINE_FUNC EvaValueRequest *
 eva_storage_format_deserialize (gpointer    format,
-				GskStream  *stream,
+				EvaStream  *stream,
 				GType       value_type,
 				GError    **error)
 {
-  GskStorageFormatIface *iface;
+  EvaStorageFormatIface *iface;
 
   g_return_val_if_fail (format, NULL);
   g_return_val_if_fail (EVA_IS_STORAGE_FORMAT (format), NULL);

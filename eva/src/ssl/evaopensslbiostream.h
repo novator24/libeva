@@ -12,7 +12,7 @@ G_BEGIN_DECLS
  * and data written to the bio causes the stream to be readable.
  */
 gboolean eva_openssl_bio_stream_pair (BIO             **bio_out,
-                                      GskBufferStream **stream_out);
+                                      EvaBufferStream **stream_out);
 
 G_END_DECLS
 

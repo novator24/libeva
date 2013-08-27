@@ -76,7 +76,7 @@ enum
 /* --- functions --- */
 
 static inline void
-update_idle_notify_writeable (GskMimeMultipartDecoder *multipart_decoder)
+update_idle_notify_writeable (EvaMimeMultipartDecoder *multipart_decoder)
 {
   gboolean is_writable;
   if (multipart_decoder->feed_stream != NULL)
@@ -95,18 +95,18 @@ update_idle_notify_writeable (GskMimeMultipartDecoder *multipart_decoder)
 }
 
 static void
-eva_mime_multipart_decoder_set_poll_write  (GskIO      *io,
+eva_mime_multipart_decoder_set_poll_write  (EvaIO      *io,
 			            gboolean    do_poll)
 {
-  GskMimeMultipartDecoder *multipart_decoder = EVA_MIME_MULTIPART_DECODER (io);
+  EvaMimeMultipartDecoder *multipart_decoder = EVA_MIME_MULTIPART_DECODER (io);
   g_assert (do_poll == eva_hook_get_last_poll_state (EVA_IO_WRITE_HOOK (io)));
   update_idle_notify_writeable (multipart_decoder);
 }
 
 static gboolean
-eva_mime_multipart_decoder_shutdown_write (GskIO *io, GError **error)
+eva_mime_multipart_decoder_shutdown_write (EvaIO *io, GError **error)
 {
-  GskMimeMultipartDecoder *decoder = EVA_MIME_MULTIPART_DECODER (io);
+  EvaMimeMultipartDecoder *decoder = EVA_MIME_MULTIPART_DECODER (io);
   decoder->is_shutdown = 1;
   if (decoder->n_pieces_alloced == decoder->n_pieces_obtained)
     {
@@ -142,8 +142,8 @@ state_to_string (guint state)
 #endif
 
 static inline void
-raw_append_to_list (GskMimeMultipartDecoder *decoder,
-		    GskMimeMultipartPiece   *piece)
+raw_append_to_list (EvaMimeMultipartDecoder *decoder,
+		    EvaMimeMultipartPiece   *piece)
 {
       decoder->last_piece = g_slist_append (decoder->last_piece, piece);
       if (decoder->first_piece)
@@ -153,8 +153,8 @@ raw_append_to_list (GskMimeMultipartDecoder *decoder,
 }
 
 static void
-append_to_list (GskMimeMultipartDecoder  *decoder,
-		GskMimeMultipartPiece    *piece,
+append_to_list (EvaMimeMultipartDecoder  *decoder,
+		EvaMimeMultipartPiece    *piece,
 		guint                     piece_index)
 {
   eva_mime_multipart_piece_ref (piece);
@@ -203,9 +203,9 @@ append_to_list (GskMimeMultipartDecoder  *decoder,
    shutting down the multipart_decoder hook if or when first_piece is empty. 
  */
 static gboolean
-feed_buffer_into_feed_stream (GskMimeMultipartDecoder *multipart_decoder)
+feed_buffer_into_feed_stream (EvaMimeMultipartDecoder *multipart_decoder)
 {
-  GskBufferIterator iterator;
+  EvaBufferIterator iterator;
 
   /* The number of bytes to feed into feed-stream. */
   guint n_pending = 0;
@@ -289,7 +289,7 @@ feed_buffer_into_feed_stream (GskMimeMultipartDecoder *multipart_decoder)
 
   if (n_pending > 0)
     {
-      GskBufferStream *feed = EVA_BUFFER_STREAM (multipart_decoder->feed_stream);
+      EvaBufferStream *feed = EVA_BUFFER_STREAM (multipart_decoder->feed_stream);
       eva_io_mark_is_readable (feed);
       if (multipart_decoder->swallowed_crlf)
 	eva_buffer_append (eva_buffer_stream_peek_read_buffer (feed), "\r\n", 2);
@@ -357,14 +357,14 @@ feed_buffer_into_feed_stream (GskMimeMultipartDecoder *multipart_decoder)
 typedef struct _PieceDecoder PieceDecoder;
 struct _PieceDecoder
 {
-  GskMimeMultipartDecoder *decoder;
-  GskMimeMultipartPiece *piece;
+  EvaMimeMultipartDecoder *decoder;
+  EvaMimeMultipartPiece *piece;
   guint piece_index;
 };
 
 static PieceDecoder *
-piece_decoder_alloc (GskMimeMultipartDecoder *decoder,
-		     GskMimeMultipartPiece *piece,
+piece_decoder_alloc (EvaMimeMultipartDecoder *decoder,
+		     EvaMimeMultipartPiece *piece,
 		     guint piece_index)
 {
   PieceDecoder *rv = g_new (PieceDecoder, 1);
@@ -375,7 +375,7 @@ piece_decoder_alloc (GskMimeMultipartDecoder *decoder,
 }
 
 static void
-handle_mime_piece_done (GskBuffer *buffer, gpointer data)
+handle_mime_piece_done (EvaBuffer *buffer, gpointer data)
 {
   PieceDecoder *pd = data;
   gpointer slab;
@@ -400,12 +400,12 @@ piece_decoder_free (PieceDecoder *pd)
    
    Returns FALSE if an error occurred */
 static gboolean
-done_header (GskMimeMultipartDecoder *multipart_decoder)
+done_header (EvaMimeMultipartDecoder *multipart_decoder)
 {
   /* Define the stack of streams which
      data can be written into. */
-  GskBufferStream *feed_stream;
-  GskStream *write_end, *read_end;
+  EvaBufferStream *feed_stream;
+  EvaStream *write_end, *read_end;
   GError *error = NULL;
   const char *transfer_encoding = multipart_decoder->current_piece->transfer_encoding;
 
@@ -438,7 +438,7 @@ done_header (GskMimeMultipartDecoder *multipart_decoder)
 
   if (multipart_decoder->mode == EVA_MIME_MULTIPART_DECODER_MODE_ALWAYS_MEMORY)
     {
-      GskStream *sink;
+      EvaStream *sink;
       PieceDecoder *data;
       data = piece_decoder_alloc (multipart_decoder,
 				  multipart_decoder->current_piece,
@@ -480,11 +480,11 @@ done_header (GskMimeMultipartDecoder *multipart_decoder)
 
    The part-available hook is invoked, if appropriate. */
 static gboolean
-parse_header_line (GskMimeMultipartDecoder *multipart_decoder,
+parse_header_line (EvaMimeMultipartDecoder *multipart_decoder,
 		   const char       *line,
 		   GError          **error)
 {
-  GskMimeMultipartPiece *piece;
+  EvaMimeMultipartPiece *piece;
   if (multipart_decoder->current_piece == NULL)
     {
       multipart_decoder->current_piece = eva_mime_multipart_piece_alloc ();
@@ -635,7 +635,7 @@ parse_header_line (GskMimeMultipartDecoder *multipart_decoder,
 }
 
 static void
-multipart_decoder_process_buffer (GskMimeMultipartDecoder *multipart_decoder,
+multipart_decoder_process_buffer (EvaMimeMultipartDecoder *multipart_decoder,
 			  GError          **error)
 {
   char buf[4096];
@@ -743,23 +743,23 @@ multipart_decoder_process_buffer (GskMimeMultipartDecoder *multipart_decoder,
 
 /* TODO: optimize for zero-copy in the large-content-body case */
 static guint
-eva_mime_multipart_decoder_raw_write  (GskStream     *stream,
+eva_mime_multipart_decoder_raw_write  (EvaStream     *stream,
 			       gconstpointer  data,
 			       guint          length,
 			       GError       **error)
 {
-  GskMimeMultipartDecoder *multipart_decoder = EVA_MIME_MULTIPART_DECODER (stream);
+  EvaMimeMultipartDecoder *multipart_decoder = EVA_MIME_MULTIPART_DECODER (stream);
   eva_buffer_append (&multipart_decoder->buffer, data, length);
   multipart_decoder_process_buffer (multipart_decoder, error);
   return length;
 }
 
 static guint
-eva_mime_multipart_decoder_raw_write_buffer(GskStream    *stream,
-			            GskBuffer    *buffer,
+eva_mime_multipart_decoder_raw_write_buffer(EvaStream    *stream,
+			            EvaBuffer    *buffer,
 			            GError      **error)
 {
-  GskMimeMultipartDecoder *multipart_decoder = EVA_MIME_MULTIPART_DECODER (stream);
+  EvaMimeMultipartDecoder *multipart_decoder = EVA_MIME_MULTIPART_DECODER (stream);
   unsigned rv = eva_buffer_drain (&multipart_decoder->buffer, buffer);
   multipart_decoder_process_buffer (multipart_decoder, error);
   // XXX: if *error, return 0 ???
@@ -767,10 +767,10 @@ eva_mime_multipart_decoder_raw_write_buffer(GskStream    *stream,
 }
 
 static void
-eva_mime_multipart_decoder_init (GskMimeMultipartDecoder *mime_multipart_decoder)
+eva_mime_multipart_decoder_init (EvaMimeMultipartDecoder *mime_multipart_decoder)
 {
   EVA_HOOK_INIT (mime_multipart_decoder,
-		 GskMimeMultipartDecoder,
+		 EvaMimeMultipartDecoder,
 		 new_part_available,
 		 EVA_HOOK_CAN_HAVE_SHUTDOWN_ERROR,
 		 set_poll_new_part, shutdown_new_part);
@@ -789,12 +789,12 @@ unref_piece_value (gpointer key, gpointer value, gpointer data)
 static void
 eva_mime_multipart_decoder_finalize (GObject *object)
 {
-  GskMimeMultipartDecoder *decoder = EVA_MIME_MULTIPART_DECODER (object);
+  EvaMimeMultipartDecoder *decoder = EVA_MIME_MULTIPART_DECODER (object);
   eva_hook_destruct (_EVA_MIME_MULTIPART_DECODER_HOOK (decoder));
   eva_buffer_destruct (&decoder->buffer);
   while (decoder->first_piece != NULL)
     {
-      GskMimeMultipartPiece *piece = decoder->first_piece->data;
+      EvaMimeMultipartPiece *piece = decoder->first_piece->data;
       decoder->first_piece = g_slist_remove (decoder->first_piece, piece);
 
       eva_mime_multipart_piece_unref (piece);
@@ -811,18 +811,18 @@ eva_mime_multipart_decoder_finalize (GObject *object)
 }
 
 static void
-eva_mime_multipart_decoder_class_init (GskMimeMultipartDecoderClass *class)
+eva_mime_multipart_decoder_class_init (EvaMimeMultipartDecoderClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
-  GskIOClass *io_class = EVA_IO_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
   object_class->finalize = eva_mime_multipart_decoder_finalize;
   io_class->set_poll_write = eva_mime_multipart_decoder_set_poll_write;
   io_class->shutdown_write = eva_mime_multipart_decoder_shutdown_write;
   stream_class->raw_write = eva_mime_multipart_decoder_raw_write;
   stream_class->raw_write_buffer = eva_mime_multipart_decoder_raw_write_buffer;
-  EVA_HOOK_CLASS_INIT (object_class, "new-part-available", GskMimeMultipartDecoder, new_part_available);
+  EVA_HOOK_CLASS_INIT (object_class, "new-part-available", EvaMimeMultipartDecoder, new_part_available);
 }
 
 GType eva_mime_multipart_decoder_get_type()
@@ -832,19 +832,19 @@ GType eva_mime_multipart_decoder_get_type()
     {
       static const GTypeInfo mime_multipart_decoder_info =
       {
-	sizeof(GskMimeMultipartDecoderClass),
+	sizeof(EvaMimeMultipartDecoderClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_mime_multipart_decoder_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMimeMultipartDecoder),
+	sizeof (EvaMimeMultipartDecoder),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_mime_multipart_decoder_init,
 	NULL		/* value_table */
       };
       mime_multipart_decoder_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskMimeMultipartDecoder",
+                                                  "EvaMimeMultipartDecoder",
 						  &mime_multipart_decoder_info, 0);
     }
   return mime_multipart_decoder_type;
@@ -856,13 +856,13 @@ GType eva_mime_multipart_decoder_get_type()
  * with the Content-Type field.
  *
  * Allocate a new MIME multipart decoder,
- * which is a write-only #GskStream
+ * which is a write-only #EvaStream
  * that converts to a stream of individual pieces.
  */
-GskMimeMultipartDecoder      *
+EvaMimeMultipartDecoder      *
 eva_mime_multipart_decoder_new         (char **kv_pairs)
 {
-  GskMimeMultipartDecoder *rv = g_object_new (EVA_TYPE_MIME_MULTIPART_DECODER, NULL);
+  EvaMimeMultipartDecoder *rv = g_object_new (EVA_TYPE_MIME_MULTIPART_DECODER, NULL);
   unsigned i;
   for (i = 0; kv_pairs[i] != NULL; i += 2)
     {
@@ -911,10 +911,10 @@ eva_mime_multipart_decoder_new         (char **kv_pairs)
  * eva_mime_multipart_piece_unref(), or NULL if there
  * is no remaining piece.
  */
-GskMimeMultipartPiece *
-eva_mime_multipart_decoder_get_piece (GskMimeMultipartDecoder *decoder)
+EvaMimeMultipartPiece *
+eva_mime_multipart_decoder_get_piece (EvaMimeMultipartDecoder *decoder)
 {
-  GskMimeMultipartPiece *piece;
+  EvaMimeMultipartPiece *piece;
   if (decoder->first_piece == NULL)
     return NULL;
   piece = decoder->first_piece->data;
@@ -951,8 +951,8 @@ eva_mime_multipart_decoder_get_piece (GskMimeMultipartDecoder *decoder)
  * changing modes midstream, for when we know the
  * order of the content. */
 void
-eva_mime_multipart_decoder_set_mode (GskMimeMultipartDecoder *decoder,
-				     GskMimeMultipartDecoderMode mode)
+eva_mime_multipart_decoder_set_mode (EvaMimeMultipartDecoder *decoder,
+				     EvaMimeMultipartDecoderMode mode)
 {
   decoder->mode = mode;
 }

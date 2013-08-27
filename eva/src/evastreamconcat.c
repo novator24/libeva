@@ -1,15 +1,15 @@
 #include "evastreamqueue.h"
 #include "evastreamconcat.h"
 
-GskStream *
-eva_streams_concat_and_unref (GskStream *stream0,
+EvaStream *
+eva_streams_concat_and_unref (EvaStream *stream0,
 			      ...)
 {
-  GskStreamQueue *queue = eva_stream_queue_new (TRUE, FALSE);
-  GskStream *stream;
+  EvaStreamQueue *queue = eva_stream_queue_new (TRUE, FALSE);
+  EvaStream *stream;
   va_list args;
   va_start (args, stream0);
-  for (stream = stream0; stream != NULL; stream = va_arg (args, GskStream *))
+  for (stream = stream0; stream != NULL; stream = va_arg (args, EvaStream *))
     {
       eva_stream_queue_append_read_stream (queue, stream);
       g_object_unref (stream);
@@ -19,11 +19,11 @@ eva_streams_concat_and_unref (GskStream *stream0,
   return EVA_STREAM (queue);
 }
 
-GskStream *
+EvaStream *
 eva_streams_concat_v       (unsigned    n_streams,
-                            GskStream **streams)
+                            EvaStream **streams)
 {
-  GskStreamQueue *queue = eva_stream_queue_new (TRUE, FALSE);
+  EvaStreamQueue *queue = eva_stream_queue_new (TRUE, FALSE);
   unsigned i;
   for (i = 0; i < n_streams; i++)
     eva_stream_queue_append_read_stream (queue, streams[i]);

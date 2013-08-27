@@ -33,22 +33,22 @@ struct _DecoderInfo
 {
   GQueue *pieces;
   gboolean shutdown;
-  GskMimeMultipartDecoder *decoder;
+  EvaMimeMultipartDecoder *decoder;
 };
 
 static gboolean
-handle_new_piece_available (GskMimeMultipartDecoder *decoder,
+handle_new_piece_available (EvaMimeMultipartDecoder *decoder,
 			    gpointer data)
 {
   DecoderInfo *info = data;
-  GskMimeMultipartPiece *piece = eva_mime_multipart_decoder_get_piece (decoder);
+  EvaMimeMultipartPiece *piece = eva_mime_multipart_decoder_get_piece (decoder);
   g_assert (info->decoder == decoder);
   if (piece != NULL)
     g_queue_push_tail (info->pieces, piece);
   return TRUE;
 }
 static gboolean
-handle_new_piece_shutdown (GskMimeMultipartDecoder *decoder, gpointer data)
+handle_new_piece_shutdown (EvaMimeMultipartDecoder *decoder, gpointer data)
 {
   DecoderInfo *info = data;
   g_assert (info->decoder == decoder);
@@ -59,7 +59,7 @@ handle_new_piece_shutdown (GskMimeMultipartDecoder *decoder, gpointer data)
 static void
 add_piece_to_encoder (gpointer mime_piece, gpointer data)
 {
-  GskMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (data);
+  EvaMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (data);
   GError *error = NULL;
   if (!eva_mime_multipart_encoder_add_part (encoder, mime_piece, &error))
     g_error ("encoder-add-part: %s", error->message);
@@ -68,8 +68,8 @@ add_piece_to_encoder (gpointer mime_piece, gpointer data)
 void
 test_with_pieces (GSList *pieces)
 {
-  GskMimeMultipartEncoder *encoder;
-  GskMimeMultipartDecoder *decoder;
+  EvaMimeMultipartEncoder *encoder;
+  EvaMimeMultipartDecoder *decoder;
   char *options[3];
   DecoderInfo decoder_info;
 
@@ -84,7 +84,7 @@ test_with_pieces (GSList *pieces)
     GSList *tmp;
     for (tmp = pieces; tmp != NULL; tmp = tmp->next)
       {
-	GskMimeMultipartPiece *piece = tmp->data;
+	EvaMimeMultipartPiece *piece = tmp->data;
 	g_assert (piece->is_memory);
       }
   }
@@ -117,8 +117,8 @@ test_with_pieces (GSList *pieces)
 
   while (pieces != NULL)
     {
-      GskMimeMultipartPiece *orig_piece = pieces->data;
-      GskMimeMultipartPiece *out_piece = g_queue_pop_head (decoder_info.pieces);
+      EvaMimeMultipartPiece *orig_piece = pieces->data;
+      EvaMimeMultipartPiece *out_piece = g_queue_pop_head (decoder_info.pieces);
       pieces = g_slist_remove (pieces, orig_piece);
 
       /* Compute various aspects of orig_piece/out_piece. */
@@ -169,10 +169,10 @@ rand_nice_str (char *buf, guint len)
   buf[len] = 0;
 }
 
-static GskMimeMultipartPiece *
+static EvaMimeMultipartPiece *
 make_random_piece (void)
 {
-  GskMimeMultipartPiece *piece = eva_mime_multipart_piece_alloc ();
+  EvaMimeMultipartPiece *piece = eva_mime_multipart_piece_alloc ();
   guint r = rand () / (RAND_MAX / 3 + 1);
   gboolean no_hyphen_prefix = FALSE;
   const char *transfer_enc = NULL;

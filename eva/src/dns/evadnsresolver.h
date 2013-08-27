@@ -8,71 +8,71 @@ G_BEGIN_DECLS
 
 GType eva_dns_resolver_get_type () G_GNUC_CONST;
 #define EVA_TYPE_DNS_RESOLVER		(eva_dns_resolver_get_type ())
-#define EVA_DNS_RESOLVER(o)		(G_TYPE_CHECK_INSTANCE_CAST(o, EVA_TYPE_DNS_RESOLVER, GskDnsResolver))
-#define EVA_DNS_RESOLVER_GET_IFACE(o)	(G_TYPE_INSTANCE_GET_INTERFACE((o), EVA_TYPE_DNS_RESOLVER, GskDnsResolverIface))
+#define EVA_DNS_RESOLVER(o)		(G_TYPE_CHECK_INSTANCE_CAST(o, EVA_TYPE_DNS_RESOLVER, EvaDnsResolver))
+#define EVA_DNS_RESOLVER_GET_IFACE(o)	(G_TYPE_INSTANCE_GET_INTERFACE((o), EVA_TYPE_DNS_RESOLVER, EvaDnsResolverIface))
 #define EVA_IS_DNS_RESOLVER(o)		(G_TYPE_CHECK_INSTANCE_TYPE((o), EVA_TYPE_DNS_RESOLVER))
 
-typedef struct _GskDnsResolverHints GskDnsResolverHints;
-typedef struct _GskDnsResolverIface GskDnsResolverIface;
-typedef struct _GskDnsResolver GskDnsResolver;
-typedef struct _GskDnsResolverTask GskDnsResolverTask;
+typedef struct _EvaDnsResolverHints EvaDnsResolverHints;
+typedef struct _EvaDnsResolverIface EvaDnsResolverIface;
+typedef struct _EvaDnsResolver EvaDnsResolver;
+typedef struct _EvaDnsResolverTask EvaDnsResolverTask;
 
-typedef void (*GskDnsResolverLookupFunc)   (GskSocketAddress   *address,
+typedef void (*EvaDnsResolverLookupFunc)   (EvaSocketAddress   *address,
 				            gpointer            func_data);
-typedef void (*GskDnsResolverRevLookupFunc)(const char         *name,
+typedef void (*EvaDnsResolverRevLookupFunc)(const char         *name,
 				            gpointer            func_data);
-typedef void (*GskDnsResolverResponseFunc) (GSList             *answers,
+typedef void (*EvaDnsResolverResponseFunc) (GSList             *answers,
 					    GSList             *authority,
 					    GSList             *additional,
 					    GSList             *neg_questions,
 					    gpointer            func_data);
-typedef void (*GskDnsResolverFailFunc)     (GError             *error,
+typedef void (*EvaDnsResolverFailFunc)     (GError             *error,
 				            gpointer            func_data);
 
-struct _GskDnsResolverHints
+struct _EvaDnsResolverHints
 {
-  GskSocketAddress       *address;
+  EvaSocketAddress       *address;
 };
 
-struct _GskDnsResolverIface
+struct _EvaDnsResolverIface
 {
   GTypeInterface base_iface;
-  gpointer            (*resolve) (GskDnsResolver               *resolver,
+  gpointer            (*resolve) (EvaDnsResolver               *resolver,
 				  gboolean                      recursive,
 				  GSList                       *dns_questions,
-				  GskDnsResolverResponseFunc    func,
-				  GskDnsResolverFailFunc        on_fail,
+				  EvaDnsResolverResponseFunc    func,
+				  EvaDnsResolverFailFunc        on_fail,
 				  gpointer                      func_data,
 				  GDestroyNotify                destroy,
-				  GskDnsResolverHints          *optional_hints);
-  void                (*cancel)  (GskDnsResolver               *resolver,
+				  EvaDnsResolverHints          *optional_hints);
+  void                (*cancel)  (EvaDnsResolver               *resolver,
 				  gpointer                      task);
 };
 
-GskDnsResolverTask *eva_dns_resolver_resolve (GskDnsResolver        *resolver,
+EvaDnsResolverTask *eva_dns_resolver_resolve (EvaDnsResolver        *resolver,
 					      gboolean               recursive,
 				              GSList                *dns_questions,
-				              GskDnsResolverResponseFunc func,
-				              GskDnsResolverFailFunc on_fail,
+				              EvaDnsResolverResponseFunc func,
+				              EvaDnsResolverFailFunc on_fail,
 				              gpointer               func_data,
                                               GDestroyNotify         destroy,
-					      GskDnsResolverHints   *hints);
-void            eva_dns_resolver_cancel      (GskDnsResolver        *resolver,
-					      GskDnsResolverTask    *task);
+					      EvaDnsResolverHints   *hints);
+void            eva_dns_resolver_cancel      (EvaDnsResolver        *resolver,
+					      EvaDnsResolverTask    *task);
 
 /* helper functions to use this interface to do simple DNS lookups */
 /* TODO: ipv6 support */
-GskDnsResolverTask *eva_dns_resolver_lookup  (GskDnsResolver        *resolver,
+EvaDnsResolverTask *eva_dns_resolver_lookup  (EvaDnsResolver        *resolver,
 				              const char            *name,
-				              GskDnsResolverLookupFunc func,
-				              GskDnsResolverFailFunc on_fail,
+				              EvaDnsResolverLookupFunc func,
+				              EvaDnsResolverFailFunc on_fail,
 				              gpointer               func_data,
 				              GDestroyNotify         destroy);
-GskDnsResolverTask *eva_dns_resolver_rev_lookup 
-                                             (GskDnsResolver        *resolver,
+EvaDnsResolverTask *eva_dns_resolver_rev_lookup 
+                                             (EvaDnsResolver        *resolver,
 				              const char            *name,
-				              GskDnsResolverRevLookupFunc func,
-				              GskDnsResolverFailFunc on_fail,
+				              EvaDnsResolverRevLookupFunc func,
+				              EvaDnsResolverFailFunc on_fail,
 				              gpointer               func_data,
 				              GDestroyNotify         destroy);
 

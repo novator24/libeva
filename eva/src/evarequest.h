@@ -2,48 +2,48 @@
 #define __EVA_REQUEST_H_
 
 /*
- * GskRequest: abstract base class for asynchronous, cancellable requests.
+ * EvaRequest: abstract base class for asynchronous, cancellable requests.
  */
 
 #include <glib-object.h>
 
 G_BEGIN_DECLS
 
-typedef struct _GskRequestClass GskRequestClass;
-typedef struct _GskRequest      GskRequest;
+typedef struct _EvaRequestClass EvaRequestClass;
+typedef struct _EvaRequest      EvaRequest;
 
 GType eva_request_get_type (void) G_GNUC_CONST;
 
 #define EVA_TYPE_REQUEST (eva_request_get_type ())
 #define EVA_REQUEST(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_REQUEST, GskRequest))
+  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_REQUEST, EvaRequest))
 #define EVA_REQUEST_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_REQUEST, GskRequestClass))
+  (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_REQUEST, EvaRequestClass))
 #define EVA_REQUEST_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_REQUEST, GskRequestClass))
+  (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_REQUEST, EvaRequestClass))
 #define EVA_IS_REQUEST(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_REQUEST))
 #define EVA_IS_REQUEST_CLASS(klass) \
   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_REQUEST))
 
-struct _GskRequestClass 
+struct _EvaRequestClass 
 {
   GObjectClass object_class;
 
   /* --- signals --- */
 
   /* Emitted when request is done (whether successful or not). */
-  void  (*done)      (GskRequest *request);
+  void  (*done)      (EvaRequest *request);
 
   /* Emitted when request is cancelled. */
-  void  (*cancelled) (GskRequest *request);
+  void  (*cancelled) (EvaRequest *request);
 
   /* --- virtuals --- */
 
-  void  (*start)     (GskRequest *request);
+  void  (*start)     (EvaRequest *request);
 };
 
-struct _GskRequest 
+struct _EvaRequest 
 {
   GObject object;
 
@@ -95,9 +95,9 @@ void                    eva_request_done      (gpointer  request);
 
 /**
  * eva_request_get_error:
- * @request: the #GskRequest to get the error for.
+ * @request: the #EvaRequest to get the error for.
  *
- * Returns the error set for a #GskRequest, or NULL if none has been set.
+ * Returns the error set for a #EvaRequest, or NULL if none has been set.
  */
 G_INLINE_FUNC G_CONST_RETURN GError *
 eva_request_get_error (gpointer request)

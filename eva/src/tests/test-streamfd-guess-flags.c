@@ -18,7 +18,7 @@
 
 int main (int argc, char **argv)
 {
-  GskStreamFdFlags flags;
+  EvaStreamFdFlags flags;
   int pipe_fds[2];
   gboolean marginal;
   eva_init_without_threads (&argc, &argv);

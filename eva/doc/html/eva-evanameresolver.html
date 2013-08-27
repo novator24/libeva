@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch01.html" title="Core Library Support">
-<link rel="prev" href="GskMainLoop.html" title="Main Loop (Generic Event Management)">
+<link rel="prev" href="EvaMainLoop.html" title="Main Loop (Generic Event Management)">
 <link rel="next" href="eva-evatypes.html" title="Useful GTypes">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -30,7 +30,7 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskMainLoop.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaMainLoop.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
@@ -58,59 +58,59 @@
 </tr></table></div>
 <div class="refsynopsisdiv">
 <a name="eva-evanameresolver.synopsis"></a><h2>Synopsis</h2>
-<a name="GskNameResolver"></a><pre class="synopsis">
-                    <a class="link" href="eva-evanameresolver.html#GskNameResolver-struct" title="GskNameResolver">GskNameResolver</a>;
-                    <a class="link" href="eva-evanameresolver.html#GskNameResolverIface" title="GskNameResolverIface">GskNameResolverIface</a>;
-                    <a class="link" href="eva-evanameresolver.html#GskNameResolverTask" title="GskNameResolverTask">GskNameResolverTask</a>;
-void                (<a class="link" href="eva-evanameresolver.html#GskNameResolverSuccessFunc" title="GskNameResolverSuccessFunc ()">*GskNameResolverSuccessFunc</a>)       (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address,
+<a name="EvaNameResolver"></a><pre class="synopsis">
+                    <a class="link" href="eva-evanameresolver.html#EvaNameResolver-struct" title="EvaNameResolver">EvaNameResolver</a>;
+                    <a class="link" href="eva-evanameresolver.html#EvaNameResolverIface" title="EvaNameResolverIface">EvaNameResolverIface</a>;
+                    <a class="link" href="eva-evanameresolver.html#EvaNameResolverTask" title="EvaNameResolverTask">EvaNameResolverTask</a>;
+void                (<a class="link" href="eva-evanameresolver.html#EvaNameResolverSuccessFunc" title="EvaNameResolverSuccessFunc ()">*EvaNameResolverSuccessFunc</a>)       (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> func_data);
-void                (<a class="link" href="eva-evanameresolver.html#GskNameResolverFailureFunc" title="GskNameResolverFailureFunc ()">*GskNameResolverFailureFunc</a>)       (<a
+void                (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFailureFunc" title="EvaNameResolverFailureFunc ()">*EvaNameResolverFailureFunc</a>)       (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> func_data);
-enum                <a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a>;
-<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a>  <a class="link" href="eva-evanameresolver.html#eva-name-resolver-family-get-by-name" title="eva_name_resolver_family_get_by_name ()">eva_name_resolver_family_get_by_name</a>
+enum                <a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a>;
+<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a>  <a class="link" href="eva-evanameresolver.html#eva-name-resolver-family-get-by-name" title="eva_name_resolver_family_get_by_name ()">eva_name_resolver_family_get_by_name</a>
                                                         (const char *name);
-const char *        <a class="link" href="eva-evanameresolver.html#eva-name-resolver-family-get-name" title="eva_name_resolver_family_get_name ()">eva_name_resolver_family_get_name</a>   (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a> family);
-void                <a class="link" href="eva-evanameresolver.html#eva-name-resolver-lookup" title="eva_name_resolver_lookup ()">eva_name_resolver_lookup</a>            (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a> family,
+const char *        <a class="link" href="eva-evanameresolver.html#eva-name-resolver-family-get-name" title="eva_name_resolver_family_get_name ()">eva_name_resolver_family_get_name</a>   (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a> family);
+void                <a class="link" href="eva-evanameresolver.html#eva-name-resolver-lookup" title="eva_name_resolver_lookup ()">eva_name_resolver_lookup</a>            (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a> family,
                                                          const char *name,
-                                                         <a class="link" href="eva-evanameresolver.html#GskNameResolverSuccessFunc" title="GskNameResolverSuccessFunc ()">GskNameResolverSuccessFunc</a> success,
-                                                         <a class="link" href="eva-evanameresolver.html#GskNameResolverFailureFunc" title="GskNameResolverFailureFunc ()">GskNameResolverFailureFunc</a> failure,
+                                                         <a class="link" href="eva-evanameresolver.html#EvaNameResolverSuccessFunc" title="EvaNameResolverSuccessFunc ()">EvaNameResolverSuccessFunc</a> success,
+                                                         <a class="link" href="eva-evanameresolver.html#EvaNameResolverFailureFunc" title="EvaNameResolverFailureFunc ()">EvaNameResolverFailureFunc</a> failure,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> func_data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
 >GDestroyNotify</a> destroy);
-<a class="link" href="eva-evanameresolver.html#GskNameResolverTask" title="GskNameResolverTask">GskNameResolverTask</a> * <a class="link" href="eva-evanameresolver.html#eva-name-resolver-task-new" title="eva_name_resolver_task_new ()">eva_name_resolver_task_new</a>        (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a> family,
+<a class="link" href="eva-evanameresolver.html#EvaNameResolverTask" title="EvaNameResolverTask">EvaNameResolverTask</a> * <a class="link" href="eva-evanameresolver.html#eva-name-resolver-task-new" title="eva_name_resolver_task_new ()">eva_name_resolver_task_new</a>        (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a> family,
                                                          const char *name,
-                                                         <a class="link" href="eva-evanameresolver.html#GskNameResolverSuccessFunc" title="GskNameResolverSuccessFunc ()">GskNameResolverSuccessFunc</a> success,
-                                                         <a class="link" href="eva-evanameresolver.html#GskNameResolverFailureFunc" title="GskNameResolverFailureFunc ()">GskNameResolverFailureFunc</a> failure,
+                                                         <a class="link" href="eva-evanameresolver.html#EvaNameResolverSuccessFunc" title="EvaNameResolverSuccessFunc ()">EvaNameResolverSuccessFunc</a> success,
+                                                         <a class="link" href="eva-evanameresolver.html#EvaNameResolverFailureFunc" title="EvaNameResolverFailureFunc ()">EvaNameResolverFailureFunc</a> failure,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> func_data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
 >GDestroyNotify</a> destroy);
-void                <a class="link" href="eva-evanameresolver.html#eva-name-resolver-task-cancel" title="eva_name_resolver_task_cancel ()">eva_name_resolver_task_cancel</a>       (<a class="link" href="eva-evanameresolver.html#GskNameResolverTask" title="GskNameResolverTask">GskNameResolverTask</a> *task);
-void                <a class="link" href="eva-evanameresolver.html#eva-name-resolver-task-ref" title="eva_name_resolver_task_ref ()">eva_name_resolver_task_ref</a>          (<a class="link" href="eva-evanameresolver.html#GskNameResolverTask" title="GskNameResolverTask">GskNameResolverTask</a> *task);
-void                <a class="link" href="eva-evanameresolver.html#eva-name-resolver-task-unref" title="eva_name_resolver_task_unref ()">eva_name_resolver_task_unref</a>        (<a class="link" href="eva-evanameresolver.html#GskNameResolverTask" title="GskNameResolverTask">GskNameResolverTask</a> *task);
-<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a>  <a class="link" href="eva-evanameresolver.html#eva-name-resolver-family-unique" title="eva_name_resolver_family_unique ()">eva_name_resolver_family_unique</a>  (const char *name);
-void                <a class="link" href="eva-evanameresolver.html#eva-name-resolver-add-family-name" title="eva_name_resolver_add_family_name ()">eva_name_resolver_add_family_name</a>   (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a> family,
+void                <a class="link" href="eva-evanameresolver.html#eva-name-resolver-task-cancel" title="eva_name_resolver_task_cancel ()">eva_name_resolver_task_cancel</a>       (<a class="link" href="eva-evanameresolver.html#EvaNameResolverTask" title="EvaNameResolverTask">EvaNameResolverTask</a> *task);
+void                <a class="link" href="eva-evanameresolver.html#eva-name-resolver-task-ref" title="eva_name_resolver_task_ref ()">eva_name_resolver_task_ref</a>          (<a class="link" href="eva-evanameresolver.html#EvaNameResolverTask" title="EvaNameResolverTask">EvaNameResolverTask</a> *task);
+void                <a class="link" href="eva-evanameresolver.html#eva-name-resolver-task-unref" title="eva_name_resolver_task_unref ()">eva_name_resolver_task_unref</a>        (<a class="link" href="eva-evanameresolver.html#EvaNameResolverTask" title="EvaNameResolverTask">EvaNameResolverTask</a> *task);
+<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a>  <a class="link" href="eva-evanameresolver.html#eva-name-resolver-family-unique" title="eva_name_resolver_family_unique ()">eva_name_resolver_family_unique</a>  (const char *name);
+void                <a class="link" href="eva-evanameresolver.html#eva-name-resolver-add-family-name" title="eva_name_resolver_add_family_name ()">eva_name_resolver_add_family_name</a>   (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a> family,
                                                          const char *name);
-<a class="link" href="eva-evanameresolver.html#GskNameResolver">GskNameResolver</a> *   (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamilyHandler" title="GskNameResolverFamilyHandler ()">*GskNameResolverFamilyHandler</a>)     (<a
+<a class="link" href="eva-evanameresolver.html#EvaNameResolver">EvaNameResolver</a> *   (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamilyHandler" title="EvaNameResolverFamilyHandler ()">*EvaNameResolverFamilyHandler</a>)     (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);
 void                <a class="link" href="eva-evanameresolver.html#eva-name-resolver-add-family-resolver" title="eva_name_resolver_add_family_resolver ()">eva_name_resolver_add_family_resolver</a>
-                                                        (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a> family,
-                                                         <a class="link" href="eva-evanameresolver.html#GskNameResolver">GskNameResolver</a> *resolver);
+                                                        (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a> family,
+                                                         <a class="link" href="eva-evanameresolver.html#EvaNameResolver">EvaNameResolver</a> *resolver);
 void                <a class="link" href="eva-evanameresolver.html#eva-name-resolver-add-family-handler" title="eva_name_resolver_add_family_handler ()">eva_name_resolver_add_family_handler</a>
-                                                        (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a> family,
-                                                         <a class="link" href="eva-evanameresolver.html#GskNameResolverFamilyHandler" title="GskNameResolverFamilyHandler ()">GskNameResolverFamilyHandler</a> handler,
+                                                        (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a> family,
+                                                         <a class="link" href="eva-evanameresolver.html#EvaNameResolverFamilyHandler" title="EvaNameResolverFamilyHandler ()">EvaNameResolverFamilyHandler</a> handler,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -123,14 +123,14 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNo
 <a name="eva-evanameresolver.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   GInterface
-   +----GskNameResolver
+   +----EvaNameResolver
 </pre>
 </div>
 <div class="refsect1" lang="en">
 <a name="eva-evanameresolver.implementations"></a><h2>Known Implementations</h2>
 <p>
-GskNameResolver is implemented by
- <a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a>.</p>
+EvaNameResolver is implemented by
+ <a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a>.</p>
 </div>
 <div class="refsect1" lang="en">
 <a name="eva-evanameresolver.description"></a><h2>Description</h2>
@@ -142,8 +142,8 @@ its name, and (2) a way of registering new types of address families and namespa
 <div class="refsect1" lang="en">
 <a name="eva-evanameresolver.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskNameResolver-struct"></a><h3>GskNameResolver</h3>
-<pre class="programlisting">typedef struct _GskNameResolver GskNameResolver;</pre>
+<a name="EvaNameResolver-struct"></a><h3>EvaNameResolver</h3>
+<pre class="programlisting">typedef struct _EvaNameResolver EvaNameResolver;</pre>
 <p>
 Opaque object representing an instance which implements
 the NameResolver interface.
@@ -151,19 +151,19 @@ the NameResolver interface.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskNameResolverIface"></a><h3>GskNameResolverIface</h3>
+<a name="EvaNameResolverIface"></a><h3>EvaNameResolverIface</h3>
 <pre class="programlisting">typedef struct {
   GObjectClass object_class;
-  gpointer (*start_resolve)  (GskNameResolver           *resolver,
-			      GskNameResolverFamily      family,
+  gpointer (*start_resolve)  (EvaNameResolver           *resolver,
+			      EvaNameResolverFamily      family,
                               const char                *name,
-                              GskNameResolverSuccessFunc success,
-                              GskNameResolverFailureFunc failure,
+                              EvaNameResolverSuccessFunc success,
+                              EvaNameResolverFailureFunc failure,
                               gpointer                   func_data,
                               GDestroyNotify             destroy);
-  gboolean (*cancel_resolve) (GskNameResolver           *resolver,
+  gboolean (*cancel_resolve) (EvaNameResolver           *resolver,
                               gpointer                   handle);
-} GskNameResolverIface;
+} EvaNameResolverIface;
 </pre>
 <p>
 An interface that can be implemented by a class which provides name-lookups.
@@ -193,8 +193,8 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskNameResolverTask"></a><h3>GskNameResolverTask</h3>
-<pre class="programlisting">typedef struct _GskNameResolverTask GskNameResolverTask;</pre>
+<a name="EvaNameResolverTask"></a><h3>EvaNameResolverTask</h3>
+<pre class="programlisting">typedef struct _EvaNameResolverTask EvaNameResolverTask;</pre>
 <p>
 An opaque type representing a name lookup (which may be running,
 or it may be succeeded, failed or been cancelled).
@@ -202,8 +202,8 @@ or it may be succeeded, failed or been cancelled).
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskNameResolverSuccessFunc"></a><h3>GskNameResolverSuccessFunc ()</h3>
-<pre class="programlisting">void                (*GskNameResolverSuccessFunc)       (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address,
+<a name="EvaNameResolverSuccessFunc"></a><h3>EvaNameResolverSuccessFunc ()</h3>
+<pre class="programlisting">void                (*EvaNameResolverSuccessFunc)       (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> func_data);</pre>
@@ -228,8 +228,8 @@ Function to call when an address has been successfully found for the name.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskNameResolverFailureFunc"></a><h3>GskNameResolverFailureFunc ()</h3>
-<pre class="programlisting">void                (*GskNameResolverFailureFunc)       (<a
+<a name="EvaNameResolverFailureFunc"></a><h3>EvaNameResolverFailureFunc ()</h3>
+<pre class="programlisting">void                (*EvaNameResolverFailureFunc)       (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error,
                                                          <a
@@ -256,12 +256,12 @@ Function to call when a name lookup fails.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskNameResolverFamily"></a><h3>enum GskNameResolverFamily</h3>
+<a name="EvaNameResolverFamily"></a><h3>enum EvaNameResolverFamily</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_NAME_RESOLVER_FAMILY_NONE,
   EVA_NAME_RESOLVER_FAMILY_IPV4
-} GskNameResolverFamily;
+} EvaNameResolverFamily;
 </pre>
 <p>
 Namespaces.  This enum is extendable.
@@ -287,10 +287,10 @@ The IPv4 namespace, used for practically all of the internet (in 2003)
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-name-resolver-family-get-by-name"></a><h3>eva_name_resolver_family_get_by_name ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a>  eva_name_resolver_family_get_by_name
+<pre class="programlisting"><a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a>  eva_name_resolver_family_get_by_name
                                                         (const char *name);</pre>
 <p>
-Get the <a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily"><span class="type">GskNameResolverFamily</span></a> of a resolver namespace
+Get the <a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily"><span class="type">EvaNameResolverFamily</span></a> of a resolver namespace
 by ascii string.</p>
 <p>
 </p>
@@ -313,7 +313,7 @@ by ascii string.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-name-resolver-family-get-name"></a><h3>eva_name_resolver_family_get_name ()</h3>
-<pre class="programlisting">const char *        eva_name_resolver_family_get_name   (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a> family);</pre>
+<pre class="programlisting">const char *        eva_name_resolver_family_get_name   (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a> family);</pre>
 <p>
 Get the resolver-namespace as a printable c string.</p>
 <p>
@@ -337,10 +337,10 @@ Get the resolver-namespace as a printable c string.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-name-resolver-lookup"></a><h3>eva_name_resolver_lookup ()</h3>
-<pre class="programlisting">void                eva_name_resolver_lookup            (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a> family,
+<pre class="programlisting">void                eva_name_resolver_lookup            (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a> family,
                                                          const char *name,
-                                                         <a class="link" href="eva-evanameresolver.html#GskNameResolverSuccessFunc" title="GskNameResolverSuccessFunc ()">GskNameResolverSuccessFunc</a> success,
-                                                         <a class="link" href="eva-evanameresolver.html#GskNameResolverFailureFunc" title="GskNameResolverFailureFunc ()">GskNameResolverFailureFunc</a> failure,
+                                                         <a class="link" href="eva-evanameresolver.html#EvaNameResolverSuccessFunc" title="EvaNameResolverSuccessFunc ()">EvaNameResolverSuccessFunc</a> success,
+                                                         <a class="link" href="eva-evanameresolver.html#EvaNameResolverFailureFunc" title="EvaNameResolverFailureFunc ()">EvaNameResolverFailureFunc</a> failure,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> func_data,
@@ -367,7 +367,7 @@ Begin a non-cancellable name-lookup.</p>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>success</code></em> :</span></p></td>
 <td> callback for successful name-lookup: this will
-be called with the <a class="link" href="GskSocketAddress.html" title="Socket Addresses."><span class="type">GskSocketAddress</span></a> that was found.
+be called with the <a class="link" href="EvaSocketAddress.html" title="Socket Addresses."><span class="type">EvaSocketAddress</span></a> that was found.
 </td>
 </tr>
 <tr>
@@ -394,10 +394,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-name-resolver-task-new"></a><h3>eva_name_resolver_task_new ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evanameresolver.html#GskNameResolverTask" title="GskNameResolverTask">GskNameResolverTask</a> * eva_name_resolver_task_new        (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a> family,
+<pre class="programlisting"><a class="link" href="eva-evanameresolver.html#EvaNameResolverTask" title="EvaNameResolverTask">EvaNameResolverTask</a> * eva_name_resolver_task_new        (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a> family,
                                                          const char *name,
-                                                         <a class="link" href="eva-evanameresolver.html#GskNameResolverSuccessFunc" title="GskNameResolverSuccessFunc ()">GskNameResolverSuccessFunc</a> success,
-                                                         <a class="link" href="eva-evanameresolver.html#GskNameResolverFailureFunc" title="GskNameResolverFailureFunc ()">GskNameResolverFailureFunc</a> failure,
+                                                         <a class="link" href="eva-evanameresolver.html#EvaNameResolverSuccessFunc" title="EvaNameResolverSuccessFunc ()">EvaNameResolverSuccessFunc</a> success,
+                                                         <a class="link" href="eva-evanameresolver.html#EvaNameResolverFailureFunc" title="EvaNameResolverFailureFunc ()">EvaNameResolverFailureFunc</a> failure,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> func_data,
@@ -427,7 +427,7 @@ with the handle.  (This will NOT cause a running task to be cancelled.)</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>success</code></em> :</span></p></td>
-<td> function to be called with an appropriate <a class="link" href="GskSocketAddress.html" title="Socket Addresses."><span class="type">GskSocketAddress</span></a>
+<td> function to be called with an appropriate <a class="link" href="EvaSocketAddress.html" title="Socket Addresses."><span class="type">EvaSocketAddress</span></a>
    once the name is successfully resolved.
 </td>
 </tr>
@@ -449,7 +449,7 @@ func_data usually.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a reference to a <a class="link" href="eva-evanameresolver.html#GskNameResolverTask" title="GskNameResolverTask"><span class="type">GskNameResolverTask</span></a> which can
+<td> a reference to a <a class="link" href="eva-evanameresolver.html#EvaNameResolverTask" title="EvaNameResolverTask"><span class="type">EvaNameResolverTask</span></a> which can
 be used to cancel or query the task.
 </td>
 </tr>
@@ -459,7 +459,7 @@ be used to cancel or query the task.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-name-resolver-task-cancel"></a><h3>eva_name_resolver_task_cancel ()</h3>
-<pre class="programlisting">void                eva_name_resolver_task_cancel       (<a class="link" href="eva-evanameresolver.html#GskNameResolverTask" title="GskNameResolverTask">GskNameResolverTask</a> *task);</pre>
+<pre class="programlisting">void                eva_name_resolver_task_cancel       (<a class="link" href="eva-evanameresolver.html#EvaNameResolverTask" title="EvaNameResolverTask">EvaNameResolverTask</a> *task);</pre>
 <p>
 Stops the name lookup from continuing.
 Neither the success or failure functions will be invoked subsequently,
@@ -478,7 +478,7 @@ but the destroy method will be.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-name-resolver-task-ref"></a><h3>eva_name_resolver_task_ref ()</h3>
-<pre class="programlisting">void                eva_name_resolver_task_ref          (<a class="link" href="eva-evanameresolver.html#GskNameResolverTask" title="GskNameResolverTask">GskNameResolverTask</a> *task);</pre>
+<pre class="programlisting">void                eva_name_resolver_task_ref          (<a class="link" href="eva-evanameresolver.html#EvaNameResolverTask" title="EvaNameResolverTask">EvaNameResolverTask</a> *task);</pre>
 <p>
 Increase the reference count on a name-resolver task.
 This is mostly useless outside the resolver code.</p>
@@ -496,7 +496,7 @@ This is mostly useless outside the resolver code.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-name-resolver-task-unref"></a><h3>eva_name_resolver_task_unref ()</h3>
-<pre class="programlisting">void                eva_name_resolver_task_unref        (<a class="link" href="eva-evanameresolver.html#GskNameResolverTask" title="GskNameResolverTask">GskNameResolverTask</a> *task);</pre>
+<pre class="programlisting">void                eva_name_resolver_task_unref        (<a class="link" href="eva-evanameresolver.html#EvaNameResolverTask" title="EvaNameResolverTask">EvaNameResolverTask</a> *task);</pre>
 <p>
 Decrease the reference count on a name-resolver task, freeing it if needed.
 This does NOT cancel the task.  You MUST unref the task returned by
@@ -515,10 +515,10 @@ This does NOT cancel the task.  You MUST unref the task returned by
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-name-resolver-family-unique"></a><h3>eva_name_resolver_family_unique ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a>  eva_name_resolver_family_unique  (const char *name);</pre>
+<pre class="programlisting"><a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a>  eva_name_resolver_family_unique  (const char *name);</pre>
 <p>
-Allocate a unique GskNameResolverFamily
-given a new name, or return the old GskNameResolverFamily
+Allocate a unique EvaNameResolverFamily
+given a new name, or return the old EvaNameResolverFamily
 if one already exists.</p>
 <p>
 </p>
@@ -541,7 +541,7 @@ if one already exists.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-name-resolver-add-family-name"></a><h3>eva_name_resolver_add_family_name ()</h3>
-<pre class="programlisting">void                eva_name_resolver_add_family_name   (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a> family,
+<pre class="programlisting">void                eva_name_resolver_add_family_name   (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a> family,
                                                          const char *name);</pre>
 <p>
 Add a new nickname for the name resolver family.
@@ -568,8 +568,8 @@ The family is the name of the namespace.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskNameResolverFamilyHandler"></a><h3>GskNameResolverFamilyHandler ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evanameresolver.html#GskNameResolver">GskNameResolver</a> *   (*GskNameResolverFamilyHandler)     (<a
+<a name="EvaNameResolverFamilyHandler"></a><h3>EvaNameResolverFamilyHandler ()</h3>
+<pre class="programlisting"><a class="link" href="eva-evanameresolver.html#EvaNameResolver">EvaNameResolver</a> *   (*EvaNameResolverFamilyHandler)     (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);</pre>
 <p>
@@ -595,8 +595,8 @@ Create a reference to a name-resolver on demand.
 <div class="refsect2" lang="en">
 <a name="eva-name-resolver-add-family-resolver"></a><h3>eva_name_resolver_add_family_resolver ()</h3>
 <pre class="programlisting">void                eva_name_resolver_add_family_resolver
-                                                        (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a> family,
-                                                         <a class="link" href="eva-evanameresolver.html#GskNameResolver">GskNameResolver</a> *resolver);</pre>
+                                                        (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a> family,
+                                                         <a class="link" href="eva-evanameresolver.html#EvaNameResolver">EvaNameResolver</a> *resolver);</pre>
 <p>
 Add a name-resolver that will handle a request
 of a given family.</p>
@@ -622,8 +622,8 @@ of a given family.</p>
 <div class="refsect2" lang="en">
 <a name="eva-name-resolver-add-family-handler"></a><h3>eva_name_resolver_add_family_handler ()</h3>
 <pre class="programlisting">void                eva_name_resolver_add_family_handler
-                                                        (<a class="link" href="eva-evanameresolver.html#GskNameResolverFamily" title="enum GskNameResolverFamily">GskNameResolverFamily</a> family,
-                                                         <a class="link" href="eva-evanameresolver.html#GskNameResolverFamilyHandler" title="GskNameResolverFamilyHandler ()">GskNameResolverFamilyHandler</a> handler,
+                                                        (<a class="link" href="eva-evanameresolver.html#EvaNameResolverFamily" title="enum EvaNameResolverFamily">EvaNameResolverFamily</a> family,
+                                                         <a class="link" href="eva-evanameresolver.html#EvaNameResolverFamilyHandler" title="EvaNameResolverFamilyHandler ()">EvaNameResolverFamilyHandler</a> handler,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,

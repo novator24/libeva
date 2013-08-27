@@ -54,16 +54,16 @@
 <div class="refsynopsisdiv">
 <a name="eva-evadnsrrcache.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a>;
+                    <a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a>;
 #define             <a class="link" href="eva-evadnsrrcache.html#EVA-TYPE-DNS-RR-CACHE--CAPS" title="EVA_TYPE_DNS_RR_CACHE">EVA_TYPE_DNS_RR_CACHE</a>
-<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *     <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-new" title="eva_dns_rr_cache_new ()">eva_dns_rr_cache_new</a>                (<a
+<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *     <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-new" title="eva_dns_rr_cache_new ()">eva_dns_rr_cache_new</a>                (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
 >guint64</a> max_bytes,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> max_records);
-<a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> * <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-insert" title="eva_dns_rr_cache_insert ()">eva_dns_rr_cache_insert</a>          (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         const <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> *record,
+<a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> * <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-insert" title="eva_dns_rr_cache_insert ()">eva_dns_rr_cache_insert</a>          (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         const <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> *record,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_authoritative,
@@ -72,33 +72,33 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
 >gulong</a> cur_time);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Singly-Linked-Lists.html#GSList"
->GSList</a> *            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-lookup-list" title="eva_dns_rr_cache_lookup_list ()">eva_dns_rr_cache_lookup_list</a>        (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+>GSList</a> *            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-lookup-list" title="eva_dns_rr_cache_lookup_list ()">eva_dns_rr_cache_lookup_list</a>        (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *owner,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecordType" title="enum GskDnsResourceRecordType">GskDnsResourceRecordType</a> query_type,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceClass" title="enum GskDnsResourceClass">GskDnsResourceClass</a> query_class);
-<a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> * <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-lookup-one" title="eva_dns_rr_cache_lookup_one ()">eva_dns_rr_cache_lookup_one</a>      (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecordType" title="enum EvaDnsResourceRecordType">EvaDnsResourceRecordType</a> query_type,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceClass" title="enum EvaDnsResourceClass">EvaDnsResourceClass</a> query_class);
+<a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> * <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-lookup-one" title="eva_dns_rr_cache_lookup_one ()">eva_dns_rr_cache_lookup_one</a>      (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *owner,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecordType" title="enum GskDnsResourceRecordType">GskDnsResourceRecordType</a> query_type,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceClass" title="enum GskDnsResourceClass">GskDnsResourceClass</a> query_class,
-                                                         GskDnsRRCacheLookupFlags flags);
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecordType" title="enum EvaDnsResourceRecordType">EvaDnsResourceRecordType</a> query_type,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceClass" title="enum EvaDnsResourceClass">EvaDnsResourceClass</a> query_class,
+                                                         EvaDnsRRCacheLookupFlags flags);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-is-negative" title="eva_dns_rr_cache_is_negative ()">eva_dns_rr_cache_is_negative</a>        (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+>gboolean</a>            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-is-negative" title="eva_dns_rr_cache_is_negative ()">eva_dns_rr_cache_is_negative</a>        (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *owner,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecordType" title="enum GskDnsResourceRecordType">GskDnsResourceRecordType</a> query_type,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceClass" title="enum GskDnsResourceClass">GskDnsResourceClass</a> query_class);
-void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-unlock" title="eva_dns_rr_cache_unlock ()">eva_dns_rr_cache_unlock</a>             (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> *record);
-void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-lock" title="eva_dns_rr_cache_lock ()">eva_dns_rr_cache_lock</a>               (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> *record);
-void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-mark-user" title="eva_dns_rr_cache_mark_user ()">eva_dns_rr_cache_mark_user</a>          (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> *record);
-void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-unmark-user" title="eva_dns_rr_cache_unmark_user ()">eva_dns_rr_cache_unmark_user</a>        (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> *record);
-void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-add-negative" title="eva_dns_rr_cache_add_negative ()">eva_dns_rr_cache_add_negative</a>       (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecordType" title="enum EvaDnsResourceRecordType">EvaDnsResourceRecordType</a> query_type,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceClass" title="enum EvaDnsResourceClass">EvaDnsResourceClass</a> query_class);
+void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-unlock" title="eva_dns_rr_cache_unlock ()">eva_dns_rr_cache_unlock</a>             (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> *record);
+void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-lock" title="eva_dns_rr_cache_lock ()">eva_dns_rr_cache_lock</a>               (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> *record);
+void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-mark-user" title="eva_dns_rr_cache_mark_user ()">eva_dns_rr_cache_mark_user</a>          (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> *record);
+void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-unmark-user" title="eva_dns_rr_cache_unmark_user ()">eva_dns_rr_cache_unmark_user</a>        (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> *record);
+void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-add-negative" title="eva_dns_rr_cache_add_negative ()">eva_dns_rr_cache_add_negative</a>       (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *owner,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecordType" title="enum GskDnsResourceRecordType">GskDnsResourceRecordType</a> query_type,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceClass" title="enum GskDnsResourceClass">GskDnsResourceClass</a> query_class,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecordType" title="enum EvaDnsResourceRecordType">EvaDnsResourceRecordType</a> query_type,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceClass" title="enum EvaDnsResourceClass">EvaDnsResourceClass</a> query_class,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
 >gulong</a> expire_time,
@@ -107,7 +107,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 >gboolean</a> is_authoritative);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-load-zone" title="eva_dns_rr_cache_load_zone ()">eva_dns_rr_cache_load_zone</a>          (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+>gboolean</a>            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-load-zone" title="eva_dns_rr_cache_load_zone ()">eva_dns_rr_cache_load_zone</a>          (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *filename,
                                                          const char *default_origin,
                                                          <a
@@ -115,29 +115,29 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 >GError</a> **error);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-get-ns-addr" title="eva_dns_rr_cache_get_ns_addr ()">eva_dns_rr_cache_get_ns_addr</a>        (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+>gboolean</a>            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-get-ns-addr" title="eva_dns_rr_cache_get_ns_addr ()">eva_dns_rr_cache_get_ns_addr</a>        (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *host,
                                                          const char **ns_name_out,
-                                                         <a class="link" href="GskSocketAddress.html#GskSocketAddressIpv4">GskSocketAddressIpv4</a> **address_out);
+                                                         <a class="link" href="EvaSocketAddress.html#EvaSocketAddressIpv4">EvaSocketAddressIpv4</a> **address_out);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-get-addr" title="eva_dns_rr_cache_get_addr ()">eva_dns_rr_cache_get_addr</a>           (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+>gboolean</a>            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-get-addr" title="eva_dns_rr_cache_get_addr ()">eva_dns_rr_cache_get_addr</a>           (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *host,
-                                                         <a class="link" href="GskSocketAddress.html#GskSocketAddressIpv4">GskSocketAddressIpv4</a> **address);
-<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *     <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-ref" title="eva_dns_rr_cache_ref ()">eva_dns_rr_cache_ref</a>                (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache);
-void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-unref" title="eva_dns_rr_cache_unref ()">eva_dns_rr_cache_unref</a>              (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache);
-void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-flush" title="eva_dns_rr_cache_flush ()">eva_dns_rr_cache_flush</a>              (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="EvaSocketAddress.html#EvaSocketAddressIpv4">EvaSocketAddressIpv4</a> **address);
+<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *     <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-ref" title="eva_dns_rr_cache_ref ()">eva_dns_rr_cache_ref</a>                (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache);
+void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-unref" title="eva_dns_rr_cache_unref ()">eva_dns_rr_cache_unref</a>              (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache);
+void                <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-flush" title="eva_dns_rr_cache_flush ()">eva_dns_rr_cache_flush</a>              (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
 >gulong</a> cur_time);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-parse-etc-hosts-line" title="eva_dns_rr_cache_parse_etc_hosts_line ()">eva_dns_rr_cache_parse_etc_hosts_line</a>
-                                                        (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+                                                        (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *text);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-parse-etc-hosts" title="eva_dns_rr_cache_parse_etc_hosts ()">eva_dns_rr_cache_parse_etc_hosts</a>    (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+>gboolean</a>            <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-parse-etc-hosts" title="eva_dns_rr_cache_parse_etc_hosts ()">eva_dns_rr_cache_parse_etc_hosts</a>    (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *filename,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
@@ -147,16 +147,16 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 <div class="refsect1" lang="en">
 <a name="eva-evadnsrrcache.description"></a><h2>Description</h2>
 <p>
-This in a database of <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord"><span class="type">GskDnsResourceRecord</span></a>'s, as well as caching certain
-negative information.  Furthermore, the <a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache"><span class="type">GskDnsRRCache</span></a> knows how to expire
+This in a database of <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord"><span class="type">EvaDnsResourceRecord</span></a>'s, as well as caching certain
+negative information.  Furthermore, the <a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache"><span class="type">EvaDnsRRCache</span></a> knows how to expire
 obsolete resource records automatically.
 </p>
 </div>
 <div class="refsect1" lang="en">
 <a name="eva-evadnsrrcache.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskDnsRRCache"></a><h3>GskDnsRRCache</h3>
-<pre class="programlisting">typedef struct _GskDnsRRCache GskDnsRRCache;</pre>
+<a name="EvaDnsRRCache"></a><h3>EvaDnsRRCache</h3>
+<pre class="programlisting">typedef struct _EvaDnsRRCache EvaDnsRRCache;</pre>
 <p>
 A cache of resource records and related information.
 </p>
@@ -166,14 +166,14 @@ A cache of resource records and related information.
 <a name="EVA-TYPE-DNS-RR-CACHE--CAPS"></a><h3>EVA_TYPE_DNS_RR_CACHE</h3>
 <pre class="programlisting">#define             EVA_TYPE_DNS_RR_CACHE</pre>
 <p>
-Return the GType of a <a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache"><span class="type">GskDnsRRCache</span></a>.
+Return the GType of a <a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache"><span class="type">EvaDnsRRCache</span></a>.
 (It is a boxed type.)
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-rr-cache-new"></a><h3>eva_dns_rr_cache_new ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *     eva_dns_rr_cache_new                (<a
+<pre class="programlisting"><a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *     eva_dns_rr_cache_new                (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
 >guint64</a> max_bytes,
                                                          <a
@@ -200,7 +200,7 @@ overhead, like hash-tables, which is not considered in this number.)
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the new GskDnsRRCache.
+<td> the new EvaDnsRRCache.
 </td>
 </tr>
 </tbody>
@@ -209,8 +209,8 @@ overhead, like hash-tables, which is not considered in this number.)
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-rr-cache-insert"></a><h3>eva_dns_rr_cache_insert ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> * eva_dns_rr_cache_insert          (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         const <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> *record,
+<pre class="programlisting"><a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> * eva_dns_rr_cache_insert          (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         const <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> *record,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> is_authoritative,
@@ -261,10 +261,10 @@ the record is not deleted, you should call <a class="link" href="eva-evadnsrrcac
 <a name="eva-dns-rr-cache-lookup-list"></a><h3>eva_dns_rr_cache_lookup_list ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Singly-Linked-Lists.html#GSList"
->GSList</a> *            eva_dns_rr_cache_lookup_list        (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+>GSList</a> *            eva_dns_rr_cache_lookup_list        (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *owner,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecordType" title="enum GskDnsResourceRecordType">GskDnsResourceRecordType</a> query_type,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceClass" title="enum GskDnsResourceClass">GskDnsResourceClass</a> query_class);</pre>
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecordType" title="enum EvaDnsResourceRecordType">EvaDnsResourceRecordType</a> query_type,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceClass" title="enum EvaDnsResourceClass">EvaDnsResourceClass</a> query_class);</pre>
 <p>
 Lookup some or all information about a given name in
 <em class="parameter"><code>rr_cache</code></em>'s memory.
@@ -301,7 +301,7 @@ You may call <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-is-ne
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a list of <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord"><span class="type">GskDnsResourceRecord</span></a> which you must
+<td> a list of <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord"><span class="type">EvaDnsResourceRecord</span></a> which you must
 call <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-lock" title="eva_dns_rr_cache_lock ()"><code class="function">eva_dns_rr_cache_lock()</code></a> on if you want to keep around.
 However, you must call <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Singly-Linked-Lists.html#g-slist-free"
@@ -314,11 +314,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Singly-Linked-Lists.html
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-rr-cache-lookup-one"></a><h3>eva_dns_rr_cache_lookup_one ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> * eva_dns_rr_cache_lookup_one      (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+<pre class="programlisting"><a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> * eva_dns_rr_cache_lookup_one      (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *owner,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecordType" title="enum GskDnsResourceRecordType">GskDnsResourceRecordType</a> query_type,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceClass" title="enum GskDnsResourceClass">GskDnsResourceClass</a> query_class,
-                                                         GskDnsRRCacheLookupFlags flags);</pre>
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecordType" title="enum EvaDnsResourceRecordType">EvaDnsResourceRecordType</a> query_type,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceClass" title="enum EvaDnsResourceClass">EvaDnsResourceClass</a> query_class,
+                                                         EvaDnsRRCacheLookupFlags flags);</pre>
 <p>
 Find the first appropriate resource record of a given
 specification.
@@ -360,7 +360,7 @@ You may call <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-is-ne
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a pointer to a <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord"><span class="type">GskDnsResourceRecord</span></a>.
+<td> a pointer to a <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord"><span class="type">EvaDnsResourceRecord</span></a>.
 You must call <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-lock" title="eva_dns_rr_cache_lock ()"><code class="function">eva_dns_rr_cache_lock()</code></a> on it if you want to keep it around.
 </td>
 </tr>
@@ -372,10 +372,10 @@ You must call <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-lock
 <a name="eva-dns-rr-cache-is-negative"></a><h3>eva_dns_rr_cache_is_negative ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_dns_rr_cache_is_negative        (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+>gboolean</a>            eva_dns_rr_cache_is_negative        (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *owner,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecordType" title="enum GskDnsResourceRecordType">GskDnsResourceRecordType</a> query_type,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceClass" title="enum GskDnsResourceClass">GskDnsResourceClass</a> query_class);</pre>
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecordType" title="enum EvaDnsResourceRecordType">EvaDnsResourceRecordType</a> query_type,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceClass" title="enum EvaDnsResourceClass">EvaDnsResourceClass</a> query_class);</pre>
 <p>
 Look to see if we have an explicit negative
 entry for this resource-record.
@@ -425,8 +425,8 @@ satisfy any type or class.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-rr-cache-unlock"></a><h3>eva_dns_rr_cache_unlock ()</h3>
-<pre class="programlisting">void                eva_dns_rr_cache_unlock             (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> *record);</pre>
+<pre class="programlisting">void                eva_dns_rr_cache_unlock             (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> *record);</pre>
 <p>
 Reduce the lock-count of this record within the cache.
 When a record is locked, it will not be deleted, even
@@ -457,8 +457,8 @@ or resources grow sufficiently scarce.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-rr-cache-lock"></a><h3>eva_dns_rr_cache_lock ()</h3>
-<pre class="programlisting">void                eva_dns_rr_cache_lock               (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> *record);</pre>
+<pre class="programlisting">void                eva_dns_rr_cache_lock               (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> *record);</pre>
 <p>
 Lock this record in the cache.
 When a record is locked, it will not be deleted, even
@@ -485,8 +485,8 @@ or <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-lookup-list" ti
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-rr-cache-mark-user"></a><h3>eva_dns_rr_cache_mark_user ()</h3>
-<pre class="programlisting">void                eva_dns_rr_cache_mark_user          (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> *record);</pre>
+<pre class="programlisting">void                eva_dns_rr_cache_mark_user          (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> *record);</pre>
 <p>
 Indicate that a record should be regarded as completely
 authoritative.  This is like locking the record, but
@@ -522,8 +522,8 @@ or <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-lookup-list" ti
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-rr-cache-unmark-user"></a><h3>eva_dns_rr_cache_unmark_user ()</h3>
-<pre class="programlisting">void                eva_dns_rr_cache_unmark_user        (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecord" title="GskDnsResourceRecord">GskDnsResourceRecord</a> *record);</pre>
+<pre class="programlisting">void                eva_dns_rr_cache_unmark_user        (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecord" title="EvaDnsResourceRecord">EvaDnsResourceRecord</a> *record);</pre>
 <p>
 Undo the affect of <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache-mark-user" title="eva_dns_rr_cache_mark_user ()"><code class="function">eva_dns_rr_cache_mark_user()</code></a>.</p>
 <p>
@@ -548,10 +548,10 @@ Undo the affect of <a class="link" href="eva-evadnsrrcache.html#eva-dns-rr-cache
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-rr-cache-add-negative"></a><h3>eva_dns_rr_cache_add_negative ()</h3>
-<pre class="programlisting">void                eva_dns_rr_cache_add_negative       (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+<pre class="programlisting">void                eva_dns_rr_cache_add_negative       (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *owner,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceRecordType" title="enum GskDnsResourceRecordType">GskDnsResourceRecordType</a> query_type,
-                                                         <a class="link" href="eva-evadns.html#GskDnsResourceClass" title="enum GskDnsResourceClass">GskDnsResourceClass</a> query_class,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceRecordType" title="enum EvaDnsResourceRecordType">EvaDnsResourceRecordType</a> query_type,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsResourceClass" title="enum EvaDnsResourceClass">EvaDnsResourceClass</a> query_class,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
 >gulong</a> expire_time,
@@ -607,7 +607,7 @@ The DNS specification refers to this as 'negative caching'.</p>
 <a name="eva-dns-rr-cache-load-zone"></a><h3>eva_dns_rr_cache_load_zone ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_dns_rr_cache_load_zone          (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+>gboolean</a>            eva_dns_rr_cache_load_zone          (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *filename,
                                                          const char *default_origin,
                                                          <a
@@ -654,10 +654,10 @@ This file format is defined in RFC 1035, Section 5.</p>
 <a name="eva-dns-rr-cache-get-ns-addr"></a><h3>eva_dns_rr_cache_get_ns_addr ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_dns_rr_cache_get_ns_addr        (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+>gboolean</a>            eva_dns_rr_cache_get_ns_addr        (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *host,
                                                          const char **ns_name_out,
-                                                         <a class="link" href="GskSocketAddress.html#GskSocketAddressIpv4">GskSocketAddressIpv4</a> **address_out);</pre>
+                                                         <a class="link" href="EvaSocketAddress.html#EvaSocketAddressIpv4">EvaSocketAddressIpv4</a> **address_out);</pre>
 <p>
 Look up an address for a nameserver.</p>
 <p>
@@ -701,9 +701,9 @@ The address should be g_object_unref'd by the caller.
 <a name="eva-dns-rr-cache-get-addr"></a><h3>eva_dns_rr_cache_get_addr ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_dns_rr_cache_get_addr           (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+>gboolean</a>            eva_dns_rr_cache_get_addr           (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *host,
-                                                         <a class="link" href="GskSocketAddress.html#GskSocketAddressIpv4">GskSocketAddressIpv4</a> **address);</pre>
+                                                         <a class="link" href="EvaSocketAddress.html#EvaSocketAddressIpv4">EvaSocketAddressIpv4</a> **address);</pre>
 <p>
 Look up the IP address of a name.
 This will follow CNAME records.
@@ -743,7 +743,7 @@ BUGS:
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-rr-cache-ref"></a><h3>eva_dns_rr_cache_ref ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *     eva_dns_rr_cache_ref                (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache);</pre>
+<pre class="programlisting"><a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *     eva_dns_rr_cache_ref                (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache);</pre>
 <p>
 Increase the reference count on the resource record cache.
 The cache will not be destroyed until the reference count gets to 0.</p>
@@ -768,7 +768,7 @@ The cache will not be destroyed until the reference count gets to 0.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-rr-cache-unref"></a><h3>eva_dns_rr_cache_unref ()</h3>
-<pre class="programlisting">void                eva_dns_rr_cache_unref              (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache);</pre>
+<pre class="programlisting">void                eva_dns_rr_cache_unref              (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache);</pre>
 <p>
 Decrease the reference count on the resource record cache.
 The cache will be destroyed when the reference count gets to 0.</p>
@@ -786,7 +786,7 @@ The cache will be destroyed when the reference count gets to 0.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-rr-cache-flush"></a><h3>eva_dns_rr_cache_flush ()</h3>
-<pre class="programlisting">void                eva_dns_rr_cache_flush              (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+<pre class="programlisting">void                eva_dns_rr_cache_flush              (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
 >gulong</a> cur_time);</pre>
@@ -817,7 +817,7 @@ try to ensure that we are using an acceptable amount of memory.</p>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            eva_dns_rr_cache_parse_etc_hosts_line
-                                                        (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+                                                        (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *text);</pre>
 <p>
 Process a single line of text from an /etc/hosts file.
@@ -855,7 +855,7 @@ TODO: this does not handle IPv6 correctly!!!</p>
 <a name="eva-dns-rr-cache-parse-etc-hosts"></a><h3>eva_dns_rr_cache_parse_etc_hosts ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_dns_rr_cache_parse_etc_hosts    (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
+>gboolean</a>            eva_dns_rr_cache_parse_etc_hosts    (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
                                                          const char *filename,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"

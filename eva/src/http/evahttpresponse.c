@@ -21,7 +21,7 @@ enum
   PROP_RESPONSE_SERVER
 };
 
-/* --- GskHttpResponse implementation --- */
+/* --- EvaHttpResponse implementation --- */
 /**
  * eva_http_response_has_content_body:
  * @response: the response to query
@@ -37,8 +37,8 @@ enum
  * by a body of data.
  */
 gboolean
-eva_http_response_has_content_body (GskHttpResponse *response,
-                                    GskHttpRequest  *request)
+eva_http_response_has_content_body (EvaHttpResponse *response,
+                                    EvaHttpRequest  *request)
 {
   if (request->verb == EVA_HTTP_VERB_HEAD)
     return FALSE;
@@ -117,7 +117,7 @@ eva_http_response_set_property  (GObject        *object,
                                  const GValue   *value,
                                  GParamSpec     *pspec)
 {
-  GskHttpResponse *response = EVA_HTTP_RESPONSE (object);
+  EvaHttpResponse *response = EVA_HTTP_RESPONSE (object);
   switch (property_id)
     {
     case PROP_RESPONSE_STATUS_CODE:
@@ -153,7 +153,7 @@ eva_http_response_get_property  (GObject        *object,
                                  GValue         *value,
                                  GParamSpec     *pspec)
 {
-  GskHttpResponse *response = EVA_HTTP_RESPONSE (object);
+  EvaHttpResponse *response = EVA_HTTP_RESPONSE (object);
   switch (property_id)
     {
     case PROP_RESPONSE_STATUS_CODE:
@@ -191,7 +191,7 @@ eva_http_response_get_property  (GObject        *object,
 static void
 eva_http_response_finalize (GObject *object)
 {
-  GskHttpResponse *response = EVA_HTTP_RESPONSE (object);
+  EvaHttpResponse *response = EVA_HTTP_RESPONSE (object);
   eva_http_header_free_string (response, response->location);
   eva_http_header_free_string (response, response->etag);
   eva_http_header_free_string (response, response->server);
@@ -208,7 +208,7 @@ eva_http_response_finalize (GObject *object)
 }
 
 static void
-eva_http_response_init (GskHttpResponse *response)
+eva_http_response_init (EvaHttpResponse *response)
 {
   response->status_code = EVA_HTTP_STATUS_OK;
   response->age = -1;
@@ -289,19 +289,19 @@ GType eva_http_response_get_type()
     {
       static const GTypeInfo http_response_info =
       {
-        sizeof(GskHttpResponseClass),
+        sizeof(EvaHttpResponseClass),
         (GBaseInitFunc) NULL,
         (GBaseFinalizeFunc) NULL,
         (GClassInitFunc) eva_http_response_class_init,
         NULL,           /* class_finalize */
         NULL,           /* class_data */
-        sizeof (GskHttpResponse),
+        sizeof (EvaHttpResponse),
         8,              /* n_preallocs */
         (GInstanceInitFunc) eva_http_response_init,
         NULL            /* value_table */
       };
       http_response_type = g_type_register_static (EVA_TYPE_HTTP_HEADER,
-                                                   "GskHttpResponse",
+                                                   "EvaHttpResponse",
                                                    &http_response_info,
                                                    0);
     }
@@ -319,8 +319,8 @@ GType eva_http_response_get_type()
  * it is destroyed.
  */
 void
-eva_http_response_set_cache_control (GskHttpResponse *response,
-				     GskHttpResponseCacheDirective *directive)
+eva_http_response_set_cache_control (EvaHttpResponse *response,
+				     EvaHttpResponseCacheDirective *directive)
 {
   if (response->cache_control)
     eva_http_response_cache_directive_free (response->cache_control);
@@ -338,7 +338,7 @@ eva_http_response_set_cache_control (GskHttpResponse *response,
  * the caller should be sure they have the right MD5 sum.
  */
 void
-eva_http_response_set_md5      (GskHttpResponse *response,
+eva_http_response_set_md5      (EvaHttpResponse *response,
 			        const guint8    *md5sum)
 {
   if (md5sum == NULL)
@@ -365,7 +365,7 @@ eva_http_response_set_md5      (GskHttpResponse *response,
  * returns: the MD5 checksum (as 16 binary bytes) or NULL.
  */
 const guint8 *
-eva_http_response_peek_md5     (GskHttpResponse *response)
+eva_http_response_peek_md5     (EvaHttpResponse *response)
 {
   return response->has_md5sum ? response->md5sum : NULL;
 }
@@ -388,7 +388,7 @@ eva_http_response_peek_md5     (GskHttpResponse *response)
  * with any 3xx (Redirection) response to indicate the minimum time the
  * user-agent is asked wait before issuing the redirected request.
  */
-void       eva_http_response_set_retry_after   (GskHttpResponse *response,
+void       eva_http_response_set_retry_after   (EvaHttpResponse *response,
                                                 gboolean         is_relative,
                                                 glong            time)
 {
@@ -403,7 +403,7 @@ void       eva_http_response_set_retry_after   (GskHttpResponse *response,
  *
  * Clear the Retry-After header for this response.
  */
-void       eva_http_response_set_no_retry_after(GskHttpResponse *response)
+void       eva_http_response_set_no_retry_after(EvaHttpResponse *response)
 {
   response->has_retry_after = 0;
 }
@@ -422,11 +422,11 @@ void       eva_http_response_set_no_retry_after(GskHttpResponse *response)
  * See sections 14.8 for normal Authorization and 14.34.
  */
 void
-eva_http_response_set_authenticate       (GskHttpResponse  *response,
+eva_http_response_set_authenticate       (EvaHttpResponse  *response,
 					  gboolean         is_proxy_auth,
-					  GskHttpAuthenticate *auth)
+					  EvaHttpAuthenticate *auth)
 {
-  GskHttpAuthenticate **dst_auth = is_proxy_auth
+  EvaHttpAuthenticate **dst_auth = is_proxy_auth
                                  ? &response->proxy_authenticate
                                  : &response->authenticate;
 
@@ -448,8 +448,8 @@ eva_http_response_set_authenticate       (GskHttpResponse  *response,
  *
  * returns: the authentication information, or NULL if none exists (default).
  */
-GskHttpAuthenticate *
-eva_http_response_peek_authenticate      (GskHttpResponse  *response,
+EvaHttpAuthenticate *
+eva_http_response_peek_authenticate      (EvaHttpResponse  *response,
 					  gboolean    is_proxy_auth)
 {
   return is_proxy_auth ? response->proxy_authenticate : response->authenticate;
@@ -467,7 +467,7 @@ eva_http_response_peek_authenticate      (GskHttpResponse  *response,
  * a verb which is not allowed, you should get a EVA_HTTP_STATUS_METHOD_NOT_ALLOWED response.
  * That response MUST have an Allow: header.
  */
-void       eva_http_response_set_allowed_verbs  (GskHttpResponse *response,
+void       eva_http_response_set_allowed_verbs  (EvaHttpResponse *response,
                                                  guint            allowed)
 {
   response->allowed_verbs = allowed;
@@ -483,7 +483,7 @@ void       eva_http_response_set_allowed_verbs  (GskHttpResponse *response,
  *
  * returns: the newly allocated response.
  */
-GskHttpResponse *eva_http_response_new_blank    (void)
+EvaHttpResponse *eva_http_response_new_blank    (void)
 {
   return g_object_new (EVA_TYPE_HTTP_RESPONSE, NULL);
 }
@@ -498,10 +498,10 @@ GskHttpResponse *eva_http_response_new_blank    (void)
  *
  * returns: the newly allocated header.
  */
-GskHttpResponse *
+EvaHttpResponse *
 eva_http_response_new_redirect (const char    *location)
 {
-  GskHttpResponse *response;
+  EvaHttpResponse *response;
   response = eva_http_response_new_blank ();
   response->status_code = EVA_HTTP_STATUS_FOUND;	/* 302 */
   eva_http_response_set_location (response, location);
@@ -520,14 +520,14 @@ eva_http_response_new_redirect (const char    *location)
  *
  * returns: a new, matching response.
  */
-GskHttpResponse  *
-eva_http_response_from_request (GskHttpRequest *request,
-			        GskHttpStatus   status_code,
+EvaHttpResponse  *
+eva_http_response_from_request (EvaHttpRequest *request,
+			        EvaHttpStatus   status_code,
 				gint64          length)
 {
-  GskHttpHeader *header_request = request ? EVA_HTTP_HEADER (request) : NULL;
-  GskHttpResponse *response = eva_http_response_new_blank ();
-  GskHttpHeader *header_response = EVA_HTTP_HEADER (response);
+  EvaHttpHeader *header_request = request ? EVA_HTTP_HEADER (request) : NULL;
+  EvaHttpResponse *response = eva_http_response_new_blank ();
+  EvaHttpHeader *header_response = EVA_HTTP_HEADER (response);
   response->status_code = status_code;
   header_response->content_length = length;
 

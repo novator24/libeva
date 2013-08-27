@@ -29,26 +29,26 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskMainLoopChange GskMainLoopChange;
-typedef struct _GskMainLoopEvent GskMainLoopEvent;
-typedef struct _GskMainLoopClass GskMainLoopClass;
-typedef struct _GskMainLoop GskMainLoop;
-typedef struct _GskMainLoopWaitInfo GskMainLoopWaitInfo;
-typedef struct _GskSource GskSource;
-typedef struct _GskMainLoopContextList GskMainLoopContextList;
+typedef struct _EvaMainLoopChange EvaMainLoopChange;
+typedef struct _EvaMainLoopEvent EvaMainLoopEvent;
+typedef struct _EvaMainLoopClass EvaMainLoopClass;
+typedef struct _EvaMainLoop EvaMainLoop;
+typedef struct _EvaMainLoopWaitInfo EvaMainLoopWaitInfo;
+typedef struct _EvaSource EvaSource;
+typedef struct _EvaMainLoopContextList EvaMainLoopContextList;
 
 /* --- type macros --- */
 GType eva_main_loop_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MAIN_LOOP		(eva_main_loop_get_type ())
-#define EVA_MAIN_LOOP(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MAIN_LOOP, GskMainLoop))
-#define EVA_MAIN_LOOP_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MAIN_LOOP, GskMainLoopClass))
-#define EVA_MAIN_LOOP_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MAIN_LOOP, GskMainLoopClass))
+#define EVA_MAIN_LOOP(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MAIN_LOOP, EvaMainLoop))
+#define EVA_MAIN_LOOP_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MAIN_LOOP, EvaMainLoopClass))
+#define EVA_MAIN_LOOP_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MAIN_LOOP, EvaMainLoopClass))
 #define EVA_IS_MAIN_LOOP(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_MAIN_LOOP))
 #define EVA_IS_MAIN_LOOP_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_MAIN_LOOP))
 
 GType eva_main_loop_wait_info_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MAIN_LOOP_WAIT_INFO    (eva_main_loop_wait_info_get_type ())
-struct _GskMainLoopWaitInfo
+struct _EvaMainLoopWaitInfo
 {
   int               pid; 
   gboolean          exited;         /* exit(2) or killed by signal? */
@@ -66,11 +66,11 @@ typedef enum
   EVA_MAIN_LOOP_EVENT_IO,
   EVA_MAIN_LOOP_EVENT_SIGNAL,
   EVA_MAIN_LOOP_EVENT_PROCESS
-} GskMainLoopEventType;
+} EvaMainLoopEventType;
 
-struct _GskMainLoopChange
+struct _EvaMainLoopChange
 {
-  GskMainLoopEventType type;
+  EvaMainLoopEventType type;
   union
   {
     struct {
@@ -90,9 +90,9 @@ struct _GskMainLoopChange
   } data;
 };
 
-struct _GskMainLoopEvent
+struct _EvaMainLoopEvent
 {
-  GskMainLoopEventType type;
+  EvaMainLoopEventType type;
   union
   {
     guint signal;
@@ -100,33 +100,33 @@ struct _GskMainLoopEvent
       guint fd;
       GIOCondition events;
     } io;
-    GskMainLoopWaitInfo process_wait_info;
+    EvaMainLoopWaitInfo process_wait_info;
   } data;
 };
 
 /* --- structures --- */
-struct _GskMainLoopClass 
+struct _EvaMainLoopClass 
 {
   GObjectClass object_class;
-  gboolean (*setup)  (GskMainLoop       *main_loop);
-  void     (*change) (GskMainLoop       *main_loop,
-                      GskMainLoopChange *change);
-  guint    (*poll)   (GskMainLoop       *main_loop,
+  gboolean (*setup)  (EvaMainLoop       *main_loop);
+  void     (*change) (EvaMainLoop       *main_loop,
+                      EvaMainLoopChange *change);
+  guint    (*poll)   (EvaMainLoop       *main_loop,
                       guint              max_events_out,
-                      GskMainLoopEvent  *events,
+                      EvaMainLoopEvent  *events,
                       gint               timeout);
 };
 
-struct _GskMainLoop 
+struct _EvaMainLoop 
 {
   GObject      object;
 
   /* idle functions */
-  GskSource     *first_idle;
-  GskSource     *last_idle;
+  EvaSource     *first_idle;
+  EvaSource     *last_idle;
 
   /* timers */
-  GskSource     *timers;
+  EvaSource     *timers;
 
   /* i/o handlers by file-descriptor */
   GPtrArray     *read_sources;
@@ -135,12 +135,12 @@ struct _GskMainLoop
   /* lists of sources for each signal */
   GPtrArray     *signal_source_lists;
 
-  /* process-termination handlers (int => (GSList<GskSource>)) */
+  /* process-termination handlers (int => (GSList<EvaSource>)) */
   GHashTable    *process_source_lists;
   GHashTable    *alive_pids;
 
   /* the source which is currently running */
-  GskSource     *running_source;
+  EvaSource     *running_source;
 
   GTimeVal       current_time;
 
@@ -155,34 +155,34 @@ struct _GskMainLoop
 
   gint		 exit_status;
 
-  GskMainLoopEvent *event_array_cache;
+  EvaMainLoopEvent *event_array_cache;
   unsigned       max_events;
 
   /* a list of GMainContext's */
-  GskMainLoopContextList *first_context;
-  GskMainLoopContextList *last_context;
+  EvaMainLoopContextList *first_context;
+  EvaMainLoopContextList *last_context;
 };
 
 /* --- Callback function typedefs. --- */
 
 /* callback for child-process termination */
-typedef void     (*GskMainLoopWaitPidFunc)(GskMainLoopWaitInfo  *info,
+typedef void     (*EvaMainLoopWaitPidFunc)(EvaMainLoopWaitInfo  *info,
                                            gpointer              user_data);
 
 /* callback for an "idle" function -- it runs after all events
  * have been processed.
  */
-typedef gboolean (*GskMainLoopIdleFunc)   (gpointer              user_data);
+typedef gboolean (*EvaMainLoopIdleFunc)   (gpointer              user_data);
 
 /* callback for receiving a signal */
-typedef gboolean (*GskMainLoopSignalFunc) (int                   sig_no,
+typedef gboolean (*EvaMainLoopSignalFunc) (int                   sig_no,
                                            gpointer              user_data);
 
 /* callback for a period */
-typedef gboolean (*GskMainLoopTimeoutFunc)(gpointer              user_data);
+typedef gboolean (*EvaMainLoopTimeoutFunc)(gpointer              user_data);
 
 /* callback for input or output on a file descriptor */
-typedef gboolean (*GskMainLoopIOFunc)     (int                   fd,
+typedef gboolean (*EvaMainLoopIOFunc)     (int                   fd,
                                            GIOCondition          condition,
                                            gpointer              user_data);
 
@@ -192,81 +192,81 @@ typedef gboolean (*GskMainLoopIOFunc)     (int                   fd,
 typedef enum
 {
   EVA_MAIN_LOOP_NEEDS_THREADS = (1 << 0)
-} GskMainLoopCreateFlags;
+} EvaMainLoopCreateFlags;
 
-GskMainLoop     *eva_main_loop_new       (GskMainLoopCreateFlags create_flags);
+EvaMainLoop     *eva_main_loop_new       (EvaMainLoopCreateFlags create_flags);
 
 /* return the per-thread main-loop */
-GskMainLoop     *eva_main_loop_default      (void) G_GNUC_CONST;
+EvaMainLoop     *eva_main_loop_default      (void) G_GNUC_CONST;
 
 
 /* TIMEOUT is the maximum number of milliseconds to wait,
  * or pass in -1 to block forever.
  */
-guint            eva_main_loop_run          (GskMainLoop       *main_loop,
+guint            eva_main_loop_run          (EvaMainLoop       *main_loop,
                                              gint               timeout,
                                              guint             *t_waited_out);
-GskSource       *eva_main_loop_add_idle     (GskMainLoop       *main_loop,
-                                             GskMainLoopIdleFunc source_func,
+EvaSource       *eva_main_loop_add_idle     (EvaMainLoop       *main_loop,
+                                             EvaMainLoopIdleFunc source_func,
                                              gpointer           user_data,
                                              GDestroyNotify     destroy);
-GskSource       *eva_main_loop_add_signal   (GskMainLoop       *main_loop,
+EvaSource       *eva_main_loop_add_signal   (EvaMainLoop       *main_loop,
                                              int                signal_number,
-                                             GskMainLoopSignalFunc signal_func,
+                                             EvaMainLoopSignalFunc signal_func,
                                              gpointer           user_data,
                                              GDestroyNotify     destroy);
-GskSource       *eva_main_loop_add_waitpid  (GskMainLoop       *main_loop,
+EvaSource       *eva_main_loop_add_waitpid  (EvaMainLoop       *main_loop,
                                              int                process_id,
-                                           GskMainLoopWaitPidFunc waitpid_func,
+                                           EvaMainLoopWaitPidFunc waitpid_func,
                                              gpointer           user_data,
                                              GDestroyNotify     destroy);
-GskSource       *eva_main_loop_add_io       (GskMainLoop       *main_loop,
+EvaSource       *eva_main_loop_add_io       (EvaMainLoop       *main_loop,
                                              int                fd,
                                              guint              events,
-                                             GskMainLoopIOFunc  io_func,
+                                             EvaMainLoopIOFunc  io_func,
                                              gpointer           user_data,
                                              GDestroyNotify     destroy);
-void             eva_source_adjust_io       (GskSource         *source,
+void             eva_source_adjust_io       (EvaSource         *source,
                                              guint              events);
-void             eva_source_add_io_events   (GskSource         *source,
+void             eva_source_add_io_events   (EvaSource         *source,
                                              guint              events);
-void             eva_source_remove_io_events(GskSource         *source,
+void             eva_source_remove_io_events(EvaSource         *source,
                                              guint              events);
 #define eva_main_loop_add_timer eva_main_loop_add_timer64
 #define eva_source_adjust_timer eva_source_adjust_timer64
-GskSource       *eva_main_loop_add_timer    (GskMainLoop       *main_loop,
-                                             GskMainLoopTimeoutFunc timer_func,
+EvaSource       *eva_main_loop_add_timer    (EvaMainLoop       *main_loop,
+                                             EvaMainLoopTimeoutFunc timer_func,
                                              gpointer           timer_data,
                                              GDestroyNotify     timer_destroy,
                                              gint64             millis_expire,
                                              gint64             milli_period);
-GskSource       *eva_main_loop_add_timer_absolute
-                                            (GskMainLoop       *main_loop,
-                                             GskMainLoopTimeoutFunc timer_func,
+EvaSource       *eva_main_loop_add_timer_absolute
+                                            (EvaMainLoop       *main_loop,
+                                             EvaMainLoopTimeoutFunc timer_func,
                                              gpointer           timer_data,
                                              GDestroyNotify     timer_destroy,
                                              int                unixtime,
                                              int                unixtime_micro);
-void             eva_source_adjust_timer    (GskSource         *timer_source,
+void             eva_source_adjust_timer    (EvaSource         *timer_source,
                                              gint64             millis_expire,
                                              gint64             milli_period);
-void             eva_source_remove          (GskSource         *source);
-void             eva_main_loop_add_context  (GskMainLoop       *main_loop,
+void             eva_source_remove          (EvaSource         *source);
+void             eva_main_loop_add_context  (EvaMainLoop       *main_loop,
 					     GMainContext      *context);
-void             eva_main_loop_quit         (GskMainLoop       *main_loop);
+void             eva_main_loop_quit         (EvaMainLoop       *main_loop);
 
 
 gboolean         eva_main_loop_should_continue
-                                            (GskMainLoop       *main_loop);
+                                            (EvaMainLoop       *main_loop);
 
-GskMainLoop *eva_source_peek_main_loop (GskSource *source);
+EvaMainLoop *eva_source_peek_main_loop (EvaSource *source);
 
 /*< protected >*/
-void eva_main_loop_destroy_all_sources (GskMainLoop *main_loop);
+void eva_main_loop_destroy_all_sources (EvaMainLoop *main_loop);
 
 /* miscellaneous: should probably be private. */
 gboolean eva_main_loop_do_waitpid (int                  pid,
-                                   GskMainLoopWaitInfo *wait_info);
+                                   EvaMainLoopWaitInfo *wait_info);
 
 /*< private >*/
 void _eva_main_loop_init ();
@@ -278,8 +278,8 @@ void _eva_main_loop_fork_notify ();
    and just define eva_main_loop_add_timer() as the 64-bit function. */
 #undef eva_main_loop_add_timer
 #undef eva_source_adjust_timer
-GskSource *eva_main_loop_add_timer (GskMainLoop*,GskMainLoopTimeoutFunc,gpointer,GDestroyNotify,int,int);
-void eva_source_adjust_timer (GskSource*,int,int);
+EvaSource *eva_main_loop_add_timer (EvaMainLoop*,EvaMainLoopTimeoutFunc,gpointer,GDestroyNotify,int,int);
+void eva_source_adjust_timer (EvaSource*,int,int);
 #define eva_main_loop_add_timer eva_main_loop_add_timer64
 #define eva_source_adjust_timer eva_source_adjust_timer64
 

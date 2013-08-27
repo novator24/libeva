@@ -11,17 +11,17 @@
 typedef struct _DownloadInfo DownloadInfo;
 struct _DownloadInfo
 {
-  GskUrlScheme scheme;
-  GskUrlDownloadMethod download;
+  EvaUrlScheme scheme;
+  EvaUrlDownloadMethod download;
   gpointer download_data;
   DownloadInfo *next;
 };
 
-struct _GskUrlDownload
+struct _EvaUrlDownload
 {
-  GskUrl          *url;
-  GskUrlSuccess    success_func;
-  GskUrlFailure    failure_func;
+  EvaUrl          *url;
+  EvaUrlSuccess    success_func;
+  EvaUrlFailure    failure_func;
   gpointer         user_data;
 };
 
@@ -38,7 +38,7 @@ static void initialize_url_download_system (void);
   }G_STMT_END
 
 static DownloadInfo *
-find_download_info (GskUrlScheme scheme)
+find_download_info (EvaUrlScheme scheme)
 {
   DownloadInfo *at;
   for (at = first_dl_info; at != NULL; at = at->next)
@@ -63,8 +63,8 @@ find_download_info (GskUrlScheme scheme)
  * call those functions before returning.
  */
 void
-eva_url_scheme_add_dl_method (GskUrlScheme     scheme,
-			      GskUrlDownloadMethod  download_method,
+eva_url_scheme_add_dl_method (EvaUrlScheme     scheme,
+			      EvaUrlDownloadMethod  download_method,
 			      gpointer         download_data)
 {
   DownloadInfo *info;
@@ -100,9 +100,9 @@ eva_url_scheme_add_dl_method (GskUrlScheme     scheme,
  * the caller must deal with it.
  */
 void
-eva_url_download            (GskUrl          *url,
-			     GskUrlSuccess    success_func,
-			     GskUrlFailure    failure_func,
+eva_url_download            (EvaUrl          *url,
+			     EvaUrlSuccess    success_func,
+			     EvaUrlFailure    failure_func,
 			     gpointer         user_data)
 {
   DownloadInfo *info;
@@ -120,7 +120,7 @@ eva_url_download            (GskUrl          *url,
     }
   else
     {
-      GskUrlDownload *download = g_new (GskUrlDownload, 1);
+      EvaUrlDownload *download = g_new (EvaUrlDownload, 1);
       download->success_func = success_func;
       download->url = g_object_ref (url);
       download->failure_func = failure_func;
@@ -131,7 +131,7 @@ eva_url_download            (GskUrl          *url,
 
 /* --- protected methods --- */
 static inline void
-eva_url_download_destroy (GskUrlDownload *download)
+eva_url_download_destroy (EvaUrlDownload *download)
 {
   g_object_unref (download->url);
   g_free (download);
@@ -150,8 +150,8 @@ eva_url_download_destroy (GskUrlDownload *download)
  * handlers for new URL schemes.
  */
 void
-eva_url_download_success    (GskUrlDownload  *download,
-			     GskStream       *stream)
+eva_url_download_success    (EvaUrlDownload  *download,
+			     EvaStream       *stream)
 {
   if (download->success_func)
     download->success_func (stream, download->user_data);
@@ -170,7 +170,7 @@ eva_url_download_success    (GskUrlDownload  *download,
  * handlers for new URL schemes.
  */
 void
-eva_url_download_fail       (GskUrlDownload  *download,
+eva_url_download_fail       (EvaUrlDownload  *download,
 			     GError          *error)
 {
   if (download->failure_func)
@@ -186,8 +186,8 @@ eva_url_download_fail       (GskUrlDownload  *download,
  *
  * returns: the URL for downloading.
  */
-GskUrl *
-eva_url_download_peek_url (GskUrlDownload *download)
+EvaUrl *
+eva_url_download_peek_url (EvaUrlDownload *download)
 {
   return download->url;
 }
@@ -206,8 +206,8 @@ eva_url_download_peek_url (GskUrlDownload *download)
  * handlers for new URL schemes.
  */
 void
-eva_url_download_redirect   (GskUrlDownload  *download,
-			     GskUrl          *new_url)
+eva_url_download_redirect   (EvaUrlDownload  *download,
+			     EvaUrl          *new_url)
 {
   DownloadInfo *info = find_download_info (new_url->scheme);
   if (info == NULL)
@@ -221,7 +221,7 @@ eva_url_download_redirect   (GskUrlDownload  *download,
     }
   else
     {
-      GskUrl *old_url = download->url;
+      EvaUrl *old_url = download->url;
       download->url = g_object_ref (new_url);
       g_object_unref (old_url);
       (*info->download) (download, info->download_data);
@@ -232,18 +232,18 @@ eva_url_download_redirect   (GskUrlDownload  *download,
 typedef struct _HttpDownloadInfo HttpDownloadInfo;
 struct _HttpDownloadInfo
 {
-  GskUrlDownload *download;
+  EvaUrlDownload *download;
   gboolean has_notified;
 };
 
 static void
-http_handle_response  (GskHttpRequest  *request,
-		       GskHttpResponse *response,
-		       GskStream       *input,
+http_handle_response  (EvaHttpRequest  *request,
+		       EvaHttpResponse *response,
+		       EvaStream       *input,
 		       gpointer         hook_data)
 {
   HttpDownloadInfo *info = hook_data;
-  GskUrlDownload *download = info->download;
+  EvaUrlDownload *download = info->download;
   switch (response->status_code)
     {
       /* errors i don't expect should ever happen, given the request
@@ -304,10 +304,10 @@ http_handle_response  (GskHttpRequest  *request,
     case EVA_HTTP_STATUS_SEE_OTHER:
     case EVA_HTTP_STATUS_TEMPORARY_REDIRECT:
       {
-	GskUrl *new_url = NULL;
+	EvaUrl *new_url = NULL;
 	if (response->location != NULL)
 	  {
-	    GskUrl *old_url = eva_url_download_peek_url (download);
+	    EvaUrl *old_url = eva_url_download_peek_url (download);
 	    GError *error = NULL;
 	    new_url = eva_url_new_relative (old_url, response->location, &error);
 	    if (new_url == NULL)
@@ -367,20 +367,20 @@ destroy_http_download  (gpointer         hook_data)
 }
 
 static void
-http_name_lookup_success (GskSocketAddress *address,
+http_name_lookup_success (EvaSocketAddress *address,
 			  gpointer          func_data)
 {
-  GskUrlDownload *download = func_data;
-  GskUrl *url = eva_url_download_peek_url (download);
+  EvaUrlDownload *download = func_data;
+  EvaUrl *url = eva_url_download_peek_url (download);
   GError *error = NULL;
-  GskStream *istream;
+  EvaStream *istream;
 
   /* XXX: most likely this should be moved into the generic resolver code */
   if (EVA_IS_SOCKET_ADDRESS_IPV4 (address))
     {
-      GskSocketAddressIpv4 *ipv4 = EVA_SOCKET_ADDRESS_IPV4 (address);
+      EvaSocketAddressIpv4 *ipv4 = EVA_SOCKET_ADDRESS_IPV4 (address);
       
-      /* HACK: we need to get the port from the GskUrl 
+      /* HACK: we need to get the port from the EvaUrl 
        */
       ipv4->ip_port = url->port;
 
@@ -397,9 +397,9 @@ http_name_lookup_success (GskSocketAddress *address,
     eva_url_download_fail (download, error);
   else
     {
-      GskHttpClient *client = eva_http_client_new ();
-      GskStream *cstream;
-      GskHttpRequest *request;
+      EvaHttpClient *client = eva_http_client_new ();
+      EvaStream *cstream;
+      EvaHttpRequest *request;
       HttpDownloadInfo *download_info = g_new (HttpDownloadInfo, 1);
       char *full_path;
 
@@ -438,16 +438,16 @@ static void
 http_name_lookup_failure (GError           *error,
 			  gpointer          func_data)
 {
-  GskUrlDownload *download = func_data;
+  EvaUrlDownload *download = func_data;
   eva_url_download_fail (download, error);
 }
 
 static void
-download_http (GskUrlDownload  *download,
+download_http (EvaUrlDownload  *download,
 	       gpointer         data)
 {
-  GskUrl *url = eva_url_download_peek_url (download);
-  GskNameResolverTask *task = eva_name_resolve (EVA_NAME_RESOLVER_FAMILY_IPV4,
+  EvaUrl *url = eva_url_download_peek_url (download);
+  EvaNameResolverTask *task = eva_name_resolve (EVA_NAME_RESOLVER_FAMILY_IPV4,
 		                                url->host,
 		                                http_name_lookup_success,
 		                                http_name_lookup_failure,

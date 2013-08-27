@@ -12,19 +12,19 @@
 
 <refsynopsisdiv id="eva-evabufferstream.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
-<anchor id="GskBufferStream"/>
+<anchor id="EvaBufferStream"/>
 <synopsis>
-                    <link linkend="GskBufferStreamClass">GskBufferStreamClass</link>;
-                    <link linkend="GskBufferStream-struct">GskBufferStream</link>;
-<link linkend="GskBufferStream">GskBufferStream</link> *   <link linkend="eva-buffer-stream-new">eva_buffer_stream_new</link>               (void);
+                    <link linkend="EvaBufferStreamClass">EvaBufferStreamClass</link>;
+                    <link linkend="EvaBufferStream-struct">EvaBufferStream</link>;
+<link linkend="EvaBufferStream">EvaBufferStream</link> *   <link linkend="eva-buffer-stream-new">eva_buffer_stream_new</link>               (void);
 #define             <link linkend="eva-buffer-stream-read-hook">eva_buffer_stream_read_hook</link>         (stream)
 #define             <link linkend="eva-buffer-stream-write-hook">eva_buffer_stream_write_hook</link>        (stream)
 <link linkend="void">void</link>                <link linkend="eva-buffer-stream-read-buffer-changed">eva_buffer_stream_read_buffer_changed</link>
-                                                        (<link linkend="GskBufferStream">GskBufferStream</link> *stream);
+                                                        (<link linkend="EvaBufferStream">EvaBufferStream</link> *stream);
 <link linkend="void">void</link>                <link linkend="eva-buffer-stream-write-buffer-changed">eva_buffer_stream_write_buffer_changed</link>
-                                                        (<link linkend="GskBufferStream">GskBufferStream</link> *stream);
-<link linkend="void">void</link>                <link linkend="eva-buffer-stream-read-shutdown">eva_buffer_stream_read_shutdown</link>     (<link linkend="GskBufferStream">GskBufferStream</link> *stream);
-<link linkend="void">void</link>                <link linkend="eva-buffer-stream-changed">eva_buffer_stream_changed</link>           (<link linkend="GskBufferStream">GskBufferStream</link> *stream);
+                                                        (<link linkend="EvaBufferStream">EvaBufferStream</link> *stream);
+<link linkend="void">void</link>                <link linkend="eva-buffer-stream-read-shutdown">eva_buffer_stream_read_shutdown</link>     (<link linkend="EvaBufferStream">EvaBufferStream</link> *stream);
+<link linkend="void">void</link>                <link linkend="eva-buffer-stream-changed">eva_buffer_stream_changed</link>           (<link linkend="EvaBufferStream">EvaBufferStream</link> *stream);
 #define             <link linkend="eva-buffer-stream-clear-strict-max-write">eva_buffer_stream_clear_strict_max_write</link>(stream)
 #define             <link linkend="eva-buffer-stream-has-strict-max-write">eva_buffer_stream_has_strict_max_write</link>(stream)
 #define             <link linkend="eva-buffer-stream-get-max-write-buffer">eva_buffer_stream_get_max_write_buffer</link>(stream)
@@ -38,9 +38,9 @@
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskIO">GskIO</link>
-         +----<link linkend="GskStream">GskStream</link>
-               +----GskBufferStream
+   +----<link linkend="EvaIO">EvaIO</link>
+         +----<link linkend="EvaStream">EvaStream</link>
+               +----EvaBufferStream
 </synopsis>
 </refsect1>
 
@@ -63,13 +63,13 @@ minimal need for input/output monitoring.
 For example, it can be used to proxy for a foreign source.
 We use it for this purpose in evaopensslbufferstream.c
 to make a connected pair of a BIO (the SSL i/o abstraction)
-and a <link linkend="GskStream"><type>GskStream</type></link> (which is really a GskBufferStream).
+and a <link linkend="EvaStream"><type>EvaStream</type></link> (which is really a EvaBufferStream).
 </para>
 <para>
 Most functions in the API are intended only for
-"implementors", that is, users who are using a <link linkend="GskBufferStream"><type>GskBufferStream</type></link>
-as an internal stream.  Most users who are given a <link linkend="GskBufferStream"><type>GskBufferStream</type></link>
-which is returned as a <link linkend="GskStream"><type>GskStream</type></link> should not use this API,
+"implementors", that is, users who are using a <link linkend="EvaBufferStream"><type>EvaBufferStream</type></link>
+as an internal stream.  Most users who are given a <link linkend="EvaBufferStream"><type>EvaBufferStream</type></link>
+which is returned as a <link linkend="EvaStream"><type>EvaStream</type></link> should not use this API,
 because it may conflict with the way the implementor of
 the function which returned it expects it to be used.
 </para>
@@ -77,23 +77,23 @@ the function which returned it expects it to be used.
 
 <refsect1 id="eva-evabufferstream.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskBufferStreamClass" role="struct">
-<title>GskBufferStreamClass</title>
-<indexterm zone="GskBufferStreamClass"><primary sortas="GskBufferStreamClass">GskBufferStreamClass</primary></indexterm><programlisting>typedef struct {
-  GskStreamClass stream_class;
+<refsect2 id="EvaBufferStreamClass" role="struct">
+<title>EvaBufferStreamClass</title>
+<indexterm zone="EvaBufferStreamClass"><primary sortas="EvaBufferStreamClass">EvaBufferStreamClass</primary></indexterm><programlisting>typedef struct {
+  EvaStreamClass stream_class;
 
-  void (*buffered_read_set_poll) (GskBufferStream *bs, gboolean);
-  void (*buffered_write_set_poll) (GskBufferStream *bs, gboolean);
-  void (*buffered_read_shutdown) (GskBufferStream *bs);
-  void (*buffered_write_shutdown) (GskBufferStream *bs);
-} GskBufferStreamClass;
+  void (*buffered_read_set_poll) (EvaBufferStream *bs, gboolean);
+  void (*buffered_write_set_poll) (EvaBufferStream *bs, gboolean);
+  void (*buffered_read_shutdown) (EvaBufferStream *bs);
+  void (*buffered_write_shutdown) (EvaBufferStream *bs);
+} EvaBufferStreamClass;
 </programlisting>
 <para>
 The class which has the buffer methods.
 </para></refsect2>
-<refsect2 id="GskBufferStream-struct" role="struct">
-<title>GskBufferStream</title>
-<indexterm zone="GskBufferStream-struct"><primary sortas="GskBufferStream">GskBufferStream</primary></indexterm><programlisting>typedef struct _GskBufferStream GskBufferStream;</programlisting>
+<refsect2 id="EvaBufferStream-struct" role="struct">
+<title>EvaBufferStream</title>
+<indexterm zone="EvaBufferStream-struct"><primary sortas="EvaBufferStream">EvaBufferStream</primary></indexterm><programlisting>typedef struct _EvaBufferStream EvaBufferStream;</programlisting>
 <para>
 The buffered stream.  All of its members are private
 and should be accessed through the methods below only.
@@ -103,12 +103,12 @@ However, for debugging purposes, ....
 </para></refsect2>
 <refsect2 id="eva-buffer-stream-new" role="function">
 <title>eva_buffer_stream_new ()</title>
-<indexterm zone="eva-buffer-stream-new"><primary sortas="eva_buffer_stream_new">eva_buffer_stream_new</primary></indexterm><programlisting><link linkend="GskBufferStream">GskBufferStream</link> *   eva_buffer_stream_new               (void);</programlisting>
+<indexterm zone="eva-buffer-stream-new"><primary sortas="eva_buffer_stream_new">eva_buffer_stream_new</primary></indexterm><programlisting><link linkend="EvaBufferStream">EvaBufferStream</link> *   eva_buffer_stream_new               (void);</programlisting>
 <para>
-Create a new <link linkend="GskBufferStream"><type>GskBufferStream</type></link>.</para>
+Create a new <link linkend="EvaBufferStream"><type>EvaBufferStream</type></link>.</para>
 <para>
 </para><variablelist role="params">
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated GskBufferStream.
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated EvaBufferStream.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-buffer-stream-read-hook" role="macro">
@@ -120,7 +120,7 @@ This hook will be triggered as long as the stream's read-hook
 wants data and the buffer is empty.
 </para><variablelist role="params">
 <varlistentry><term><parameter>stream</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskBufferStream"><type>GskBufferStream</type></link> to get the read-hook for.
+<listitem><simpara>the <link linkend="EvaBufferStream"><type>EvaBufferStream</type></link> to get the read-hook for.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-buffer-stream-write-hook" role="macro">
@@ -132,13 +132,13 @@ This will be triggered as long as the write-buffer
 is non-empty.
 </para><variablelist role="params">
 <varlistentry><term><parameter>stream</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskBufferStream"><type>GskBufferStream</type></link> to get the write-hook for.
+<listitem><simpara>the <link linkend="EvaBufferStream"><type>EvaBufferStream</type></link> to get the write-hook for.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-buffer-stream-read-buffer-changed" role="function">
 <title>eva_buffer_stream_read_buffer_changed ()</title>
 <indexterm zone="eva-buffer-stream-read-buffer-changed"><primary sortas="eva_buffer_stream_read_buffer_changed">eva_buffer_stream_read_buffer_changed</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_stream_read_buffer_changed
-                                                        (<link linkend="GskBufferStream">GskBufferStream</link> *stream);</programlisting>
+                                                        (<link linkend="EvaBufferStream">EvaBufferStream</link> *stream);</programlisting>
 <para>
 Called to notify the buffer stream that its
 read-size has been changed, usually because
@@ -153,7 +153,7 @@ for the attached stream to read.</para>
 <refsect2 id="eva-buffer-stream-write-buffer-changed" role="function">
 <title>eva_buffer_stream_write_buffer_changed ()</title>
 <indexterm zone="eva-buffer-stream-write-buffer-changed"><primary sortas="eva_buffer_stream_write_buffer_changed">eva_buffer_stream_write_buffer_changed</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_stream_write_buffer_changed
-                                                        (<link linkend="GskBufferStream">GskBufferStream</link> *stream);</programlisting>
+                                                        (<link linkend="EvaBufferStream">EvaBufferStream</link> *stream);</programlisting>
 <para>
 Called to notify the buffer stream that its
 write-buffer has been changed, usually because
@@ -166,7 +166,7 @@ an implementor has read data from it.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-buffer-stream-read-shutdown" role="function">
 <title>eva_buffer_stream_read_shutdown ()</title>
-<indexterm zone="eva-buffer-stream-read-shutdown"><primary sortas="eva_buffer_stream_read_shutdown">eva_buffer_stream_read_shutdown</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_stream_read_shutdown     (<link linkend="GskBufferStream">GskBufferStream</link> *stream);</programlisting>
+<indexterm zone="eva-buffer-stream-read-shutdown"><primary sortas="eva_buffer_stream_read_shutdown">eva_buffer_stream_read_shutdown</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_stream_read_shutdown     (<link linkend="EvaBufferStream">EvaBufferStream</link> *stream);</programlisting>
 <para>
 Shutdown the read-end of the buffer-stream,
 waiting for the buffer to be drained first.</para>
@@ -178,7 +178,7 @@ waiting for the buffer to be drained first.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-buffer-stream-changed" role="function">
 <title>eva_buffer_stream_changed ()</title>
-<indexterm zone="eva-buffer-stream-changed"><primary sortas="eva_buffer_stream_changed">eva_buffer_stream_changed</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_stream_changed           (<link linkend="GskBufferStream">GskBufferStream</link> *stream);</programlisting>
+<indexterm zone="eva-buffer-stream-changed"><primary sortas="eva_buffer_stream_changed">eva_buffer_stream_changed</primary></indexterm><programlisting><link linkend="void">void</link>                eva_buffer_stream_changed           (<link linkend="EvaBufferStream">EvaBufferStream</link> *stream);</programlisting>
 <para>
 Do all updates needed to compensate for
 any user changes to: read_buffer, write_buffer,
@@ -205,7 +205,7 @@ max-write-buffer just used for polling purposes.
 <title>eva_buffer_stream_has_strict_max_write()</title>
 <indexterm zone="eva-buffer-stream-has-strict-max-write"><primary sortas="eva_buffer_stream_has_strict_max_write">eva_buffer_stream_has_strict_max_write</primary></indexterm><programlisting>#define             eva_buffer_stream_has_strict_max_write(stream)</programlisting>
 <para>
-Whether the <link linkend="GskBufferStream"><type>GskBufferStream</type></link> will strictly enforce
+Whether the <link linkend="EvaBufferStream"><type>EvaBufferStream</type></link> will strictly enforce
 the maximum write-buffer threshold by
 forcing writes beyond the maximum to get
 clipped (possibly to 0).
@@ -274,7 +274,7 @@ extra data in.
 <refsect1 id="eva-evabufferstream.see-also">
 <title>See Also</title>
 <para>
-GskStream.
+EvaStream.
 </para>
 </refsect1>
 

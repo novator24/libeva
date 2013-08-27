@@ -54,14 +54,14 @@
 <div class="refsynopsisdiv">
 <a name="eva-evatree.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a>;
-                    <a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a>;
-<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *           <a class="link" href="eva-evatree.html#eva-tree-new" title="eva_tree_new ()">eva_tree_new</a>                        (<a
+                    <a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a>;
+                    <a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a>;
+<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *           <a class="link" href="eva-evatree.html#eva-tree-new" title="eva_tree_new ()">eva_tree_new</a>                        (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GCompareFunc"
 >GCompareFunc</a> compare);
-<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *           <a class="link" href="eva-evatree.html#eva-tree-ref" title="eva_tree_ref ()">eva_tree_ref</a>                        (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree);
-void                <a class="link" href="eva-evatree.html#eva-tree-unref" title="eva_tree_unref ()">eva_tree_unref</a>                      (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree);
-<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *           <a class="link" href="eva-evatree.html#eva-tree-new-full" title="eva_tree_new_full ()">eva_tree_new_full</a>                   (<a
+<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *           <a class="link" href="eva-evatree.html#eva-tree-ref" title="eva_tree_ref ()">eva_tree_ref</a>                        (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree);
+void                <a class="link" href="eva-evatree.html#eva-tree-unref" title="eva_tree_unref ()">eva_tree_unref</a>                      (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree);
+<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *           <a class="link" href="eva-evatree.html#eva-tree-new-full" title="eva_tree_new_full ()">eva_tree_new_full</a>                   (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GCompareDataFunc"
 >GCompareDataFunc</a> compare,
                                                          <a
@@ -73,14 +73,14 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNo
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
 >GDestroyNotify</a> value_destroy_func);
-void                <a class="link" href="eva-evatree.html#eva-tree-insert" title="eva_tree_insert ()">eva_tree_insert</a>                     (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
+void                <a class="link" href="eva-evatree.html#eva-tree-insert" title="eva_tree_insert ()">eva_tree_insert</a>                     (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> key,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> value);
-void                <a class="link" href="eva-evatree.html#eva-tree-replace" title="eva_tree_replace ()">eva_tree_replace</a>                    (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
+void                <a class="link" href="eva-evatree.html#eva-tree-replace" title="eva_tree_replace ()">eva_tree_replace</a>                    (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> key,
@@ -89,43 +89,43 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 >gpointer</a> value);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            <a class="link" href="eva-evatree.html#eva-tree-lookup" title="eva_tree_lookup ()">eva_tree_lookup</a>                     (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
+>gpointer</a>            <a class="link" href="eva-evatree.html#eva-tree-lookup" title="eva_tree_lookup ()">eva_tree_lookup</a>                     (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> key);
-void                <a class="link" href="eva-evatree.html#eva-tree-remove" title="eva_tree_remove ()">eva_tree_remove</a>                     (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
+void                <a class="link" href="eva-evatree.html#eva-tree-remove" title="eva_tree_remove ()">eva_tree_remove</a>                     (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> key);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="eva-evatree.html#eva-tree-n-nodes" title="eva_tree_n_nodes ()">eva_tree_n_nodes</a>                    (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree);
-<a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *       <a class="link" href="eva-evatree.html#eva-tree-node-first" title="eva_tree_node_first ()">eva_tree_node_first</a>                 (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree);
-<a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *       <a class="link" href="eva-evatree.html#eva-tree-node-last" title="eva_tree_node_last ()">eva_tree_node_last</a>                  (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree);
-<a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *       <a class="link" href="eva-evatree.html#eva-tree-node-find" title="eva_tree_node_find ()">eva_tree_node_find</a>                  (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
+>guint</a>               <a class="link" href="eva-evatree.html#eva-tree-n-nodes" title="eva_tree_n_nodes ()">eva_tree_n_nodes</a>                    (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree);
+<a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *       <a class="link" href="eva-evatree.html#eva-tree-node-first" title="eva_tree_node_first ()">eva_tree_node_first</a>                 (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree);
+<a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *       <a class="link" href="eva-evatree.html#eva-tree-node-last" title="eva_tree_node_last ()">eva_tree_node_last</a>                  (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree);
+<a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *       <a class="link" href="eva-evatree.html#eva-tree-node-find" title="eva_tree_node_find ()">eva_tree_node_find</a>                  (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> search_key);
-<a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *       <a class="link" href="eva-evatree.html#eva-tree-node-next" title="eva_tree_node_next ()">eva_tree_node_next</a>                  (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
-                                                         <a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);
-<a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *       <a class="link" href="eva-evatree.html#eva-tree-node-prev" title="eva_tree_node_prev ()">eva_tree_node_prev</a>                  (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
-                                                         <a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);
+<a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *       <a class="link" href="eva-evatree.html#eva-tree-node-next" title="eva_tree_node_next ()">eva_tree_node_next</a>                  (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
+                                                         <a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);
+<a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *       <a class="link" href="eva-evatree.html#eva-tree-node-prev" title="eva_tree_node_prev ()">eva_tree_node_prev</a>                  (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
+                                                         <a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            <a class="link" href="eva-evatree.html#eva-tree-node-peek-key" title="eva_tree_node_peek_key ()">eva_tree_node_peek_key</a>              (<a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);
+>gpointer</a>            <a class="link" href="eva-evatree.html#eva-tree-node-peek-key" title="eva_tree_node_peek_key ()">eva_tree_node_peek_key</a>              (<a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            <a class="link" href="eva-evatree.html#eva-tree-node-peek-value" title="eva_tree_node_peek_value ()">eva_tree_node_peek_value</a>            (<a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);
+>gpointer</a>            <a class="link" href="eva-evatree.html#eva-tree-node-peek-value" title="eva_tree_node_peek_value ()">eva_tree_node_peek_value</a>            (<a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="eva-evatree.html#eva-tree-node-is-removed" title="eva_tree_node_is_removed ()">eva_tree_node_is_removed</a>            (<a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);
-void                <a class="link" href="eva-evatree.html#eva-tree-node-visit" title="eva_tree_node_visit ()">eva_tree_node_visit</a>                 (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
-                                                         <a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);
-void                <a class="link" href="eva-evatree.html#eva-tree-node-unvisit" title="eva_tree_node_unvisit ()">eva_tree_node_unvisit</a>               (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
-                                                         <a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);
+>gboolean</a>            <a class="link" href="eva-evatree.html#eva-tree-node-is-removed" title="eva_tree_node_is_removed ()">eva_tree_node_is_removed</a>            (<a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);
+void                <a class="link" href="eva-evatree.html#eva-tree-node-visit" title="eva_tree_node_visit ()">eva_tree_node_visit</a>                 (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
+                                                         <a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);
+void                <a class="link" href="eva-evatree.html#eva-tree-node-unvisit" title="eva_tree_node_unvisit ()">eva_tree_node_unvisit</a>               (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
+                                                         <a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="eva-evatree.html#eva-tree-validate" title="eva_tree_validate ()">eva_tree_validate</a>                   (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree);
+>gboolean</a>            <a class="link" href="eva-evatree.html#eva-tree-validate" title="eva_tree_validate ()">eva_tree_validate</a>                   (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree);
 </pre>
 </div>
 <div class="refsect1" lang="en">
@@ -138,7 +138,7 @@ any type of data.
 <p>
 The primary interesting feature is
 that one can iterate the trees in a robust manner
-using the <a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode"><span class="type">GskTreeNode</span></a>, which takes the place of an iterator.
+using the <a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode"><span class="type">EvaTreeNode</span></a>, which takes the place of an iterator.
 In particular, when walking around the tree,
 any nodes which are being visited cannot be destroyed
 until their are no more visitors.  Even though the nodes
@@ -156,18 +156,18 @@ return the new node???
 <div class="refsect1" lang="en">
 <a name="eva-evatree.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskTreeNode"></a><h3>GskTreeNode</h3>
-<pre class="programlisting">typedef struct _GskTreeNode GskTreeNode;</pre>
+<a name="EvaTreeNode"></a><h3>EvaTreeNode</h3>
+<pre class="programlisting">typedef struct _EvaTreeNode EvaTreeNode;</pre>
 <p>
 An opaque type representing a node of the tree.
-You should not hold on to a <a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode"><span class="type">GskTreeNode</span></a> unless you
+You should not hold on to a <a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode"><span class="type">EvaTreeNode</span></a> unless you
 "own" a visit count on the node.
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskTree"></a><h3>GskTree</h3>
-<pre class="programlisting">typedef struct _GskTree GskTree;</pre>
+<a name="EvaTree"></a><h3>EvaTree</h3>
+<pre class="programlisting">typedef struct _EvaTree EvaTree;</pre>
 <p>
 A map from keys to values implemented as a Red-Black tree.
 </p>
@@ -175,7 +175,7 @@ A map from keys to values implemented as a Red-Black tree.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-new"></a><h3>eva_tree_new ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *           eva_tree_new                        (<a
+<pre class="programlisting"><a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *           eva_tree_new                        (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GCompareFunc"
 >GCompareFunc</a> compare);</pre>
 <p>
@@ -203,7 +203,7 @@ must compare to a nonzero value (ie. the ordering is total).
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-ref"></a><h3>eva_tree_ref ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *           eva_tree_ref                        (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree);</pre>
+<pre class="programlisting"><a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *           eva_tree_ref                        (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree);</pre>
 <p>
 Increase the reference count on the tree.</p>
 <p>
@@ -227,7 +227,7 @@ Increase the reference count on the tree.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-unref"></a><h3>eva_tree_unref ()</h3>
-<pre class="programlisting">void                eva_tree_unref                      (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree);</pre>
+<pre class="programlisting">void                eva_tree_unref                      (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree);</pre>
 <p>
 Decrease the reference count on the tree.
 Once its ref-count reached 0, it and all its nodes
@@ -247,7 +247,7 @@ to hold a reference to a tree you are visiting!</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-new-full"></a><h3>eva_tree_new_full ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *           eva_tree_new_full                   (<a
+<pre class="programlisting"><a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *           eva_tree_new_full                   (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GCompareDataFunc"
 >GCompareDataFunc</a> compare,
                                                          <a
@@ -299,7 +299,7 @@ must compare to a nonzero value (ie. the ordering is total).
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-insert"></a><h3>eva_tree_insert ()</h3>
-<pre class="programlisting">void                eva_tree_insert                     (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
+<pre class="programlisting">void                eva_tree_insert                     (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> key,
@@ -344,7 +344,7 @@ See also <a class="link" href="eva-evatree.html#eva-tree-replace" title="eva_tre
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-replace"></a><h3>eva_tree_replace ()</h3>
-<pre class="programlisting">void                eva_tree_replace                    (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
+<pre class="programlisting">void                eva_tree_replace                    (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> key,
@@ -386,7 +386,7 @@ and replaced with this key.</p>
 <a name="eva-tree-lookup"></a><h3>eva_tree_lookup ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            eva_tree_lookup                     (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
+>gpointer</a>            eva_tree_lookup                     (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> key);</pre>
@@ -419,7 +419,7 @@ Or NULL if the node cannot be found.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-remove"></a><h3>eva_tree_remove ()</h3>
-<pre class="programlisting">void                eva_tree_remove                     (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
+<pre class="programlisting">void                eva_tree_remove                     (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> key);</pre>
@@ -456,7 +456,7 @@ by calling <a class="link" href="eva-evatree.html#eva-tree-node-is-removed" titl
 <a name="eva-tree-n-nodes"></a><h3>eva_tree_n_nodes ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_tree_n_nodes                    (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree);</pre>
+>guint</a>               eva_tree_n_nodes                    (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree);</pre>
 <p>
 Get the size of the tree, not including removed nodes, even
 if they are currently being visited.</p>
@@ -481,7 +481,7 @@ if they are currently being visited.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-node-first"></a><h3>eva_tree_node_first ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *       eva_tree_node_first                 (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree);</pre>
+<pre class="programlisting"><a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *       eva_tree_node_first                 (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree);</pre>
 <p>
 Return the first node in the tree,
 and increment its visit count.</p>
@@ -506,7 +506,7 @@ and increment its visit count.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-node-last"></a><h3>eva_tree_node_last ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *       eva_tree_node_last                  (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree);</pre>
+<pre class="programlisting"><a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *       eva_tree_node_last                  (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree);</pre>
 <p>
 Return the last node in the tree,
 and increment its visit count.</p>
@@ -531,7 +531,7 @@ and increment its visit count.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-node-find"></a><h3>eva_tree_node_find ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *       eva_tree_node_find                  (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
+<pre class="programlisting"><a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *       eva_tree_node_find                  (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> search_key);</pre>
@@ -565,8 +565,8 @@ or NULL.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-node-next"></a><h3>eva_tree_node_next ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *       eva_tree_node_next                  (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
-                                                         <a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);</pre>
+<pre class="programlisting"><a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *       eva_tree_node_next                  (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
+                                                         <a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);</pre>
 <p>
 Return the next node in the tree after <em class="parameter"><code>node</code></em>,
 and increment its visit count, while
@@ -601,8 +601,8 @@ Usually this is used to advance an iterator:
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-node-prev"></a><h3>eva_tree_node_prev ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *       eva_tree_node_prev                  (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
-                                                         <a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);</pre>
+<pre class="programlisting"><a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *       eva_tree_node_prev                  (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
+                                                         <a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);</pre>
 <p>
 Return the previous node in the tree after <em class="parameter"><code>node</code></em>,
 and increment its visit count, while
@@ -639,7 +639,7 @@ Usually this is used to advance an iterator backward:
 <a name="eva-tree-node-peek-key"></a><h3>eva_tree_node_peek_key ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            eva_tree_node_peek_key              (<a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);</pre>
+>gpointer</a>            eva_tree_node_peek_key              (<a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);</pre>
 <p>
 Get the key of a node you are visiting.
 It may have been removed by <a class="link" href="eva-evatree.html#eva-tree-remove" title="eva_tree_remove ()"><code class="function">eva_tree_remove()</code></a>,
@@ -668,7 +668,7 @@ the visit count has been reduced to 0.</p>
 <a name="eva-tree-node-peek-value"></a><h3>eva_tree_node_peek_value ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            eva_tree_node_peek_value            (<a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);</pre>
+>gpointer</a>            eva_tree_node_peek_value            (<a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);</pre>
 <p>
 Get the value of a node you are visiting.
 It may have been removed by <a class="link" href="eva-evatree.html#eva-tree-remove" title="eva_tree_remove ()"><code class="function">eva_tree_remove()</code></a>,
@@ -697,7 +697,7 @@ the visit count has been reduced to 0.</p>
 <a name="eva-tree-node-is-removed"></a><h3>eva_tree_node_is_removed ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_tree_node_is_removed            (<a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);</pre>
+>gboolean</a>            eva_tree_node_is_removed            (<a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);</pre>
 <p>
 Check to see if a node which is being visited
 has been removed from the tree.
@@ -728,8 +728,8 @@ are visiting.)</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-node-visit"></a><h3>eva_tree_node_visit ()</h3>
-<pre class="programlisting">void                eva_tree_node_visit                 (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
-                                                         <a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);</pre>
+<pre class="programlisting">void                eva_tree_node_visit                 (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
+                                                         <a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);</pre>
 <p>
 Increment the visit count for a node.
 A non-zero visit count prevents the
@@ -761,8 +761,8 @@ from a "removed" node, and you cannot get back to it.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-tree-node-unvisit"></a><h3>eva_tree_node_unvisit ()</h3>
-<pre class="programlisting">void                eva_tree_node_unvisit               (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree,
-                                                         <a class="link" href="eva-evatree.html#GskTreeNode" title="GskTreeNode">GskTreeNode</a> *node);</pre>
+<pre class="programlisting">void                eva_tree_node_unvisit               (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree,
+                                                         <a class="link" href="eva-evatree.html#EvaTreeNode" title="EvaTreeNode">EvaTreeNode</a> *node);</pre>
 <p>
 Decrease the visit count on the node,
 indicating that you are done visiting it.
@@ -793,7 +793,7 @@ are the last visitor, its key and value will be deleted at this point.</p>
 <a name="eva-tree-validate"></a><h3>eva_tree_validate ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_tree_validate                   (<a class="link" href="eva-evatree.html#GskTree" title="GskTree">GskTree</a> *tree);</pre>
+>gboolean</a>            eva_tree_validate                   (<a class="link" href="eva-evatree.html#EvaTree" title="EvaTree">EvaTree</a> *tree);</pre>
 <p>
 Check the tree for integrity.
 This is only used for debugging.</p>

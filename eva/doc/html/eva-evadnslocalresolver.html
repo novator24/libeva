@@ -57,14 +57,14 @@
 </tr></table></div>
 <div class="refsynopsisdiv">
 <a name="eva-evadnslocalresolver.synopsis"></a><h2>Synopsis</h2>
-<a name="GskDnsLocalResolver"></a><pre class="synopsis">
-                    <a class="link" href="eva-evadnslocalresolver.html#GskDnsLocalResolverClass" title="GskDnsLocalResolverClass">GskDnsLocalResolverClass</a>;
-                    <a class="link" href="eva-evadnslocalresolver.html#GskDnsLocalResolver-struct" title="GskDnsLocalResolver">GskDnsLocalResolver</a>;
-<a class="link" href="eva-evadnsresolver.html#GskDnsResolver">GskDnsResolver</a> *    <a class="link" href="eva-evadnslocalresolver.html#eva-dns-local-resolver-new" title="eva_dns_local_resolver_new ()">eva_dns_local_resolver_new</a>          (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache);
-enum                <a class="link" href="eva-evadnslocalresolver.html#GskDnsLocalResult" title="enum GskDnsLocalResult">GskDnsLocalResult</a>;
-<a class="link" href="eva-evadnslocalresolver.html#GskDnsLocalResult" title="enum GskDnsLocalResult">GskDnsLocalResult</a>   <a class="link" href="eva-evadnslocalresolver.html#eva-dns-local-resolver-answer" title="eva_dns_local_resolver_answer ()">eva_dns_local_resolver_answer</a>       (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         <a class="link" href="eva-evadns.html#GskDnsQuestion" title="GskDnsQuestion">GskDnsQuestion</a> *question,
-                                                         <a class="link" href="eva-evadns.html#GskDnsMessage" title="GskDnsMessage">GskDnsMessage</a> *results);
+<a name="EvaDnsLocalResolver"></a><pre class="synopsis">
+                    <a class="link" href="eva-evadnslocalresolver.html#EvaDnsLocalResolverClass" title="EvaDnsLocalResolverClass">EvaDnsLocalResolverClass</a>;
+                    <a class="link" href="eva-evadnslocalresolver.html#EvaDnsLocalResolver-struct" title="EvaDnsLocalResolver">EvaDnsLocalResolver</a>;
+<a class="link" href="eva-evadnsresolver.html#EvaDnsResolver">EvaDnsResolver</a> *    <a class="link" href="eva-evadnslocalresolver.html#eva-dns-local-resolver-new" title="eva_dns_local_resolver_new ()">eva_dns_local_resolver_new</a>          (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache);
+enum                <a class="link" href="eva-evadnslocalresolver.html#EvaDnsLocalResult" title="enum EvaDnsLocalResult">EvaDnsLocalResult</a>;
+<a class="link" href="eva-evadnslocalresolver.html#EvaDnsLocalResult" title="enum EvaDnsLocalResult">EvaDnsLocalResult</a>   <a class="link" href="eva-evadnslocalresolver.html#eva-dns-local-resolver-answer" title="eva_dns_local_resolver_answer ()">eva_dns_local_resolver_answer</a>       (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsQuestion" title="EvaDnsQuestion">EvaDnsQuestion</a> *question,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsMessage" title="EvaDnsMessage">EvaDnsMessage</a> *results);
 </pre>
 </div>
 <div class="refsect1" lang="en">
@@ -73,35 +73,35 @@ enum                <a class="link" href="eva-evadnslocalresolver.html#GskDnsLoc
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----GskDnsLocalResolver
+   +----EvaDnsLocalResolver
 </pre>
 </div>
 <div class="refsect1" lang="en">
 <a name="eva-evadnslocalresolver.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a class="link" href="eva-evadnslocalresolver.html#GskDnsLocalResolver--resource-cache" title='The "resource-cache" property'>resource-cache</a>"           <a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a>*        : Read / Write
+  "<a class="link" href="eva-evadnslocalresolver.html#EvaDnsLocalResolver--resource-cache" title='The "resource-cache" property'>resource-cache</a>"           <a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a>*        : Read / Write
 </pre>
 </div>
 <div class="refsect1" lang="en">
 <a name="eva-evadnslocalresolver.description"></a><h2>Description</h2>
 <p>
-A DNS resolver which uses nothing more than a <a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache"><span class="type">GskDnsRRCache</span></a>.
+A DNS resolver which uses nothing more than a <a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache"><span class="type">EvaDnsRRCache</span></a>.
 This can be used to provide a backend for a server.
 </p>
 </div>
 <div class="refsect1" lang="en">
 <a name="eva-evadnslocalresolver.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskDnsLocalResolverClass"></a><h3>GskDnsLocalResolverClass</h3>
-<pre class="programlisting">typedef struct _GskDnsLocalResolverClass GskDnsLocalResolverClass;</pre>
+<a name="EvaDnsLocalResolverClass"></a><h3>EvaDnsLocalResolverClass</h3>
+<pre class="programlisting">typedef struct _EvaDnsLocalResolverClass EvaDnsLocalResolverClass;</pre>
 <p>
 Class for local DNS resolvers.
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskDnsLocalResolver-struct"></a><h3>GskDnsLocalResolver</h3>
-<pre class="programlisting">typedef struct _GskDnsLocalResolver GskDnsLocalResolver;</pre>
+<a name="EvaDnsLocalResolver-struct"></a><h3>EvaDnsLocalResolver</h3>
+<pre class="programlisting">typedef struct _EvaDnsLocalResolver EvaDnsLocalResolver;</pre>
 <p>
 Instance for local DNS resolvers.
 </p>
@@ -109,7 +109,7 @@ Instance for local DNS resolvers.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-local-resolver-new"></a><h3>eva_dns_local_resolver_new ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evadnsresolver.html#GskDnsResolver">GskDnsResolver</a> *    eva_dns_local_resolver_new          (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache);</pre>
+<pre class="programlisting"><a class="link" href="eva-evadnsresolver.html#EvaDnsResolver">EvaDnsResolver</a> *    eva_dns_local_resolver_new          (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache);</pre>
 <p>
 Create a new local resolver based on an optional resource-record cache.</p>
 <p>
@@ -132,14 +132,14 @@ Create a new local resolver based on an optional resource-record cache.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskDnsLocalResult"></a><h3>enum GskDnsLocalResult</h3>
+<a name="EvaDnsLocalResult"></a><h3>enum EvaDnsLocalResult</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_DNS_LOCAL_NO_DATA,
   EVA_DNS_LOCAL_PARTIAL_DATA,
   EVA_DNS_LOCAL_NEGATIVE,
   EVA_DNS_LOCAL_SUCCESS
-} GskDnsLocalResult;
+} EvaDnsLocalResult;
 </pre>
 <p>
 Possible results from a local DNS query.
@@ -177,9 +177,9 @@ All requested data was found successfully.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-local-resolver-answer"></a><h3>eva_dns_local_resolver_answer ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evadnslocalresolver.html#GskDnsLocalResult" title="enum GskDnsLocalResult">GskDnsLocalResult</a>   eva_dns_local_resolver_answer       (<a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         <a class="link" href="eva-evadns.html#GskDnsQuestion" title="GskDnsQuestion">GskDnsQuestion</a> *question,
-                                                         <a class="link" href="eva-evadns.html#GskDnsMessage" title="GskDnsMessage">GskDnsMessage</a> *results);</pre>
+<pre class="programlisting"><a class="link" href="eva-evadnslocalresolver.html#EvaDnsLocalResult" title="enum EvaDnsLocalResult">EvaDnsLocalResult</a>   eva_dns_local_resolver_answer       (<a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsQuestion" title="EvaDnsQuestion">EvaDnsQuestion</a> *question,
+                                                         <a class="link" href="eva-evadns.html#EvaDnsMessage" title="EvaDnsMessage">EvaDnsMessage</a> *results);</pre>
 <p>
 Attempt to compute an answer to a DNS question,
 using only information locally available in
@@ -216,8 +216,8 @@ the resource-record cache.</p>
 <div class="refsect1" lang="en">
 <a name="eva-evadnslocalresolver.property-details"></a><h2>Property Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskDnsLocalResolver--resource-cache"></a><h3>The <code class="literal">"resource-cache"</code> property</h3>
-<pre class="programlisting">  "resource-cache"           <a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a>*        : Read / Write</pre>
+<a name="EvaDnsLocalResolver--resource-cache"></a><h3>The <code class="literal">"resource-cache"</code> property</h3>
+<pre class="programlisting">  "resource-cache"           <a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a>*        : Read / Write</pre>
 <p>cache of resource data used to answer queries.</p>
 </div>
 </div>

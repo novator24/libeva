@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch04.html" title="Standard Implementations">
-<link rel="prev" href="GskStreamListenerSocket.html" title="GskStreamListenerSocket">
+<link rel="prev" href="EvaStreamListenerSocket.html" title="EvaStreamListenerSocket">
 <link rel="next" href="ch05.html" title="Standard Objects: the URL class">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -30,7 +30,7 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskStreamListenerSocket.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaStreamListenerSocket.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
@@ -55,18 +55,18 @@
 </tr></table></div>
 <div class="refsynopsisdiv">
 <a name="eva-evabufferstream.synopsis"></a><h2>Synopsis</h2>
-<a name="GskBufferStream"></a><pre class="synopsis">
-                    <a class="link" href="eva-evabufferstream.html#GskBufferStreamClass" title="GskBufferStreamClass">GskBufferStreamClass</a>;
-                    <a class="link" href="eva-evabufferstream.html#GskBufferStream-struct" title="GskBufferStream">GskBufferStream</a>;
-<a class="link" href="eva-evabufferstream.html#GskBufferStream">GskBufferStream</a> *   <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-new" title="eva_buffer_stream_new ()">eva_buffer_stream_new</a>               (void);
+<a name="EvaBufferStream"></a><pre class="synopsis">
+                    <a class="link" href="eva-evabufferstream.html#EvaBufferStreamClass" title="EvaBufferStreamClass">EvaBufferStreamClass</a>;
+                    <a class="link" href="eva-evabufferstream.html#EvaBufferStream-struct" title="EvaBufferStream">EvaBufferStream</a>;
+<a class="link" href="eva-evabufferstream.html#EvaBufferStream">EvaBufferStream</a> *   <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-new" title="eva_buffer_stream_new ()">eva_buffer_stream_new</a>               (void);
 #define             <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-read-hook" title="eva_buffer_stream_read_hook()">eva_buffer_stream_read_hook</a>         (stream)
 #define             <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-write-hook" title="eva_buffer_stream_write_hook()">eva_buffer_stream_write_hook</a>        (stream)
 void                <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-read-buffer-changed" title="eva_buffer_stream_read_buffer_changed ()">eva_buffer_stream_read_buffer_changed</a>
-                                                        (<a class="link" href="eva-evabufferstream.html#GskBufferStream">GskBufferStream</a> *stream);
+                                                        (<a class="link" href="eva-evabufferstream.html#EvaBufferStream">EvaBufferStream</a> *stream);
 void                <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-write-buffer-changed" title="eva_buffer_stream_write_buffer_changed ()">eva_buffer_stream_write_buffer_changed</a>
-                                                        (<a class="link" href="eva-evabufferstream.html#GskBufferStream">GskBufferStream</a> *stream);
-void                <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-read-shutdown" title="eva_buffer_stream_read_shutdown ()">eva_buffer_stream_read_shutdown</a>     (<a class="link" href="eva-evabufferstream.html#GskBufferStream">GskBufferStream</a> *stream);
-void                <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-changed" title="eva_buffer_stream_changed ()">eva_buffer_stream_changed</a>           (<a class="link" href="eva-evabufferstream.html#GskBufferStream">GskBufferStream</a> *stream);
+                                                        (<a class="link" href="eva-evabufferstream.html#EvaBufferStream">EvaBufferStream</a> *stream);
+void                <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-read-shutdown" title="eva_buffer_stream_read_shutdown ()">eva_buffer_stream_read_shutdown</a>     (<a class="link" href="eva-evabufferstream.html#EvaBufferStream">EvaBufferStream</a> *stream);
+void                <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-changed" title="eva_buffer_stream_changed ()">eva_buffer_stream_changed</a>           (<a class="link" href="eva-evabufferstream.html#EvaBufferStream">EvaBufferStream</a> *stream);
 #define             <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-clear-strict-max-write" title="eva_buffer_stream_clear_strict_max_write()">eva_buffer_stream_clear_strict_max_write</a>(stream)
 #define             <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-has-strict-max-write" title="eva_buffer_stream_has_strict_max_write()">eva_buffer_stream_has_strict_max_write</a>(stream)
 #define             <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-get-max-write-buffer" title="eva_buffer_stream_get_max_write_buffer()">eva_buffer_stream_get_max_write_buffer</a>(stream)
@@ -81,9 +81,9 @@ void                <a class="link" href="eva-evabufferstream.html#eva-buffer-st
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----<a class="link" href="GskIO.html" title="Base Input/Output Object">GskIO</a>
-         +----<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a>
-               +----GskBufferStream
+   +----<a class="link" href="EvaIO.html" title="Base Input/Output Object">EvaIO</a>
+         +----<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a>
+               +----EvaBufferStream
 </pre>
 </div>
 <div class="refsect1" lang="en">
@@ -98,13 +98,13 @@ minimal need for input/output monitoring.
 For example, it can be used to proxy for a foreign source.
 We use it for this purpose in evaopensslbufferstream.c
 to make a connected pair of a BIO (the SSL i/o abstraction)
-and a <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> (which is really a GskBufferStream).
+and a <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> (which is really a EvaBufferStream).
 </p>
 <p>
 Most functions in the API are intended only for
-"implementors", that is, users who are using a <a class="link" href="eva-evabufferstream.html#GskBufferStream"><span class="type">GskBufferStream</span></a>
-as an internal stream.  Most users who are given a <a class="link" href="eva-evabufferstream.html#GskBufferStream"><span class="type">GskBufferStream</span></a>
-which is returned as a <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a> should not use this API,
+"implementors", that is, users who are using a <a class="link" href="eva-evabufferstream.html#EvaBufferStream"><span class="type">EvaBufferStream</span></a>
+as an internal stream.  Most users who are given a <a class="link" href="eva-evabufferstream.html#EvaBufferStream"><span class="type">EvaBufferStream</span></a>
+which is returned as a <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a> should not use this API,
 because it may conflict with the way the implementor of
 the function which returned it expects it to be used.
 </p>
@@ -112,15 +112,15 @@ the function which returned it expects it to be used.
 <div class="refsect1" lang="en">
 <a name="eva-evabufferstream.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskBufferStreamClass"></a><h3>GskBufferStreamClass</h3>
+<a name="EvaBufferStreamClass"></a><h3>EvaBufferStreamClass</h3>
 <pre class="programlisting">typedef struct {
-  GskStreamClass stream_class;
+  EvaStreamClass stream_class;
 
-  void (*buffered_read_set_poll) (GskBufferStream *bs, gboolean);
-  void (*buffered_write_set_poll) (GskBufferStream *bs, gboolean);
-  void (*buffered_read_shutdown) (GskBufferStream *bs);
-  void (*buffered_write_shutdown) (GskBufferStream *bs);
-} GskBufferStreamClass;
+  void (*buffered_read_set_poll) (EvaBufferStream *bs, gboolean);
+  void (*buffered_write_set_poll) (EvaBufferStream *bs, gboolean);
+  void (*buffered_read_shutdown) (EvaBufferStream *bs);
+  void (*buffered_write_shutdown) (EvaBufferStream *bs);
+} EvaBufferStreamClass;
 </pre>
 <p>
 The class which has the buffer methods.
@@ -128,8 +128,8 @@ The class which has the buffer methods.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskBufferStream-struct"></a><h3>GskBufferStream</h3>
-<pre class="programlisting">typedef struct _GskBufferStream GskBufferStream;</pre>
+<a name="EvaBufferStream-struct"></a><h3>EvaBufferStream</h3>
+<pre class="programlisting">typedef struct _EvaBufferStream EvaBufferStream;</pre>
 <p>
 The buffered stream.  All of its members are private
 and should be accessed through the methods below only.
@@ -141,16 +141,16 @@ However, for debugging purposes, ....
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-stream-new"></a><h3>eva_buffer_stream_new ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evabufferstream.html#GskBufferStream">GskBufferStream</a> *   eva_buffer_stream_new               (void);</pre>
+<pre class="programlisting"><a class="link" href="eva-evabufferstream.html#EvaBufferStream">EvaBufferStream</a> *   eva_buffer_stream_new               (void);</pre>
 <p>
-Create a new <a class="link" href="eva-evabufferstream.html#GskBufferStream"><span class="type">GskBufferStream</span></a>.</p>
+Create a new <a class="link" href="eva-evabufferstream.html#EvaBufferStream"><span class="type">EvaBufferStream</span></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> the newly allocated GskBufferStream.
+<td> the newly allocated EvaBufferStream.
 </td>
 </tr></tbody>
 </table></div>
@@ -168,7 +168,7 @@ wants data and the buffer is empty.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="eva-evabufferstream.html#GskBufferStream"><span class="type">GskBufferStream</span></a> to get the read-hook for.
+<td>the <a class="link" href="eva-evabufferstream.html#EvaBufferStream"><span class="type">EvaBufferStream</span></a> to get the read-hook for.
 </td>
 </tr></tbody>
 </table></div>
@@ -186,7 +186,7 @@ is non-empty.
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
-<td>the <a class="link" href="eva-evabufferstream.html#GskBufferStream"><span class="type">GskBufferStream</span></a> to get the write-hook for.
+<td>the <a class="link" href="eva-evabufferstream.html#EvaBufferStream"><span class="type">EvaBufferStream</span></a> to get the write-hook for.
 </td>
 </tr></tbody>
 </table></div>
@@ -195,7 +195,7 @@ is non-empty.
 <div class="refsect2" lang="en">
 <a name="eva-buffer-stream-read-buffer-changed"></a><h3>eva_buffer_stream_read_buffer_changed ()</h3>
 <pre class="programlisting">void                eva_buffer_stream_read_buffer_changed
-                                                        (<a class="link" href="eva-evabufferstream.html#GskBufferStream">GskBufferStream</a> *stream);</pre>
+                                                        (<a class="link" href="eva-evabufferstream.html#EvaBufferStream">EvaBufferStream</a> *stream);</pre>
 <p>
 Called to notify the buffer stream that its
 read-size has been changed, usually because
@@ -216,7 +216,7 @@ for the attached stream to read.</p>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-stream-write-buffer-changed"></a><h3>eva_buffer_stream_write_buffer_changed ()</h3>
 <pre class="programlisting">void                eva_buffer_stream_write_buffer_changed
-                                                        (<a class="link" href="eva-evabufferstream.html#GskBufferStream">GskBufferStream</a> *stream);</pre>
+                                                        (<a class="link" href="eva-evabufferstream.html#EvaBufferStream">EvaBufferStream</a> *stream);</pre>
 <p>
 Called to notify the buffer stream that its
 write-buffer has been changed, usually because
@@ -235,7 +235,7 @@ an implementor has read data from it.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-stream-read-shutdown"></a><h3>eva_buffer_stream_read_shutdown ()</h3>
-<pre class="programlisting">void                eva_buffer_stream_read_shutdown     (<a class="link" href="eva-evabufferstream.html#GskBufferStream">GskBufferStream</a> *stream);</pre>
+<pre class="programlisting">void                eva_buffer_stream_read_shutdown     (<a class="link" href="eva-evabufferstream.html#EvaBufferStream">EvaBufferStream</a> *stream);</pre>
 <p>
 Shutdown the read-end of the buffer-stream,
 waiting for the buffer to be drained first.</p>
@@ -253,7 +253,7 @@ waiting for the buffer to be drained first.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-stream-changed"></a><h3>eva_buffer_stream_changed ()</h3>
-<pre class="programlisting">void                eva_buffer_stream_changed           (<a class="link" href="eva-evabufferstream.html#GskBufferStream">GskBufferStream</a> *stream);</pre>
+<pre class="programlisting">void                eva_buffer_stream_changed           (<a class="link" href="eva-evabufferstream.html#EvaBufferStream">EvaBufferStream</a> *stream);</pre>
 <p>
 Do all updates needed to compensate for
 any user changes to: read_buffer, write_buffer,
@@ -292,7 +292,7 @@ max-write-buffer just used for polling purposes.
 <a name="eva-buffer-stream-has-strict-max-write"></a><h3>eva_buffer_stream_has_strict_max_write()</h3>
 <pre class="programlisting">#define             eva_buffer_stream_has_strict_max_write(stream)</pre>
 <p>
-Whether the <a class="link" href="eva-evabufferstream.html#GskBufferStream"><span class="type">GskBufferStream</span></a> will strictly enforce
+Whether the <a class="link" href="eva-evabufferstream.html#EvaBufferStream"><span class="type">EvaBufferStream</span></a> will strictly enforce
 the maximum write-buffer threshold by
 forcing writes beyond the maximum to get
 clipped (possibly to 0).
@@ -327,7 +327,7 @@ Get the maximum number of bytes in the write buffer.
 <a name="eva-buffer-stream-peek-write-buffer"></a><h3>eva_buffer_stream_peek_write_buffer()</h3>
 <pre class="programlisting">#define             eva_buffer_stream_peek_write_buffer(stream)</pre>
 <p>
-Peek at the write-buffer (the buffer where the input <a class="link" href="GskStream.html#eva-stream-write" title="eva_stream_write ()"><code class="function">eva_stream_write()</code></a>
+Peek at the write-buffer (the buffer where the input <a class="link" href="EvaStream.html#eva-stream-write" title="eva_stream_write ()"><code class="function">eva_stream_write()</code></a>
 is appended).  Note that you must call <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-write-buffer-changed" title="eva_buffer_stream_write_buffer_changed ()"><code class="function">eva_buffer_stream_write_buffer_changed()</code></a>
 if you change the returned buffer.
 </p>
@@ -345,7 +345,7 @@ if you change the returned buffer.
 <a name="eva-buffer-stream-peek-read-buffer"></a><h3>eva_buffer_stream_peek_read_buffer()</h3>
 <pre class="programlisting">#define             eva_buffer_stream_peek_read_buffer(stream)</pre>
 <p>
-Peek at the read-buffer (the buffer where the output <a class="link" href="GskStream.html#eva-stream-read" title="eva_stream_read ()"><code class="function">eva_stream_read()</code></a>
+Peek at the read-buffer (the buffer where the output <a class="link" href="EvaStream.html#eva-stream-read" title="eva_stream_read ()"><code class="function">eva_stream_read()</code></a>
 is drain from).
 Note that you must call <a class="link" href="eva-evabufferstream.html#eva-buffer-stream-read-buffer-changed" title="eva_buffer_stream_read_buffer_changed ()"><code class="function">eva_buffer_stream_read_buffer_changed()</code></a>
 if you change the returned buffer.
@@ -386,7 +386,7 @@ extra data in.
 <div class="refsect1" lang="en">
 <a name="eva-evabufferstream.see-also"></a><h2>See Also</h2>
 <p>
-GskStream.
+EvaStream.
 </p>
 </div>
 </div>

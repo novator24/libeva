@@ -3,7 +3,7 @@
 
 #include <glib-object.h>
 
-/* GskHook: a blockable, optionally shutdown-able, hookable thing
+/* EvaHook: a blockable, optionally shutdown-able, hookable thing
  *          inside an object.
  *
  *  well, there's a bunch of other constraints;
@@ -12,7 +12,7 @@
  *  it in this way.
  *
  *  
- *  the encapsulation here is pretty minimal:  GskHook must be a
+ *  the encapsulation here is pretty minimal:  EvaHook must be a
  *  member of a GObject-derived class.  it must have a member to
  *  trap/untrap reading/writing (unless it never blocks)
  *  and it may have an optional shutdown method.
@@ -30,17 +30,17 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskHook GskHook;
+typedef struct _EvaHook EvaHook;
 
-typedef gboolean (*GskHookFunc) (GObject     *object,
+typedef gboolean (*EvaHookFunc) (GObject     *object,
 				 gpointer     data);
 
 /* just for reference: these are the prototypes of the two members
  * described above that may/should appear in your Class structure. */
-typedef void     (*GskHookSetPollFunc) (GObject      *object,
+typedef void     (*EvaHookSetPollFunc) (GObject      *object,
 					gboolean      do_polling);
-typedef void     (*GskHookShutdownFunc)(GObject      *object);
-typedef gboolean (*GskHookShutdownErrorFunc)(GObject      *object,
+typedef void     (*EvaHookShutdownFunc)(GObject      *object);
+typedef gboolean (*EvaHookShutdownErrorFunc)(GObject      *object,
 					     GError      **error);
 
 
@@ -56,7 +56,7 @@ typedef enum
   EVA_HOOK_private_CAN_DEFER_SHUTDOWN   = (1 << 5), /*< private >*/
   EVA_HOOK_private_SHUTTING_DOWN        = (1 << 6), /*< private >*/
   _EVA_HOOK_FLAGS_RESERVED	   	= (0xff << 8), /*< private >*/
-} GskHookFlags;
+} EvaHookFlags;
 
 #define EVA_HOOK_TEST_FLAG(hook, flag_shortname)	\
 	(((hook)->flags & EVA_HOOK_ ## flag_shortname) == EVA_HOOK_ ## flag_shortname)
@@ -79,7 +79,7 @@ typedef enum
 
 #define EVA_HOOK_GET_OBJECT(hook)	(G_OBJECT ((char *) (hook) - (hook)->inset))
 
-struct _GskHook
+struct _EvaHook
 {
   /*< private >*/
   guint16 flags;
@@ -89,46 +89,46 @@ struct _GskHook
   guint16 class_set_poll_offset;
   guint16 class_shutdown_offset;
 
-  GskHookFunc func;
-  GskHookFunc shutdown_func;
+  EvaHookFunc func;
+  EvaHookFunc shutdown_func;
   gpointer data;
   GDestroyNotify destroy;
 };
 
 
 /*< public >*/
-void     eva_hook_trap            (GskHook        *hook,
-                                   GskHookFunc     func,
-				   GskHookFunc     shutdown,
+void     eva_hook_trap            (EvaHook        *hook,
+                                   EvaHookFunc     func,
+				   EvaHookFunc     shutdown,
                                    gpointer        data,
                                    GDestroyNotify  destroy);
-void     eva_hook_untrap          (GskHook        *hook);
+void     eva_hook_untrap          (EvaHook        *hook);
 #define eva_hook_is_trapped(hook) (((hook)->func) != NULL)
-void     eva_hook_block           (GskHook        *hook);
-void     eva_hook_unblock         (GskHook        *hook);
-gboolean eva_hook_shutdown        (GskHook        *hook,
+void     eva_hook_block           (EvaHook        *hook);
+void     eva_hook_unblock         (EvaHook        *hook);
+gboolean eva_hook_shutdown        (EvaHook        *hook,
 				   GError        **error);
 
 /*< protected: for use by implementations of objects which have hooks >*/
-void     eva_hook_init            (GskHook        *hook,
-                                   GskHookFlags    flags,
+void     eva_hook_init            (EvaHook        *hook,
+                                   EvaHookFlags    flags,
                                    guint           inset,
                                    guint           class_set_poll_offset,
                                    guint           class_shutdown_offset);
 void     eva_hook_class_init      (GObjectClass   *object_class,
 				   const char     *name,
 				   guint           hook_offset);
-void     eva_hook_notify          (GskHook        *hook);
-void     eva_hook_notify_shutdown (GskHook        *hook);
-void     eva_hook_destruct        (GskHook        *hook);
+void     eva_hook_notify          (EvaHook        *hook);
+void     eva_hook_notify_shutdown (EvaHook        *hook);
+void     eva_hook_destruct        (EvaHook        *hook);
 
-void     eva_hook_set_idle_notify   (GskHook        *hook,
+void     eva_hook_set_idle_notify   (EvaHook        *hook,
 				     gboolean        should_idle_notify);
-void     eva_hook_mark_idle_notify  (GskHook        *hook);
-void     eva_hook_clear_idle_notify (GskHook        *hook);
-void     eva_hook_mark_never_blocks  (GskHook        *hook);
-void     eva_hook_mark_can_defer_shutdown (GskHook        *hook);
-gboolean eva_hook_get_last_poll_state(GskHook       *hook);
+void     eva_hook_mark_idle_notify  (EvaHook        *hook);
+void     eva_hook_clear_idle_notify (EvaHook        *hook);
+void     eva_hook_mark_never_blocks  (EvaHook        *hook);
+void     eva_hook_mark_can_defer_shutdown (EvaHook        *hook);
+gboolean eva_hook_get_last_poll_state(EvaHook       *hook);
 
 /* macros for more conveniently initializing hooks from *_init */
 #define EVA_HOOK_INIT(object, struct, member, flags, set_poll, shutdown)   \

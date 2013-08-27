@@ -1,13 +1,13 @@
-/* GskTableFile:
+/* EvaTableFile:
  *  A mechanism for creating searchable files from a sorted stream of entrys.
  */
 
-typedef struct _GskTableFileFactory GskTableFileFactory;
-typedef struct _GskTableFile GskTableFile;
-typedef struct _GskTableFileHints GskTableFileHints;
+typedef struct _EvaTableFileFactory EvaTableFileFactory;
+typedef struct _EvaTableFile EvaTableFile;
+typedef struct _EvaTableFileHints EvaTableFileHints;
 
 
-struct _GskTableFileHints
+struct _EvaTableFileHints
 {
   guint64 max_entries;
   guint64 max_key_bytes;
@@ -23,9 +23,9 @@ struct _GskTableFileHints
 }
 
 
-struct _GskTableFile
+struct _EvaTableFile
 {
-  GskTableFileFactory *factory;
+  EvaTableFileFactory *factory;
   guint64 id;
 
   /* NOTE: n_entries must be set by create_file() and open_building_file()
@@ -34,8 +34,8 @@ struct _GskTableFile
   guint64 n_entries;
 };
 
-typedef struct _GskTableFileQuery GskTableFileQuery;
-struct _GskTableFileQuery
+typedef struct _EvaTableFileQuery EvaTableFileQuery;
+struct _EvaTableFileQuery
 {
   /* returns the implicit key <=> test_key; the implicit key is setup by
      the caller somewhere in compare_data */
@@ -45,16 +45,16 @@ struct _GskTableFileQuery
   gpointer compare_data;
 
   gboolean found;
-  GskTableBuffer value;
+  EvaTableBuffer value;
 };
 
 #define EVA_TABLE_FILE_QUERY_INIT  { NULL, NULL, FALSE, EVA_TABLE_BUFFER_INIT }
 
-G_INLINE_FUNC void    eva_table_file_query_clear (GskTableFileQuery *query);
+G_INLINE_FUNC void    eva_table_file_query_clear (EvaTableFileQuery *query);
 
 /* Copy "dir" as passed into create_file(), open_building_file(), etc.
    This isn't necessary b/c the "dir" is always a member of the
-   GskTable, and therefore will always be destroyed AFTER the files. */
+   EvaTable, and therefore will always be destroyed AFTER the files. */
 #define EVA_TABLE_FILE_COPY_DIR            0
 
 #if EVA_TABLE_FILE_COPY_DIR
@@ -70,80 +70,80 @@ typedef enum
   EVA_TABLE_FEED_ENTRY_WANT_MORE,
   EVA_TABLE_FEED_ENTRY_SUCCESS,
   EVA_TABLE_FEED_ENTRY_ERROR
-} GskTableFeedEntryResult;
+} EvaTableFeedEntryResult;
 
-struct _GskTableFileFactory
+struct _EvaTableFileFactory
 {
   /* creating files (in initial, mid-build and queryable states) */
-  GskTableFile     *(*create_file)      (GskTableFileFactory      *factory,
+  EvaTableFile     *(*create_file)      (EvaTableFileFactory      *factory,
 					 const char               *dir,
 					 guint64                   id,
-				         const GskTableFileHints  *hints,
+				         const EvaTableFileHints  *hints,
 			                 GError                  **error);
-  GskTableFile     *(*open_building_file)(GskTableFileFactory     *factory,
+  EvaTableFile     *(*open_building_file)(EvaTableFileFactory     *factory,
 					 const char               *dir,
 					 guint64                   id,
                                          guint                     state_len,
                                          const guint8             *state_data,
 			                 GError                  **error);
-  GskTableFile     *(*open_file)        (GskTableFileFactory      *factory,
+  EvaTableFile     *(*open_file)        (EvaTableFileFactory      *factory,
 					 const char               *dir,
 					 guint64                   id,
 			                 GError                  **error);
 
   /* methods for a file which is being built */
-  GskTableFeedEntryResult
-                    (*feed_entry)      (GskTableFile             *file,
+  EvaTableFeedEntryResult
+                    (*feed_entry)      (EvaTableFile             *file,
                                          guint                     key_len,
                                          const guint8             *key_data,
                                          guint                     value_len,
                                          const guint8             *value_data,
 					 GError                  **error);
-  gboolean          (*done_feeding)     (GskTableFile             *file,
+  gboolean          (*done_feeding)     (EvaTableFile             *file,
                                          gboolean                 *ready_out,
 					 GError                  **error);
-  gboolean          (*get_build_state)  (GskTableFile             *file,
+  gboolean          (*get_build_state)  (EvaTableFile             *file,
                                          guint                    *state_len_out,
                                          guint8                  **state_data_out,
 					 GError                  **error);
-  gboolean          (*build_file)       (GskTableFile             *file,
+  gboolean          (*build_file)       (EvaTableFile             *file,
                                          gboolean                 *ready_out,
 					 GError                  **error);
-  void              (*release_build_data)(GskTableFile            *file);
+  void              (*release_build_data)(EvaTableFile            *file);
 
   /* methods for a file which has been constructed;
      some file types can be queried before they are constructed */
-  gboolean          (*query_file)       (GskTableFile             *file,
-                                         GskTableFileQuery        *query_inout,
+  gboolean          (*query_file)       (EvaTableFile             *file,
+                                         EvaTableFileQuery        *query_inout,
 					 GError                  **error);
-  GskTableReader   *(*create_reader)    (GskTableFile             *file,
+  EvaTableReader   *(*create_reader)    (EvaTableFile             *file,
                                          const char               *dir,
                                          GError                  **error);
   /* you must always be able to get reader state */
-  gboolean          (*get_reader_state) (GskTableFile             *file,
-                                         GskTableReader           *reader,
+  gboolean          (*get_reader_state) (EvaTableFile             *file,
+                                         EvaTableReader           *reader,
                                          guint                    *state_len_out,
                                          guint8                  **state_data_out,
                                          GError                  **error);
-  GskTableReader   *(*recreate_reader)  (GskTableFile             *file,
+  EvaTableReader   *(*recreate_reader)  (EvaTableFile             *file,
                                          const char               *dir,
                                          guint                     state_len,
                                          const guint8             *state_data,
                                          GError                  **error);
 
   /* destroying files and factories */
-  gboolean          (*destroy_file)     (GskTableFile             *file,
+  gboolean          (*destroy_file)     (EvaTableFile             *file,
                                          const char               *dir,
                                          gboolean                  erase,
 					 GError                  **error);
-  void              (*destroy_factory)  (GskTableFileFactory      *factory);
+  void              (*destroy_factory)  (EvaTableFileFactory      *factory);
 };
 
 /* optimized for situations where writes predominate */
-GskTableFileFactory *eva_table_file_factory_new_flat (void);
+EvaTableFileFactory *eva_table_file_factory_new_flat (void);
 
 /* optimized for situations where reads are common */
-GskTableFileFactory *eva_table_file_factory_new_btree (void);
+EvaTableFileFactory *eva_table_file_factory_new_btree (void);
 
 #define eva_table_file_factory_create_file(factory, dir, id, hints, error) \
   ((factory)->create_file ((factory), (dir), (id), (hints), (error)))
@@ -173,7 +173,7 @@ GskTableFileFactory *eva_table_file_factory_new_btree (void);
   (factory)->destroy_factory (factory)
 
 #if defined (G_CAN_INLINE) || defined (__EVA_DEFINE_INLINES__)
-G_INLINE_FUNC void    eva_table_file_query_clear (GskTableFileQuery *query)
+G_INLINE_FUNC void    eva_table_file_query_clear (EvaTableFileQuery *query)
 {
   eva_table_buffer_clear (&query->value);
 }

@@ -65,10 +65,10 @@ gboolean done = FALSE;
 
 #if 0
 static void
-connect_to_stdin (GskStream *str)
+connect_to_stdin (EvaStream *str)
 {
   GError *error = NULL;
-  GskStream *in = eva_stream_fd_new_auto (STDIN_FILENO);
+  EvaStream *in = eva_stream_fd_new_auto (STDIN_FILENO);
   g_assert (in);
   if (!eva_stream_attach (in, str, &error))
     g_error ("error connecting input: %s", error->message);
@@ -78,10 +78,10 @@ connect_to_stdin (GskStream *str)
 
 #if 0
 static void
-connect_to_stdout (GskStream *str)
+connect_to_stdout (EvaStream *str)
 {
   GError *error = NULL;
-  GskStream *out = eva_stream_fd_new_auto (STDOUT_FILENO);
+  EvaStream *out = eva_stream_fd_new_auto (STDOUT_FILENO);
   g_assert (out);
   if (!eva_stream_attach (str, out, &error))
     g_error ("error connecting output: %s", error->message);
@@ -90,7 +90,7 @@ connect_to_stdout (GskStream *str)
 #endif
 
 static void
-handle_error (GskUrlTransfer *transfer)
+handle_error (EvaUrlTransfer *transfer)
 {
   const char *res = eva_url_transfer_result_name (transfer->result);
   const char *msg = transfer->error ? transfer->error->message
@@ -101,7 +101,7 @@ handle_error (GskUrlTransfer *transfer)
     g_warning ("%s: %s", res, msg);
 }
 
-static GskStream *
+static EvaStream *
 make_upload_from_filename (gpointer data, gssize *size_out, GError **error)
 {
   struct stat statbuf;
@@ -116,7 +116,7 @@ make_upload_from_filename (gpointer data, gssize *size_out, GError **error)
   return eva_stream_fd_new_read_file (upload_filename, error);
 }
 
-static GskStream *
+static EvaStream *
 make_upload_from_string (gpointer data, gssize *size_out, GError **error)
 {
   *size_out = strlen (upload_string);
@@ -124,7 +124,7 @@ make_upload_from_string (gpointer data, gssize *size_out, GError **error)
 }
 
 static gboolean
-handle_content_readable (GskStream *stream)
+handle_content_readable (EvaStream *stream)
 {
   char buf[4096];
   GError *error = NULL;
@@ -139,7 +139,7 @@ handle_content_readable (GskStream *stream)
 }
  
 static gboolean
-handle_content_read_shutdown (GskStream *stream)
+handle_content_read_shutdown (EvaStream *stream)
 {
   if (output_fp != stdout)
     fclose(output_fp);
@@ -149,10 +149,10 @@ handle_content_read_shutdown (GskStream *stream)
   return FALSE;
 }
 
-GskStream *the_content_stream;
+EvaStream *the_content_stream;
 
 static void
-handle_transfer_done (GskUrlTransfer *transfer,
+handle_transfer_done (EvaUrlTransfer *transfer,
                       gpointer        data)
 {
   done = TRUE;
@@ -217,7 +217,7 @@ static void
 add_http_header_line_to_transfer (gpointer data, gpointer func_data)
 {
   const char *line = data;
-  GskUrlTransferHttp *transfer = EVA_URL_TRANSFER_HTTP (func_data);
+  EvaUrlTransferHttp *transfer = EVA_URL_TRANSFER_HTTP (func_data);
   const char *colon = strchr (line, ':');
   char *key;
   const char *value;
@@ -235,8 +235,8 @@ int main(int argc, char **argv)
 {
   int i;
   GError *error = NULL;
-  GskUrl *url = NULL;
-  GskUrlTransfer *transfer;
+  EvaUrl *url = NULL;
+  EvaUrlTransfer *transfer;
   add_http_headers = g_ptr_array_new ();
 
   eva_init_without_threads (&argc, &argv);

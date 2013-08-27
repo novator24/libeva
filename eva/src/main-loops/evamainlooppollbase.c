@@ -59,7 +59,7 @@ static GHashTable *signal_no_to_slist_of_mainloops = NULL;
 G_LOCK_DEFINE_STATIC (signal_fds);
 
 
-static GskSource *waitpid_dispatcher = NULL;
+static EvaSource *waitpid_dispatcher = NULL;
 static GHashTable *pid_to_slist_of_mainloops = NULL;
 G_LOCK_DEFINE_STATIC (waitpid_dispatcher);
 
@@ -94,7 +94,7 @@ static gboolean
 eva_main_loop_handle_sigchld (int       sig_no,
 			      gpointer  user_data)
 {
-  GskMainLoopWaitInfo wait_info;
+  EvaMainLoopWaitInfo wait_info;
   g_assert (sig_no == SIGCHLD && user_data == NULL);
   while (eva_main_loop_do_waitpid (-1, &wait_info))
     {
@@ -105,7 +105,7 @@ eva_main_loop_handle_sigchld (int       sig_no,
 	   at != NULL;
 	   at = at->next)
 	{
-	  GskMainLoopPollBase *pb = EVA_MAIN_LOOP_POLL_BASE (at->data);
+	  EvaMainLoopPollBase *pb = EVA_MAIN_LOOP_POLL_BASE (at->data);
 	  eva_buffer_append (&pb->process_term_notifications, &wait_info, sizeof (wait_info));
 	  eva_main_loop_poll_base_wakeup (pb);
 	}
@@ -160,7 +160,7 @@ handle_signal_pipe_input  (int                   fd,
 	   loops != NULL;
 	   loops = loops->next)
 	{
-	  GskMainLoopPollBase *pb = EVA_MAIN_LOOP_POLL_BASE (loops->data);
+	  EvaMainLoopPollBase *pb = EVA_MAIN_LOOP_POLL_BASE (loops->data);
 	  eva_buffer_append (&pb->signal_ids, &sig, sizeof (int));
 	  eva_main_loop_poll_base_wakeup (pb);
 	}
@@ -182,7 +182,7 @@ handle_wakeup (int fd, GIOCondition condition, gpointer user_data)
 }
 
 static void
-eva_main_loop_poll_base_init_wakeup (GskMainLoopPollBase *poll_base)
+eva_main_loop_poll_base_init_wakeup (EvaMainLoopPollBase *poll_base)
 {
   int pipe_fds[2];
   g_return_if_fail (poll_base->wakeup_write_fd == -1);
@@ -209,10 +209,10 @@ eva_main_loop_poll_base_init_wakeup (GskMainLoopPollBase *poll_base)
 
 
 static void
-eva_main_loop_poll_base_change     (GskMainLoop           *main_loop,
-		                    GskMainLoopChange     *change)
+eva_main_loop_poll_base_change     (EvaMainLoop           *main_loop,
+		                    EvaMainLoopChange     *change)
 {
-  GskMainLoopPollBase *poll_base = EVA_MAIN_LOOP_POLL_BASE (main_loop);
+  EvaMainLoopPollBase *poll_base = EVA_MAIN_LOOP_POLL_BASE (main_loop);
   switch (change->type)
     {
     case EVA_MAIN_LOOP_EVENT_SIGNAL:
@@ -244,7 +244,7 @@ eva_main_loop_poll_base_change     (GskMainLoop           *main_loop,
 		 || g_array_index (signal_fds, int, signal_fd_index) == -1)
 		  {
 		    int pipe_fds[2];
-		    GskSource *signal_source;
+		    EvaSource *signal_source;
 		    if (pipe (pipe_fds) < 0)
 		      {
 			g_warning ("error creating signal-pipe: %s", g_strerror (errno));
@@ -323,8 +323,8 @@ eva_main_loop_poll_base_change     (GskMainLoop           *main_loop,
     }
     case EVA_MAIN_LOOP_EVENT_IO:
       {
-	GskMainLoopPollBase *main_loop_poll_base = (GskMainLoopPollBase *) main_loop;
-	GskMainLoopPollBaseClass *class = EVA_MAIN_LOOP_POLL_BASE_GET_CLASS (main_loop);
+	EvaMainLoopPollBase *main_loop_poll_base = (EvaMainLoopPollBase *) main_loop;
+	EvaMainLoopPollBaseClass *class = EVA_MAIN_LOOP_POLL_BASE_GET_CLASS (main_loop);
 	(*class->config_fd) (main_loop_poll_base,
 			     change->data.io.fd,
 			     change->data.io.old_events,
@@ -378,20 +378,20 @@ eva_main_loop_poll_base_change     (GskMainLoop           *main_loop,
 }
 
 static guint
-eva_main_loop_poll_base_poll(GskMainLoop        *main_loop,
+eva_main_loop_poll_base_poll(EvaMainLoop        *main_loop,
                              guint               max_events_out,
-                             GskMainLoopEvent   *events,
+                             EvaMainLoopEvent   *events,
                              gint                timeout)
 {
-  GskMainLoopPollBase *poll_base = EVA_MAIN_LOOP_POLL_BASE (main_loop);
-  GskMainLoopPollBaseClass *class = EVA_MAIN_LOOP_POLL_BASE_GET_CLASS (main_loop);
+  EvaMainLoopPollBase *poll_base = EVA_MAIN_LOOP_POLL_BASE (main_loop);
+  EvaMainLoopPollBaseClass *class = EVA_MAIN_LOOP_POLL_BASE_GET_CLASS (main_loop);
   guint tmp = 0;
   guint n_init = 0;
 
   if (poll_base->try_waitpid)
     {
 #if 0
-      GskMainLoopWaitInfo info;
+      EvaMainLoopWaitInfo info;
       g_assert (max_events_out > 0);
       while (eva_main_loop_do_waitpid (-1, &info))
 	{
@@ -424,7 +424,7 @@ eva_main_loop_poll_base_poll(GskMainLoop        *main_loop,
   /* notify of waitpid events */
   while (tmp < max_events_out)
     {
-      GskMainLoopWaitInfo wait_info;
+      EvaMainLoopWaitInfo wait_info;
       int n_read;
       G_LOCK (waitpid_dispatcher);
       n_read = eva_buffer_read (&poll_base->process_term_notifications, &wait_info, sizeof (wait_info));
@@ -459,14 +459,14 @@ eva_main_loop_poll_base_poll(GskMainLoop        *main_loop,
 static void    
 eva_main_loop_poll_base_finalize(GObject *object)
 {
-  GskMainLoopPollBase *poll_base = (GskMainLoopPollBase *) object;
+  EvaMainLoopPollBase *poll_base = (EvaMainLoopPollBase *) object;
   eva_main_loop_destroy_all_sources (EVA_MAIN_LOOP (object));
   eva_buffer_destruct (&poll_base->signal_ids);
   (*parent_class->finalize) (object);
 }
 
 /* --- Class Methods --- */
-static void eva_main_loop_poll_base_init (GskMainLoopPollBase* poll_base)
+static void eva_main_loop_poll_base_init (EvaMainLoopPollBase* poll_base)
 {
   G_LOCK (signal_fds);
   if (signal_fds == NULL)
@@ -491,7 +491,7 @@ static void eva_main_loop_poll_base_init (GskMainLoopPollBase* poll_base)
 }
 
 static void
-eva_main_loop_poll_base_class_init (GskMainLoopClass* loop_class)
+eva_main_loop_poll_base_class_init (EvaMainLoopClass* loop_class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (loop_class);
   parent_class = g_type_class_peek_parent (loop_class);
@@ -508,20 +508,20 @@ GType eva_main_loop_poll_base_get_type()
     {
       static const GTypeInfo main_loop_poll_base_info =
       {
-	sizeof(GskMainLoopPollBaseClass),
+	sizeof(EvaMainLoopPollBaseClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_main_loop_poll_base_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMainLoopPollBase),
+	sizeof (EvaMainLoopPollBase),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_main_loop_poll_base_init,
 	NULL		/* value_table */
       };
       GType parent = EVA_TYPE_MAIN_LOOP;
       main_loop_poll_base_type = g_type_register_static (parent,
-                                                  "GskMainLoopPollBase",
+                                                  "EvaMainLoopPollBase",
 						  &main_loop_poll_base_info, 
 						  G_TYPE_FLAG_ABSTRACT);
     }
@@ -529,7 +529,7 @@ GType eva_main_loop_poll_base_get_type()
 }
 
 void
-eva_main_loop_poll_base_wakeup (GskMainLoopPollBase *poll_base)
+eva_main_loop_poll_base_wakeup (EvaMainLoopPollBase *poll_base)
 {
   guint8 dummy;
   g_return_if_fail (poll_base->wakeup_write_fd >= 0);

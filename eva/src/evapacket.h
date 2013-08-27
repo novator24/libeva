@@ -6,38 +6,38 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskPacket GskPacket;
+typedef struct _EvaPacket EvaPacket;
 
-typedef void (*GskPacketDestroyFunc) (gpointer   destroy_data,
-				      GskPacket *packet);
+typedef void (*EvaPacketDestroyFunc) (gpointer   destroy_data,
+				      EvaPacket *packet);
 
 
-struct _GskPacket
+struct _EvaPacket
 {
   /*< public: readonly >*/
   gpointer data;
   guint len;
-  GskSocketAddress *src_address;
-  GskSocketAddress *dst_address;
-  GskPacketDestroyFunc destroy;
+  EvaSocketAddress *src_address;
+  EvaSocketAddress *dst_address;
+  EvaPacketDestroyFunc destroy;
   gpointer destroy_data;
 
   /*< private >*/
   guint ref_count;
 };
 
-GskPacket *eva_packet_new             (gpointer              data,
+EvaPacket *eva_packet_new             (gpointer              data,
                                        guint                 length,
-			               GskPacketDestroyFunc  destroy,
+			               EvaPacketDestroyFunc  destroy,
 			               gpointer              destroy_data);
-GskPacket *eva_packet_new_copy        (gconstpointer         data,
+EvaPacket *eva_packet_new_copy        (gconstpointer         data,
                                        guint                 length);
-void       eva_packet_set_src_address (GskPacket            *packet,
-				       GskSocketAddress     *address);
-void       eva_packet_set_dst_address (GskPacket            *packet,
-				       GskSocketAddress     *address);
-void       eva_packet_unref           (GskPacket            *packet);
-GskPacket *eva_packet_ref             (GskPacket            *packet);
+void       eva_packet_set_src_address (EvaPacket            *packet,
+				       EvaSocketAddress     *address);
+void       eva_packet_set_dst_address (EvaPacket            *packet,
+				       EvaSocketAddress     *address);
+void       eva_packet_unref           (EvaPacket            *packet);
+EvaPacket *eva_packet_ref             (EvaPacket            *packet);
 
 G_END_DECLS
 

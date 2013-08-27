@@ -6,10 +6,10 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskDebugLogMap GskDebugLogMap;
-typedef struct _GskDebugLog GskDebugLog;
+typedef struct _EvaDebugLogMap EvaDebugLogMap;
+typedef struct _EvaDebugLog EvaDebugLog;
 
-struct _GskDebugLog
+struct _EvaDebugLog
 {
   FILE *fp;
   gboolean is_64bit;
@@ -18,19 +18,19 @@ struct _GskDebugLog
   guint64 timestamp;
 
   guint n_maps;
-  GskDebugLogMap *maps;
+  EvaDebugLogMap *maps;
 
   GHashTable *context_cache;
 };
 
-typedef struct _GskDebugLogContext GskDebugLogContext;
-struct _GskDebugLogContext
+typedef struct _EvaDebugLogContext EvaDebugLogContext;
+struct _EvaDebugLogContext
 {
   guint64 address;      /* the key */
   char *desc;           /* the value */
 };
 
-struct _GskDebugLogMap
+struct _EvaDebugLogMap
 {
   guint64 start, length;
   char *path;
@@ -45,12 +45,12 @@ typedef enum
   EVA_DEBUG_LOG_PACKET_FREE,
   EVA_DEBUG_LOG_PACKET_REALLOC,
   EVA_DEBUG_LOG_PACKET_TIME
-} GskDebugLogPacketType;
+} EvaDebugLogPacketType;
 
 
 typedef struct
 {
-  GskDebugLogPacketType type;
+  EvaDebugLogPacketType type;
   union {
     struct {
       guint n_bytes, n_contexts;
@@ -67,14 +67,14 @@ typedef struct
       guint64 size;
     } realloc;
   } info;
-} GskDebugLogPacket;
+} EvaDebugLogPacket;
 
-GskDebugLog       *eva_debug_log_open (const char *filename,
+EvaDebugLog       *eva_debug_log_open (const char *filename,
                                        GError    **error);
-GskDebugLogPacket *eva_debug_log_read (GskDebugLog *log);
-void               eva_debug_log_packet_free (GskDebugLogPacket *);
-void               eva_debug_log_rewind (GskDebugLog *log);
-void               eva_debug_log_close(GskDebugLog *);
+EvaDebugLogPacket *eva_debug_log_read (EvaDebugLog *log);
+void               eva_debug_log_packet_free (EvaDebugLogPacket *);
+void               eva_debug_log_rewind (EvaDebugLog *log);
+void               eva_debug_log_close(EvaDebugLog *);
 
 
 G_END_DECLS

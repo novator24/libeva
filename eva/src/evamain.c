@@ -25,7 +25,7 @@ int eva_main_run ()
 
 int eva_main_run ()
 {
-  GskMainLoop *loop = eva_main_loop_default ();
+  EvaMainLoop *loop = eva_main_loop_default ();
   while (eva_main_loop_should_continue (loop))
     eva_main_loop_run (loop, -1, NULL);
   return loop->exit_status;
@@ -39,7 +39,7 @@ int eva_main_run ()
 void
 eva_main_quit ()
 {
-  GskMainLoop *loop = eva_main_loop_default ();
+  EvaMainLoop *loop = eva_main_loop_default ();
   eva_main_loop_quit (loop);
 }
 
@@ -52,7 +52,7 @@ eva_main_quit ()
 void
 eva_main_exit (int exit_status)
 {
-  GskMainLoop *loop = eva_main_loop_default ();
+  EvaMainLoop *loop = eva_main_loop_default ();
   loop->exit_status = exit_status;
   eva_main_loop_quit (loop);
 }

@@ -13,7 +13,7 @@ increment_error_counter (void)
 int main (int argc, char **argv)
 {
   GError *error = NULL;
-  GskBufferStream *stream;
+  EvaBufferStream *stream;
   eva_init (&argc, &argv, NULL);
 
   stream = eva_buffer_stream_new ();

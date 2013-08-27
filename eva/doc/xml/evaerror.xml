@@ -18,8 +18,8 @@ extern              GQuark <link linkend="eva-g-error-domain-quark">eva_g_error_
 extern              GType <link linkend="eva-error-code-type">eva_error_code_type</link>;
 #define             <link linkend="EVA-G-ERROR-DOMAIN--CAPS">EVA_G_ERROR_DOMAIN</link>
 #define             <link linkend="EVA-TYPE-ERROR-CODE--CAPS">EVA_TYPE_ERROR_CODE</link>
-enum                <link linkend="GskErrorCode">GskErrorCode</link>;
-<link linkend="GskErrorCode">GskErrorCode</link>        <link linkend="eva-error-code-from-errno">eva_error_code_from_errno</link>           (<link linkend="int">int</link> errno_number);
+enum                <link linkend="EvaErrorCode">EvaErrorCode</link>;
+<link linkend="EvaErrorCode">EvaErrorCode</link>        <link linkend="eva-error-code-from-errno">eva_error_code_from_errno</link>           (<link linkend="int">int</link> errno_number);
 <link linkend="void">void</link>                <link linkend="eva-g-error-add-prefix">eva_g_error_add_prefix</link>              (<link linkend="GError">GError</link> **error,
                                                          const <link linkend="char">char</link> *format,
                                                          ...);
@@ -40,11 +40,11 @@ enum                <link linkend="GskErrorCode">GskErrorCode</link>;
 <title role="desc.title">Description</title>
 <para>
 This code principally consists of an enum
-<link linkend="GskErrorCode"><type>GskErrorCode</type></link> which can hopefully cover a wide range
+<link linkend="EvaErrorCode"><type>EvaErrorCode</type></link> which can hopefully cover a wide range
 of error conditions.  It encapsulates it in a GType'd enum
 so that you can get the name and nickname as usual.
 There is also support for mapping errno codes to
-GskErrorCode (<link linkend="eva-error-code-from-errno"><function>eva_error_code_from_errno()</function></link>)
+EvaErrorCode (<link linkend="eva-error-code-from-errno"><function>eva_error_code_from_errno()</function></link>)
 </para>
 </refsect1>
 
@@ -55,30 +55,30 @@ GskErrorCode (<link linkend="eva-error-code-from-errno"><function>eva_error_code
 <indexterm zone="eva-g-error-domain-quark"><primary sortas="eva_g_error_domain_quark">eva_g_error_domain_quark</primary></indexterm><programlisting>extern GQuark eva_g_error_domain_quark;
 </programlisting>
 <para>
-Quark used in all GErrors that use GskErrorCode. (private)
+Quark used in all GErrors that use EvaErrorCode. (private)
 </para></refsect2>
 <refsect2 id="eva-error-code-type" role="variable">
 <title>eva_error_code_type</title>
 <indexterm zone="eva-error-code-type"><primary sortas="eva_error_code_type">eva_error_code_type</primary></indexterm><programlisting>extern GType eva_error_code_type;
 </programlisting>
 <para>
-GType of the GskErrorCode enum. (private)
+GType of the EvaErrorCode enum. (private)
 </para></refsect2>
 <refsect2 id="EVA-G-ERROR-DOMAIN--CAPS" role="macro">
 <title>EVA_G_ERROR_DOMAIN</title>
 <indexterm zone="EVA-G-ERROR-DOMAIN--CAPS"><primary sortas="EVA_G_ERROR_DOMAIN">EVA_G_ERROR_DOMAIN</primary></indexterm><programlisting>#define             EVA_G_ERROR_DOMAIN</programlisting>
 <para>
-Quark used in all GErrors that use GskErrorCode.
+Quark used in all GErrors that use EvaErrorCode.
 </para></refsect2>
 <refsect2 id="EVA-TYPE-ERROR-CODE--CAPS" role="macro">
 <title>EVA_TYPE_ERROR_CODE</title>
 <indexterm zone="EVA-TYPE-ERROR-CODE--CAPS"><primary sortas="EVA_TYPE_ERROR_CODE">EVA_TYPE_ERROR_CODE</primary></indexterm><programlisting>#define             EVA_TYPE_ERROR_CODE</programlisting>
 <para>
-GType of GskErrorCode.
+GType of EvaErrorCode.
 </para></refsect2>
-<refsect2 id="GskErrorCode" role="enum">
-<title>enum GskErrorCode</title>
-<indexterm zone="GskErrorCode"><primary sortas="GskErrorCode">GskErrorCode</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaErrorCode" role="enum">
+<title>enum EvaErrorCode</title>
+<indexterm zone="EvaErrorCode"><primary sortas="EvaErrorCode">EvaErrorCode</primary></indexterm><programlisting>typedef enum
 {
   EVA_ERROR_NONE,
 
@@ -229,7 +229,7 @@ GType of GskErrorCode.
   EVA_ERROR_PREMATURE_EOF,
   EVA_ERROR_CORRUPT,
   EVA_ERROR_EXISTS,
-} GskErrorCode;
+} EvaErrorCode;
 </programlisting>
 <para>
 This is a list compiled from several sources
@@ -237,15 +237,15 @@ of error conditions.
 </para></refsect2>
 <refsect2 id="eva-error-code-from-errno" role="function">
 <title>eva_error_code_from_errno ()</title>
-<indexterm zone="eva-error-code-from-errno"><primary sortas="eva_error_code_from_errno">eva_error_code_from_errno</primary></indexterm><programlisting><link linkend="GskErrorCode">GskErrorCode</link>        eva_error_code_from_errno           (<link linkend="int">int</link> errno_number);</programlisting>
+<indexterm zone="eva-error-code-from-errno"><primary sortas="eva_error_code_from_errno">eva_error_code_from_errno</primary></indexterm><programlisting><link linkend="EvaErrorCode">EvaErrorCode</link>        eva_error_code_from_errno           (<link linkend="int">int</link> errno_number);</programlisting>
 <para>
-Translates an errno code into a GskErrorCode.</para>
+Translates an errno code into a EvaErrorCode.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>errno_number</parameter>&#160;:</term>
 <listitem><simpara> a value of the same type as returned in errno.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the relevant GskErrorCode, or 0, if Gsk doesn't support
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the relevant EvaErrorCode, or 0, if Eva doesn't support
 an errno returned by your OS.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>

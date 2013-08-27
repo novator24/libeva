@@ -14,21 +14,21 @@
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-memory-buffer-source-new">eva_memory_buffer_source_new</link>        (<link linkend="GskBuffer">GskBuffer</link> *buffer);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-memory-slab-source-new">eva_memory_slab_source_new</link>          (<link linkend="gconstpointer">gconstpointer</link> data,
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-memory-buffer-source-new">eva_memory_buffer_source_new</link>        (<link linkend="EvaBuffer">EvaBuffer</link> *buffer);
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-memory-slab-source-new">eva_memory_slab_source_new</link>          (<link linkend="gconstpointer">gconstpointer</link> data,
                                                          <link linkend="guint">guint</link> data_len,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy,
                                                          <link linkend="gpointer">gpointer</link> destroy_data);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-memory-source-new-printf">eva_memory_source_new_printf</link>        (const <link linkend="char">char</link> *format,
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-memory-source-new-printf">eva_memory_source_new_printf</link>        (const <link linkend="char">char</link> *format,
                                                          ...);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-memory-source-new-vprintf">eva_memory_source_new_vprintf</link>       (const <link linkend="char">char</link> *format,
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-memory-source-new-vprintf">eva_memory_source_new_vprintf</link>       (const <link linkend="char">char</link> *format,
                                                          <link linkend="va-list">va_list</link> args);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-memory-source-static-string">eva_memory_source_static_string</link>     (const <link linkend="char">char</link> *str);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-memory-source-static-string-n">eva_memory_source_static_string_n</link>   (const <link linkend="char">char</link> *str,
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-memory-source-static-string">eva_memory_source_static_string</link>     (const <link linkend="char">char</link> *str);
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-memory-source-static-string-n">eva_memory_source_static_string_n</link>   (const <link linkend="char">char</link> *str,
                                                          <link linkend="guint">guint</link> length);
-<link linkend="void">void</link>                (<link linkend="GskMemoryBufferCallback">*GskMemoryBufferCallback</link>)          (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+<link linkend="void">void</link>                (<link linkend="EvaMemoryBufferCallback">*EvaMemoryBufferCallback</link>)          (<link linkend="EvaBuffer">EvaBuffer</link> *buffer,
                                                          <link linkend="gpointer">gpointer</link> data);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-memory-buffer-sink-new">eva_memory_buffer_sink_new</link>          (<link linkend="GskMemoryBufferCallback">GskMemoryBufferCallback</link> callback,
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-memory-buffer-sink-new">eva_memory_buffer_sink_new</link>          (<link linkend="EvaMemoryBufferCallback">EvaMemoryBufferCallback</link> callback,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
 </synopsis>
@@ -54,9 +54,9 @@ and input.  Because of system-architectures, memory never blocks.
 <title role="details.title">Details</title>
 <refsect2 id="eva-memory-buffer-source-new" role="function">
 <title>eva_memory_buffer_source_new ()</title>
-<indexterm zone="eva-memory-buffer-source-new"><primary sortas="eva_memory_buffer_source_new">eva_memory_buffer_source_new</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_memory_buffer_source_new        (<link linkend="GskBuffer">GskBuffer</link> *buffer);</programlisting>
+<indexterm zone="eva-memory-buffer-source-new"><primary sortas="eva_memory_buffer_source_new">eva_memory_buffer_source_new</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_memory_buffer_source_new        (<link linkend="EvaBuffer">EvaBuffer</link> *buffer);</programlisting>
 <para>
-Create a read-only <link linkend="GskStream"><type>GskStream</type></link> that will drain the 
+Create a read-only <link linkend="EvaStream"><type>EvaStream</type></link> that will drain the 
 data from <parameter>buffer</parameter> and may it available for reading on the stream.</para>
 <para>
 </para><variablelist role="params">
@@ -70,7 +70,7 @@ data, and will not be used any more by the stream.
 </variablelist></refsect2>
 <refsect2 id="eva-memory-slab-source-new" role="function">
 <title>eva_memory_slab_source_new ()</title>
-<indexterm zone="eva-memory-slab-source-new"><primary sortas="eva_memory_slab_source_new">eva_memory_slab_source_new</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_memory_slab_source_new          (<link linkend="gconstpointer">gconstpointer</link> data,
+<indexterm zone="eva-memory-slab-source-new"><primary sortas="eva_memory_slab_source_new">eva_memory_slab_source_new</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_memory_slab_source_new          (<link linkend="gconstpointer">gconstpointer</link> data,
                                                          <link linkend="guint">guint</link> data_len,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy,
                                                          <link linkend="gpointer">gpointer</link> destroy_data);</programlisting>
@@ -105,7 +105,7 @@ as <parameter>destroy_data</parameter>.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-memory-source-new-printf" role="function">
 <title>eva_memory_source_new_printf ()</title>
-<indexterm zone="eva-memory-source-new-printf"><primary sortas="eva_memory_source_new_printf">eva_memory_source_new_printf</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_memory_source_new_printf        (const <link linkend="char">char</link> *format,
+<indexterm zone="eva-memory-source-new-printf"><primary sortas="eva_memory_source_new_printf">eva_memory_source_new_printf</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_memory_source_new_printf        (const <link linkend="char">char</link> *format,
                                                          ...);</programlisting>
 <para>
 Create a read-only stream which has the result of doing the
@@ -123,7 +123,7 @@ sprintf available for reading.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-memory-source-new-vprintf" role="function">
 <title>eva_memory_source_new_vprintf ()</title>
-<indexterm zone="eva-memory-source-new-vprintf"><primary sortas="eva_memory_source_new_vprintf">eva_memory_source_new_vprintf</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_memory_source_new_vprintf       (const <link linkend="char">char</link> *format,
+<indexterm zone="eva-memory-source-new-vprintf"><primary sortas="eva_memory_source_new_vprintf">eva_memory_source_new_vprintf</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_memory_source_new_vprintf       (const <link linkend="char">char</link> *format,
                                                          <link linkend="va-list">va_list</link> args);</programlisting>
 <para>
 Create a read-only stream which has the result of doing the
@@ -142,7 +142,7 @@ chaining from other printf-like functions.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-memory-source-static-string" role="function">
 <title>eva_memory_source_static_string ()</title>
-<indexterm zone="eva-memory-source-static-string"><primary sortas="eva_memory_source_static_string">eva_memory_source_static_string</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_memory_source_static_string     (const <link linkend="char">char</link> *str);</programlisting>
+<indexterm zone="eva-memory-source-static-string"><primary sortas="eva_memory_source_static_string">eva_memory_source_static_string</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_memory_source_static_string     (const <link linkend="char">char</link> *str);</programlisting>
 <para>
 Create a read-only stream which has <parameter>str</parameter> available
 for reading.
@@ -159,7 +159,7 @@ Note that the NUL will not be read from the stream.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-memory-source-static-string-n" role="function">
 <title>eva_memory_source_static_string_n ()</title>
-<indexterm zone="eva-memory-source-static-string-n"><primary sortas="eva_memory_source_static_string_n">eva_memory_source_static_string_n</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_memory_source_static_string_n   (const <link linkend="char">char</link> *str,
+<indexterm zone="eva-memory-source-static-string-n"><primary sortas="eva_memory_source_static_string_n">eva_memory_source_static_string_n</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_memory_source_static_string_n   (const <link linkend="char">char</link> *str,
                                                          <link linkend="guint">guint</link> length);</programlisting>
 <para>
 Create a read-only stream which has <parameter>length</parameter> bytes starting at <parameter>str</parameter> available
@@ -175,9 +175,9 @@ for reading.</para>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the new read-only stream.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMemoryBufferCallback" role="function">
-<title>GskMemoryBufferCallback ()</title>
-<indexterm zone="GskMemoryBufferCallback"><primary sortas="GskMemoryBufferCallback">GskMemoryBufferCallback</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskMemoryBufferCallback)          (<link linkend="GskBuffer">GskBuffer</link> *buffer,
+<refsect2 id="EvaMemoryBufferCallback" role="function">
+<title>EvaMemoryBufferCallback ()</title>
+<indexterm zone="EvaMemoryBufferCallback"><primary sortas="EvaMemoryBufferCallback">EvaMemoryBufferCallback</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaMemoryBufferCallback)          (<link linkend="EvaBuffer">EvaBuffer</link> *buffer,
                                                          <link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
 Function to call when a memory-buffer-sink (as created
@@ -200,7 +200,7 @@ buffer.
 </variablelist></refsect2>
 <refsect2 id="eva-memory-buffer-sink-new" role="function">
 <title>eva_memory_buffer_sink_new ()</title>
-<indexterm zone="eva-memory-buffer-sink-new"><primary sortas="eva_memory_buffer_sink_new">eva_memory_buffer_sink_new</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_memory_buffer_sink_new          (<link linkend="GskMemoryBufferCallback">GskMemoryBufferCallback</link> callback,
+<indexterm zone="eva-memory-buffer-sink-new"><primary sortas="eva_memory_buffer_sink_new">eva_memory_buffer_sink_new</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_memory_buffer_sink_new          (<link linkend="EvaMemoryBufferCallback">EvaMemoryBufferCallback</link> callback,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -218,7 +218,7 @@ the <parameter>callback</parameter> will be run with the full buffer.</para>
 <varlistentry><term><parameter>destroy</parameter>&#160;:</term>
 <listitem><simpara> function to call when we are done with the data.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the writable stream whose destination is a <link linkend="GskBuffer"><type>GskBuffer</type></link>.
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the writable stream whose destination is a <link linkend="EvaBuffer"><type>EvaBuffer</type></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 

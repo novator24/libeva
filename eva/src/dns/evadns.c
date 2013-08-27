@@ -179,27 +179,27 @@ parse_into_seconds (const char     *str,
 #endif  /* !SUPPORT_BIND_ENHANCEMENTS */
 }
 
-/* --- pooling GskDnsMessage's --- */
+/* --- pooling EvaDnsMessage's --- */
 static GMemChunk *eva_dns_message_chunk = NULL;
 G_LOCK_DEFINE_STATIC (eva_dns_message_chunk);
 
-static inline GskDnsMessage  *
+static inline EvaDnsMessage  *
 eva_dns_message_alloc   ()
 {
-  GskDnsMessage *rv;
+  EvaDnsMessage *rv;
   G_LOCK (eva_dns_message_chunk);
   if (eva_dns_message_chunk == NULL)
-    eva_dns_message_chunk = g_mem_chunk_create (GskDnsMessage,
+    eva_dns_message_chunk = g_mem_chunk_create (EvaDnsMessage,
 						16,
 						G_ALLOC_AND_FREE);
   rv = g_mem_chunk_alloc (eva_dns_message_chunk);
   G_UNLOCK (eva_dns_message_chunk);
 
-  memset (rv, 0, sizeof (GskDnsMessage));
+  memset (rv, 0, sizeof (EvaDnsMessage));
 
   rv->qr_pool = g_mem_chunk_new ("DNS (Resource and Question) Pool",
-				 MAX (sizeof (GskDnsResourceRecord),
-				      sizeof (GskDnsQuestion)),
+				 MAX (sizeof (EvaDnsResourceRecord),
+				      sizeof (EvaDnsQuestion)),
 				 2048,
 				 G_ALLOC_ONLY);
   rv->str_pool = g_string_chunk_new (2048);
@@ -208,7 +208,7 @@ eva_dns_message_alloc   ()
   return rv;
 }
 static inline void
-eva_dns_message_free (GskDnsMessage *eva_dns_message)
+eva_dns_message_free (EvaDnsMessage *eva_dns_message)
 {
   g_string_chunk_free (eva_dns_message->str_pool);
   g_mem_chunk_destroy (eva_dns_message->qr_pool);
@@ -243,8 +243,8 @@ eva_dns_message_free (GskDnsMessage *eva_dns_message)
 
 /* --- decompressing (RFC 1035, 4.1.4) --- */
 static char *
-parse_domain_name (GskBufferIterator *iterator,
-		   GskDnsMessage     *message)
+parse_domain_name (EvaBufferIterator *iterator,
+		   EvaDnsMessage     *message)
 {
   char tmp_buf[63 + 1];
   char rv_buf[1024];
@@ -374,8 +374,8 @@ parse_domain_name (GskBufferIterator *iterator,
 }
 
 static char *
-parse_char_single_string (GskBufferIterator *iterator,
-		          GskDnsMessage     *message,
+parse_char_single_string (EvaBufferIterator *iterator,
+		          EvaDnsMessage     *message,
 		          int                max_iterate)
 {
   guint8 len;
@@ -394,8 +394,8 @@ parse_char_single_string (GskBufferIterator *iterator,
 }
 
 static char *
-parse_char_string (GskBufferIterator *iterator,
-		   GskDnsMessage     *message,
+parse_char_string (EvaBufferIterator *iterator,
+		   EvaDnsMessage     *message,
 		   int                max_iterate)
 {
   char *buf;
@@ -489,16 +489,16 @@ eva_test_domain_name_validity (const char *domain_name)
  *
  * returns: the newly allocated Resource Record.
  */ 
-GskDnsResourceRecord *
-eva_dns_rr_new_generic (GskDnsMessage *allocator,
+EvaDnsResourceRecord *
+eva_dns_rr_new_generic (EvaDnsMessage *allocator,
 			const char    *owner,
 			guint32        ttl)
 {
-  GskDnsResourceRecord *rv;
+  EvaDnsResourceRecord *rv;
   if (allocator != NULL)
     rv = g_mem_chunk_alloc0 (allocator->qr_pool);
   else
-    rv = g_new0 (GskDnsResourceRecord, 1);
+    rv = g_new0 (EvaDnsResourceRecord, 1);
   rv->record_class = EVA_DNS_CLASS_INTERNET;
   if (owner != NULL)
     rv->owner = ALLOCATOR_STRDUP (allocator, owner);
@@ -516,20 +516,20 @@ eva_dns_rr_new_generic (GskDnsMessage *allocator,
  * @ip_address: 4-byte IP address to contact @owner.
  * @allocator: an optional message to get memory from; this can prevent you
  *    from having to destroy the record: it will automatically get freed as
- *    part of the #GskDnsMessage.
+ *    part of the #EvaDnsMessage.
  *
  * Allocate a new A record.  It is a mapping from domain name
  * to IP address.
  *
  * returns: the newly allocated Resource Record.
  */
-GskDnsResourceRecord *
+EvaDnsResourceRecord *
 eva_dns_rr_new_a       (const char    *owner,
 			guint32        ttl,
 			const guint8  *ip_address,
-			GskDnsMessage *allocator)
+			EvaDnsMessage *allocator)
 {
-  GskDnsResourceRecord *rv;
+  EvaDnsResourceRecord *rv;
   if (!eva_test_domain_name_validity (owner))
     return NULL;
   rv = eva_dns_rr_new_generic (allocator, owner, ttl);
@@ -547,20 +547,20 @@ eva_dns_rr_new_a       (const char    *owner,
  * @address: 16-byte IP address to contact @owner.
  * @allocator: an optional message to get memory from; this can prevent you
  *    from having to destroy the record: it will automatically get freed as
- *    part of the #GskDnsMessage.
+ *    part of the #EvaDnsMessage.
  *
  * Allocate a new AAAA record.  It is a mapping from domain name
  * to IP address.
  *
  * returns: the newly allocated Resource Record.
  */
-GskDnsResourceRecord *
+EvaDnsResourceRecord *
 eva_dns_rr_new_aaaa    (const char    *owner,
 			guint32        ttl,
 			const guint8  *address,
-			GskDnsMessage *allocator)
+			EvaDnsMessage *allocator)
 {
-  GskDnsResourceRecord *rv;
+  EvaDnsResourceRecord *rv;
   if (!eva_test_domain_name_validity (owner))
     return NULL;
   rv = eva_dns_rr_new_generic (allocator, owner, ttl);
@@ -577,7 +577,7 @@ eva_dns_rr_new_aaaa    (const char    *owner,
  * @name_server: the name of a nameserver responsible for this hostname or domainname.
  * @allocator: an optional message to get memory from; this can prevent you
  *    from having to destroy the record: it will automatically get freed as
- *    part of the #GskDnsMessage.
+ *    part of the #EvaDnsMessage.
  *
  * Allocate a new NS record.  It gives the name of a nameserver that can provide information about
  * @owner.
@@ -589,13 +589,13 @@ eva_dns_rr_new_aaaa    (const char    *owner,
  *
  * returns: the newly allocated Resource Record.
  */
-GskDnsResourceRecord *
+EvaDnsResourceRecord *
 eva_dns_rr_new_ns      (const char    *owner,
 			guint32        ttl,
 			const char    *name_server,
-			GskDnsMessage *allocator)
+			EvaDnsMessage *allocator)
 {
-  GskDnsResourceRecord *rv;
+  EvaDnsResourceRecord *rv;
   if (!eva_test_domain_name_validity (owner)
    || ! eva_test_domain_name_validity (name_server))
     return NULL;
@@ -615,7 +615,7 @@ eva_dns_rr_new_ns      (const char    *owner,
  * a way to alias one name for another.
  * @allocator: an optional message to get memory from; this can prevent you
  *    from having to destroy the record: it will automatically get freed as
- *    part of the #GskDnsMessage.
+ *    part of the #EvaDnsMessage.
  *
  * Allocate a new CNAME record.  It gives the canonical name of a record.
  * @owner.
@@ -624,13 +624,13 @@ eva_dns_rr_new_ns      (const char    *owner,
  *
  * returns: the newly allocated Resource Record.
  */
-GskDnsResourceRecord *
+EvaDnsResourceRecord *
 eva_dns_rr_new_cname   (const char    *owner,
 			guint32        ttl,
 			const char    *canonical_name,
-			GskDnsMessage *allocator)
+			EvaDnsMessage *allocator)
 {
-  GskDnsResourceRecord *rv;
+  EvaDnsResourceRecord *rv;
   if (!eva_test_domain_name_validity (owner)
    || ! eva_test_domain_name_validity (canonical_name))
     return NULL;
@@ -650,7 +650,7 @@ eva_dns_rr_new_cname   (const char    *owner,
  * @ptr: a hostname which @owner points to.
  * @allocator: an optional message to get memory from; this can prevent you
  *    from having to destroy the record: it will automatically get freed as
- *    part of the #GskDnsMessage.
+ *    part of the #EvaDnsMessage.
  *
  * Allocate a new PTR record.  It gives ``a pointer to another part of the domain name space''
  * according to [RFC 1034, Section 3.6]
@@ -664,13 +664,13 @@ eva_dns_rr_new_cname   (const char    *owner,
  *
  * returns: the newly allocated Resource Record.
  */
-GskDnsResourceRecord *
+EvaDnsResourceRecord *
 eva_dns_rr_new_ptr     (const char    *owner,
 			guint32        ttl,
 			const char    *ptr,
-			GskDnsMessage *allocator)
+			EvaDnsMessage *allocator)
 {
-  GskDnsResourceRecord *rv;
+  EvaDnsResourceRecord *rv;
   if (!eva_test_domain_name_validity (owner)
    || !eva_test_domain_name_validity (ptr))
     return NULL;
@@ -694,14 +694,14 @@ eva_dns_rr_new_ptr     (const char    *owner,
  *
  * returns: the newly allocated Resource Record.
  */
-GskDnsResourceRecord *
+EvaDnsResourceRecord *
 eva_dns_rr_new_mx      (const char    *owner,
 			guint32        ttl,
 			int            preference,
 			const char    *mail_host,
-			GskDnsMessage *allocator)
+			EvaDnsMessage *allocator)
 {
-  GskDnsResourceRecord *rv;
+  EvaDnsResourceRecord *rv;
   if (!eva_test_domain_name_validity (owner)
    || !eva_test_domain_name_validity (mail_host))
     return NULL;
@@ -724,7 +724,7 @@ eva_dns_rr_new_mx      (const char    *owner,
  * @os: OS for the host.
  * @allocator: an optional message to get memory from; this can prevent you
  *    from having to destroy the record: it will automatically get freed as
- *    part of the #GskDnsMessage.
+ *    part of the #EvaDnsMessage.
  *
  * Allocate a new HINFO record.  It ``identifies the CPU and OS used by a host'',
  * see [RFC 1034, Section 3.6]
@@ -734,14 +734,14 @@ eva_dns_rr_new_mx      (const char    *owner,
  *
  * returns: the newly allocated Resource Record.
  */
-GskDnsResourceRecord *
+EvaDnsResourceRecord *
 eva_dns_rr_new_hinfo   (const char    *owner,
 			guint32        ttl,
 			const char    *cpu,
 			const char    *os,
-			GskDnsMessage *allocator)
+			EvaDnsMessage *allocator)
 {
-  GskDnsResourceRecord *rv;
+  EvaDnsResourceRecord *rv;
   if (!eva_test_domain_name_validity (owner)
    || !eva_test_domain_name_validity (cpu)
    || !eva_test_domain_name_validity (os))
@@ -784,7 +784,7 @@ eva_dns_rr_new_hinfo   (const char    *owner,
  * exported with any RR from this zone.
  * @allocator: an optional message to get memory from; this can prevent you
  *    from having to destroy the record: it will automatically get freed as
- *    part of the #GskDnsMessage.
+ *    part of the #EvaDnsMessage.
  *
  * Allocate a new SOA record.  It ``identifies the start of a zone of authority'',
  * see [RFC 1034, Section 3.6]
@@ -793,7 +793,7 @@ eva_dns_rr_new_hinfo   (const char    *owner,
  *
  * returns: the newly allocated Resource Record.
  */
-GskDnsResourceRecord *
+EvaDnsResourceRecord *
 eva_dns_rr_new_soa     (const char    *owner,
 			guint32        ttl,
 			const char    *mname,
@@ -803,9 +803,9 @@ eva_dns_rr_new_soa     (const char    *owner,
 			guint32        retry_time,
 			guint32        expire_time,
 			guint32        minimum_time,
-			GskDnsMessage *allocator)
+			EvaDnsMessage *allocator)
 {
-  GskDnsResourceRecord *rv;
+  EvaDnsResourceRecord *rv;
   if (!eva_test_domain_name_validity (owner)
    || !eva_test_domain_name_validity (mname)
    || !eva_test_domain_name_validity (rname))
@@ -830,20 +830,20 @@ eva_dns_rr_new_soa     (const char    *owner,
  * @text: text about the owner.
  * @allocator: an optional message to get memory from; this can prevent you
  *    from having to destroy the record: it will automatically get freed as
- *    part of the #GskDnsMessage.
+ *    part of the #EvaDnsMessage.
  *
  * TXT RRs are used to hold descriptive text.  The semantics of the text
  * depends on the domain where it is found.
  *
  * returns: the newly allocated Resource Record.
  */
-GskDnsResourceRecord *
+EvaDnsResourceRecord *
 eva_dns_rr_new_txt     (const char    *owner,
 			guint32        ttl,
 			const char    *text,
-			GskDnsMessage *allocator)
+			EvaDnsMessage *allocator)
 {
-  GskDnsResourceRecord *rv;
+  EvaDnsResourceRecord *rv;
   if (!eva_test_domain_name_validity (owner)
    || strlen (text) > MAX_TEXT_STRING_SIZE)
     return NULL;
@@ -861,7 +861,7 @@ eva_dns_rr_new_txt     (const char    *owner,
  * @ttl: the time-to-live for this record.
  * @allocator: an optional message to get memory from; this can prevent you
  *    from having to destroy the record: it will automatically get freed as
- *    part of the #GskDnsMessage.
+ *    part of the #EvaDnsMessage.
  *
  * Create a new wildcard ("*") record.  This should never need to be done, I guess.
  *
@@ -869,12 +869,12 @@ eva_dns_rr_new_txt     (const char    *owner,
  *
  * returns: the newly allocated Resource Record.
  */
-GskDnsResourceRecord *
+EvaDnsResourceRecord *
 eva_dns_rr_new_wildcard(const char    *owner,
 			guint          ttl,
-			GskDnsMessage *allocator)
+			EvaDnsMessage *allocator)
 {
-  GskDnsResourceRecord *rv;
+  EvaDnsResourceRecord *rv;
   if (!eva_test_domain_name_validity (owner))
     return NULL;
   rv = eva_dns_rr_new_generic (allocator, owner, ttl);
@@ -891,7 +891,7 @@ eva_dns_rr_new_wildcard(const char    *owner,
  * De-allocate memory associated with a resource record.
  */
 void
-eva_dns_rr_free        (GskDnsResourceRecord *record)
+eva_dns_rr_free        (EvaDnsResourceRecord *record)
 {
   if (record->allocator != NULL)
     {
@@ -951,16 +951,16 @@ eva_dns_rr_free        (GskDnsResourceRecord *record)
  * @record: the record to copy.
  * @allocator: an optional message to get memory from; this can prevent you
  *    from having to destroy the record: it will automatically get freed as
- *    part of the #GskDnsMessage.
+ *    part of the #EvaDnsMessage.
  *
- * Make a copy of a resource record, possibly coming from a given #GskDnsMessage's
+ * Make a copy of a resource record, possibly coming from a given #EvaDnsMessage's
  * allocator.
  *
  * returns: the new copy of the resource record.
  */
-GskDnsResourceRecord *
-eva_dns_rr_copy        (GskDnsResourceRecord *record,
-			GskDnsMessage        *allocator)
+EvaDnsResourceRecord *
+eva_dns_rr_copy        (EvaDnsResourceRecord *record,
+			EvaDnsMessage        *allocator)
 {
   switch (record->type)
     {
@@ -1046,21 +1046,21 @@ eva_dns_rr_copy        (GskDnsResourceRecord *record,
  * @query_class: the address namespace for the query.
  * @allocator: an optional message to get memory from; this can prevent you
  *    from having to destroy the question: it will automatically get freed as
- *    part of the #GskDnsMessage.
+ *    part of the #EvaDnsMessage.
  *
  * Allocate a new question.
  *
  * returns: the new question.
  */
-GskDnsQuestion *
+EvaDnsQuestion *
 eva_dns_question_new (const char               *query_name,
-		      GskDnsResourceRecordType  query_type,
-		      GskDnsResourceClass       query_class,
-		      GskDnsMessage            *allocator)
+		      EvaDnsResourceRecordType  query_type,
+		      EvaDnsResourceClass       query_class,
+		      EvaDnsMessage            *allocator)
 {
-  GskDnsQuestion *question;
+  EvaDnsQuestion *question;
   if (allocator == NULL)
-    question = g_new (GskDnsQuestion, 1);
+    question = g_new (EvaDnsQuestion, 1);
   else
     question = g_mem_chunk_alloc (allocator->qr_pool);
   question->query_name = ALLOCATOR_STRDUP (allocator, query_name);
@@ -1080,9 +1080,9 @@ eva_dns_question_new (const char               *query_name,
  *
  * returns: the new question.
  */
-GskDnsQuestion *
-eva_dns_question_copy(GskDnsQuestion           *question,
-		      GskDnsMessage            *allocator)
+EvaDnsQuestion *
+eva_dns_question_copy(EvaDnsQuestion           *question,
+		      EvaDnsMessage            *allocator)
 {
   return eva_dns_question_new (question->query_name,
 			       question->query_type,
@@ -1094,12 +1094,12 @@ eva_dns_question_copy(GskDnsQuestion           *question,
  * eva_dns_question_free:
  * @question: the question to deallocate.
  *
- * Deallocate a question (unless it was drawn from a GskDnsMessage,
+ * Deallocate a question (unless it was drawn from a EvaDnsMessage,
  * in which case it will be destroyed automatically when
  * the message is destroyed.
  */
 void
-eva_dns_question_free(GskDnsQuestion           *question)
+eva_dns_question_free(EvaDnsQuestion           *question)
 {
   if (question->allocator != NULL)
     {
@@ -1116,11 +1116,11 @@ eva_dns_question_free(GskDnsQuestion           *question)
 /* --- parsing binary messages --- */
 
 /* questions (RFC 1035, 4.1.2) */
-static GskDnsQuestion *
-parse_question (GskBufferIterator *iterator,
-		GskDnsMessage     *message)
+static EvaDnsQuestion *
+parse_question (EvaBufferIterator *iterator,
+		EvaDnsMessage     *message)
 {
-  GskDnsQuestion *question;
+  EvaDnsQuestion *question;
   guint16 qarray[2];
   char *name;
 
@@ -1137,9 +1137,9 @@ parse_question (GskBufferIterator *iterator,
 }
 
 /* resource records (RR's) (RFC 1035, 4.1.3) */
-static GskDnsResourceRecord *
-parse_resource_record (GskBufferIterator *iterator,
-		       GskDnsMessage     *message)
+static EvaDnsResourceRecord *
+parse_resource_record (EvaBufferIterator *iterator,
+		       EvaDnsMessage     *message)
 {
   char *owner;
   guint16 type;
@@ -1147,7 +1147,7 @@ parse_resource_record (GskBufferIterator *iterator,
   guint32 ttl;
   guint16 rdlength;
   guint8 header[10];
-  GskDnsResourceRecord *rr;
+  EvaDnsResourceRecord *rr;
 
   owner = parse_domain_name (iterator, message);
   if (owner == NULL)
@@ -1318,7 +1318,7 @@ parse_resource_record (GskBufferIterator *iterator,
 }
 
 /* parse_resource_record_list:
- *   fetch a list of GskDnsResourceRecord's into *(LIST-OUT)
+ *   fetch a list of EvaDnsResourceRecord's into *(LIST-OUT)
  *   by scanning through ITERATOR.  COUNT
  *   resource-records are expected.
  *
@@ -1327,16 +1327,16 @@ parse_resource_record (GskBufferIterator *iterator,
  */
 
 static gboolean
-parse_resource_record_list (GskBufferIterator *iterator,
+parse_resource_record_list (EvaBufferIterator *iterator,
 			    guint              count,
 			    GSList           **list_out,
 			    const char        *section,
-			    GskDnsMessage     *message)
+			    EvaDnsMessage     *message)
 {
   g_return_val_if_fail (*list_out == NULL, FALSE);
   while (count-- != 0)
     {
-      GskDnsResourceRecord *rr = parse_resource_record (iterator, message);
+      EvaDnsResourceRecord *rr = parse_resource_record (iterator, message);
       if (rr == NULL)
 	{
 	  PARSE_FAIL (section);
@@ -1354,22 +1354,22 @@ parse_resource_record_list (GskBufferIterator *iterator,
  * @is_request: whether the message is a client request.
  * If FALSE, then the message is a server response.
  *
- * Allocate a new blank GskDnsMessage.
+ * Allocate a new blank EvaDnsMessage.
  *
  * returns: the new message.
  */
-GskDnsMessage *
+EvaDnsMessage *
 eva_dns_message_new (guint16            id,
 		     gboolean           is_request)
 {
-  GskDnsMessage *message = eva_dns_message_alloc ();
+  EvaDnsMessage *message = eva_dns_message_alloc ();
   message->id = id;
   message->is_query = is_request ? 1 : 0;
   return message;
 }
 
-static GskDnsMessage *
-eva_dns_parse_buffer_internal (GskBuffer    *buffer,
+static EvaDnsMessage *
+eva_dns_parse_buffer_internal (EvaBuffer    *buffer,
 			       guint        *num_bytes_parsed)
 {
   guint16 header[6];
@@ -1378,8 +1378,8 @@ eva_dns_parse_buffer_internal (GskBuffer    *buffer,
   guint answer_count;
   guint auth_count;
   guint addl_count;
-  GskDnsMessage *message = NULL;
-  GskBufferIterator iterator;
+  EvaDnsMessage *message = NULL;
+  EvaBufferIterator iterator;
 
   eva_buffer_iterator_construct (&iterator, buffer);
   if (eva_buffer_iterator_read (&iterator, header, 12) != 12)
@@ -1407,7 +1407,7 @@ eva_dns_parse_buffer_internal (GskBuffer    *buffer,
   /* question section */
   for (i = 0; i < question_count; i++)
     {
-      GskDnsQuestion *question = parse_question (&iterator, message);
+      EvaDnsQuestion *question = parse_question (&iterator, message);
       if (question == NULL)
 	{
 	  PARSE_FAIL ("question section");
@@ -1447,15 +1447,15 @@ fail:
  * eva_dns_message_parse_buffer:
  * @buffer: the buffer to parse to get a binary DNS message.
  *
- * Parse a GskDnsMessage from a buffer, removing the binary data
+ * Parse a EvaDnsMessage from a buffer, removing the binary data
  * from the buffer.
  *
  * returns: the new DNS message, or NULL if a parse error occurs.
  */
-GskDnsMessage *eva_dns_message_parse_buffer  (GskBuffer    *buffer)
+EvaDnsMessage *eva_dns_message_parse_buffer  (EvaBuffer    *buffer)
 {
   guint len;
-  GskDnsMessage *rv = eva_dns_parse_buffer_internal (buffer, &len);
+  EvaDnsMessage *rv = eva_dns_parse_buffer_internal (buffer, &len);
   if (rv == NULL)
     return rv;
   eva_buffer_discard (buffer, len);
@@ -1469,16 +1469,16 @@ GskDnsMessage *eva_dns_message_parse_buffer  (GskBuffer    *buffer)
  * @bytes_used_out: number of bytes of @data actually used to make the
  *   returned message, or NULL if you don't care.
  *
- * Parse a GskDnsMessage from a buffer.
+ * Parse a EvaDnsMessage from a buffer.
  *
  * returns: the new DNS message, or NULL if a parse error occurs.
  */
-GskDnsMessage *eva_dns_message_parse_data    (const guint8 *data,
+EvaDnsMessage *eva_dns_message_parse_data    (const guint8 *data,
 				              guint         length,
 				              guint        *bytes_used_out)
 {
-  GskBuffer buffer;
-  GskDnsMessage *message;
+  EvaBuffer buffer;
+  EvaDnsMessage *message;
   guint len;
   eva_buffer_construct (&buffer);
   eva_buffer_append_foreign (&buffer, data, length, NULL, NULL);
@@ -1497,7 +1497,7 @@ struct _SerializeInfo
 {
   gboolean    compress;
   GHashTable *str_to_offset;
-  GskBuffer  *buffer;
+  EvaBuffer  *buffer;
   gint        init_buffer_size;
 };
 
@@ -1565,7 +1565,7 @@ write_question_to_buffer (gpointer    list_data,
 			  gpointer    ser_data)
 {
   SerializeInfo *ser_info = ser_data;
-  GskDnsQuestion *question = list_data;
+  EvaDnsQuestion *question = list_data;
   guint16 data[2];
 
   compress_string (ser_info, question->query_name);
@@ -1575,7 +1575,7 @@ write_question_to_buffer (gpointer    list_data,
 }
 
 static void
-append_char_string (GskBuffer  *buffer,
+append_char_string (EvaBuffer  *buffer,
 		    const char *str)
 {
   int len = strlen (str);
@@ -1590,10 +1590,10 @@ write_rr_to_buffer (gpointer    list_data,
 		    gpointer    ser_data)
 {
   SerializeInfo *ser_info = ser_data;
-  GskDnsResourceRecord *rr = list_data;
-  GskBuffer *buffer = ser_info->buffer;
+  EvaDnsResourceRecord *rr = list_data;
+  EvaBuffer *buffer = ser_info->buffer;
   guint16 data[5];
-  GskBuffer tmp_buffer;
+  EvaBuffer tmp_buffer;
   eva_buffer_construct (&tmp_buffer);
   data[0] = GUINT16_TO_BE (rr->type);
   data[1] = GUINT16_TO_BE (rr->record_class);
@@ -1636,7 +1636,7 @@ write_rr_to_buffer (gpointer    list_data,
     case EVA_DNS_RR_CANONICAL_NAME:
     case EVA_DNS_RR_POINTER:
       {
-	GskBuffer tmp_buffer;
+	EvaBuffer tmp_buffer;
 	gint old_init_buf_size = ser_info->init_buffer_size;
 	eva_buffer_construct (&tmp_buffer);
 	ser_info->buffer = &tmp_buffer;
@@ -1763,8 +1763,8 @@ write_rr_to_buffer (gpointer    list_data,
  * even if it probably won't work in the transport layer.
  */
 void
-eva_dns_message_write_buffer  (GskDnsMessage *message,
-		               GskBuffer     *buffer,
+eva_dns_message_write_buffer  (EvaDnsMessage *message,
+		               EvaBuffer     *buffer,
 		               gboolean       compress)
 {
   SerializeInfo ser_info;
@@ -1813,10 +1813,10 @@ eva_dns_message_write_buffer  (GskDnsMessage *message,
  *
  * returns: the new packet containing the binary data.
  */
-GskPacket *
-eva_dns_message_to_packet (GskDnsMessage *message)
+EvaPacket *
+eva_dns_message_to_packet (EvaDnsMessage *message)
 {
-  GskBuffer buffer;
+  EvaBuffer buffer;
   gsize size;
   gpointer slab;
   eva_buffer_construct (&buffer);
@@ -1824,16 +1824,16 @@ eva_dns_message_to_packet (GskDnsMessage *message)
   size = buffer.size;
   slab = g_malloc (size);
   eva_buffer_read (&buffer, slab, size);
-  return eva_packet_new (slab, size, (GskPacketDestroyFunc) g_free, slab);
+  return eva_packet_new (slab, size, (EvaPacketDestroyFunc) g_free, slab);
 }
 
-/* --- adjusting GskDnsMessage's --- */
+/* --- adjusting EvaDnsMessage's --- */
 /**
  * eva_dns_message_append_question:
  * @message: the message to affect.
  * @question: a question to add to the message.
  *
- * Add a question to the QUESTION section of a GskDnsMessage.
+ * Add a question to the QUESTION section of a EvaDnsMessage.
  * For client requests, the message usually consists of
  * just questions.  For server responses, the message will
  * have copies the questions that the message deals with.
@@ -1841,8 +1841,8 @@ eva_dns_message_to_packet (GskDnsMessage *message)
  * The question will be free'd by the message.
  */
 void
-eva_dns_message_append_question (GskDnsMessage        *message,
-				 GskDnsQuestion       *question)
+eva_dns_message_append_question (EvaDnsMessage        *message,
+				 EvaDnsQuestion       *question)
 {
   message->questions = g_slist_append (message->questions,
 				       question);
@@ -1861,8 +1861,8 @@ eva_dns_message_append_question (GskDnsMessage        *message,
  * @answer will be freed when @message is freed.
  */
 void
-eva_dns_message_append_answer   (GskDnsMessage        *message,
-				 GskDnsResourceRecord *answer)
+eva_dns_message_append_answer   (EvaDnsMessage        *message,
+				 EvaDnsResourceRecord *answer)
 {
   message->answers = g_slist_append (message->answers, answer);
 }
@@ -1879,8 +1879,8 @@ eva_dns_message_append_answer   (GskDnsMessage        *message,
  * @auth will be freed when @message is freed.
  */
 void
-eva_dns_message_append_auth     (GskDnsMessage        *message,
-				 GskDnsResourceRecord *auth)
+eva_dns_message_append_auth     (EvaDnsMessage        *message,
+				 EvaDnsResourceRecord *auth)
 {
   message->authority = g_slist_append (message->authority, auth);
 }
@@ -1898,8 +1898,8 @@ eva_dns_message_append_auth     (GskDnsMessage        *message,
  * @auth will be freed when @message is freed.
  */
 void
-eva_dns_message_append_addl     (GskDnsMessage        *message,
-				 GskDnsResourceRecord *addl)
+eva_dns_message_append_addl     (EvaDnsMessage        *message,
+				 EvaDnsResourceRecord *addl)
 {
   message->additional = g_slist_append (message->additional, addl);
 }
@@ -1913,8 +1913,8 @@ eva_dns_message_append_addl     (GskDnsMessage        *message,
  * and delete the question.
  */
 void
-eva_dns_message_remove_question (GskDnsMessage        *message,
-				 GskDnsQuestion       *question)
+eva_dns_message_remove_question (EvaDnsMessage        *message,
+				 EvaDnsQuestion       *question)
 {
   g_return_if_fail (g_slist_find (message->questions, question) != NULL);
   message->questions = g_slist_remove (message->questions, question);
@@ -1930,8 +1930,8 @@ eva_dns_message_remove_question (GskDnsMessage        *message,
  * This frees the record.
  */
 void
-eva_dns_message_remove_answer   (GskDnsMessage        *message,
-				 GskDnsResourceRecord *answer)
+eva_dns_message_remove_answer   (EvaDnsMessage        *message,
+				 EvaDnsResourceRecord *answer)
 {
   g_return_if_fail (g_slist_find (message->answers, answer) != NULL);
   message->answers = g_slist_remove (message->answers, answer);
@@ -1947,8 +1947,8 @@ eva_dns_message_remove_answer   (GskDnsMessage        *message,
  * This frees the record.
  */
 void
-eva_dns_message_remove_auth     (GskDnsMessage        *message,
-				 GskDnsResourceRecord *auth)
+eva_dns_message_remove_auth     (EvaDnsMessage        *message,
+				 EvaDnsResourceRecord *auth)
 {
   g_return_if_fail (g_slist_find (message->authority, auth) != NULL);
   message->authority = g_slist_remove (message->authority, auth);
@@ -1964,8 +1964,8 @@ eva_dns_message_remove_auth     (GskDnsMessage        *message,
  * This frees the record.
  */
 void
-eva_dns_message_remove_addl     (GskDnsMessage        *message,
-				 GskDnsResourceRecord *addl)
+eva_dns_message_remove_addl     (EvaDnsMessage        *message,
+				 EvaDnsResourceRecord *addl)
 {
   g_return_if_fail (g_slist_find (message->additional, addl) != NULL);
   message->additional = g_slist_remove (message->additional, addl);
@@ -1982,7 +1982,7 @@ eva_dns_message_remove_addl     (GskDnsMessage        *message,
  * gets to 0.
  */
 void
-eva_dns_message_unref           (GskDnsMessage        *message)
+eva_dns_message_unref           (EvaDnsMessage        *message)
 {
   g_return_if_fail (message->ref_count > 0);
   --(message->ref_count);
@@ -2011,7 +2011,7 @@ eva_dns_message_unref           (GskDnsMessage        *message)
  * gets to 0.
  */
 void
-eva_dns_message_ref             (GskDnsMessage        *message)
+eva_dns_message_ref             (EvaDnsMessage        *message)
 {
   g_return_if_fail (message->ref_count > 0);
   ++(message->ref_count);
@@ -2096,7 +2096,7 @@ eva_dns_parse_ipv6_address (const char **pat,
 
 static gboolean
 parse_rr_type (const char               *type_str,
-               GskDnsResourceRecordType *type_out)
+               EvaDnsResourceRecordType *type_out)
 {
 #define TEST_STRING(str, rv)			\
   G_STMT_START{					\
@@ -2153,7 +2153,7 @@ parse_rr_type (const char               *type_str,
 
 static gboolean
 parse_rr_class (const char          *class_str,
-                GskDnsResourceClass *class_out)
+                EvaDnsResourceClass *class_out)
 {
 #define TEST_STRING(second_chars, rv)		\
   G_STMT_START{					\
@@ -2196,23 +2196,23 @@ parse_rr_class (const char          *class_str,
  *
  * returns: the new resource-record, or NULL if an error occurred.
  */
-GskDnsResourceRecord *
+EvaDnsResourceRecord *
 eva_dns_rr_text_parse     (const char       *record,
 			   const char       *last_owner,
 			   const char       *origin,
 			   char            **err_msg,
-			   GskDnsMessage    *allocator)
+			   EvaDnsMessage    *allocator)
 {
   gboolean start_with_space;
   const char *at = record;
   const char *endp;
   const char *owner = NULL;
-  GskDnsResourceRecord *rr = NULL;
+  EvaDnsResourceRecord *rr = NULL;
   guint ttl;
   char *rrtype_str;
   char *rclass_str;
-  GskDnsResourceRecordType rtype;
-  GskDnsResourceClass rclass;
+  EvaDnsResourceRecordType rtype;
+  EvaDnsResourceClass rclass;
 
   g_return_val_if_fail (origin != NULL, NULL);
 
@@ -2523,7 +2523,7 @@ append_spaces (GString *str, int n)
 }
 
 static const char *
-eva_resource_record_type_to_string (GskDnsResourceRecordType type)
+eva_resource_record_type_to_string (EvaDnsResourceRecordType type)
 {
   switch (type)
     {
@@ -2545,7 +2545,7 @@ eva_resource_record_type_to_string (GskDnsResourceRecordType type)
 }
 
 static const char *
-eva_resource_record_class_to_string (GskDnsResourceClass class)
+eva_resource_record_class_to_string (EvaDnsResourceClass class)
 {
   switch (class)
     {
@@ -2571,7 +2571,7 @@ eva_resource_record_class_to_string (GskDnsResourceClass class)
  * returns: a newly allocated string.  The text of the resource-record.
  */
 char *
-eva_dns_rr_text_to_str(GskDnsResourceRecord *rr,
+eva_dns_rr_text_to_str(EvaDnsResourceRecord *rr,
 		       const char           *last_owner)
 {
   GString *rv = g_string_new ("");
@@ -2707,7 +2707,7 @@ fail:
  * returns: the newly allocated string.
  */
 char *
-eva_dns_question_text_to_str(GskDnsQuestion       *question)
+eva_dns_question_text_to_str(EvaDnsQuestion       *question)
 {
   GString *rv;
   char *rv_str;
@@ -2743,8 +2743,8 @@ eva_dns_question_text_to_str(GskDnsQuestion       *question)
  * This will look similar to a zone file.
  */
 void
-eva_dns_rr_text_write     (GskDnsResourceRecord *rr,
-			   GskBuffer            *out_buffer,
+eva_dns_rr_text_write     (EvaDnsResourceRecord *rr,
+			   EvaBuffer            *out_buffer,
 			   const char           *last_owner)
 {
   char *txt = eva_dns_rr_text_to_str (rr, last_owner);
@@ -2756,7 +2756,7 @@ eva_dns_rr_text_write     (GskDnsResourceRecord *rr,
 
 /* --- debugging dump --- */
 void
-eva_dns_dump_question_fp (GskDnsQuestion *question,
+eva_dns_dump_question_fp (EvaDnsQuestion *question,
 			  FILE           *fp)
 {
   char *str = eva_dns_question_text_to_str (question);
@@ -2768,7 +2768,7 @@ eva_dns_dump_question_fp (GskDnsQuestion *question,
 static void print_rr_to_fp (gpointer list_data, gpointer data)
 {
   FILE *fp = data;
-  GskDnsResourceRecord *rr = list_data;
+  EvaDnsResourceRecord *rr = list_data;
   char *str = eva_dns_rr_text_to_str (rr, NULL);
   fprintf (fp, "%s\n", str);
   g_free (str);
@@ -2784,7 +2784,7 @@ static void print_rr_to_fp (gpointer list_data, gpointer data)
  * obscure unix utility 'dig'.
  */
 void
-eva_dns_dump_message_fp (GskDnsMessage *message,
+eva_dns_dump_message_fp (EvaDnsMessage *message,
 			 FILE          *fp)
 {
   const char *error_str = "UNKNOWN ERROR";

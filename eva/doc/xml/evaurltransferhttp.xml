@@ -1,53 +1,53 @@
-<refentry id="GskUrlTransferHttp">
+<refentry id="EvaUrlTransferHttp">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskUrlTransferHttp.top_of_page">GskUrlTransferHttp</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaUrlTransferHttp.top_of_page">EvaUrlTransferHttp</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskUrlTransferHttp</refname>
+<refname>EvaUrlTransferHttp</refname>
 <refpurpose>An HTTP- or HTTPS-based transfer.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskUrlTransferHttp.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaUrlTransferHttp.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskUrlTransferHttp-struct">GskUrlTransferHttp</link>;
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-http-set-ssl-cert">eva_url_transfer_http_set_ssl_cert</link>  (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
+                    <link linkend="EvaUrlTransferHttp-struct">EvaUrlTransferHttp</link>;
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-http-set-ssl-cert">eva_url_transfer_http_set_ssl_cert</link>  (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
                                                          const <link linkend="char">char</link> *cert_fname);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-http-set-ssl-key">eva_url_transfer_http_set_ssl_key</link>   (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-http-set-ssl-key">eva_url_transfer_http_set_ssl_key</link>   (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
                                                          const <link linkend="char">char</link> *key_fname);
 <link linkend="void">void</link>                <link linkend="eva-url-transfer-http-set-ssl-password">eva_url_transfer_http_set_ssl_password</link>
-                                                        (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
+                                                        (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
                                                          const <link linkend="char">char</link> *password);
 <link linkend="void">void</link>                <link linkend="eva-url-transfer-http-set-user-agent">eva_url_transfer_http_set_user_agent</link>
-                                                        (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
+                                                        (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
                                                          const <link linkend="char">char</link> *user_agent);
 <link linkend="void">void</link>                <link linkend="eva-url-transfer-http-add-extra-header">eva_url_transfer_http_add_extra_header</link>
-                                                        (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
+                                                        (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
                                                          const <link linkend="char">char</link> *key,
                                                          const <link linkend="char">char</link> *value);
 <link linkend="void">void</link>                <link linkend="eva-url-transfer-http-set-proxy-address">eva_url_transfer_http_set_proxy_address</link>
-                                                        (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *proxy_address);
-<link linkend="void">void</link>                (<link linkend="GskUrlTransferHttpRequestModifierFunc">*GskUrlTransferHttpRequestModifierFunc</link>)
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *request,
+                                                        (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *proxy_address);
+<link linkend="void">void</link>                (<link linkend="EvaUrlTransferHttpRequestModifierFunc">*EvaUrlTransferHttpRequestModifierFunc</link>)
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
                                                          <link linkend="gpointer">gpointer</link> mod_data);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-http-add-modifier">eva_url_transfer_http_add_modifier</link>  (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
-                                                         <link linkend="GskUrlTransferHttpRequestModifierFunc">GskUrlTransferHttpRequestModifierFunc</link> modifier,
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-http-add-modifier">eva_url_transfer_http_add_modifier</link>  (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
+                                                         <link linkend="EvaUrlTransferHttpRequestModifierFunc">EvaUrlTransferHttpRequestModifierFunc</link> modifier,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskUrlTransferHttp.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaUrlTransferHttp.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskUrlTransfer">GskUrlTransfer</link>
-         +----GskUrlTransferHttp
+   +----<link linkend="EvaUrlTransfer">EvaUrlTransfer</link>
+         +----EvaUrlTransferHttp
 </synopsis>
 </refsect1>
 
@@ -58,7 +58,7 @@
 
 
 
-<refsect1 id="GskUrlTransferHttp.description" role="desc">
+<refsect1 id="EvaUrlTransferHttp.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 A transfer with an HTTP-based URL.
@@ -66,16 +66,16 @@ In particular, this class defines many HTTP specific configurations.
 </para>
 </refsect1>
 
-<refsect1 id="GskUrlTransferHttp.details" role="details">
+<refsect1 id="EvaUrlTransferHttp.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskUrlTransferHttp-struct" role="struct">
-<title>GskUrlTransferHttp</title>
-<indexterm zone="GskUrlTransferHttp-struct"><primary sortas="GskUrlTransferHttp">GskUrlTransferHttp</primary></indexterm><programlisting>typedef struct _GskUrlTransferHttp GskUrlTransferHttp;</programlisting>
+<refsect2 id="EvaUrlTransferHttp-struct" role="struct">
+<title>EvaUrlTransferHttp</title>
+<indexterm zone="EvaUrlTransferHttp-struct"><primary sortas="EvaUrlTransferHttp">EvaUrlTransferHttp</primary></indexterm><programlisting>typedef struct _EvaUrlTransferHttp EvaUrlTransferHttp;</programlisting>
 <para>
 </para></refsect2>
 <refsect2 id="eva-url-transfer-http-set-ssl-cert" role="function">
 <title>eva_url_transfer_http_set_ssl_cert ()</title>
-<indexterm zone="eva-url-transfer-http-set-ssl-cert"><primary sortas="eva_url_transfer_http_set_ssl_cert">eva_url_transfer_http_set_ssl_cert</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_http_set_ssl_cert  (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
+<indexterm zone="eva-url-transfer-http-set-ssl-cert"><primary sortas="eva_url_transfer_http_set_ssl_cert">eva_url_transfer_http_set_ssl_cert</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_http_set_ssl_cert  (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
                                                          const <link linkend="char">char</link> *cert_fname);</programlisting>
 <para>
 Set the SSL certificate file for this connection.</para>
@@ -90,7 +90,7 @@ Set the SSL certificate file for this connection.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-http-set-ssl-key" role="function">
 <title>eva_url_transfer_http_set_ssl_key ()</title>
-<indexterm zone="eva-url-transfer-http-set-ssl-key"><primary sortas="eva_url_transfer_http_set_ssl_key">eva_url_transfer_http_set_ssl_key</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_http_set_ssl_key   (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
+<indexterm zone="eva-url-transfer-http-set-ssl-key"><primary sortas="eva_url_transfer_http_set_ssl_key">eva_url_transfer_http_set_ssl_key</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_http_set_ssl_key   (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
                                                          const <link linkend="char">char</link> *key_fname);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -104,7 +104,7 @@ Set the SSL certificate file for this connection.</para>
 <refsect2 id="eva-url-transfer-http-set-ssl-password" role="function">
 <title>eva_url_transfer_http_set_ssl_password ()</title>
 <indexterm zone="eva-url-transfer-http-set-ssl-password"><primary sortas="eva_url_transfer_http_set_ssl_password">eva_url_transfer_http_set_ssl_password</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_http_set_ssl_password
-                                                        (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
+                                                        (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
                                                          const <link linkend="char">char</link> *password);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -118,7 +118,7 @@ Set the SSL certificate file for this connection.</para>
 <refsect2 id="eva-url-transfer-http-set-user-agent" role="function">
 <title>eva_url_transfer_http_set_user_agent ()</title>
 <indexterm zone="eva-url-transfer-http-set-user-agent"><primary sortas="eva_url_transfer_http_set_user_agent">eva_url_transfer_http_set_user_agent</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_http_set_user_agent
-                                                        (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
+                                                        (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
                                                          const <link linkend="char">char</link> *user_agent);</programlisting>
 <para>
 Set the User-Agent to use for this HTTP transaction.</para>
@@ -134,7 +134,7 @@ Set the User-Agent to use for this HTTP transaction.</para>
 <refsect2 id="eva-url-transfer-http-add-extra-header" role="function">
 <title>eva_url_transfer_http_add_extra_header ()</title>
 <indexterm zone="eva-url-transfer-http-add-extra-header"><primary sortas="eva_url_transfer_http_add_extra_header">eva_url_transfer_http_add_extra_header</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_http_add_extra_header
-                                                        (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
+                                                        (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
                                                          const <link linkend="char">char</link> *key,
                                                          const <link linkend="char">char</link> *value);</programlisting>
 <para>
@@ -154,8 +154,8 @@ Add an arbitrary header to the HTTP request.</para>
 <refsect2 id="eva-url-transfer-http-set-proxy-address" role="function">
 <title>eva_url_transfer_http_set_proxy_address ()</title>
 <indexterm zone="eva-url-transfer-http-set-proxy-address"><primary sortas="eva_url_transfer_http_set_proxy_address">eva_url_transfer_http_set_proxy_address</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_http_set_proxy_address
-                                                        (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *proxy_address);</programlisting>
+                                                        (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *proxy_address);</programlisting>
 <para>
 Set an HTTP proxy for this transfer.</para>
 <para>
@@ -168,10 +168,10 @@ Set an HTTP proxy for this transfer.</para>
 really connect to.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskUrlTransferHttpRequestModifierFunc" role="function">
-<title>GskUrlTransferHttpRequestModifierFunc ()</title>
-<indexterm zone="GskUrlTransferHttpRequestModifierFunc"><primary sortas="GskUrlTransferHttpRequestModifierFunc">GskUrlTransferHttpRequestModifierFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskUrlTransferHttpRequestModifierFunc)
-                                                        (<link linkend="GskHttpRequest">GskHttpRequest</link> *request,
+<refsect2 id="EvaUrlTransferHttpRequestModifierFunc" role="function">
+<title>EvaUrlTransferHttpRequestModifierFunc ()</title>
+<indexterm zone="EvaUrlTransferHttpRequestModifierFunc"><primary sortas="EvaUrlTransferHttpRequestModifierFunc">EvaUrlTransferHttpRequestModifierFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaUrlTransferHttpRequestModifierFunc)
+                                                        (<link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
                                                          <link linkend="gpointer">gpointer</link> mod_data);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -184,8 +184,8 @@ really connect to.
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-http-add-modifier" role="function">
 <title>eva_url_transfer_http_add_modifier ()</title>
-<indexterm zone="eva-url-transfer-http-add-modifier"><primary sortas="eva_url_transfer_http_add_modifier">eva_url_transfer_http_add_modifier</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_http_add_modifier  (<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link> *http,
-                                                         <link linkend="GskUrlTransferHttpRequestModifierFunc">GskUrlTransferHttpRequestModifierFunc</link> modifier,
+<indexterm zone="eva-url-transfer-http-add-modifier"><primary sortas="eva_url_transfer_http_add_modifier">eva_url_transfer_http_add_modifier</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_http_add_modifier  (<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link> *http,
+                                                         <link linkend="EvaUrlTransferHttpRequestModifierFunc">EvaUrlTransferHttpRequestModifierFunc</link> modifier,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -210,10 +210,10 @@ Add a generic transformation to do to the HTTP request header.</para>
 
 
 
-<refsect1 id="GskUrlTransferHttp.see-also">
+<refsect1 id="EvaUrlTransferHttp.see-also">
 <title>See Also</title>
 <para>
-<link linkend="GskUrlTransfer"><type>GskUrlTransfer</type></link>.
+<link linkend="EvaUrlTransfer"><type>EvaUrlTransfer</type></link>.
 </para>
 </refsect1>
 

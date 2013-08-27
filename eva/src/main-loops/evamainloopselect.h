@@ -19,7 +19,7 @@
     Contact:
         daveb@ffem.org <Dave Benson>
 */
-/* GskMainLoopSelect: A main loop based around the select(2) system call. */
+/* EvaMainLoopSelect: A main loop based around the select(2) system call. */
 
 /* Notes:
  * 
@@ -41,28 +41,28 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskMainLoopSelect GskMainLoopSelect;
-typedef struct _GskMainLoopSelectClass GskMainLoopSelectClass;
+typedef struct _EvaMainLoopSelect EvaMainLoopSelect;
+typedef struct _EvaMainLoopSelectClass EvaMainLoopSelectClass;
 
 
 /* --- type macros --- */
 GType eva_main_loop_select_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MAIN_LOOP_SELECT			(eva_main_loop_select_get_type ())
-#define EVA_MAIN_LOOP_SELECT(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MAIN_LOOP_SELECT, GskMainLoopSelect))
-#define EVA_MAIN_LOOP_SELECT_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MAIN_LOOP_SELECT, GskMainLoopSelectClass))
-#define EVA_MAIN_LOOP_SELECT_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MAIN_LOOP_SELECT, GskMainLoopSelectClass))
+#define EVA_MAIN_LOOP_SELECT(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MAIN_LOOP_SELECT, EvaMainLoopSelect))
+#define EVA_MAIN_LOOP_SELECT_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MAIN_LOOP_SELECT, EvaMainLoopSelectClass))
+#define EVA_MAIN_LOOP_SELECT_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MAIN_LOOP_SELECT, EvaMainLoopSelectClass))
 #define EVA_IS_MAIN_LOOP_SELECT(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_MAIN_LOOP_SELECT))
 #define EVA_IS_MAIN_LOOP_SELECT_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_MAIN_LOOP_SELECT))
 
 
 /* --- structures --- */
-struct _GskMainLoopSelectClass 
+struct _EvaMainLoopSelectClass 
 {
-  GskMainLoopPollBaseClass	main_loop_poll_base_class;
+  EvaMainLoopPollBaseClass	main_loop_poll_base_class;
 };
-struct _GskMainLoopSelect 
+struct _EvaMainLoopSelect 
 {
-  GskMainLoopPollBase		main_loop_poll_base;
+  EvaMainLoopPollBase		main_loop_poll_base;
   GTree                        *fd_tree;
   fd_set			read_set;
   fd_set			write_set;

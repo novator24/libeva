@@ -6,7 +6,7 @@ a line-oriented fixed-length ring buffer
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-GskLogRingBuffer provides a very efficient way
+EvaLogRingBuffer provides a very efficient way
 to keep track of the last N bytes of text data.
 Typically, this is used for logs that change too fast
 to justify keeping them in a file,
@@ -21,7 +21,7 @@ but which are useful for getting status and debugging.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskLogRingBuffer ##### -->
+<!-- ##### STRUCT EvaLogRingBuffer ##### -->
 <para>
 
 </para>

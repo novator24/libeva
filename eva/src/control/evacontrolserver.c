@@ -22,7 +22,7 @@ struct _FileNode
       gpointer data;
     } raw;
     struct {
-      GskControlServerVFileContentsFunc vfile_func;
+      EvaControlServerVFileContentsFunc vfile_func;
       gpointer          vfile_data;
       GDestroyNotify    vfile_data_destroy;
     } virtual;
@@ -38,27 +38,27 @@ struct _DirNode
 struct _Command
 {
   char *name;
-  GskControlServerCommandFunc func;
+  EvaControlServerCommandFunc func;
   gpointer func_data;
 };
 
-struct _GskControlServer
+struct _EvaControlServer
 {
-  GskHttpContent *content;
+  EvaHttpContent *content;
   DirNode *root;
   GHashTable *commands_by_name;
   Command *default_command;
 };
 
 static void
-generic_failure (GskHttpServer *server,
-                 GskHttpRequest *request,
-                 GskHttpStatus status,
+generic_failure (EvaHttpServer *server,
+                 EvaHttpRequest *request,
+                 EvaHttpStatus status,
                  const char *status_name,
                  const char *error_message)
 {
-  GskHttpResponse *response;
-  GskStream *content;
+  EvaHttpResponse *response;
+  EvaStream *content;
   response = eva_http_response_from_request (request, status, -1);
   eva_http_header_set_content_type (response, "text");
   eva_http_header_set_content_subtype (response, "plain");
@@ -71,35 +71,35 @@ generic_failure (GskHttpServer *server,
 }
 
 static void
-bad_request_respond (GskHttpServer *server,
-                     GskHttpRequest *request,
+bad_request_respond (EvaHttpServer *server,
+                     EvaHttpRequest *request,
                      const char     *error_message)
 {
   generic_failure (server, request, EVA_HTTP_STATUS_BAD_REQUEST, "Bad Request", error_message);
 }
 
 static void
-error_processing_request (GskHttpServer *server,
-                     GskHttpRequest *request,
+error_processing_request (EvaHttpServer *server,
+                     EvaHttpRequest *request,
                      const char     *error_message)
 {
   generic_failure (server, request, EVA_HTTP_STATUS_BAD_REQUEST, "Error Processing Request", error_message);
 }
 
 
-static GskHttpContentResult
-handle_run_txt (GskHttpContent   *content,
-                GskHttpContentHandler *handler,
-                GskHttpServer  *server,
-                GskHttpRequest *request,
-                GskStream      *post_data,
+static EvaHttpContentResult
+handle_run_txt (EvaHttpContent   *content,
+                EvaHttpContentHandler *handler,
+                EvaHttpServer  *server,
+                EvaHttpRequest *request,
+                EvaStream      *post_data,
                 gpointer        data)
 {
   GError *error = NULL;
   Command *command;
   guint i;
-  GskControlServer *cserver = data;
-  GskStream *output;
+  EvaControlServer *cserver = data;
+  EvaStream *output;
 
   /* parse path down to an argument list */
   char **cmd = eva_http_parse_cgi_query_string (request->path, &error);
@@ -175,7 +175,7 @@ handle_run_txt (GskHttpContent   *content,
       return EVA_HTTP_CONTENT_OK;
     }
   {
-    GskHttpResponse *response;
+    EvaHttpResponse *response;
     response = eva_http_response_from_request (request, EVA_HTTP_STATUS_OK, -1);
     eva_http_header_set_content_type (response, "text");
     eva_http_header_set_content_subtype (response, "plain");
@@ -190,9 +190,9 @@ handle_run_txt (GskHttpContent   *content,
 }
 
 static void
-add_command_internal (GskControlServer *server,
+add_command_internal (EvaControlServer *server,
                       const char       *command_name,
-                      GskControlServerCommandFunc func,
+                      EvaControlServerCommandFunc func,
                       gpointer          data)
 {
   Command *command;
@@ -223,7 +223,7 @@ path_split (const char *path)
 }
 
 static DirNode *
-maybe_get_dir_node (GskControlServer *server,
+maybe_get_dir_node (EvaControlServer *server,
                     char            **path)
 {
   char **at;
@@ -258,12 +258,12 @@ append_command_star_to_str (gpointer key, gpointer value,
 
 static gboolean
 command_handler__ls (char **argv,
-                     GskStream *input,
-                     GskStream **output,
+                     EvaStream *input,
+                     EvaStream **output,
                      gpointer data,
                      GError **error)
 {
-  GskControlServer *cserver = data;
+  EvaControlServer *cserver = data;
   char **path_pieces;
   DirNode *node;
   GString *rs;
@@ -331,15 +331,15 @@ return_string:
 
 static gboolean
 command_handler__cat(char **argv,
-                     GskStream *input,
-                     GskStream **output,
+                     EvaStream *input,
+                     EvaStream **output,
                      gpointer data,
                      GError **error)
 {
   const guint8 *content;
   guint content_length;
   gpointer copy;
-  GskControlServer *server = data;
+  EvaControlServer *server = data;
   if (argv[1] == NULL || argv[2] != NULL)
     {
       g_set_error (error, EVA_G_ERROR_DOMAIN,
@@ -399,18 +399,18 @@ command_handler__cat(char **argv,
 
 /**
  * eva_control_server_new:
- * returns: a new GskControlServer.
+ * returns: a new EvaControlServer.
  *
- * Allocate a new GskControlServer.
+ * Allocate a new EvaControlServer.
  *
  * It has a few builtin commands: 'ls', 'cat'.
  */
-GskControlServer *
+EvaControlServer *
 eva_control_server_new (void)
 {
-  GskControlServer *server = g_new (GskControlServer, 1);
-  GskHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
-  GskHttpContentHandler *handler;
+  EvaControlServer *server = g_new (EvaControlServer, 1);
+  EvaHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
+  EvaHttpContentHandler *handler;
   server->content = eva_http_content_new ();
   id.path_prefix = "/run.txt?";
   handler = eva_http_content_handler_new (handle_run_txt, server, NULL);
@@ -449,9 +449,9 @@ static const char *reserved_commands[] =
 };
 
 void
-eva_control_server_add_command (GskControlServer *server,
+eva_control_server_add_command (EvaControlServer *server,
                                 const char       *command_name,
-                                GskControlServerCommandFunc func,
+                                EvaControlServerCommandFunc func,
                                 gpointer          data)
 {
   guint i;
@@ -467,8 +467,8 @@ eva_control_server_add_command (GskControlServer *server,
 
 void
 eva_control_server_set_default_command
-                               (GskControlServer *server,
-                                GskControlServerCommandFunc func,
+                               (EvaControlServer *server,
+                                EvaControlServerCommandFunc func,
                                 gpointer          data)
 {
   Command *command;
@@ -481,7 +481,7 @@ eva_control_server_set_default_command
 }
 
 static DirNode *
-server_mkdir (GskControlServer *server,
+server_mkdir (EvaControlServer *server,
               char **split,
               GError    **error)
 {
@@ -540,7 +540,7 @@ destruct_file_node (FileNode *fn)
 }
 
 static FileNode *
-set_file_generic (GskControlServer *server,
+set_file_generic (EvaControlServer *server,
                   const char       *path,
                   GError          **error)
 {
@@ -629,7 +629,7 @@ set_file_generic (GskControlServer *server,
  * This can fail if it cannot make a virtual-directory.
  */
 gboolean
-eva_control_server_set_file    (GskControlServer *server,
+eva_control_server_set_file    (EvaControlServer *server,
                                 const char       *path,
                                 const guint8     *content,
                                 guint             content_length,
@@ -664,9 +664,9 @@ eva_control_server_set_file    (GskControlServer *server,
  * This may replace an old copy of the file.
  */
 gboolean
-eva_control_server_set_vfile   (GskControlServer *server,
+eva_control_server_set_vfile   (EvaControlServer *server,
                                 const char       *path,
-                                GskControlServerVFileContentsFunc vfile_func,
+                                EvaControlServerVFileContentsFunc vfile_func,
                                 gpointer          vfile_data,
                                 GDestroyNotify    vfile_data_destroy,
                                 GError           **error)
@@ -709,13 +709,13 @@ get_logfile_contents (gpointer  vfile_data,
  * of the most recent data all the log domains.
  */
 void
-eva_control_server_set_logfile_v (GskControlServer *server,
+eva_control_server_set_logfile_v (EvaControlServer *server,
                                   const char       *path,
                                   guint             ring_buffer_size,
                                   guint             n_log_domains,
-                                  const GskControlServerLogDomain *domains)
+                                  const EvaControlServerLogDomain *domains)
 {
-  GskLogRingBuffer *ring_buffer = eva_log_ring_buffer_new (ring_buffer_size);
+  EvaLogRingBuffer *ring_buffer = eva_log_ring_buffer_new (ring_buffer_size);
   guint i;
   eva_control_server_set_vfile (server, path,
                                 get_logfile_contents, ring_buffer, NULL,
@@ -740,7 +740,7 @@ eva_control_server_set_logfile_v (GskControlServer *server,
  * of the most recent data from all the log domains.
  */
 void
-eva_control_server_set_logfile   (GskControlServer *server,
+eva_control_server_set_logfile   (EvaControlServer *server,
                                   const char       *path,
                                   guint             ring_buffer_size,
                                   const char       *first_log_domain,
@@ -751,7 +751,7 @@ eva_control_server_set_logfile   (GskControlServer *server,
   guint n_domains = 1;
   const char *d = next_log_domain;
   va_list args;
-  GskControlServerLogDomain *domains;
+  EvaControlServerLogDomain *domains;
   va_start (args, next_log_domain);
   while (d)
     {
@@ -761,7 +761,7 @@ eva_control_server_set_logfile   (GskControlServer *server,
     }
   va_end (args);
 
-  domains = g_newa (GskControlServerLogDomain, n_domains);
+  domains = g_newa (EvaControlServerLogDomain, n_domains);
   domains[0].domain = first_log_domain;
   domains[0].levels = first_log_level_flags;
   va_start (args, next_log_domain);
@@ -792,7 +792,7 @@ eva_control_server_set_logfile   (GskControlServer *server,
  * Returns an error if the file does not exist or is a directory.
  */
 gboolean
-eva_control_server_delete_file (GskControlServer *server,
+eva_control_server_delete_file (EvaControlServer *server,
                                 const char       *path,
                                 GError          **error)
 {
@@ -882,7 +882,7 @@ eva_control_server_delete_file (GskControlServer *server,
  */
 static void delete_dirnode_recursively (DirNode *dir_node);
 gboolean
-eva_control_server_delete_directory (GskControlServer *server,
+eva_control_server_delete_directory (EvaControlServer *server,
                                      const char       *path,
                                      GError          **error)
 {
@@ -973,8 +973,8 @@ delete_dirnode_recursively (DirNode *dir_node)
   g_free (dir_node);
 }
 
-GskControlServerFileStat
-eva_control_server_stat        (GskControlServer *server,
+EvaControlServerFileStat
+eva_control_server_stat        (EvaControlServer *server,
                                 const char       *path)
 {
   char **p = path_split (path);
@@ -1040,7 +1040,7 @@ eva_control_server_stat        (GskControlServer *server,
 }
 
 static FileNode *
-find_file_node (GskControlServer *server,
+find_file_node (EvaControlServer *server,
                 const char       *path)
 {
   char **p = path_split (path);
@@ -1107,7 +1107,7 @@ find_file_node (GskControlServer *server,
  * the data around.
  */
 gboolean
-eva_control_server_peek_raw_file (GskControlServer *server,
+eva_control_server_peek_raw_file (EvaControlServer *server,
                                   const char       *path,
                                   const guint8    **content_out,
                                   guint            *content_length_out)
@@ -1140,7 +1140,7 @@ eva_control_server_peek_raw_file (GskControlServer *server,
  * and retrieve its contents.
  */
 gboolean
-eva_control_server_get_vfile_contents (GskControlServer *server,
+eva_control_server_get_vfile_contents (EvaControlServer *server,
                                        const char       *path,
                                        guint8          **content_out,
                                        guint            *content_length_out,
@@ -1167,8 +1167,8 @@ eva_control_server_get_vfile_contents (GskControlServer *server,
  * returns: whether the bind operation was successful.
  */
 gboolean
-eva_control_server_listen (GskControlServer *server,
-                           GskSocketAddress *address,
+eva_control_server_listen (EvaControlServer *server,
+                           EvaSocketAddress *address,
                            GError          **error)
 {
   return eva_http_content_listen (server->content, address, error);

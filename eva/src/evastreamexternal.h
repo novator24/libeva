@@ -7,60 +7,60 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskStreamExternal GskStreamExternal;
-typedef struct _GskStreamExternalClass GskStreamExternalClass;
+typedef struct _EvaStreamExternal EvaStreamExternal;
+typedef struct _EvaStreamExternalClass EvaStreamExternalClass;
 /* --- type macros --- */
 GType eva_stream_external_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_STREAM_EXTERNAL			(eva_stream_external_get_type ())
-#define EVA_STREAM_EXTERNAL(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_EXTERNAL, GskStreamExternal))
-#define EVA_STREAM_EXTERNAL_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_EXTERNAL, GskStreamExternalClass))
-#define EVA_STREAM_EXTERNAL_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_EXTERNAL, GskStreamExternalClass))
+#define EVA_STREAM_EXTERNAL(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_EXTERNAL, EvaStreamExternal))
+#define EVA_STREAM_EXTERNAL_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_EXTERNAL, EvaStreamExternalClass))
+#define EVA_STREAM_EXTERNAL_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_EXTERNAL, EvaStreamExternalClass))
 #define EVA_IS_STREAM_EXTERNAL(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STREAM_EXTERNAL))
 #define EVA_IS_STREAM_EXTERNAL_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_STREAM_EXTERNAL))
 
 /* --- callbacks --- */
-typedef void (*GskStreamExternalTerminated) (GskStreamExternal   *external,
-					     GskMainLoopWaitInfo *wait_info,
+typedef void (*EvaStreamExternalTerminated) (EvaStreamExternal   *external,
+					     EvaMainLoopWaitInfo *wait_info,
 					     gpointer             user_data);
-typedef void (*GskStreamExternalStderr)     (GskStreamExternal   *external,
+typedef void (*EvaStreamExternalStderr)     (EvaStreamExternal   *external,
 					     const char          *error_text,
 					     gpointer             user_data);
 
 /* --- structures --- */
 
-struct _GskStreamExternalClass 
+struct _EvaStreamExternalClass 
 {
-  GskStreamClass stream_class;
+  EvaStreamClass stream_class;
 };
-struct _GskStreamExternal 
+struct _EvaStreamExternal 
 {
-  GskStream      stream;
+  EvaStream      stream;
 
   /* stdin for the process */
   int write_fd;
-  GskSource *write_source;
-  GskBuffer write_buffer;
+  EvaSource *write_source;
+  EvaBuffer write_buffer;
   gsize max_write_buffer;
 
   /* stdout for the process */
   int read_fd;
-  GskSource *read_source;
-  GskBuffer read_buffer;
+  EvaSource *read_source;
+  EvaBuffer read_buffer;
   gsize max_read_buffer;
 
   /* stderr for the process */
   int read_err_fd;
-  GskSource *read_err_source;
-  GskBuffer read_err_buffer;
+  EvaSource *read_err_source;
+  EvaBuffer read_err_buffer;
   gsize max_err_line_length;
 
   /* process-termination notification */
-  GskSource *process_source;
+  EvaSource *process_source;
   glong pid;
 
   /* user-callback information */
-  GskStreamExternalTerminated term_func;
-  GskStreamExternalStderr err_func;
+  EvaStreamExternalTerminated term_func;
+  EvaStreamExternalStderr err_func;
   gpointer user_data;
 };
 
@@ -68,16 +68,16 @@ typedef enum
 {
   EVA_STREAM_EXTERNAL_ALLOCATE_PSEUDOTTY = (1<<2),
   EVA_STREAM_EXTERNAL_SEARCH_PATH        = (1<<3)
-} GskStreamExternalFlags;
+} EvaStreamExternalFlags;
  
 
 
 /* --- prototypes --- */
-GskStream *eva_stream_external_new       (GskStreamExternalFlags      flags,
+EvaStream *eva_stream_external_new       (EvaStreamExternalFlags      flags,
 					  const char                 *stdin_filename,
 					  const char                 *stdout_filename,
-				          GskStreamExternalTerminated term_func,
-					  GskStreamExternalStderr     err_func,
+				          EvaStreamExternalTerminated term_func,
+					  EvaStreamExternalStderr     err_func,
 				          gpointer                    user_data,
 				          const char                 *path,
 				          const char                 *argv[],

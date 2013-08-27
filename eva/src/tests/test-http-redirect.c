@@ -17,16 +17,16 @@
        retrieve /d, /e, /f to get circular redirect errors.
  */
 
-static GskHttpContentResult
-redirect_handler (GskHttpContent *content,
-                  GskHttpContentHandler *handler,
-                  GskHttpServer  *server,
-                  GskHttpRequest *request,
-                  GskStream      *post_data,
+static EvaHttpContentResult
+redirect_handler (EvaHttpContent *content,
+                  EvaHttpContentHandler *handler,
+                  EvaHttpServer  *server,
+                  EvaHttpRequest *request,
+                  EvaStream      *post_data,
                   gpointer        data)
 {
-  GskHttpResponse *res = eva_http_response_new_redirect ((char*)data);
-  GskStream *str = eva_memory_source_static_string ("redirect");
+  EvaHttpResponse *res = eva_http_response_new_redirect ((char*)data);
+  EvaStream *str = eva_memory_source_static_string ("redirect");
   eva_http_header_set_content_type (EVA_HTTP_HEADER (res), "text");
   eva_http_header_set_content_subtype (EVA_HTTP_HEADER (res), "plain");
   eva_http_server_respond (server, request, res, str);
@@ -35,12 +35,12 @@ redirect_handler (GskHttpContent *content,
   return EVA_HTTP_CONTENT_OK;
 }
 static void
-add_redirect (GskHttpContent *content,
+add_redirect (EvaHttpContent *content,
               const char     *source,
               const char     *dest)
 {
-  GskHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
-  GskHttpContentHandler *handler;
+  EvaHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
+  EvaHttpContentHandler *handler;
   id.path = source;
   handler = eva_http_content_handler_new (redirect_handler, g_strdup (dest), g_free);
   eva_http_content_add_handler (content, &id, handler, EVA_HTTP_CONTENT_REPLACE);
@@ -54,12 +54,12 @@ struct _TransferData
   gboolean got_stream;
   gboolean stream_done;
   gboolean transfer_destroyed;
-  GskBuffer incoming;
+  EvaBuffer incoming;
   GError *error;
 };
 
 static gboolean
-handle_content_readable (GskStream *stream, gpointer data)
+handle_content_readable (EvaStream *stream, gpointer data)
 {
   TransferData *td = data;
   g_message ("handle_content_readable");
@@ -68,7 +68,7 @@ handle_content_readable (GskStream *stream, gpointer data)
 }
 
 static gboolean
-handle_content_read_shutdown (GskStream *stream, gpointer data)
+handle_content_read_shutdown (EvaStream *stream, gpointer data)
 {
   g_object_unref (stream);
   return FALSE;
@@ -83,7 +83,7 @@ set_stream_done (gpointer data)
 }
 
 static void
-handle_transfer (GskUrlTransfer *transfer,
+handle_transfer (EvaUrlTransfer *transfer,
                  gpointer        data)
 {
   TransferData *td = data;
@@ -122,15 +122,15 @@ static gboolean
 transfer (guint                port,
           const char          *path,
           gboolean             do_redirects,
-          GskUrlTransferHttp **transfer_out,
+          EvaUrlTransferHttp **transfer_out,
           guint               *len_out,
           char               **content_out,
           GError             **error)
 {
-  GskUrl *url = eva_url_new_from_parts (EVA_URL_SCHEME_HTTP,
+  EvaUrl *url = eva_url_new_from_parts (EVA_URL_SCHEME_HTTP,
                                         "localhost", port,
                                         NULL, NULL, path, NULL, NULL);
-  GskUrlTransfer *transfer = eva_url_transfer_new (url);
+  EvaUrlTransfer *transfer = eva_url_transfer_new (url);
   TransferData td;
   memset (&td, 0, sizeof (td));
   eva_buffer_construct (&td.incoming);
@@ -166,7 +166,7 @@ transfer (guint                port,
 
 int main (int argc, char **argv)
 {
-  GskHttpContent *content;
+  EvaHttpContent *content;
   guint port = 0;
   gint i;
   guint do_redirects;
@@ -194,8 +194,8 @@ int main (int argc, char **argv)
   guint len;
   char *str;
   GError *error = NULL;
-  GskUrlTransferHttp *htransfer;
-  GskSocketAddress *addr;
+  EvaUrlTransferHttp *htransfer;
+  EvaSocketAddress *addr;
 
   addr = eva_socket_address_ipv4_localhost (port);
   if (!eva_http_content_listen (content, addr, &error))

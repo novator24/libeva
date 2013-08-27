@@ -54,11 +54,11 @@
 <div class="refsynopsisdiv">
 <a name="eva-evadebug.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-enum                <a class="link" href="eva-evadebug.html#GskDebugFlags" title="enum GskDebugFlags">GskDebugFlags</a>;
+enum                <a class="link" href="eva-evadebug.html#EvaDebugFlags" title="enum EvaDebugFlags">EvaDebugFlags</a>;
 extern              const gboolean <a class="link" href="eva-evadebug.html#eva-debugging-on" title="eva_debugging_on">eva_debugging_on</a>;
-void                <a class="link" href="eva-evadebug.html#eva-debug-set-flags" title="eva_debug_set_flags ()">eva_debug_set_flags</a>                 (<a class="link" href="eva-evadebug.html#GskDebugFlags" title="enum GskDebugFlags">GskDebugFlags</a> flags);
-void                <a class="link" href="eva-evadebug.html#eva-debug-add-flags" title="eva_debug_add_flags ()">eva_debug_add_flags</a>                 (<a class="link" href="eva-evadebug.html#GskDebugFlags" title="enum GskDebugFlags">GskDebugFlags</a> flags);
-extern              GskDebugFlags <a class="link" href="eva-evadebug.html#eva-debug-flags" title="eva_debug_flags">eva_debug_flags</a>;
+void                <a class="link" href="eva-evadebug.html#eva-debug-set-flags" title="eva_debug_set_flags ()">eva_debug_set_flags</a>                 (<a class="link" href="eva-evadebug.html#EvaDebugFlags" title="enum EvaDebugFlags">EvaDebugFlags</a> flags);
+void                <a class="link" href="eva-evadebug.html#eva-debug-add-flags" title="eva_debug_add_flags ()">eva_debug_add_flags</a>                 (<a class="link" href="eva-evadebug.html#EvaDebugFlags" title="enum EvaDebugFlags">EvaDebugFlags</a> flags);
+extern              EvaDebugFlags <a class="link" href="eva-evadebug.html#eva-debug-flags" title="eva_debug_flags">eva_debug_flags</a>;
 </pre>
 </div>
 <div class="refsect1" lang="en">
@@ -79,7 +79,7 @@ EVA's configure script.
 <div class="refsect1" lang="en">
 <a name="eva-evadebug.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskDebugFlags"></a><h3>enum GskDebugFlags</h3>
+<a name="EvaDebugFlags"></a><h3>enum EvaDebugFlags</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_DEBUG_IO     		= (1&lt;&lt;0),
@@ -97,7 +97,7 @@ EVA's configure script.
   EVA_DEBUG_FD                  = (1&lt;&lt;12),
 
   EVA_DEBUG_ALL			= 0xffffffff
-} GskDebugFlags;
+} EvaDebugFlags;
 </pre>
 <p>
 Flags which may be turned on to print debugging messages about
@@ -208,7 +208,7 @@ script was run with the  [--enable-eva-debug] option.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-debug-set-flags"></a><h3>eva_debug_set_flags ()</h3>
-<pre class="programlisting">void                eva_debug_set_flags                 (<a class="link" href="eva-evadebug.html#GskDebugFlags" title="enum GskDebugFlags">GskDebugFlags</a> flags);</pre>
+<pre class="programlisting">void                eva_debug_set_flags                 (<a class="link" href="eva-evadebug.html#EvaDebugFlags" title="enum EvaDebugFlags">EvaDebugFlags</a> flags);</pre>
 <p>
 Set which types of debug logs to emit.</p>
 <p>
@@ -225,7 +225,7 @@ Set which types of debug logs to emit.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-debug-add-flags"></a><h3>eva_debug_add_flags ()</h3>
-<pre class="programlisting">void                eva_debug_add_flags                 (<a class="link" href="eva-evadebug.html#GskDebugFlags" title="enum GskDebugFlags">GskDebugFlags</a> flags);</pre>
+<pre class="programlisting">void                eva_debug_add_flags                 (<a class="link" href="eva-evadebug.html#EvaDebugFlags" title="enum EvaDebugFlags">EvaDebugFlags</a> flags);</pre>
 <p>
 Add new types of debug logs to emit.</p>
 <p>
@@ -242,7 +242,7 @@ Add new types of debug logs to emit.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-debug-flags"></a><h3>eva_debug_flags</h3>
-<pre class="programlisting">extern GskDebugFlags eva_debug_flags;
+<pre class="programlisting">extern EvaDebugFlags eva_debug_flags;
 </pre>
 <p>
 </p>

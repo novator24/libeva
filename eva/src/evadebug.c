@@ -13,7 +13,7 @@ const gboolean eva_debugging_on = 0;
  * Set which types of debug logs to emit.
  */
 void
-eva_debug_set_flags (GskDebugFlags flags)
+eva_debug_set_flags (EvaDebugFlags flags)
 {
 #ifdef EVA_DEBUG
   eva_debug_flags = flags;
@@ -27,11 +27,11 @@ eva_debug_set_flags (GskDebugFlags flags)
  * Add new types of debug logs to emit.
  */
 void
-eva_debug_add_flags (GskDebugFlags flags)
+eva_debug_add_flags (EvaDebugFlags flags)
 {
 #ifdef EVA_DEBUG
   eva_debug_flags |= flags;
 #endif
 }
 
-GskDebugFlags eva_debug_flags = 0;
+EvaDebugFlags eva_debug_flags = 0;

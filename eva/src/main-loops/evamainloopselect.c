@@ -47,15 +47,15 @@ compare_raw_ints (gconstpointer a, gconstpointer b)
 /* --- prototypes --- */
 static GObjectClass *parent_class = NULL;
 
-/* --- GskMainLoopPollBase methods --- */
+/* --- EvaMainLoopPollBase methods --- */
 #define IFF(a,b)	(((a) ? 1 : 0) == ((b) ? 1 : 0))
 static void     
-eva_main_loop_select_config_fd(GskMainLoopPollBase   *main_loop,
+eva_main_loop_select_config_fd(EvaMainLoopPollBase   *main_loop,
                                int                    fd,
 			       GIOCondition           old_io_conditions,
 			       GIOCondition           io_conditions)
 {
-  GskMainLoopSelect *select_loop = (GskMainLoopSelect *) main_loop;
+  EvaMainLoopSelect *select_loop = (EvaMainLoopSelect *) main_loop;
 #if DEBUG_SELECT
   g_message ("select: config-fd: fd=%d: events:%s%s",
 	     fd,
@@ -92,7 +92,7 @@ struct _TreeIterData
 {
   guint             max_events;
   guint             num_events_out;
-  GskMainLoopEvent *events;
+  EvaMainLoopEvent *events;
   fd_set            read_set;
   fd_set            write_set;
   fd_set            except_set;
@@ -133,13 +133,13 @@ foreach_tree_node_add_event   (gpointer key,
 }
   
 static gboolean 
-eva_main_loop_select_do_polling(GskMainLoopPollBase   *main_loop,
+eva_main_loop_select_do_polling(EvaMainLoopPollBase   *main_loop,
 			        int                    max_timeout,
 			        guint                  max_events,
 			        guint                 *num_events_out,
-                                GskMainLoopEvent      *events)
+                                EvaMainLoopEvent      *events)
 {
-  GskMainLoopSelect *select_loop = (GskMainLoopSelect *) main_loop;
+  EvaMainLoopSelect *select_loop = (EvaMainLoopSelect *) main_loop;
   int max_fd = GPOINTER_TO_UINT (eva_g_tree_max (select_loop->fd_tree));
   TreeIterData iter_data;
   struct timeval tv;
@@ -195,7 +195,7 @@ eva_main_loop_select_finalize (GObject *object)
 
 /* --- functions --- */
 static void
-eva_main_loop_select_init (GskMainLoopSelect *main_loop_select)
+eva_main_loop_select_init (EvaMainLoopSelect *main_loop_select)
 {
   main_loop_select->fd_tree = g_tree_new (compare_raw_ints);
 
@@ -206,7 +206,7 @@ eva_main_loop_select_init (GskMainLoopSelect *main_loop_select)
 }
 
 static void
-eva_main_loop_select_class_init (GskMainLoopPollBaseClass *class)
+eva_main_loop_select_class_init (EvaMainLoopPollBaseClass *class)
 {
   parent_class = g_type_class_peek_parent (class);
   G_OBJECT_CLASS (class)->finalize = eva_main_loop_select_finalize;
@@ -222,20 +222,20 @@ GType eva_main_loop_select_get_type()
     {
       static const GTypeInfo main_loop_select_info =
       {
-	sizeof(GskMainLoopSelectClass),
+	sizeof(EvaMainLoopSelectClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_main_loop_select_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMainLoopSelect),
+	sizeof (EvaMainLoopSelect),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_main_loop_select_init,
 	NULL		/* value_table */
       };
       GType parent = EVA_TYPE_MAIN_LOOP_POLL_BASE;
       main_loop_select_type = g_type_register_static (parent,
-                                                  "GskMainLoopSelect",
+                                                  "EvaMainLoopSelect",
 						  &main_loop_select_info, 0);
     }
   return main_loop_select_type;

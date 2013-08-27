@@ -21,7 +21,7 @@ the real initialization into eva_init_raw().
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskInitInfo ##### -->
+<!-- ##### STRUCT EvaInitInfo ##### -->
 <para>
 Information about how to initialize EVA.
 </para>

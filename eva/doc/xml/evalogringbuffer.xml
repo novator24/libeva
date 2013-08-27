@@ -14,12 +14,12 @@
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskLogRingBuffer">GskLogRingBuffer</link>;
-<link linkend="GskLogRingBuffer">GskLogRingBuffer</link> *  <link linkend="eva-log-ring-buffer-new">eva_log_ring_buffer_new</link>             (<link linkend="gsize">gsize</link> size);
-<link linkend="void">void</link>                <link linkend="eva-log-ring-buffer-add">eva_log_ring_buffer_add</link>             (<link linkend="GskLogRingBuffer">GskLogRingBuffer</link> *buffer,
+                    <link linkend="EvaLogRingBuffer">EvaLogRingBuffer</link>;
+<link linkend="EvaLogRingBuffer">EvaLogRingBuffer</link> *  <link linkend="eva-log-ring-buffer-new">eva_log_ring_buffer_new</link>             (<link linkend="gsize">gsize</link> size);
+<link linkend="void">void</link>                <link linkend="eva-log-ring-buffer-add">eva_log_ring_buffer_add</link>             (<link linkend="EvaLogRingBuffer">EvaLogRingBuffer</link> *buffer,
                                                          const <link linkend="char">char</link> *line);
-<link linkend="char">char</link> *              <link linkend="eva-log-ring-buffer-get">eva_log_ring_buffer_get</link>             (const <link linkend="GskLogRingBuffer">GskLogRingBuffer</link> *buffer);
-<link linkend="void">void</link>                <link linkend="eva-log-ring-buffer-free">eva_log_ring_buffer_free</link>            (<link linkend="GskLogRingBuffer">GskLogRingBuffer</link> *buffer);
+<link linkend="char">char</link> *              <link linkend="eva-log-ring-buffer-get">eva_log_ring_buffer_get</link>             (const <link linkend="EvaLogRingBuffer">EvaLogRingBuffer</link> *buffer);
+<link linkend="void">void</link>                <link linkend="eva-log-ring-buffer-free">eva_log_ring_buffer_free</link>            (<link linkend="EvaLogRingBuffer">EvaLogRingBuffer</link> *buffer);
 </synopsis>
 </refsynopsisdiv>
 
@@ -34,7 +34,7 @@
 <refsect1 id="eva-evalogringbuffer.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
-GskLogRingBuffer provides a very efficient way
+EvaLogRingBuffer provides a very efficient way
 to keep track of the last N bytes of text data.
 Typically, this is used for logs that change too fast
 to justify keeping them in a file,
@@ -44,14 +44,14 @@ but which are useful for getting status and debugging.
 
 <refsect1 id="eva-evalogringbuffer.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskLogRingBuffer" role="struct">
-<title>GskLogRingBuffer</title>
-<indexterm zone="GskLogRingBuffer"><primary sortas="GskLogRingBuffer">GskLogRingBuffer</primary></indexterm><programlisting>typedef struct _GskLogRingBuffer GskLogRingBuffer;</programlisting>
+<refsect2 id="EvaLogRingBuffer" role="struct">
+<title>EvaLogRingBuffer</title>
+<indexterm zone="EvaLogRingBuffer"><primary sortas="EvaLogRingBuffer">EvaLogRingBuffer</primary></indexterm><programlisting>typedef struct _EvaLogRingBuffer EvaLogRingBuffer;</programlisting>
 <para>
 </para></refsect2>
 <refsect2 id="eva-log-ring-buffer-new" role="function">
 <title>eva_log_ring_buffer_new ()</title>
-<indexterm zone="eva-log-ring-buffer-new"><primary sortas="eva_log_ring_buffer_new">eva_log_ring_buffer_new</primary></indexterm><programlisting><link linkend="GskLogRingBuffer">GskLogRingBuffer</link> *  eva_log_ring_buffer_new             (<link linkend="gsize">gsize</link> size);</programlisting>
+<indexterm zone="eva-log-ring-buffer-new"><primary sortas="eva_log_ring_buffer_new">eva_log_ring_buffer_new</primary></indexterm><programlisting><link linkend="EvaLogRingBuffer">EvaLogRingBuffer</link> *  eva_log_ring_buffer_new             (<link linkend="gsize">gsize</link> size);</programlisting>
 <para>
 Create a new ring buffer.  It will never contain
 more that <parameter>size</parameter> bytes of data.
@@ -64,7 +64,7 @@ more that <parameter>size</parameter> bytes of data.
 </variablelist></refsect2>
 <refsect2 id="eva-log-ring-buffer-add" role="function">
 <title>eva_log_ring_buffer_add ()</title>
-<indexterm zone="eva-log-ring-buffer-add"><primary sortas="eva_log_ring_buffer_add">eva_log_ring_buffer_add</primary></indexterm><programlisting><link linkend="void">void</link>                eva_log_ring_buffer_add             (<link linkend="GskLogRingBuffer">GskLogRingBuffer</link> *buffer,
+<indexterm zone="eva-log-ring-buffer-add"><primary sortas="eva_log_ring_buffer_add">eva_log_ring_buffer_add</primary></indexterm><programlisting><link linkend="void">void</link>                eva_log_ring_buffer_add             (<link linkend="EvaLogRingBuffer">EvaLogRingBuffer</link> *buffer,
                                                          const <link linkend="char">char</link> *line);</programlisting>
 <para>
 Append text to the ring-buffer.
@@ -81,7 +81,7 @@ one will be added by this function.<variablelist role="params">
 </variablelist></refsect2>
 <refsect2 id="eva-log-ring-buffer-get" role="function">
 <title>eva_log_ring_buffer_get ()</title>
-<indexterm zone="eva-log-ring-buffer-get"><primary sortas="eva_log_ring_buffer_get">eva_log_ring_buffer_get</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_log_ring_buffer_get             (const <link linkend="GskLogRingBuffer">GskLogRingBuffer</link> *buffer);</programlisting>
+<indexterm zone="eva-log-ring-buffer-get"><primary sortas="eva_log_ring_buffer_get">eva_log_ring_buffer_get</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_log_ring_buffer_get             (const <link linkend="EvaLogRingBuffer">EvaLogRingBuffer</link> *buffer);</programlisting>
 <para>
 Get the entire ring-buffer as a newly allocated string.
 </para><variablelist role="params">
@@ -95,7 +95,7 @@ as whole lines.
 </variablelist></refsect2>
 <refsect2 id="eva-log-ring-buffer-free" role="function">
 <title>eva_log_ring_buffer_free ()</title>
-<indexterm zone="eva-log-ring-buffer-free"><primary sortas="eva_log_ring_buffer_free">eva_log_ring_buffer_free</primary></indexterm><programlisting><link linkend="void">void</link>                eva_log_ring_buffer_free            (<link linkend="GskLogRingBuffer">GskLogRingBuffer</link> *buffer);</programlisting>
+<indexterm zone="eva-log-ring-buffer-free"><primary sortas="eva_log_ring_buffer_free">eva_log_ring_buffer_free</primary></indexterm><programlisting><link linkend="void">void</link>                eva_log_ring_buffer_free            (<link linkend="EvaLogRingBuffer">EvaLogRingBuffer</link> *buffer);</programlisting>
 <para>
 Free the ring-buffer.
 </para><variablelist role="params">

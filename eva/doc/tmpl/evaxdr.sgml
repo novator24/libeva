@@ -56,7 +56,7 @@ evaxdr
 </para>
 
 
-<!-- ##### ENUM GskXdrFundamental ##### -->
+<!-- ##### ENUM EvaXdrFundamental ##### -->
 <para>
 
 </para>
@@ -76,13 +76,13 @@ evaxdr
 
 
 
-<!-- ##### STRUCT GskXdrContext ##### -->
+<!-- ##### STRUCT EvaXdrContext ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskXdrType ##### -->
+<!-- ##### STRUCT EvaXdrType ##### -->
 <para>
 
 </para>
@@ -91,7 +91,7 @@ evaxdr
 @category: 
 @is_optional: 
 
-<!-- ##### ENUM GskXdrTypeCategory ##### -->
+<!-- ##### ENUM EvaXdrTypeCategory ##### -->
 <para>
 
 </para>

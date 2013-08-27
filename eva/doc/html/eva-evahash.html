@@ -54,34 +54,34 @@
 <div class="refsynopsisdiv">
 <a name="eva-evahash.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a>;
-<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *           <a class="link" href="eva-evahash.html#eva-hash-new-md5" title="eva_hash_new_md5 ()">eva_hash_new_md5</a>                    (void);
-<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *           <a class="link" href="eva-evahash.html#eva-hash-new-sha1" title="eva_hash_new_sha1 ()">eva_hash_new_sha1</a>                   (void);
-<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *           <a class="link" href="eva-evahash.html#eva-hash-new-crc32" title="eva_hash_new_crc32 ()">eva_hash_new_crc32</a>                  (<a
+                    <a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a>;
+<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *           <a class="link" href="eva-evahash.html#eva-hash-new-md5" title="eva_hash_new_md5 ()">eva_hash_new_md5</a>                    (void);
+<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *           <a class="link" href="eva-evahash.html#eva-hash-new-sha1" title="eva_hash_new_sha1 ()">eva_hash_new_sha1</a>                   (void);
+<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *           <a class="link" href="eva-evahash.html#eva-hash-new-crc32" title="eva_hash_new_crc32 ()">eva_hash_new_crc32</a>                  (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> big_endian);
-void                <a class="link" href="eva-evahash.html#eva-hash-feed" title="eva_hash_feed ()">eva_hash_feed</a>                       (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash,
+void                <a class="link" href="eva-evahash.html#eva-hash-feed" title="eva_hash_feed ()">eva_hash_feed</a>                       (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> length);
-void                <a class="link" href="eva-evahash.html#eva-hash-feed-str" title="eva_hash_feed_str ()">eva_hash_feed_str</a>                   (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash,
+void                <a class="link" href="eva-evahash.html#eva-hash-feed-str" title="eva_hash_feed_str ()">eva_hash_feed_str</a>                   (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash,
                                                          const char *str);
-void                <a class="link" href="eva-evahash.html#eva-hash-done" title="eva_hash_done ()">eva_hash_done</a>                       (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash);
+void                <a class="link" href="eva-evahash.html#eva-hash-done" title="eva_hash_done ()">eva_hash_done</a>                       (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="eva-evahash.html#eva-hash-get-size" title="eva_hash_get_size ()">eva_hash_get_size</a>                   (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash);
-void                <a class="link" href="eva-evahash.html#eva-hash-get" title="eva_hash_get ()">eva_hash_get</a>                        (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash,
+>guint</a>               <a class="link" href="eva-evahash.html#eva-hash-get-size" title="eva_hash_get_size ()">eva_hash_get_size</a>                   (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash);
+void                <a class="link" href="eva-evahash.html#eva-hash-get" title="eva_hash_get ()">eva_hash_get</a>                        (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint8"
 >guint8</a> *data_out);
-void                <a class="link" href="eva-evahash.html#eva-hash-get-hex" title="eva_hash_get_hex ()">eva_hash_get_hex</a>                    (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash,
+void                <a class="link" href="eva-evahash.html#eva-hash-get-hex" title="eva_hash_get_hex ()">eva_hash_get_hex</a>                    (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a> *hex_out);
-void                <a class="link" href="eva-evahash.html#eva-hash-destroy" title="eva_hash_destroy ()">eva_hash_destroy</a>                    (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash);
+void                <a class="link" href="eva-evahash.html#eva-hash-destroy" title="eva_hash_destroy ()">eva_hash_destroy</a>                    (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash);
 </pre>
 </div>
 <div class="refsect1" lang="en">
@@ -99,11 +99,11 @@ get the value of the hash.
 <div class="refsect1" lang="en">
 <a name="eva-evahash.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskHash"></a><h3>GskHash</h3>
+<a name="EvaHash"></a><h3>EvaHash</h3>
 <pre class="programlisting">typedef struct {
   /* The size of the hash-key (in bytes) */
   guint       size;
-} GskHash;
+} EvaHash;
 </pre>
 <p>
 An abstract hashing object.
@@ -122,7 +122,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-hash-new-md5"></a><h3>eva_hash_new_md5 ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *           eva_hash_new_md5                    (void);</pre>
+<pre class="programlisting"><a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *           eva_hash_new_md5                    (void);</pre>
 <p>
 Create a new MD5 hasher.</p>
 <p>
@@ -139,7 +139,7 @@ Create a new MD5 hasher.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-hash-new-sha1"></a><h3>eva_hash_new_sha1 ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *           eva_hash_new_sha1                   (void);</pre>
+<pre class="programlisting"><a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *           eva_hash_new_sha1                   (void);</pre>
 <p>
 Create a new SHA1 hasher.</p>
 <p>
@@ -156,7 +156,7 @@ Create a new SHA1 hasher.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-hash-new-crc32"></a><h3>eva_hash_new_crc32 ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *           eva_hash_new_crc32                  (<a
+<pre class="programlisting"><a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *           eva_hash_new_crc32                  (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> big_endian);</pre>
 <p>
@@ -183,7 +183,7 @@ Typically called as eva_hash_new_crc32(G_BYTE_ORDER == G_BIG_ENDIAN).</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-hash-feed"></a><h3>eva_hash_feed ()</h3>
-<pre class="programlisting">void                eva_hash_feed                       (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash,
+<pre class="programlisting">void                eva_hash_feed                       (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> data,
@@ -225,7 +225,7 @@ slab of data.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-hash-feed-str"></a><h3>eva_hash_feed_str ()</h3>
-<pre class="programlisting">void                eva_hash_feed_str                   (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash,
+<pre class="programlisting">void                eva_hash_feed_str                   (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash,
                                                          const char *str);</pre>
 <p>
 Hash the given binary data (incrementally).
@@ -253,7 +253,7 @@ You may mix calls to <a class="link" href="eva-evahash.html#eva-hash-feed" title
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-hash-done"></a><h3>eva_hash_done ()</h3>
-<pre class="programlisting">void                eva_hash_done                       (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash);</pre>
+<pre class="programlisting">void                eva_hash_done                       (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash);</pre>
 <p>
 Finish processing loose data for the hash.
 This may only be called once in
@@ -274,7 +274,7 @@ the lifetime of the hash.</p>
 <a name="eva-hash-get-size"></a><h3>eva_hash_get_size ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_hash_get_size                   (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash);</pre>
+>guint</a>               eva_hash_get_size                   (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash);</pre>
 <p>
 Get the number of binary bytes that this
 function maps to.</p>
@@ -299,7 +299,7 @@ function maps to.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-hash-get"></a><h3>eva_hash_get ()</h3>
-<pre class="programlisting">void                eva_hash_get                        (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash,
+<pre class="programlisting">void                eva_hash_get                        (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint8"
 >guint8</a> *data_out);</pre>
@@ -327,7 +327,7 @@ size returned by <a class="link" href="eva-evahash.html#eva-hash-get-size" title
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-hash-get-hex"></a><h3>eva_hash_get_hex ()</h3>
-<pre class="programlisting">void                eva_hash_get_hex                    (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash,
+<pre class="programlisting">void                eva_hash_get_hex                    (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a> *hex_out);</pre>
@@ -355,7 +355,7 @@ size returned by (<a class="link" href="eva-evahash.html#eva-hash-get-size" titl
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-hash-destroy"></a><h3>eva_hash_destroy ()</h3>
-<pre class="programlisting">void                eva_hash_destroy                    (<a class="link" href="eva-evahash.html#GskHash" title="GskHash">GskHash</a> *hash);</pre>
+<pre class="programlisting">void                eva_hash_destroy                    (<a class="link" href="eva-evahash.html#EvaHash" title="EvaHash">EvaHash</a> *hash);</pre>
 <p>
 Free memory used by the hash object.</p>
 <p>

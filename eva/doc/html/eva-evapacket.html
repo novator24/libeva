@@ -6,8 +6,8 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch01.html" title="Core Library Support">
-<link rel="prev" href="GskPacketQueue.html" title="Datagram I/O">
-<link rel="next" href="GskStreamListener.html" title="Listening for Connections">
+<link rel="prev" href="EvaPacketQueue.html" title="Datagram I/O">
+<link rel="next" href="EvaStreamListener.html" title="Listening for Connections">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -30,11 +30,11 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskPacketQueue.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaPacketQueue.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="GskStreamListener.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="EvaStreamListener.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#eva-evapacket.synopsis" class="shortcut">Top</a>
@@ -54,33 +54,33 @@
 <div class="refsynopsisdiv">
 <a name="eva-evapacket.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a>;
-void                (<a class="link" href="eva-evapacket.html#GskPacketDestroyFunc" title="GskPacketDestroyFunc ()">*GskPacketDestroyFunc</a>)             (<a
+                    <a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a>;
+void                (<a class="link" href="eva-evapacket.html#EvaPacketDestroyFunc" title="EvaPacketDestroyFunc ()">*EvaPacketDestroyFunc</a>)             (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> destroy_data,
-                                                         <a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *packet);
-<a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *         <a class="link" href="eva-evapacket.html#eva-packet-new" title="eva_packet_new ()">eva_packet_new</a>                      (<a
+                                                         <a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *packet);
+<a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *         <a class="link" href="eva-evapacket.html#eva-packet-new" title="eva_packet_new ()">eva_packet_new</a>                      (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> length,
-                                                         <a class="link" href="eva-evapacket.html#GskPacketDestroyFunc" title="GskPacketDestroyFunc ()">GskPacketDestroyFunc</a> destroy,
+                                                         <a class="link" href="eva-evapacket.html#EvaPacketDestroyFunc" title="EvaPacketDestroyFunc ()">EvaPacketDestroyFunc</a> destroy,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> destroy_data);
-<a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *         <a class="link" href="eva-evapacket.html#eva-packet-new-copy" title="eva_packet_new_copy ()">eva_packet_new_copy</a>                 (<a
+<a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *         <a class="link" href="eva-evapacket.html#eva-packet-new-copy" title="eva_packet_new_copy ()">eva_packet_new_copy</a>                 (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> length);
-void                <a class="link" href="eva-evapacket.html#eva-packet-set-src-address" title="eva_packet_set_src_address ()">eva_packet_set_src_address</a>          (<a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *packet,
-                                                         <a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);
-void                <a class="link" href="eva-evapacket.html#eva-packet-set-dst-address" title="eva_packet_set_dst_address ()">eva_packet_set_dst_address</a>          (<a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *packet,
-                                                         <a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);
-void                <a class="link" href="eva-evapacket.html#eva-packet-unref" title="eva_packet_unref ()">eva_packet_unref</a>                    (<a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *packet);
-<a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *         <a class="link" href="eva-evapacket.html#eva-packet-ref" title="eva_packet_ref ()">eva_packet_ref</a>                      (<a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *packet);
+void                <a class="link" href="eva-evapacket.html#eva-packet-set-src-address" title="eva_packet_set_src_address ()">eva_packet_set_src_address</a>          (<a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *packet,
+                                                         <a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);
+void                <a class="link" href="eva-evapacket.html#eva-packet-set-dst-address" title="eva_packet_set_dst_address ()">eva_packet_set_dst_address</a>          (<a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *packet,
+                                                         <a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);
+void                <a class="link" href="eva-evapacket.html#eva-packet-unref" title="eva_packet_unref ()">eva_packet_unref</a>                    (<a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *packet);
+<a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *         <a class="link" href="eva-evapacket.html#eva-packet-ref" title="eva_packet_ref ()">eva_packet_ref</a>                      (<a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *packet);
 </pre>
 </div>
 <div class="refsect1" lang="en">
@@ -90,23 +90,23 @@ A reference-counted binary piece of data with a destroy-notify
 to allow arbitrary memory management.
 </p>
 <p>
-It may optionally have two <a class="link" href="GskSocketAddress.html" title="Socket Addresses."><span class="type">GskSocketAddress</span></a> to denote the source
+It may optionally have two <a class="link" href="EvaSocketAddress.html" title="Socket Addresses."><span class="type">EvaSocketAddress</span></a> to denote the source
 and destination of the packet.
 </p>
 </div>
 <div class="refsect1" lang="en">
 <a name="eva-evapacket.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskPacket"></a><h3>GskPacket</h3>
+<a name="EvaPacket"></a><h3>EvaPacket</h3>
 <pre class="programlisting">typedef struct {
   /*&lt; public: readonly &gt;*/
   gpointer data;
   guint len;
-  GskSocketAddress *src_address;
-  GskSocketAddress *dst_address;
-  GskPacketDestroyFunc destroy;
+  EvaSocketAddress *src_address;
+  EvaSocketAddress *dst_address;
+  EvaPacketDestroyFunc destroy;
   gpointer destroy_data;
-} GskPacket;
+} EvaPacket;
 </pre>
 <p>
 A packet of binary data, optionally associated with
@@ -130,17 +130,17 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *<em class="structfield"><code>src_address</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *<em class="structfield"><code>src_address</code></em>;</span></p></td>
 <td>
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *<em class="structfield"><code>dst_address</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *<em class="structfield"><code>dst_address</code></em>;</span></p></td>
 <td>
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="eva-evapacket.html#GskPacketDestroyFunc" title="GskPacketDestroyFunc ()">GskPacketDestroyFunc</a> <em class="structfield"><code>destroy</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="eva-evapacket.html#EvaPacketDestroyFunc" title="EvaPacketDestroyFunc ()">EvaPacketDestroyFunc</a> <em class="structfield"><code>destroy</code></em>;</span></p></td>
 <td>destroy notification.
 </td>
 </tr>
@@ -156,15 +156,15 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskPacketDestroyFunc"></a><h3>GskPacketDestroyFunc ()</h3>
-<pre class="programlisting">void                (*GskPacketDestroyFunc)             (<a
+<a name="EvaPacketDestroyFunc"></a><h3>EvaPacketDestroyFunc ()</h3>
+<pre class="programlisting">void                (*EvaPacketDestroyFunc)             (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> destroy_data,
-                                                         <a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *packet);</pre>
+                                                         <a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *packet);</pre>
 <p>
 The actual function prototype of destroy.
 This is only useful if you want to examine the whole
-GskPacket from your destroy function.
+EvaPacket from your destroy function.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -185,13 +185,13 @@ GskPacket from your destroy function.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-packet-new"></a><h3>eva_packet_new ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *         eva_packet_new                      (<a
+<pre class="programlisting"><a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *         eva_packet_new                      (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> length,
-                                                         <a class="link" href="eva-evapacket.html#GskPacketDestroyFunc" title="GskPacketDestroyFunc ()">GskPacketDestroyFunc</a> destroy,
+                                                         <a class="link" href="eva-evapacket.html#EvaPacketDestroyFunc" title="EvaPacketDestroyFunc ()">EvaPacketDestroyFunc</a> destroy,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> destroy_data);</pre>
@@ -226,7 +226,7 @@ when it gets to 0.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new GskPacket
+<td> a new EvaPacket
 </td>
 </tr>
 </tbody>
@@ -235,7 +235,7 @@ when it gets to 0.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-packet-new-copy"></a><h3>eva_packet_new_copy ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *         eva_packet_new_copy                 (<a
+<pre class="programlisting"><a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *         eva_packet_new_copy                 (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> data,
                                                          <a
@@ -262,7 +262,7 @@ when it gets to 0.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a new GskPacket
+<td> a new EvaPacket
 </td>
 </tr>
 </tbody>
@@ -271,8 +271,8 @@ when it gets to 0.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-packet-set-src-address"></a><h3>eva_packet_set_src_address ()</h3>
-<pre class="programlisting">void                eva_packet_set_src_address          (<a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *packet,
-                                                         <a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);</pre>
+<pre class="programlisting">void                eva_packet_set_src_address          (<a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *packet,
+                                                         <a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);</pre>
 <p>
 Change the source address associated with a packet.
 This should be the address of the interface
@@ -298,8 +298,8 @@ the packet was sent from.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-packet-set-dst-address"></a><h3>eva_packet_set_dst_address ()</h3>
-<pre class="programlisting">void                eva_packet_set_dst_address          (<a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *packet,
-                                                         <a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address);</pre>
+<pre class="programlisting">void                eva_packet_set_dst_address          (<a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *packet,
+                                                         <a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address);</pre>
 <p>
 Change the destination address associated with a packet.
 This should be the address of the interface
@@ -325,7 +325,7 @@ the packet was sent to.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-packet-unref"></a><h3>eva_packet_unref ()</h3>
-<pre class="programlisting">void                eva_packet_unref                    (<a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *packet);</pre>
+<pre class="programlisting">void                eva_packet_unref                    (<a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *packet);</pre>
 <p>
 Remove a reference-count from the packet, deleting the packet 
 if it gets to 0.</p>
@@ -343,7 +343,7 @@ if it gets to 0.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-packet-ref"></a><h3>eva_packet_ref ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *         eva_packet_ref                      (<a class="link" href="eva-evapacket.html#GskPacket" title="GskPacket">GskPacket</a> *packet);</pre>
+<pre class="programlisting"><a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *         eva_packet_ref                      (<a class="link" href="eva-evapacket.html#EvaPacket" title="EvaPacket">EvaPacket</a> *packet);</pre>
 <p>
 Add a reference-count to the packet.</p>
 <p>

@@ -14,7 +14,7 @@ evaxmlparser
 
 </para>
 
-<!-- ##### ENUM GskXmlParserStatus ##### -->
+<!-- ##### ENUM EvaXmlParserStatus ##### -->
 <para>
 
 </para>
@@ -27,7 +27,7 @@ evaxmlparser
 @EVA_XML_PARSER_EOF: 
 @EVA_XML_PARSER_INTERNAL: 
 
-<!-- ##### STRUCT GskXmlParser ##### -->
+<!-- ##### STRUCT EvaXmlParser ##### -->
 <para>
 
 </para>
@@ -41,7 +41,7 @@ evaxmlparser
 @Returns: 
 
 
-<!-- ##### ENUM GskXmlParserFlags ##### -->
+<!-- ##### ENUM EvaXmlParserFlags ##### -->
 <para>
 
 </para>
@@ -102,7 +102,7 @@ evaxmlparser
 @parser: 
 
 
-<!-- ##### USER_FUNCTION GskXmlStartElementHandler ##### -->
+<!-- ##### USER_FUNCTION EvaXmlStartElementHandler ##### -->
 <para>
 
 </para>
@@ -112,7 +112,7 @@ evaxmlparser
 @atts: 
 
 
-<!-- ##### USER_FUNCTION GskXmlEndElementHandler ##### -->
+<!-- ##### USER_FUNCTION EvaXmlEndElementHandler ##### -->
 <para>
 
 </para>
@@ -121,7 +121,7 @@ evaxmlparser
 @name: 
 
 
-<!-- ##### USER_FUNCTION GskXmlTextHandler ##### -->
+<!-- ##### USER_FUNCTION EvaXmlTextHandler ##### -->
 <para>
 
 </para>

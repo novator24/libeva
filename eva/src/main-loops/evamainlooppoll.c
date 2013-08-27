@@ -32,14 +32,14 @@
 
 static GObjectClass *parent_class = NULL;
 
-/* --- GskMainLoopPollBase methods --- */
+/* --- EvaMainLoopPollBase methods --- */
 static void     
-eva_main_loop_poll_config_fd(GskMainLoopPollBase   *main_loop,
+eva_main_loop_poll_config_fd(EvaMainLoopPollBase   *main_loop,
                              int                    fd,
 			     GIOCondition           old_io_conditions,
 			     GIOCondition           io_conditions)
 {
-  GskMainLoopPoll *poll_loop = (GskMainLoopPoll *) main_loop;
+  EvaMainLoopPoll *poll_loop = (EvaMainLoopPoll *) main_loop;
   struct pollfd *pfd;
   int index = -1;
   if (poll_loop->fd_to_poll_fd_alloced > fd)
@@ -101,7 +101,7 @@ eva_main_loop_poll_config_fd(GskMainLoopPollBase   *main_loop,
   pfd->events = io_conditions;
 }
 
-static inline void pollfd_to_event  (GskMainLoopEvent    *event,
+static inline void pollfd_to_event  (EvaMainLoopEvent    *event,
                                      const struct pollfd *poll_fd)
 {
   event->type = EVA_MAIN_LOOP_EVENT_IO;
@@ -121,13 +121,13 @@ static inline void pollfd_to_event  (GskMainLoopEvent    *event,
 
 /* Remember: this function may be cancelled by a signal at any time! */
 static gboolean 
-eva_main_loop_poll_do_polling(GskMainLoopPollBase   *main_loop,
+eva_main_loop_poll_do_polling(EvaMainLoopPollBase   *main_loop,
 			      int                    max_timeout,
 			      guint                  max_events,
 			      guint                 *num_events_out,
-                              GskMainLoopEvent      *events)
+                              EvaMainLoopEvent      *events)
 {
-  GskMainLoopPoll *poll_loop = (GskMainLoopPoll *) main_loop;
+  EvaMainLoopPoll *poll_loop = (EvaMainLoopPoll *) main_loop;
   GArray *poll_array = poll_loop->poll_fds;
   int rv;
   struct pollfd *poll_fd_array = (struct pollfd *) poll_array->data;
@@ -209,11 +209,11 @@ eva_main_loop_poll_do_polling(GskMainLoopPollBase   *main_loop,
 /* --- GObject methods --- */
 static void eva_main_loop_poll_finalize(GObject *object)
 {
-  GskMainLoopPoll *poll_loop;
+  EvaMainLoopPoll *poll_loop;
 
   eva_main_loop_destroy_all_sources (EVA_MAIN_LOOP (object));
 
-  poll_loop = (GskMainLoopPoll *) object;
+  poll_loop = (EvaMainLoopPoll *) object;
   g_array_free (poll_loop->poll_fds, TRUE);
   poll_loop->poll_fds = NULL;
 
@@ -225,7 +225,7 @@ static void eva_main_loop_poll_finalize(GObject *object)
 }
 
 /* --- Class methods --- */
-static void eva_main_loop_poll_init (GskMainLoopPoll* main_loop_poll)
+static void eva_main_loop_poll_init (EvaMainLoopPoll* main_loop_poll)
 {
   main_loop_poll->poll_fds = g_array_new (FALSE, FALSE, sizeof (struct pollfd));
   main_loop_poll->fd_to_poll_fd_alloced = 0;
@@ -233,7 +233,7 @@ static void eva_main_loop_poll_init (GskMainLoopPoll* main_loop_poll)
   main_loop_poll->first_free_index = -1;
 }
 
-static void eva_main_loop_poll_class_init (GskMainLoopPollBaseClass* class)
+static void eva_main_loop_poll_class_init (EvaMainLoopPollBaseClass* class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
@@ -249,20 +249,20 @@ GType eva_main_loop_poll_get_type()
     {
       static const GTypeInfo main_loop_poll_info =
       {
-	sizeof(GskMainLoopPollClass),
+	sizeof(EvaMainLoopPollClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_main_loop_poll_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMainLoopPoll),
+	sizeof (EvaMainLoopPoll),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_main_loop_poll_init,
 	NULL		/* value_table */
       };
       GType parent = EVA_TYPE_MAIN_LOOP_POLL_BASE;
       main_loop_poll_type = g_type_register_static (parent,
-                                                  "GskMainLoopPoll",
+                                                  "EvaMainLoopPoll",
 						  &main_loop_poll_info, 0);
     }
   return main_loop_poll_type;

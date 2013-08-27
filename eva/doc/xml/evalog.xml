@@ -15,7 +15,7 @@
 
 <synopsis>
 <link linkend="void">void</link>                <link linkend="eva-log-init">eva_log_init</link>                        (void);
-<link linkend="GskLogTrap">GskLogTrap</link> *        <link linkend="eva-log-trap-domain-to-file">eva_log_trap_domain_to_file</link>         (const <link linkend="char">char</link> *domain,
+<link linkend="EvaLogTrap">EvaLogTrap</link> *        <link linkend="eva-log-trap-domain-to-file">eva_log_trap_domain_to_file</link>         (const <link linkend="char">char</link> *domain,
                                                          <link linkend="GLogLevelFlags">GLogLevelFlags</link> level_mask,
                                                          const <link linkend="char">char</link> *filename,
                                                          const <link linkend="char">char</link> *output_format);
@@ -55,7 +55,7 @@ given files.
 </para></refsect2>
 <refsect2 id="eva-log-trap-domain-to-file" role="function">
 <title>eva_log_trap_domain_to_file ()</title>
-<indexterm zone="eva-log-trap-domain-to-file"><primary sortas="eva_log_trap_domain_to_file">eva_log_trap_domain_to_file</primary></indexterm><programlisting><link linkend="GskLogTrap">GskLogTrap</link> *        eva_log_trap_domain_to_file         (const <link linkend="char">char</link> *domain,
+<indexterm zone="eva-log-trap-domain-to-file"><primary sortas="eva_log_trap_domain_to_file">eva_log_trap_domain_to_file</primary></indexterm><programlisting><link linkend="EvaLogTrap">EvaLogTrap</link> *        eva_log_trap_domain_to_file         (const <link linkend="char">char</link> *domain,
                                                          <link linkend="GLogLevelFlags">GLogLevelFlags</link> level_mask,
                                                          const <link linkend="char">char</link> *filename,
                                                          const <link linkend="char">char</link> *output_format);</programlisting>

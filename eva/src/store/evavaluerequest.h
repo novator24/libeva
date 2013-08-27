@@ -5,20 +5,20 @@
 
 G_BEGIN_DECLS
 
-typedef GskRequestClass         GskValueRequestClass;
-typedef struct _GskValueRequest GskValueRequest;
+typedef EvaRequestClass         EvaValueRequestClass;
+typedef struct _EvaValueRequest EvaValueRequest;
 
 GType eva_value_request_get_type (void) G_GNUC_CONST;
 
 #define EVA_TYPE_VALUE_REQUEST (eva_value_request_get_type ())
 #define EVA_VALUE_REQUEST(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_VALUE_REQUEST, GskValueRequest))
+  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_VALUE_REQUEST, EvaValueRequest))
 #define EVA_IS_VALUE_REQUEST(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_VALUE_REQUEST))
 
-struct _GskValueRequest
+struct _EvaValueRequest
 {
-  GskRequest request;
+  EvaRequest request;
 
   GValue value;
 };
@@ -31,7 +31,7 @@ G_CONST_RETURN GValue * eva_value_request_get_value (gpointer request);
 G_INLINE_FUNC G_CONST_RETURN GValue *
 eva_value_request_get_value (gpointer request)
 {
-  GskValueRequest *value_request = EVA_VALUE_REQUEST (request);
+  EvaValueRequest *value_request = EVA_VALUE_REQUEST (request);
 
   g_return_val_if_fail (!eva_request_get_is_running (request), NULL);
   g_return_val_if_fail (!eva_request_get_is_cancelled (request), NULL);

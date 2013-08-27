@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskMainLoopSelect
+EvaMainLoopSelect
 
 <!-- ##### SECTION Short_Description ##### -->
 a select(2)-based event loop.
@@ -18,7 +18,7 @@ is select(2).
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskMainLoopSelect ##### -->
+<!-- ##### STRUCT EvaMainLoopSelect ##### -->
 <para>
 The main loop which uses select(2).
 </para>

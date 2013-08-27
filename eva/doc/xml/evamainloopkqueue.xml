@@ -1,29 +1,29 @@
-<refentry id="GskMainLoopKqueue">
+<refentry id="EvaMainLoopKqueue">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskMainLoopKqueue.top_of_page">GskMainLoopKqueue</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaMainLoopKqueue.top_of_page">EvaMainLoopKqueue</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskMainLoopKqueue</refname>
+<refname>EvaMainLoopKqueue</refname>
 <refpurpose>a kqueue-based event loop.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskMainLoopKqueue.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaMainLoopKqueue.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskMainLoopKqueue-struct">GskMainLoopKqueue</link>;
+                    <link linkend="EvaMainLoopKqueue-struct">EvaMainLoopKqueue</link>;
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskMainLoopKqueue.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaMainLoopKqueue.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskMainLoop">GskMainLoop</link>
-         +----GskMainLoopKqueue
+   +----<link linkend="EvaMainLoop">EvaMainLoop</link>
+         +----EvaMainLoopKqueue
 </synopsis>
 </refsect1>
 
@@ -34,7 +34,7 @@
 
 
 
-<refsect1 id="GskMainLoopKqueue.description" role="desc">
+<refsect1 id="EvaMainLoopKqueue.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 A main-loop implemented in terms of kqueue(2), which is
@@ -42,11 +42,11 @@ a generic event filter for BSD.
 </para>
 </refsect1>
 
-<refsect1 id="GskMainLoopKqueue.details" role="details">
+<refsect1 id="EvaMainLoopKqueue.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskMainLoopKqueue-struct" role="struct">
-<title>GskMainLoopKqueue</title>
-<indexterm zone="GskMainLoopKqueue-struct"><primary sortas="GskMainLoopKqueue">GskMainLoopKqueue</primary></indexterm><programlisting>typedef struct _GskMainLoopKqueue GskMainLoopKqueue;</programlisting>
+<refsect2 id="EvaMainLoopKqueue-struct" role="struct">
+<title>EvaMainLoopKqueue</title>
+<indexterm zone="EvaMainLoopKqueue-struct"><primary sortas="EvaMainLoopKqueue">EvaMainLoopKqueue</primary></indexterm><programlisting>typedef struct _EvaMainLoopKqueue EvaMainLoopKqueue;</programlisting>
 <para>
 The kqueue(2)-based main-loop.
 </para></refsect2>

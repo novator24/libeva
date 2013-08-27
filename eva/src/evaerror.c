@@ -15,14 +15,14 @@ eva_error_code_get_type ()
 #include "evaerror.inc"
 	{0,NULL,NULL}
       };
-      enum_type = g_enum_register_static ("GskErrorCode", enum_values);
+      enum_type = g_enum_register_static ("EvaErrorCode", enum_values);
     }
   return enum_type;
 }
 
 static struct {
   int errno_value;
-  GskErrorCode code;
+  EvaErrorCode code;
 } errno_codes[] = {
 #ifdef EPERM
 { EPERM, EVA_ERROR_PERMISSION_DENIED },
@@ -280,19 +280,19 @@ _eva_error_init (void)
 			     GUINT_TO_POINTER (errno_codes[i].code));
     }
   eva_error_code_type = eva_error_code_get_type ();
-  eva_g_error_domain_quark = g_quark_from_static_string ("GskError");
+  eva_g_error_domain_quark = g_quark_from_static_string ("EvaError");
 }
       
 /**
  * eva_error_code_from_errno:
  * @errno_number: a value of the same type as returned in errno.
  *
- * Translates an errno code into a GskErrorCode.
+ * Translates an errno code into a EvaErrorCode.
  * 
- * returns: the relevant GskErrorCode, or 0, if Gsk doesn't support
+ * returns: the relevant EvaErrorCode, or 0, if Eva doesn't support
  * an errno returned by your OS.
  */
-GskErrorCode
+EvaErrorCode
 eva_error_code_from_errno (int errno_number)
 {
   return GPOINTER_TO_UINT (g_hash_table_lookup (errno_hash_table,

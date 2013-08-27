@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskMimeMultipartDecoder
+EvaMimeMultipartDecoder
 
 <!-- ##### SECTION Short_Description ##### -->
 read Content-Type multipart/*.
@@ -20,7 +20,7 @@ This format is often encountered parsing form data from webpages.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### USER_FUNCTION GskMimeMultipartDecoderHook ##### -->
+<!-- ##### USER_FUNCTION EvaMimeMultipartDecoderHook ##### -->
 <para>
 Function to invoke when a new piece is available.
 </para>
@@ -30,7 +30,7 @@ Function to invoke when a new piece is available.
 of un-retrieved pieces.
 
 
-<!-- ##### ENUM GskMimeMultipartDecoderMode ##### -->
+<!-- ##### ENUM EvaMimeMultipartDecoderMode ##### -->
 <para>
 Multipart pieces may be streaming or a memory buffer.
 This gives the user control over which format to use.
@@ -51,7 +51,7 @@ received and parsed.
 The pieces must be streams, even if that means allocating
 a stream for just a few bytes.  This is can be slightly inconvenient.
 
-<!-- ##### STRUCT GskMimeMultipartDecoderClass ##### -->
+<!-- ##### STRUCT EvaMimeMultipartDecoderClass ##### -->
 <para>
 
 </para>
@@ -60,7 +60,7 @@ a stream for just a few bytes.  This is can be slightly inconvenient.
 @set_poll_new_part: 
 @shutdown_new_part: 
 
-<!-- ##### STRUCT GskMimeMultipartDecoder ##### -->
+<!-- ##### STRUCT EvaMimeMultipartDecoder ##### -->
 <para>
 
 </para>
@@ -129,7 +129,7 @@ Invocations to this function may be stacked;
 it is undone with eva_mime_multipart_decoder_unblock().
 </para>
 
-@multipart_decoder: the #GskMimeMultipartDecoder to watch.
+@multipart_decoder: the #EvaMimeMultipartDecoder to watch.
 
 
 <!-- ##### MACRO eva_mime_multipart_decoder_unblock ##### -->
@@ -139,6 +139,6 @@ if we are currently notifying and if this is the last blocker.
 It undones one invocation of eva_mime_multipart_decoder_block().
 </para>
 
-@multipart_decoder: the #GskMimeMultipartDecoder to stop watching.
+@multipart_decoder: the #EvaMimeMultipartDecoder to stop watching.
 
 

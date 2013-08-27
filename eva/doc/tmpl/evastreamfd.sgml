@@ -1,12 +1,12 @@
 <!-- ##### SECTION Title ##### -->
-GskStreamFd
+EvaStreamFd
 
 <!-- ##### SECTION Short_Description ##### -->
-a file-descriptor based GskStream
+a file-descriptor based EvaStream
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-a GskStream that can be used for files and sockets.
+a EvaStream that can be used for files and sockets.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
@@ -19,39 +19,39 @@ a GskStream that can be used for files and sockets.
 
 <!-- ##### MACRO EVA_STREAM_FD_GET_FD ##### -->
 <para>
-Get underlying file-descriptor from a #GskStreamFd.
+Get underlying file-descriptor from a #EvaStreamFd.
 </para>
 
 @stream: the stream.
 
 
-<!-- ##### STRUCT GskStreamFd ##### -->
+<!-- ##### STRUCT EvaStreamFd ##### -->
 <para>
 An instance of a file-descriptor based stream.
 </para>
 
 
-<!-- ##### ARG GskStreamFd:file-descriptor ##### -->
+<!-- ##### ARG EvaStreamFd:file-descriptor ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskStreamFd:is-pollable ##### -->
+<!-- ##### ARG EvaStreamFd:is-pollable ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskStreamFd:is-readable ##### -->
+<!-- ##### ARG EvaStreamFd:is-readable ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskStreamFd:is-writable ##### -->
+<!-- ##### ARG EvaStreamFd:is-writable ##### -->
 <para>
 
 </para>
 
-<!-- ##### ENUM GskStreamFdFlags ##### -->
+<!-- ##### ENUM EvaStreamFdFlags ##### -->
 <para>
 
 </para>

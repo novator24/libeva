@@ -78,7 +78,7 @@ and input.  Because of system-architectures, memory never blocks.
 @Returns: 
 
 
-<!-- ##### USER_FUNCTION GskMemoryBufferCallback ##### -->
+<!-- ##### USER_FUNCTION EvaMemoryBufferCallback ##### -->
 <para>
 Function to call when a memory-buffer-sink (as created
 with eva_memory_buffer_sink_new()) is finished.

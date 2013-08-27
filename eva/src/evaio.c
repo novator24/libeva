@@ -22,12 +22,12 @@ static guint on_error_signal = 0;
  * eva_io_error_cause_to_string:
  * @cause: the cause code.
  *
- * Convert the GskIOErrorCause code into a human-readable lowercase string.
+ * Convert the EvaIOErrorCause code into a human-readable lowercase string.
  *
  * returns: the error as a string.
  */
 const char *
-eva_io_error_cause_to_string (GskIOErrorCause cause)
+eva_io_error_cause_to_string (EvaIOErrorCause cause)
 {
   switch (cause)
     {
@@ -57,8 +57,8 @@ eva_io_set_default_print_errors (gboolean print_errors)
 }
 
 static void
-eva_io_set_error_literal (GskIO           *io,
-			  GskIOErrorCause  cause,
+eva_io_set_error_literal (EvaIO           *io,
+			  EvaIOErrorCause  cause,
 			  GError          *error)
 {
   g_assert (error != NULL);
@@ -89,12 +89,12 @@ eva_io_set_error_literal (GskIO           *io,
  * @format: a printf-like format string.
  * @Varargs: values to be embedded in the format string.
  *
- * Set the error member of the #GskIO.
+ * Set the error member of the #EvaIO.
  */
 void
-eva_io_set_error (GskIO             *io,
-		  GskIOErrorCause    cause,
-		  GskErrorCode       error_code,
+eva_io_set_error (EvaIO             *io,
+		  EvaIOErrorCause    cause,
+		  EvaErrorCode       error_code,
 		  const char        *format,
 		  ...)
 {
@@ -123,8 +123,8 @@ eva_io_set_error (GskIO             *io,
  * the @error parameter.
  */
 void
-eva_io_set_gerror (GskIO             *io,
-		   GskIOErrorCause    cause,
+eva_io_set_gerror (EvaIO             *io,
+		   EvaIOErrorCause    cause,
 		   GError            *error)
 {
   eva_io_set_error_literal (io, cause, error);
@@ -135,10 +135,10 @@ eva_io_set_gerror (GskIO             *io,
  * @io: the object which should be shut down.
  * @error: optional error to set upon failure.
  *
- * Shutdown the read and write ends of a #GskIO.
+ * Shutdown the read and write ends of a #EvaIO.
  */
 void
-eva_io_shutdown (GskIO *io, GError **error)
+eva_io_shutdown (EvaIO *io, GError **error)
 {
   g_object_ref (io);
   eva_io_read_shutdown (io, error);
@@ -157,7 +157,7 @@ eva_io_shutdown (GskIO *io, GError **error)
  * have both shut-down.
  */
 void
-eva_io_notify_shutdown (GskIO *io)
+eva_io_notify_shutdown (EvaIO *io)
 {
   g_object_ref (io);
   eva_io_notify_read_shutdown (io);
@@ -167,14 +167,14 @@ eva_io_notify_shutdown (GskIO *io)
 
 /**
  * eva_io_notify_connected:
- * @io: the #GskIO that finished connecting to the remote side.
+ * @io: the #EvaIO that finished connecting to the remote side.
  *
  * Trigger an is-connected event.  This should only be
  * called by derived implementations.
  * Called to indicate that the connection has been made.
  */
 void
-eva_io_notify_connected (GskIO *io)
+eva_io_notify_connected (EvaIO *io)
 {
   g_return_if_fail (eva_io_get_is_connecting (io));
   DEBUG_PRINT_HEADER (EVA_DEBUG_IO, "eva_io_notify_connected");
@@ -184,14 +184,14 @@ eva_io_notify_connected (GskIO *io)
 
 /**
  * eva_io_close:
- * @io: the #GskIO to close.
+ * @io: the #EvaIO to close.
  *
- * Close an open #GskIO.
+ * Close an open #EvaIO.
  */
 void
-eva_io_close (GskIO *io)
+eva_io_close (EvaIO *io)
 {
-  GskIOClass *class = EVA_IO_GET_CLASS (io);
+  EvaIOClass *class = EVA_IO_GET_CLASS (io);
   g_return_if_fail (io->is_open);
   if (class->close != NULL)
     (*class->close) (io);
@@ -205,8 +205,8 @@ eva_io_constructor (GType                  type,
 {
   GObject *rv = parent_class->constructor (type, n_construct_properties,
 					   construct_properties);
-  GskIO *io = EVA_IO (rv);
-  GskIOClass *class = EVA_IO_GET_CLASS (io);
+  EvaIO *io = EVA_IO (rv);
+  EvaIOClass *class = EVA_IO_GET_CLASS (io);
   _EVA_DEBUG_PRINTF(EVA_DEBUG_LIFETIME,
 		    ("constructing %s [%p] [num_construct_properties=%d]",
 		     g_type_name (type), rv, n_construct_properties));
@@ -239,7 +239,7 @@ eva_io_constructor (GType                  type,
 static void
 eva_io_finalize (GObject *object)
 {
-  GskIO *io = EVA_IO (object);
+  EvaIO *io = EVA_IO (object);
   DEBUG_PRINT_HEADER(EVA_DEBUG_IO | EVA_DEBUG_LIFETIME, "eva_io_finalize");
 
   /* TO CONSIDER:  should we close then destruct the hooks, instead? */
@@ -254,33 +254,33 @@ eva_io_finalize (GObject *object)
 
 /* --- functions --- */
 static void
-eva_io_init (GskIO *io)
+eva_io_init (EvaIO *io)
 {
   eva_io_mark_shutdown_on_error (io);
   io->print_errors = default_print_errors;
-  EVA_HOOK_INIT (io, GskIO, read_hook,
+  EVA_HOOK_INIT (io, EvaIO, read_hook,
 		 EVA_HOOK_CAN_HAVE_SHUTDOWN_ERROR,
 		 set_poll_read, shutdown_read);
-  EVA_HOOK_INIT (io, GskIO, write_hook,
+  EVA_HOOK_INIT (io, EvaIO, write_hook,
 		 EVA_HOOK_CAN_HAVE_SHUTDOWN_ERROR,
 		 set_poll_write, shutdown_write);
 }
 
 static void
-eva_io_class_init (GskIOClass *class)
+eva_io_class_init (EvaIOClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   GType type = G_OBJECT_CLASS_TYPE (object_class);
   parent_class = g_type_class_peek_parent (class);
   object_class->constructor = eva_io_constructor;
   object_class->finalize = eva_io_finalize;
-  EVA_HOOK_CLASS_INIT (object_class, "read", GskIO, read_hook);
-  EVA_HOOK_CLASS_INIT (object_class, "write", GskIO, write_hook);
+  EVA_HOOK_CLASS_INIT (object_class, "read", EvaIO, read_hook);
+  EVA_HOOK_CLASS_INIT (object_class, "write", EvaIO, write_hook);
   on_connect_signal
     = g_signal_new ("on-connect",
 		    type,
 		    G_SIGNAL_NO_RECURSE,
-		    G_STRUCT_OFFSET (GskIOClass, on_connect),
+		    G_STRUCT_OFFSET (EvaIOClass, on_connect),
 		    NULL,		/* accumulator */
 		    NULL,		/* accu_data */
 		    g_cclosure_marshal_VOID__VOID,
@@ -290,7 +290,7 @@ eva_io_class_init (GskIOClass *class)
     = g_signal_new ("on-error",
 		    type,
 		    G_SIGNAL_NO_RECURSE,
-		    G_STRUCT_OFFSET (GskIOClass, on_error),
+		    G_STRUCT_OFFSET (EvaIOClass, on_error),
 		    NULL,		/* accumulator */
 		    NULL,		/* accu_data */
 		    g_cclosure_marshal_VOID__VOID,
@@ -312,18 +312,18 @@ GType eva_io_get_type()
     {
       static const GTypeInfo io_info =
       {
-	sizeof(GskIOClass),
+	sizeof(EvaIOClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_io_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskIO),
+	sizeof (EvaIO),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_io_init,
 	NULL		/* value_table */
       };
-      io_type = g_type_register_static (G_TYPE_OBJECT, "GskIO",
+      io_type = g_type_register_static (G_TYPE_OBJECT, "EvaIO",
 					&io_info, G_TYPE_FLAG_ABSTRACT);
     }
   return io_type;

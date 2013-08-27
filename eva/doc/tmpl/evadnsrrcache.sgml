@@ -6,8 +6,8 @@ A cache of Resource Record data.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-This in a database of #GskDnsResourceRecord's, as well as caching certain
-negative information.  Furthermore, the #GskDnsRRCache knows how to expire
+This in a database of #EvaDnsResourceRecord's, as well as caching certain
+negative information.  Furthermore, the #EvaDnsRRCache knows how to expire
 obsolete resource records automatically.
 </para>
 
@@ -19,7 +19,7 @@ obsolete resource records automatically.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskDnsRRCache ##### -->
+<!-- ##### STRUCT EvaDnsRRCache ##### -->
 <para>
 A cache of resource records and related information.
 </para>
@@ -27,7 +27,7 @@ A cache of resource records and related information.
 
 <!-- ##### MACRO EVA_TYPE_DNS_RR_CACHE ##### -->
 <para>
-Return the GType of a #GskDnsRRCache.
+Return the GType of a #EvaDnsRRCache.
 (It is a boxed type.)
 </para>
 

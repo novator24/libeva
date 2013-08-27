@@ -8,11 +8,11 @@ static GObjectClass *parent_class = NULL;
 
 #define DEFAULT_MAX_BUFFERED	4096
 
-static gboolean dequeue_next_piece (GskMimeMultipartEncoder *encoder,
+static gboolean dequeue_next_piece (EvaMimeMultipartEncoder *encoder,
 		                    GError                 **error);
 
 static void
-check_write_terminator (GskMimeMultipartEncoder *encoder)
+check_write_terminator (EvaMimeMultipartEncoder *encoder)
 {
   if (encoder->shutdown 
    && encoder->outgoing_pieces->head == NULL
@@ -27,14 +27,14 @@ check_write_terminator (GskMimeMultipartEncoder *encoder)
 }
 
 static gboolean
-handle_active_stream_readable (GskStream *stream,
+handle_active_stream_readable (EvaStream *stream,
 			       gpointer   data)
 {
-  GskMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (data);
+  EvaMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (data);
   GError *suberror = NULL;
   if (!eva_stream_read_buffer (stream, &encoder->outgoing_data, &suberror))
     {
-      GskErrorCode code;
+      EvaErrorCode code;
       if (suberror->domain == EVA_G_ERROR_DOMAIN)
 	code = suberror->code;
       else
@@ -60,10 +60,10 @@ handle_active_stream_readable (GskStream *stream,
 }
 
 static gboolean
-handle_active_stream_read_shutdown (GskStream *stream,
+handle_active_stream_read_shutdown (EvaStream *stream,
 				    gpointer   data)
 {
-  GskMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (data);
+  EvaMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (data);
   /* Don't do anything:  instead do the work in the destroy-notify */
   (void) encoder;
   return FALSE;
@@ -72,7 +72,7 @@ handle_active_stream_read_shutdown (GskStream *stream,
 static void
 handle_active_stream_read_destroyed (gpointer data)
 {
-  GskMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (data);
+  EvaMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (data);
   g_object_unref (encoder->active_stream);
   encoder->blocked_active_stream = FALSE;
   encoder->active_stream = NULL;
@@ -90,13 +90,13 @@ handle_active_stream_read_destroyed (gpointer data)
 }
 
 static gboolean
-dequeue_next_piece (GskMimeMultipartEncoder *encoder,
+dequeue_next_piece (EvaMimeMultipartEncoder *encoder,
 		    GError                 **error)
 {
-  GskMimeMultipartPiece *piece;
-  GskBuffer *buffer = &encoder->outgoing_data;
-  GskStream *raw_stream;
-  GskStream *read_end, *write_end;
+  EvaMimeMultipartPiece *piece;
+  EvaBuffer *buffer = &encoder->outgoing_data;
+  EvaStream *raw_stream;
+  EvaStream *read_end, *write_end;
   g_return_val_if_fail (encoder->active_stream == NULL, FALSE);
   piece = g_queue_pop_head (encoder->outgoing_pieces);
   if (piece == NULL)
@@ -189,7 +189,7 @@ dequeue_next_piece (GskMimeMultipartEncoder *encoder,
 
 
 static void
-check_maybe_unblock (GskMimeMultipartEncoder *encoder)
+check_maybe_unblock (EvaMimeMultipartEncoder *encoder)
 {
   if (encoder->blocked_active_stream
    && encoder->outgoing_data.size < encoder->max_buffered)
@@ -202,7 +202,7 @@ check_maybe_unblock (GskMimeMultipartEncoder *encoder)
 }
 
 static void
-check_shutdown_notify (GskMimeMultipartEncoder *encoder)
+check_shutdown_notify (EvaMimeMultipartEncoder *encoder)
 {
   if (encoder->outgoing_pieces->head == NULL
    && encoder->active_stream == NULL
@@ -215,7 +215,7 @@ check_shutdown_notify (GskMimeMultipartEncoder *encoder)
 }
 
 static void 
-eva_mime_multipart_encoder_new_part_needed_shutdown (GskMimeMultipartEncoder  *encoder)
+eva_mime_multipart_encoder_new_part_needed_shutdown (EvaMimeMultipartEncoder  *encoder)
 {
   encoder->shutdown = 1;
   check_write_terminator (encoder);
@@ -223,14 +223,14 @@ eva_mime_multipart_encoder_new_part_needed_shutdown (GskMimeMultipartEncoder  *e
   check_shutdown_notify (encoder);
 }
 
-/* --- GskStream methods --- */
+/* --- EvaStream methods --- */
 static guint
-eva_mime_multipart_encoder_raw_read (GskStream     *stream,
+eva_mime_multipart_encoder_raw_read (EvaStream     *stream,
                                      gpointer       data,
                                      guint          length,
                                      GError       **error)
 {
-  GskMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (stream);
+  EvaMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (stream);
   guint rv = eva_buffer_read (&encoder->outgoing_data, data, length);
   check_write_terminator (encoder);
   check_maybe_unblock (encoder);
@@ -241,11 +241,11 @@ eva_mime_multipart_encoder_raw_read (GskStream     *stream,
 }
 
 static guint
-eva_mime_multipart_encoder_raw_read_buffer (GskStream     *stream,
-                                            GskBuffer     *buffer,
+eva_mime_multipart_encoder_raw_read_buffer (EvaStream     *stream,
+                                            EvaBuffer     *buffer,
                                             GError       **error)
 {
-  GskMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (stream);
+  EvaMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (stream);
   guint rv = eva_buffer_drain (buffer, &encoder->outgoing_data);
   check_write_terminator (encoder);
   check_maybe_unblock (encoder);
@@ -258,7 +258,7 @@ eva_mime_multipart_encoder_raw_read_buffer (GskStream     *stream,
 static void
 eva_mime_multipart_encoder_finalize (GObject *object)
 {
-  GskMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (object);
+  EvaMimeMultipartEncoder *encoder = EVA_MIME_MULTIPART_ENCODER (object);
   if (encoder->active_stream != NULL)
     eva_stream_untrap_readable (encoder->active_stream);
   g_list_foreach (encoder->outgoing_pieces->head, (GFunc) eva_mime_multipart_piece_unref, NULL);
@@ -271,10 +271,10 @@ eva_mime_multipart_encoder_finalize (GObject *object)
 
 /* --- functions --- */
 static void
-eva_mime_multipart_encoder_init (GskMimeMultipartEncoder *encoder)
+eva_mime_multipart_encoder_init (EvaMimeMultipartEncoder *encoder)
 {
   EVA_HOOK_INIT (encoder,
-		 GskMimeMultipartEncoder,
+		 EvaMimeMultipartEncoder,
 		 new_part_needed,
 		 0,
 		 new_part_needed_set_poll, new_part_needed_shutdown);
@@ -286,13 +286,13 @@ eva_mime_multipart_encoder_init (GskMimeMultipartEncoder *encoder)
 }
 
 static void
-eva_mime_multipart_encoder_class_init (GskMimeMultipartEncoderClass *class)
+eva_mime_multipart_encoder_class_init (EvaMimeMultipartEncoderClass *class)
 {
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
 
-  EVA_HOOK_CLASS_INIT (object_class, "new-part-needed", GskMimeMultipartEncoder, new_part_needed);
+  EVA_HOOK_CLASS_INIT (object_class, "new-part-needed", EvaMimeMultipartEncoder, new_part_needed);
   class->new_part_needed_shutdown = eva_mime_multipart_encoder_new_part_needed_shutdown;
   stream_class->raw_read = eva_mime_multipart_encoder_raw_read;
   stream_class->raw_read_buffer = eva_mime_multipart_encoder_raw_read_buffer;
@@ -306,19 +306,19 @@ GType eva_mime_multipart_encoder_get_type()
     {
       static const GTypeInfo mime_multipart_encoder_info =
       {
-	sizeof(GskMimeMultipartEncoderClass),
+	sizeof(EvaMimeMultipartEncoderClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_mime_multipart_encoder_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMimeMultipartEncoder),
+	sizeof (EvaMimeMultipartEncoder),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_mime_multipart_encoder_init,
 	NULL		/* value_table */
       };
       mime_multipart_encoder_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskMimeMultipartEncoder",
+                                                  "EvaMimeMultipartEncoder",
 						  &mime_multipart_encoder_info, 0);
     }
   return mime_multipart_encoder_type;
@@ -341,10 +341,10 @@ GType eva_mime_multipart_encoder_get_type()
  *
  * returns: the newly allocated encoder.
  */
-GskMimeMultipartEncoder *
+EvaMimeMultipartEncoder *
 eva_mime_multipart_encoder_new (const char *boundary)
 {
-  GskMimeMultipartEncoder *rv = g_object_new (EVA_TYPE_MIME_MULTIPART_ENCODER, NULL);
+  EvaMimeMultipartEncoder *rv = g_object_new (EVA_TYPE_MIME_MULTIPART_ENCODER, NULL);
   rv->boundary_str = g_strdup (boundary);
   return rv;
 }
@@ -361,8 +361,8 @@ eva_mime_multipart_encoder_new (const char *boundary)
  * returns: whether the part could be added to the stream.
  */ 
 gboolean
-eva_mime_multipart_encoder_add_part (GskMimeMultipartEncoder *encoder,
-				     GskMimeMultipartPiece   *piece,
+eva_mime_multipart_encoder_add_part (EvaMimeMultipartEncoder *encoder,
+				     EvaMimeMultipartPiece   *piece,
 				     GError                 **error)
 {
   g_return_val_if_fail (encoder->shutdown == FALSE, FALSE);

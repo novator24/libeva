@@ -36,7 +36,7 @@ static void usage ()
 int main(int argc, char **argv)
 {
   int i;
-  GskControlClient *cc;
+  EvaControlClient *cc;
   eva_init_without_threads (&argc, &argv);
   g_set_prgname ("eva-control-client");
   cc = eva_control_client_new (NULL);

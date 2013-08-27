@@ -56,7 +56,7 @@ There are really two ways to do this:
 </p>
 <div class="itemizedlist"><ul type="disc">
 <li><p>
-  Using GskUrlTransfer.
+  Using EvaUrlTransfer.
   A simple, all-encompassing mechanism for transferring data with a resource at a given URL.
  </p></li>
 <li><p>
@@ -69,14 +69,14 @@ There are really two ways to do this:
 <p>
 </p>
 <p>
- You should use GskUrlTransfer unless you have a really good reason not to.
+ You should use EvaUrlTransfer unless you have a really good reason not to.
  There are several reasons.
  First, it's easier.
- Also, it's not limited to HTTP: if your program uses GskUrlTransfer it
+ Also, it's not limited to HTTP: if your program uses EvaUrlTransfer it
  will be able to handle FTP and HTTPS.
 </p>
 <div class="refsect2" lang="en">
-<a name="id2636260"></a><h3>Using <span class="structname">GskUrlTransfer</span>
+<a name="id2636260"></a><h3>Using <span class="structname">EvaUrlTransfer</span>
 </h3>
 <p>
 This is the high-level way to download content from a URL.
@@ -108,11 +108,11 @@ which will get invoked when the transfer is started:
 </p>
 <pre class="programlisting">
 static void
-handle_transfer (GskUrlTransfer *info,
+handle_transfer (EvaUrlTransfer *info,
 	         gpointer        user_data)
 {
   GError *error = NULL;
-  GskStream *stdout_stream;
+  EvaStream *stdout_stream;
 
   /* Error handling */
   if (info-&gt;result != EVA_URL_TRANSFER_SUCCESS)
@@ -132,11 +132,11 @@ handle_transfer (GskUrlTransfer *info,
 }
 </pre>
 <p>
-We will use this helper function (which is like <span style="color: red">&lt;program&gt;cat&lt;/program&gt;</span> for <span class="structname">GskStream</span>s):
+We will use this helper function (which is like <span style="color: red">&lt;program&gt;cat&lt;/program&gt;</span> for <span class="structname">EvaStream</span>s):
 </p>
 <pre class="programlisting">
 static void 
-write_stream_to_stdout_and_exit (GskStream *content)
+write_stream_to_stdout_and_exit (EvaStream *content)
 {
   /* Create a stream mapped to standard-output. */
   stdout_stream = eva_stream_fd_new_auto (STDOUT_FILENO);
@@ -163,7 +163,7 @@ of the content instead of printing it:
 </p>
 <pre class="programlisting">
 static void
-handle_transfer_2 (GskUrlTransfer *info,
+handle_transfer_2 (EvaUrlTransfer *info,
 	           gpointer        user_data)
 {
   /* for real version, copy error handling from above */
@@ -176,10 +176,10 @@ handle_transfer_2 (GskUrlTransfer *info,
 			    (GDestroyNotify) eva_hash_destroy);
 }
 static gboolean
-handle_content_stream_is_readable (GskStream *stream,
+handle_content_stream_is_readable (EvaStream *stream,
                                    gpointer   data)
 {
-  GskHash *hash = data;
+  EvaHash *hash = data;
   char buf[4096];
   GError *error = NULL;
   guint n_read = eva_stream_read (stream, buf, sizeof (buf), &amp;error);
@@ -193,10 +193,10 @@ handle_content_stream_is_readable (GskStream *stream,
   return TRUE;
 }
 static gboolean
-handle_content_stream_read_shutdown (GskStream *stream,
+handle_content_stream_read_shutdown (EvaStream *stream,
                                      gpointer   data)
 {
-  GskHash *hash = data;
+  EvaHash *hash = data;
   char *hex;
   eva_hash_done (hash);
   hex = g_alloca (eva_hash_get_size (hash) * 2 + 1);
@@ -206,7 +206,7 @@ handle_content_stream_read_shutdown (GskStream *stream,
 }
 </pre>
 <div class="refsect3" lang="en">
-<a name="id2637168"></a><h4>POSTing data using <span class="structname">GskUrlTransfer</span>
+<a name="id2637168"></a><h4>POSTing data using <span class="structname">EvaUrlTransfer</span>
 </h4>
 <p>
 ... [TODO: remember to describe eva-memory; content-length]
@@ -221,24 +221,24 @@ handle_content_stream_read_shutdown (GskStream *stream,
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2637192"></a><h3>Using <span class="structname">GskHttpClient</span>
+<a name="id2637192"></a><h3>Using <span class="structname">EvaHttpClient</span>
 </h3>
 <p>
 This is the low-level way to be an HTTP client.
 </p>
 <p>
-The <span class="structname">GskHttpClient</span> class manages just the binary protocol
+The <span class="structname">EvaHttpClient</span> class manages just the binary protocol
 that is used by HTTP.  It does not include the transport layer in any way!
 Instead, the <code class="function">read</code> method outputs data that will be sent
 across the transport to the server, whereas the <code class="function">write</code> method
 accepts data from the remote end.
 </p>
-<p>To use a <span class="structname">GskHttpClient</span> you
+<p>To use a <span class="structname">EvaHttpClient</span> you
 <code class="function">eva_stream_attach_pair</code> it to a transport layer,
 then call <code class="function">eva_http_client_request</code> any number
 of times, followed by <code class="function">eva_http_client_shutdown_when_done</code>.
 </p>
-<p>Here is an example usage of <span class="structname">GskHttpClient</span>,
+<p>Here is an example usage of <span class="structname">EvaHttpClient</span>,
 that connects to a unix-domain socket (for variety)
 and makes an HTTP request on it.<sup>[<a name="id2637284" href="#ftn.id2637284" class="footnote">1</a>]</sup>
 </p>
@@ -246,10 +246,10 @@ and makes an HTTP request on it.<sup>[<a name="id2637284" href="#ftn.id2637284" 
 int main(int argc, char **argv)
 {
   const char *socket_fname, *uri_path;
-  GskSocketAddress *socket_address;
-  GskStream *client;
-  GskHttpClient *http_client;
-  GskHttpRequest *http_request;
+  EvaSocketAddress *socket_address;
+  EvaStream *client;
+  EvaHttpClient *http_client;
+  EvaHttpRequest *http_request;
   eva_init (&amp;argc, &amp;argv, NULL);
   if (argc != 3)
     g_error ("usage: %s SOCKET_PATH URI_PATH", argv[0]);
@@ -292,9 +292,9 @@ hopefully by then <code class="function">handle_http_response</code> will have b
 <pre class="programlisting">
 static gboolean got_http_response = FALSE;
 static void
-handle_http_response (GskHttpRequest  *request,
-		      GskHttpResponse *response,
-		      GskStream       *input,
+handle_http_response (EvaHttpRequest  *request,
+		      EvaHttpResponse *response,
+		      EvaStream       *input,
 		      gpointer         hook_data)
 {
   g_assert (hook_data == NULL);  /* matches call to eva_http_client_request */
@@ -341,8 +341,8 @@ handle_http_response_destroyed (gpointer hook_data)
 </div>
 <div class="footnotes">
 <br><hr width="100" align="left">
-<div class="footnote"><p><sup>[<a name="ftn.id2637284" href="#id2637284" class="para">1</a>] </sup>You can use this code to talk to a GskControlServer,
-if you find the GskControlClient code too limited.</p></div>
+<div class="footnote"><p><sup>[<a name="ftn.id2637284" href="#id2637284" class="para">1</a>] </sup>You can use this code to talk to a EvaControlServer,
+if you find the EvaControlClient code too limited.</p></div>
 </div>
 </div>
 <div class="footer">

@@ -53,12 +53,12 @@
 <div class="refsynopsisdiv">
 <a name="eva-evafork.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-int                 (<a class="link" href="eva-evafork.html#GskForkFunc" title="GskForkFunc ()">*GskForkFunc</a>)                      (<a
+int                 (<a class="link" href="eva-evafork.html#EvaForkFunc" title="EvaForkFunc ()">*EvaForkFunc</a>)                      (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a>                <a class="link" href="eva-evafork.html#eva-fork" title="eva_fork ()">eva_fork</a>                            (<a class="link" href="eva-evafork.html#GskForkFunc" title="GskForkFunc ()">GskForkFunc</a> action,
+>gint</a>                <a class="link" href="eva-evafork.html#eva-fork" title="eva_fork ()">eva_fork</a>                            (<a class="link" href="eva-evafork.html#EvaForkFunc" title="EvaForkFunc ()">EvaForkFunc</a> action,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -82,8 +82,8 @@ a callback oriented fork interface.
 <div class="refsect1" lang="en">
 <a name="eva-evafork.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskForkFunc"></a><h3>GskForkFunc ()</h3>
-<pre class="programlisting">int                 (*GskForkFunc)                      (<a
+<a name="EvaForkFunc"></a><h3>EvaForkFunc ()</h3>
+<pre class="programlisting">int                 (*EvaForkFunc)                      (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data);</pre>
 <p>
@@ -110,7 +110,7 @@ Function to call from the background process.
 <a name="eva-fork"></a><h3>eva_fork ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a>                eva_fork                            (<a class="link" href="eva-evafork.html#GskForkFunc" title="GskForkFunc ()">GskForkFunc</a> action,
+>gint</a>                eva_fork                            (<a class="link" href="eva-evafork.html#EvaForkFunc" title="EvaForkFunc ()">EvaForkFunc</a> action,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,

@@ -10,10 +10,10 @@
 
 
 static void
-started_download  (GskStream        *stream,
+started_download  (EvaStream        *stream,
 		   gpointer          user_data)
 {
-  GskStream *stdout_stream = eva_stream_fd_new_auto (STDOUT_FILENO);
+  EvaStream *stdout_stream = eva_stream_fd_new_auto (STDOUT_FILENO);
   g_printerr ("Starting download...\n");
   eva_stream_attach (stream, stdout_stream, NULL);
   g_object_weak_ref (G_OBJECT (stdout_stream), (GWeakNotify) eva_main_quit, NULL);
@@ -30,7 +30,7 @@ download_failed   (GError           *error,
 int main (int argc, char **argv)
 {
   char *url_string;
-  GskUrl *url;
+  EvaUrl *url;
   GError *error = NULL;
 
   eva_init_without_threads (&argc, &argv);

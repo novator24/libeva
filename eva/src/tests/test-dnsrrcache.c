@@ -4,11 +4,11 @@
 
 int main (int argc, char **argv)
 {
-  GskDnsRRCache *rr_cache;
-  GskDnsMessage *allocator;
-  GskDnsResourceRecord *rr, *found;
-  GskDnsResourceRecord *copy;
-  GskSocketAddressIpv4 *addr;
+  EvaDnsRRCache *rr_cache;
+  EvaDnsMessage *allocator;
+  EvaDnsResourceRecord *rr, *found;
+  EvaDnsResourceRecord *copy;
+  EvaSocketAddressIpv4 *addr;
   gulong cur_time = time(NULL);
   char *err_msg = NULL;
   guint8 one_two_three_four[4] = {1,2,3,4};

@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskUrlTransferFile
+EvaUrlTransferFile
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -17,7 +17,7 @@ GskUrlTransferFile
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskUrlTransferFile ##### -->
+<!-- ##### STRUCT EvaUrlTransferFile ##### -->
 <para>
 
 </para>

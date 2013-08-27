@@ -1,7 +1,7 @@
 #include "evapacket.h"
 #include "evamacros.h"
 
-EVA_DECLARE_POOL_ALLOCATORS(GskPacket, eva_packet, 32)
+EVA_DECLARE_POOL_ALLOCATORS(EvaPacket, eva_packet, 32)
 
 /**
  * eva_packet_new:
@@ -14,15 +14,15 @@ EVA_DECLARE_POOL_ALLOCATORS(GskPacket, eva_packet, 32)
  * The packet's ref-count is 1; it will be destroyed
  * when it gets to 0.
  *
- * returns: a new GskPacket
+ * returns: a new EvaPacket
  */
-GskPacket *
+EvaPacket *
 eva_packet_new   (gpointer             data,
 		  guint                length,
-		  GskPacketDestroyFunc destroy,
+		  EvaPacketDestroyFunc destroy,
 		  gpointer             destroy_data)
 {
-  GskPacket *rv = eva_packet_alloc ();
+  EvaPacket *rv = eva_packet_alloc ();
   rv->data = data;
   rv->len = length;
   rv->destroy = destroy;
@@ -42,14 +42,14 @@ eva_packet_new   (gpointer             data,
  * The packet's ref-count is 1; it will be destroyed
  * when it gets to 0.
  *
- * returns: a new GskPacket
+ * returns: a new EvaPacket
  */
-GskPacket *
+EvaPacket *
 eva_packet_new_copy   (gconstpointer        data,
 		       guint                length)
 {
   gpointer copy = g_memdup (data, length);
-  return eva_packet_new (copy, length, (GskPacketDestroyFunc) g_free, copy);
+  return eva_packet_new (copy, length, (EvaPacketDestroyFunc) g_free, copy);
 }
 
 /**
@@ -60,7 +60,7 @@ eva_packet_new_copy   (gconstpointer        data,
  * if it gets to 0.
  */
 void
-eva_packet_unref (GskPacket *packet)
+eva_packet_unref (EvaPacket *packet)
 {
   g_return_if_fail (packet->ref_count > 0);
   --(packet->ref_count);
@@ -84,8 +84,8 @@ eva_packet_unref (GskPacket *packet)
  *
  * returns: the @packet, for convenience.
  */
-GskPacket *
-eva_packet_ref   (GskPacket *packet)
+EvaPacket *
+eva_packet_ref   (EvaPacket *packet)
 {
   g_return_val_if_fail (packet->ref_count > 0, packet);
   ++(packet->ref_count);
@@ -102,8 +102,8 @@ eva_packet_ref   (GskPacket *packet)
  * the packet was sent from.
  */
 void
-eva_packet_set_src_address (GskPacket        *packet,
-			    GskSocketAddress *address)
+eva_packet_set_src_address (EvaPacket        *packet,
+			    EvaSocketAddress *address)
 {
   if (address != NULL)
     g_object_ref (address);
@@ -122,8 +122,8 @@ eva_packet_set_src_address (GskPacket        *packet,
  * the packet was sent to.
  */
 void
-eva_packet_set_dst_address (GskPacket        *packet,
-			    GskSocketAddress *address)
+eva_packet_set_dst_address (EvaPacket        *packet,
+			    EvaSocketAddress *address)
 {
   if (address != NULL)
     g_object_ref (address);

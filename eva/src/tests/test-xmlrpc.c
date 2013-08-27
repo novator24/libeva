@@ -4,11 +4,11 @@
 
 int main (int argc, char **argv)
 {
-  GskXmlrpcParser *parser;
-  GskXmlrpcRequest *request;
-  GskXmlrpcResponse *response;
-  GskXmlrpcArray *array;
-  GskXmlrpcStruct *structure;
+  EvaXmlrpcParser *parser;
+  EvaXmlrpcRequest *request;
+  EvaXmlrpcResponse *response;
+  EvaXmlrpcArray *array;
+  EvaXmlrpcStruct *structure;
   double delta;
   GError *error = NULL;
   parser = eva_xmlrpc_parser_new (NULL);
@@ -187,8 +187,8 @@ int main (int argc, char **argv)
       memcpy (rand_buf, ba->data, 100);
     }
 
-    { GskBuffer buf;
-      GskBufferFragment *frag;
+    { EvaBuffer buf;
+      EvaBufferFragment *frag;
       eva_buffer_construct (&buf);
       eva_xmlrpc_request_to_buffer (request, &buf);
       for (frag = buf.first_frag; frag != NULL; frag = frag->next)

@@ -22,17 +22,17 @@ typedef enum
   EVA_DEBUG_FD                  = (1<<12),
 
   EVA_DEBUG_ALL			= 0xffffffff
-} GskDebugFlags;
+} EvaDebugFlags;
 /* note: if you add to this table, you should modify evainit.c */
 
 /* Depends on whether --enable-eva-debug was specified to configure.  */
 extern const gboolean eva_debugging_on;
 
-void eva_debug_set_flags (GskDebugFlags flags);
-void eva_debug_add_flags (GskDebugFlags flags);
+void eva_debug_set_flags (EvaDebugFlags flags);
+void eva_debug_add_flags (EvaDebugFlags flags);
 
 /* read-only */
-extern GskDebugFlags eva_debug_flags;
+extern EvaDebugFlags eva_debug_flags;
 
 G_END_DECLS
 

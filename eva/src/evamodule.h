@@ -6,41 +6,41 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskCompileContext GskCompileContext;
-typedef struct _GskModule GskModule;
+typedef struct _EvaCompileContext EvaCompileContext;
+typedef struct _EvaModule EvaModule;
 
-GskCompileContext *eva_compile_context_new        (void);
-void               eva_compile_context_add_cflags (GskCompileContext *context,
+EvaCompileContext *eva_compile_context_new        (void);
+void               eva_compile_context_add_cflags (EvaCompileContext *context,
                                                    const char        *flags);
-void               eva_compile_context_add_ldflags(GskCompileContext *context,
+void               eva_compile_context_add_ldflags(EvaCompileContext *context,
                                                    const char        *flags);
-void               eva_compile_context_add_pkg    (GskCompileContext *context,
+void               eva_compile_context_add_pkg    (EvaCompileContext *context,
                                                    const char        *pkg);
-void               eva_compile_context_set_tmp_dir(GskCompileContext *context,
+void               eva_compile_context_set_tmp_dir(EvaCompileContext *context,
                                                    const char        *tmp_dir);
-void               eva_compile_context_set_gdb    (GskCompileContext *context,
+void               eva_compile_context_set_gdb    (EvaCompileContext *context,
                                                    gboolean           support);
-void               eva_compile_context_set_verbose(GskCompileContext *context,
+void               eva_compile_context_set_verbose(EvaCompileContext *context,
                                                    gboolean           support);
-void               eva_compile_context_free       (GskCompileContext *context);
+void               eva_compile_context_free       (EvaCompileContext *context);
 
 /* a wrapper around GModule with ref-counting,
  * and the ability to delete itself. */
 
-GskModule *eva_module_compile (GskCompileContext *context,
+EvaModule *eva_module_compile (EvaCompileContext *context,
                                guint              n_sources,
                                char             **sources,
                                GModuleFlags       flags,
                                gboolean           delete_sources,
                                char             **program_output,
                                GError           **error);
-GskModule *eva_module_open    (const char        *filename,
+EvaModule *eva_module_open    (const char        *filename,
                                GModuleFlags       flags,
                                GError           **error);
 
-GskModule *eva_module_ref     (GskModule *module);
-void       eva_module_unref   (GskModule *module);
-gpointer   eva_module_lookup  (GskModule *module,
+EvaModule *eva_module_ref     (EvaModule *module);
+void       eva_module_unref   (EvaModule *module);
+gpointer   eva_module_lookup  (EvaModule *module,
                                const char *symbol_name);
 
 

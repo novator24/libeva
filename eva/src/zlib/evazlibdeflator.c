@@ -25,12 +25,12 @@ enum
 };
 
 static guint
-eva_zlib_deflator_raw_read      (GskStream     *stream,
+eva_zlib_deflator_raw_read      (EvaStream     *stream,
 			 	 gpointer       data,
 			 	 guint          length,
 			 	 GError       **error)
 {
-  GskZlibDeflator *zlib_deflator = EVA_ZLIB_DEFLATOR (stream);
+  EvaZlibDeflator *zlib_deflator = EVA_ZLIB_DEFLATOR (stream);
   guint rv = eva_buffer_read (&zlib_deflator->compressed, data, length);
 
   if (!eva_io_get_is_writable (zlib_deflator))
@@ -49,11 +49,11 @@ eva_zlib_deflator_raw_read      (GskStream     *stream,
   return rv;
 }
 static guint
-eva_zlib_deflator_raw_read_buffer(GskStream     *stream,
-			 	  GskBuffer     *buffer,
+eva_zlib_deflator_raw_read_buffer(EvaStream     *stream,
+			 	  EvaBuffer     *buffer,
 			 	  GError       **error)
 {
-  GskZlibDeflator *zlib_deflator = EVA_ZLIB_DEFLATOR (stream);
+  EvaZlibDeflator *zlib_deflator = EVA_ZLIB_DEFLATOR (stream);
   guint rv = eva_buffer_drain (buffer, &zlib_deflator->compressed);
 
   if (!eva_io_get_is_writable (zlib_deflator))
@@ -72,7 +72,7 @@ eva_zlib_deflator_raw_read_buffer(GskStream     *stream,
 
 
 static gboolean
-do_sync (GskZlibDeflator *zlib_deflator,
+do_sync (EvaZlibDeflator *zlib_deflator,
          int flush,             /* set of Z_SYNC_FLUSH or Z_FINISH */
          GError **error)
 {
@@ -99,7 +99,7 @@ do_sync (GskZlibDeflator *zlib_deflator,
   while (rv == Z_OK && zst->avail_out == 0);
   if (rv != Z_OK && rv != Z_STREAM_END)
     {
-      GskErrorCode zerror_code = eva_zlib_error_to_eva_error (rv);
+      EvaErrorCode zerror_code = eva_zlib_error_to_eva_error (rv);
       const char *zmsg = eva_zlib_error_to_message (rv);
       g_set_error (error, EVA_G_ERROR_DOMAIN, zerror_code,
 		   "could not deflate: %s", zmsg);
@@ -114,7 +114,7 @@ do_sync (GskZlibDeflator *zlib_deflator,
 static gboolean
 do_background_flush (gpointer def)
 {
-  GskZlibDeflator *zlib_deflator = EVA_ZLIB_DEFLATOR (def);
+  EvaZlibDeflator *zlib_deflator = EVA_ZLIB_DEFLATOR (def);
   GError *error = NULL;
   if (!do_sync (zlib_deflator, Z_SYNC_FLUSH, &error))
     {
@@ -127,10 +127,10 @@ do_background_flush (gpointer def)
 }
 
 static gboolean
-eva_zlib_deflator_shutdown_write (GskIO      *io,
+eva_zlib_deflator_shutdown_write (EvaIO      *io,
 				  GError    **error)
 {
-  GskZlibDeflator *zlib_deflator = EVA_ZLIB_DEFLATOR (io);
+  EvaZlibDeflator *zlib_deflator = EVA_ZLIB_DEFLATOR (io);
   if (!do_sync (EVA_ZLIB_DEFLATOR (io), Z_FINISH, error))
     return FALSE;
   if (zlib_deflator->flush_source != NULL)
@@ -164,12 +164,12 @@ static void my_free (voidpf opaque, voidpf address)
 #endif  /* !VALGRIND_WORKAROUND */
 
 static guint
-eva_zlib_deflator_raw_write     (GskStream     *stream,
+eva_zlib_deflator_raw_write     (EvaStream     *stream,
 			 	 gconstpointer  data,
 			 	 guint          length,
 			 	 GError       **error)
 {
-  GskZlibDeflator *zlib_deflator = EVA_ZLIB_DEFLATOR (stream);
+  EvaZlibDeflator *zlib_deflator = EVA_ZLIB_DEFLATOR (stream);
   z_stream *zst;
   guint8 buf[4096];
   int rv;
@@ -214,7 +214,7 @@ eva_zlib_deflator_raw_write     (GskStream     *stream,
   g_return_val_if_fail (zst->avail_in == 0, length - zst->avail_in);
   if (rv != Z_OK && rv != Z_STREAM_END)
     {
-      GskErrorCode zerror_code = eva_zlib_error_to_eva_error (rv);
+      EvaErrorCode zerror_code = eva_zlib_error_to_eva_error (rv);
       const char *zmsg = eva_zlib_error_to_message (rv);
       g_set_error (error, EVA_G_ERROR_DOMAIN, zerror_code,
 		   "could not deflate: %s", zmsg);
@@ -260,7 +260,7 @@ eva_zlib_deflator_set_property	      (GObject        *object,
 				       const GValue   *value,
 				       GParamSpec     *pspec)
 {
-  GskZlibDeflator *zlib_deflator = EVA_ZLIB_DEFLATOR (object);
+  EvaZlibDeflator *zlib_deflator = EVA_ZLIB_DEFLATOR (object);
   switch (property_id)
     {
     case PROP_LEVEL:
@@ -321,7 +321,7 @@ eva_zlib_deflator_get_property	      (GObject        *object,
 				       GValue         *value,
 				       GParamSpec     *pspec)
 {
-  GskZlibDeflator *deflator = EVA_ZLIB_DEFLATOR (object);
+  EvaZlibDeflator *deflator = EVA_ZLIB_DEFLATOR (object);
   switch (property_id)
     {
     case PROP_LEVEL:
@@ -342,7 +342,7 @@ eva_zlib_deflator_get_property	      (GObject        *object,
 static void
 eva_zlib_deflator_finalize     (GObject *object)
 {
-  GskZlibDeflator *deflator = EVA_ZLIB_DEFLATOR (object);
+  EvaZlibDeflator *deflator = EVA_ZLIB_DEFLATOR (object);
   if (deflator->private_stream)
     {
       deflateEnd (deflator->private_stream);
@@ -354,7 +354,7 @@ eva_zlib_deflator_finalize     (GObject *object)
 
 /* --- functions --- */
 static void
-eva_zlib_deflator_init (GskZlibDeflator *zlib_deflator)
+eva_zlib_deflator_init (EvaZlibDeflator *zlib_deflator)
 {
   zlib_deflator->flush_millis = DEFAULT_FLUSH_MILLIS;
   zlib_deflator->level = DEFAULT_LEVEL;
@@ -364,10 +364,10 @@ eva_zlib_deflator_init (GskZlibDeflator *zlib_deflator)
 }
 
 static void
-eva_zlib_deflator_class_init (GskZlibDeflatorClass *class)
+eva_zlib_deflator_class_init (EvaZlibDeflatorClass *class)
 {
-  GskIOClass *io_class = EVA_IO_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   GParamSpec *pspec;
   parent_class = g_type_class_peek_parent (class);
@@ -401,19 +401,19 @@ GType eva_zlib_deflator_get_type()
     {
       static const GTypeInfo zlib_deflator_info =
       {
-	sizeof(GskZlibDeflatorClass),
+	sizeof(EvaZlibDeflatorClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_zlib_deflator_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskZlibDeflator),
+	sizeof (EvaZlibDeflator),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_zlib_deflator_init,
 	NULL		/* value_table */
       };
       zlib_deflator_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskZlibDeflator",
+                                                  "EvaZlibDeflator",
 						  &zlib_deflator_info, 0);
     }
   return zlib_deflator_type;
@@ -435,7 +435,7 @@ GType eva_zlib_deflator_get_type()
  *
  * returns: the newly allocated deflator.
  */
-GskStream *eva_zlib_deflator_new (int compression_level,
+EvaStream *eva_zlib_deflator_new (int compression_level,
                                   int flush_millis)
 {
   if (compression_level == -1)
@@ -446,7 +446,7 @@ GskStream *eva_zlib_deflator_new (int compression_level,
 		       NULL);
 }
 
-GskStream *eva_zlib_deflator_new2 (int compression_level,
+EvaStream *eva_zlib_deflator_new2 (int compression_level,
                                    int flush_millis,
                                    gboolean use_gzip)
 {

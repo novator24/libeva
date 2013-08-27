@@ -5,10 +5,10 @@
 
 G_BEGIN_DECLS
 
-GskStream *eva_streams_concat_and_unref (GskStream *stream0,
+EvaStream *eva_streams_concat_and_unref (EvaStream *stream0,
                                          ...);
-GskStream *eva_streams_concat_v         (unsigned    n_streams,
-                                         GskStream **streams);
+EvaStream *eva_streams_concat_v         (unsigned    n_streams,
+                                         EvaStream **streams);
 G_END_DECLS
 
 #endif

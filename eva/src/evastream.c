@@ -19,7 +19,7 @@ static GObjectClass *parent_class = NULL;
 #define DEBUG_PRINT_HEADER(fctname) DEBUG_PRINT_HEADER_FLAGS(EVA_DEBUG_STREAM, fctname)
 
 
-/* ========== GskStream =========== */
+/* ========== EvaStream =========== */
 
 /* --- i/o methods --- */
 
@@ -37,12 +37,12 @@ static GObjectClass *parent_class = NULL;
  * returns: the number of bytes read into @buffer.
  */
 gsize
-eva_stream_read             (GskStream        *stream,
+eva_stream_read             (EvaStream        *stream,
 			     gpointer          buffer,
 			     gsize             buffer_length,
 			     GError          **error)
 {
-  GskStreamClass *class = EVA_STREAM_GET_CLASS (stream);
+  EvaStreamClass *class = EVA_STREAM_GET_CLASS (stream);
   gsize rv;
   DEBUG_PRINT_HEADER ("eva_stream_read");
   if (error != NULL && *error != NULL)
@@ -77,13 +77,13 @@ eva_stream_read             (GskStream        *stream,
  * returns: the number of bytes written.
  */
 gsize
-eva_stream_write            (GskStream        *stream,
+eva_stream_write            (EvaStream        *stream,
 			     gconstpointer     buffer,
 			     gsize             buffer_length,
 			     GError          **error)
 {
   guint written = 0;
-  GskStreamClass *class = EVA_STREAM_GET_CLASS (stream);
+  EvaStreamClass *class = EVA_STREAM_GET_CLASS (stream);
   _EVA_DEBUG_PRINTF(EVA_DEBUG_STREAM,
 		    ("running %s on %s[%p].  buffer_length=%u.",
 		     "eva_stream_write",
@@ -122,16 +122,16 @@ eva_stream_write            (GskStream        *stream,
  * @buffer: the buffer to copy data into.
  * @error: optional place to store a GError if something goes wrong.
  *
- * Read data from the stream directly into a #GskBuffer.
+ * Read data from the stream directly into a #EvaBuffer.
  *
  * returns: the number of bytes read into @buffer.
  */
 gsize
-eva_stream_read_buffer       (GskStream        *stream,
-			      GskBuffer        *buffer,
+eva_stream_read_buffer       (EvaStream        *stream,
+			      EvaBuffer        *buffer,
 			      GError          **error)
 {
-  GskStreamClass *class = EVA_STREAM_GET_CLASS (stream);
+  EvaStreamClass *class = EVA_STREAM_GET_CLASS (stream);
   gboolean debug_data = EVA_IS_DEBUGGING (STREAM_DATA);
   if (eva_io_get_is_connecting (stream))
     return 0;
@@ -165,17 +165,17 @@ eva_stream_read_buffer       (GskStream        *stream,
  * @buffer: the buffer to get data from.
  * @error: optional place to store a GError if something goes wrong.
  *
- * Write data to the stream directly from a #GskBuffer.
+ * Write data to the stream directly from a #EvaBuffer.
  * Data written from the buffer is removed from it.
  *
  * returns: the number of bytes written from @buffer.
  */
 gsize
-eva_stream_write_buffer      (GskStream        *stream,
-			      GskBuffer        *buffer,
+eva_stream_write_buffer      (EvaStream        *stream,
+			      EvaBuffer        *buffer,
 			      GError          **error)
 {
-  GskStreamClass *class = EVA_STREAM_GET_CLASS (stream);
+  EvaStreamClass *class = EVA_STREAM_GET_CLASS (stream);
   gboolean debug_data = EVA_IS_DEBUGGING (STREAM_DATA);
   if (eva_io_get_is_connecting (stream))
     return 0;
@@ -217,12 +217,12 @@ eva_stream_write_buffer      (GskStream        *stream,
 
 /* --- functions --- */
 static void
-eva_stream_init (GskStream *stream)
+eva_stream_init (EvaStream *stream)
 {
 }
 
 static void
-eva_stream_class_init (GskStreamClass *class)
+eva_stream_class_init (EvaStreamClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   parent_class = g_type_class_peek_parent (object_class);
@@ -236,19 +236,19 @@ GType eva_stream_get_type()
     {
       static const GTypeInfo stream_info =
       {
-	sizeof(GskStreamClass),
+	sizeof(EvaStreamClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_stream_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskStream),
+	sizeof (EvaStream),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_stream_init,
 	NULL		/* value_table */
       };
       stream_type = g_type_register_static (EVA_TYPE_IO,
-					    "GskStream",
+					    "EvaStream",
 					    &stream_info, 
 					    G_TYPE_FLAG_ABSTRACT);
     }
@@ -268,11 +268,11 @@ GType eva_stream_get_type()
  * returns: whether the connection was successful.
  */
 gboolean
-eva_stream_attach           (GskStream        *input_stream,
-			     GskStream        *output_stream,
+eva_stream_attach           (EvaStream        *input_stream,
+			     EvaStream        *output_stream,
 			     GError          **error)
 {
-  GskStreamConnection *connection = eva_stream_connection_new (input_stream, output_stream, error);
+  EvaStreamConnection *connection = eva_stream_connection_new (input_stream, output_stream, error);
   if (connection != NULL)
     {
       g_object_unref (connection);
@@ -292,12 +292,12 @@ eva_stream_attach           (GskStream        *input_stream,
  *
  * returns: whether the connection was successful.
  */
-gboolean eva_stream_attach_pair       (GskStream        *stream_a,
-                                       GskStream        *stream_b,
+gboolean eva_stream_attach_pair       (EvaStream        *stream_a,
+                                       EvaStream        *stream_b,
 				       GError          **error)
 {
-  GskStreamConnection *ab = eva_stream_connection_new (stream_a, stream_b, error);
-  GskStreamConnection *ba;
+  EvaStreamConnection *ab = eva_stream_connection_new (stream_a, stream_b, error);
+  EvaStreamConnection *ba;
   if (ab == NULL)
     return FALSE;
   ba = eva_stream_connection_new (stream_b, stream_a, error);

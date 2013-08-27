@@ -5,13 +5,13 @@
 
 /* A class to allow quick-and-dirty stream implementations.
 
-   Instead of deriving from a GskStream and doing a full
+   Instead of deriving from a EvaStream and doing a full
    implementation, you merely trap the buffer-read/buffer-write
    hooks and fill the buffers directly.
 
    Because the extensibility is attained through hooks
    you should NOT derive from this class, instead
-   just add to the GskBuffers directly.
+   just add to the EvaBuffers directly.
 
    For implementing a stream using a buffer-stream,
    you should understand that the read_buffer
@@ -22,30 +22,30 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskBufferStream GskBufferStream;
-typedef struct _GskBufferStreamClass GskBufferStreamClass;
+typedef struct _EvaBufferStream EvaBufferStream;
+typedef struct _EvaBufferStreamClass EvaBufferStreamClass;
 /* --- type macros --- */
 GType eva_buffer_stream_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_BUFFER_STREAM			(eva_buffer_stream_get_type ())
-#define EVA_BUFFER_STREAM(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_BUFFER_STREAM, GskBufferStream))
-#define EVA_BUFFER_STREAM_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_BUFFER_STREAM, GskBufferStreamClass))
-#define EVA_BUFFER_STREAM_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_BUFFER_STREAM, GskBufferStreamClass))
+#define EVA_BUFFER_STREAM(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_BUFFER_STREAM, EvaBufferStream))
+#define EVA_BUFFER_STREAM_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_BUFFER_STREAM, EvaBufferStreamClass))
+#define EVA_BUFFER_STREAM_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_BUFFER_STREAM, EvaBufferStreamClass))
 #define EVA_IS_BUFFER_STREAM(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_BUFFER_STREAM))
 #define EVA_IS_BUFFER_STREAM_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_BUFFER_STREAM))
 
 /* --- structures --- */
-struct _GskBufferStreamClass 		/* final */
+struct _EvaBufferStreamClass 		/* final */
 {
-  GskStreamClass stream_class;
+  EvaStreamClass stream_class;
 
-  void (*buffered_read_set_poll) (GskBufferStream *bs, gboolean);
-  void (*buffered_write_set_poll) (GskBufferStream *bs, gboolean);
-  void (*buffered_read_shutdown) (GskBufferStream *bs);
-  void (*buffered_write_shutdown) (GskBufferStream *bs);
+  void (*buffered_read_set_poll) (EvaBufferStream *bs, gboolean);
+  void (*buffered_write_set_poll) (EvaBufferStream *bs, gboolean);
+  void (*buffered_read_shutdown) (EvaBufferStream *bs);
+  void (*buffered_write_shutdown) (EvaBufferStream *bs);
 };
-struct _GskBufferStream 		/* final */
+struct _EvaBufferStream 		/* final */
 {
-  GskStream      stream; /*< private >*/
+  EvaStream      stream; /*< private >*/
 
   /* after modifying any of these you
      must call eva_buffer_stream_changed()
@@ -56,25 +56,25 @@ struct _GskBufferStream 		/* final */
      you may call eva_buffer_stream_write_buffer_changed() instead
      if just the write_buffer was modified, */
 
-  GskBuffer      read_buffer;
-  GskBuffer      write_buffer;
+  EvaBuffer      read_buffer;
+  EvaBuffer      write_buffer;
 
   /*< private >*/
   guint          max_write_buffer;
 
   /* Run when the read_buffer has been drained. */
-  GskHook        buffered_read_hook;
+  EvaHook        buffered_read_hook;
 
   /* Run when the write_buffer is non-empty. */
-  GskHook        buffered_write_hook;
+  EvaHook        buffered_write_hook;
 };
 
 /* --- prototypes --- */
-GskBufferStream *eva_buffer_stream_new (void);
+EvaBufferStream *eva_buffer_stream_new (void);
 
-void eva_buffer_stream_read_buffer_changed  (GskBufferStream *stream);
-void eva_buffer_stream_write_buffer_changed (GskBufferStream *stream);
-void eva_buffer_stream_changed              (GskBufferStream *stream);
+void eva_buffer_stream_read_buffer_changed  (EvaBufferStream *stream);
+void eva_buffer_stream_write_buffer_changed (EvaBufferStream *stream);
+void eva_buffer_stream_changed              (EvaBufferStream *stream);
 
 #define eva_buffer_stream_read_hook(stream)		\
 	&(EVA_BUFFER_STREAM (stream)->buffered_read_hook)
@@ -99,7 +99,7 @@ void eva_buffer_stream_changed              (GskBufferStream *stream);
 /* Shut the readable end of the stream down immediately
    if the buffer is empty, or shut it down when the buffer empties
    otherwise. */
-void eva_buffer_stream_read_shutdown (GskBufferStream *stream);
+void eva_buffer_stream_read_shutdown (EvaBufferStream *stream);
 
 G_END_DECLS
 

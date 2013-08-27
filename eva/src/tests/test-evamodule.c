@@ -9,8 +9,8 @@ int main()
   char *name = g_strdup_printf ("test-evamodule-%u-%d.c",
                                 getpid(), g_random_int ());
   char *program_output = (char*)1;
-  GskCompileContext *context;
-  GskModule *module;
+  EvaCompileContext *context;
+  EvaModule *module;
   unsigned (*func)(unsigned);
   FILE *fp = fopen (name, "w");
   if (fp == NULL)

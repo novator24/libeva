@@ -38,7 +38,7 @@
  * returns: the connecting or connected file-descriptor, or -1 on error.
  */
 int
-eva_socket_address_connect_fd    (GskSocketAddress *address,
+eva_socket_address_connect_fd    (EvaSocketAddress *address,
 				  gboolean         *is_connected,
 				  GError          **error)
 {

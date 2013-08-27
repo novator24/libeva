@@ -1,30 +1,30 @@
-<refentry id="GskUrl">
+<refentry id="EvaUrl">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskUrl.top_of_page">GskUrl</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaUrl.top_of_page">EvaUrl</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskUrl</refname>
+<refname>EvaUrl</refname>
 <refpurpose>A Universal Resource Locator (or Identifier)
 object.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskUrl.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaUrl.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskUrl-struct">GskUrl</link>;
-enum                <link linkend="GskUrlScheme">GskUrlScheme</link>;
+                    <link linkend="EvaUrl-struct">EvaUrl</link>;
+enum                <link linkend="EvaUrlScheme">EvaUrlScheme</link>;
 #define             <link linkend="EVA-URL-RESERVED-CHARSET--CAPS">EVA_URL_RESERVED_CHARSET</link>
 #define             <link linkend="EVA-URL-UNRESERVED-CHARSET--CAPS">EVA_URL_UNRESERVED_CHARSET</link>
-<link linkend="GskUrl">GskUrl</link> *            <link linkend="eva-url-new">eva_url_new</link>                         (const <link linkend="char">char</link> *spec,
+<link linkend="EvaUrl">EvaUrl</link> *            <link linkend="eva-url-new">eva_url_new</link>                         (const <link linkend="char">char</link> *spec,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskUrl">GskUrl</link> *            <link linkend="eva-url-new-in-context">eva_url_new_in_context</link>              (const <link linkend="char">char</link> *spec,
-                                                         <link linkend="GskUrlScheme">GskUrlScheme</link> context,
+<link linkend="EvaUrl">EvaUrl</link> *            <link linkend="eva-url-new-in-context">eva_url_new_in_context</link>              (const <link linkend="char">char</link> *spec,
+                                                         <link linkend="EvaUrlScheme">EvaUrlScheme</link> context,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskUrl">GskUrl</link> *            <link linkend="eva-url-new-from-parts">eva_url_new_from_parts</link>              (<link linkend="GskUrlScheme">GskUrlScheme</link> scheme,
+<link linkend="EvaUrl">EvaUrl</link> *            <link linkend="eva-url-new-from-parts">eva_url_new_from_parts</link>              (<link linkend="EvaUrlScheme">EvaUrlScheme</link> scheme,
                                                          const <link linkend="char">char</link> *host,
                                                          <link linkend="int">int</link> port,
                                                          const <link linkend="char">char</link> *user_name,
@@ -32,11 +32,11 @@ enum                <link linkend="GskUrlScheme">GskUrlScheme</link>;
                                                          const <link linkend="char">char</link> *path,
                                                          const <link linkend="char">char</link> *query,
                                                          const <link linkend="char">char</link> *fragment);
-<link linkend="GskUrl">GskUrl</link> *            <link linkend="eva-url-new-relative">eva_url_new_relative</link>                (<link linkend="GskUrl">GskUrl</link> *base_url,
+<link linkend="EvaUrl">EvaUrl</link> *            <link linkend="eva-url-new-relative">eva_url_new_relative</link>                (<link linkend="EvaUrl">EvaUrl</link> *base_url,
                                                          const <link linkend="char">char</link> *location,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="char">char</link> *              <link linkend="eva-url-get-relative-path">eva_url_get_relative_path</link>           (<link linkend="GskUrl">GskUrl</link> *url);
-<link linkend="guint">guint</link>               <link linkend="eva-url-get-port">eva_url_get_port</link>                    (const <link linkend="GskUrl">GskUrl</link> *url);
+<link linkend="char">char</link> *              <link linkend="eva-url-get-relative-path">eva_url_get_relative_path</link>           (<link linkend="EvaUrl">EvaUrl</link> *url);
+<link linkend="guint">guint</link>               <link linkend="eva-url-get-port">eva_url_get_port</link>                    (const <link linkend="EvaUrl">EvaUrl</link> *url);
 <link linkend="char">char</link> *              <link linkend="eva-url-decode">eva_url_decode</link>                      (const <link linkend="char">char</link> *encoded);
 <link linkend="char">char</link> *              <link linkend="eva-url-decode-http">eva_url_decode_http</link>                 (const <link linkend="char">char</link> *encoded);
 <link linkend="char">char</link> *              <link linkend="eva-url-encode">eva_url_encode</link>                      (const <link linkend="char">char</link> *decoded);
@@ -49,49 +49,49 @@ enum                <link linkend="GskUrlScheme">GskUrlScheme</link>;
 #define             <link linkend="eva-url-is-valid-path">eva_url_is_valid_path</link>               (str, bad_char_out)
 #define             <link linkend="eva-url-is-valid-query">eva_url_is_valid_query</link>              (str, bad_char_out)
 <link linkend="char">char</link> **             <link linkend="eva-url-split-form-urlencoded">eva_url_split_form_urlencoded</link>       (const <link linkend="char">char</link> *encoded_query);
-<link linkend="char">char</link> *              <link linkend="eva-url-to-string">eva_url_to_string</link>                   (const <link linkend="GskUrl">GskUrl</link> *url);
-<link linkend="void">void</link>                (<link linkend="GskUrlSuccess">*GskUrlSuccess</link>)                    (<link linkend="GskStream">GskStream</link> *stream,
+<link linkend="char">char</link> *              <link linkend="eva-url-to-string">eva_url_to_string</link>                   (const <link linkend="EvaUrl">EvaUrl</link> *url);
+<link linkend="void">void</link>                (<link linkend="EvaUrlSuccess">*EvaUrlSuccess</link>)                    (<link linkend="EvaStream">EvaStream</link> *stream,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="void">void</link>                (<link linkend="GskUrlFailure">*GskUrlFailure</link>)                    (<link linkend="GError">GError</link> *error,
+<link linkend="void">void</link>                (<link linkend="EvaUrlFailure">*EvaUrlFailure</link>)                    (<link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="void">void</link>                <link linkend="eva-url-download">eva_url_download</link>                    (<link linkend="GskUrl">GskUrl</link> *url,
-                                                         <link linkend="GskUrlSuccess">GskUrlSuccess</link> success_func,
-                                                         <link linkend="GskUrlFailure">GskUrlFailure</link> failure_func,
+<link linkend="void">void</link>                <link linkend="eva-url-download">eva_url_download</link>                    (<link linkend="EvaUrl">EvaUrl</link> *url,
+                                                         <link linkend="EvaUrlSuccess">EvaUrlSuccess</link> success_func,
+                                                         <link linkend="EvaUrlFailure">EvaUrlFailure</link> failure_func,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="GskUrl">GskUrl</link> *            (<link linkend="GskUrlParser">*GskUrlParser</link>)                     (<link linkend="GskUrlScheme">GskUrlScheme</link> scheme,
+<link linkend="EvaUrl">EvaUrl</link> *            (<link linkend="EvaUrlParser">*EvaUrlParser</link>)                     (<link linkend="EvaUrlScheme">EvaUrlScheme</link> scheme,
                                                          const <link linkend="char">char</link> *url,
                                                          <link linkend="gpointer">gpointer</link> data);
-<link linkend="char">char</link> *              (<link linkend="GskUrlToString">*GskUrlToString</link>)                   (<link linkend="GskUrl">GskUrl</link> *url,
+<link linkend="char">char</link> *              (<link linkend="EvaUrlToString">*EvaUrlToString</link>)                   (<link linkend="EvaUrl">EvaUrl</link> *url,
                                                          <link linkend="gpointer">gpointer</link> data);
-<link linkend="GskUrlScheme">GskUrlScheme</link>        <link linkend="eva-url-scheme-get-unique">eva_url_scheme_get_unique</link>           (const <link linkend="char">char</link> *url_scheme,
+<link linkend="EvaUrlScheme">EvaUrlScheme</link>        <link linkend="eva-url-scheme-get-unique">eva_url_scheme_get_unique</link>           (const <link linkend="char">char</link> *url_scheme,
                                                          <link linkend="guint">guint</link> default_port,
-                                                         <link linkend="GskUrlParser">GskUrlParser</link> parse_func,
-                                                         <link linkend="GskUrlToString">GskUrlToString</link> print_func,
+                                                         <link linkend="EvaUrlParser">EvaUrlParser</link> parse_func,
+                                                         <link linkend="EvaUrlToString">EvaUrlToString</link> print_func,
                                                          <link linkend="gpointer">gpointer</link> data);
-<link linkend="guint">guint</link>               <link linkend="eva-url-hash">eva_url_hash</link>                        (const <link linkend="GskUrl">GskUrl</link> *url);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-url-equal">eva_url_equal</link>                       (const <link linkend="GskUrl">GskUrl</link> *a,
-                                                         const <link linkend="GskUrl">GskUrl</link> *b);
-                    <link linkend="GskUrlDownload">GskUrlDownload</link>;
-<link linkend="void">void</link>                (<link linkend="GskUrlDownloadMethod">*GskUrlDownloadMethod</link>)             (<link linkend="GskUrlDownload">GskUrlDownload</link> *download,
+<link linkend="guint">guint</link>               <link linkend="eva-url-hash">eva_url_hash</link>                        (const <link linkend="EvaUrl">EvaUrl</link> *url);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-url-equal">eva_url_equal</link>                       (const <link linkend="EvaUrl">EvaUrl</link> *a,
+                                                         const <link linkend="EvaUrl">EvaUrl</link> *b);
+                    <link linkend="EvaUrlDownload">EvaUrlDownload</link>;
+<link linkend="void">void</link>                (<link linkend="EvaUrlDownloadMethod">*EvaUrlDownloadMethod</link>)             (<link linkend="EvaUrlDownload">EvaUrlDownload</link> *download,
                                                          <link linkend="gpointer">gpointer</link> download_data);
-<link linkend="void">void</link>                <link linkend="eva-url-scheme-add-dl-method">eva_url_scheme_add_dl_method</link>        (<link linkend="GskUrlScheme">GskUrlScheme</link> scheme,
-                                                         <link linkend="GskUrlDownloadMethod">GskUrlDownloadMethod</link> download_method,
+<link linkend="void">void</link>                <link linkend="eva-url-scheme-add-dl-method">eva_url_scheme_add_dl_method</link>        (<link linkend="EvaUrlScheme">EvaUrlScheme</link> scheme,
+                                                         <link linkend="EvaUrlDownloadMethod">EvaUrlDownloadMethod</link> download_method,
                                                          <link linkend="gpointer">gpointer</link> download_data);
-<link linkend="void">void</link>                <link linkend="eva-url-download-success">eva_url_download_success</link>            (<link linkend="GskUrlDownload">GskUrlDownload</link> *download,
-                                                         <link linkend="GskStream">GskStream</link> *stream);
-<link linkend="void">void</link>                <link linkend="eva-url-download-fail">eva_url_download_fail</link>               (<link linkend="GskUrlDownload">GskUrlDownload</link> *download,
+<link linkend="void">void</link>                <link linkend="eva-url-download-success">eva_url_download_success</link>            (<link linkend="EvaUrlDownload">EvaUrlDownload</link> *download,
+                                                         <link linkend="EvaStream">EvaStream</link> *stream);
+<link linkend="void">void</link>                <link linkend="eva-url-download-fail">eva_url_download_fail</link>               (<link linkend="EvaUrlDownload">EvaUrlDownload</link> *download,
                                                          <link linkend="GError">GError</link> *error);
-<link linkend="GskUrl">GskUrl</link> *            <link linkend="eva-url-download-peek-url">eva_url_download_peek_url</link>           (<link linkend="GskUrlDownload">GskUrlDownload</link> *download);
-<link linkend="void">void</link>                <link linkend="eva-url-download-redirect">eva_url_download_redirect</link>           (<link linkend="GskUrlDownload">GskUrlDownload</link> *download,
-                                                         <link linkend="GskUrl">GskUrl</link> *new_url);
+<link linkend="EvaUrl">EvaUrl</link> *            <link linkend="eva-url-download-peek-url">eva_url_download_peek_url</link>           (<link linkend="EvaUrlDownload">EvaUrlDownload</link> *download);
+<link linkend="void">void</link>                <link linkend="eva-url-download-redirect">eva_url_download_redirect</link>           (<link linkend="EvaUrlDownload">EvaUrlDownload</link> *download,
+                                                         <link linkend="EvaUrl">EvaUrl</link> *new_url);
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskUrl.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaUrl.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----GskUrl
+   +----EvaUrl
 </synopsis>
 </refsect1>
 
@@ -99,22 +99,22 @@ enum                <link linkend="GskUrlScheme">GskUrlScheme</link>;
 
 
 
-<refsect1 id="GskUrl.properties" role="properties">
+<refsect1 id="EvaUrl.properties" role="properties">
 <title role="properties.title">Properties</title>
 <synopsis>
-  &quot;<link linkend="GskUrl--fragment">fragment</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write
-  &quot;<link linkend="GskUrl--host">host</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write
-  &quot;<link linkend="GskUrl--password">password</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write
-  &quot;<link linkend="GskUrl--path">path</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write
-  &quot;<link linkend="GskUrl--port">port</link>&quot;                     <link linkend="guint">guint</link>                 : Read / Write
-  &quot;<link linkend="GskUrl--query">query</link>&quot;                    <link linkend="gchar">gchar</link>*                : Read / Write
-  &quot;<link linkend="GskUrl--user-name">user-name</link>&quot;                <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaUrl--fragment">fragment</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaUrl--host">host</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaUrl--password">password</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaUrl--path">path</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaUrl--port">port</link>&quot;                     <link linkend="guint">guint</link>                 : Read / Write
+  &quot;<link linkend="EvaUrl--query">query</link>&quot;                    <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="EvaUrl--user-name">user-name</link>&quot;                <link linkend="gchar">gchar</link>*                : Read / Write
 </synopsis>
 </refsect1>
 
 
 
-<refsect1 id="GskUrl.description" role="desc">
+<refsect1 id="EvaUrl.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 A URL is a pointer to content on the internet.
@@ -133,11 +133,11 @@ TODO: find a reference RFC for URL encoding.
 </para>
 </refsect1>
 
-<refsect1 id="GskUrl.details" role="details">
+<refsect1 id="EvaUrl.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskUrl-struct" role="struct">
-<title>GskUrl</title>
-<indexterm zone="GskUrl-struct"><primary sortas="GskUrl">GskUrl</primary></indexterm><programlisting>typedef struct _GskUrl GskUrl;</programlisting>
+<refsect2 id="EvaUrl-struct" role="struct">
+<title>EvaUrl</title>
+<indexterm zone="EvaUrl-struct"><primary sortas="EvaUrl">EvaUrl</primary></indexterm><programlisting>typedef struct _EvaUrl EvaUrl;</programlisting>
 <para>
 A URL (Universal Resource Locator).
 This structure contains a number of read-only, pre-parsed
@@ -147,16 +147,16 @@ fields, which make it easy to use the URL from C.
 It also derived from GObject, so you get the usual g_object_ref/unref
 and other usual benefits.
 </para></refsect2>
-<refsect2 id="GskUrlScheme" role="enum">
-<title>enum GskUrlScheme</title>
-<indexterm zone="GskUrlScheme"><primary sortas="GskUrlScheme">GskUrlScheme</primary></indexterm><programlisting>typedef enum 
+<refsect2 id="EvaUrlScheme" role="enum">
+<title>enum EvaUrlScheme</title>
+<indexterm zone="EvaUrlScheme"><primary sortas="EvaUrlScheme">EvaUrlScheme</primary></indexterm><programlisting>typedef enum 
 {
   EVA_URL_SCHEME_FILE,
   EVA_URL_SCHEME_HTTP,
   EVA_URL_SCHEME_HTTPS,
   EVA_URL_SCHEME_FTP,
   EVA_URL_SCHEME_OTHER = 0x10000,
-} GskUrlScheme;
+} EvaUrlScheme;
 </programlisting>
 <para>
 Types of URLs that are known.
@@ -212,7 +212,7 @@ Characters which do not normally need escaping within a URL.
 </para></refsect2>
 <refsect2 id="eva-url-new" role="function">
 <title>eva_url_new ()</title>
-<indexterm zone="eva-url-new"><primary sortas="eva_url_new">eva_url_new</primary></indexterm><programlisting><link linkend="GskUrl">GskUrl</link> *            eva_url_new                         (const <link linkend="char">char</link> *spec,
+<indexterm zone="eva-url-new"><primary sortas="eva_url_new">eva_url_new</primary></indexterm><programlisting><link linkend="EvaUrl">EvaUrl</link> *            eva_url_new                         (const <link linkend="char">char</link> *spec,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Parse a URL object from a string.</para>
@@ -229,8 +229,8 @@ Parse a URL object from a string.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-new-in-context" role="function">
 <title>eva_url_new_in_context ()</title>
-<indexterm zone="eva-url-new-in-context"><primary sortas="eva_url_new_in_context">eva_url_new_in_context</primary></indexterm><programlisting><link linkend="GskUrl">GskUrl</link> *            eva_url_new_in_context              (const <link linkend="char">char</link> *spec,
-                                                         <link linkend="GskUrlScheme">GskUrlScheme</link> context,
+<indexterm zone="eva-url-new-in-context"><primary sortas="eva_url_new_in_context">eva_url_new_in_context</primary></indexterm><programlisting><link linkend="EvaUrl">EvaUrl</link> *            eva_url_new_in_context              (const <link linkend="char">char</link> *spec,
+                                                         <link linkend="EvaUrlScheme">EvaUrlScheme</link> context,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 For places where you expect a certain type of URL,
@@ -264,7 +264,7 @@ or it may have an implied scheme.
 </variablelist></refsect2>
 <refsect2 id="eva-url-new-from-parts" role="function">
 <title>eva_url_new_from_parts ()</title>
-<indexterm zone="eva-url-new-from-parts"><primary sortas="eva_url_new_from_parts">eva_url_new_from_parts</primary></indexterm><programlisting><link linkend="GskUrl">GskUrl</link> *            eva_url_new_from_parts              (<link linkend="GskUrlScheme">GskUrlScheme</link> scheme,
+<indexterm zone="eva-url-new-from-parts"><primary sortas="eva_url_new_from_parts">eva_url_new_from_parts</primary></indexterm><programlisting><link linkend="EvaUrl">EvaUrl</link> *            eva_url_new_from_parts              (<link linkend="EvaUrlScheme">EvaUrlScheme</link> scheme,
                                                          const <link linkend="char">char</link> *host,
                                                          <link linkend="int">int</link> port,
                                                          const <link linkend="char">char</link> *user_name,
@@ -308,7 +308,7 @@ will default to the next integer.
 </variablelist></refsect2>
 <refsect2 id="eva-url-new-relative" role="function">
 <title>eva_url_new_relative ()</title>
-<indexterm zone="eva-url-new-relative"><primary sortas="eva_url_new_relative">eva_url_new_relative</primary></indexterm><programlisting><link linkend="GskUrl">GskUrl</link> *            eva_url_new_relative                (<link linkend="GskUrl">GskUrl</link> *base_url,
+<indexterm zone="eva-url-new-relative"><primary sortas="eva_url_new_relative">eva_url_new_relative</primary></indexterm><programlisting><link linkend="EvaUrl">EvaUrl</link> *            eva_url_new_relative                (<link linkend="EvaUrl">EvaUrl</link> *base_url,
                                                          const <link linkend="char">char</link> *location,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
@@ -341,7 +341,7 @@ may be relative to.
 </variablelist></refsect2>
 <refsect2 id="eva-url-get-relative-path" role="function">
 <title>eva_url_get_relative_path ()</title>
-<indexterm zone="eva-url-get-relative-path"><primary sortas="eva_url_get_relative_path">eva_url_get_relative_path</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_url_get_relative_path           (<link linkend="GskUrl">GskUrl</link> *url);</programlisting>
+<indexterm zone="eva-url-get-relative-path"><primary sortas="eva_url_get_relative_path">eva_url_get_relative_path</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_url_get_relative_path           (<link linkend="EvaUrl">EvaUrl</link> *url);</programlisting>
 <para>
 Obtain the path portion of a URL without
 the initial slash (/) character.
@@ -358,7 +358,7 @@ The query component and fragment are also returned.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-get-port" role="function">
 <title>eva_url_get_port ()</title>
-<indexterm zone="eva-url-get-port"><primary sortas="eva_url_get_port">eva_url_get_port</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_url_get_port                    (const <link linkend="GskUrl">GskUrl</link> *url);</programlisting>
+<indexterm zone="eva-url-get-port"><primary sortas="eva_url_get_port">eva_url_get_port</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_url_get_port                    (const <link linkend="EvaUrl">EvaUrl</link> *url);</programlisting>
 <para>
 Returns the port.  If the port is 0, the default port
 for the type of scheme is returned (80 for HTTP, 21 for FTP
@@ -522,7 +522,7 @@ must free.
 </variablelist></refsect2>
 <refsect2 id="eva-url-to-string" role="function">
 <title>eva_url_to_string ()</title>
-<indexterm zone="eva-url-to-string"><primary sortas="eva_url_to_string">eva_url_to_string</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_url_to_string                   (const <link linkend="GskUrl">GskUrl</link> *url);</programlisting>
+<indexterm zone="eva-url-to-string"><primary sortas="eva_url_to_string">eva_url_to_string</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_url_to_string                   (const <link linkend="EvaUrl">EvaUrl</link> *url);</programlisting>
 <para>
 Convert the URL to a string.</para>
 <para>
@@ -533,9 +533,9 @@ Convert the URL to a string.</para>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated string.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskUrlSuccess" role="function">
-<title>GskUrlSuccess ()</title>
-<indexterm zone="GskUrlSuccess"><primary sortas="GskUrlSuccess">GskUrlSuccess</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskUrlSuccess)                    (<link linkend="GskStream">GskStream</link> *stream,
+<refsect2 id="EvaUrlSuccess" role="function">
+<title>EvaUrlSuccess ()</title>
+<indexterm zone="EvaUrlSuccess"><primary sortas="EvaUrlSuccess">EvaUrlSuccess</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaUrlSuccess)                    (<link linkend="EvaStream">EvaStream</link> *stream,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 Function to call with an input stream if the URL
@@ -549,9 +549,9 @@ by the URL which was passed to <link linkend="eva-url-download"><function>eva_ur
 <listitem><simpara>data passed to <link linkend="eva-url-download"><function>eva_url_download()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskUrlFailure" role="function">
-<title>GskUrlFailure ()</title>
-<indexterm zone="GskUrlFailure"><primary sortas="GskUrlFailure">GskUrlFailure</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskUrlFailure)                    (<link linkend="GError">GError</link> *error,
+<refsect2 id="EvaUrlFailure" role="function">
+<title>EvaUrlFailure ()</title>
+<indexterm zone="EvaUrlFailure"><primary sortas="EvaUrlFailure">EvaUrlFailure</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaUrlFailure)                    (<link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 Function to call if the URL
@@ -566,9 +566,9 @@ download seems to be failing.
 </variablelist></refsect2>
 <refsect2 id="eva-url-download" role="function">
 <title>eva_url_download ()</title>
-<indexterm zone="eva-url-download"><primary sortas="eva_url_download">eva_url_download</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_download                    (<link linkend="GskUrl">GskUrl</link> *url,
-                                                         <link linkend="GskUrlSuccess">GskUrlSuccess</link> success_func,
-                                                         <link linkend="GskUrlFailure">GskUrlFailure</link> failure_func,
+<indexterm zone="eva-url-download"><primary sortas="eva_url_download">eva_url_download</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_download                    (<link linkend="EvaUrl">EvaUrl</link> *url,
+                                                         <link linkend="EvaUrlSuccess">EvaUrlSuccess</link> success_func,
+                                                         <link linkend="EvaUrlFailure">EvaUrlFailure</link> failure_func,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 Initiate a URL download.
@@ -599,14 +599,14 @@ url cannot be retrieved.
 <listitem><simpara> data to pass to <parameter>success_func</parameter> or <parameter>failure_func</parameter>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskUrlParser" role="function">
-<title>GskUrlParser ()</title>
-<indexterm zone="GskUrlParser"><primary sortas="GskUrlParser">GskUrlParser</primary></indexterm><programlisting><link linkend="GskUrl">GskUrl</link> *            (*GskUrlParser)                     (<link linkend="GskUrlScheme">GskUrlScheme</link> scheme,
+<refsect2 id="EvaUrlParser" role="function">
+<title>EvaUrlParser ()</title>
+<indexterm zone="EvaUrlParser"><primary sortas="EvaUrlParser">EvaUrlParser</primary></indexterm><programlisting><link linkend="EvaUrl">EvaUrl</link> *            (*EvaUrlParser)                     (<link linkend="EvaUrlScheme">EvaUrlScheme</link> scheme,
                                                          const <link linkend="char">char</link> *url,
                                                          <link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
 Function to parse a string (of a given scheme)
-into a <link linkend="GskUrl"><type>GskUrl</type></link>.  This is used to register new types
+into a <link linkend="EvaUrl"><type>EvaUrl</type></link>.  This is used to register new types
 of URL.  See <link linkend="eva-url-scheme-get-unique"><function>eva_url_scheme_get_unique()</function></link>.
 </para><variablelist role="params">
 <varlistentry><term><parameter>scheme</parameter>&#160;:</term>
@@ -621,12 +621,12 @@ of URL.  See <link linkend="eva-url-scheme-get-unique"><function>eva_url_scheme_
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>a newly allocated URL, or NULL on a parse error.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskUrlToString" role="function">
-<title>GskUrlToString ()</title>
-<indexterm zone="GskUrlToString"><primary sortas="GskUrlToString">GskUrlToString</primary></indexterm><programlisting><link linkend="char">char</link> *              (*GskUrlToString)                   (<link linkend="GskUrl">GskUrl</link> *url,
+<refsect2 id="EvaUrlToString" role="function">
+<title>EvaUrlToString ()</title>
+<indexterm zone="EvaUrlToString"><primary sortas="EvaUrlToString">EvaUrlToString</primary></indexterm><programlisting><link linkend="char">char</link> *              (*EvaUrlToString)                   (<link linkend="EvaUrl">EvaUrl</link> *url,
                                                          <link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
-Function to convert a <link linkend="GskUrl"><type>GskUrl</type></link> into a NUL-terminated string.
+Function to convert a <link linkend="EvaUrl"><type>EvaUrl</type></link> into a NUL-terminated string.
 This is used to register new types
 of URL.  See <link linkend="eva-url-scheme-get-unique"><function>eva_url_scheme_get_unique()</function></link>.
 </para><variablelist role="params">
@@ -641,10 +641,10 @@ of URL.  See <link linkend="eva-url-scheme-get-unique"><function>eva_url_scheme_
 </variablelist></refsect2>
 <refsect2 id="eva-url-scheme-get-unique" role="function">
 <title>eva_url_scheme_get_unique ()</title>
-<indexterm zone="eva-url-scheme-get-unique"><primary sortas="eva_url_scheme_get_unique">eva_url_scheme_get_unique</primary></indexterm><programlisting><link linkend="GskUrlScheme">GskUrlScheme</link>        eva_url_scheme_get_unique           (const <link linkend="char">char</link> *url_scheme,
+<indexterm zone="eva-url-scheme-get-unique"><primary sortas="eva_url_scheme_get_unique">eva_url_scheme_get_unique</primary></indexterm><programlisting><link linkend="EvaUrlScheme">EvaUrlScheme</link>        eva_url_scheme_get_unique           (const <link linkend="char">char</link> *url_scheme,
                                                          <link linkend="guint">guint</link> default_port,
-                                                         <link linkend="GskUrlParser">GskUrlParser</link> parse_func,
-                                                         <link linkend="GskUrlToString">GskUrlToString</link> print_func,
+                                                         <link linkend="EvaUrlParser">EvaUrlParser</link> parse_func,
+                                                         <link linkend="EvaUrlToString">EvaUrlToString</link> print_func,
                                                          <link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -668,7 +668,7 @@ of URL.  See <link linkend="eva-url-scheme-get-unique"><function>eva_url_scheme_
 </variablelist></refsect2>
 <refsect2 id="eva-url-hash" role="function">
 <title>eva_url_hash ()</title>
-<indexterm zone="eva-url-hash"><primary sortas="eva_url_hash">eva_url_hash</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_url_hash                        (const <link linkend="GskUrl">GskUrl</link> *url);</programlisting>
+<indexterm zone="eva-url-hash"><primary sortas="eva_url_hash">eva_url_hash</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_url_hash                        (const <link linkend="EvaUrl">EvaUrl</link> *url);</programlisting>
 <para>
 Compute a randomish hash code based on the URL.
 </para>
@@ -686,8 +686,8 @@ You can create a GHashTable that's keyed off of URLs with:
 </variablelist></refsect2>
 <refsect2 id="eva-url-equal" role="function">
 <title>eva_url_equal ()</title>
-<indexterm zone="eva-url-equal"><primary sortas="eva_url_equal">eva_url_equal</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_equal                       (const <link linkend="GskUrl">GskUrl</link> *a,
-                                                         const <link linkend="GskUrl">GskUrl</link> *b);</programlisting>
+<indexterm zone="eva-url-equal"><primary sortas="eva_url_equal">eva_url_equal</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_equal                       (const <link linkend="EvaUrl">EvaUrl</link> *a,
+                                                         const <link linkend="EvaUrl">EvaUrl</link> *b);</programlisting>
 <para>
 Test to see if two URLs are the same.</para>
 <para>
@@ -701,14 +701,14 @@ Test to see if two URLs are the same.</para>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> whether the URLs are the same.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskUrlDownload" role="struct">
-<title>GskUrlDownload</title>
-<indexterm zone="GskUrlDownload"><primary sortas="GskUrlDownload">GskUrlDownload</primary></indexterm><programlisting>typedef struct _GskUrlDownload GskUrlDownload;</programlisting>
+<refsect2 id="EvaUrlDownload" role="struct">
+<title>EvaUrlDownload</title>
+<indexterm zone="EvaUrlDownload"><primary sortas="EvaUrlDownload">EvaUrlDownload</primary></indexterm><programlisting>typedef struct _EvaUrlDownload EvaUrlDownload;</programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GskUrlDownloadMethod" role="function">
-<title>GskUrlDownloadMethod ()</title>
-<indexterm zone="GskUrlDownloadMethod"><primary sortas="GskUrlDownloadMethod">GskUrlDownloadMethod</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskUrlDownloadMethod)             (<link linkend="GskUrlDownload">GskUrlDownload</link> *download,
+<refsect2 id="EvaUrlDownloadMethod" role="function">
+<title>EvaUrlDownloadMethod ()</title>
+<indexterm zone="EvaUrlDownloadMethod"><primary sortas="EvaUrlDownloadMethod">EvaUrlDownloadMethod</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaUrlDownloadMethod)             (<link linkend="EvaUrlDownload">EvaUrlDownload</link> *download,
                                                          <link linkend="gpointer">gpointer</link> download_data);</programlisting>
 <para>
 Function to begin downloading a given URL.
@@ -731,8 +731,8 @@ This function type is only used to register new methods for downloading URLs.
 </variablelist></refsect2>
 <refsect2 id="eva-url-scheme-add-dl-method" role="function">
 <title>eva_url_scheme_add_dl_method ()</title>
-<indexterm zone="eva-url-scheme-add-dl-method"><primary sortas="eva_url_scheme_add_dl_method">eva_url_scheme_add_dl_method</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_scheme_add_dl_method        (<link linkend="GskUrlScheme">GskUrlScheme</link> scheme,
-                                                         <link linkend="GskUrlDownloadMethod">GskUrlDownloadMethod</link> download_method,
+<indexterm zone="eva-url-scheme-add-dl-method"><primary sortas="eva_url_scheme_add_dl_method">eva_url_scheme_add_dl_method</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_scheme_add_dl_method        (<link linkend="EvaUrlScheme">EvaUrlScheme</link> scheme,
+                                                         <link linkend="EvaUrlDownloadMethod">EvaUrlDownloadMethod</link> download_method,
                                                          <link linkend="gpointer">gpointer</link> download_data);</programlisting>
 <para>
 Register a new method for downloading a URL of a particular scheme.
@@ -757,8 +757,8 @@ call those functions before returning.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-download-success" role="function">
 <title>eva_url_download_success ()</title>
-<indexterm zone="eva-url-download-success"><primary sortas="eva_url_download_success">eva_url_download_success</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_download_success            (<link linkend="GskUrlDownload">GskUrlDownload</link> *download,
-                                                         <link linkend="GskStream">GskStream</link> *stream);</programlisting>
+<indexterm zone="eva-url-download-success"><primary sortas="eva_url_download_success">eva_url_download_success</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_download_success            (<link linkend="EvaUrlDownload">EvaUrlDownload</link> *download,
+                                                         <link linkend="EvaStream">EvaStream</link> *stream);</programlisting>
 <para>
 Give a stream to the user which requested it
 via <link linkend="eva-url-download"><function>eva_url_download()</function></link>.
@@ -778,7 +778,7 @@ who requested the download.
 </variablelist></refsect2>
 <refsect2 id="eva-url-download-fail" role="function">
 <title>eva_url_download_fail ()</title>
-<indexterm zone="eva-url-download-fail"><primary sortas="eva_url_download_fail">eva_url_download_fail</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_download_fail               (<link linkend="GskUrlDownload">GskUrlDownload</link> *download,
+<indexterm zone="eva-url-download-fail"><primary sortas="eva_url_download_fail">eva_url_download_fail</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_download_fail               (<link linkend="EvaUrlDownload">EvaUrlDownload</link> *download,
                                                          <link linkend="GError">GError</link> *error);</programlisting>
 <para>
 Give a failure notice to the user which requested a url download
@@ -798,7 +798,7 @@ handlers for new URL schemes.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-download-peek-url" role="function">
 <title>eva_url_download_peek_url ()</title>
-<indexterm zone="eva-url-download-peek-url"><primary sortas="eva_url_download_peek_url">eva_url_download_peek_url</primary></indexterm><programlisting><link linkend="GskUrl">GskUrl</link> *            eva_url_download_peek_url           (<link linkend="GskUrlDownload">GskUrlDownload</link> *download);</programlisting>
+<indexterm zone="eva-url-download-peek-url"><primary sortas="eva_url_download_peek_url">eva_url_download_peek_url</primary></indexterm><programlisting><link linkend="EvaUrl">EvaUrl</link> *            eva_url_download_peek_url           (<link linkend="EvaUrlDownload">EvaUrlDownload</link> *download);</programlisting>
 <para>
 Get the URL that you are supposed to download.</para>
 <para>
@@ -811,8 +811,8 @@ Get the URL that you are supposed to download.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-download-redirect" role="function">
 <title>eva_url_download_redirect ()</title>
-<indexterm zone="eva-url-download-redirect"><primary sortas="eva_url_download_redirect">eva_url_download_redirect</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_download_redirect           (<link linkend="GskUrlDownload">GskUrlDownload</link> *download,
-                                                         <link linkend="GskUrl">GskUrl</link> *new_url);</programlisting>
+<indexterm zone="eva-url-download-redirect"><primary sortas="eva_url_download_redirect">eva_url_download_redirect</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_download_redirect           (<link linkend="EvaUrlDownload">EvaUrlDownload</link> *download,
+                                                         <link linkend="EvaUrl">EvaUrl</link> *new_url);</programlisting>
 <para>
 Indicate that retrieving one URL lead to a message
 saying that the content is at a different URL.
@@ -833,35 +833,35 @@ handlers for new URL schemes.</para>
 </variablelist></refsect2>
 
 </refsect1>
-<refsect1 id="GskUrl.property-details" role="property_details">
+<refsect1 id="EvaUrl.property-details" role="property_details">
 <title role="property_details.title">Property Details</title>
-<refsect2 id="GskUrl--fragment" role="property"><title>The <literal>&quot;fragment&quot;</literal> property</title>
-<indexterm zone="GskUrl--fragment"><primary sortas="GskUrl:fragment">GskUrl:fragment</primary></indexterm><programlisting>  &quot;fragment&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaUrl--fragment" role="property"><title>The <literal>&quot;fragment&quot;</literal> property</title>
+<indexterm zone="EvaUrl--fragment"><primary sortas="EvaUrl:fragment">EvaUrl:fragment</primary></indexterm><programlisting>  &quot;fragment&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>Fragment (for HTTP resources).</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskUrl--host" role="property"><title>The <literal>&quot;host&quot;</literal> property</title>
-<indexterm zone="GskUrl--host"><primary sortas="GskUrl:host">GskUrl:host</primary></indexterm><programlisting>  &quot;host&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaUrl--host" role="property"><title>The <literal>&quot;host&quot;</literal> property</title>
+<indexterm zone="EvaUrl--host"><primary sortas="EvaUrl:host">EvaUrl:host</primary></indexterm><programlisting>  &quot;host&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>name of host having resource.</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskUrl--password" role="property"><title>The <literal>&quot;password&quot;</literal> property</title>
-<indexterm zone="GskUrl--password"><primary sortas="GskUrl:password">GskUrl:password</primary></indexterm><programlisting>  &quot;password&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaUrl--password" role="property"><title>The <literal>&quot;password&quot;</literal> property</title>
+<indexterm zone="EvaUrl--password"><primary sortas="EvaUrl:password">EvaUrl:password</primary></indexterm><programlisting>  &quot;password&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>password protecting resource.</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskUrl--path" role="property"><title>The <literal>&quot;path&quot;</literal> property</title>
-<indexterm zone="GskUrl--path"><primary sortas="GskUrl:path">GskUrl:path</primary></indexterm><programlisting>  &quot;path&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaUrl--path" role="property"><title>The <literal>&quot;path&quot;</literal> property</title>
+<indexterm zone="EvaUrl--path"><primary sortas="EvaUrl:path">EvaUrl:path</primary></indexterm><programlisting>  &quot;path&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>Path on the server to the resource.</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskUrl--port" role="property"><title>The <literal>&quot;port&quot;</literal> property</title>
-<indexterm zone="GskUrl--port"><primary sortas="GskUrl:port">GskUrl:port</primary></indexterm><programlisting>  &quot;port&quot;                     <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<refsect2 id="EvaUrl--port" role="property"><title>The <literal>&quot;port&quot;</literal> property</title>
+<indexterm zone="EvaUrl--port"><primary sortas="EvaUrl:port">EvaUrl:port</primary></indexterm><programlisting>  &quot;port&quot;                     <link linkend="guint">guint</link>                 : Read / Write</programlisting>
 <para>port for resource (or 0 for default).</para><para>Allowed values: &lt;= 65536</para>
 <para>Default value: 0</para>
 </refsect2>
-<refsect2 id="GskUrl--query" role="property"><title>The <literal>&quot;query&quot;</literal> property</title>
-<indexterm zone="GskUrl--query"><primary sortas="GskUrl:query">GskUrl:query</primary></indexterm><programlisting>  &quot;query&quot;                    <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaUrl--query" role="property"><title>The <literal>&quot;query&quot;</literal> property</title>
+<indexterm zone="EvaUrl--query"><primary sortas="EvaUrl:query">EvaUrl:query</primary></indexterm><programlisting>  &quot;query&quot;                    <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>Query (for HTTP resources).</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskUrl--user-name" role="property"><title>The <literal>&quot;user-name&quot;</literal> property</title>
-<indexterm zone="GskUrl--user-name"><primary sortas="GskUrl:user-name">GskUrl:user-name</primary></indexterm><programlisting>  &quot;user-name&quot;                <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<refsect2 id="EvaUrl--user-name" role="property"><title>The <literal>&quot;user-name&quot;</literal> property</title>
+<indexterm zone="EvaUrl--user-name"><primary sortas="EvaUrl:user-name">EvaUrl:user-name</primary></indexterm><programlisting>  &quot;user-name&quot;                <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
 <para>username for resource.</para><para>Default value: NULL</para>
 </refsect2>
 </refsect1>

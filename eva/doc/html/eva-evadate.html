@@ -54,26 +54,26 @@
 <div class="refsynopsisdiv">
 <a name="eva-evadate.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-enum                <a class="link" href="eva-evadate.html#GskDateFormatMask" title="enum GskDateFormatMask">GskDateFormatMask</a>;
+enum                <a class="link" href="eva-evadate.html#EvaDateFormatMask" title="enum EvaDateFormatMask">EvaDateFormatMask</a>;
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            <a class="link" href="eva-evadate.html#eva-date-parse" title="eva_date_parse ()">eva_date_parse</a>                      (const char *date_str,
                                                          struct tm *tm_out,
                                                          int *tzoffset_out,
-                                                         <a class="link" href="eva-evadate.html#GskDateFormatMask" title="enum GskDateFormatMask">GskDateFormatMask</a> formats_allowed);
+                                                         <a class="link" href="eva-evadate.html#EvaDateFormatMask" title="enum EvaDateFormatMask">EvaDateFormatMask</a> formats_allowed);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            <a class="link" href="eva-evadate.html#eva-date-parse-timet" title="eva_date_parse_timet ()">eva_date_parse_timet</a>                (const char *date_str,
                                                          time_t *out,
-                                                         <a class="link" href="eva-evadate.html#GskDateFormatMask" title="enum GskDateFormatMask">GskDateFormatMask</a> formats_allowed);
+                                                         <a class="link" href="eva-evadate.html#EvaDateFormatMask" title="enum EvaDateFormatMask">EvaDateFormatMask</a> formats_allowed);
 void                <a class="link" href="eva-evadate.html#eva-date-print" title="eva_date_print ()">eva_date_print</a>                      (const struct tm *tm,
                                                          char *date_str_out,
                                                          int date_str_max_len,
-                                                         <a class="link" href="eva-evadate.html#GskDateFormatMask" title="enum GskDateFormatMask">GskDateFormatMask</a> format);
+                                                         <a class="link" href="eva-evadate.html#EvaDateFormatMask" title="enum EvaDateFormatMask">EvaDateFormatMask</a> format);
 void                <a class="link" href="eva-evadate.html#eva-date-print-timet" title="eva_date_print_timet ()">eva_date_print_timet</a>                (time_t t,
                                                          char *date_str_out,
                                                          int date_str_max_len,
-                                                         <a class="link" href="eva-evadate.html#GskDateFormatMask" title="enum GskDateFormatMask">GskDateFormatMask</a> format);
+                                                         <a class="link" href="eva-evadate.html#EvaDateFormatMask" title="enum EvaDateFormatMask">EvaDateFormatMask</a> format);
 #define             <a class="link" href="eva-evadate.html#EVA-DATE-MAX-LENGTH--CAPS" title="EVA_DATE_MAX_LENGTH">EVA_DATE_MAX_LENGTH</a>
 </pre>
 </div>
@@ -87,7 +87,7 @@ formats.
 <div class="refsect1" lang="en">
 <a name="eva-evadate.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskDateFormatMask"></a><h3>enum GskDateFormatMask</h3>
+<a name="EvaDateFormatMask"></a><h3>enum EvaDateFormatMask</h3>
 <pre class="programlisting">typedef enum
 {
   /* rfc 822, obsoleted by rfc 1123:
@@ -135,7 +135,7 @@ formats.
   EVA_DATE_FORMAT_HTTP = (EVA_DATE_FORMAT_1123 
                         | EVA_DATE_FORMAT_1036
 			| EVA_DATE_FORMAT_ANSI_C)
-} GskDateFormatMask;
+} EvaDateFormatMask;
 </pre>
 <p>
 Formats to accept when parsing with <a class="link" href="eva-evadate.html#eva-date-parse" title="eva_date_parse ()"><code class="function">eva_date_parse()</code></a>.
@@ -183,7 +183,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 >gboolean</a>            eva_date_parse                      (const char *date_str,
                                                          struct tm *tm_out,
                                                          int *tzoffset_out,
-                                                         <a class="link" href="eva-evadate.html#GskDateFormatMask" title="enum GskDateFormatMask">GskDateFormatMask</a> formats_allowed);</pre>
+                                                         <a class="link" href="eva-evadate.html#EvaDateFormatMask" title="enum EvaDateFormatMask">EvaDateFormatMask</a> formats_allowed);</pre>
 <p>
 Parse a date to a struct tm.</p>
 <p>
@@ -229,7 +229,7 @@ The parser will try to find a date in any of the allowed formats.
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            eva_date_parse_timet                (const char *date_str,
                                                          time_t *out,
-                                                         <a class="link" href="eva-evadate.html#GskDateFormatMask" title="enum GskDateFormatMask">GskDateFormatMask</a> formats_allowed);</pre>
+                                                         <a class="link" href="eva-evadate.html#EvaDateFormatMask" title="enum EvaDateFormatMask">EvaDateFormatMask</a> formats_allowed);</pre>
 <p>
 Parse a date to a unix time.</p>
 <p>
@@ -268,7 +268,7 @@ The parser will try to find a date in any of the allowed formats.
 <pre class="programlisting">void                eva_date_print                      (const struct tm *tm,
                                                          char *date_str_out,
                                                          int date_str_max_len,
-                                                         <a class="link" href="eva-evadate.html#GskDateFormatMask" title="enum GskDateFormatMask">GskDateFormatMask</a> format);</pre>
+                                                         <a class="link" href="eva-evadate.html#EvaDateFormatMask" title="enum EvaDateFormatMask">EvaDateFormatMask</a> format);</pre>
 <p>
 Print the date to a buffer, in the format requested.</p>
 <p>
@@ -307,7 +307,7 @@ to prevent clipping.
 <pre class="programlisting">void                eva_date_print_timet                (time_t t,
                                                          char *date_str_out,
                                                          int date_str_max_len,
-                                                         <a class="link" href="eva-evadate.html#GskDateFormatMask" title="enum GskDateFormatMask">GskDateFormatMask</a> format);</pre>
+                                                         <a class="link" href="eva-evadate.html#EvaDateFormatMask" title="enum EvaDateFormatMask">EvaDateFormatMask</a> format);</pre>
 <p>
 Print the date to a buffer, in the format requested.</p>
 <p>

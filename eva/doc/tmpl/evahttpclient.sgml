@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskHttpClient
+EvaHttpClient
 
 <!-- ##### SECTION Short_Description ##### -->
 The client end of an HTTP connection.
@@ -18,37 +18,37 @@ and the handling of incoming responses.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskHttpClientRequest ##### -->
+<!-- ##### STRUCT EvaHttpClientRequest ##### -->
 <para>
 An opaque object representing a request that may be made
 to the HTTP server.
 </para>
 
 
-<!-- ##### USER_FUNCTION GskHttpClientResponse ##### -->
+<!-- ##### USER_FUNCTION EvaHttpClientResponse ##### -->
 <para>
 A callback to handle the response from the server.
 (The response content actually streams back -- at this
 point we may have merely have gotten the header.)
 </para>
 
-@request: the #GskHttpRequest initially sent by the client.
-@response: the #GskHttpResponse parsed from the server.
-@input: a #GskStream which is the content, if any.
+@request: the #EvaHttpRequest initially sent by the client.
+@response: the #EvaHttpResponse parsed from the server.
+@input: a #EvaStream which is the content, if any.
 @hook_data: the argument to eva_http_client_request().
 
 
-<!-- ##### USER_FUNCTION GskHttpClientTrap ##### -->
+<!-- ##### USER_FUNCTION EvaHttpClientTrap ##### -->
 <para>
 Notification that the client is ready to take another HTTP request.
 </para>
 
-@client: the ready GskHttpClient
+@client: the ready EvaHttpClient
 @data: data passed to eva_http_client_trap_requestable()
 @Returns: whether to keep getting new notifications.
 
 
-<!-- ##### STRUCT GskHttpClientClass ##### -->
+<!-- ##### STRUCT EvaHttpClientClass ##### -->
 <para>Class of the HTTP client stream.
 Not broadly useful.</para>
 
@@ -58,7 +58,7 @@ to change whether the HTTP client trap should be triggered.
 @shutdown_requestable: function called by the hook
 to stop being able to accept new requests.
 
-<!-- ##### STRUCT GskHttpClient ##### -->
+<!-- ##### STRUCT EvaHttpClient ##### -->
 <para>
 A stream which is the client side of an HTTP connection.
 </para>

@@ -34,19 +34,19 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskHttpHeaderClass GskHttpHeaderClass;
-typedef struct _GskHttpHeader GskHttpHeader;
-typedef struct _GskHttpAuthorization GskHttpAuthorization;
-typedef struct _GskHttpAuthenticate GskHttpAuthenticate;
-typedef struct _GskHttpCharSet GskHttpCharSet;
-typedef struct _GskHttpResponseCacheDirective GskHttpResponseCacheDirective;
-typedef struct _GskHttpRequestCacheDirective GskHttpRequestCacheDirective;
-typedef struct _GskHttpCookie GskHttpCookie;
-typedef struct _GskHttpLanguageSet GskHttpLanguageSet;
-typedef struct _GskHttpMediaTypeSet GskHttpMediaTypeSet;
-typedef struct _GskHttpContentEncodingSet GskHttpContentEncodingSet;
-typedef struct _GskHttpTransferEncodingSet GskHttpTransferEncodingSet;
-typedef struct _GskHttpRangeSet GskHttpRangeSet;
+typedef struct _EvaHttpHeaderClass EvaHttpHeaderClass;
+typedef struct _EvaHttpHeader EvaHttpHeader;
+typedef struct _EvaHttpAuthorization EvaHttpAuthorization;
+typedef struct _EvaHttpAuthenticate EvaHttpAuthenticate;
+typedef struct _EvaHttpCharSet EvaHttpCharSet;
+typedef struct _EvaHttpResponseCacheDirective EvaHttpResponseCacheDirective;
+typedef struct _EvaHttpRequestCacheDirective EvaHttpRequestCacheDirective;
+typedef struct _EvaHttpCookie EvaHttpCookie;
+typedef struct _EvaHttpLanguageSet EvaHttpLanguageSet;
+typedef struct _EvaHttpMediaTypeSet EvaHttpMediaTypeSet;
+typedef struct _EvaHttpContentEncodingSet EvaHttpContentEncodingSet;
+typedef struct _EvaHttpTransferEncodingSet EvaHttpTransferEncodingSet;
+typedef struct _EvaHttpRangeSet EvaHttpRangeSet;
 
 /* enums */
 GType eva_http_status_get_type (void) G_GNUC_CONST;
@@ -84,9 +84,9 @@ GType eva_http_response_get_type (void) G_GNUC_CONST;
 
 /* type-casting macros */
 #define EVA_TYPE_HTTP_HEADER               (eva_http_header_get_type ())
-#define EVA_HTTP_HEADER(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_HTTP_HEADER, GskHttpHeader))
-#define EVA_HTTP_HEADER_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_HTTP_HEADER, GskHttpHeaderClass))
-#define EVA_HTTP_HEADER_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_HTTP_HEADER, GskHttpHeaderClass))
+#define EVA_HTTP_HEADER(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_HTTP_HEADER, EvaHttpHeader))
+#define EVA_HTTP_HEADER_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_HTTP_HEADER, EvaHttpHeaderClass))
+#define EVA_HTTP_HEADER_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_HTTP_HEADER, EvaHttpHeaderClass))
 #define EVA_IS_HTTP_HEADER(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_HTTP_HEADER))
 #define EVA_IS_HTTP_HEADER_CLASS(klass)    (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_HTTP_HEADER))
 
@@ -133,7 +133,7 @@ typedef enum
   EVA_HTTP_STATUS_SERVICE_UNAVAILABLE           = 503,
   EVA_HTTP_STATUS_GATEWAY_TIMEOUT               = 504,
   EVA_HTTP_STATUS_UNSUPPORTED_VERSION           = 505
-} GskHttpStatus;
+} EvaHttpStatus;
 
 /*
  * The Verb is the first text transmitted
@@ -149,22 +149,22 @@ typedef enum
   EVA_HTTP_VERB_DELETE,
   EVA_HTTP_VERB_TRACE,
   EVA_HTTP_VERB_CONNECT
-} GskHttpVerb;
+} EvaHttpVerb;
 
-/* A GskHttpRange is a unit in which partial content ranges
+/* A EvaHttpRange is a unit in which partial content ranges
  * may be specified and transferred.
  */
 typedef enum
 {
   EVA_HTTP_RANGE_BYTES
-} GskHttpRange;
+} EvaHttpRange;
 
 typedef enum {
   EVA_HTTP_CONTENT_ENCODING_IDENTITY,
   EVA_HTTP_CONTENT_ENCODING_GZIP,
   EVA_HTTP_CONTENT_ENCODING_COMPRESS,
   EVA_HTTP_CONTENT_ENCODING_UNRECOGNIZED = 0x100
-} GskHttpContentEncoding;
+} EvaHttpContentEncoding;
 
 /*
  * The Transfer-Encoding field of HTTP/1.1.
@@ -180,7 +180,7 @@ typedef enum {
   EVA_HTTP_TRANSFER_ENCODING_NONE    = 0,
   EVA_HTTP_TRANSFER_ENCODING_CHUNKED = 1,
   EVA_HTTP_TRANSFER_ENCODING_UNRECOGNIZED = 0x100
-} GskHttpTransferEncoding;
+} EvaHttpTransferEncoding;
 
 /*
  * The Connection: header enables or disables http-keepalive.
@@ -198,13 +198,13 @@ typedef enum
   EVA_HTTP_CONNECTION_NONE       = 0,
   EVA_HTTP_CONNECTION_CLOSE      = 1,
   EVA_HTTP_CONNECTION_KEEPALIVE  = 2,
-} GskHttpConnection;
+} EvaHttpConnection;
 
 /*
  * The Cache-Control response directive.
  * See RFC 2616, Section 14.9 (cache-response-directive)
  */
-struct _GskHttpResponseCacheDirective
+struct _EvaHttpResponseCacheDirective
 {
   /*< public (read/write) >*/
   /* the http is `public' and `private'; is_ is added
@@ -233,7 +233,7 @@ struct _GskHttpResponseCacheDirective
  * The Cache-Control request directive.
  * See RFC 2616, Section 14.9 (cache-request-directive)
  */
-struct _GskHttpRequestCacheDirective
+struct _EvaHttpRequestCacheDirective
 {
   guint no_cache : 1;
   guint no_store : 1;
@@ -256,22 +256,22 @@ struct _GskHttpRequestCacheDirective
 };
 
 
-GskHttpResponseCacheDirective *eva_http_response_cache_directive_new (void);
+EvaHttpResponseCacheDirective *eva_http_response_cache_directive_new (void);
 void eva_http_response_cache_directive_set_private_name (
-				     GskHttpResponseCacheDirective *directive,
+				     EvaHttpResponseCacheDirective *directive,
 				     const char            *name,
 				     gsize                  name_len);
 void eva_http_response_cache_directive_set_no_cache_name (
-				     GskHttpResponseCacheDirective *directive,
+				     EvaHttpResponseCacheDirective *directive,
 				     const char            *name,
 				     gsize                  name_len);
 void eva_http_response_cache_directive_free(
-				    GskHttpResponseCacheDirective *directive);
+				    EvaHttpResponseCacheDirective *directive);
 
 
-GskHttpRequestCacheDirective *eva_http_request_cache_directive_new (void);
+EvaHttpRequestCacheDirective *eva_http_request_cache_directive_new (void);
 void eva_http_request_cache_directive_free(
-				     GskHttpRequestCacheDirective *directive);
+				     EvaHttpRequestCacheDirective *directive);
 
 
 /*
@@ -281,7 +281,7 @@ void eva_http_request_cache_directive_free(
  *
  * TODO: support level= accept-extension.
  */
-struct _GskHttpMediaTypeSet
+struct _EvaHttpMediaTypeSet
 {
   /*< public: read-only >*/
   char                 *type;
@@ -289,12 +289,12 @@ struct _GskHttpMediaTypeSet
   gfloat                quality;                /* -1 if not present */
 
   /*< private >*/
-  GskHttpMediaTypeSet  *next;
+  EvaHttpMediaTypeSet  *next;
 };
-GskHttpMediaTypeSet *eva_http_media_type_set_new (const char *type,
+EvaHttpMediaTypeSet *eva_http_media_type_set_new (const char *type,
                                                   const char *subtype,
                                                   gfloat      quality);
-void                 eva_http_media_type_set_free(GskHttpMediaTypeSet *set);
+void                 eva_http_media_type_set_free(EvaHttpMediaTypeSet *set);
 
 
 /*
@@ -302,69 +302,69 @@ void                 eva_http_media_type_set_free(GskHttpMediaTypeSet *set);
  *
  * See RFC 2616, Section 14.2.
  */
-struct _GskHttpCharSet
+struct _EvaHttpCharSet
 {
   /*< public: read-only >*/
   char                 *charset_name;
   gfloat                quality;                /* -1 if not present */
 
   /*< private >*/
-  GskHttpCharSet       *next;
+  EvaHttpCharSet       *next;
 };
-GskHttpCharSet       *eva_http_char_set_new (const char *charset_name,
+EvaHttpCharSet       *eva_http_char_set_new (const char *charset_name,
                                              gfloat      quality);
-void                  eva_http_char_set_free(GskHttpCharSet *char_set);
+void                  eva_http_char_set_free(EvaHttpCharSet *char_set);
 
 /*
  * The Accept-Encoding: request-header.
  *
  * See RFC 2616, Section 14.3.
  */
-struct _GskHttpContentEncodingSet
+struct _EvaHttpContentEncodingSet
 {
   /*< public: read-only >*/
-  GskHttpContentEncoding       encoding;
+  EvaHttpContentEncoding       encoding;
   gfloat                       quality;       /* -1 if not present */
 
   /*< private >*/
-  GskHttpContentEncodingSet   *next;
+  EvaHttpContentEncodingSet   *next;
 };
-GskHttpContentEncodingSet *
-eva_http_content_encoding_set_new (GskHttpContentEncoding encoding,
+EvaHttpContentEncodingSet *
+eva_http_content_encoding_set_new (EvaHttpContentEncoding encoding,
 				   gfloat                 quality);
 void
-eva_http_content_encoding_set_free(GskHttpContentEncodingSet *encoding_set);
+eva_http_content_encoding_set_free(EvaHttpContentEncodingSet *encoding_set);
 
 /*
  * for the TE: request-header.
  *
  * See RFC 2616, Section 14.39.
  */
-struct _GskHttpTransferEncodingSet
+struct _EvaHttpTransferEncodingSet
 {
   /*< public: read-only >*/
-  GskHttpTransferEncoding      encoding;
+  EvaHttpTransferEncoding      encoding;
   gfloat                       quality;       /* -1 if not present */
 
   /*< private >*/
-  GskHttpTransferEncodingSet   *next;
+  EvaHttpTransferEncodingSet   *next;
 };
-GskHttpTransferEncodingSet *
-eva_http_transfer_encoding_set_new (GskHttpTransferEncoding     encoding,
+EvaHttpTransferEncodingSet *
+eva_http_transfer_encoding_set_new (EvaHttpTransferEncoding     encoding,
 				    gfloat                      quality);
 void
-eva_http_transfer_encoding_set_free(GskHttpTransferEncodingSet *encoding_set);
+eva_http_transfer_encoding_set_free(EvaHttpTransferEncodingSet *encoding_set);
 
-struct _GskHttpRangeSet
+struct _EvaHttpRangeSet
 {
   /*< public: read-only >*/
-  GskHttpRange          range_type;
+  EvaHttpRange          range_type;
 
   /*< private >*/
-  GskHttpRangeSet   *next;
+  EvaHttpRangeSet   *next;
 };
-GskHttpRangeSet *eva_http_range_set_new (GskHttpRange range_type);
-void             eva_http_range_set_free(GskHttpRangeSet *set);
+EvaHttpRangeSet *eva_http_range_set_new (EvaHttpRange range_type);
+void             eva_http_range_set_free(EvaHttpRangeSet *set);
 
 
 /*
@@ -372,7 +372,7 @@ void             eva_http_range_set_free(GskHttpRangeSet *set);
  *
  * See RFC 2616, Section 14.4.
  */
-struct _GskHttpLanguageSet
+struct _EvaHttpLanguageSet
 {
   /*< public: read-only >*/
 
@@ -381,18 +381,18 @@ struct _GskHttpLanguageSet
   gfloat                quality;                /* -1 if not present */
 
   /*< private >*/
-  GskHttpLanguageSet   *next;
+  EvaHttpLanguageSet   *next;
 };
-GskHttpLanguageSet *eva_http_language_set_new (const char *language,
+EvaHttpLanguageSet *eva_http_language_set_new (const char *language,
                                                gfloat      quality);
-void                eva_http_language_set_free(GskHttpLanguageSet *set);
+void                eva_http_language_set_free(EvaHttpLanguageSet *set);
 
 typedef enum
 {
   EVA_HTTP_AUTH_MODE_UNKNOWN,
   EVA_HTTP_AUTH_MODE_BASIC,
   EVA_HTTP_AUTH_MODE_DIGEST
-} GskHttpAuthMode;
+} EvaHttpAuthMode;
 
 /* HTTP Authentication.
    
@@ -409,9 +409,9 @@ typedef enum
      Then the client tries again: but this time with an appropriate Authorization.
      If the server is satified, it will presumably give you the content.
  */
-struct _GskHttpAuthenticate
+struct _EvaHttpAuthenticate
 {
-  GskHttpAuthMode mode;
+  EvaHttpAuthMode mode;
   char           *auth_scheme_name;
   char           *realm;
   union
@@ -433,21 +433,21 @@ struct _GskHttpAuthenticate
   } info;
   guint           ref_count;            /*< private >*/
 };
-GskHttpAuthenticate *eva_http_authenticate_new_unknown (const char          *auth_scheme_name,
+EvaHttpAuthenticate *eva_http_authenticate_new_unknown (const char          *auth_scheme_name,
                                                         const char          *realm,
                                                         const char          *options);
-GskHttpAuthenticate *eva_http_authenticate_new_basic   (const char          *realm);
-GskHttpAuthenticate *eva_http_authenticate_new_digest  (const char          *realm,
+EvaHttpAuthenticate *eva_http_authenticate_new_basic   (const char          *realm);
+EvaHttpAuthenticate *eva_http_authenticate_new_digest  (const char          *realm,
                                                         const char          *domain,
                                                         const char          *nonce,
                                                         const char          *opaque,
                                                         const char          *algorithm);
-GskHttpAuthenticate  *eva_http_authenticate_ref        (GskHttpAuthenticate *auth);
-void                  eva_http_authenticate_unref      (GskHttpAuthenticate *auth);
+EvaHttpAuthenticate  *eva_http_authenticate_ref        (EvaHttpAuthenticate *auth);
+void                  eva_http_authenticate_unref      (EvaHttpAuthenticate *auth);
 
-struct _GskHttpAuthorization
+struct _EvaHttpAuthorization
 {
-  GskHttpAuthMode mode;
+  EvaHttpAuthMode mode;
   char           *auth_scheme_name;
   union
   {
@@ -472,11 +472,11 @@ struct _GskHttpAuthorization
   } info;
   guint           ref_count;            /*< private >*/
 };
-GskHttpAuthorization *eva_http_authorization_new_unknown (const char *auth_scheme_name,
+EvaHttpAuthorization *eva_http_authorization_new_unknown (const char *auth_scheme_name,
                                                           const char *response);
-GskHttpAuthorization *eva_http_authorization_new_basic   (const char *user,
+EvaHttpAuthorization *eva_http_authorization_new_basic   (const char *user,
                                                           const char *password);
-GskHttpAuthorization *eva_http_authorization_new_digest  (const char *realm,
+EvaHttpAuthorization *eva_http_authorization_new_digest  (const char *realm,
                                                           const char *domain,
                                                           const char *nonce,
                                                           const char *opaque,
@@ -485,26 +485,26 @@ GskHttpAuthorization *eva_http_authorization_new_digest  (const char *realm,
                                                           const char *password,
                                                           const char *response_digest,
                                                           const char *entity_digest);
-GskHttpAuthorization *eva_http_authorization_new_respond (const GskHttpAuthenticate *,
+EvaHttpAuthorization *eva_http_authorization_new_respond (const EvaHttpAuthenticate *,
                                                           const char *user,
                                                           const char *password,
                                                           GError    **error);
-GskHttpAuthorization *eva_http_authorization_new_respond_post(const GskHttpAuthenticate *,
+EvaHttpAuthorization *eva_http_authorization_new_respond_post(const EvaHttpAuthenticate *,
                                                           const char *user,
                                                           const char *password,
                                                           guint       post_data_len,
                                                           gconstpointer post_data,
                                                           GError    **error);
-const char           *eva_http_authorization_peek_response_digest (GskHttpAuthorization *);
-GskHttpAuthorization *eva_http_authorization_copy        (const GskHttpAuthorization *);
-void                  eva_http_authorization_set_nonce   (GskHttpAuthorization *,
+const char           *eva_http_authorization_peek_response_digest (EvaHttpAuthorization *);
+EvaHttpAuthorization *eva_http_authorization_copy        (const EvaHttpAuthorization *);
+void                  eva_http_authorization_set_nonce   (EvaHttpAuthorization *,
                                                           const char *nonce);
-GskHttpAuthorization *eva_http_authorization_ref         (GskHttpAuthorization *);
-void                  eva_http_authorization_unref       (GskHttpAuthorization *);
+EvaHttpAuthorization *eva_http_authorization_ref         (EvaHttpAuthorization *);
+void                  eva_http_authorization_unref       (EvaHttpAuthorization *);
 
 /* an update to an existing authentication,
    to verify that we're talking to the same host. */
-struct _GskHttpAuthenticateInfo
+struct _EvaHttpAuthenticateInfo
 {
   char *next_nonce;
   char *response_digest;
@@ -517,7 +517,7 @@ struct _GskHttpAuthenticateInfo
  *
  * See RFC 2109, HTTP State Management Mechanism 
  */
-struct _GskHttpCookie
+struct _EvaHttpCookie
 {
   /*< public: read-only >*/
   char                   *key;
@@ -530,29 +530,29 @@ struct _GskHttpCookie
   gboolean                secure;               /* default is FALSE */
   guint                   version;              /* default is 0, unspecified */
 };
-GskHttpCookie  *eva_http_cookie_new              (const char     *key,
+EvaHttpCookie  *eva_http_cookie_new              (const char     *key,
                                                   const char     *value,
                                                   const char     *path,
                                                   const char     *domain,
                                                   const char     *expire_date,
                                                   const char     *comment,
                                                   int             max_age);
-GskHttpCookie  *eva_http_cookie_copy             (const GskHttpCookie *orig);
-void            eva_http_cookie_free             (GskHttpCookie *orig);
+EvaHttpCookie  *eva_http_cookie_copy             (const EvaHttpCookie *orig);
+void            eva_http_cookie_free             (EvaHttpCookie *orig);
 
 
 /*
- *                 GskHttpHeader
+ *                 EvaHttpHeader
  *
  * A structure embodying an http header
  * (as in a request or a response).
  */
-struct _GskHttpHeaderClass
+struct _EvaHttpHeaderClass
 {
   GObjectClass                  base_class;
 };
 
-struct _GskHttpHeader
+struct _EvaHttpHeader
 {
   GObject                       base_instance;
 
@@ -560,11 +560,11 @@ struct _GskHttpHeader
   guint16                       http_major_version;             /* always 1 */
   guint16                       http_minor_version;
 
-  GskHttpConnection             connection_type;
+  EvaHttpConnection             connection_type;
 
-  GskHttpTransferEncoding       transfer_encoding_type;
-  GskHttpContentEncoding        content_encoding_type;
-  GskHttpRangeSet              *accepted_range_units;  /* Accept-Ranges */
+  EvaHttpTransferEncoding       transfer_encoding_type;
+  EvaHttpContentEncoding        content_encoding_type;
+  EvaHttpRangeSet              *accepted_range_units;  /* Accept-Ranges */
 
   /*< public >*/
   char                         *unrecognized_transfer_encoding;
@@ -617,25 +617,25 @@ typedef enum
   /* instead of giving up on unknown headers, just 
    * add them as misc-headers */
   EVA_HTTP_PARSE_SAVE_ERRORS = (1 << 1)
-} GskHttpParseFlags;
+} EvaHttpParseFlags;
 
-GskHttpHeader  *eva_http_header_from_buffer      (GskBuffer     *input,
+EvaHttpHeader  *eva_http_header_from_buffer      (EvaBuffer     *input,
 						  gboolean       is_request,
-                                                  GskHttpParseFlags flags,
+                                                  EvaHttpParseFlags flags,
                                                   GError        **error);
-void            eva_http_header_to_buffer        (GskHttpHeader *header,
-                                                  GskBuffer     *output);
+void            eva_http_header_to_buffer        (EvaHttpHeader *header,
+                                                  EvaBuffer     *output);
 
 
 /* response specific functions */
 /* unhandled: content-type and friends */
-void             eva_http_header_set_content_encoding(GskHttpHeader *header,
+void             eva_http_header_set_content_encoding(EvaHttpHeader *header,
                                                      const char      *encoding);
 
 /*content_type; content_subtype; content_charset; content_additional;*/
 
-typedef struct _GskHttpContentTypeInfo GskHttpContentTypeInfo;
-struct _GskHttpContentTypeInfo
+typedef struct _EvaHttpContentTypeInfo EvaHttpContentTypeInfo;
+struct _EvaHttpContentTypeInfo
 {
   const char *type_start;
   guint type_len;
@@ -651,22 +651,22 @@ struct _GskHttpContentTypeInfo
 typedef enum
 {
   EVA_HTTP_CONTENT_TYPE_PARSE_ADDL = (1<<0) /* unimplemented */
-} GskHttpContentTypeParseFlags;
+} EvaHttpContentTypeParseFlags;
 
 gboolean eva_http_content_type_parse (const char *content_type_header,
-                                      GskHttpContentTypeParseFlags flags,
-                                      GskHttpContentTypeInfo *out,
+                                      EvaHttpContentTypeParseFlags flags,
+                                      EvaHttpContentTypeInfo *out,
                                       GError                **error);
 
 
 
 /* --- miscellaneous key/value pairs --- */
-void             eva_http_header_add_misc     (GskHttpHeader *header,
+void             eva_http_header_add_misc     (EvaHttpHeader *header,
                                                const char    *key,
                                                const char    *value);
-void             eva_http_header_remove_misc  (GskHttpHeader *header,
+void             eva_http_header_remove_misc  (EvaHttpHeader *header,
                                                const char    *key);
-const char      *eva_http_header_lookup_misc  (GskHttpHeader *header,
+const char      *eva_http_header_lookup_misc  (EvaHttpHeader *header,
                                                const char    *key);
 
 /* XXX: need to figure out the clean way to replace this one
@@ -675,52 +675,52 @@ const char      *eva_http_header_lookup_misc  (GskHttpHeader *header,
 /*char                *eva_http_header_gen_random_cookie();*/
 
 
-typedef struct _GskHttpHeaderLineParser GskHttpHeaderLineParser;
-typedef gboolean (*GskHttpHeaderLineParserFunc) (GskHttpHeader *header,
+typedef struct _EvaHttpHeaderLineParser EvaHttpHeaderLineParser;
+typedef gboolean (*EvaHttpHeaderLineParserFunc) (EvaHttpHeader *header,
 						 const char    *text,
 						 gpointer       data);
-struct _GskHttpHeaderLineParser
+struct _EvaHttpHeaderLineParser
 {
   const char *name;
-  GskHttpHeaderLineParserFunc func;
+  EvaHttpHeaderLineParserFunc func;
   gpointer data;
 };
   
 /* The returned table is a map from g_str_hash(lowercase(header)) to
-   GskHttpHeaderLineParser. */
+   EvaHttpHeaderLineParser. */
 GHashTable        *eva_http_header_get_parser_table(gboolean       is_request);
 
 /* Standard header constructions... */
 
 
 /* --- outputting an http header --- */
-typedef void (*GskHttpHeaderPrintFunc) (const char       *text,
+typedef void (*EvaHttpHeaderPrintFunc) (const char       *text,
 					gpointer          data);
-void              eva_http_header_print (GskHttpHeader          *http_header,
-		                         GskHttpHeaderPrintFunc  print_func,
+void              eva_http_header_print (EvaHttpHeader          *http_header,
+		                         EvaHttpHeaderPrintFunc  print_func,
 		                         gpointer                print_data);
 
 
-GskHttpConnection    eva_http_header_get_connection (GskHttpHeader *header);
-void                 eva_http_header_set_version    (GskHttpHeader *header,
+EvaHttpConnection    eva_http_header_get_connection (EvaHttpHeader *header);
+void                 eva_http_header_set_version    (EvaHttpHeader *header,
 						     gint           major,
 						     gint           minor);
-void                 eva_http_header_add_pragma     (GskHttpHeader *header,
+void                 eva_http_header_add_pragma     (EvaHttpHeader *header,
                                                      const char    *pragma);
-void             eva_http_header_add_accepted_range (GskHttpHeader *header,
-                                                     GskHttpRange   range);
+void             eva_http_header_add_accepted_range (EvaHttpHeader *header,
+                                                     EvaHttpRange   range);
 
 
 #define eva_http_header_set_connection_type(header, connection_type)	      \
-  g_object_set (EVA_HTTP_HEADER(header), "connection", (GskHttpConnection) (connection_type), NULL)
+  g_object_set (EVA_HTTP_HEADER(header), "connection", (EvaHttpConnection) (connection_type), NULL)
 #define eva_http_header_get_connection_type(header)			      \
   (EVA_HTTP_HEADER(header)->connection_type)
 #define eva_http_header_set_transfer_encoding(header, enc)		      \
-  g_object_set (EVA_HTTP_HEADER(header), "transfer-encoding", (GskHttpTransferEncoding) (enc), NULL)
+  g_object_set (EVA_HTTP_HEADER(header), "transfer-encoding", (EvaHttpTransferEncoding) (enc), NULL)
 #define eva_http_header_get_transfer_encoding(header)			      \
   (EVA_HTTP_HEADER(header)->transfer_encoding_type)
 #define eva_http_header_set_content_encoding(header, enc)		      \
-  g_object_set (EVA_HTTP_HEADER(header), "content-encoding", (GskHttpContentEncoding) (enc), NULL)
+  g_object_set (EVA_HTTP_HEADER(header), "content-encoding", (EvaHttpContentEncoding) (enc), NULL)
 #define eva_http_header_get_content_encoding(header)			      \
   (EVA_HTTP_HEADER(header)->content_encoding_type)
 #define eva_http_header_set_content_length(header, len)		              \
@@ -757,11 +757,11 @@ char * eva_http_header_cut_string (gpointer    http_header,
 
 void eva_http_header_free_string (gpointer http_header,
 			          char    *str);
-void eva_http_header_set_connection_string (GskHttpHeader *header,
+void eva_http_header_set_connection_string (EvaHttpHeader *header,
                                             const char    *str);
-void eva_http_header_set_content_encoding_string  (GskHttpHeader *header,
+void eva_http_header_set_content_encoding_string  (EvaHttpHeader *header,
                                                    const char    *str);
-void eva_http_header_set_transfer_encoding_string (GskHttpHeader *header,
+void eva_http_header_set_transfer_encoding_string (EvaHttpHeader *header,
                                                    const char    *str);
 
 #define eva_http_header_set_content_type(header, content_type)	      \

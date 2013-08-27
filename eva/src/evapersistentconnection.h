@@ -8,14 +8,14 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskPersistentConnection GskPersistentConnection;
-typedef struct _GskPersistentConnectionClass GskPersistentConnectionClass;
+typedef struct _EvaPersistentConnection EvaPersistentConnection;
+typedef struct _EvaPersistentConnectionClass EvaPersistentConnectionClass;
 /* --- type macros --- */
 GType eva_persistent_connection_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_PERSISTENT_CONNECTION			(eva_persistent_connection_get_type ())
-#define EVA_PERSISTENT_CONNECTION(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_PERSISTENT_CONNECTION, GskPersistentConnection))
-#define EVA_PERSISTENT_CONNECTION_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_PERSISTENT_CONNECTION, GskPersistentConnectionClass))
-#define EVA_PERSISTENT_CONNECTION_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_PERSISTENT_CONNECTION, GskPersistentConnectionClass))
+#define EVA_PERSISTENT_CONNECTION(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_PERSISTENT_CONNECTION, EvaPersistentConnection))
+#define EVA_PERSISTENT_CONNECTION_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_PERSISTENT_CONNECTION, EvaPersistentConnectionClass))
+#define EVA_PERSISTENT_CONNECTION_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_PERSISTENT_CONNECTION, EvaPersistentConnectionClass))
 #define EVA_IS_PERSISTENT_CONNECTION(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_PERSISTENT_CONNECTION))
 #define EVA_IS_PERSISTENT_CONNECTION_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_PERSISTENT_CONNECTION))
 
@@ -32,20 +32,20 @@ typedef enum
   EVA_PERSISTENT_CONNECTION_CONNECTING,
   EVA_PERSISTENT_CONNECTION_CONNECTED,
   EVA_PERSISTENT_CONNECTION_WAITING
-} GskPersistentConnectionState;
+} EvaPersistentConnectionState;
 
-struct _GskPersistentConnectionClass 
+struct _EvaPersistentConnectionClass 
 {
-  GskStreamClass base_class;
-  void (*handle_connected)    (GskPersistentConnection *);
-  void (*handle_disconnected) (GskPersistentConnection *);
+  EvaStreamClass base_class;
+  void (*handle_connected)    (EvaPersistentConnection *);
+  void (*handle_disconnected) (EvaPersistentConnection *);
 };
 
-struct _GskPersistentConnection 
+struct _EvaPersistentConnection 
 {
-  GskStream      base_instance;
+  EvaStream      base_instance;
 
-  GskPersistentConnectionState state;
+  EvaPersistentConnectionState state;
   guint             retry_timeout_ms;
 
   /* debugging */
@@ -55,11 +55,11 @@ struct _GskPersistentConnection
   /* Alternate methods for specifying the address. */
 
   /* by socket address */
-  GskSocketAddress *address;
+  EvaSocketAddress *address;
 
   /*< private >*/
-  GskStream        *transport;
-  GskSource        *retry_timeout_source;
+  EvaStream        *transport;
+  EvaSource        *retry_timeout_source;
   gulong transport_on_connect_signal_handler;
   gulong transport_on_error_signal_handler;
 };
@@ -70,14 +70,14 @@ struct _GskPersistentConnection
    && EVA_STREAM_FD ((pc)->transport)->is_resolving_name)
 
 /* --- prototypes --- */
-GskStream *eva_persistent_connection_new (GskSocketAddress *address,
+EvaStream *eva_persistent_connection_new (EvaSocketAddress *address,
                                           guint             retry_timeout_ms);
-GskStream *eva_persistent_connection_new_lookup
+EvaStream *eva_persistent_connection_new_lookup
                                      (const char *host,
                                       guint       port,
                                       guint       retry_timeout_ms);
 
-void eva_persistent_connection_restart (GskPersistentConnection *connection,
+void eva_persistent_connection_restart (EvaPersistentConnection *connection,
                                         guint                    retry_wait_ms);
 
 

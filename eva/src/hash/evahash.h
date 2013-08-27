@@ -5,39 +5,39 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskHash GskHash;
+typedef struct _EvaHash EvaHash;
 
 /* --- public interface --- */
-GskHash   *eva_hash_new_md5    (void);
-GskHash   *eva_hash_new_sha1   (void);
-GskHash   *eva_hash_new_sha256 (void);      /* WARNING: untested */
-GskHash   *eva_hash_new_crc32  (gboolean        big_endian);
-void       eva_hash_feed       (GskHash        *hash,
+EvaHash   *eva_hash_new_md5    (void);
+EvaHash   *eva_hash_new_sha1   (void);
+EvaHash   *eva_hash_new_sha256 (void);      /* WARNING: untested */
+EvaHash   *eva_hash_new_crc32  (gboolean        big_endian);
+void       eva_hash_feed       (EvaHash        *hash,
                                 gconstpointer   data,
 				guint           length);
-void       eva_hash_feed_str   (GskHash        *hash,
+void       eva_hash_feed_str   (EvaHash        *hash,
                                 const char     *str);
-void       eva_hash_done       (GskHash        *hash);
-guint      eva_hash_get_size   (GskHash        *hash);
-void       eva_hash_get        (GskHash        *hash,
+void       eva_hash_done       (EvaHash        *hash);
+guint      eva_hash_get_size   (EvaHash        *hash);
+void       eva_hash_get        (EvaHash        *hash,
                                 guint8         *data_out);
-void       eva_hash_get_hex    (GskHash        *hash,
+void       eva_hash_get_hex    (EvaHash        *hash,
                                 gchar          *hex_out);
-void       eva_hash_destroy    (GskHash        *hash);
+void       eva_hash_destroy    (EvaHash        *hash);
 
 
 /* --- for implementing new types of hash functions --- */
-struct _GskHash
+struct _EvaHash
 {
   /* The size of the hash-key (in bytes) */
   guint       size;
 
   /*< protected >*/
-  void      (*feed)     (GskHash       *hash,
+  void      (*feed)     (EvaHash       *hash,
                          gconstpointer  data,
 		         guint          len);
-  gpointer  (*done)     (GskHash       *hash);
-  void      (*destroy)  (GskHash       *hash);
+  gpointer  (*done)     (EvaHash       *hash);
+  void      (*destroy)  (EvaHash       *hash);
 
   /*< private >*/
   guint	      flags;		/* constructor must set this to 0 */

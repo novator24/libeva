@@ -8,7 +8,7 @@ struct _SourceInfo
 {
   GTimeVal intended_runtime;
   gint period;		/* possibly -1 */
-  GskSource *source;
+  EvaSource *source;
 };
 
 static GTimeVal last_runtime = {0, 0};

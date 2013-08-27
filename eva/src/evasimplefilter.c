@@ -7,7 +7,7 @@ static GObjectClass *parent_class = NULL;
 #define DEFAULT_MAX_WRITE_BUFFER_SIZE		8192
 
 static inline void
-update_idle_notification (GskSimpleFilter *filter)
+update_idle_notification (EvaSimpleFilter *filter)
 {
   if (!eva_io_get_is_writable (filter) && filter->read_buffer.size == 0)
     eva_io_notify_read_shutdown (filter);
@@ -21,24 +21,24 @@ update_idle_notification (GskSimpleFilter *filter)
 }
 
 static gboolean
-process_data (GskSimpleFilter *filter,
+process_data (EvaSimpleFilter *filter,
 	      GError         **error)
 {
-  GskSimpleFilterClass *class = EVA_SIMPLE_FILTER_GET_CLASS (filter);
+  EvaSimpleFilterClass *class = EVA_SIMPLE_FILTER_GET_CLASS (filter);
   g_return_val_if_fail (class->process != NULL, FALSE);
   if (!(*class->process) (filter, &filter->read_buffer, &filter->write_buffer, error))
     return FALSE;
   return TRUE;
 }
 
-/* --- GskStream methods --- */
+/* --- EvaStream methods --- */
 static guint
-eva_simple_filter_raw_read (GskStream     *stream,
+eva_simple_filter_raw_read (EvaStream     *stream,
                             gpointer       data,
                             guint          length,
                             GError       **error)
 {
-  GskSimpleFilter *simple_filter = EVA_SIMPLE_FILTER (stream);
+  EvaSimpleFilter *simple_filter = EVA_SIMPLE_FILTER (stream);
   guint rv = eva_buffer_read (&simple_filter->read_buffer, data, length);
 
   update_idle_notification (simple_filter);
@@ -47,12 +47,12 @@ eva_simple_filter_raw_read (GskStream     *stream,
 }
 
 static guint
-eva_simple_filter_raw_write (GskStream     *stream,
+eva_simple_filter_raw_write (EvaStream     *stream,
                              gconstpointer  data,
                              guint          length,
                              GError       **error)
 {
-  GskSimpleFilter *simple_filter = EVA_SIMPLE_FILTER (stream);
+  EvaSimpleFilter *simple_filter = EVA_SIMPLE_FILTER (stream);
   eva_buffer_append (&simple_filter->write_buffer, data, length);
   if (!process_data (simple_filter, error))
     return length;
@@ -61,22 +61,22 @@ eva_simple_filter_raw_write (GskStream     *stream,
 }
 
 static guint
-eva_simple_filter_raw_read_buffer (GskStream     *stream,
-                                   GskBuffer     *buffer,
+eva_simple_filter_raw_read_buffer (EvaStream     *stream,
+                                   EvaBuffer     *buffer,
                                    GError       **error)
 {
-  GskSimpleFilter *simple_filter = EVA_SIMPLE_FILTER (stream);
+  EvaSimpleFilter *simple_filter = EVA_SIMPLE_FILTER (stream);
   guint rv = eva_buffer_drain (buffer, &simple_filter->read_buffer);
   update_idle_notification (simple_filter);
   return rv;
 }
 
 static guint
-eva_simple_filter_raw_write_buffer (GskStream    *stream,
-                                    GskBuffer     *buffer,
+eva_simple_filter_raw_write_buffer (EvaStream    *stream,
+                                    EvaBuffer     *buffer,
                                     GError       **error)
 {
-  GskSimpleFilter *simple_filter = EVA_SIMPLE_FILTER (stream);
+  EvaSimpleFilter *simple_filter = EVA_SIMPLE_FILTER (stream);
   guint rv = eva_buffer_drain (&simple_filter->write_buffer, buffer);
   if (!process_data (simple_filter, error))
     return rv;
@@ -84,17 +84,17 @@ eva_simple_filter_raw_write_buffer (GskStream    *stream,
   return rv;
 }
 
-/* --- GskIO methods --- */
+/* --- EvaIO methods --- */
 #if 0
 static void
-eva_simple_filter_set_poll_read (GskIO      *io,
+eva_simple_filter_set_poll_read (EvaIO      *io,
                                  gboolean    do_poll)
 {
   ...
 }
 
 static void
-eva_simple_filter_set_poll_write (GskIO      *io,
+eva_simple_filter_set_poll_write (EvaIO      *io,
                                   gboolean    do_poll)
 {
   ...
@@ -102,10 +102,10 @@ eva_simple_filter_set_poll_write (GskIO      *io,
 #endif
 
 static gboolean
-eva_simple_filter_shutdown_read (GskIO      *io,
+eva_simple_filter_shutdown_read (EvaIO      *io,
                                  GError    **error)
 {
-  GskSimpleFilter *simple_filter = EVA_SIMPLE_FILTER (io);
+  EvaSimpleFilter *simple_filter = EVA_SIMPLE_FILTER (io);
   if (simple_filter->write_buffer.size > 0)
     {
       eva_io_set_error (io, EVA_IO_ERROR_READ,
@@ -119,11 +119,11 @@ eva_simple_filter_shutdown_read (GskIO      *io,
 }
 
 static gboolean
-eva_simple_filter_shutdown_write (GskIO      *io,
+eva_simple_filter_shutdown_write (EvaIO      *io,
                                   GError    **error)
 {
-  GskSimpleFilter *filter = EVA_SIMPLE_FILTER (io);
-  GskSimpleFilterClass *class = EVA_SIMPLE_FILTER_GET_CLASS (io);
+  EvaSimpleFilter *filter = EVA_SIMPLE_FILTER (io);
+  EvaSimpleFilterClass *class = EVA_SIMPLE_FILTER_GET_CLASS (io);
   gboolean rv = TRUE;
   if (filter->write_buffer.size > 0)
     if (!(*class->process) (filter, &filter->read_buffer, &filter->write_buffer, error))
@@ -144,7 +144,7 @@ eva_simple_filter_shutdown_write (GskIO      *io,
 static void
 eva_simple_filter_finalize (GObject        *object)
 {
-  GskSimpleFilter *simple_filter = EVA_SIMPLE_FILTER (object);
+  EvaSimpleFilter *simple_filter = EVA_SIMPLE_FILTER (object);
   eva_buffer_destruct (&simple_filter->read_buffer);
   eva_buffer_destruct (&simple_filter->write_buffer);
   (*parent_class->finalize) (object);
@@ -152,9 +152,9 @@ eva_simple_filter_finalize (GObject        *object)
 
 /* --- functions --- */
 static void
-eva_simple_filter_init (GskSimpleFilter *simple_filter)
+eva_simple_filter_init (EvaSimpleFilter *simple_filter)
 {
-  GskStream *stream = EVA_STREAM (simple_filter);
+  EvaStream *stream = EVA_STREAM (simple_filter);
   simple_filter->max_read_buffer_size = DEFAULT_MAX_READ_BUFFER_SIZE;
   simple_filter->max_write_buffer_size = DEFAULT_MAX_WRITE_BUFFER_SIZE;
   eva_stream_mark_is_readable (stream);
@@ -162,11 +162,11 @@ eva_simple_filter_init (GskSimpleFilter *simple_filter)
   eva_stream_mark_idle_notify_write (stream);
 }
 static void
-eva_simple_filter_class_init (GskSimpleFilterClass *class)
+eva_simple_filter_class_init (EvaSimpleFilterClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
-  GskIOClass *io_class = EVA_IO_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
   object_class->finalize = eva_simple_filter_finalize;
 #if 0
@@ -188,19 +188,19 @@ GType eva_simple_filter_get_type()
     {
       static const GTypeInfo simple_filter_info =
       {
-	sizeof(GskSimpleFilterClass),
+	sizeof(EvaSimpleFilterClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_simple_filter_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskSimpleFilter),
+	sizeof (EvaSimpleFilter),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_simple_filter_init,
 	NULL		/* value_table */
       };
       simple_filter_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskSimpleFilter",
+                                                  "EvaSimpleFilter",
 						  &simple_filter_info, 0);
     }
   return simple_filter_type;

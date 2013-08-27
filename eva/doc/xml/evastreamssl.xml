@@ -1,31 +1,31 @@
 <refentry id="eva-evastreamssl">
 <refmeta>
-<refentrytitle role="top_of_page" id="eva-evastreamssl.top_of_page">GskStreamSsl</refentrytitle>
+<refentrytitle role="top_of_page" id="eva-evastreamssl.top_of_page">EvaStreamSsl</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskStreamSsl</refname>
+<refname>EvaStreamSsl</refname>
 <refpurpose></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv id="eva-evastreamssl.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
-<anchor id="GskStreamSsl"/>
+<anchor id="EvaStreamSsl"/>
 <synopsis>
-                    <link linkend="GskStreamSsl-struct">GskStreamSsl</link>;
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-stream-ssl-new-client">eva_stream_ssl_new_client</link>           (const <link linkend="char">char</link> *cert_file,
+                    <link linkend="EvaStreamSsl-struct">EvaStreamSsl</link>;
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-stream-ssl-new-client">eva_stream_ssl_new_client</link>           (const <link linkend="char">char</link> *cert_file,
                                                          const <link linkend="char">char</link> *key_file,
                                                          const <link linkend="char">char</link> *password,
-                                                         <link linkend="GskStream">GskStream</link> *transport,
+                                                         <link linkend="EvaStream">EvaStream</link> *transport,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-stream-ssl-new-server">eva_stream_ssl_new_server</link>           (const <link linkend="char">char</link> *cert_file,
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-stream-ssl-new-server">eva_stream_ssl_new_server</link>           (const <link linkend="char">char</link> *cert_file,
                                                          const <link linkend="char">char</link> *key_file,
                                                          const <link linkend="char">char</link> *password,
-                                                         <link linkend="GskStream">GskStream</link> *transport,
+                                                         <link linkend="EvaStream">EvaStream</link> *transport,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-stream-ssl-peek-backend">eva_stream_ssl_peek_backend</link>         (<link linkend="GskStreamSsl">GskStreamSsl</link> *ssl);
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-stream-ssl-peek-backend">eva_stream_ssl_peek_backend</link>         (<link linkend="EvaStreamSsl">EvaStreamSsl</link> *ssl);
 </synopsis>
 </refsynopsisdiv>
 
@@ -33,9 +33,9 @@
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskIO">GskIO</link>
-         +----<link linkend="GskStream">GskStream</link>
-               +----GskStreamSsl
+   +----<link linkend="EvaIO">EvaIO</link>
+         +----<link linkend="EvaStream">EvaStream</link>
+               +----EvaStreamSsl
 </synopsis>
 </refsect1>
 
@@ -46,10 +46,10 @@
 <refsect1 id="eva-evastreamssl.properties" role="properties">
 <title role="properties.title">Properties</title>
 <synopsis>
-  &quot;<link linkend="GskStreamSsl--cert-file">cert-file</link>&quot;                <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
-  &quot;<link linkend="GskStreamSsl--is-client">is-client</link>&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only
-  &quot;<link linkend="GskStreamSsl--key-file">key-file</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
-  &quot;<link linkend="GskStreamSsl--password">password</link>&quot;                 <link linkend="gchar">gchar</link>*                : Write / Construct Only
+  &quot;<link linkend="EvaStreamSsl--cert-file">cert-file</link>&quot;                <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="EvaStreamSsl--is-client">is-client</link>&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only
+  &quot;<link linkend="EvaStreamSsl--key-file">key-file</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="EvaStreamSsl--password">password</link>&quot;                 <link linkend="gchar">gchar</link>*                : Write / Construct Only
 </synopsis>
 </refsect1>
 
@@ -63,18 +63,18 @@
 
 <refsect1 id="eva-evastreamssl.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskStreamSsl-struct" role="struct">
-<title>GskStreamSsl</title>
-<indexterm zone="GskStreamSsl-struct"><primary sortas="GskStreamSsl">GskStreamSsl</primary></indexterm><programlisting>typedef struct _GskStreamSsl GskStreamSsl;</programlisting>
+<refsect2 id="EvaStreamSsl-struct" role="struct">
+<title>EvaStreamSsl</title>
+<indexterm zone="EvaStreamSsl-struct"><primary sortas="EvaStreamSsl">EvaStreamSsl</primary></indexterm><programlisting>typedef struct _EvaStreamSsl EvaStreamSsl;</programlisting>
 <para>
 A SSL client or server.
 </para></refsect2>
 <refsect2 id="eva-stream-ssl-new-client" role="function">
 <title>eva_stream_ssl_new_client ()</title>
-<indexterm zone="eva-stream-ssl-new-client"><primary sortas="eva_stream_ssl_new_client">eva_stream_ssl_new_client</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_stream_ssl_new_client           (const <link linkend="char">char</link> *cert_file,
+<indexterm zone="eva-stream-ssl-new-client"><primary sortas="eva_stream_ssl_new_client">eva_stream_ssl_new_client</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_stream_ssl_new_client           (const <link linkend="char">char</link> *cert_file,
                                                          const <link linkend="char">char</link> *key_file,
                                                          const <link linkend="char">char</link> *password,
-                                                         <link linkend="GskStream">GskStream</link> *transport,
+                                                         <link linkend="EvaStream">EvaStream</link> *transport,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Create the client end of a SSL connection.
@@ -103,10 +103,10 @@ to the backend stream by bidirectionally).
 </variablelist></refsect2>
 <refsect2 id="eva-stream-ssl-new-server" role="function">
 <title>eva_stream_ssl_new_server ()</title>
-<indexterm zone="eva-stream-ssl-new-server"><primary sortas="eva_stream_ssl_new_server">eva_stream_ssl_new_server</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_stream_ssl_new_server           (const <link linkend="char">char</link> *cert_file,
+<indexterm zone="eva-stream-ssl-new-server"><primary sortas="eva_stream_ssl_new_server">eva_stream_ssl_new_server</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_stream_ssl_new_server           (const <link linkend="char">char</link> *cert_file,
                                                          const <link linkend="char">char</link> *key_file,
                                                          const <link linkend="char">char</link> *password,
-                                                         <link linkend="GskStream">GskStream</link> *transport,
+                                                         <link linkend="EvaStream">EvaStream</link> *transport,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Create a new SSL server.
@@ -135,7 +135,7 @@ to the backend stream by bidirectionally).
 </variablelist></refsect2>
 <refsect2 id="eva-stream-ssl-peek-backend" role="function">
 <title>eva_stream_ssl_peek_backend ()</title>
-<indexterm zone="eva-stream-ssl-peek-backend"><primary sortas="eva_stream_ssl_peek_backend">eva_stream_ssl_peek_backend</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_stream_ssl_peek_backend         (<link linkend="GskStreamSsl">GskStreamSsl</link> *ssl);</programlisting>
+<indexterm zone="eva-stream-ssl-peek-backend"><primary sortas="eva_stream_ssl_peek_backend">eva_stream_ssl_peek_backend</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_stream_ssl_peek_backend         (<link linkend="EvaStreamSsl">EvaStreamSsl</link> *ssl);</programlisting>
 <para>
 Get a reference to the backend stream, which
 should be connected to the underlying transport
@@ -154,20 +154,20 @@ without SSL protection).
 </refsect1>
 <refsect1 id="eva-evastreamssl.property-details" role="property_details">
 <title role="property_details.title">Property Details</title>
-<refsect2 id="GskStreamSsl--cert-file" role="property"><title>The <literal>&quot;cert-file&quot;</literal> property</title>
-<indexterm zone="GskStreamSsl--cert-file"><primary sortas="GskStreamSsl:cert-file">GskStreamSsl:cert-file</primary></indexterm><programlisting>  &quot;cert-file&quot;                <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<refsect2 id="EvaStreamSsl--cert-file" role="property"><title>The <literal>&quot;cert-file&quot;</literal> property</title>
+<indexterm zone="EvaStreamSsl--cert-file"><primary sortas="EvaStreamSsl:cert-file">EvaStreamSsl:cert-file</primary></indexterm><programlisting>  &quot;cert-file&quot;                <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
 <para>the x.509 PEM Certificate.</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskStreamSsl--is-client" role="property"><title>The <literal>&quot;is-client&quot;</literal> property</title>
-<indexterm zone="GskStreamSsl--is-client"><primary sortas="GskStreamSsl:is-client">GskStreamSsl:is-client</primary></indexterm><programlisting>  &quot;is-client&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only</programlisting>
+<refsect2 id="EvaStreamSsl--is-client" role="property"><title>The <literal>&quot;is-client&quot;</literal> property</title>
+<indexterm zone="EvaStreamSsl--is-client"><primary sortas="EvaStreamSsl:is-client">EvaStreamSsl:is-client</primary></indexterm><programlisting>  &quot;is-client&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only</programlisting>
 <para>is this a SSL client (versus a server).</para><para>Default value: FALSE</para>
 </refsect2>
-<refsect2 id="GskStreamSsl--key-file" role="property"><title>The <literal>&quot;key-file&quot;</literal> property</title>
-<indexterm zone="GskStreamSsl--key-file"><primary sortas="GskStreamSsl:key-file">GskStreamSsl:key-file</primary></indexterm><programlisting>  &quot;key-file&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<refsect2 id="EvaStreamSsl--key-file" role="property"><title>The <literal>&quot;key-file&quot;</literal> property</title>
+<indexterm zone="EvaStreamSsl--key-file"><primary sortas="EvaStreamSsl:key-file">EvaStreamSsl:key-file</primary></indexterm><programlisting>  &quot;key-file&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
 <para>the x.509 PEM Key.</para><para>Default value: NULL</para>
 </refsect2>
-<refsect2 id="GskStreamSsl--password" role="property"><title>The <literal>&quot;password&quot;</literal> property</title>
-<indexterm zone="GskStreamSsl--password"><primary sortas="GskStreamSsl:password">GskStreamSsl:password</primary></indexterm><programlisting>  &quot;password&quot;                 <link linkend="gchar">gchar</link>*                : Write / Construct Only</programlisting>
+<refsect2 id="EvaStreamSsl--password" role="property"><title>The <literal>&quot;password&quot;</literal> property</title>
+<indexterm zone="EvaStreamSsl--password"><primary sortas="EvaStreamSsl:password">EvaStreamSsl:password</primary></indexterm><programlisting>  &quot;password&quot;                 <link linkend="gchar">gchar</link>*                : Write / Construct Only</programlisting>
 <para>secret passphrase for the certificate.</para><para>Default value: NULL</para>
 </refsect2>
 </refsect1>

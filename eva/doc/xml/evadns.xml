@@ -15,46 +15,46 @@
 
 <synopsis>
 #define             <link linkend="EVA-DNS-PORT--CAPS">EVA_DNS_PORT</link>
-                    <link linkend="GskDnsMessage">GskDnsMessage</link>;
-                    <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link>;
-                    <link linkend="GskDnsQuestion">GskDnsQuestion</link>;
-enum                <link linkend="GskDnsResourceRecordType">GskDnsResourceRecordType</link>;
-enum                <link linkend="GskDnsResourceClass">GskDnsResourceClass</link>;
+                    <link linkend="EvaDnsMessage">EvaDnsMessage</link>;
+                    <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link>;
+                    <link linkend="EvaDnsQuestion">EvaDnsQuestion</link>;
+enum                <link linkend="EvaDnsResourceRecordType">EvaDnsResourceRecordType</link>;
+enum                <link linkend="EvaDnsResourceClass">EvaDnsResourceClass</link>;
 #define             <link linkend="EVA-DNS-SERIAL-LESS-THAN--CAPS">EVA_DNS_SERIAL_LESS_THAN</link>            (serial_1, serial_2)
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-generic">eva_dns_rr_new_generic</link>           (<link linkend="GskDnsMessage">GskDnsMessage</link> *allocator,
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-generic">eva_dns_rr_new_generic</link>           (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator,
                                                          const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl);
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-a">eva_dns_rr_new_a</link>                 (const <link linkend="char">char</link> *owner,
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-a">eva_dns_rr_new_a</link>                 (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="guint8">guint8</link> *ip_address,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-aaaa">eva_dns_rr_new_aaaa</link>              (const <link linkend="char">char</link> *owner,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-aaaa">eva_dns_rr_new_aaaa</link>              (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="guint8">guint8</link> *address,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-ns">eva_dns_rr_new_ns</link>                (const <link linkend="char">char</link> *owner,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-ns">eva_dns_rr_new_ns</link>                (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="char">char</link> *name_server,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-cname">eva_dns_rr_new_cname</link>             (const <link linkend="char">char</link> *owner,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-cname">eva_dns_rr_new_cname</link>             (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="char">char</link> *canonical_name,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-ptr">eva_dns_rr_new_ptr</link>               (const <link linkend="char">char</link> *owner,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-ptr">eva_dns_rr_new_ptr</link>               (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="char">char</link> *ptr,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-mx">eva_dns_rr_new_mx</link>                (const <link linkend="char">char</link> *owner,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-mx">eva_dns_rr_new_mx</link>                (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          <link linkend="int">int</link> preference,
                                                          const <link linkend="char">char</link> *mail_host,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-hinfo">eva_dns_rr_new_hinfo</link>             (const <link linkend="char">char</link> *owner,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-hinfo">eva_dns_rr_new_hinfo</link>             (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="char">char</link> *cpu,
                                                          const <link linkend="char">char</link> *os,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-soa">eva_dns_rr_new_soa</link>               (const <link linkend="char">char</link> *owner,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-soa">eva_dns_rr_new_soa</link>               (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="char">char</link> *mname,
                                                          const <link linkend="char">char</link> *rname,
@@ -63,67 +63,67 @@ enum                <link linkend="GskDnsResourceClass">GskDnsResourceClass</lin
                                                          <link linkend="guint32">guint32</link> retry_time,
                                                          <link linkend="guint32">guint32</link> expire_time,
                                                          <link linkend="guint32">guint32</link> minimum_time,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-txt">eva_dns_rr_new_txt</link>               (const <link linkend="char">char</link> *owner,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-txt">eva_dns_rr_new_txt</link>               (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="char">char</link> *text,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="void">void</link>                <link linkend="eva-dns-rr-free">eva_dns_rr_free</link>                     (<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *record);
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-copy">eva_dns_rr_copy</link>                  (<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *record,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-wildcard">eva_dns_rr_new_wildcard</link>          (const <link linkend="char">char</link> *owner,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="void">void</link>                <link linkend="eva-dns-rr-free">eva_dns_rr_free</link>                     (<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *record);
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-copy">eva_dns_rr_copy</link>                  (<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *record,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-new-wildcard">eva_dns_rr_new_wildcard</link>          (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint">guint</link> ttl,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="GskDnsQuestion">GskDnsQuestion</link> *    <link linkend="eva-dns-question-new">eva_dns_question_new</link>                (const <link linkend="char">char</link> *query_name,
-                                                         <link linkend="GskDnsResourceRecordType">GskDnsResourceRecordType</link> query_type,
-                                                         <link linkend="GskDnsResourceClass">GskDnsResourceClass</link> query_class,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="GskDnsQuestion">GskDnsQuestion</link> *    <link linkend="eva-dns-question-copy">eva_dns_question_copy</link>               (<link linkend="GskDnsQuestion">GskDnsQuestion</link> *question,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="void">void</link>                <link linkend="eva-dns-question-free">eva_dns_question_free</link>               (<link linkend="GskDnsQuestion">GskDnsQuestion</link> *question);
-<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * <link linkend="eva-dns-rr-text-parse">eva_dns_rr_text_parse</link>            (const <link linkend="char">char</link> *record,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *    <link linkend="eva-dns-question-new">eva_dns_question_new</link>                (const <link linkend="char">char</link> *query_name,
+                                                         <link linkend="EvaDnsResourceRecordType">EvaDnsResourceRecordType</link> query_type,
+                                                         <link linkend="EvaDnsResourceClass">EvaDnsResourceClass</link> query_class,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *    <link linkend="eva-dns-question-copy">eva_dns_question_copy</link>               (<link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *question,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="void">void</link>                <link linkend="eva-dns-question-free">eva_dns_question_free</link>               (<link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *question);
+<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * <link linkend="eva-dns-rr-text-parse">eva_dns_rr_text_parse</link>            (const <link linkend="char">char</link> *record,
                                                          const <link linkend="char">char</link> *last_owner,
                                                          const <link linkend="char">char</link> *origin,
                                                          <link linkend="char">char</link> **err_msg,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);
-<link linkend="char">char</link> *              <link linkend="eva-dns-rr-text-to-str">eva_dns_rr_text_to_str</link>              (<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *rr,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);
+<link linkend="char">char</link> *              <link linkend="eva-dns-rr-text-to-str">eva_dns_rr_text_to_str</link>              (<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *rr,
                                                          const <link linkend="char">char</link> *last_owner);
-<link linkend="char">char</link> *              <link linkend="eva-dns-question-text-to-str">eva_dns_question_text_to_str</link>        (<link linkend="GskDnsQuestion">GskDnsQuestion</link> *question);
-<link linkend="void">void</link>                <link linkend="eva-dns-rr-text-write">eva_dns_rr_text_write</link>               (<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *rr,
-                                                         <link linkend="GskBuffer">GskBuffer</link> *out_buffer,
+<link linkend="char">char</link> *              <link linkend="eva-dns-question-text-to-str">eva_dns_question_text_to_str</link>        (<link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *question);
+<link linkend="void">void</link>                <link linkend="eva-dns-rr-text-write">eva_dns_rr_text_write</link>               (<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *rr,
+                                                         <link linkend="EvaBuffer">EvaBuffer</link> *out_buffer,
                                                          const <link linkend="char">char</link> *last_owner);
-enum                <link linkend="GskDnsResponseCode">GskDnsResponseCode</link>;
-<link linkend="GskDnsMessage">GskDnsMessage</link> *     <link linkend="eva-dns-message-new">eva_dns_message_new</link>                 (<link linkend="guint16">guint16</link> id,
+enum                <link linkend="EvaDnsResponseCode">EvaDnsResponseCode</link>;
+<link linkend="EvaDnsMessage">EvaDnsMessage</link> *     <link linkend="eva-dns-message-new">eva_dns_message_new</link>                 (<link linkend="guint16">guint16</link> id,
                                                          <link linkend="gboolean">gboolean</link> is_request);
-<link linkend="GskDnsMessage">GskDnsMessage</link> *     <link linkend="eva-dns-message-parse-buffer">eva_dns_message_parse_buffer</link>        (<link linkend="GskBuffer">GskBuffer</link> *buffer);
-<link linkend="GskDnsMessage">GskDnsMessage</link> *     <link linkend="eva-dns-message-parse-data">eva_dns_message_parse_data</link>          (const <link linkend="guint8">guint8</link> *data,
+<link linkend="EvaDnsMessage">EvaDnsMessage</link> *     <link linkend="eva-dns-message-parse-buffer">eva_dns_message_parse_buffer</link>        (<link linkend="EvaBuffer">EvaBuffer</link> *buffer);
+<link linkend="EvaDnsMessage">EvaDnsMessage</link> *     <link linkend="eva-dns-message-parse-data">eva_dns_message_parse_data</link>          (const <link linkend="guint8">guint8</link> *data,
                                                          <link linkend="guint">guint</link> length,
                                                          <link linkend="guint">guint</link> *bytes_used_out);
-<link linkend="void">void</link>                <link linkend="eva-dns-message-write-buffer">eva_dns_message_write_buffer</link>        (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskBuffer">GskBuffer</link> *buffer,
+<link linkend="void">void</link>                <link linkend="eva-dns-message-write-buffer">eva_dns_message_write_buffer</link>        (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaBuffer">EvaBuffer</link> *buffer,
                                                          <link linkend="gboolean">gboolean</link> compress);
-<link linkend="GskPacket">GskPacket</link> *         <link linkend="eva-dns-message-to-packet">eva_dns_message_to_packet</link>           (<link linkend="GskDnsMessage">GskDnsMessage</link> *message);
-<link linkend="void">void</link>                <link linkend="eva-dns-message-append-question">eva_dns_message_append_question</link>     (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsQuestion">GskDnsQuestion</link> *question);
-<link linkend="void">void</link>                <link linkend="eva-dns-message-append-answer">eva_dns_message_append_answer</link>       (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *answer);
-<link linkend="void">void</link>                <link linkend="eva-dns-message-append-auth">eva_dns_message_append_auth</link>         (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *auth);
-<link linkend="void">void</link>                <link linkend="eva-dns-message-append-addl">eva_dns_message_append_addl</link>         (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *addl);
-<link linkend="void">void</link>                <link linkend="eva-dns-message-remove-question">eva_dns_message_remove_question</link>     (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsQuestion">GskDnsQuestion</link> *question);
-<link linkend="void">void</link>                <link linkend="eva-dns-message-remove-answer">eva_dns_message_remove_answer</link>       (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *answer);
-<link linkend="void">void</link>                <link linkend="eva-dns-message-remove-auth">eva_dns_message_remove_auth</link>         (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *auth);
-<link linkend="void">void</link>                <link linkend="eva-dns-message-remove-addl">eva_dns_message_remove_addl</link>         (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *addl);
-<link linkend="void">void</link>                <link linkend="eva-dns-message-unref">eva_dns_message_unref</link>               (<link linkend="GskDnsMessage">GskDnsMessage</link> *message);
-<link linkend="void">void</link>                <link linkend="eva-dns-message-ref">eva_dns_message_ref</link>                 (<link linkend="GskDnsMessage">GskDnsMessage</link> *message);
-<link linkend="void">void</link>                <link linkend="eva-dns-dump-message-fp">eva_dns_dump_message_fp</link>             (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
+<link linkend="EvaPacket">EvaPacket</link> *         <link linkend="eva-dns-message-to-packet">eva_dns_message_to_packet</link>           (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message);
+<link linkend="void">void</link>                <link linkend="eva-dns-message-append-question">eva_dns_message_append_question</link>     (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *question);
+<link linkend="void">void</link>                <link linkend="eva-dns-message-append-answer">eva_dns_message_append_answer</link>       (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *answer);
+<link linkend="void">void</link>                <link linkend="eva-dns-message-append-auth">eva_dns_message_append_auth</link>         (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *auth);
+<link linkend="void">void</link>                <link linkend="eva-dns-message-append-addl">eva_dns_message_append_addl</link>         (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *addl);
+<link linkend="void">void</link>                <link linkend="eva-dns-message-remove-question">eva_dns_message_remove_question</link>     (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *question);
+<link linkend="void">void</link>                <link linkend="eva-dns-message-remove-answer">eva_dns_message_remove_answer</link>       (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *answer);
+<link linkend="void">void</link>                <link linkend="eva-dns-message-remove-auth">eva_dns_message_remove_auth</link>         (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *auth);
+<link linkend="void">void</link>                <link linkend="eva-dns-message-remove-addl">eva_dns_message_remove_addl</link>         (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *addl);
+<link linkend="void">void</link>                <link linkend="eva-dns-message-unref">eva_dns_message_unref</link>               (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message);
+<link linkend="void">void</link>                <link linkend="eva-dns-message-ref">eva_dns_message_ref</link>                 (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message);
+<link linkend="void">void</link>                <link linkend="eva-dns-dump-message-fp">eva_dns_dump_message_fp</link>             (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
                                                          <link linkend="FILE--CAPS">FILE</link> *fp);
-<link linkend="void">void</link>                <link linkend="eva-dns-dump-question-fp">eva_dns_dump_question_fp</link>            (<link linkend="GskDnsQuestion">GskDnsQuestion</link> *question,
+<link linkend="void">void</link>                <link linkend="eva-dns-dump-question-fp">eva_dns_dump_question_fp</link>            (<link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *question,
                                                          <link linkend="FILE--CAPS">FILE</link> *fp);
 <link linkend="gboolean">gboolean</link>            <link linkend="eva-dns-parse-ip-address">eva_dns_parse_ip_address</link>            (const <link linkend="char">char</link> **pat,
                                                          <link linkend="guint8">guint8</link> *ip_addr_out);
@@ -156,9 +156,9 @@ Nameservers, unlike mots servers, basically must be on this port,
 since the protocol has no way to specify which port of a nameserver
 to try.
 </para></refsect2>
-<refsect2 id="GskDnsMessage" role="struct">
-<title>GskDnsMessage</title>
-<indexterm zone="GskDnsMessage"><primary sortas="GskDnsMessage">GskDnsMessage</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaDnsMessage" role="struct">
+<title>EvaDnsMessage</title>
+<indexterm zone="EvaDnsMessage"><primary sortas="EvaDnsMessage">EvaDnsMessage</primary></indexterm><programlisting>typedef struct {
   /* Header: fixed data about all queries */
   guint16       id;       /* used by requestor to match queries and replies */
 
@@ -180,23 +180,23 @@ to try.
 
   /* Question: Carries the query name and other query parameters. */
   /* `qtype' (names are from RFC 1034, section 3.7.1): the query type */
-  GSList       *questions;	/* of GskDnsQuestion */
+  GSList       *questions;	/* of EvaDnsQuestion */
 
   /* Answer: Carries RRs which directly answer the query. */
-  GskDnsResponseCode error_code;
-  GSList       *answers;	/* of GskDnsResourceRecord */
+  EvaDnsResponseCode error_code;
+  GSList       *answers;	/* of EvaDnsResourceRecord */
 
   /* Authority: Carries RRs which describe other authoritative servers.
    *            May optionally carry the SOA RR for the authoritative
    *            data in the answer section.
    */
-  GSList       *authority;	/* of GskDnsResourceRecord */
+  GSList       *authority;	/* of EvaDnsResourceRecord */
 
   /* Additional: Carries RRs which may be helpful in using the RRs in the
    *             other sections.
    */
-  GSList       *additional;	/* of GskDnsResourceRecord */
-} GskDnsMessage;
+  GSList       *additional;	/* of EvaDnsResourceRecord */
+} EvaDnsMessage;
 </programlisting>
 <para>
 This structure encapsulates a DNS packet, either a query or a response.
@@ -248,20 +248,20 @@ Recursive query support is optional.
 </varlistentry>
 <varlistentry>
 <term><link linkend="GSList">GSList</link>&#160;*<structfield>questions</structfield>;</term>
-<listitem><simpara>List of <link linkend="GskDnsQuestion"><type>GskDnsQuestion</type></link>  For a query, this is the most important section.
+<listitem><simpara>List of <link linkend="EvaDnsQuestion"><type>EvaDnsQuestion</type></link>  For a query, this is the most important section.
 Questions are often found in a response; they should just be copies of questions
 from the corresponding query.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskDnsResponseCode">GskDnsResponseCode</link>&#160;<structfield>error_code</structfield>;</term>
-<listitem><simpara>in a response, this is a <link linkend="GskDnsResponseCode"><type>GskDnsResponseCode</type></link> telling what went
+<term><link linkend="EvaDnsResponseCode">EvaDnsResponseCode</link>&#160;<structfield>error_code</structfield>;</term>
+<listitem><simpara>in a response, this is a <link linkend="EvaDnsResponseCode"><type>EvaDnsResponseCode</type></link> telling what went
 wrong, if anything.  0 means "no error".
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
 <term><link linkend="GSList">GSList</link>&#160;*<structfield>answers</structfield>;</term>
-<listitem><simpara>In a response, this is a list of <link linkend="GskDnsResourceRecord"><type>GskDnsResourceRecord</type></link>'s.
+<listitem><simpara>In a response, this is a list of <link linkend="EvaDnsResourceRecord"><type>EvaDnsResourceRecord</type></link>'s.
 They should lead toward answering the question in the query.
 </simpara></listitem>
 </varlistentry>
@@ -279,13 +279,13 @@ nameservers (NS records) given in prior sections.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskDnsResourceRecord" role="struct">
-<title>GskDnsResourceRecord</title>
-<indexterm zone="GskDnsResourceRecord"><primary sortas="GskDnsResourceRecord">GskDnsResourceRecord</primary></indexterm><programlisting>typedef struct {
-  GskDnsResourceRecordType  type;
+<refsect2 id="EvaDnsResourceRecord" role="struct">
+<title>EvaDnsResourceRecord</title>
+<indexterm zone="EvaDnsResourceRecord"><primary sortas="EvaDnsResourceRecord">EvaDnsResourceRecord</primary></indexterm><programlisting>typedef struct {
+  EvaDnsResourceRecordType  type;
   char                     *owner;     /* where the resource_record is found */
   guint32                   time_to_live;
-  GskDnsResourceClass       record_class;
+  EvaDnsResourceClass       record_class;
 
   /* rdata: record type specific data */
   union
@@ -367,7 +367,7 @@ nameservers (NS records) given in prior sections.
     struct {
       guint8 address[16];
     } aaaa;
-} GskDnsResourceRecord;
+} EvaDnsResourceRecord;
 </programlisting>
 <para>
 An atom of information about a host in the DNS system.
@@ -379,7 +379,7 @@ response (SOA), or a host's address (A).  There are other, rarely used,
 types of record, too.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskDnsResourceRecordType">GskDnsResourceRecordType</link>&#160;<structfield>type</structfield>;</term>
+<term><link linkend="EvaDnsResourceRecordType">EvaDnsResourceRecordType</link>&#160;<structfield>type</structfield>;</term>
 <listitem><simpara>what type of information this record contains.
 </simpara></listitem>
 </varlistentry>
@@ -394,7 +394,7 @@ types of record, too.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskDnsResourceClass">GskDnsResourceClass</link>&#160;<structfield>record_class</structfield>;</term>
+<term><link linkend="EvaDnsResourceClass">EvaDnsResourceClass</link>&#160;<structfield>record_class</structfield>;</term>
 <listitem><simpara>what address domain this record applies to.
 Almost always 'IN' meaning the internet, or IPv4.  (Other systems are
 now obsolete).
@@ -411,18 +411,18 @@ now obsolete).
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskDnsQuestion" role="struct">
-<title>GskDnsQuestion</title>
-<indexterm zone="GskDnsQuestion"><primary sortas="GskDnsQuestion">GskDnsQuestion</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaDnsQuestion" role="struct">
+<title>EvaDnsQuestion</title>
+<indexterm zone="EvaDnsQuestion"><primary sortas="EvaDnsQuestion">EvaDnsQuestion</primary></indexterm><programlisting>typedef struct {
   /* The domain name for which information is being requested. */
   char                     *query_name;
 
   /* The type of query we are asking. */
-  GskDnsResourceRecordType  query_type;
+  EvaDnsResourceRecordType  query_type;
 
   /* The domain where the query applies. */
-  GskDnsResourceClass       query_class;
-} GskDnsQuestion;
+  EvaDnsResourceClass       query_class;
+} EvaDnsQuestion;
 </programlisting>
 <para>
 A question, asked by a client resolver of a server.
@@ -433,19 +433,19 @@ A question, asked by a client resolver of a server.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskDnsResourceRecordType">GskDnsResourceRecordType</link>&#160;<structfield>query_type</structfield>;</term>
+<term><link linkend="EvaDnsResourceRecordType">EvaDnsResourceRecordType</link>&#160;<structfield>query_type</structfield>;</term>
 <listitem><simpara>what information about the host is wanted.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskDnsResourceClass">GskDnsResourceClass</link>&#160;<structfield>query_class</structfield>;</term>
+<term><link linkend="EvaDnsResourceClass">EvaDnsResourceClass</link>&#160;<structfield>query_class</structfield>;</term>
 <listitem><simpara>which address namespace this question is about.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskDnsResourceRecordType" role="enum">
-<title>enum GskDnsResourceRecordType</title>
-<indexterm zone="GskDnsResourceRecordType"><primary sortas="GskDnsResourceRecordType">GskDnsResourceRecordType</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaDnsResourceRecordType" role="enum">
+<title>enum EvaDnsResourceRecordType</title>
+<indexterm zone="EvaDnsResourceRecordType"><primary sortas="EvaDnsResourceRecordType">EvaDnsResourceRecordType</primary></indexterm><programlisting>typedef enum
 {
   /* An `A' record:  the ip address of a host. */
   EVA_DNS_RR_HOST_ADDRESS = 1,
@@ -488,7 +488,7 @@ A question, asked by a client resolver of a server.
   /* A `*' record:  matches anything. */
   EVA_DNS_RR_WILDCARD = 255
 
-} GskDnsResourceRecordType;
+} EvaDnsResourceRecordType;
 </programlisting>
 <para>
 This is a list of types of information that may be
@@ -497,8 +497,8 @@ available about some domain names.
 <para>
 This is the list of types of resource-records,
 and it doubles as a list of types of questions that can
-be asked.  (See GskDnsResourceRecord::type
-and GskDnsQuestion::query_type)
+be asked.  (See EvaDnsResourceRecord::type
+and EvaDnsQuestion::query_type)
 </para><variablelist role="enum">
 <varlistentry id="EVA-DNS-RR-HOST-ADDRESS--CAPS" role="constant">
 <term><literal>EVA_DNS_RR_HOST_ADDRESS</literal></term>
@@ -582,9 +582,9 @@ type about the domain name.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskDnsResourceClass" role="enum">
-<title>enum GskDnsResourceClass</title>
-<indexterm zone="GskDnsResourceClass"><primary sortas="GskDnsResourceClass">GskDnsResourceClass</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaDnsResourceClass" role="enum">
+<title>enum EvaDnsResourceClass</title>
+<indexterm zone="EvaDnsResourceClass"><primary sortas="EvaDnsResourceClass">EvaDnsResourceClass</primary></indexterm><programlisting>typedef enum
 {
   /* `IN': the Internet system */
   EVA_DNS_CLASS_INTERNET = 1,
@@ -599,7 +599,7 @@ type about the domain name.
 
   /* `*': any system */
   EVA_DNS_CLASS_WILDCARD = 255
-} GskDnsResourceClass;
+} EvaDnsResourceClass;
 </programlisting>
 <para>
 What type of addresses are we considering.
@@ -642,7 +642,7 @@ Test whether <parameter>serial_1</parameter> is less that <parameter>serial_2</p
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-new-generic" role="function">
 <title>eva_dns_rr_new_generic ()</title>
-<indexterm zone="eva-dns-rr-new-generic"><primary sortas="eva_dns_rr_new_generic">eva_dns_rr_new_generic</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_new_generic           (<link linkend="GskDnsMessage">GskDnsMessage</link> *allocator,
+<indexterm zone="eva-dns-rr-new-generic"><primary sortas="eva_dns_rr_new_generic">eva_dns_rr_new_generic</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_new_generic           (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator,
                                                          const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl);</programlisting>
 <para>
@@ -668,10 +668,10 @@ that the caller must initialize.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-new-a" role="function">
 <title>eva_dns_rr_new_a ()</title>
-<indexterm zone="eva-dns-rr-new-a"><primary sortas="eva_dns_rr_new_a">eva_dns_rr_new_a</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_new_a                 (const <link linkend="char">char</link> *owner,
+<indexterm zone="eva-dns-rr-new-a"><primary sortas="eva_dns_rr_new_a">eva_dns_rr_new_a</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_new_a                 (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="guint8">guint8</link> *ip_address,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 Allocate a new A record.  It is a mapping from domain name
 to IP address.</para>
@@ -691,17 +691,17 @@ to IP address.</para>
 <varlistentry><term><parameter>allocator</parameter>&#160;:</term>
 <listitem><simpara> an optional message to get memory from; this can prevent you
    from having to destroy the record: it will automatically get freed as
-   part of the <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>.
+   part of the <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated Resource Record.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-new-aaaa" role="function">
 <title>eva_dns_rr_new_aaaa ()</title>
-<indexterm zone="eva-dns-rr-new-aaaa"><primary sortas="eva_dns_rr_new_aaaa">eva_dns_rr_new_aaaa</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_new_aaaa              (const <link linkend="char">char</link> *owner,
+<indexterm zone="eva-dns-rr-new-aaaa"><primary sortas="eva_dns_rr_new_aaaa">eva_dns_rr_new_aaaa</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_new_aaaa              (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="guint8">guint8</link> *address,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 Allocate a new AAAA record.  It is a mapping from domain name
 to IP address.</para>
@@ -721,17 +721,17 @@ to IP address.</para>
 <varlistentry><term><parameter>allocator</parameter>&#160;:</term>
 <listitem><simpara> an optional message to get memory from; this can prevent you
    from having to destroy the record: it will automatically get freed as
-   part of the <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>.
+   part of the <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated Resource Record.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-new-ns" role="function">
 <title>eva_dns_rr_new_ns ()</title>
-<indexterm zone="eva-dns-rr-new-ns"><primary sortas="eva_dns_rr_new_ns">eva_dns_rr_new_ns</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_new_ns                (const <link linkend="char">char</link> *owner,
+<indexterm zone="eva-dns-rr-new-ns"><primary sortas="eva_dns_rr_new_ns">eva_dns_rr_new_ns</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_new_ns                (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="char">char</link> *name_server,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 Allocate a new NS record.  It gives the name of a nameserver that can provide information about
 <parameter>owner</parameter>.
@@ -756,17 +756,17 @@ the nameserver in a separate query.</para>
 <varlistentry><term><parameter>allocator</parameter>&#160;:</term>
 <listitem><simpara> an optional message to get memory from; this can prevent you
    from having to destroy the record: it will automatically get freed as
-   part of the <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>.
+   part of the <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated Resource Record.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-new-cname" role="function">
 <title>eva_dns_rr_new_cname ()</title>
-<indexterm zone="eva-dns-rr-new-cname"><primary sortas="eva_dns_rr_new_cname">eva_dns_rr_new_cname</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_new_cname             (const <link linkend="char">char</link> *owner,
+<indexterm zone="eva-dns-rr-new-cname"><primary sortas="eva_dns_rr_new_cname">eva_dns_rr_new_cname</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_new_cname             (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="char">char</link> *canonical_name,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 Allocate a new CNAME record.  It gives the canonical name of a record.
 <parameter>owner</parameter>.
@@ -790,17 +790,17 @@ a way to alias one name for another.
 <varlistentry><term><parameter>allocator</parameter>&#160;:</term>
 <listitem><simpara> an optional message to get memory from; this can prevent you
    from having to destroy the record: it will automatically get freed as
-   part of the <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>.
+   part of the <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated Resource Record.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-new-ptr" role="function">
 <title>eva_dns_rr_new_ptr ()</title>
-<indexterm zone="eva-dns-rr-new-ptr"><primary sortas="eva_dns_rr_new_ptr">eva_dns_rr_new_ptr</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_new_ptr               (const <link linkend="char">char</link> *owner,
+<indexterm zone="eva-dns-rr-new-ptr"><primary sortas="eva_dns_rr_new_ptr">eva_dns_rr_new_ptr</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_new_ptr               (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="char">char</link> *ptr,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 Allocate a new PTR record.  It gives ``a pointer to another part of the domain name space''
 according to [RFC 1034, Section 3.6]
@@ -830,18 +830,18 @@ Of course, reverse DNS is a bit flaky, and is principally for debugging informat
 <varlistentry><term><parameter>allocator</parameter>&#160;:</term>
 <listitem><simpara> an optional message to get memory from; this can prevent you
    from having to destroy the record: it will automatically get freed as
-   part of the <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>.
+   part of the <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated Resource Record.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-new-mx" role="function">
 <title>eva_dns_rr_new_mx ()</title>
-<indexterm zone="eva-dns-rr-new-mx"><primary sortas="eva_dns_rr_new_mx">eva_dns_rr_new_mx</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_new_mx                (const <link linkend="char">char</link> *owner,
+<indexterm zone="eva-dns-rr-new-mx"><primary sortas="eva_dns_rr_new_mx">eva_dns_rr_new_mx</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_new_mx                (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          <link linkend="int">int</link> preference,
                                                          const <link linkend="char">char</link> *mail_host,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 Allocate a mail-exchange record.
 This gives a hostname which is responsible for main for the <parameter>owner</parameter>
@@ -868,11 +868,11 @@ of this record.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-new-hinfo" role="function">
 <title>eva_dns_rr_new_hinfo ()</title>
-<indexterm zone="eva-dns-rr-new-hinfo"><primary sortas="eva_dns_rr_new_hinfo">eva_dns_rr_new_hinfo</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_new_hinfo             (const <link linkend="char">char</link> *owner,
+<indexterm zone="eva-dns-rr-new-hinfo"><primary sortas="eva_dns_rr_new_hinfo">eva_dns_rr_new_hinfo</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_new_hinfo             (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="char">char</link> *cpu,
                                                          const <link linkend="char">char</link> *os,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 Allocate a new HINFO record.  It ``identifies the CPU and OS used by a host'',
 see [RFC 1034, Section 3.6]
@@ -900,14 +900,14 @@ It is provided for completeness, and also for experimental use.</para>
 <varlistentry><term><parameter>allocator</parameter>&#160;:</term>
 <listitem><simpara> an optional message to get memory from; this can prevent you
    from having to destroy the record: it will automatically get freed as
-   part of the <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>.
+   part of the <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated Resource Record.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-new-soa" role="function">
 <title>eva_dns_rr_new_soa ()</title>
-<indexterm zone="eva-dns-rr-new-soa"><primary sortas="eva_dns_rr_new_soa">eva_dns_rr_new_soa</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_new_soa               (const <link linkend="char">char</link> *owner,
+<indexterm zone="eva-dns-rr-new-soa"><primary sortas="eva_dns_rr_new_soa">eva_dns_rr_new_soa</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_new_soa               (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="char">char</link> *mname,
                                                          const <link linkend="char">char</link> *rname,
@@ -916,7 +916,7 @@ It is provided for completeness, and also for experimental use.</para>
                                                          <link linkend="guint32">guint32</link> retry_time,
                                                          <link linkend="guint32">guint32</link> expire_time,
                                                          <link linkend="guint32">guint32</link> minimum_time,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 Allocate a new SOA record.  It ``identifies the start of a zone of authority'',
 see [RFC 1034, Section 3.6]
@@ -973,17 +973,17 @@ exported with any RR from this zone.
 <varlistentry><term><parameter>allocator</parameter>&#160;:</term>
 <listitem><simpara> an optional message to get memory from; this can prevent you
    from having to destroy the record: it will automatically get freed as
-   part of the <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>.
+   part of the <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated Resource Record.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-new-txt" role="function">
 <title>eva_dns_rr_new_txt ()</title>
-<indexterm zone="eva-dns-rr-new-txt"><primary sortas="eva_dns_rr_new_txt">eva_dns_rr_new_txt</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_new_txt               (const <link linkend="char">char</link> *owner,
+<indexterm zone="eva-dns-rr-new-txt"><primary sortas="eva_dns_rr_new_txt">eva_dns_rr_new_txt</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_new_txt               (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint32">guint32</link> ttl,
                                                          const <link linkend="char">char</link> *text,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 TXT RRs are used to hold descriptive text.  The semantics of the text
 depends on the domain where it is found.</para>
@@ -1002,14 +1002,14 @@ depends on the domain where it is found.</para>
 <varlistentry><term><parameter>allocator</parameter>&#160;:</term>
 <listitem><simpara> an optional message to get memory from; this can prevent you
    from having to destroy the record: it will automatically get freed as
-   part of the <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>.
+   part of the <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated Resource Record.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-free" role="function">
 <title>eva_dns_rr_free ()</title>
-<indexterm zone="eva-dns-rr-free"><primary sortas="eva_dns_rr_free">eva_dns_rr_free</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_rr_free                     (<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *record);</programlisting>
+<indexterm zone="eva-dns-rr-free"><primary sortas="eva_dns_rr_free">eva_dns_rr_free</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_rr_free                     (<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *record);</programlisting>
 <para>
 De-allocate memory associated with a resource record.</para>
 <para>
@@ -1020,10 +1020,10 @@ De-allocate memory associated with a resource record.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-copy" role="function">
 <title>eva_dns_rr_copy ()</title>
-<indexterm zone="eva-dns-rr-copy"><primary sortas="eva_dns_rr_copy">eva_dns_rr_copy</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_copy                  (<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *record,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+<indexterm zone="eva-dns-rr-copy"><primary sortas="eva_dns_rr_copy">eva_dns_rr_copy</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_copy                  (<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *record,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
-Make a copy of a resource record, possibly coming from a given <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>'s
+Make a copy of a resource record, possibly coming from a given <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>'s
 allocator.</para>
 <para>
 </para><variablelist role="params">
@@ -1033,16 +1033,16 @@ allocator.</para>
 <varlistentry><term><parameter>allocator</parameter>&#160;:</term>
 <listitem><simpara> an optional message to get memory from; this can prevent you
    from having to destroy the record: it will automatically get freed as
-   part of the <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>.
+   part of the <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the new copy of the resource record.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-new-wildcard" role="function">
 <title>eva_dns_rr_new_wildcard ()</title>
-<indexterm zone="eva-dns-rr-new-wildcard"><primary sortas="eva_dns_rr_new_wildcard">eva_dns_rr_new_wildcard</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_new_wildcard          (const <link linkend="char">char</link> *owner,
+<indexterm zone="eva-dns-rr-new-wildcard"><primary sortas="eva_dns_rr_new_wildcard">eva_dns_rr_new_wildcard</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_new_wildcard          (const <link linkend="char">char</link> *owner,
                                                          <link linkend="guint">guint</link> ttl,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 Create a new wildcard ("*") record.  This should never need to be done, I guess.
 </para>
@@ -1059,17 +1059,17 @@ TODO: delete this function</para>
 <varlistentry><term><parameter>allocator</parameter>&#160;:</term>
 <listitem><simpara> an optional message to get memory from; this can prevent you
    from having to destroy the record: it will automatically get freed as
-   part of the <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>.
+   part of the <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly allocated Resource Record.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-question-new" role="function">
 <title>eva_dns_question_new ()</title>
-<indexterm zone="eva-dns-question-new"><primary sortas="eva_dns_question_new">eva_dns_question_new</primary></indexterm><programlisting><link linkend="GskDnsQuestion">GskDnsQuestion</link> *    eva_dns_question_new                (const <link linkend="char">char</link> *query_name,
-                                                         <link linkend="GskDnsResourceRecordType">GskDnsResourceRecordType</link> query_type,
-                                                         <link linkend="GskDnsResourceClass">GskDnsResourceClass</link> query_class,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+<indexterm zone="eva-dns-question-new"><primary sortas="eva_dns_question_new">eva_dns_question_new</primary></indexterm><programlisting><link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *    eva_dns_question_new                (const <link linkend="char">char</link> *query_name,
+                                                         <link linkend="EvaDnsResourceRecordType">EvaDnsResourceRecordType</link> query_type,
+                                                         <link linkend="EvaDnsResourceClass">EvaDnsResourceClass</link> query_class,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 Allocate a new question.</para>
 <para>
@@ -1086,15 +1086,15 @@ Allocate a new question.</para>
 <varlistentry><term><parameter>allocator</parameter>&#160;:</term>
 <listitem><simpara> an optional message to get memory from; this can prevent you
    from having to destroy the question: it will automatically get freed as
-   part of the <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>.
+   part of the <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the new question.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-question-copy" role="function">
 <title>eva_dns_question_copy ()</title>
-<indexterm zone="eva-dns-question-copy"><primary sortas="eva_dns_question_copy">eva_dns_question_copy</primary></indexterm><programlisting><link linkend="GskDnsQuestion">GskDnsQuestion</link> *    eva_dns_question_copy               (<link linkend="GskDnsQuestion">GskDnsQuestion</link> *question,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+<indexterm zone="eva-dns-question-copy"><primary sortas="eva_dns_question_copy">eva_dns_question_copy</primary></indexterm><programlisting><link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *    eva_dns_question_copy               (<link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *question,
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 Make a copy of a question, optionally drawing its memory
 from the given message's pool.</para>
@@ -1111,9 +1111,9 @@ from the given message's pool.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-question-free" role="function">
 <title>eva_dns_question_free ()</title>
-<indexterm zone="eva-dns-question-free"><primary sortas="eva_dns_question_free">eva_dns_question_free</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_question_free               (<link linkend="GskDnsQuestion">GskDnsQuestion</link> *question);</programlisting>
+<indexterm zone="eva-dns-question-free"><primary sortas="eva_dns_question_free">eva_dns_question_free</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_question_free               (<link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *question);</programlisting>
 <para>
-Deallocate a question (unless it was drawn from a GskDnsMessage,
+Deallocate a question (unless it was drawn from a EvaDnsMessage,
 in which case it will be destroyed automatically when
 the message is destroyed.</para>
 <para>
@@ -1124,11 +1124,11 @@ the message is destroyed.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-text-parse" role="function">
 <title>eva_dns_rr_text_parse ()</title>
-<indexterm zone="eva-dns-rr-text-parse"><primary sortas="eva_dns_rr_text_parse">eva_dns_rr_text_parse</primary></indexterm><programlisting><link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> * eva_dns_rr_text_parse            (const <link linkend="char">char</link> *record,
+<indexterm zone="eva-dns-rr-text-parse"><primary sortas="eva_dns_rr_text_parse">eva_dns_rr_text_parse</primary></indexterm><programlisting><link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> * eva_dns_rr_text_parse            (const <link linkend="char">char</link> *record,
                                                          const <link linkend="char">char</link> *last_owner,
                                                          const <link linkend="char">char</link> *origin,
                                                          <link linkend="char">char</link> **err_msg,
-                                                         <link linkend="GskDnsMessage">GskDnsMessage</link> *allocator);</programlisting>
+                                                         <link linkend="EvaDnsMessage">EvaDnsMessage</link> *allocator);</programlisting>
 <para>
 Parse a text representation of a message,
 as from a zone file or 'dig'.</para>
@@ -1156,7 +1156,7 @@ taken to represent the same owner.
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-text-to-str" role="function">
 <title>eva_dns_rr_text_to_str ()</title>
-<indexterm zone="eva-dns-rr-text-to-str"><primary sortas="eva_dns_rr_text_to_str">eva_dns_rr_text_to_str</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_dns_rr_text_to_str              (<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *rr,
+<indexterm zone="eva-dns-rr-text-to-str"><primary sortas="eva_dns_rr_text_to_str">eva_dns_rr_text_to_str</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_dns_rr_text_to_str              (<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *rr,
                                                          const <link linkend="char">char</link> *last_owner);</programlisting>
 <para>
 Convert the resource record into a format which would be appropriate
@@ -1177,7 +1177,7 @@ lines that refer to the same owner.
 </variablelist></refsect2>
 <refsect2 id="eva-dns-question-text-to-str" role="function">
 <title>eva_dns_question_text_to_str ()</title>
-<indexterm zone="eva-dns-question-text-to-str"><primary sortas="eva_dns_question_text_to_str">eva_dns_question_text_to_str</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_dns_question_text_to_str        (<link linkend="GskDnsQuestion">GskDnsQuestion</link> *question);</programlisting>
+<indexterm zone="eva-dns-question-text-to-str"><primary sortas="eva_dns_question_text_to_str">eva_dns_question_text_to_str</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_dns_question_text_to_str        (<link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *question);</programlisting>
 <para>
 Convert a question to a newly allocated string
 containing the question roughly as it would be
@@ -1192,8 +1192,8 @@ printed by the unix program 'dig'.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-rr-text-write" role="function">
 <title>eva_dns_rr_text_write ()</title>
-<indexterm zone="eva-dns-rr-text-write"><primary sortas="eva_dns_rr_text_write">eva_dns_rr_text_write</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_rr_text_write               (<link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *rr,
-                                                         <link linkend="GskBuffer">GskBuffer</link> *out_buffer,
+<indexterm zone="eva-dns-rr-text-write"><primary sortas="eva_dns_rr_text_write">eva_dns_rr_text_write</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_rr_text_write               (<link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *rr,
+                                                         <link linkend="EvaBuffer">EvaBuffer</link> *out_buffer,
                                                          const <link linkend="char">char</link> *last_owner);</programlisting>
 <para>
 Print a resource-record to a buffer as text.
@@ -1211,9 +1211,9 @@ This will look similar to a zone file.</para>
 of <parameter>rr</parameter>-&gt;owner, if it is the same as last_owner.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskDnsResponseCode" role="enum">
-<title>enum GskDnsResponseCode</title>
-<indexterm zone="GskDnsResponseCode"><primary sortas="GskDnsResponseCode">GskDnsResponseCode</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaDnsResponseCode" role="enum">
+<title>enum EvaDnsResponseCode</title>
+<indexterm zone="EvaDnsResponseCode"><primary sortas="EvaDnsResponseCode">EvaDnsResponseCode</primary></indexterm><programlisting>typedef enum
 {
   EVA_DNS_RESPONSE_ERROR_NONE             =0,
   EVA_DNS_RESPONSE_ERROR_FORMAT           =1,
@@ -1221,7 +1221,7 @@ of <parameter>rr</parameter>-&gt;owner, if it is the same as last_owner.
   EVA_DNS_RESPONSE_ERROR_NAME_ERROR       =3,
   EVA_DNS_RESPONSE_ERROR_NOT_IMPLEMENTED  =4,
   EVA_DNS_RESPONSE_ERROR_REFUSED          =5
-} GskDnsResponseCode;
+} EvaDnsResponseCode;
 </programlisting>
 <para>
 Types of errors that can be encountered from the DNS server.
@@ -1274,10 +1274,10 @@ perform a particular operation (e.g., zone transfer) for particular data.
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-new" role="function">
 <title>eva_dns_message_new ()</title>
-<indexterm zone="eva-dns-message-new"><primary sortas="eva_dns_message_new">eva_dns_message_new</primary></indexterm><programlisting><link linkend="GskDnsMessage">GskDnsMessage</link> *     eva_dns_message_new                 (<link linkend="guint16">guint16</link> id,
+<indexterm zone="eva-dns-message-new"><primary sortas="eva_dns_message_new">eva_dns_message_new</primary></indexterm><programlisting><link linkend="EvaDnsMessage">EvaDnsMessage</link> *     eva_dns_message_new                 (<link linkend="guint16">guint16</link> id,
                                                          <link linkend="gboolean">gboolean</link> is_request);</programlisting>
 <para>
-Allocate a new blank GskDnsMessage.</para>
+Allocate a new blank EvaDnsMessage.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>id</parameter>&#160;:</term>
@@ -1292,9 +1292,9 @@ If FALSE, then the message is a server response.
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-parse-buffer" role="function">
 <title>eva_dns_message_parse_buffer ()</title>
-<indexterm zone="eva-dns-message-parse-buffer"><primary sortas="eva_dns_message_parse_buffer">eva_dns_message_parse_buffer</primary></indexterm><programlisting><link linkend="GskDnsMessage">GskDnsMessage</link> *     eva_dns_message_parse_buffer        (<link linkend="GskBuffer">GskBuffer</link> *buffer);</programlisting>
+<indexterm zone="eva-dns-message-parse-buffer"><primary sortas="eva_dns_message_parse_buffer">eva_dns_message_parse_buffer</primary></indexterm><programlisting><link linkend="EvaDnsMessage">EvaDnsMessage</link> *     eva_dns_message_parse_buffer        (<link linkend="EvaBuffer">EvaBuffer</link> *buffer);</programlisting>
 <para>
-Parse a GskDnsMessage from a buffer, removing the binary data
+Parse a EvaDnsMessage from a buffer, removing the binary data
 from the buffer.</para>
 <para>
 </para><variablelist role="params">
@@ -1306,11 +1306,11 @@ from the buffer.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-parse-data" role="function">
 <title>eva_dns_message_parse_data ()</title>
-<indexterm zone="eva-dns-message-parse-data"><primary sortas="eva_dns_message_parse_data">eva_dns_message_parse_data</primary></indexterm><programlisting><link linkend="GskDnsMessage">GskDnsMessage</link> *     eva_dns_message_parse_data          (const <link linkend="guint8">guint8</link> *data,
+<indexterm zone="eva-dns-message-parse-data"><primary sortas="eva_dns_message_parse_data">eva_dns_message_parse_data</primary></indexterm><programlisting><link linkend="EvaDnsMessage">EvaDnsMessage</link> *     eva_dns_message_parse_data          (const <link linkend="guint8">guint8</link> *data,
                                                          <link linkend="guint">guint</link> length,
                                                          <link linkend="guint">guint</link> *bytes_used_out);</programlisting>
 <para>
-Parse a GskDnsMessage from a buffer.</para>
+Parse a EvaDnsMessage from a buffer.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>data</parameter>&#160;:</term>
@@ -1328,8 +1328,8 @@ Parse a GskDnsMessage from a buffer.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-write-buffer" role="function">
 <title>eva_dns_message_write_buffer ()</title>
-<indexterm zone="eva-dns-message-write-buffer"><primary sortas="eva_dns_message_write_buffer">eva_dns_message_write_buffer</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_write_buffer        (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskBuffer">GskBuffer</link> *buffer,
+<indexterm zone="eva-dns-message-write-buffer"><primary sortas="eva_dns_message_write_buffer">eva_dns_message_write_buffer</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_write_buffer        (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaBuffer">EvaBuffer</link> *buffer,
                                                          <link linkend="gboolean">gboolean</link> compress);</programlisting>
 <para>
 Create a serialized message to send in a packet, or
@@ -1356,7 +1356,7 @@ even if it probably won't work in the transport layer.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-to-packet" role="function">
 <title>eva_dns_message_to_packet ()</title>
-<indexterm zone="eva-dns-message-to-packet"><primary sortas="eva_dns_message_to_packet">eva_dns_message_to_packet</primary></indexterm><programlisting><link linkend="GskPacket">GskPacket</link> *         eva_dns_message_to_packet           (<link linkend="GskDnsMessage">GskDnsMessage</link> *message);</programlisting>
+<indexterm zone="eva-dns-message-to-packet"><primary sortas="eva_dns_message_to_packet">eva_dns_message_to_packet</primary></indexterm><programlisting><link linkend="EvaPacket">EvaPacket</link> *         eva_dns_message_to_packet           (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message);</programlisting>
 <para>
 Convert a DNS message into a packet.
 Typically then the packet will be added to a packet queue.</para>
@@ -1370,10 +1370,10 @@ Typically then the packet will be added to a packet queue.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-append-question" role="function">
 <title>eva_dns_message_append_question ()</title>
-<indexterm zone="eva-dns-message-append-question"><primary sortas="eva_dns_message_append_question">eva_dns_message_append_question</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_append_question     (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsQuestion">GskDnsQuestion</link> *question);</programlisting>
+<indexterm zone="eva-dns-message-append-question"><primary sortas="eva_dns_message_append_question">eva_dns_message_append_question</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_append_question     (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *question);</programlisting>
 <para>
-Add a question to the QUESTION section of a GskDnsMessage.
+Add a question to the QUESTION section of a EvaDnsMessage.
 For client requests, the message usually consists of
 just questions.  For server responses, the message will
 have copies the questions that the message deals with.
@@ -1391,8 +1391,8 @@ The question will be free'd by the message.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-append-answer" role="function">
 <title>eva_dns_message_append_answer ()</title>
-<indexterm zone="eva-dns-message-append-answer"><primary sortas="eva_dns_message_append_answer">eva_dns_message_append_answer</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_append_answer       (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *answer);</programlisting>
+<indexterm zone="eva-dns-message-append-answer"><primary sortas="eva_dns_message_append_answer">eva_dns_message_append_answer</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_append_answer       (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *answer);</programlisting>
 <para>
 Add an answer to the DNS message.
 This is done by servers when they have a direct
@@ -1412,8 +1412,8 @@ a nameserver which can answer it).
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-append-auth" role="function">
 <title>eva_dns_message_append_auth ()</title>
-<indexterm zone="eva-dns-message-append-auth"><primary sortas="eva_dns_message_append_auth">eva_dns_message_append_auth</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_append_auth         (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *auth);</programlisting>
+<indexterm zone="eva-dns-message-append-auth"><primary sortas="eva_dns_message_append_auth">eva_dns_message_append_auth</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_append_auth         (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *auth);</programlisting>
 <para>
 Add an authority-record to the DNS message.
 This is done by servers to indicate who
@@ -1432,8 +1432,8 @@ is in charge of certain names and caching information.
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-append-addl" role="function">
 <title>eva_dns_message_append_addl ()</title>
-<indexterm zone="eva-dns-message-append-addl"><primary sortas="eva_dns_message_append_addl">eva_dns_message_append_addl</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_append_addl         (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *addl);</programlisting>
+<indexterm zone="eva-dns-message-append-addl"><primary sortas="eva_dns_message_append_addl">eva_dns_message_append_addl</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_append_addl         (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *addl);</programlisting>
 <para>
 Add an additional record to the DNS message.
 This may be done by servers as a courtesy and optimization.
@@ -1453,8 +1453,8 @@ when a nameserver referenced in the answers section.
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-remove-question" role="function">
 <title>eva_dns_message_remove_question ()</title>
-<indexterm zone="eva-dns-message-remove-question"><primary sortas="eva_dns_message_remove_question">eva_dns_message_remove_question</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_remove_question     (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsQuestion">GskDnsQuestion</link> *question);</programlisting>
+<indexterm zone="eva-dns-message-remove-question"><primary sortas="eva_dns_message_remove_question">eva_dns_message_remove_question</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_remove_question     (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *question);</programlisting>
 <para>
 Remove the question from the message's list,
 and delete the question.</para>
@@ -1469,8 +1469,8 @@ and delete the question.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-remove-answer" role="function">
 <title>eva_dns_message_remove_answer ()</title>
-<indexterm zone="eva-dns-message-remove-answer"><primary sortas="eva_dns_message_remove_answer">eva_dns_message_remove_answer</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_remove_answer       (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *answer);</programlisting>
+<indexterm zone="eva-dns-message-remove-answer"><primary sortas="eva_dns_message_remove_answer">eva_dns_message_remove_answer</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_remove_answer       (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *answer);</programlisting>
 <para>
 Remove the record from the message's answer list.
 This frees the record.</para>
@@ -1485,8 +1485,8 @@ This frees the record.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-remove-auth" role="function">
 <title>eva_dns_message_remove_auth ()</title>
-<indexterm zone="eva-dns-message-remove-auth"><primary sortas="eva_dns_message_remove_auth">eva_dns_message_remove_auth</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_remove_auth         (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *auth);</programlisting>
+<indexterm zone="eva-dns-message-remove-auth"><primary sortas="eva_dns_message_remove_auth">eva_dns_message_remove_auth</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_remove_auth         (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *auth);</programlisting>
 <para>
 Remove the record from the message's authority list.
 This frees the record.</para>
@@ -1501,8 +1501,8 @@ This frees the record.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-remove-addl" role="function">
 <title>eva_dns_message_remove_addl ()</title>
-<indexterm zone="eva-dns-message-remove-addl"><primary sortas="eva_dns_message_remove_addl">eva_dns_message_remove_addl</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_remove_addl         (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
-                                                         <link linkend="GskDnsResourceRecord">GskDnsResourceRecord</link> *addl);</programlisting>
+<indexterm zone="eva-dns-message-remove-addl"><primary sortas="eva_dns_message_remove_addl">eva_dns_message_remove_addl</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_remove_addl         (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
+                                                         <link linkend="EvaDnsResourceRecord">EvaDnsResourceRecord</link> *addl);</programlisting>
 <para>
 Remove the record from the message's additional list.
 This frees the record.</para>
@@ -1517,7 +1517,7 @@ This frees the record.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-unref" role="function">
 <title>eva_dns_message_unref ()</title>
-<indexterm zone="eva-dns-message-unref"><primary sortas="eva_dns_message_unref">eva_dns_message_unref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_unref               (<link linkend="GskDnsMessage">GskDnsMessage</link> *message);</programlisting>
+<indexterm zone="eva-dns-message-unref"><primary sortas="eva_dns_message_unref">eva_dns_message_unref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_unref               (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message);</programlisting>
 <para>
 Decrease the reference-count on the message.
 The message will be destroyed once its ref-count
@@ -1530,7 +1530,7 @@ gets to 0.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-message-ref" role="function">
 <title>eva_dns_message_ref ()</title>
-<indexterm zone="eva-dns-message-ref"><primary sortas="eva_dns_message_ref">eva_dns_message_ref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_ref                 (<link linkend="GskDnsMessage">GskDnsMessage</link> *message);</programlisting>
+<indexterm zone="eva-dns-message-ref"><primary sortas="eva_dns_message_ref">eva_dns_message_ref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_message_ref                 (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message);</programlisting>
 <para>
 Increase the reference count on the message by one.
 The message will not be destroyed until its ref-count
@@ -1543,7 +1543,7 @@ gets to 0.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-dump-message-fp" role="function">
 <title>eva_dns_dump_message_fp ()</title>
-<indexterm zone="eva-dns-dump-message-fp"><primary sortas="eva_dns_dump_message_fp">eva_dns_dump_message_fp</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_dump_message_fp             (<link linkend="GskDnsMessage">GskDnsMessage</link> *message,
+<indexterm zone="eva-dns-dump-message-fp"><primary sortas="eva_dns_dump_message_fp">eva_dns_dump_message_fp</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_dump_message_fp             (<link linkend="EvaDnsMessage">EvaDnsMessage</link> *message,
                                                          <link linkend="FILE--CAPS">FILE</link> *fp);</programlisting>
 <para>
 Dump a message to a FILE*, for debugging.
@@ -1560,7 +1560,7 @@ obscure unix utility 'dig'.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-dump-question-fp" role="function">
 <title>eva_dns_dump_question_fp ()</title>
-<indexterm zone="eva-dns-dump-question-fp"><primary sortas="eva_dns_dump_question_fp">eva_dns_dump_question_fp</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_dump_question_fp            (<link linkend="GskDnsQuestion">GskDnsQuestion</link> *question,
+<indexterm zone="eva-dns-dump-question-fp"><primary sortas="eva_dns_dump_question_fp">eva_dns_dump_question_fp</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_dump_question_fp            (<link linkend="EvaDnsQuestion">EvaDnsQuestion</link> *question,
                                                          <link linkend="FILE--CAPS">FILE</link> *fp);</programlisting>
 <para>
 </para><variablelist role="params">

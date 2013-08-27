@@ -34,7 +34,7 @@ set_count_to_user_data (gpointer user_data)
 
 int main (int argc, char **argv)
 {
-  GskThreadPool *pool;
+  EvaThreadPool *pool;
   guint i;
   eva_init (&argc, &argv, NULL);
 

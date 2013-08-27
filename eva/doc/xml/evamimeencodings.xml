@@ -16,22 +16,22 @@
 <synopsis>
 <link linkend="gboolean">gboolean</link>            <link linkend="eva-mime-make-transfer-encoding-decoders">eva_mime_make_transfer_encoding_decoders</link>
                                                         (const <link linkend="char">char</link> *encoding,
-                                                         <link linkend="GskStream">GskStream</link> **write_end_out,
-                                                         <link linkend="GskStream">GskStream</link> **read_end_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **write_end_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **read_end_out,
                                                          <link linkend="GError">GError</link> **error);
 <link linkend="gboolean">gboolean</link>            <link linkend="eva-mime-make-transfer-encoding-encoders">eva_mime_make_transfer_encoding_encoders</link>
                                                         (const <link linkend="char">char</link> *encoding,
-                                                         <link linkend="GskStream">GskStream</link> **write_end_out,
-                                                         <link linkend="GskStream">GskStream</link> **read_end_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **write_end_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **read_end_out,
                                                          const <link linkend="char">char</link> *bdy_string_out,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-mime-base64-decoder-new">eva_mime_base64_decoder_new</link>         (void);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-mime-base64-encoder-new">eva_mime_base64_encoder_new</link>         (void);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-mime-quoted-printable-decoder-new">eva_mime_quoted_printable_decoder_new</link>
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-mime-base64-decoder-new">eva_mime_base64_decoder_new</link>         (void);
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-mime-base64-encoder-new">eva_mime_base64_encoder_new</link>         (void);
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-mime-quoted-printable-decoder-new">eva_mime_quoted_printable_decoder_new</link>
                                                         (void);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-mime-quoted-printable-encoder-new">eva_mime_quoted_printable_encoder_new</link>
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-mime-quoted-printable-encoder-new">eva_mime_quoted_printable_encoder_new</link>
                                                         (void);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-mime-identity-filter-new">eva_mime_identity_filter_new</link>        (void);
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-mime-identity-filter-new">eva_mime_identity_filter_new</link>        (void);
 </synopsis>
 </refsynopsisdiv>
 
@@ -55,8 +55,8 @@
 <title>eva_mime_make_transfer_encoding_decoders ()</title>
 <indexterm zone="eva-mime-make-transfer-encoding-decoders"><primary sortas="eva_mime_make_transfer_encoding_decoders">eva_mime_make_transfer_encoding_decoders</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_mime_make_transfer_encoding_decoders
                                                         (const <link linkend="char">char</link> *encoding,
-                                                         <link linkend="GskStream">GskStream</link> **write_end_out,
-                                                         <link linkend="GskStream">GskStream</link> **read_end_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **write_end_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **read_end_out,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Allocate an attached pair: one for writing and one for reading
@@ -87,8 +87,8 @@ FALSE, should examine *<parameter>error</parameter> to figure out why/inform the
 <title>eva_mime_make_transfer_encoding_encoders ()</title>
 <indexterm zone="eva-mime-make-transfer-encoding-encoders"><primary sortas="eva_mime_make_transfer_encoding_encoders">eva_mime_make_transfer_encoding_encoders</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_mime_make_transfer_encoding_encoders
                                                         (const <link linkend="char">char</link> *encoding,
-                                                         <link linkend="GskStream">GskStream</link> **write_end_out,
-                                                         <link linkend="GskStream">GskStream</link> **read_end_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **write_end_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **read_end_out,
                                                          const <link linkend="char">char</link> *bdy_string_out,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
@@ -121,7 +121,7 @@ FALSE, should examine *<parameter>error</parameter> to figure out why/inform the
 </variablelist></refsect2>
 <refsect2 id="eva-mime-base64-decoder-new" role="function">
 <title>eva_mime_base64_decoder_new ()</title>
-<indexterm zone="eva-mime-base64-decoder-new"><primary sortas="eva_mime_base64_decoder_new">eva_mime_base64_decoder_new</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_mime_base64_decoder_new         (void);</programlisting>
+<indexterm zone="eva-mime-base64-decoder-new"><primary sortas="eva_mime_base64_decoder_new">eva_mime_base64_decoder_new</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_mime_base64_decoder_new         (void);</programlisting>
 <para>
 Allocate a new MIME encoder which
 takes base64 encoded data in and gives
@@ -133,7 +133,7 @@ raw binary data out.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-mime-base64-encoder-new" role="function">
 <title>eva_mime_base64_encoder_new ()</title>
-<indexterm zone="eva-mime-base64-encoder-new"><primary sortas="eva_mime_base64_encoder_new">eva_mime_base64_encoder_new</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_mime_base64_encoder_new         (void);</programlisting>
+<indexterm zone="eva-mime-base64-encoder-new"><primary sortas="eva_mime_base64_encoder_new">eva_mime_base64_encoder_new</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_mime_base64_encoder_new         (void);</programlisting>
 <para>
 Allocate a new MIME encoder which
 takes raw binary data in and gives
@@ -145,7 +145,7 @@ base64 encoded data out.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-mime-quoted-printable-decoder-new" role="function">
 <title>eva_mime_quoted_printable_decoder_new ()</title>
-<indexterm zone="eva-mime-quoted-printable-decoder-new"><primary sortas="eva_mime_quoted_printable_decoder_new">eva_mime_quoted_printable_decoder_new</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_mime_quoted_printable_decoder_new
+<indexterm zone="eva-mime-quoted-printable-decoder-new"><primary sortas="eva_mime_quoted_printable_decoder_new">eva_mime_quoted_printable_decoder_new</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_mime_quoted_printable_decoder_new
                                                         (void);</programlisting>
 <para>
 Allocate a new MIME encoder which
@@ -159,7 +159,7 @@ raw binary data out.
 </variablelist></refsect2>
 <refsect2 id="eva-mime-quoted-printable-encoder-new" role="function">
 <title>eva_mime_quoted_printable_encoder_new ()</title>
-<indexterm zone="eva-mime-quoted-printable-encoder-new"><primary sortas="eva_mime_quoted_printable_encoder_new">eva_mime_quoted_printable_encoder_new</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_mime_quoted_printable_encoder_new
+<indexterm zone="eva-mime-quoted-printable-encoder-new"><primary sortas="eva_mime_quoted_printable_encoder_new">eva_mime_quoted_printable_encoder_new</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_mime_quoted_printable_encoder_new
                                                         (void);</programlisting>
 <para>
 Allocate a new MIME encoder which
@@ -173,7 +173,7 @@ quoted-printable encoded data out.
 </variablelist></refsect2>
 <refsect2 id="eva-mime-identity-filter-new" role="function">
 <title>eva_mime_identity_filter_new ()</title>
-<indexterm zone="eva-mime-identity-filter-new"><primary sortas="eva_mime_identity_filter_new">eva_mime_identity_filter_new</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_mime_identity_filter_new        (void);</programlisting>
+<indexterm zone="eva-mime-identity-filter-new"><primary sortas="eva_mime_identity_filter_new">eva_mime_identity_filter_new</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_mime_identity_filter_new        (void);</programlisting>
 <para>
 A filter which gives the exact same output as it receives input.</para>
 <para>

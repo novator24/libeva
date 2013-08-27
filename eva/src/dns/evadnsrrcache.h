@@ -33,71 +33,71 @@ G_BEGIN_DECLS
  * with that host as `owner'.
  */
 
-typedef struct _GskDnsRRCache GskDnsRRCache;
+typedef struct _EvaDnsRRCache EvaDnsRRCache;
 
 GType eva_dns_rr_cache_get_type () G_GNUC_CONST;
 #define EVA_TYPE_DNS_RR_CACHE		(eva_dns_rr_cache_get_type ())
 
-GskDnsRRCache        *eva_dns_rr_cache_new        (guint64                  max_bytes,
+EvaDnsRRCache        *eva_dns_rr_cache_new        (guint64                  max_bytes,
 						   guint                    max_records);
-GskDnsResourceRecord *eva_dns_rr_cache_insert     (GskDnsRRCache     *rr_cache,
-					           const GskDnsResourceRecord    *record,
+EvaDnsResourceRecord *eva_dns_rr_cache_insert     (EvaDnsRRCache     *rr_cache,
+					           const EvaDnsResourceRecord    *record,
 						   gboolean                 is_authoritative,
 					           gulong                   cur_time);
-void                  eva_dns_rr_cache_roundrobin (GskDnsRRCache           *rr_cache,
+void                  eva_dns_rr_cache_roundrobin (EvaDnsRRCache           *rr_cache,
                                                    gboolean                 do_roundrobin);
 
 
-/* Return a list of GskDnsResourceRecords.
+/* Return a list of EvaDnsResourceRecords.
  * You must lock those records if you plan on keeping them.
  * (Note: doesn't catch CNAMEs unless explicitly asked for.)
  */
-GSList               *eva_dns_rr_cache_lookup_list(GskDnsRRCache           *rr_cache,
+GSList               *eva_dns_rr_cache_lookup_list(EvaDnsRRCache           *rr_cache,
 					           const char              *owner,
-					           GskDnsResourceRecordType query_type,
-					           GskDnsResourceClass      query_class);
+					           EvaDnsResourceRecordType query_type,
+					           EvaDnsResourceClass      query_class);
 typedef enum
 {
   EVA_DNS_RR_CACHE_LOOKUP_DEREF_CNAMES = (1<<0)
-} GskDnsRRCacheLookupFlags;
-GskDnsResourceRecord *eva_dns_rr_cache_lookup_one (GskDnsRRCache           *rr_cache,
+} EvaDnsRRCacheLookupFlags;
+EvaDnsResourceRecord *eva_dns_rr_cache_lookup_one (EvaDnsRRCache           *rr_cache,
 					           const char              *owner,
-					           GskDnsResourceRecordType query_type,
-					           GskDnsResourceClass      query_class,
-						   GskDnsRRCacheLookupFlags flags);
-gboolean              eva_dns_rr_cache_is_negative(GskDnsRRCache           *rr_cache,
+					           EvaDnsResourceRecordType query_type,
+					           EvaDnsResourceClass      query_class,
+						   EvaDnsRRCacheLookupFlags flags);
+gboolean              eva_dns_rr_cache_is_negative(EvaDnsRRCache           *rr_cache,
 					           const char              *owner,
-					           GskDnsResourceRecordType query_type,
-					           GskDnsResourceClass      query_class);
+					           EvaDnsResourceRecordType query_type,
+					           EvaDnsResourceClass      query_class);
 
 /* Prevent/allow a ResourceRecord from being freed from the cache
  * (the data itself may expire though!)
  */
-void                  eva_dns_rr_cache_unlock     (GskDnsRRCache           *rr_cache,
-	               			           GskDnsResourceRecord    *record);
-void                  eva_dns_rr_cache_lock       (GskDnsRRCache           *rr_cache,
-	               			           GskDnsResourceRecord    *record);
-void                  eva_dns_rr_cache_mark_user  (GskDnsRRCache           *rr_cache,
-			                           GskDnsResourceRecord    *record);
-void                  eva_dns_rr_cache_unmark_user(GskDnsRRCache           *rr_cache,
-			                           GskDnsResourceRecord    *record);
+void                  eva_dns_rr_cache_unlock     (EvaDnsRRCache           *rr_cache,
+	               			           EvaDnsResourceRecord    *record);
+void                  eva_dns_rr_cache_lock       (EvaDnsRRCache           *rr_cache,
+	               			           EvaDnsResourceRecord    *record);
+void                  eva_dns_rr_cache_mark_user  (EvaDnsRRCache           *rr_cache,
+			                           EvaDnsResourceRecord    *record);
+void                  eva_dns_rr_cache_unmark_user(EvaDnsRRCache           *rr_cache,
+			                           EvaDnsResourceRecord    *record);
 
 /* Negative caching.  RFC 1034, Section 4.3.4. */
-/* A name error occurs if the error_code member of a GskDnsMessage
+/* A name error occurs if the error_code member of a EvaDnsMessage
    is EVA_DNS_RESPONSE_ERROR_NAME_ERROR.  You must only cache the
    negative result during this query, unless a SOA record in the
    authority section exists for this name, in which case
    the 'minimum' field specifies a TTL for the negative result. */
-void                  eva_dns_rr_cache_add_negative(GskDnsRRCache           *rr_cache,
+void                  eva_dns_rr_cache_add_negative(EvaDnsRRCache           *rr_cache,
 						    const char              *owner,
-					            GskDnsResourceRecordType query_type,
-					            GskDnsResourceClass      query_class,
+					            EvaDnsResourceRecordType query_type,
+					            EvaDnsResourceClass      query_class,
 						    gulong                   expire_time,
 						    gboolean                 is_authoritative);
 
 
 /* master zone files */
-gboolean              eva_dns_rr_cache_load_zone  (GskDnsRRCache           *rr_cache,
+gboolean              eva_dns_rr_cache_load_zone  (EvaDnsRRCache           *rr_cache,
 						   const char              *filename,
 						   const char              *default_origin,
 						   GError                 **error);
@@ -105,25 +105,25 @@ gboolean              eva_dns_rr_cache_load_zone  (GskDnsRRCache           *rr_c
 /* helper functions */
 
 /* in the next two functions, caller must unref the *address_out if it returns TRUE  */
-gboolean              eva_dns_rr_cache_get_ns_addr(GskDnsRRCache           *rr_cache,
+gboolean              eva_dns_rr_cache_get_ns_addr(EvaDnsRRCache           *rr_cache,
 						   const char              *host,
 						   const char             **ns_name_out,
-						   GskSocketAddressIpv4   **address_out);
-gboolean              eva_dns_rr_cache_get_addr   (GskDnsRRCache           *rr_cache,
+						   EvaSocketAddressIpv4   **address_out);
+gboolean              eva_dns_rr_cache_get_addr   (EvaDnsRRCache           *rr_cache,
 			                           const char              *host,
-			                           GskSocketAddressIpv4   **address);
+			                           EvaSocketAddressIpv4   **address);
 
-GskDnsRRCache *       eva_dns_rr_cache_ref        (GskDnsRRCache           *rr_cache);
-void                  eva_dns_rr_cache_unref      (GskDnsRRCache           *rr_cache);
+EvaDnsRRCache *       eva_dns_rr_cache_ref        (EvaDnsRRCache           *rr_cache);
+void                  eva_dns_rr_cache_unref      (EvaDnsRRCache           *rr_cache);
 
 /* Flush out the oldest records in the cache. */
-void                  eva_dns_rr_cache_flush      (GskDnsRRCache           *rr_cache,
+void                  eva_dns_rr_cache_flush      (EvaDnsRRCache           *rr_cache,
 	               			           gulong                   cur_time);
 
 /* parsing an /etc/hosts file */
-gboolean     eva_dns_rr_cache_parse_etc_hosts_line(GskDnsRRCache           *rr_cache,
+gboolean     eva_dns_rr_cache_parse_etc_hosts_line(EvaDnsRRCache           *rr_cache,
 				                   const char              *text);
-gboolean     eva_dns_rr_cache_parse_etc_hosts     (GskDnsRRCache           *rr_cache,
+gboolean     eva_dns_rr_cache_parse_etc_hosts     (EvaDnsRRCache           *rr_cache,
 				                   const char              *filename,
 						   gboolean                 may_be_missing);
 

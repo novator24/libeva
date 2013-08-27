@@ -6,7 +6,7 @@
 #include <errno.h>
 
 static gboolean
-read_word (GskDebugLog *log,
+read_word (EvaDebugLog *log,
            guint64     *out)
 {
   if (log->is_64bit)
@@ -26,13 +26,13 @@ read_word (GskDebugLog *log,
   return TRUE;
 }
 
-GskDebugLog       *
+EvaDebugLog       *
 eva_debug_log_open (const char *filename,
                     GError    **error)
 {
   guint8 data[8];
   FILE *fp;
-  GskDebugLog *log;
+  EvaDebugLog *log;
   guint32 magic_le = GUINT32_TO_LE (EVA_DEBUG_LOG_PACKET_INIT);
   guint32 magic_be = GUINT32_TO_BE (EVA_DEBUG_LOG_PACKET_INIT);
   guint32 zeroes = 0;
@@ -46,7 +46,7 @@ eva_debug_log_open (const char *filename,
                    "error opening %s: %s", filename, g_strerror (errno));
       return NULL;
     }
-  log = g_new (GskDebugLog, 1);
+  log = g_new (EvaDebugLog, 1);
   log->fp = fp;
 
   if (fread (data, 8, 1, fp) != 1)
@@ -111,11 +111,11 @@ eva_debug_log_open (const char *filename,
   return log;
 }
 
-GskDebugLogPacket *eva_debug_log_read (GskDebugLog *log)
+EvaDebugLogPacket *eva_debug_log_read (EvaDebugLog *log)
 {
   guint64 magic, data;
   guint i;
-  GskDebugLogPacket *rv = g_new (GskDebugLogPacket, 1);
+  EvaDebugLogPacket *rv = g_new (EvaDebugLogPacket, 1);
 
 restart:
   if (!read_word (log, &magic))
@@ -125,7 +125,7 @@ restart:
     {
     case EVA_DEBUG_LOG_PACKET_MAP:
       {
-        GskDebugLogMap map;
+        EvaDebugLogMap map;
         if (!read_word (log, &data))
           g_error ("read-debug-alloc-log: error reading MAP message");
         map.start = data;
@@ -139,7 +139,7 @@ restart:
         if (fread (map.path, data, 1, log->fp) != 1)
           g_error ("read-debug-alloc-log: error reading MAP message");
         log->n_maps++;
-        log->maps = g_renew (GskDebugLogMap, log->maps, log->n_maps);
+        log->maps = g_renew (EvaDebugLogMap, log->maps, log->n_maps);
         log->maps[log->n_maps-1] = map;
       }
       goto restart;
@@ -190,7 +190,7 @@ restart:
   return rv;
 }
 
-void               eva_debug_log_packet_free (GskDebugLogPacket *packet)
+void               eva_debug_log_packet_free (EvaDebugLogPacket *packet)
 {
   switch (packet->type)
     {
@@ -207,7 +207,7 @@ void               eva_debug_log_packet_free (GskDebugLogPacket *packet)
 }
 
 void
-eva_debug_log_close(GskDebugLog *log)
+eva_debug_log_close(EvaDebugLog *log)
 {
   guint i;
   for (i = 0; i < log->n_maps; i++)

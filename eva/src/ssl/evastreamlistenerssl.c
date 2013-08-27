@@ -16,12 +16,12 @@ enum
 };
 
 static gboolean
-handle_underlying_accept (GskStream    *stream,
+handle_underlying_accept (EvaStream    *stream,
 			  gpointer      data,
 			  GError      **error)
 {
-  GskStreamListenerSsl *listener_ssl = EVA_STREAM_LISTENER_SSL (data);
-  GskStream *ssl = eva_stream_ssl_new_server (listener_ssl->cert_file,
+  EvaStreamListenerSsl *listener_ssl = EVA_STREAM_LISTENER_SSL (data);
+  EvaStream *ssl = eva_stream_ssl_new_server (listener_ssl->cert_file,
 					      listener_ssl->key_file,
 					      listener_ssl->password,
 					      stream, error);
@@ -41,7 +41,7 @@ static void
 handle_underlying_error  (GError       *err,
 			  gpointer      data)
 {
-  GskStreamListenerSsl *listener_ssl = EVA_STREAM_LISTENER_SSL (data);
+  EvaStreamListenerSsl *listener_ssl = EVA_STREAM_LISTENER_SSL (data);
   eva_stream_listener_notify_error (EVA_STREAM_LISTENER (listener_ssl),
 				    g_error_copy (err));
 }
@@ -49,8 +49,8 @@ handle_underlying_error  (GError       *err,
 static void
 handle_underlying_trap_destroyed (gpointer data)
 {
-  GskStreamListenerSsl *listener_ssl = EVA_STREAM_LISTENER_SSL (data);
-  GskStreamListener *underlying = listener_ssl->underlying;
+  EvaStreamListenerSsl *listener_ssl = EVA_STREAM_LISTENER_SSL (data);
+  EvaStreamListener *underlying = listener_ssl->underlying;
   listener_ssl->underlying = NULL;
   if (underlying)
     g_object_unref (underlying);
@@ -63,7 +63,7 @@ eva_stream_listener_ssl_set_property (GObject         *object,
 				      const GValue    *value,
 				      GParamSpec      *pspec)
 {
-  GskStreamListenerSsl *listener_ssl = EVA_STREAM_LISTENER_SSL (object);
+  EvaStreamListenerSsl *listener_ssl = EVA_STREAM_LISTENER_SSL (object);
   switch (property_id)
     {
     case PROP_UNDERLYING_LISTENER:
@@ -103,7 +103,7 @@ eva_stream_listener_ssl_get_property (GObject         *object,
 				      GValue          *value,
 				      GParamSpec      *pspec)
 {
-  GskStreamListenerSsl *listener_ssl = EVA_STREAM_LISTENER_SSL (object);
+  EvaStreamListenerSsl *listener_ssl = EVA_STREAM_LISTENER_SSL (object);
   switch (property_id)
     {
     case PROP_UNDERLYING_LISTENER:
@@ -121,7 +121,7 @@ eva_stream_listener_ssl_get_property (GObject         *object,
 static void
 eva_stream_listener_ssl_finalize (GObject        *object)
 {
-  GskStreamListenerSsl *listener_ssl = EVA_STREAM_LISTENER_SSL (object);
+  EvaStreamListenerSsl *listener_ssl = EVA_STREAM_LISTENER_SSL (object);
   g_assert (listener_ssl->underlying == NULL);
   g_assert (listener_ssl->key_file);
   g_assert (listener_ssl->cert_file);
@@ -131,12 +131,12 @@ eva_stream_listener_ssl_finalize (GObject        *object)
 
 /* --- functions --- */
 static void
-eva_stream_listener_ssl_init (GskStreamListenerSsl *stream_listener_ssl)
+eva_stream_listener_ssl_init (EvaStreamListenerSsl *stream_listener_ssl)
 {
 }
 
 static void
-eva_stream_listener_ssl_class_init (GskStreamListenerSslClass *class)
+eva_stream_listener_ssl_class_init (EvaStreamListenerSslClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   GParamSpec *pspec;
@@ -181,19 +181,19 @@ GType eva_stream_listener_ssl_get_type()
     {
       static const GTypeInfo stream_listener_ssl_info =
       {
-	sizeof(GskStreamListenerSslClass),
+	sizeof(EvaStreamListenerSslClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_stream_listener_ssl_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskStreamListenerSsl),
+	sizeof (EvaStreamListenerSsl),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_stream_listener_ssl_init,
 	NULL		/* value_table */
       };
       stream_listener_ssl_type = g_type_register_static (EVA_TYPE_STREAM_LISTENER,
-                                                  "GskStreamListenerSsl",
+                                                  "EvaStreamListenerSsl",
 						  &stream_listener_ssl_info, 0);
     }
   return stream_listener_ssl_type;
@@ -209,8 +209,8 @@ GType eva_stream_listener_ssl_get_type()
  *
  * returns: the new SSL-encrypted server.
  */
-GskStreamListener *
-eva_stream_listener_ssl_new (GskStreamListener *underlying,
+EvaStreamListener *
+eva_stream_listener_ssl_new (EvaStreamListener *underlying,
 			     const char        *cert_file,
 			     const char        *key_file)
 {

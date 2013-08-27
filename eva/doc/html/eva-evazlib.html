@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch07.html" title="Standard Streams: standard compression algorithms">
-<link rel="prev" href="eva-GskZlibInflator.html" title="GskZlibInflator">
+<link rel="prev" href="eva-EvaZlibInflator.html" title="EvaZlibInflator">
 <link rel="next" href="ch08.html" title="Standard Streams: utility streams">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -30,7 +30,7 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="eva-GskZlibInflator.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="eva-EvaZlibInflator.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch07.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
@@ -54,7 +54,7 @@
 <div class="refsynopsisdiv">
 <a name="eva-evazlib.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-<a class="link" href="eva-evaerror.html#GskErrorCode" title="enum GskErrorCode">GskErrorCode</a>        <a class="link" href="eva-evazlib.html#eva-zlib-error-to-eva-error" title="eva_zlib_error_to_eva_error ()">eva_zlib_error_to_eva_error</a>         (<a
+<a class="link" href="eva-evaerror.html#EvaErrorCode" title="enum EvaErrorCode">EvaErrorCode</a>        <a class="link" href="eva-evazlib.html#eva-zlib-error-to-eva-error" title="eva_zlib_error_to_eva_error ()">eva_zlib_error_to_eva_error</a>         (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> zlib_error_rv);
 const char *        <a class="link" href="eva-evazlib.html#eva-zlib-error-to-message" title="eva_zlib_error_to_message ()">eva_zlib_error_to_message</a>           (<a
@@ -71,11 +71,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 <a name="eva-evazlib.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
 <a name="eva-zlib-error-to-eva-error"></a><h3>eva_zlib_error_to_eva_error ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evaerror.html#GskErrorCode" title="enum GskErrorCode">GskErrorCode</a>        eva_zlib_error_to_eva_error         (<a
+<pre class="programlisting"><a class="link" href="eva-evaerror.html#EvaErrorCode" title="enum EvaErrorCode">EvaErrorCode</a>        eva_zlib_error_to_eva_error         (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
 >gint</a> zlib_error_rv);</pre>
 <p>
-Converts a zlib error code to a <a class="link" href="eva-evaerror.html#GskErrorCode" title="enum GskErrorCode"><span class="type">GskErrorCode</span></a>.</p>
+Converts a zlib error code to a <a class="link" href="eva-evaerror.html#EvaErrorCode" title="enum EvaErrorCode"><span class="type">EvaErrorCode</span></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">

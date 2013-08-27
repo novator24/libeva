@@ -3,7 +3,7 @@
 #include "evastreammap.h"
 
 /*
- * GskStreamMap
+ * EvaStreamMap
  */
 
 GType
@@ -14,7 +14,7 @@ eva_stream_map_get_type (void)
     {
       static const GTypeInfo type_info =
 	{
-	  sizeof (GskStreamMapIface),
+	  sizeof (EvaStreamMapIface),
 	  NULL, /* base_init */
 	  NULL, /* base_finalize */
 	  NULL,
@@ -26,7 +26,7 @@ eva_stream_map_get_type (void)
 	  NULL
 	};
       type = g_type_register_static (G_TYPE_INTERFACE,
-				     "GskStreamMap",
+				     "EvaStreamMap",
 				     &type_info,
 				     G_TYPE_FLAG_ABSTRACT);
     }
@@ -34,7 +34,7 @@ eva_stream_map_get_type (void)
 }
 
 /*
- * GskStreamMapRequest
+ * EvaStreamMapRequest
  */
 
 static GObjectClass *eva_stream_map_request_parent_class = NULL;
@@ -42,14 +42,14 @@ static GObjectClass *eva_stream_map_request_parent_class = NULL;
 static void
 eva_stream_map_request_finalize (GObject *object)
 {
-  GskStreamMapRequest *request = EVA_STREAM_MAP_REQUEST (object);
+  EvaStreamMapRequest *request = EVA_STREAM_MAP_REQUEST (object);
   if (request->key)
     g_free (request->key);
   (*eva_stream_map_request_parent_class->finalize) (object);
 }
 
 static void
-eva_stream_map_request_class_init (GskRequestClass *request_class)
+eva_stream_map_request_class_init (EvaRequestClass *request_class)
 {
   eva_stream_map_request_parent_class =
     g_type_class_peek_parent (request_class);
@@ -64,19 +64,19 @@ eva_stream_map_request_get_type (void)
     {
       static const GTypeInfo type_info =
 	{
-	  sizeof (GskStreamMapRequestClass),
+	  sizeof (EvaStreamMapRequestClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) eva_stream_map_request_class_init,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskStreamMapRequest),
+	  sizeof (EvaStreamMapRequest),
 	  0,		/* n_preallocs */
 	  (GInstanceInitFunc) NULL,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (EVA_TYPE_REQUEST,
-				     "GskStreamMapRequest",
+				     "EvaStreamMapRequest",
 				     &type_info,
 				     0);
     }

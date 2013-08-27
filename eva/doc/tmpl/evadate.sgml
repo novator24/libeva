@@ -18,7 +18,7 @@ formats.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### ENUM GskDateFormatMask ##### -->
+<!-- ##### ENUM EvaDateFormatMask ##### -->
 <para>
 Formats to accept when parsing with eva_date_parse().
 </para>

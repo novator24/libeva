@@ -151,7 +151,7 @@ test_object_random (double p)
 	  g_return_val_if_fail (str, NULL);
 	  for (end = str + len; str < end; ++str)
 	    {
-	      /* Try not to run afoul of GskXmlFormat limitations... */
+	      /* Try not to run afoul of EvaXmlFormat limitations... */
 	      do
 		*str = lrand48 () & 0x7f;
 	      while (*str == 0 || *str == '>');

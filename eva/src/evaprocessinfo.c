@@ -52,11 +52,11 @@ static guint get_page_size (void)
 }
 #endif	/* !defined(PAGE_SIZE) */
 
-GskProcessInfo *
+EvaProcessInfo *
 eva_process_info_get (guint          pid,
                       GError       **error)
 {
-  GskProcessInfo *rv;
+  EvaProcessInfo *rv;
   char *filename = g_strdup_printf ("/proc/%u/stat", pid);
   FILE *fp = fopen (filename, "r");
   char *content;
@@ -88,7 +88,7 @@ eva_process_info_get (guint          pid,
   fclose (fp);
   fp = NULL;
 
-  rv = g_new (GskProcessInfo, 1);
+  rv = g_new (EvaProcessInfo, 1);
   rv->exe_filename = NULL;
 
   at = content;
@@ -227,13 +227,13 @@ eva_process_info_get (guint          pid,
 }
 
 void
-eva_process_info_free(GskProcessInfo *info)
+eva_process_info_free(EvaProcessInfo *info)
 {
   g_free (info->exe_filename);
   g_free (info);
 }
 
-const char *eva_process_info_state_name (GskProcessInfoState state)
+const char *eva_process_info_state_name (EvaProcessInfoState state)
 {
   switch (state)
     {

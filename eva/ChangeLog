@@ -72,7 +72,7 @@ eva (1.0.48)
     and decompression.  These require zlib >= 1.2.0 to work right.
 
 eva (1.0.47)
-  * GskStreamWatchdog: a stream that closes automatically after
+  * EvaStreamWatchdog: a stream that closes automatically after
     a certain amount of inactivity.
   * eva_hook_set_poll(), etc: call the set_poll function even
     if idle notification is enabled.
@@ -82,7 +82,7 @@ eva (1.0.46)
 
 eva (1.0.45)
   * major fix in HttpServer if not enough data comes in.
-  * GskIO::print_errors.  Setting this flag in a GskIO
+  * EvaIO::print_errors.  Setting this flag in a EvaIO
     should print all errors that occur.  The default
     is FALSE, but if EVA_PRINT_ERRORS=1 in the environment,
     then the default will become TRUE.
@@ -109,12 +109,12 @@ eva (1.0.41)
     eva_socket_address_local_new().  Likewise,
     eva_socket_address_new_ethernet() is deprecated by
     eva_socket_address_ethernet_new().
-  * GskSocketAddressSymbolic, a symbolic address
+  * EvaSocketAddressSymbolic, a symbolic address
     which can be used with eva_stream_fd_new_from_symbolic_address()
     or eva_stream_new_connecting(), which will handle a
     native or symbolic address without burdening the user.
-  * GskPersistentConnection is implemented in terms
-    of GskSocketAddressSymbolic, and its DOING_NAME_RESOLUTION state
+  * EvaPersistentConnection is implemented in terms
+    of EvaSocketAddressSymbolic, and its DOING_NAME_RESOLUTION state
     is now unused.
 
 eva (1.0.40)
@@ -134,7 +134,7 @@ eva (1.0.37)
   * bugs in redirect handling for HTTP Url transfers.
 
 eva (1.0.36)
-  * bug fix:  eva_stream_write() on GskStreamExternal
+  * bug fix:  eva_stream_write() on EvaStreamExternal
     was not handling contention properly.
 
 eva (1.0.35)
@@ -149,7 +149,7 @@ eva (1.0.34)
   * Add eva_g_error_add_prefix().
 
 eva (1.0.33)
-  * GskMemPoolFixed bug fix.
+  * EvaMemPoolFixed bug fix.
   * expose eva/zlib/evazlib.h for its helper functions.
 
 eva (1.0.32)
@@ -157,13 +157,13 @@ eva (1.0.32)
 
 eva (1.0.30)
   * BUG: bogus assertions in evadnsrrcache wrt to the is_deprecated flag.
-  * Make DNS warning/debugging messages go to their own log-domain. (Gsk-Dns)
+  * Make DNS warning/debugging messages go to their own log-domain. (Eva-Dns)
 
 eva (1.0.10)
 
   * BUILD BUG: sometimes -lreadline requires -ltermcap;
     in any event, test linkage.
-  * MAJOR BUG: fixes in GskDnsClient list manipulation.
+  * MAJOR BUG: fixes in EvaDnsClient list manipulation.
     The bug caused (under duress)
     "useless DNS message" warnings and segfaults.
   * add eva_memory_source_new_vprintf()
@@ -180,7 +180,7 @@ eva (1.0.9)
     like EOF chunks.
   * BUG: evamemory was shutting down while returning nonzero.
     i think we decided that that wasn't allowed.
-  * add a line-based ring-buffer: GskLogRingBuffer.
+  * add a line-based ring-buffer: EvaLogRingBuffer.
   * add generic logging traps (eva_log_trap_generic)
   * add ring-buffer logging traps (eva_log_trap_ring_buffer)
   * API change: change eva_log_trap_domain_to_file() to take
@@ -192,19 +192,19 @@ eva (1.0.9)
 eva (1.0.8)
   * allow user to set the DNS cache size
   * build fixes
-  * BUG: GskStreamExternal was busy-looping.
+  * BUG: EvaStreamExternal was busy-looping.
 
 eva (1.0.7)
-  * include GskControlServer/GskControlClient
+  * include EvaControlServer/EvaControlClient
     which provide a simple to implement generic control
     interface.  We also provide the eva-control-client
     program which can talk to such a server, in general.
     Therefore, must programs will only need to implement the
     server.  An example server has been added in src/programs.
-  * include GskHttpContent, a content database for implementing
+  * include EvaHttpContent, a content database for implementing
     normal HTTP servers, which usually want to provide different handlers
     for various portions of the path/user-agent/virtual-host space.
-  * BUG: GskStreamExternal: re-fix bug that caused
+  * BUG: EvaStreamExternal: re-fix bug that caused
     stdin and stdout to be nonblocking.
   * evadaemonize provides --foreground and --background options,
     as well as restart-on-segv or assertion failure support.
@@ -215,12 +215,12 @@ eva (1.0.6)
   * this version was botched.  do not use it.
 
 eva (1.0.5)
-  * API change:  GskPacket now has two addresses: a source and a destination
+  * API change:  EvaPacket now has two addresses: a source and a destination
     instead of a single multi-use address.
-  * change GskNetworkInterfaceSet::num_interfaces to an unsigned.
+  * change EvaNetworkInterfaceSet::num_interfaces to an unsigned.
   * evalog.h:  gmessage-based logging to files, using many domains. (daveb)
   * SHA-256 support in evahash. (daveb)
-  * GskStreamListenerSocket has a parameter to remove the entry
+  * EvaStreamListenerSocket has a parameter to remove the entry
     from the file-system when done.
 
 eva (1.0.4)
@@ -239,7 +239,7 @@ eva (1.0.1)
     whitespace and other "non-unreserved" characters. (mrad)
   * various solaris fixes reported by Jeremy Leader (at Overture).
   * add eva_timegm() which does the opposite of gmtime() portably. (daveb)
-  * better handling of POLLHUP and POLLERR in GskMainLoop{Poll,Epoll}.
+  * better handling of POLLHUP and POLLERR in EvaMainLoop{Poll,Epoll}.
     Now the POLLHUP flag is propagated to G_IO_IN and POLLERR
     is propagated to G_IO_IN|G_IO_OUT.  This is roughly what
     BSD and select(2) do, so it seems right for linux/poll,epoll as well.

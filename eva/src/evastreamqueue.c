@@ -5,19 +5,19 @@ static GObjectClass *parent_class = NULL;
 #define READ_EMPTY_HOOK(queue)    EVA_STREAM_QUEUE_READ_EMPTY_HOOK(queue)
 #define WRITE_EMPTY_HOOK(queue)   EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK(queue)
 
-static gboolean handle_read_stream_notify          (GskStream *read_substream,
-                                                    GskStreamQueue *);
-static gboolean handle_read_stream_shutdown_notify (GskStream *read_substream,
-                                                    GskStreamQueue *);
-static void     handle_read_stream_trap_destroy    (GskStreamQueue *);
-static gboolean handle_write_stream_notify         (GskStream *write_substream,
-                                                    GskStreamQueue *);
-static gboolean handle_write_stream_shutdown_notify(GskStream *write_substream,
-                                                    GskStreamQueue *);
-static void     handle_write_stream_trap_destroy   (GskStreamQueue *);
+static gboolean handle_read_stream_notify          (EvaStream *read_substream,
+                                                    EvaStreamQueue *);
+static gboolean handle_read_stream_shutdown_notify (EvaStream *read_substream,
+                                                    EvaStreamQueue *);
+static void     handle_read_stream_trap_destroy    (EvaStreamQueue *);
+static gboolean handle_write_stream_notify         (EvaStream *write_substream,
+                                                    EvaStreamQueue *);
+static gboolean handle_write_stream_shutdown_notify(EvaStream *write_substream,
+                                                    EvaStreamQueue *);
+static void     handle_write_stream_trap_destroy   (EvaStreamQueue *);
 
 static inline void
-trap_head_read_stream (GskStreamQueue *queue)
+trap_head_read_stream (EvaStreamQueue *queue)
 {
   eva_io_trap_readable (EVA_IO (queue->read_streams->head->data),
                         handle_read_stream_notify,
@@ -27,7 +27,7 @@ trap_head_read_stream (GskStreamQueue *queue)
 }
 
 static inline void
-trap_head_write_stream (GskStreamQueue *queue)
+trap_head_write_stream (EvaStreamQueue *queue)
 {
   eva_io_trap_writable (EVA_IO (queue->write_streams->head->data),
                         handle_write_stream_notify,
@@ -37,9 +37,9 @@ trap_head_write_stream (GskStreamQueue *queue)
 }
 
 static void
-dequeue_read_stream (GskStreamQueue *queue)
+dequeue_read_stream (EvaStreamQueue *queue)
 {
-  GskStream *s = g_queue_pop_head (queue->read_streams);
+  EvaStream *s = g_queue_pop_head (queue->read_streams);
   eva_io_untrap_readable (s);
   if (eva_io_is_polling_for_read (queue)
    && queue->read_streams->head != NULL)
@@ -48,9 +48,9 @@ dequeue_read_stream (GskStreamQueue *queue)
 }
 
 static void
-dequeue_write_stream (GskStreamQueue *queue)
+dequeue_write_stream (EvaStreamQueue *queue)
 {
-  GskStream *s = g_queue_pop_head (queue->write_streams);
+  EvaStream *s = g_queue_pop_head (queue->write_streams);
   eva_io_untrap_writable (s);
   if (eva_io_is_polling_for_write (queue)
    && queue->write_streams->head != NULL)
@@ -59,28 +59,28 @@ dequeue_write_stream (GskStreamQueue *queue)
 }
 
 static inline gboolean
-should_be_read_shutdown (GskStreamQueue *queue)
+should_be_read_shutdown (EvaStreamQueue *queue)
 {
   return queue->no_more_read_streams
       && queue->read_streams->head == NULL;
 }
 
 static inline gboolean
-should_be_write_shutdown (GskStreamQueue *queue)
+should_be_write_shutdown (EvaStreamQueue *queue)
 {
   return queue->no_more_write_streams
       && queue->write_streams->head == NULL;
 }
 
 static inline void
-maybe_read_shutdown_notify (GskStreamQueue *queue)
+maybe_read_shutdown_notify (EvaStreamQueue *queue)
 {
   if (should_be_read_shutdown (queue))
     eva_io_notify_read_shutdown (queue);
 }
 
 static inline void
-maybe_write_shutdown_notify (GskStreamQueue *queue)
+maybe_write_shutdown_notify (EvaStreamQueue *queue)
 {
   if (should_be_write_shutdown (queue))
     eva_io_notify_write_shutdown (queue);
@@ -88,16 +88,16 @@ maybe_write_shutdown_notify (GskStreamQueue *queue)
 
 /* --- handling child events --- */
 static gboolean
-handle_read_stream_notify          (GskStream *read_substream,
-                                    GskStreamQueue *queue)
+handle_read_stream_notify          (EvaStream *read_substream,
+                                    EvaStreamQueue *queue)
 {
   eva_io_notify_ready_to_read (queue);
   return TRUE;
 }
 
 static gboolean
-handle_read_stream_shutdown_notify (GskStream *read_substream,
-                                    GskStreamQueue *queue)
+handle_read_stream_shutdown_notify (EvaStream *read_substream,
+                                    EvaStreamQueue *queue)
 {
   if (!queue->is_reading)
     {
@@ -109,20 +109,20 @@ handle_read_stream_shutdown_notify (GskStream *read_substream,
 }
 
 static void    
-handle_read_stream_trap_destroy    (GskStreamQueue *queue)
+handle_read_stream_trap_destroy    (EvaStreamQueue *queue)
 {
 }
 
 static gboolean
-handle_write_stream_notify         (GskStream *write_substream,
-                                    GskStreamQueue *queue)
+handle_write_stream_notify         (EvaStream *write_substream,
+                                    EvaStreamQueue *queue)
 {
   eva_io_notify_ready_to_write (queue);
   return TRUE;
 }
 static gboolean
-handle_write_stream_shutdown_notify(GskStream *write_substream,
-                                    GskStreamQueue *queue)
+handle_write_stream_shutdown_notify(EvaStream *write_substream,
+                                    EvaStreamQueue *queue)
 {
   if (!queue->is_writing)
     {
@@ -133,16 +133,16 @@ handle_write_stream_shutdown_notify(GskStream *write_substream,
   return FALSE;
 }
 static void    
-handle_write_stream_trap_destroy   (GskStreamQueue *queue)
+handle_write_stream_trap_destroy   (EvaStreamQueue *queue)
 {
 }
 
 /* --- functions --- */
 static void
-eva_stream_queue_set_poll_read   (GskIO      *io,
+eva_stream_queue_set_poll_read   (EvaIO      *io,
 			          gboolean    do_poll)
 {
-  GskStreamQueue *queue = EVA_STREAM_QUEUE (io);
+  EvaStreamQueue *queue = EVA_STREAM_QUEUE (io);
   if (queue->read_streams->head == NULL)
     return;
   if (do_poll)
@@ -152,10 +152,10 @@ eva_stream_queue_set_poll_read   (GskIO      *io,
 }
 
 static void
-eva_stream_queue_set_poll_write  (GskIO      *io,
+eva_stream_queue_set_poll_write  (EvaIO      *io,
 			          gboolean    do_poll)
 {
-  GskStreamQueue *queue = EVA_STREAM_QUEUE (io);
+  EvaStreamQueue *queue = EVA_STREAM_QUEUE (io);
   if (queue->write_streams->head == NULL)
     return;
   if (do_poll)
@@ -198,14 +198,14 @@ conglomerate_error_list (GSList *errors)
 }
 
 static gboolean
-eva_stream_queue_shutdown_read   (GskIO      *io,
+eva_stream_queue_shutdown_read   (EvaIO      *io,
 			          GError    **error)
 {
-  GskStreamQueue *queue = EVA_STREAM_QUEUE (io);
+  EvaStreamQueue *queue = EVA_STREAM_QUEUE (io);
   GList *at;
   GSList *errors = NULL;
   GError *suberror = NULL;
-  GskStream **streams = g_newa (GskStream *, queue->read_streams->length);
+  EvaStream **streams = g_newa (EvaStream *, queue->read_streams->length);
   guint n = 0;
   guint i;
   for (at = queue->read_streams->head; at != NULL; at = at->next)
@@ -230,14 +230,14 @@ eva_stream_queue_shutdown_read   (GskIO      *io,
 }
 
 static gboolean
-eva_stream_queue_shutdown_write  (GskIO      *io,
+eva_stream_queue_shutdown_write  (EvaIO      *io,
 			          GError    **error)
 {
-  GskStreamQueue *queue = EVA_STREAM_QUEUE (io);
+  EvaStreamQueue *queue = EVA_STREAM_QUEUE (io);
   GList *at;
   GSList *errors = NULL;
   GError *suberror = NULL;
-  GskStream **streams = g_newa (GskStream *, queue->write_streams->length);
+  EvaStream **streams = g_newa (EvaStream *, queue->write_streams->length);
   guint n = 0;
   guint i;
   for (at = queue->write_streams->head; at != NULL; at = at->next)
@@ -267,14 +267,14 @@ typedef enum
   RES_TRY_AGAIN
 } Res;
 
-static Res   try_one_read  (GskStreamQueue *queue,
+static Res   try_one_read  (EvaStreamQueue *queue,
                             gpointer        data,
                             guint           length,
                             guint          *rv_inout,
                             guint           call_count,
                             GError        **error)
 {
-  GskStream *substream = EVA_STREAM (queue->read_streams->head->data);
+  EvaStream *substream = EVA_STREAM (queue->read_streams->head->data);
   guint max_len = length - (*rv_inout);
   guint subread = eva_stream_read (substream,
                                    (char *) data + (*rv_inout),
@@ -289,12 +289,12 @@ static Res   try_one_read  (GskStreamQueue *queue,
 }
 
 static guint
-eva_stream_queue_raw_read   (GskStream     *stream,
+eva_stream_queue_raw_read   (EvaStream     *stream,
 			     gpointer       data,
 			     guint          length,
 			     GError       **error)
 {
-  GskStreamQueue *queue = EVA_STREAM_QUEUE (stream);
+  EvaStreamQueue *queue = EVA_STREAM_QUEUE (stream);
   unsigned rv = 0;
   guint count = 0;
   queue->is_reading = 1;
@@ -319,13 +319,13 @@ done:
 }
 
 static Res
-try_one_read_buffer  (GskStreamQueue *queue,
-                      GskBuffer      *out,
+try_one_read_buffer  (EvaStreamQueue *queue,
+                      EvaBuffer      *out,
                       guint          *rv_inout,
                       guint           call_count,
                       GError        **error)
 {
-  GskStream *substream = EVA_STREAM (queue->read_streams->head->data);
+  EvaStream *substream = EVA_STREAM (queue->read_streams->head->data);
   guint subrv = eva_stream_read_buffer (substream, out, error);
   *rv_inout += subrv;
   if (call_count > 0             /* only retry if this is the first time through */
@@ -337,11 +337,11 @@ try_one_read_buffer  (GskStreamQueue *queue,
 }
 
 static guint
-eva_stream_queue_raw_read_buffer (GskStream     *stream,
-			          GskBuffer     *buffer,
+eva_stream_queue_raw_read_buffer (EvaStream     *stream,
+			          EvaBuffer     *buffer,
 			          GError       **error)
 {
-  GskStreamQueue *queue = EVA_STREAM_QUEUE (stream);
+  EvaStreamQueue *queue = EVA_STREAM_QUEUE (stream);
   unsigned rv = 0;
   queue->is_reading = 1;
   while (queue->read_streams->head != NULL)
@@ -365,14 +365,14 @@ done:
   return rv;
 }
 
-static Res   try_one_write (GskStreamQueue *queue,
+static Res   try_one_write (EvaStreamQueue *queue,
                             gconstpointer   data,
                             guint           length,
                             guint          *rv_inout,
                             guint           call_count,
                             GError        **error)
 {
-  GskStream *substream = EVA_STREAM (queue->write_streams->head->data);
+  EvaStream *substream = EVA_STREAM (queue->write_streams->head->data);
   guint max_len = length - (*rv_inout);
   guint subwrite = eva_stream_write (substream,
                                      (char *) data + (*rv_inout),
@@ -387,12 +387,12 @@ static Res   try_one_write (GskStreamQueue *queue,
 }
 
 static guint
-eva_stream_queue_raw_write   (GskStream     *stream,
+eva_stream_queue_raw_write   (EvaStream     *stream,
                               gconstpointer  data,
                               guint          length,
                               GError       **error)
 {
-  GskStreamQueue *queue = EVA_STREAM_QUEUE (stream);
+  EvaStreamQueue *queue = EVA_STREAM_QUEUE (stream);
   unsigned rv = 0;
   queue->is_writing = 1;
   while (queue->write_streams->head != NULL)
@@ -417,13 +417,13 @@ done:
 }
 
 static Res
-try_one_write_buffer  (GskStreamQueue *queue,
-                       GskBuffer              *out,
+try_one_write_buffer  (EvaStreamQueue *queue,
+                       EvaBuffer              *out,
                        guint                  *rv_inout,
                        guint                   call_count,
                        GError                **error)
 {
-  GskStream *substream = EVA_STREAM (queue->write_streams->head->data);
+  EvaStream *substream = EVA_STREAM (queue->write_streams->head->data);
   *rv_inout += eva_stream_write_buffer (substream, out, error);
   if (call_count > 0             /* only retry if this is the first time through */
    || *error)                    /* don't retry if an error occurred */
@@ -432,11 +432,11 @@ try_one_write_buffer  (GskStreamQueue *queue,
 }
 
 static guint
-eva_stream_queue_raw_write_buffer (GskStream     *stream,
-			           GskBuffer     *buffer,
+eva_stream_queue_raw_write_buffer (EvaStream     *stream,
+			           EvaBuffer     *buffer,
 			           GError       **error)
 {
-  GskStreamQueue *queue = EVA_STREAM_QUEUE (stream);
+  EvaStreamQueue *queue = EVA_STREAM_QUEUE (stream);
   unsigned rv = 0;
   queue->is_writing = 1;
   while (queue->write_streams->head != NULL)
@@ -463,7 +463,7 @@ done:
 static void
 eva_stream_queue_finalize (GObject *object)
 {
-  GskStreamQueue *queue = EVA_STREAM_QUEUE (object);
+  EvaStreamQueue *queue = EVA_STREAM_QUEUE (object);
   if (queue->read_streams->head != NULL)
     {
       eva_stream_untrap_readable (queue->read_streams->head);
@@ -480,23 +480,23 @@ eva_stream_queue_finalize (GObject *object)
 }
 
 static void
-eva_stream_queue_init (GskStreamQueue *queue)
+eva_stream_queue_init (EvaStreamQueue *queue)
 {
   queue->read_streams = g_queue_new ();
   queue->write_streams = g_queue_new ();
-  EVA_HOOK_INIT_NO_SHUTDOWN (queue, GskStreamQueue,
+  EVA_HOOK_INIT_NO_SHUTDOWN (queue, EvaStreamQueue,
                              read_empty_hook,
                              0, set_read_empty_poll);
-  EVA_HOOK_INIT_NO_SHUTDOWN (queue, GskStreamQueue,
+  EVA_HOOK_INIT_NO_SHUTDOWN (queue, EvaStreamQueue,
                              write_empty_hook,
                              0, set_write_empty_poll);
 }
 
 static void
-eva_stream_queue_class_init (GskStreamQueueClass *class)
+eva_stream_queue_class_init (EvaStreamQueueClass *class)
 {
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
-  GskIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
   io_class->shutdown_read = eva_stream_queue_shutdown_read;
@@ -508,8 +508,8 @@ eva_stream_queue_class_init (GskStreamQueueClass *class)
   stream_class->raw_write_buffer = eva_stream_queue_raw_write_buffer;
   stream_class->raw_write = eva_stream_queue_raw_write;
   object_class->finalize = eva_stream_queue_finalize;
-  EVA_HOOK_CLASS_INIT (object_class, "read-empty", GskStreamQueue, read_empty_hook);
-  EVA_HOOK_CLASS_INIT (object_class, "write-empty", GskStreamQueue, write_empty_hook);
+  EVA_HOOK_CLASS_INIT (object_class, "read-empty", EvaStreamQueue, read_empty_hook);
+  EVA_HOOK_CLASS_INIT (object_class, "write-empty", EvaStreamQueue, write_empty_hook);
 }
 
 GType eva_stream_queue_get_type()
@@ -519,19 +519,19 @@ GType eva_stream_queue_get_type()
     {
       static const GTypeInfo stream_queue_info =
       {
-	sizeof(GskStreamQueueClass),
+	sizeof(EvaStreamQueueClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_stream_queue_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskStreamQueue),
+	sizeof (EvaStreamQueue),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_stream_queue_init,
 	NULL		/* value_table */
       };
       stream_queue_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskStreamQueue",
+                                                  "EvaStreamQueue",
 						  &stream_queue_info, 0);
     }
   return stream_queue_type;
@@ -549,11 +549,11 @@ GType eva_stream_queue_get_type()
  *
  * returns: the newly allocated stream.
  */
-GskStreamQueue *
+EvaStreamQueue *
 eva_stream_queue_new (gboolean is_readable,
                       gboolean is_writable)
 {
-  GskStreamQueue *queue = g_object_new (EVA_TYPE_STREAM_QUEUE, NULL);
+  EvaStreamQueue *queue = g_object_new (EVA_TYPE_STREAM_QUEUE, NULL);
   if (is_readable)
     {
       eva_io_mark_is_readable (queue);
@@ -578,8 +578,8 @@ eva_stream_queue_new (gboolean is_readable,
  * It will be read in the order in which it was appended.
  */
 void
-eva_stream_queue_append_read_stream (GskStreamQueue *queue,
-			             GskStream      *substream)
+eva_stream_queue_append_read_stream (EvaStreamQueue *queue,
+			             EvaStream      *substream)
 {
   g_return_if_fail (eva_stream_get_is_readable (EVA_STREAM (queue)));
   g_return_if_fail (EVA_IS_STREAM (substream));
@@ -605,7 +605,7 @@ eva_stream_queue_append_read_stream (GskStreamQueue *queue,
  * will shut down.
  */
 void
-eva_stream_queue_no_more_read_streams(GskStreamQueue *queue)
+eva_stream_queue_no_more_read_streams(EvaStreamQueue *queue)
 {
   g_return_if_fail (!queue->no_more_read_streams);
   queue->no_more_read_streams = 1;
@@ -629,8 +629,8 @@ eva_stream_queue_no_more_read_streams(GskStreamQueue *queue)
  * It will be written to in the order in which it was appended.
  */
 void
-eva_stream_queue_append_write_stream (GskStreamQueue *queue,
-			              GskStream      *substream)
+eva_stream_queue_append_write_stream (EvaStreamQueue *queue,
+			              EvaStream      *substream)
 {
   g_return_if_fail (eva_stream_get_is_writable (EVA_STREAM (queue)));
   g_return_if_fail (EVA_IS_STREAM (substream));
@@ -655,7 +655,7 @@ eva_stream_queue_append_write_stream (GskStreamQueue *queue,
  * will shut down.
  */
 void
-eva_stream_queue_no_more_write_streams(GskStreamQueue *queue)
+eva_stream_queue_no_more_write_streams(EvaStreamQueue *queue)
 {
   g_return_if_fail (!queue->no_more_write_streams);
   queue->no_more_write_streams = 1;

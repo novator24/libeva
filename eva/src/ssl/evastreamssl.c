@@ -51,8 +51,8 @@ enum
 
 /* --- stream and io methods --- */
 static void
-handle_transport_error (GskStream *transport,
-                        GskStreamSsl *ssl)
+handle_transport_error (EvaStream *transport,
+                        EvaStreamSsl *ssl)
 {
   eva_io_set_error (EVA_IO (ssl),
                     EVA_IO (transport)->error_cause,
@@ -62,7 +62,7 @@ handle_transport_error (GskStream *transport,
 }
 
 static void
-set_backend_flags_raw (GskStreamSsl *ssl,
+set_backend_flags_raw (EvaStreamSsl *ssl,
 		       gboolean want_read,
 		       gboolean want_write)
 {
@@ -94,13 +94,13 @@ set_backend_flags_raw (GskStreamSsl *ssl,
 }
 
 static void
-set_backend_flags_raw_to_underlying (GskStreamSsl *ssl)
+set_backend_flags_raw_to_underlying (EvaStreamSsl *ssl)
 {
   set_backend_flags_raw (ssl, ssl->this_readable, ssl->this_writable);
 }
 
 static gboolean
-do_handshake (GskStreamSsl *stream_ssl, SSL* ssl, GError **error)
+do_handshake (EvaStreamSsl *stream_ssl, SSL* ssl, GError **error)
 {
   int rv;
   DEBUG (stream_ssl, ("do_handshake[client=%u]: start", stream_ssl->is_client));
@@ -147,7 +147,7 @@ do_handshake (GskStreamSsl *stream_ssl, SSL* ssl, GError **error)
 }
 
 static inline void
-maybe_update_backend_poll_state (GskStreamSsl *ssl)
+maybe_update_backend_poll_state (EvaStreamSsl *ssl)
 {
   gboolean backend_needs_write = ssl->this_readable;
   gboolean backend_needs_read = ssl->this_writable;
@@ -165,10 +165,10 @@ maybe_update_backend_poll_state (GskStreamSsl *ssl)
 }
 
 static void
-eva_stream_ssl_set_poll_read  (GskIO      *io,
+eva_stream_ssl_set_poll_read  (EvaIO      *io,
 			       gboolean    do_poll)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (io);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (io);
   ssl->this_readable = do_poll ? 1 : 0;
   DEBUG (ssl, ("eva_stream_ssl_set_poll_read: is_client=%d, do_poll=%d",
 	   ssl->is_client, do_poll));
@@ -176,10 +176,10 @@ eva_stream_ssl_set_poll_read  (GskIO      *io,
 }
 
 static void
-eva_stream_ssl_set_poll_write (GskIO      *io,
+eva_stream_ssl_set_poll_write (EvaIO      *io,
 			       gboolean    do_poll)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (io);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (io);
   ssl->this_writable = do_poll ? 1 : 0;
   DEBUG (ssl, ("eva_stream_ssl_set_poll_write: is_client=%d, do_poll=%d",
 	  ssl->is_client, do_poll));
@@ -187,7 +187,7 @@ eva_stream_ssl_set_poll_write (GskIO      *io,
 }
 
 static gboolean
-eva_stream_ssl_shutdown_both (GskStreamSsl *ssl,
+eva_stream_ssl_shutdown_both (EvaStreamSsl *ssl,
 			      GError  **error)
 {
   int rv;
@@ -248,10 +248,10 @@ eva_stream_ssl_shutdown_both (GskStreamSsl *ssl,
 }
 
 static gboolean
-eva_stream_ssl_shutdown_read  (GskIO      *io,
+eva_stream_ssl_shutdown_read  (EvaIO      *io,
 			       GError    **error)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (io);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (io);
   if (!eva_io_get_is_writable (io)
     || eva_io_get_is_write_shutting_down (io))
     {
@@ -264,10 +264,10 @@ eva_stream_ssl_shutdown_read  (GskIO      *io,
 }
 
 static gboolean
-eva_stream_ssl_shutdown_write (GskIO      *io,
+eva_stream_ssl_shutdown_write (EvaIO      *io,
 			       GError    **error)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (io);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (io);
   if (!eva_io_get_is_readable (io)
     || eva_io_get_is_read_shutting_down (io)
     || ssl->got_remote_shutdown)
@@ -282,12 +282,12 @@ eva_stream_ssl_shutdown_write (GskIO      *io,
 }
 
 static guint
-eva_stream_ssl_raw_read       (GskStream     *stream,
+eva_stream_ssl_raw_read       (EvaStream     *stream,
 			       gpointer       data,
 			       guint          length,
 			       GError       **error)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (stream);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (stream);
   guint read_length;
   int ssl_read_rv;
   if (length == 0)
@@ -365,7 +365,7 @@ process_has_read_buffer:
 	case SSL_ERROR_SYSCALL:
 	  g_set_error (error,
 		       EVA_G_ERROR_DOMAIN, EVA_ERROR_IO,
-		       "Gsk-BIO interface had problems reading");
+		       "Eva-BIO interface had problems reading");
 	  break;
 	default:
 	  {
@@ -387,7 +387,7 @@ process_has_read_buffer:
 }
 
 static guint
-try_writing_the_write_buffer (GskStreamSsl *ssl, GError **error)
+try_writing_the_write_buffer (EvaStreamSsl *ssl, GError **error)
 {
   int ssl_write_rv;
 
@@ -422,7 +422,7 @@ try_writing_the_write_buffer (GskStreamSsl *ssl, GError **error)
 	case SSL_ERROR_SYSCALL:
 	  g_set_error (error,
 		       EVA_G_ERROR_DOMAIN, EVA_ERROR_IO,
-		       "Gsk-BIO interface had problems writing");
+		       "Eva-BIO interface had problems writing");
 	  break;
 	case SSL_ERROR_NONE:
 	  g_set_error (error,
@@ -451,12 +451,12 @@ try_writing_the_write_buffer (GskStreamSsl *ssl, GError **error)
 }
 
 static guint
-eva_stream_ssl_raw_write      (GskStream     *stream,
+eva_stream_ssl_raw_write      (EvaStream     *stream,
 			       gconstpointer  data,
 			       guint          length,
 			       GError       **error)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (stream);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (stream);
   if (length == 0)
     return 0;
   if (ssl->doing_handshake)
@@ -504,7 +504,7 @@ eva_stream_ssl_raw_write      (GskStream     *stream,
 static void
 eva_stream_ssl_finalize (GObject *object)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (object);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (object);
   if (ssl->backend != NULL)
     {
       eva_hook_untrap (eva_buffer_stream_read_hook (ssl->backend));
@@ -531,10 +531,10 @@ eva_stream_ssl_finalize (GObject *object)
 /* --- transport hooks --- */
 /* TODO: these should probably handle write_buffer/read_buffer themselves... */
 static gboolean
-backend_buffered_write_hook (GskStream    *backend,
+backend_buffered_write_hook (EvaStream    *backend,
 		     gpointer      data)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (data);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (data);
   g_return_val_if_fail (ssl->backend == backend, FALSE);
   if (ssl->doing_handshake)
     {
@@ -579,10 +579,10 @@ backend_buffered_write_hook (GskStream    *backend,
 }
 
 static gboolean
-backend_buffered_write_shutdown (GskStream    *backend,
+backend_buffered_write_shutdown (EvaStream    *backend,
 		         gpointer      data)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (data);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (data);
   g_return_val_if_fail (ssl->backend == backend, FALSE);
   if (ssl->read_buffer_length == 0)
     eva_io_notify_read_shutdown (ssl);
@@ -590,10 +590,10 @@ backend_buffered_write_shutdown (GskStream    *backend,
 }
 
 static gboolean
-backend_buffered_read_hook (GskStream    *backend,
+backend_buffered_read_hook (EvaStream    *backend,
 		     gpointer      data)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (data);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (data);
   g_return_val_if_fail (ssl->backend == backend, FALSE);
   switch (ssl->state)
     {
@@ -640,16 +640,16 @@ backend_buffered_read_hook (GskStream    *backend,
 }
 
 static gboolean
-backend_buffered_read_shutdown (GskStream    *backend,
+backend_buffered_read_shutdown (EvaStream    *backend,
 		          gpointer      data)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (data);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (data);
   g_return_val_if_fail (ssl->backend == backend, FALSE);
   return FALSE;
 }
 
 static void
-eva_stream_ssl_init (GskStreamSsl *stream_ssl)
+eva_stream_ssl_init (EvaStreamSsl *stream_ssl)
 {
   SSL_CTX *ctx = SSL_CTX_new (SSLv23_method ());
   SSL_CTX_set_mode (ctx, SSL_MODE_ENABLE_PARTIAL_WRITE);
@@ -663,10 +663,10 @@ eva_stream_ssl_init (GskStreamSsl *stream_ssl)
 }
 
 static void
-eva_stream_ssl_alloc_backend (GskStreamSsl *ssl)
+eva_stream_ssl_alloc_backend (EvaStreamSsl *ssl)
 {
   BIO *bio;
-  GskBufferStream *backend;
+  EvaBufferStream *backend;
   if (!eva_openssl_bio_stream_pair (&bio, &backend))
     {
       g_warning ("error making bio-stream pair");
@@ -675,13 +675,13 @@ eva_stream_ssl_alloc_backend (GskStreamSsl *ssl)
   ssl->backend = EVA_STREAM (backend);
   SSL_set_bio (ssl->ssl, bio, bio);
   eva_hook_trap (eva_buffer_stream_read_hook (backend),
-		 (GskHookFunc) backend_buffered_read_hook,
-		 (GskHookFunc) backend_buffered_read_shutdown,
+		 (EvaHookFunc) backend_buffered_read_hook,
+		 (EvaHookFunc) backend_buffered_read_shutdown,
 		 ssl,
 		 NULL);
   eva_hook_trap (eva_buffer_stream_write_hook (backend),
-		 (GskHookFunc) backend_buffered_write_hook,
-		 (GskHookFunc) backend_buffered_write_shutdown,
+		 (EvaHookFunc) backend_buffered_write_hook,
+		 (EvaHookFunc) backend_buffered_write_shutdown,
 		 ssl,
 		 NULL);
   ssl->backend_poll_read = ssl->backend_poll_write = 1;
@@ -695,8 +695,8 @@ verify_callback (int ok, X509_STORE_CTX *store)
 }
 
 static void
-set_error (GskStreamSsl *ssl,
-	   GskIOErrorCause cause,
+set_error (EvaStreamSsl *ssl,
+	   EvaIOErrorCause cause,
 	   const char *format,
 	   ...)
 {
@@ -729,7 +729,7 @@ set_error (GskStreamSsl *ssl,
    Based on [OREILLY], Page 138.
    This corresponds to the function setup_client_ctx(). */
 static gboolean
-ssl_ctx_setup (GskStreamSsl *ssl)
+ssl_ctx_setup (EvaStreamSsl *ssl)
 {
   gboolean verify_ca = (ssl->ca_file != NULL);
 
@@ -779,7 +779,7 @@ eva_stream_ssl_constructor    (GType                  type,
 			       GObjectConstructParam *construct_properties)
 {
   GObject *rv = (*parent_class->constructor) (type, n_construct_properties, construct_properties);
-  GskStreamSsl *ssl = EVA_STREAM_SSL (rv);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (rv);
 
   if (ssl_ctx_setup (ssl))
     {
@@ -800,7 +800,7 @@ eva_openssl_passwd_cb (char     *buf,
 		       int       is_for_encryption,
 		       void     *userdata)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (userdata);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (userdata);
   if (ssl->password != NULL)
     {
       strncpy (buf, ssl->password, size);
@@ -816,7 +816,7 @@ eva_stream_ssl_set_property           (GObject        *object,
 				       const GValue   *value,
 				       GParamSpec     *pspec)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (object);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (object);
   char *arg;
 
   switch (property_id)
@@ -857,7 +857,7 @@ eva_stream_ssl_get_property	      (GObject        *object,
 				       GValue         *value,
 				       GParamSpec     *pspec)
 {
-  GskStreamSsl *ssl = EVA_STREAM_SSL (object);
+  EvaStreamSsl *ssl = EVA_STREAM_SSL (object);
 
   switch (property_id)
     {
@@ -906,10 +906,10 @@ actions_to_seed_PRNG    (void)
 }
 
 static void
-eva_stream_ssl_class_init (GskStreamSslClass *class)
+eva_stream_ssl_class_init (EvaStreamSslClass *class)
 {
-  GskIOClass *io_class = EVA_IO_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   static gboolean has_ssl_library_init = FALSE;
   GParamSpec *pspec;
@@ -967,27 +967,27 @@ GType eva_stream_ssl_get_type()
     {
       static const GTypeInfo stream_ssl_info =
       {
-	sizeof(GskStreamSslClass),
+	sizeof(EvaStreamSslClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_stream_ssl_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskStreamSsl),
+	sizeof (EvaStreamSsl),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_stream_ssl_init,
 	NULL		/* value_table */
       };
       stream_ssl_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskStreamSsl",
+                                                  "EvaStreamSsl",
 						  &stream_ssl_info, 0);
     }
   return stream_ssl_type;
 }
 
-static GskStreamSsl *
-maybe_attach_transport (GskStreamSsl *ssl,
-			GskStream    *transport,
+static EvaStreamSsl *
+maybe_attach_transport (EvaStreamSsl *ssl,
+			EvaStream    *transport,
 			GError      **error)
 {
   if (ssl->state == EVA_STREAM_SSL_STATE_ERROR)
@@ -1001,7 +1001,7 @@ maybe_attach_transport (GskStreamSsl *ssl,
   if (transport != NULL)
     {
       GError *suberror = NULL;
-      GskStreamConnection *connection;
+      EvaStreamConnection *connection;
 
       ssl->transport = g_object_ref (transport);
       g_signal_connect (transport, "on-error", G_CALLBACK (handle_transport_error), ssl);
@@ -1042,13 +1042,13 @@ maybe_attach_transport (GskStreamSsl *ssl,
  *
  * returns: the new SSL stream, or NULL if an error occurs.
  */
-GskStream   *eva_stream_ssl_new_server   (const char   *cert_file,
+EvaStream   *eva_stream_ssl_new_server   (const char   *cert_file,
 					  const char   *key_file,
 					  const char   *password,
-					  GskStream    *transport,
+					  EvaStream    *transport,
 					  GError      **error)
 {
-  GskStreamSsl *stream_ssl = g_object_new (EVA_TYPE_STREAM_SSL,
+  EvaStreamSsl *stream_ssl = g_object_new (EVA_TYPE_STREAM_SSL,
 				           "is-client", FALSE,
 					   "password", password,
 				           "cert-file", cert_file,
@@ -1124,13 +1124,13 @@ GskStream   *eva_stream_ssl_new_server   (const char   *cert_file,
  *
  * returns: the new SSL stream, or NULL if an error occurs.
  */
-GskStream   *eva_stream_ssl_new_client   (const char   *cert_file,
+EvaStream   *eva_stream_ssl_new_client   (const char   *cert_file,
 					  const char   *key_file,
 					  const char   *password,
-					  GskStream    *transport,
+					  EvaStream    *transport,
 					  GError      **error)
 {
-  GskStreamSsl *stream_ssl = g_object_new (EVA_TYPE_STREAM_SSL,
+  EvaStreamSsl *stream_ssl = g_object_new (EVA_TYPE_STREAM_SSL,
 				           "is-client", TRUE,
 					   "password", password,
 				           "cert-file", cert_file,
@@ -1190,8 +1190,8 @@ GskStream   *eva_stream_ssl_new_client   (const char   *cert_file,
  * which is the stream which is typically insecure
  * without SSL protection).
  */
-GskStream *
-eva_stream_ssl_peek_backend (GskStreamSsl *ssl)
+EvaStream *
+eva_stream_ssl_peek_backend (EvaStreamSsl *ssl)
 {
   return ssl->backend;
 }

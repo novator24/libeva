@@ -132,7 +132,7 @@ eva_http_header_free_string (gpointer http_header,
 }
 
 
-/* --- GskHttpHeader implementation --- */
+/* --- EvaHttpHeader implementation --- */
 /**
  * eva_http_header_set_connection_string:
  * @header: the HTTP header to affect.
@@ -147,7 +147,7 @@ eva_http_header_free_string (gpointer http_header,
  * be communicated by proxies over further connections.
  */
 void
-eva_http_header_set_connection_string (GskHttpHeader *header,
+eva_http_header_set_connection_string (EvaHttpHeader *header,
                                        const char    *str)
 {
   char *tmp = g_ascii_strdown (str, -1);
@@ -167,13 +167,13 @@ eva_http_header_set_connection_string (GskHttpHeader *header,
  *
  * Change the Content-Encoding type reflected in this header.
  *
- * The actual encoding is done transparently by #GskHttpClient and #GskHttpServer usually.
+ * The actual encoding is done transparently by #EvaHttpClient and #EvaHttpServer usually.
  * Encoding is only used for POST and PUT requests
  * and any response that has a body (most do).
  * The default is the identity encoding.
  */
 void
-eva_http_header_set_content_encoding_string (GskHttpHeader *header,
+eva_http_header_set_content_encoding_string (EvaHttpHeader *header,
                                              const char    *str)
 {
   if (g_ascii_strcasecmp (str, "identity") == 0)
@@ -211,7 +211,7 @@ eva_http_header_set_content_encoding_string (GskHttpHeader *header,
  * property of the message, not of the entity.
  */
 void
-eva_http_header_set_transfer_encoding_string (GskHttpHeader *header,
+eva_http_header_set_transfer_encoding_string (EvaHttpHeader *header,
                                               const char    *str)
 {
   if (g_ascii_strcasecmp (str, "none") == 0)
@@ -237,7 +237,7 @@ eva_http_header_set_property   (GObject        *object,
                                 const GValue   *value,
                                 GParamSpec     *pspec)
 {
-  GskHttpHeader *header = EVA_HTTP_HEADER (object);
+  EvaHttpHeader *header = EVA_HTTP_HEADER (object);
   switch (property_id)
     {
     case PROP_HEADER_MAJOR_VERSION:
@@ -303,7 +303,7 @@ eva_http_header_get_property   (GObject        *object,
                                 GValue         *value,
                                 GParamSpec     *pspec)
 {
-  GskHttpHeader *header = EVA_HTTP_HEADER (object);
+  EvaHttpHeader *header = EVA_HTTP_HEADER (object);
   switch (property_id)
     {
     case PROP_HEADER_MAJOR_VERSION:
@@ -415,8 +415,8 @@ eva_http_header_get_property   (GObject        *object,
  *
  * returns: the connection semantics.
  */
-GskHttpConnection
-eva_http_header_get_connection (GskHttpHeader *header)
+EvaHttpConnection
+eva_http_header_get_connection (EvaHttpHeader *header)
 {
   if (header->connection_type == EVA_HTTP_CONNECTION_NONE)
     {
@@ -453,7 +453,7 @@ eva_http_header_get_connection (GskHttpHeader *header)
  * Only HTTP 1.0 and 1.1 are supported.
  */
 void
-eva_http_header_set_version    (GskHttpHeader *header,
+eva_http_header_set_version    (EvaHttpHeader *header,
 				gint           major,
 				gint           minor)
 {
@@ -484,18 +484,18 @@ eva_http_header_set_version    (GskHttpHeader *header,
 }
 
 void
-eva_http_header_add_pragma (GskHttpHeader *header,
+eva_http_header_add_pragma (EvaHttpHeader *header,
                             const char    *pragma)
 {
   header->pragmas = g_slist_append (header->pragmas, g_strdup (pragma));
 }
 
 void
-eva_http_header_add_accepted_range (GskHttpHeader *header,
-                                    GskHttpRange   range)
+eva_http_header_add_accepted_range (EvaHttpHeader *header,
+                                    EvaHttpRange   range)
 {
-  GskHttpRangeSet *rs = eva_http_range_set_new (range);
-  GskHttpRangeSet *cur_last_range = header->accepted_range_units;
+  EvaHttpRangeSet *rs = eva_http_range_set_new (range);
+  EvaHttpRangeSet *cur_last_range = header->accepted_range_units;
   if (cur_last_range)
     {
       while (cur_last_range->next)
@@ -509,7 +509,7 @@ eva_http_header_add_accepted_range (GskHttpHeader *header,
 static void
 eva_http_header_finalize (GObject *object)
 {
-  GskHttpHeader *header = EVA_HTTP_HEADER (object);
+  EvaHttpHeader *header = EVA_HTTP_HEADER (object);
   eva_http_header_free_string (header, header->content_encoding);
   eva_http_header_free_string (header, header->content_type);
   eva_http_header_free_string (header, header->content_subtype);
@@ -524,7 +524,7 @@ eva_http_header_finalize (GObject *object)
     }
   while (header->accepted_range_units)
     {
-      GskHttpRangeSet *next = header->accepted_range_units->next;
+      EvaHttpRangeSet *next = header->accepted_range_units->next;
       eva_http_range_set_free (header->accepted_range_units);
       header->accepted_range_units = next;
     }
@@ -542,7 +542,7 @@ eva_http_header_finalize (GObject *object)
 }
 
 static void
-eva_http_header_init (GskHttpHeader *http_header)
+eva_http_header_init (EvaHttpHeader *http_header)
 {
   http_header->http_major_version = 1;
   http_header->http_minor_version = 1;
@@ -555,7 +555,7 @@ eva_http_header_init (GskHttpHeader *http_header)
 }
 
 static void
-eva_http_header_class_init (GskHttpHeaderClass *class)
+eva_http_header_class_init (EvaHttpHeaderClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
@@ -686,19 +686,19 @@ GType eva_http_header_get_type()
     {
       static const GTypeInfo http_header_info =
       {
-        sizeof(GskHttpHeaderClass),
+        sizeof(EvaHttpHeaderClass),
         (GBaseInitFunc) NULL,
         (GBaseFinalizeFunc) NULL,
         (GClassInitFunc) eva_http_header_class_init,
         NULL,           /* class_finalize */
         NULL,           /* class_data */
-        sizeof (GskHttpHeader),
+        sizeof (EvaHttpHeader),
         0,              /* n_preallocs */
         (GInstanceInitFunc) eva_http_header_init,
         NULL            /* value_table */
       };
       http_header_type = g_type_register_static (G_TYPE_OBJECT,
-                                                 "GskHttpHeader",
+                                                 "EvaHttpHeader",
                                                  &http_header_info,
                                                  G_TYPE_FLAG_ABSTRACT);
     }
@@ -716,7 +716,7 @@ GType eva_http_header_get_type()
  * Add a raw header line to the header, with an associated value.
  */
 void
-eva_http_header_add_misc    (GskHttpHeader *header,
+eva_http_header_add_misc    (EvaHttpHeader *header,
 			     const char    *key,
 			     const char    *value)
 {
@@ -736,7 +736,7 @@ eva_http_header_add_misc    (GskHttpHeader *header,
  * Remove a raw header line from the header.
  */
 void
-eva_http_header_remove_misc  (GskHttpHeader *header,
+eva_http_header_remove_misc  (EvaHttpHeader *header,
 			      const char    *key)
 {
   guint len;
@@ -763,7 +763,7 @@ eva_http_header_remove_misc  (GskHttpHeader *header,
  * are stored in here.
  */
 const char *
-eva_http_header_lookup_misc  (GskHttpHeader *header,
+eva_http_header_lookup_misc  (EvaHttpHeader *header,
                               const char    *key)
 {
   guint len;
@@ -791,12 +791,12 @@ GType lower ## _get_type (void)                                                 
     type = g_enum_register_static (#class, lower ## _enum_values);              \
   return type;                                                                  \
 }
-DEFINE_ENUM_GET_TYPE_FUNC(GskHttpConnection,        eva_http_connection)
-DEFINE_ENUM_GET_TYPE_FUNC(GskHttpVerb,              eva_http_verb)
-DEFINE_ENUM_GET_TYPE_FUNC(GskHttpRange,             eva_http_range)
-DEFINE_ENUM_GET_TYPE_FUNC(GskHttpTransferEncoding,  eva_http_transfer_encoding)
-DEFINE_ENUM_GET_TYPE_FUNC(GskHttpContentEncoding,   eva_http_content_encoding)
-DEFINE_ENUM_GET_TYPE_FUNC(GskHttpStatus,            eva_http_status)
+DEFINE_ENUM_GET_TYPE_FUNC(EvaHttpConnection,        eva_http_connection)
+DEFINE_ENUM_GET_TYPE_FUNC(EvaHttpVerb,              eva_http_verb)
+DEFINE_ENUM_GET_TYPE_FUNC(EvaHttpRange,             eva_http_range)
+DEFINE_ENUM_GET_TYPE_FUNC(EvaHttpTransferEncoding,  eva_http_transfer_encoding)
+DEFINE_ENUM_GET_TYPE_FUNC(EvaHttpContentEncoding,   eva_http_content_encoding)
+DEFINE_ENUM_GET_TYPE_FUNC(EvaHttpStatus,            eva_http_status)
 #undef DEFINE_ENUM_GET_TYPE_FUNC
 
 /* --- Miscellaneous boxed types --- */
@@ -815,7 +815,7 @@ DEFINE_ENUM_GET_TYPE_FUNC(GskHttpStatus,            eva_http_status)
       }                                         \
   }G_STMT_END
 
-/* GskHttpAuthenticate */
+/* EvaHttpAuthenticate */
 /**
  * eva_http_authenticate_new_unknown:
  * @challenge: the string to challenge with.
@@ -840,17 +840,17 @@ DEFINE_ENUM_GET_TYPE_FUNC(GskHttpStatus,            eva_http_status)
  *
  * returns: the new challenge.
  */
-GskHttpAuthenticate*
+EvaHttpAuthenticate*
 eva_http_authenticate_new_unknown (const char *auth_scheme_name,
                                    const char *realm,
                                    const char *options)
 {
-  guint len = sizeof (GskHttpAuthenticate)
+  guint len = sizeof (EvaHttpAuthenticate)
             + ACTUAL_LENGTH (auth_scheme_name)
             + ACTUAL_LENGTH (realm)
             + ACTUAL_LENGTH (options);
   char *at;
-  GskHttpAuthenticate *auth = g_malloc (len);
+  EvaHttpAuthenticate *auth = g_malloc (len);
   auth->mode = EVA_HTTP_AUTH_MODE_UNKNOWN;
   auth->ref_count = 1;
   at = (char *)(auth + 1);
@@ -865,18 +865,18 @@ eva_http_authenticate_new_unknown (const char *auth_scheme_name,
  * @realm: the area on the site to authenticate for.
  * This is the name used by the RFC.
  *
- * Create an #GskHttpAuthenticate for basic authentication.
+ * Create an #EvaHttpAuthenticate for basic authentication.
  * Basic authentication is very insecure: the password
  * is merely transmitted base64 encoded.
  *
  * returns: the new challenge.
  */
-GskHttpAuthenticate *eva_http_authenticate_new_basic   (const char *realm)
+EvaHttpAuthenticate *eva_http_authenticate_new_basic   (const char *realm)
 {
-  guint len = sizeof (GskHttpAuthenticate)
+  guint len = sizeof (EvaHttpAuthenticate)
             + ACTUAL_LENGTH (realm);
   char *at;
-  GskHttpAuthenticate *auth = g_malloc (len);
+  EvaHttpAuthenticate *auth = g_malloc (len);
   auth->mode = EVA_HTTP_AUTH_MODE_BASIC;
   at = (char *)(auth + 1);
   auth->auth_scheme_name = "Basic";
@@ -895,26 +895,26 @@ GskHttpAuthenticate *eva_http_authenticate_new_basic   (const char *realm)
  * @algorithm: digest algorithm.  Only MD5 is supported for now,
  * and is equivalent to specifying NULL.
  *
- * Create an #GskHttpAuthenticate for Digest authentication.
+ * Create an #EvaHttpAuthenticate for Digest authentication.
  * Digest authentication improves Basic authentication by
  * using a hash of the password.
  *
  * returns: the new challenge.
  */
-GskHttpAuthenticate *eva_http_authenticate_new_digest  (const char *realm,
+EvaHttpAuthenticate *eva_http_authenticate_new_digest  (const char *realm,
                                                         const char *domain,
                                                         const char *nonce,
                                                         const char *opaque,
                                                         const char *algorithm)
 {
   gboolean is_md5 = algorithm == NULL || strcmp (algorithm, "MD5") == 0;
-  guint len = sizeof (GskHttpAuthenticate)
+  guint len = sizeof (EvaHttpAuthenticate)
             + ACTUAL_LENGTH (realm)
             + ACTUAL_LENGTH (domain)
             + ACTUAL_LENGTH (nonce)
             + ACTUAL_LENGTH (opaque)
             + (is_md5 ? 0 : (strlen (algorithm) + 1));
-  GskHttpAuthenticate *auth = g_malloc (len);
+  EvaHttpAuthenticate *auth = g_malloc (len);
   char *at;
   auth->ref_count = 1;
   auth->mode = EVA_HTTP_AUTH_MODE_DIGEST;
@@ -931,8 +931,8 @@ GskHttpAuthenticate *eva_http_authenticate_new_digest  (const char *realm,
 }
 
 #if 0
-static GskHttpAuthenticate *
-eva_http_authenticate_copy (const GskHttpAuthenticate *auth)
+static EvaHttpAuthenticate *
+eva_http_authenticate_copy (const EvaHttpAuthenticate *auth)
 {
   switch (auth->mode)
     {
@@ -955,8 +955,8 @@ eva_http_authenticate_copy (const GskHttpAuthenticate *auth)
 }
 #endif
 
-GskHttpAuthenticate *
-eva_http_authenticate_ref (GskHttpAuthenticate *auth)
+EvaHttpAuthenticate *
+eva_http_authenticate_ref (EvaHttpAuthenticate *auth)
 {
   g_return_val_if_fail (auth->ref_count != 0, auth);
   ++(auth->ref_count);
@@ -964,7 +964,7 @@ eva_http_authenticate_ref (GskHttpAuthenticate *auth)
 }
 
 void
-eva_http_authenticate_unref (GskHttpAuthenticate *auth)
+eva_http_authenticate_unref (EvaHttpAuthenticate *auth)
 {
   g_return_if_fail (auth->ref_count != 0);
   if (--(auth->ref_count) == 0)
@@ -973,7 +973,7 @@ eva_http_authenticate_unref (GskHttpAuthenticate *auth)
     }
 }
 
-/* GskHttpAuthorization */
+/* EvaHttpAuthorization */
 /**
  * eva_http_authorization_new_unknown:
  * @auth_scheme_name: name of the authentification scheme.
@@ -986,14 +986,14 @@ eva_http_authenticate_unref (GskHttpAuthenticate *auth)
  *
  * returns: the response to the authentication request.
  */
-GskHttpAuthorization *eva_http_authorization_new_unknown (const char *auth_scheme_name,
+EvaHttpAuthorization *eva_http_authorization_new_unknown (const char *auth_scheme_name,
                                                           const char *response)
 {
-  guint len = sizeof (GskHttpAuthorization)
+  guint len = sizeof (EvaHttpAuthorization)
             + ACTUAL_LENGTH (auth_scheme_name)
             + ACTUAL_LENGTH (response);
   char *at;
-  GskHttpAuthorization *auth = g_malloc (len);
+  EvaHttpAuthorization *auth = g_malloc (len);
   at = (char *)(auth + 1);
   auth->mode = EVA_HTTP_AUTH_MODE_UNKNOWN;
   MAYBE_COPY (auth->auth_scheme_name, auth_scheme_name, at);
@@ -1013,14 +1013,14 @@ GskHttpAuthorization *eva_http_authorization_new_unknown (const char *auth_schem
  *
  * returns: the response to the authentication request.
  */
-GskHttpAuthorization *eva_http_authorization_new_basic   (const char *user,
+EvaHttpAuthorization *eva_http_authorization_new_basic   (const char *user,
                                                           const char *password)
 {
-  guint len = sizeof (GskHttpAuthorization)
+  guint len = sizeof (EvaHttpAuthorization)
             + ACTUAL_LENGTH (user)
             + ACTUAL_LENGTH (password);
   char *at;
-  GskHttpAuthorization *auth = g_malloc (len);
+  EvaHttpAuthorization *auth = g_malloc (len);
   at = (char *)(auth + 1);
   auth->mode = EVA_HTTP_AUTH_MODE_BASIC;
   auth->auth_scheme_name = "Basic";
@@ -1041,7 +1041,7 @@ GskHttpAuthorization *eva_http_authorization_new_basic   (const char *user,
  * @user: name of the account to authenticate for.
  * @password: password of the account to authenticate for. [unnecessary if you have the response digest]
  * This value is NOT transmitted to the remote host.
- * @response_digest: the securely-hashed response.   If NULL, Gsk will compute the response.
+ * @response_digest: the securely-hashed response.   If NULL, Eva will compute the response.
  * @entity_digest: the securely-hashed information about your POST content.
  *
  * Create a new Digest-based authentication response.
@@ -1054,7 +1054,7 @@ GskHttpAuthorization *eva_http_authorization_new_basic   (const char *user,
  *
  * returns: the response to the authentication request.
  */
-GskHttpAuthorization *eva_http_authorization_new_digest  (const char *realm,
+EvaHttpAuthorization *eva_http_authorization_new_digest  (const char *realm,
                                                           const char *domain,
                                                           const char *nonce,
                                                           const char *opaque,
@@ -1066,7 +1066,7 @@ GskHttpAuthorization *eva_http_authorization_new_digest  (const char *realm,
 {
   /* NB: nonce, response_digest, entity_digest are all allocated separately */
   gboolean is_md5 = algorithm == NULL || strcmp (algorithm, "MD5") == 0;
-  guint len = sizeof (GskHttpAuthorization)
+  guint len = sizeof (EvaHttpAuthorization)
             + ACTUAL_LENGTH (realm)
             + ACTUAL_LENGTH (domain)
             + ACTUAL_LENGTH (opaque)
@@ -1074,7 +1074,7 @@ GskHttpAuthorization *eva_http_authorization_new_digest  (const char *realm,
             + ACTUAL_LENGTH (password)
             + (is_md5 ? 0 : (strlen (algorithm) + 1));
   char *at;
-  GskHttpAuthorization *auth = g_malloc (len);
+  EvaHttpAuthorization *auth = g_malloc (len);
   at = (char *)(auth + 1);
   auth->mode = EVA_HTTP_AUTH_MODE_DIGEST;
   auth->auth_scheme_name = "Digest";
@@ -1105,8 +1105,8 @@ GskHttpAuthorization *eva_http_authorization_new_digest  (const char *realm,
  *
  * returns: the new response, or NULL if something goes wrong.
  */
-GskHttpAuthorization *
-eva_http_authorization_new_respond (const GskHttpAuthenticate *auth,
+EvaHttpAuthorization *
+eva_http_authorization_new_respond (const EvaHttpAuthenticate *auth,
                                     const char *user,
                                     const char *password,
                                     GError    **error)
@@ -1141,7 +1141,7 @@ eva_http_authorization_new_respond (const GskHttpAuthenticate *auth,
 }
 
 void
-eva_http_authorization_set_nonce   (GskHttpAuthorization *auth,
+eva_http_authorization_set_nonce   (EvaHttpAuthorization *auth,
                                     const char           *nonce)
 {
   char *copy;
@@ -1154,8 +1154,8 @@ eva_http_authorization_set_nonce   (GskHttpAuthorization *auth,
   auth->info.digest.response_digest = NULL;
 }
 
-GskHttpAuthorization *
-eva_http_authorization_copy (const GskHttpAuthorization *auth)
+EvaHttpAuthorization *
+eva_http_authorization_copy (const EvaHttpAuthorization *auth)
 {
   switch (auth->mode)
     {
@@ -1180,8 +1180,8 @@ eva_http_authorization_copy (const GskHttpAuthorization *auth)
     }
 }
 
-GskHttpAuthorization *
-eva_http_authorization_ref (GskHttpAuthorization *auth)
+EvaHttpAuthorization *
+eva_http_authorization_ref (EvaHttpAuthorization *auth)
 {
   g_return_val_if_fail (auth->ref_count != 0, auth);
   ++(auth->ref_count);
@@ -1189,7 +1189,7 @@ eva_http_authorization_ref (GskHttpAuthorization *auth)
 }
 
 void
-eva_http_authorization_unref (GskHttpAuthorization *auth)
+eva_http_authorization_unref (EvaHttpAuthorization *auth)
 {
   g_return_if_fail (auth->ref_count != 0);
   if (--(auth->ref_count) == 0)
@@ -1205,18 +1205,18 @@ eva_http_authorization_unref (GskHttpAuthorization *auth)
 }
 
 
-/* GskHttpResponseCacheDirective */
+/* EvaHttpResponseCacheDirective */
 /**
  *
  * eva_http_response_cache_directive_new:
  * Create a new cache respnse directive.
  * @Returns: the new cache response directive.
  */
-GskHttpResponseCacheDirective *
+EvaHttpResponseCacheDirective *
 eva_http_response_cache_directive_new (void)
 {
-  GskHttpResponseCacheDirective *directive =
-    g_new0 (GskHttpResponseCacheDirective, 1);
+  EvaHttpResponseCacheDirective *directive =
+    g_new0 (EvaHttpResponseCacheDirective, 1);
   directive->is_public = 1;
   return directive;
 }
@@ -1231,7 +1231,7 @@ eva_http_response_cache_directive_new (void)
  */
 void
 eva_http_response_cache_directive_set_private_name (
-  GskHttpResponseCacheDirective *cd,
+  EvaHttpResponseCacheDirective *cd,
   const char                    *name,
   gsize                          name_len)
 {
@@ -1262,7 +1262,7 @@ eva_http_response_cache_directive_set_private_name (
  */
 void
 eva_http_response_cache_directive_set_no_cache_name (
-  GskHttpResponseCacheDirective *cd,
+  EvaHttpResponseCacheDirective *cd,
   const char                    *name,
   gsize                          name_len)
 {
@@ -1275,20 +1275,20 @@ eva_http_response_cache_directive_set_no_cache_name (
  * eva_http_response_cache_directive_free:
  * @directive: cache-directive to de-allocate.
  *
- * Deallocate a GskHttpResponseCacheDirective.
+ * Deallocate a EvaHttpResponseCacheDirective.
  */
 void
-eva_http_response_cache_directive_free (GskHttpResponseCacheDirective *directive)
+eva_http_response_cache_directive_free (EvaHttpResponseCacheDirective *directive)
 {
   g_free (directive->no_cache_name);
   g_free (directive->private_name);
   g_free (directive);
 }
 
-static GskHttpResponseCacheDirective *
-eva_http_response_cache_directive_copy (GskHttpResponseCacheDirective *directive)
+static EvaHttpResponseCacheDirective *
+eva_http_response_cache_directive_copy (EvaHttpResponseCacheDirective *directive)
 {
-  GskHttpResponseCacheDirective *rv;
+  EvaHttpResponseCacheDirective *rv;
 
   rv = g_memdup (directive, sizeof (*directive));
   rv->no_cache_name = g_strdup (rv->no_cache_name);
@@ -1297,62 +1297,62 @@ eva_http_response_cache_directive_copy (GskHttpResponseCacheDirective *directive
 }
 
 
-/* GskHttpRequestCacheDirective */
+/* EvaHttpRequestCacheDirective */
 /**
  * 
  * eva_http_request_cache_directive_new:
  * Create a new cache respnse directive.
  * returns: the new cache request directive.
  */
-GskHttpRequestCacheDirective *
+EvaHttpRequestCacheDirective *
 eva_http_request_cache_directive_new (void)
 {
-  return g_new0 (GskHttpRequestCacheDirective, 1);
+  return g_new0 (EvaHttpRequestCacheDirective, 1);
 }
 
 /**
  * eva_http_request_cache_directive_free:
  * @directive: cache-directive to de-allocate.
  *
- * Deallocate a GskHttpRequestCacheDirective.
+ * Deallocate a EvaHttpRequestCacheDirective.
  */
 void
-eva_http_request_cache_directive_free (GskHttpRequestCacheDirective *directive)
+eva_http_request_cache_directive_free (EvaHttpRequestCacheDirective *directive)
 {
   g_free (directive);
 }
 
-static GskHttpRequestCacheDirective *
-eva_http_request_cache_directive_copy (GskHttpRequestCacheDirective *directive)
+static EvaHttpRequestCacheDirective *
+eva_http_request_cache_directive_copy (EvaHttpRequestCacheDirective *directive)
 {
   return g_memdup (directive, sizeof (*directive));
 }
 
 
-/* GskHttpCharSet */
+/* EvaHttpCharSet */
 /**
  * eva_http_char_set_new:
  * @charset_name: name of the character set.
  * @quality: quality from 0 to 1, or -1 if no quality flag was given.
  *
- * Allocate a single GskHttpCharSet preference.
+ * Allocate a single EvaHttpCharSet preference.
  * You may wish to build a list of these.
  *
  * returns: the new character-set.
  */
-GskHttpCharSet *
+EvaHttpCharSet *
 eva_http_char_set_new (const char *charset_name,
 		       gfloat      quality)
 {
-  GskHttpCharSet *char_set = g_new (GskHttpCharSet, 1);
+  EvaHttpCharSet *char_set = g_new (EvaHttpCharSet, 1);
   char_set->charset_name = g_strdup (charset_name);
   char_set->quality = quality;
   char_set->next = NULL;
   return char_set;
 }
 
-static GskHttpCharSet *
-eva_http_char_set_copy (GskHttpCharSet *char_set)
+static EvaHttpCharSet *
+eva_http_char_set_copy (EvaHttpCharSet *char_set)
 {
   return eva_http_char_set_new (char_set->charset_name,
 				char_set->quality);
@@ -1362,17 +1362,17 @@ eva_http_char_set_copy (GskHttpCharSet *char_set)
  * eva_http_char_set_free:
  * @char_set: character set to free.
  *
- * Deallocate a GskHttpCharSet.
+ * Deallocate a EvaHttpCharSet.
  */
 void
-eva_http_char_set_free(GskHttpCharSet *char_set)
+eva_http_char_set_free(EvaHttpCharSet *char_set)
 {
   g_free (char_set->charset_name);
   g_free (char_set);
 }
 
 
-/* GskHttpCookie */
+/* EvaHttpCookie */
 /**
  * eva_http_cookie_new:
  * @key: token used to identify the cookie.
@@ -1399,7 +1399,7 @@ eva_http_char_set_free(GskHttpCharSet *char_set)
  *
  * returns: the newly allocated cookie.
  */
-GskHttpCookie  *
+EvaHttpCookie  *
 eva_http_cookie_new              (const char     *key,
 				  const char     *value,
 				  const char     *path,
@@ -1409,16 +1409,16 @@ eva_http_cookie_new              (const char     *key,
 				  int             max_age)
 {
 #define ACTUAL_LENGTH(str)	((str) ? (strlen (str) + 1) : 0)
-  guint alloc_length = sizeof (GskHttpCookie)
+  guint alloc_length = sizeof (EvaHttpCookie)
                      + ACTUAL_LENGTH (key)
                      + ACTUAL_LENGTH (value)
                      + ACTUAL_LENGTH (path)
                      + ACTUAL_LENGTH (domain)
                      + ACTUAL_LENGTH (expire_date)
                      + ACTUAL_LENGTH (comment);
-  guint at = sizeof (GskHttpCookie);
+  guint at = sizeof (EvaHttpCookie);
   char *raw = g_new (char, alloc_length);
-  GskHttpCookie *rv = (GskHttpCookie *) raw;
+  EvaHttpCookie *rv = (EvaHttpCookie *) raw;
   rv->max_age = max_age;
 #define INIT_RV_STRING(name)			\
   G_STMT_START{					\
@@ -1454,10 +1454,10 @@ eva_http_cookie_new              (const char     *key,
  *
  * returns: the new cookie.
  */
-GskHttpCookie  *
-eva_http_cookie_copy (const GskHttpCookie *orig)
+EvaHttpCookie  *
+eva_http_cookie_copy (const EvaHttpCookie *orig)
 {
-  GskHttpCookie *rv = eva_http_cookie_new (orig->key,
+  EvaHttpCookie *rv = eva_http_cookie_new (orig->key,
 			                   orig->value,
 			                   orig->path,
 			                   orig->domain,
@@ -1476,13 +1476,13 @@ eva_http_cookie_copy (const GskHttpCookie *orig)
  * Free the memory associated with the cookie.
  */
 void
-eva_http_cookie_free (GskHttpCookie *orig)
+eva_http_cookie_free (EvaHttpCookie *orig)
 {
   g_return_if_fail (orig != NULL);
   g_free (orig);
 }
 
-/* GskHttpContentEncodingSet */
+/* EvaHttpContentEncodingSet */
 /**
  * eva_http_content_encoding_set_new:
  * @encoding: the encoding to list a preference for.
@@ -1490,23 +1490,23 @@ eva_http_cookie_free (GskHttpCookie *orig)
  * A value of -1 means that the quality was omitted,
  * which means it should be treated as 1.
  *
- * Allocate a new node in a GskHttpContentEncodingSet list.
+ * Allocate a new node in a EvaHttpContentEncodingSet list.
  *
  * returns: the new encoding node.
  */
-GskHttpContentEncodingSet  *
-eva_http_content_encoding_set_new (GskHttpContentEncoding encoding,
+EvaHttpContentEncodingSet  *
+eva_http_content_encoding_set_new (EvaHttpContentEncoding encoding,
 			           gfloat          quality)
 {
-  GskHttpContentEncodingSet *set = g_new (GskHttpContentEncodingSet, 1);
+  EvaHttpContentEncodingSet *set = g_new (EvaHttpContentEncodingSet, 1);
   set->encoding = encoding;
   set->quality = quality;
   set->next = NULL;
   return set;
 }
 
-static GskHttpContentEncodingSet *
-eva_http_content_encoding_set_copy (GskHttpContentEncodingSet *set)
+static EvaHttpContentEncodingSet *
+eva_http_content_encoding_set_copy (EvaHttpContentEncodingSet *set)
 {
   return eva_http_content_encoding_set_new (set->encoding, set->quality);
 }
@@ -1518,13 +1518,13 @@ eva_http_content_encoding_set_copy (GskHttpContentEncodingSet *set)
  * Deallocate the encoding.
  */
 void
-eva_http_content_encoding_set_free(GskHttpContentEncodingSet *encoding_set)
+eva_http_content_encoding_set_free(EvaHttpContentEncodingSet *encoding_set)
 {
   g_return_if_fail (encoding_set != NULL);
   g_free (encoding_set);
 }
 
-/* GskHttpTransferEncodingSet */
+/* EvaHttpTransferEncodingSet */
 /**
  * eva_http_transfer_encoding_set_new:
  * @encoding: the encoding to list a preference for.
@@ -1532,23 +1532,23 @@ eva_http_content_encoding_set_free(GskHttpContentEncodingSet *encoding_set)
  * A value of -1 means that the quality was omitted,
  * which means it should be treated as 1.
  *
- * Allocate a new node in a GskHttpTransferEncodingSet list.
+ * Allocate a new node in a EvaHttpTransferEncodingSet list.
  *
  * returns: the new encoding node.
  */
-GskHttpTransferEncodingSet  *
-eva_http_transfer_encoding_set_new (GskHttpTransferEncoding encoding,
+EvaHttpTransferEncodingSet  *
+eva_http_transfer_encoding_set_new (EvaHttpTransferEncoding encoding,
 			            gfloat          quality)
 {
-  GskHttpTransferEncodingSet *set = g_new (GskHttpTransferEncodingSet, 1);
+  EvaHttpTransferEncodingSet *set = g_new (EvaHttpTransferEncodingSet, 1);
   set->encoding = encoding;
   set->quality = quality;
   set->next = NULL;
   return set;
 }
 
-static GskHttpTransferEncodingSet *
-eva_http_transfer_encoding_set_copy (GskHttpTransferEncodingSet *set)
+static EvaHttpTransferEncodingSet *
+eva_http_transfer_encoding_set_copy (EvaHttpTransferEncodingSet *set)
 {
   return eva_http_transfer_encoding_set_new (set->encoding, set->quality);
 }
@@ -1560,13 +1560,13 @@ eva_http_transfer_encoding_set_copy (GskHttpTransferEncodingSet *set)
  * Deallocate the encoding (a single node in the list).
  */
 void
-eva_http_transfer_encoding_set_free(GskHttpTransferEncodingSet *encoding_set)
+eva_http_transfer_encoding_set_free(EvaHttpTransferEncodingSet *encoding_set)
 {
   g_return_if_fail (encoding_set != NULL);
   g_free (encoding_set);
 }
 
-/* GskHttpLanguageSet */
+/* EvaHttpLanguageSet */
 /**
  * eva_http_language_set_new:
  * @language: the human language code to list a preference for.
@@ -1574,7 +1574,7 @@ eva_http_transfer_encoding_set_free(GskHttpTransferEncodingSet *encoding_set)
  * A value of -1 means that the quality was omitted,
  * which means it should be treated as 1.
  *
- * Allocate a new node in a GskHttpLanguageSet list.
+ * Allocate a new node in a EvaHttpLanguageSet list.
  * Though any ASCII string is basically allowed,
  * a two letter language code (en, de, pl, it, etc)
  * is the usual start of the language name;
@@ -1583,14 +1583,14 @@ eva_http_transfer_encoding_set_free(GskHttpTransferEncodingSet *encoding_set)
  *
  * returns: the new language node.
  */
-GskHttpLanguageSet *
+EvaHttpLanguageSet *
 eva_http_language_set_new       (const char *language,
 			         gfloat      quality)
 {
   /* ugh, these macros come from eva_http_cookie_new above */
-  guint alloc_length = sizeof (GskHttpLanguageSet)
+  guint alloc_length = sizeof (EvaHttpLanguageSet)
                      + strlen (language) + 1;
-  GskHttpLanguageSet *rv = g_malloc (alloc_length);
+  EvaHttpLanguageSet *rv = g_malloc (alloc_length);
   char *mem_at = (char*)(rv + 1);
   rv->quality = quality;
   rv->next = NULL;
@@ -1599,8 +1599,8 @@ eva_http_language_set_new       (const char *language,
   return rv;
 }
 
-static GskHttpLanguageSet *
-eva_http_language_set_copy(GskHttpLanguageSet *set)
+static EvaHttpLanguageSet *
+eva_http_language_set_copy(EvaHttpLanguageSet *set)
 {
   return eva_http_language_set_new (set->language,
                                     set->quality);
@@ -1613,14 +1613,14 @@ eva_http_language_set_copy(GskHttpLanguageSet *set)
  * Deallocate the node in the language-set.
  */
 void
-eva_http_language_set_free(GskHttpLanguageSet *set)
+eva_http_language_set_free(EvaHttpLanguageSet *set)
 {
   g_return_if_fail (set != NULL);
   g_free (set);
 }
 
 
-/* GskHttpMediaType */
+/* EvaHttpMediaType */
 /**
  * eva_http_media_type_set_new:
  * @type: major type of the media to allow, like "text" or "image".
@@ -1629,22 +1629,22 @@ eva_http_language_set_free(GskHttpLanguageSet *set)
  *      An asterisk can be used to allow any format.
  * @quality: relative preference for this encoding. -1 means "not specified", which has a default of 1.
  *
- * Allocate a new node in a GskHttpMediaTypeSet list.
+ * Allocate a new node in a EvaHttpMediaTypeSet list.
  *
  * returns: the newly allocated node.
  */
-GskHttpMediaTypeSet *
+EvaHttpMediaTypeSet *
 eva_http_media_type_set_new (const char *type,
 			     const char *subtype,
 			     gfloat      quality)
 {
   /* ugh, these macros come from eva_http_cookie_new above */
-  guint alloc_length = sizeof (GskHttpMediaTypeSet)
+  guint alloc_length = sizeof (EvaHttpMediaTypeSet)
                      + ACTUAL_LENGTH (type)
                      + ACTUAL_LENGTH (subtype);
-  guint at = sizeof (GskHttpMediaTypeSet);
+  guint at = sizeof (EvaHttpMediaTypeSet);
   char *raw = g_new (char, alloc_length);
-  GskHttpMediaTypeSet *rv = (GskHttpMediaTypeSet *) raw;
+  EvaHttpMediaTypeSet *rv = (EvaHttpMediaTypeSet *) raw;
   rv->quality = quality;
   rv->next = NULL;
   INIT_RV_STRING (type);
@@ -1653,8 +1653,8 @@ eva_http_media_type_set_new (const char *type,
   return rv;
 }
 
-static GskHttpMediaTypeSet *
-eva_http_media_type_set_copy (GskHttpMediaTypeSet *set)
+static EvaHttpMediaTypeSet *
+eva_http_media_type_set_copy (EvaHttpMediaTypeSet *set)
 {
   return eva_http_media_type_set_new (set->type, set->subtype,
 				      set->quality);
@@ -1667,13 +1667,13 @@ eva_http_media_type_set_copy (GskHttpMediaTypeSet *set)
  * Free the memory associated with the media-type-set node.
  */
 void
-eva_http_media_type_set_free (GskHttpMediaTypeSet *set)
+eva_http_media_type_set_free (EvaHttpMediaTypeSet *set)
 {
   g_return_if_fail (set != NULL);
   g_free (set);
 }
 
-/* GskHttpRangeSet */
+/* EvaHttpRangeSet */
 /**
  * eva_http_range_set_new:
  * @range_type: allocate a new node in a allowable range units list.
@@ -1683,17 +1683,17 @@ eva_http_media_type_set_free (GskHttpMediaTypeSet *set)
  *
  * returns: the newly allocated node.
  */
-GskHttpRangeSet *
-eva_http_range_set_new (GskHttpRange range_type)
+EvaHttpRangeSet *
+eva_http_range_set_new (EvaHttpRange range_type)
 {
-  GskHttpRangeSet *rv = g_new (GskHttpRangeSet, 1);
+  EvaHttpRangeSet *rv = g_new (EvaHttpRangeSet, 1);
   rv->range_type = range_type;
   rv->next = NULL;
   return rv;
 }
 
-static GskHttpRangeSet *
-eva_http_range_set_copy (GskHttpRangeSet *orig)
+static EvaHttpRangeSet *
+eva_http_range_set_copy (EvaHttpRangeSet *orig)
 {
   return eva_http_range_set_new (orig->range_type);
 }
@@ -1705,7 +1705,7 @@ eva_http_range_set_copy (GskHttpRangeSet *orig)
  * Free the memory associated with the node in the range-set.
  */
 void
-eva_http_range_set_free(GskHttpRangeSet *set)
+eva_http_range_set_free(EvaHttpRangeSet *set)
 {
   g_return_if_fail (set != NULL);
   g_free (set);
@@ -1724,21 +1724,21 @@ class ## _get_type (void)						   \
 }
 #define DEFINE_BOXED_GET_TYPE(Class, class) _DEFINE_BOXED_GET_TYPE(Class,class,_copy,_free)
 #define DEFINE_REFCOUNTED_BOXED_GET_TYPE(Class, class) _DEFINE_BOXED_GET_TYPE(Class,class,_ref,_unref)
-DEFINE_REFCOUNTED_BOXED_GET_TYPE (GskHttpAuthenticate, eva_http_authenticate)
-DEFINE_REFCOUNTED_BOXED_GET_TYPE (GskHttpAuthorization, eva_http_authorization)
-DEFINE_BOXED_GET_TYPE (GskHttpResponseCacheDirective, 
+DEFINE_REFCOUNTED_BOXED_GET_TYPE (EvaHttpAuthenticate, eva_http_authenticate)
+DEFINE_REFCOUNTED_BOXED_GET_TYPE (EvaHttpAuthorization, eva_http_authorization)
+DEFINE_BOXED_GET_TYPE (EvaHttpResponseCacheDirective, 
 		       eva_http_response_cache_directive)
-DEFINE_BOXED_GET_TYPE (GskHttpRequestCacheDirective, 
+DEFINE_BOXED_GET_TYPE (EvaHttpRequestCacheDirective, 
 		       eva_http_request_cache_directive)
-DEFINE_BOXED_GET_TYPE (GskHttpCharSet, eva_http_char_set)
-DEFINE_BOXED_GET_TYPE (GskHttpCookie, eva_http_cookie)
-DEFINE_BOXED_GET_TYPE (GskHttpLanguageSet, eva_http_language_set)
-DEFINE_BOXED_GET_TYPE (GskHttpContentEncodingSet, eva_http_content_encoding_set)
-DEFINE_BOXED_GET_TYPE (GskHttpTransferEncodingSet, eva_http_transfer_encoding_set)
-DEFINE_BOXED_GET_TYPE (GskHttpMediaTypeSet, eva_http_media_type_set)
-DEFINE_BOXED_GET_TYPE (GskHttpRangeSet, eva_http_range_set)
+DEFINE_BOXED_GET_TYPE (EvaHttpCharSet, eva_http_char_set)
+DEFINE_BOXED_GET_TYPE (EvaHttpCookie, eva_http_cookie)
+DEFINE_BOXED_GET_TYPE (EvaHttpLanguageSet, eva_http_language_set)
+DEFINE_BOXED_GET_TYPE (EvaHttpContentEncodingSet, eva_http_content_encoding_set)
+DEFINE_BOXED_GET_TYPE (EvaHttpTransferEncodingSet, eva_http_transfer_encoding_set)
+DEFINE_BOXED_GET_TYPE (EvaHttpMediaTypeSet, eva_http_media_type_set)
+DEFINE_BOXED_GET_TYPE (EvaHttpRangeSet, eva_http_range_set)
 
 #undef DEFINE_BOXED_GET_TYPE
 
-/* GskHttpHeader public methods */
+/* EvaHttpHeader public methods */
 

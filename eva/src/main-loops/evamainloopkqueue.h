@@ -27,27 +27,27 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskMainLoopKqueue GskMainLoopKqueue;
-typedef struct _GskMainLoopKqueueClass GskMainLoopKqueueClass;
+typedef struct _EvaMainLoopKqueue EvaMainLoopKqueue;
+typedef struct _EvaMainLoopKqueueClass EvaMainLoopKqueueClass;
 
 /* --- type macros --- */
 GType eva_main_loop_kqueue_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MAIN_LOOP_KQUEUE			(eva_main_loop_kqueue_get_type ())
-#define EVA_MAIN_LOOP_KQUEUE(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MAIN_LOOP_KQUEUE, GskMainLoopKqueue))
-#define EVA_MAIN_LOOP_KQUEUE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MAIN_LOOP_KQUEUE, GskMainLoopKqueueClass))
-#define EVA_MAIN_LOOP_KQUEUE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MAIN_LOOP_KQUEUE, GskMainLoopKqueueClass))
+#define EVA_MAIN_LOOP_KQUEUE(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MAIN_LOOP_KQUEUE, EvaMainLoopKqueue))
+#define EVA_MAIN_LOOP_KQUEUE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MAIN_LOOP_KQUEUE, EvaMainLoopKqueueClass))
+#define EVA_MAIN_LOOP_KQUEUE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MAIN_LOOP_KQUEUE, EvaMainLoopKqueueClass))
 #define EVA_IS_MAIN_LOOP_KQUEUE(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_MAIN_LOOP_KQUEUE))
 #define EVA_IS_MAIN_LOOP_KQUEUE_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_MAIN_LOOP_KQUEUE))
 
 
-struct _GskMainLoopKqueueClass
+struct _EvaMainLoopKqueueClass
 {
-  GskMainLoopClass	main_loop_class;
+  EvaMainLoopClass	main_loop_class;
 };
 
-struct _GskMainLoopKqueue
+struct _EvaMainLoopKqueue
 {
-  GskMainLoop		main_loop;
+  EvaMainLoop		main_loop;
 
   guint                 num_updates;
   guint                 max_updates;

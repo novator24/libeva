@@ -14,25 +14,25 @@ evaxmlprocessor
 
 </para>
 
-<!-- ##### STRUCT GskXmlProcessor ##### -->
+<!-- ##### STRUCT EvaXmlProcessor ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskXmlConfig ##### -->
+<!-- ##### STRUCT EvaXmlConfig ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskXmlNamespace ##### -->
+<!-- ##### STRUCT EvaXmlNamespace ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### USER_FUNCTION GskXmlErrorFunc ##### -->
+<!-- ##### USER_FUNCTION EvaXmlErrorFunc ##### -->
 <para>
 
 </para>
@@ -43,7 +43,7 @@ evaxmlprocessor
 @data: 
 
 
-<!-- ##### USER_FUNCTION GskXmlValueCallback ##### -->
+<!-- ##### USER_FUNCTION EvaXmlValueCallback ##### -->
 <para>
 
 </para>
@@ -52,7 +52,7 @@ evaxmlprocessor
 @user_data: 
 
 
-<!-- ##### USER_FUNCTION GskXmlGetType ##### -->
+<!-- ##### USER_FUNCTION EvaXmlGetType ##### -->
 <para>
 
 </para>
@@ -62,7 +62,7 @@ evaxmlprocessor
 @Returns: 
 
 
-<!-- ##### USER_FUNCTION GskXmlTypeTestFunc ##### -->
+<!-- ##### USER_FUNCTION EvaXmlTypeTestFunc ##### -->
 <para>
 
 </para>

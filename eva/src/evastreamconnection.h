@@ -5,39 +5,39 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskStreamConnection GskStreamConnection;
+typedef struct _EvaStreamConnection EvaStreamConnection;
 
 GType eva_stream_connection_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_STREAM_CONNECTION	(eva_stream_connection_get_type ())
-#define EVA_STREAM_CONNECTION(obj)      (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_CONNECTION, GskStreamConnection))
+#define EVA_STREAM_CONNECTION(obj)      (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_CONNECTION, EvaStreamConnection))
 #define EVA_IS_STREAM_CONNECTION(obj)   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STREAM_CONNECTION))
 
-GskStreamConnection *
-       eva_stream_connection_new              (GskStream        *input_stream,
-                                               GskStream        *output_stream,
+EvaStreamConnection *
+       eva_stream_connection_new              (EvaStream        *input_stream,
+                                               EvaStream        *output_stream,
               		                       GError          **error);
-void   eva_stream_connection_detach           (GskStreamConnection *connection);
-void   eva_stream_connection_shutdown         (GskStreamConnection *connection);
-void   eva_stream_connection_set_max_buffered (GskStreamConnection *connection,
+void   eva_stream_connection_detach           (EvaStreamConnection *connection);
+void   eva_stream_connection_shutdown         (EvaStreamConnection *connection);
+void   eva_stream_connection_set_max_buffered (EvaStreamConnection *connection,
               		                       guint                max_buffered);
-guint  eva_stream_connection_get_max_buffered (GskStreamConnection *connection);
-void   eva_stream_connection_set_atomic_read_size(GskStreamConnection *connection,
+guint  eva_stream_connection_get_max_buffered (EvaStreamConnection *connection);
+void   eva_stream_connection_set_atomic_read_size(EvaStreamConnection *connection,
               		                       guint                atomic_read_size);
-guint  eva_stream_connection_get_atomic_read_size(GskStreamConnection *connection);
+guint  eva_stream_connection_get_atomic_read_size(EvaStreamConnection *connection);
 
 #define eva_stream_connection_peek_read_side(conn) ((conn)->read_side)
 #define eva_stream_connection_peek_write_side(conn) ((conn)->write_side)
 
 /* private, but useful for debugging */
-struct _GskStreamConnection 
+struct _EvaStreamConnection 
 {
   GObject      object;
 
   /* The stream to read from. */
-  GskStream *read_side;
+  EvaStream *read_side;
 
   /* The stream to write to. */
-  GskStream *write_side;
+  EvaStream *write_side;
 
   /* Whether we are blocking the read-side because the buffer is 0 length. */
   guint blocking_write_side : 1;
@@ -52,7 +52,7 @@ struct _GskStreamConnection
 
   /* Data which is to be transferred from read_side to write_side,
      which hasn't been processed on the write side. */
-  GskBuffer buffer;
+  EvaBuffer buffer;
 
   /* The maximum number of bytes to store in buffer. */
   guint max_buffered;

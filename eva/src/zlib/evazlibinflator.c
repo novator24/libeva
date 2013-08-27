@@ -13,12 +13,12 @@ enum
 };
 
 static guint
-eva_zlib_inflator_raw_read      (GskStream     *stream,
+eva_zlib_inflator_raw_read      (EvaStream     *stream,
 			 	 gpointer       data,
 			 	 guint          length,
 			 	 GError       **error)
 {
-  GskZlibInflator *zlib_inflator = EVA_ZLIB_INFLATOR (stream);
+  EvaZlibInflator *zlib_inflator = EVA_ZLIB_INFLATOR (stream);
   guint rv = eva_buffer_read (&zlib_inflator->decompressed, data, length);
 
   if (!eva_io_get_is_writable (zlib_inflator))
@@ -38,11 +38,11 @@ eva_zlib_inflator_raw_read      (GskStream     *stream,
 }
 
 static guint
-eva_zlib_inflator_raw_read_buffer(GskStream     *stream,
-			 	  GskBuffer     *buffer,
+eva_zlib_inflator_raw_read_buffer(EvaStream     *stream,
+			 	  EvaBuffer     *buffer,
 			 	  GError       **error)
 {
-  GskZlibInflator *zlib_inflator = EVA_ZLIB_INFLATOR (stream);
+  EvaZlibInflator *zlib_inflator = EVA_ZLIB_INFLATOR (stream);
   guint rv = eva_buffer_drain (buffer, &zlib_inflator->decompressed);
   if (!eva_io_get_is_writable (zlib_inflator))
     {
@@ -59,7 +59,7 @@ eva_zlib_inflator_raw_read_buffer(GskStream     *stream,
 
 
 static gboolean
-do_sync (GskZlibInflator *zlib_inflator, GError **error)
+do_sync (EvaZlibInflator *zlib_inflator, GError **error)
 {
   z_stream *zst = zlib_inflator->private_stream;
   guint8 buf[4096];
@@ -83,7 +83,7 @@ do_sync (GskZlibInflator *zlib_inflator, GError **error)
   while (rv == Z_OK && zst->avail_out == 0);
   if (rv != Z_OK && rv != Z_STREAM_END)
     {
-      GskErrorCode zerror_code = eva_zlib_error_to_eva_error (rv);
+      EvaErrorCode zerror_code = eva_zlib_error_to_eva_error (rv);
       const char *zmsg = eva_zlib_error_to_message (rv);
       g_set_error (error, EVA_G_ERROR_DOMAIN, zerror_code,
 		   "could not inflate: %s", zmsg);
@@ -93,10 +93,10 @@ do_sync (GskZlibInflator *zlib_inflator, GError **error)
 }
 
 static gboolean
-eva_zlib_inflator_shutdown_write (GskIO      *io,
+eva_zlib_inflator_shutdown_write (EvaIO      *io,
 				  GError    **error)
 {
-  GskZlibInflator *zlib_inflator = EVA_ZLIB_INFLATOR (io);
+  EvaZlibInflator *zlib_inflator = EVA_ZLIB_INFLATOR (io);
   if (! do_sync (EVA_ZLIB_INFLATOR (io), error))
     return FALSE;
   if (zlib_inflator->decompressed.size == 0)
@@ -107,12 +107,12 @@ eva_zlib_inflator_shutdown_write (GskIO      *io,
 }
 
 static guint
-eva_zlib_inflator_raw_write     (GskStream     *stream,
+eva_zlib_inflator_raw_write     (EvaStream     *stream,
 			 	 gconstpointer  data,
 			 	 guint          length,
 			 	 GError       **error)
 {
-  GskZlibInflator *zlib_inflator = EVA_ZLIB_INFLATOR (stream);
+  EvaZlibInflator *zlib_inflator = EVA_ZLIB_INFLATOR (stream);
   z_stream *zst;
   guint8 buf[4096];
   int rv;
@@ -150,7 +150,7 @@ eva_zlib_inflator_raw_write     (GskStream     *stream,
   while (rv == Z_OK && zst->avail_in > 0);
   if (rv != Z_OK && rv != Z_STREAM_END)
     {
-      GskErrorCode zerror_code = eva_zlib_error_to_eva_error (rv);
+      EvaErrorCode zerror_code = eva_zlib_error_to_eva_error (rv);
       const char *zmsg = eva_zlib_error_to_message (rv);
       g_set_error (error, EVA_G_ERROR_DOMAIN, zerror_code,
 		   "could not inflate: %s", zmsg);
@@ -169,7 +169,7 @@ eva_zlib_inflator_set_property	      (GObject        *object,
 				       const GValue   *value,
 				       GParamSpec     *pspec)
 {
-  GskZlibInflator *zlib_inflator = EVA_ZLIB_INFLATOR (object);
+  EvaZlibInflator *zlib_inflator = EVA_ZLIB_INFLATOR (object);
   switch (property_id)
     {
     case PROP_USE_GZIP:
@@ -187,7 +187,7 @@ eva_zlib_inflator_get_property	      (GObject        *object,
 				       GValue         *value,
 				       GParamSpec     *pspec)
 {
-  GskZlibInflator *zlib_inflator = EVA_ZLIB_INFLATOR (object);
+  EvaZlibInflator *zlib_inflator = EVA_ZLIB_INFLATOR (object);
   switch (property_id)
     {
     case PROP_USE_GZIP:
@@ -202,7 +202,7 @@ eva_zlib_inflator_get_property	      (GObject        *object,
 static void
 eva_zlib_inflator_finalize     (GObject *object)
 {
-  GskZlibInflator *inflator = EVA_ZLIB_INFLATOR (object);
+  EvaZlibInflator *inflator = EVA_ZLIB_INFLATOR (object);
   if (inflator->private_stream)
     {
       inflateEnd (inflator->private_stream);
@@ -214,7 +214,7 @@ eva_zlib_inflator_finalize     (GObject *object)
 
 /* --- functions --- */
 static void
-eva_zlib_inflator_init (GskZlibInflator *zlib_inflator)
+eva_zlib_inflator_init (EvaZlibInflator *zlib_inflator)
 {
   eva_io_mark_is_readable (zlib_inflator);
   eva_io_mark_is_writable (zlib_inflator);
@@ -222,10 +222,10 @@ eva_zlib_inflator_init (GskZlibInflator *zlib_inflator)
 }
 
 static void
-eva_zlib_inflator_class_init (GskZlibInflatorClass *class)
+eva_zlib_inflator_class_init (EvaZlibInflatorClass *class)
 {
-  GskIOClass *io_class = EVA_IO_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   GParamSpec *pspec;
   parent_class = g_type_class_peek_parent (class);
@@ -251,19 +251,19 @@ GType eva_zlib_inflator_get_type()
     {
       static const GTypeInfo zlib_inflator_info =
       {
-	sizeof(GskZlibInflatorClass),
+	sizeof(EvaZlibInflatorClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_zlib_inflator_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskZlibInflator),
+	sizeof (EvaZlibInflator),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_zlib_inflator_init,
 	NULL		/* value_table */
       };
       zlib_inflator_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskZlibInflator",
+                                                  "EvaZlibInflator",
 						  &zlib_inflator_info, 0);
     }
   return zlib_inflator_type;
@@ -277,12 +277,12 @@ GType eva_zlib_inflator_get_type()
  *
  * returns: the newly allocated stream.
  */
-GskStream *
+EvaStream *
 eva_zlib_inflator_new (void)
 {
   return g_object_new (EVA_TYPE_ZLIB_INFLATOR, NULL);
 }
-GskStream *
+EvaStream *
 eva_zlib_inflator_new2 (gboolean use_gzip)
 {
   return g_object_new (EVA_TYPE_ZLIB_INFLATOR, 

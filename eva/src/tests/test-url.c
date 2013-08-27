@@ -5,7 +5,7 @@
 int
 main (int argc, char **argv)
 {
-  GskUrl *url, *url0, *url1, *url2;
+  EvaUrl *url, *url0, *url1, *url2;
   char *str;
   GValue value;
   GError *error =NULL;

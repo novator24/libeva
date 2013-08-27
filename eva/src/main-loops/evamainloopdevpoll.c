@@ -52,7 +52,7 @@ static GObjectClass *parent_class = NULL;
 
 /* TODO: implement these! */
 static void
-eva_main_loop_dev_poll_config_fd       (GskMainLoopPollBase   *main_loop,
+eva_main_loop_dev_poll_config_fd       (EvaMainLoopPollBase   *main_loop,
                                         int                    fd,
 				        GIOCondition           io_conditions)
 {
@@ -60,7 +60,7 @@ eva_main_loop_dev_poll_config_fd       (GskMainLoopPollBase   *main_loop,
 }
 
 static void
-eva_main_loop_dev_poll_setup_do_polling(GskMainLoopPollBase   *main_loop)
+eva_main_loop_dev_poll_setup_do_polling(EvaMainLoopPollBase   *main_loop)
 {
   ...
 }
@@ -73,11 +73,11 @@ eva_main_loop_dev_poll_setup_do_polling(GskMainLoopPollBase   *main_loop)
    * do that stuff in `setup_do_polling', which cannot be cancelled.
    */
 static gboolean
-eva_main_loop_dev_poll_do_polling      (GskMainLoopPollBase   *main_loop,
+eva_main_loop_dev_poll_do_polling      (EvaMainLoopPollBase   *main_loop,
 				        int                    max_timeout,
 				        guint                  max_events,
 				        guint                 *num_events_out,
-                                        GskMainLoopEvent      *events)
+                                        EvaMainLoopEvent      *events)
 {
   ...
 }
@@ -86,16 +86,16 @@ eva_main_loop_dev_poll_do_polling      (GskMainLoopPollBase   *main_loop,
 
 /* --- functions --- */
 static void
-eva_main_loop_dev_poll_init (GskMainLoopDevPoll *main_loop_dev_poll)
+eva_main_loop_dev_poll_init (EvaMainLoopDevPoll *main_loop_dev_poll)
 {
   main_loop_dev_poll->dev_poll_fd = -1;
 }
 
 static gboolean
-eva_main_loop_dev_poll_setup (GskMainLoop *main_loop)
+eva_main_loop_dev_poll_setup (EvaMainLoop *main_loop)
 {
 #if HAVE_SYS_DEV_POLL
-  GskMainLoopDevPoll *main_loop_dev_poll = EVA_MAIN_LOOP_DEV_POLL (main_loop);
+  EvaMainLoopDevPoll *main_loop_dev_poll = EVA_MAIN_LOOP_DEV_POLL (main_loop);
   main_loop_kqueue->dev_poll_fd = open ("/dev/poll", O_RDWR);
   return (main_loop_dev_poll->dev_poll_fd >= 0);
 #else
@@ -105,9 +105,9 @@ eva_main_loop_dev_poll_setup (GskMainLoop *main_loop)
 }
 
 static void
-eva_main_loop_dev_poll_class_init (GskMainLoopDevPollClass *dev_poll_class)
+eva_main_loop_dev_poll_class_init (EvaMainLoopDevPollClass *dev_poll_class)
 {
-  GskMainLoopClass *class = EVA_MAIN_LOOP_CLASS (dev_poll_class);
+  EvaMainLoopClass *class = EVA_MAIN_LOOP_CLASS (dev_poll_class);
   parent_class = g_type_class_peek_parent (class);
 #if HAVE_SYS_DEV_POLL
   class->config_fd = eva_main_loop_dev_poll_config_fd;
@@ -124,20 +124,20 @@ GType eva_main_loop_dev_poll_get_type()
     {
       static const GTypeInfo main_loop_dev_poll_info =
       {
-	sizeof(GskMainLoopDevPollClass),
+	sizeof(EvaMainLoopDevPollClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_main_loop_dev_poll_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMainLoopDevPoll),
+	sizeof (EvaMainLoopDevPoll),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_main_loop_dev_poll_init,
 	NULL		/* value_table */
       };
       GType parent = EVA_TYPE_MAIN_LOOP_POLL_BASE;
       main_loop_dev_poll_type = g_type_register_static (parent,
-                                                  "GskMainLoopDevPoll",
+                                                  "EvaMainLoopDevPoll",
 						  &main_loop_dev_poll_info, 0);
     }
   return main_loop_dev_poll_type;

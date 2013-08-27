@@ -8,11 +8,11 @@ typedef struct _TestInfo TestInfo;
 struct _TestInfo
 {
   gboolean is_done;
-  GskMainLoopWaitInfo *wait_info;
+  EvaMainLoopWaitInfo *wait_info;
 };
 
 static void
-preserve_wait_info (GskMainLoopWaitInfo *info,
+preserve_wait_info (EvaMainLoopWaitInfo *info,
 		    gpointer user_data)
 {
   TestInfo *test_info = user_data;
@@ -21,7 +21,7 @@ preserve_wait_info (GskMainLoopWaitInfo *info,
 }
 
 static void
-do_test (GskForkFunc func, gpointer data, GskMainLoopWaitInfo *wait_info)
+do_test (EvaForkFunc func, gpointer data, EvaMainLoopWaitInfo *wait_info)
 {
   TestInfo test_info = { FALSE, wait_info };
   int pid = eva_fork (func, data, NULL);
@@ -59,7 +59,7 @@ raise_int (gpointer data)
 
 int main(int argc, char **argv)
 {
-  GskMainLoopWaitInfo wait_info;
+  EvaMainLoopWaitInfo wait_info;
 
   eva_init_without_threads (&argc, &argv);
 

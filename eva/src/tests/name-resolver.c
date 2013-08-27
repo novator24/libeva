@@ -16,7 +16,7 @@ handle_destroy (gpointer data)
 }
 
 static void
-got_name_successfully (GskSocketAddress *address,
+got_name_successfully (EvaSocketAddress *address,
 		       gpointer          unused)
 {
   char *str = eva_socket_address_to_string (address);
@@ -36,8 +36,8 @@ got_error (GError *error,
 
 int main (int argc, char **argv)
 {
-  GskNameResolverFamily family;
-  GskNameResolverTask *task;
+  EvaNameResolverFamily family;
+  EvaNameResolverTask *task;
   guint i;
   eva_init_without_threads (&argc, &argv);
 

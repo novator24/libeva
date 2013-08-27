@@ -46,20 +46,20 @@ structure inside a GObject.</span>
 beyond those provided by glib.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskIO.html">Base Input/Output Object</a></span><span class="refpurpose"> — A base class with input and output triggers,
+<span class="refentrytitle"><a href="EvaIO.html">Base Input/Output Object</a></span><span class="refpurpose"> — A base class with input and output triggers,
 but no actual read or write methods.
 Those are left for derived classes to support.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskStream.html">Binary Input/Output Stream Base</a></span><span class="refpurpose"> — A byte stream.  This has methods to read and write data,
-and it inherits read/write notification from <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base"><span class="type">GskStream</span></a>.</span>
+<span class="refentrytitle"><a href="EvaStream.html">Binary Input/Output Stream Base</a></span><span class="refpurpose"> — A byte stream.  This has methods to read and write data,
+and it inherits read/write notification from <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base"><span class="type">EvaStream</span></a>.</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="eva-evastreamconnection.html">evastreamconnection</a></span><span class="refpurpose"> — Connection between the input of one stream
 and the output of another.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskMainLoop.html">Main Loop (Generic Event Management)</a></span><span class="refpurpose"> — Convenient way to be notified when certain types of event occur.</span>
+<span class="refentrytitle"><a href="EvaMainLoop.html">Main Loop (Generic Event Management)</a></span><span class="refpurpose"> — Convenient way to be notified when certain types of event occur.</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="eva-evanameresolver.html">Socket Address Lookup by Name</a></span><span class="refpurpose"> — A way to lookup addresses from names.
@@ -69,7 +69,7 @@ and the output of another.</span>
 <span class="refentrytitle"><a href="eva-evatypes.html">Useful GTypes</a></span><span class="refpurpose"> — some types useful to servers</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="eva-evabuffer.html">GskBuffer</a></span><span class="refpurpose"> — a fast, flexible in-memory data buffer</span>
+<span class="refentrytitle"><a href="eva-evabuffer.html">EvaBuffer</a></span><span class="refpurpose"> — a fast, flexible in-memory data buffer</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="eva-evaerrno.html">Old-Fashioned errno Handling</a></span><span class="refpurpose"> — A few tricks which operate on the same type as errno, an int.</span>
@@ -84,19 +84,19 @@ and the output of another.</span>
 <span class="refentrytitle"><a href="eva-evaghelpers.html">Glib Helper Routines</a></span><span class="refpurpose"> — Miscellaneous helper routines that could conceivably be moved to glib someday.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskPacketQueue.html">Datagram I/O</a></span><span class="refpurpose"> — base class for datagram I/O classes</span>
+<span class="refentrytitle"><a href="EvaPacketQueue.html">Datagram I/O</a></span><span class="refpurpose"> — base class for datagram I/O classes</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="eva-evapacket.html">Binary Packet</a></span><span class="refpurpose"> — A binary data packet.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskStreamListener.html">Listening for Connections</a></span><span class="refpurpose"> — Base class for server-type objects.</span>
+<span class="refentrytitle"><a href="EvaStreamListener.html">Listening for Connections</a></span><span class="refpurpose"> — Base class for server-type objects.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="eva-evastreamclient.html">Client Stream</a></span><span class="refpurpose"> — Create a GskStream which is connecting to a remote address.</span>
+<span class="refentrytitle"><a href="eva-evastreamclient.html">Client Stream</a></span><span class="refpurpose"> — Create a EvaStream which is connecting to a remote address.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskSocketAddress.html">Socket Addresses.</a></span><span class="refpurpose"> — The location of a socket endpoint, in some domain.</span>
+<span class="refentrytitle"><a href="EvaSocketAddress.html">Socket Addresses.</a></span><span class="refpurpose"> — The location of a socket endpoint, in some domain.</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="eva-evalog.html">evalog</a></span><span class="refpurpose"> — convenient logging methods around the glib mechanism</span>
@@ -130,16 +130,16 @@ and the output of another.</span>
 <dt><span class="chapter"><a href="ch04.html">Standard Implementations</a></span></dt>
 <dd><dl>
 <dt>
-<span class="refentrytitle"><a href="GskPacketQueueFd.html">GskPacketQueueFd</a></span><span class="refpurpose"> — A PacketQueue based on a file descriptor.</span>
+<span class="refentrytitle"><a href="EvaPacketQueueFd.html">EvaPacketQueueFd</a></span><span class="refpurpose"> — A PacketQueue based on a file descriptor.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskStreamFd.html">GskStreamFd</a></span><span class="refpurpose"> — a file-descriptor based GskStream</span>
+<span class="refentrytitle"><a href="EvaStreamFd.html">EvaStreamFd</a></span><span class="refpurpose"> — a file-descriptor based EvaStream</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="eva-GskStreamExternal.html">GskStreamExternal</a></span><span class="refpurpose"> — streams which connect to another process.</span>
+<span class="refentrytitle"><a href="eva-EvaStreamExternal.html">EvaStreamExternal</a></span><span class="refpurpose"> — streams which connect to another process.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskStreamListenerSocket.html">GskStreamListenerSocket</a></span><span class="refpurpose"> — socket-based stream-listener.</span>
+<span class="refentrytitle"><a href="EvaStreamListenerSocket.html">EvaStreamListenerSocket</a></span><span class="refpurpose"> — socket-based stream-listener.</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="eva-evabufferstream.html">evabufferstream</a></span><span class="refpurpose"> — Simple Buffering Stream</span>
@@ -148,41 +148,41 @@ and the output of another.</span>
 <dt><span class="chapter"><a href="ch05.html">Standard Objects: the URL class</a></span></dt>
 <dd><dl>
 <dt>
-<span class="refentrytitle"><a href="GskUrl.html">GskUrl</a></span><span class="refpurpose"> — A Universal Resource Locator (or Identifier)
+<span class="refentrytitle"><a href="EvaUrl.html">EvaUrl</a></span><span class="refpurpose"> — A Universal Resource Locator (or Identifier)
 object.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskUrlTransfer.html">GskUrlTransfer</a></span><span class="refpurpose"> — Transfer data with a location by URL.</span>
+<span class="refentrytitle"><a href="EvaUrlTransfer.html">EvaUrlTransfer</a></span><span class="refpurpose"> — Transfer data with a location by URL.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskUrlTransferHttp.html">GskUrlTransferHttp</a></span><span class="refpurpose"> — An HTTP- or HTTPS-based transfer.</span>
+<span class="refentrytitle"><a href="EvaUrlTransferHttp.html">EvaUrlTransferHttp</a></span><span class="refpurpose"> — An HTTP- or HTTPS-based transfer.</span>
 </dt>
 </dl></dd>
 <dt><span class="chapter"><a href="ch06.html">Standard Streams:  the HTTP client and server</a></span></dt>
 <dd><dl>
 <dt>
-<span class="refentrytitle"><a href="GskHttpHeader.html">GskHttpHeader</a></span><span class="refpurpose"> — Base class for HTTP headers.</span>
+<span class="refentrytitle"><a href="EvaHttpHeader.html">EvaHttpHeader</a></span><span class="refpurpose"> — Base class for HTTP headers.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskHttpRequest.html">GskHttpRequest</a></span><span class="refpurpose"> — An HTTP header that is sent from client to server.</span>
+<span class="refentrytitle"><a href="EvaHttpRequest.html">EvaHttpRequest</a></span><span class="refpurpose"> — An HTTP header that is sent from client to server.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskHttpResponse.html">GskHttpResponse</a></span><span class="refpurpose"> — An HTTP header that is sent from server to client.</span>
+<span class="refentrytitle"><a href="EvaHttpResponse.html">EvaHttpResponse</a></span><span class="refpurpose"> — An HTTP header that is sent from server to client.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskHttpClient.html">GskHttpClient</a></span><span class="refpurpose"> — The client end of an HTTP connection.</span>
+<span class="refentrytitle"><a href="EvaHttpClient.html">EvaHttpClient</a></span><span class="refpurpose"> — The client end of an HTTP connection.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskHttpServer.html">GskHttpServer</a></span><span class="refpurpose"> — The server end of an HTTP connection.</span>
+<span class="refentrytitle"><a href="EvaHttpServer.html">EvaHttpServer</a></span><span class="refpurpose"> — The server end of an HTTP connection.</span>
 </dt>
 </dl></dd>
 <dt><span class="chapter"><a href="ch07.html">Standard Streams:  standard compression algorithms</a></span></dt>
 <dd><dl>
 <dt>
-<span class="refentrytitle"><a href="eva-GskZlibDeflator.html">GskZlibDeflator</a></span><span class="refpurpose"> — a zlib compressor.</span>
+<span class="refentrytitle"><a href="eva-EvaZlibDeflator.html">EvaZlibDeflator</a></span><span class="refpurpose"> — a zlib compressor.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="eva-GskZlibInflator.html">GskZlibInflator</a></span><span class="refpurpose"> — a zlib decompressor</span>
+<span class="refentrytitle"><a href="eva-EvaZlibInflator.html">EvaZlibInflator</a></span><span class="refpurpose"> — a zlib decompressor</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="eva-evazlib.html">evazlib</a></span><span class="refpurpose"></span>
@@ -191,7 +191,7 @@ object.</span>
 <dt><span class="chapter"><a href="ch08.html">Standard Streams:  utility streams</a></span></dt>
 <dd><dl>
 <dt>
-<span class="refentrytitle"><a href="eva-GskStreamQueue.html">GskStreamQueue</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="eva-EvaStreamQueue.html">EvaStreamQueue</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="eva-evamemory.html">memory-based streams</a></span><span class="refpurpose"> — streams whose data is "memory", inside pointer-accessed data.</span>
@@ -220,7 +220,7 @@ object.</span>
 </dl></dd>
 <dt><span class="chapter"><a href="ch10.html">SSL interface</a></span></dt>
 <dd><dl><dt>
-<span class="refentrytitle"><a href="eva-evastreamssl.html">GskStreamSsl</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="eva-evastreamssl.html">EvaStreamSsl</a></span><span class="refpurpose"></span>
 </dt></dl></dd>
 <dt><span class="chapter"><a href="ch11.html">MIME handling</a></span></dt>
 <dd><dl>
@@ -228,7 +228,7 @@ object.</span>
 <span class="refentrytitle"><a href="eva-evamimemultipartpiece.html">evamimemultipartpiece</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="eva-GskMimeMultipartDecoder.html">GskMimeMultipartDecoder</a></span><span class="refpurpose"> — read Content-Type multipart/*.</span>
+<span class="refentrytitle"><a href="eva-EvaMimeMultipartDecoder.html">EvaMimeMultipartDecoder</a></span><span class="refpurpose"> — read Content-Type multipart/*.</span>
 </dt>
 </dl></dd>
 <dt><span class="chapter"><a href="ch12.html">RPC protocols</a></span></dt>
@@ -237,25 +237,25 @@ object.</span>
 <span class="refentrytitle"><a href="eva-evaxmlrpc.html">evaxmlrpc</a></span><span class="refpurpose"> — XMLRPC definitions</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="eva-GskXmlrpcStream.html">GskXmlrpcStream</a></span><span class="refpurpose"> — a stream of XMLRPC method calls and responses.</span>
+<span class="refentrytitle"><a href="eva-EvaXmlrpcStream.html">EvaXmlrpcStream</a></span><span class="refpurpose"> — a stream of XMLRPC method calls and responses.</span>
 </dt>
 </dl></dd>
 <dt><span class="chapter"><a href="ch13.html">Main Loops</a></span></dt>
 <dd><dl>
 <dt>
-<span class="refentrytitle"><a href="GskMainLoopDevPoll.html">GskMainLoopDevPoll</a></span><span class="refpurpose"> — /dev/poll based event loop.</span>
+<span class="refentrytitle"><a href="EvaMainLoopDevPoll.html">EvaMainLoopDevPoll</a></span><span class="refpurpose"> — /dev/poll based event loop.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskMainLoopKqueue.html">GskMainLoopKqueue</a></span><span class="refpurpose"> — a kqueue-based event loop.</span>
+<span class="refentrytitle"><a href="EvaMainLoopKqueue.html">EvaMainLoopKqueue</a></span><span class="refpurpose"> — a kqueue-based event loop.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskMainLoopPoll.html">GskMainLoopPoll</a></span><span class="refpurpose"> — a poll(2)-based main-loop.</span>
+<span class="refentrytitle"><a href="EvaMainLoopPoll.html">EvaMainLoopPoll</a></span><span class="refpurpose"> — a poll(2)-based main-loop.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskMainLoopPollBase.html">GskMainLoopPollBase</a></span><span class="refpurpose"> — a base class for file-descriptor-only polling mechanisms.</span>
+<span class="refentrytitle"><a href="EvaMainLoopPollBase.html">EvaMainLoopPollBase</a></span><span class="refpurpose"> — a base class for file-descriptor-only polling mechanisms.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GskMainLoopSelect.html">GskMainLoopSelect</a></span><span class="refpurpose"> — a select(2)-based event loop.</span>
+<span class="refentrytitle"><a href="EvaMainLoopSelect.html">EvaMainLoopSelect</a></span><span class="refpurpose"> — a select(2)-based event loop.</span>
 </dt>
 </dl></dd>
 <dt><span class="chapter"><a href="ch14.html">Odds and Ends</a></span></dt>

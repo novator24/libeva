@@ -7,11 +7,11 @@
 typedef struct _TaskInfo TaskInfo;
 typedef struct _ThreadInfo ThreadInfo;
 
-struct _GskThreadPool
+struct _EvaThreadPool
 {
 
   /*< private >*/
-  GskSource *wakeup_source;
+  EvaSource *wakeup_source;
   int wakeup_read_fd;
   int wakeup_write_fd;
 
@@ -34,17 +34,17 @@ struct _GskThreadPool
 /* Per task information */
 struct _TaskInfo
 {
-  GskThreadPoolRunFunc     run;
-  GskThreadPoolResultFunc  handle_result;
+  EvaThreadPoolRunFunc     run;
+  EvaThreadPoolResultFunc  handle_result;
   gpointer                 run_data;
   gpointer                 result_data;
-  GskThreadPoolDestroyFunc destroy;
+  EvaThreadPoolDestroyFunc destroy;
 };
 
 /* Per GThread information */
 struct _ThreadInfo
 {
-  GskThreadPool           *pool;
+  EvaThreadPool           *pool;
   GThread                 *thread;
   GCond                   *cond;
   TaskInfo                *running_task;
@@ -52,7 +52,7 @@ struct _ThreadInfo
 };
 
 static void
-destroy_now (GskThreadPool *pool)
+destroy_now (EvaThreadPool *pool)
 {
   if (pool->wakeup_source != NULL)
     eva_source_remove (pool->wakeup_source);
@@ -69,7 +69,7 @@ destroy_now (GskThreadPool *pool)
 static gboolean
 handle_wakeup_fd_pinged (int fd, GIOCondition condition, gpointer data)
 {
-  GskThreadPool *pool = data;
+  EvaThreadPool *pool = data;
   char buf[4096];
   int rv = read (pool->wakeup_read_fd, buf, sizeof (buf));
   TaskInfo *task_info;
@@ -109,7 +109,7 @@ handle_wakeup_fd_pinged (int fd, GIOCondition condition, gpointer data)
 static void
 wakefd_source_destroyed (gpointer data)
 {
-  GskThreadPool *pool = data;
+  EvaThreadPool *pool = data;
   pool->wakeup_source = NULL;
 
   if (pool->destroy_pending && pool->num_threads == 0)
@@ -127,10 +127,10 @@ wakefd_source_destroyed (gpointer data)
  *
  * returns: the newly allocated thread pool.
  */
-GskThreadPool *eva_thread_pool_new     (GskMainLoop             *main_loop,
+EvaThreadPool *eva_thread_pool_new     (EvaMainLoop             *main_loop,
                                         guint                    max_threads)
 {
-  GskThreadPool *thread_pool;
+  EvaThreadPool *thread_pool;
   int pipe_fds[2];
   if (pipe (pipe_fds) < 0)
     {
@@ -139,7 +139,7 @@ GskThreadPool *eva_thread_pool_new     (GskMainLoop             *main_loop,
 
   eva_fd_set_nonblocking (pipe_fds[0]);
 
-  thread_pool = g_new (GskThreadPool, 1);
+  thread_pool = g_new (EvaThreadPool, 1);
   thread_pool->wakeup_read_fd = pipe_fds[0];
   thread_pool->wakeup_write_fd = pipe_fds[1];
   thread_pool->wakeup_source = eva_main_loop_add_io (main_loop,
@@ -169,7 +169,7 @@ static gpointer
 the_thread_func (gpointer data)
 {
   ThreadInfo *thread_info = data;
-  GskThreadPool *pool = thread_info->pool;
+  EvaThreadPool *pool = thread_info->pool;
   while (thread_info->running_task
       && !thread_info->cancelled
       && !pool->destroy_pending)
@@ -230,11 +230,11 @@ the_thread_func (gpointer data)
  * after @run and @handle_result are done.
  */
 void
-eva_thread_pool_push   (GskThreadPool           *pool,
-			GskThreadPoolRunFunc     run,
-			GskThreadPoolResultFunc  handle_result,
+eva_thread_pool_push   (EvaThreadPool           *pool,
+			EvaThreadPoolRunFunc     run,
+			EvaThreadPoolResultFunc  handle_result,
 			gpointer                 run_data,
-			GskThreadPoolDestroyFunc destroy)
+			EvaThreadPoolDestroyFunc destroy)
 {
   TaskInfo *info = g_new (TaskInfo, 1);
   ThreadInfo *thread_info;
@@ -293,7 +293,7 @@ eva_thread_pool_push   (GskThreadPool           *pool,
  * will have no race condition)
  */
 void
-eva_thread_pool_destroy (GskThreadPool           *pool,
+eva_thread_pool_destroy (EvaThreadPool           *pool,
 			 GDestroyNotify           destroy,
 			 gpointer                 destroy_data)
 {

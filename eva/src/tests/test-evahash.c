@@ -25,7 +25,7 @@ static HashSumTest tests[] =
 
 int main ()
 {
-  GskHash *h;
+  EvaHash *h;
   guint i;
   for (i = 0; i < TEST_COUNT; i++)
     {

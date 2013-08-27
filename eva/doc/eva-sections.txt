@@ -1,6 +1,6 @@
 <SECTION>
 <FILE>evadebug</FILE>
-GskDebugFlags
+EvaDebugFlags
 eva_debugging_on
 eva_debug_set_flags
 eva_debug_add_flags
@@ -54,7 +54,7 @@ _
 
 <SECTION>
 <FILE>evainit</FILE>
-GskInitInfo
+EvaInitInfo
 eva_init_info_get_defaults
 eva_init
 eva_init_without_threads
@@ -65,16 +65,16 @@ eva_init_flags
 eva_main_thread
 <SUBSECTION Standard>
 EVA_IS_MAIN_THREAD
-_GskInitFlags
+_EvaInitFlags
 </SECTION>
 
 <SECTION>
 <FILE>evaio</FILE>
-GskIOClass
-GskIO
-GskIOHookFunc
-GskIOErrorCause
-<TITLE>GskIO</TITLE>
+EvaIOClass
+EvaIO
+EvaIOHookFunc
+EvaIOErrorCause
+<TITLE>EvaIO</TITLE>
 EVA_IO_READ_HOOK
 EVA_IO_WRITE_HOOK
 eva_io_block_read
@@ -173,21 +173,21 @@ EVA_DO_NOTHING
 
 <SECTION>
 <FILE>evamainloop</FILE>
-GskMainLoopChange
-GskMainLoopEvent
-GskMainLoopWaitInfo
-GskSource
-GskMainLoopContextList
-GskMainLoopEventType
-GskMainLoopClass
-GskMainLoop
-<TITLE>GskMainLoop</TITLE>
-GskMainLoopWaitPidFunc
-GskMainLoopIdleFunc
-GskMainLoopSignalFunc
-GskMainLoopTimeoutFunc
-GskMainLoopIOFunc
-GskMainLoopCreateFlags
+EvaMainLoopChange
+EvaMainLoopEvent
+EvaMainLoopWaitInfo
+EvaSource
+EvaMainLoopContextList
+EvaMainLoopEventType
+EvaMainLoopClass
+EvaMainLoop
+<TITLE>EvaMainLoop</TITLE>
+EvaMainLoopWaitPidFunc
+EvaMainLoopIdleFunc
+EvaMainLoopSignalFunc
+EvaMainLoopTimeoutFunc
+EvaMainLoopIOFunc
+EvaMainLoopCreateFlags
 eva_main_loop_new
 eva_main_loop_default
 eva_main_loop_run
@@ -220,12 +220,12 @@ EVA_MAIN_LOOP_GET_CLASS
 
 <SECTION>
 <FILE>evanameresolver</FILE>
-GskNameResolver
-GskNameResolverIface
-GskNameResolverTask
-GskNameResolverSuccessFunc
-GskNameResolverFailureFunc
-GskNameResolverFamily
+EvaNameResolver
+EvaNameResolverIface
+EvaNameResolverTask
+EvaNameResolverSuccessFunc
+EvaNameResolverFailureFunc
+EvaNameResolverFamily
 eva_name_resolver_family_get_by_name
 eva_name_resolver_family_get_name
 eva_name_resolver_lookup
@@ -235,7 +235,7 @@ eva_name_resolver_task_ref
 eva_name_resolver_task_unref
 eva_name_resolver_family_unique
 eva_name_resolver_add_family_name
-GskNameResolverFamilyHandler
+EvaNameResolverFamilyHandler
 eva_name_resolver_add_family_resolver
 eva_name_resolver_add_family_handler
 <SUBSECTION Standard>
@@ -248,9 +248,9 @@ EVA_NAME_RESOLVER_GET_IFACE
 
 <SECTION>
 <FILE>evapacketqueue</FILE>
-<TITLE>GskPacketQueue</TITLE>
-GskPacketQueueClass
-GskPacketQueue
+<TITLE>EvaPacketQueue</TITLE>
+EvaPacketQueueClass
+EvaPacketQueue
 eva_packet_queue_bind
 eva_packet_queue_read
 eva_packet_queue_write
@@ -283,8 +283,8 @@ EVA_PACKET_QUEUE_GET_CLASS
 
 <SECTION>
 <FILE>evapacketqueuefd</FILE>
-<TITLE>GskPacketQueueFd</TITLE>
-GskPacketQueueFd
+<TITLE>EvaPacketQueueFd</TITLE>
+EvaPacketQueueFd
 eva_packet_queue_fd_new
 eva_packet_queue_fd_new_by_family
 eva_packet_queue_fd_new_bound
@@ -297,19 +297,19 @@ eva_packet_queue_fd_get_type
 EVA_PACKET_QUEUE_FD_CLASS
 EVA_IS_PACKET_QUEUE_FD_CLASS
 EVA_PACKET_QUEUE_FD_GET_CLASS
-GskPacketQueueFdClass
+EvaPacketQueueFdClass
 EVA_PACKET_QUEUE_FD_USE_GLIB_MAIN_LOOP
 </SECTION>
 
 <SECTION>
 <FILE>evasocketaddress</FILE>
-<TITLE>GskSocketAddress</TITLE>
-GskSocketAddressClass
-GskSocketAddress
-GskSocketAddressIpv4
-GskSocketAddressLocal
-GskSocketAddressIpv6
-GskSocketAddressEthernet
+<TITLE>EvaSocketAddress</TITLE>
+EvaSocketAddressClass
+EvaSocketAddress
+EvaSocketAddressIpv4
+EvaSocketAddressLocal
+EvaSocketAddressIpv6
+EvaSocketAddressEthernet
 eva_socket_address_from_native
 eva_socket_address_protocol_family
 eva_socket_address_address_family
@@ -366,22 +366,22 @@ eva_socket_address_ipv4_get_type
 eva_socket_address_ipv6_get_type
 eva_socket_address_local_get_type
 eva_socket_address_ethernet_get_type
-GskSocketAddressIpv4Class
-GskSocketAddressIpv6Class
-GskSocketAddressLocalClass
-GskSocketAddressEthernetClass
+EvaSocketAddressIpv4Class
+EvaSocketAddressIpv6Class
+EvaSocketAddressLocalClass
+EvaSocketAddressEthernetClass
 eva_socket_address_new_local
 eva_socket_address_new_ethernet
 </SECTION>
 
 <SECTION>
 <FILE>evasocketaddresssymbolic</FILE>
-GskSocketAddressSymbolicResolveFunc
-GskSocketAddressSymbolicErrorFunc
-<TITLE>GskSocketAddressSymbolic</TITLE>
-GskSocketAddressSymbolic
-<TITLE>GskSocketAddressSymbolicIpv4</TITLE>
-GskSocketAddressSymbolicIpv4
+EvaSocketAddressSymbolicResolveFunc
+EvaSocketAddressSymbolicErrorFunc
+<TITLE>EvaSocketAddressSymbolic</TITLE>
+EvaSocketAddressSymbolic
+<TITLE>EvaSocketAddressSymbolicIpv4</TITLE>
+EvaSocketAddressSymbolicIpv4
 eva_socket_address_symbolic_ipv4_new
 eva_socket_address_symbolic_create_name_resolver
 eva_socket_address_symbolic_start_resolution
@@ -401,15 +401,15 @@ eva_socket_address_symbolic_get_type
 EVA_SOCKET_ADDRESS_SYMBOLIC_CLASS
 EVA_IS_SOCKET_ADDRESS_SYMBOLIC_CLASS
 EVA_SOCKET_ADDRESS_SYMBOLIC_GET_CLASS
-GskSocketAddressSymbolicClass
-GskSocketAddressSymbolicIpv4Class
+EvaSocketAddressSymbolicClass
+EvaSocketAddressSymbolicIpv4Class
 </SECTION>
 
 <SECTION>
 <FILE>evastream</FILE>
-GskStreamClass
-GskStream
-<TITLE>GskStream</TITLE>
+EvaStreamClass
+EvaStream
+<TITLE>EvaStream</TITLE>
 eva_stream_read
 eva_stream_write
 eva_stream_read_buffer
@@ -459,7 +459,7 @@ EVA_STREAM_GET_CLASS
 
 <SECTION>
 <FILE>evastreamconnection</FILE>
-GskStreamConnection
+EvaStreamConnection
 eva_stream_connection_new
 eva_stream_connection_get_atomic_read_size
 eva_stream_connection_set_atomic_read_size
@@ -479,9 +479,9 @@ EVA_IS_STREAM_CONNECTION_CLASS
 <SECTION>
 <FILE>evastreamfd</FILE>
 EVA_STREAM_FD_GET_FD
-<TITLE>GskStreamFd</TITLE>
-GskStreamFd
-GskStreamFdFlags
+<TITLE>EvaStreamFd</TITLE>
+EvaStreamFd
+EvaStreamFdFlags
 eva_stream_fd_new
 eva_stream_fd_new_auto
 eva_stream_fd_flags_guess
@@ -502,17 +502,17 @@ eva_stream_fd_get_type
 EVA_STREAM_FD_CLASS
 EVA_IS_STREAM_FD_CLASS
 EVA_STREAM_FD_GET_CLASS
-GskStreamFdClass
+EvaStreamFdClass
 EVA_STREAM_FD_USE_GLIB_MAIN_LOOP
 </SECTION>
 
 <SECTION>
 <FILE>evastreamexternal</FILE>
-GskStreamExternalTerminated
-GskStreamExternalStderr
-<TITLE>GskStreamExternal</TITLE>
-GskStreamExternal
-GskStreamExternalFlags
+EvaStreamExternalTerminated
+EvaStreamExternalStderr
+<TITLE>EvaStreamExternal</TITLE>
+EvaStreamExternal
+EvaStreamExternalFlags
 eva_stream_external_new
 <SUBSECTION Standard>
 EVA_STREAM_EXTERNAL
@@ -522,13 +522,13 @@ eva_stream_external_get_type
 EVA_STREAM_EXTERNAL_CLASS
 EVA_IS_STREAM_EXTERNAL_CLASS
 EVA_STREAM_EXTERNAL_GET_CLASS
-GskStreamExternalClass
+EvaStreamExternalClass
 </SECTION>
 
 <SECTION>
 <FILE>evabufferstream</FILE>
-GskBufferStreamClass
-GskBufferStream
+EvaBufferStreamClass
+EvaBufferStream
 eva_buffer_stream_new
 eva_buffer_stream_read_hook
 eva_buffer_stream_write_hook
@@ -554,11 +554,11 @@ EVA_BUFFER_STREAM_GET_CLASS
 
 <SECTION>
 <FILE>evastreamlistener</FILE>
-GskStreamListenerAcceptFunc
-GskStreamListenerErrorFunc
-GskStreamListenerClass
-GskStreamListener
-<TITLE>GskStreamListener</TITLE>
+EvaStreamListenerAcceptFunc
+EvaStreamListenerErrorFunc
+EvaStreamListenerClass
+EvaStreamListener
+<TITLE>EvaStreamListener</TITLE>
 eva_stream_listener_handle_accept
 eva_stream_listener_notify_accepted
 eva_stream_listener_notify_error
@@ -574,8 +574,8 @@ EVA_STREAM_LISTENER_GET_CLASS
 
 <SECTION>
 <FILE>evastreamlistenersocket</FILE>
-<TITLE>GskStreamListenerSocket</TITLE>
-GskStreamListenerSocket
+<TITLE>EvaStreamListenerSocket</TITLE>
+EvaStreamListenerSocket
 eva_stream_listener_socket_new_bind
 eva_stream_listener_socket_new_bind_full
 eva_stream_listener_socket_set_backlog
@@ -589,14 +589,14 @@ eva_stream_listener_socket_get_type
 EVA_STREAM_LISTENER_SOCKET_CLASS
 EVA_IS_STREAM_LISTENER_SOCKET_CLASS
 EVA_STREAM_LISTENER_SOCKET_GET_CLASS
-GskStreamListenerSocketClass
+EvaStreamListenerSocketClass
 EVA_STREAM_LISTENER_SOCKET_USE_GLIB_MAIN_LOOP
 eva_stream_listener_socket_flags_get_type
 </SECTION>
 
 <SECTION>
 <FILE>evastreamqueue</FILE>
-<TITLE>GskStreamQueue</TITLE>
+<TITLE>EvaStreamQueue</TITLE>
 eva_stream_queue_new
 eva_stream_queue_append_read_stream
 eva_stream_queue_append_write_stream
@@ -620,9 +620,9 @@ EVA_STREAM_QUEUE_GET_CLASS
 
 <SECTION>
 <FILE>evasimplefilter</FILE>
-<TITLE>GskSimpleFilter</TITLE>
-GskSimpleFilterClass
-GskSimpleFilter
+<TITLE>EvaSimpleFilter</TITLE>
+EvaSimpleFilterClass
+EvaSimpleFilter
 <SUBSECTION Standard>
 EVA_SIMPLE_FILTER
 EVA_IS_SIMPLE_FILTER
@@ -635,10 +635,10 @@ EVA_SIMPLE_FILTER_GET_CLASS
 
 <SECTION>
 <FILE>evathreadpool</FILE>
-GskThreadPool
-GskThreadPoolRunFunc
-GskThreadPoolResultFunc
-GskThreadPoolDestroyFunc
+EvaThreadPool
+EvaThreadPoolRunFunc
+EvaThreadPoolResultFunc
+EvaThreadPoolDestroyFunc
 eva_thread_pool_new
 eva_thread_pool_push
 eva_thread_pool_destroy
@@ -648,8 +648,8 @@ eva_thread_pool_destroy
 <FILE>evamempool</FILE>
 EVA_MEM_POOL_FIXED_STATIC_INIT
 EVA_MEM_POOL_STATIC_INIT
-GskMemPool
-GskMemPoolFixed
+EvaMemPool
+EvaMemPoolFixed
 eva_mem_pool_construct
 eva_mem_pool_construct_with_scratch_buf
 eva_mem_pool_alloc
@@ -680,9 +680,9 @@ eva_writen
 
 <SECTION>
 <FILE>evadnsclient</FILE>
-GskDnsClient
-GskDnsClientClass
-GskDnsClientFlags
+EvaDnsClient
+EvaDnsClientClass
+EvaDnsClientFlags
 eva_dns_client_new
 eva_dns_client_add_searchpath
 eva_dns_client_add_ns
@@ -702,10 +702,10 @@ EVA_DNS_CLIENT_GET_CLASS
 
 <SECTION>
 <FILE>evadnslocalresolver</FILE>
-GskDnsLocalResolverClass
-GskDnsLocalResolver
+EvaDnsLocalResolverClass
+EvaDnsLocalResolver
 eva_dns_local_resolver_new
-GskDnsLocalResult
+EvaDnsLocalResult
 eva_dns_local_resolver_answer
 <SUBSECTION Standard>
 EVA_DNS_LOCAL_RESOLVER
@@ -719,14 +719,14 @@ EVA_DNS_LOCAL_RESOLVER_GET_CLASS
 
 <SECTION>
 <FILE>evadnsresolver</FILE>
-GskDnsResolverHints
-GskDnsResolverIface
-GskDnsResolver
-GskDnsResolverTask
-GskDnsResolverLookupFunc
-GskDnsResolverRevLookupFunc
-GskDnsResolverResponseFunc
-GskDnsResolverFailFunc
+EvaDnsResolverHints
+EvaDnsResolverIface
+EvaDnsResolver
+EvaDnsResolverTask
+EvaDnsResolverLookupFunc
+EvaDnsResolverRevLookupFunc
+EvaDnsResolverResponseFunc
+EvaDnsResolverFailFunc
 eva_dns_resolver_resolve
 eva_dns_resolver_cancel
 eva_dns_resolver_lookup
@@ -742,8 +742,8 @@ EVA_DNS_RESOLVER_GET_IFACE
 
 <SECTION>
 <FILE>evadnsserver</FILE>
-GskDnsServerClass
-GskDnsServer
+EvaDnsServerClass
+EvaDnsServer
 eva_dns_server_new
 eva_dns_server_peek_resolver
 eva_dns_server_set_resolver
@@ -759,12 +759,12 @@ EVA_DNS_SERVER_GET_CLASS
 
 <SECTION>
 <FILE>evahttpclient</FILE>
-GskHttpClientRequest
-GskHttpClientResponse
-GskHttpClientTrap
-GskHttpClientClass
-GskHttpClient
-<TITLE>GskHttpClient</TITLE>
+EvaHttpClientRequest
+EvaHttpClientResponse
+EvaHttpClientTrap
+EvaHttpClientClass
+EvaHttpClient
+<TITLE>EvaHttpClient</TITLE>
 EVA_HTTP_CLIENT_FAST_NOTIFY
 EVA_HTTP_CLIENT_DEFERRED_SHUTDOWN
 EVA_HTTP_CLIENT_HOOK
@@ -789,22 +789,22 @@ EVA_HTTP_CLIENT_GET_CLASS
 
 <SECTION>
 <FILE>evahttpheader</FILE>
-GskHttpAuthorization
-GskHttpAuthenticate
-GskHttpCharSet
-GskHttpCacheDirective
-GskHttpCookie
-GskHttpLanguageSet
-GskHttpMediaTypeSet
-GskHttpContentEncodingSet
-GskHttpTransferEncodingSet
-GskHttpRangeSet
-GskHttpStatus
-GskHttpVerb
-GskHttpRange
-GskHttpContentEncoding
-GskHttpTransferEncoding
-GskHttpConnection
+EvaHttpAuthorization
+EvaHttpAuthenticate
+EvaHttpCharSet
+EvaHttpCacheDirective
+EvaHttpCookie
+EvaHttpLanguageSet
+EvaHttpMediaTypeSet
+EvaHttpContentEncodingSet
+EvaHttpTransferEncodingSet
+EvaHttpRangeSet
+EvaHttpStatus
+EvaHttpVerb
+EvaHttpRange
+EvaHttpContentEncoding
+EvaHttpTransferEncoding
+EvaHttpConnection
 eva_http_cache_directive_new
 eva_http_cache_directive_set_private_name
 eva_http_cache_directive_set_no_cache_name
@@ -838,10 +838,10 @@ eva_http_authorization_set_nonce
 eva_http_cookie_new
 eva_http_cookie_copy
 eva_http_cookie_free
-<TITLE>GskHttpHeader</TITLE>
-GskHttpHeaderClass
-GskHttpHeader
-GskHttpParseFlags
+<TITLE>EvaHttpHeader</TITLE>
+EvaHttpHeaderClass
+EvaHttpHeader
+EvaHttpParseFlags
 eva_http_header_get_connection
 eva_http_header_from_buffer
 eva_http_header_to_buffer
@@ -853,10 +853,10 @@ eva_http_header_add_misc
 eva_http_header_lookup_misc
 eva_http_header_remove_misc
 eva_http_header_process_first_line
-GskHttpHeaderLineParser
-GskHttpHeaderLineParserFunc
+EvaHttpHeaderLineParser
+EvaHttpHeaderLineParserFunc
 eva_http_header_get_parser_table
-GskHttpHeaderPrintFunc
+EvaHttpHeaderPrintFunc
 eva_http_header_print
 eva_http_header_set_connection_type
 eva_http_header_get_connection_type
@@ -920,10 +920,10 @@ EVA_TYPE_HTTP_MEDIA_SET
 
 <SECTION>
 <FILE>evahttpserver</FILE>
-GskHttpServerTrap
-GskHttpServerClass
-GskHttpServer
-<TITLE>GskHttpServer</TITLE>
+EvaHttpServerTrap
+EvaHttpServerClass
+EvaHttpServer
+<TITLE>EvaHttpServer</TITLE>
 EVA_HTTP_SERVER_HOOK
 eva_http_server_trap
 eva_http_server_untrap
@@ -931,7 +931,7 @@ eva_http_server_new
 eva_http_server_get_request
 eva_http_server_respond
 <SUBSECTION Standard>
-GskHttpServerResponse
+EvaHttpServerResponse
 EVA_HTTP_SERVER
 EVA_IS_HTTP_SERVER
 EVA_TYPE_HTTP_SERVER
@@ -943,8 +943,8 @@ EVA_HTTP_SERVER_GET_CLASS
 
 <SECTION>
 <FILE>evahttprequest</FILE>
-<TITLE>GskHttpRequest</TITLE>
-GskHttpRequest
+<TITLE>EvaHttpRequest</TITLE>
+EvaHttpRequest
 eva_http_request_add_cookie
 eva_http_request_remove_cookie
 eva_http_request_find_cookie
@@ -984,13 +984,13 @@ EVA_TYPE_HTTP_REQUEST
 EVA_HTTP_REQUEST_CLASS
 EVA_IS_HTTP_REQUEST_CLASS
 EVA_HTTP_REQUEST_GET_CLASS
-GskHttpRequestClass
+EvaHttpRequestClass
 </SECTION>
 
 <SECTION>
 <FILE>evahttpresponse</FILE>
-<TITLE>GskHttpResponse</TITLE>
-GskHttpResponse
+<TITLE>EvaHttpResponse</TITLE>
+EvaHttpResponse
 eva_http_response_new_blank
 eva_http_response_new_redirect
 eva_http_response_from_request
@@ -1035,21 +1035,21 @@ EVA_TYPE_HTTP_RESPONSE
 EVA_HTTP_RESPONSE_CLASS
 EVA_IS_HTTP_RESPONSE_CLASS
 EVA_HTTP_RESPONSE_GET_CLASS
-GskHttpResponseClass
+EvaHttpResponseClass
 </SECTION>
 
 <SECTION>
 <FILE>evahttpcontent</FILE>
-<TITLE>GskHttpContent</TITLE>
+<TITLE>EvaHttpContent</TITLE>
 EVA_HTTP_CONTENT_ID_INIT
-GskHttpContent
-GskHttpContentAction
-GskHttpContentCGIFunc
-GskHttpContentFileType
-GskHttpContentFunc
-GskHttpContentHandler
-GskHttpContentId
-GskHttpContentResult
+EvaHttpContent
+EvaHttpContentAction
+EvaHttpContentCGIFunc
+EvaHttpContentFileType
+EvaHttpContentFunc
+EvaHttpContentHandler
+EvaHttpContentId
+EvaHttpContentResult
 eva_http_content_add_data
 eva_http_content_add_data_by_path
 eva_http_content_add_file
@@ -1069,8 +1069,8 @@ eva_http_content_set_mime_type
 
 <SECTION>
 <FILE>evamainloopdevpoll</FILE>
-<TITLE>GskMainLoopDevPoll</TITLE>
-GskMainLoopDevPoll
+<TITLE>EvaMainLoopDevPoll</TITLE>
+EvaMainLoopDevPoll
 <SUBSECTION Standard>
 EVA_MAIN_LOOP_DEV_POLL
 EVA_IS_MAIN_LOOP_DEV_POLL
@@ -1079,13 +1079,13 @@ eva_main_loop_dev_poll_get_type
 EVA_MAIN_LOOP_DEV_POLL_CLASS
 EVA_IS_MAIN_LOOP_DEV_POLL_CLASS
 EVA_MAIN_LOOP_DEV_POLL_GET_CLASS
-GskMainLoopDevPollClass
+EvaMainLoopDevPollClass
 </SECTION>
 
 <SECTION>
 <FILE>evamainloopkqueue</FILE>
-<TITLE>GskMainLoopKqueue</TITLE>
-GskMainLoopKqueue
+<TITLE>EvaMainLoopKqueue</TITLE>
+EvaMainLoopKqueue
 <SUBSECTION Standard>
 EVA_MAIN_LOOP_KQUEUE
 EVA_IS_MAIN_LOOP_KQUEUE
@@ -1094,13 +1094,13 @@ eva_main_loop_kqueue_get_type
 EVA_MAIN_LOOP_KQUEUE_CLASS
 EVA_IS_MAIN_LOOP_KQUEUE_CLASS
 EVA_MAIN_LOOP_KQUEUE_GET_CLASS
-GskMainLoopKqueueClass
+EvaMainLoopKqueueClass
 </SECTION>
 
 <SECTION>
 <FILE>evamainlooppoll</FILE>
-<TITLE>GskMainLoopPoll</TITLE>
-GskMainLoopPoll
+<TITLE>EvaMainLoopPoll</TITLE>
+EvaMainLoopPoll
 <SUBSECTION Standard>
 EVA_MAIN_LOOP_POLL
 EVA_IS_MAIN_LOOP_POLL
@@ -1109,14 +1109,14 @@ eva_main_loop_poll_get_type
 EVA_MAIN_LOOP_POLL_CLASS
 EVA_IS_MAIN_LOOP_POLL_CLASS
 EVA_MAIN_LOOP_POLL_GET_CLASS
-GskMainLoopPollClass
+EvaMainLoopPollClass
 </SECTION>
 
 <SECTION>
 <FILE>evamainlooppollbase</FILE>
-<TITLE>GskMainLoopPollBase</TITLE>
-GskMainLoopPollBaseClass
-GskMainLoopPollBase
+<TITLE>EvaMainLoopPollBase</TITLE>
+EvaMainLoopPollBaseClass
+EvaMainLoopPollBase
 eva_main_loop_poll_base_wakeup
 <SUBSECTION Standard>
 EVA_MAIN_LOOP_POLL_BASE
@@ -1130,10 +1130,10 @@ EVA_MAIN_LOOP_POLL_BASE_GET_CLASS
 
 <SECTION>
 <FILE>evamainloopselect</FILE>
-<TITLE>GskMainLoopSelect</TITLE>
-GskMainLoopSelect
+<TITLE>EvaMainLoopSelect</TITLE>
+EvaMainLoopSelect
 <SUBSECTION Standard>
-GskMainLoopSelectClass
+EvaMainLoopSelectClass
 EVA_MAIN_LOOP_SELECT
 EVA_IS_MAIN_LOOP_SELECT
 EVA_TYPE_MAIN_LOOP_SELECT
@@ -1145,8 +1145,8 @@ EVA_MAIN_LOOP_SELECT_GET_CLASS
 
 <SECTION>
 <FILE>evamainloopepoll</FILE>
-<TITLE>GskMainLoopEpoll</TITLE>
-GskMainLoopEpoll
+<TITLE>EvaMainLoopEpoll</TITLE>
+EvaMainLoopEpoll
 <SUBSECTION Standard>
 EVA_IS_MAIN_LOOP_EPOLL
 EVA_MAIN_LOOP_EPOLL_CLASS
@@ -1154,14 +1154,14 @@ EVA_TYPE_MAIN_LOOP_EPOLL
 eva_main_loop_epoll_get_type
 EVA_MAIN_LOOP_EPOLL
 EVA_MAIN_LOOP_EPOLL_GET_CLASS
-GskMainLoopEpollClass
+EvaMainLoopEpollClass
 EVA_IS_MAIN_LOOP_EPOLL_CLASS
 </SECTION>
 
 <SECTION>
 <FILE>evamainloopsigio</FILE>
-<TITLE>GskMainLoopSigio</TITLE>
-GskMainLoopSigio
+<TITLE>EvaMainLoopSigio</TITLE>
+EvaMainLoopSigio
 <SUBSECTION Standard>
 EVA_IS_MAIN_LOOP_SIGIO
 EVA_MAIN_LOOP_SIGIO_CLASS
@@ -1169,15 +1169,15 @@ EVA_TYPE_MAIN_LOOP_SIGIO
 eva_main_loop_sigio_get_type
 EVA_MAIN_LOOP_SIGIO
 EVA_MAIN_LOOP_SIGIO_GET_CLASS
-GskMainLoopSigioClass
+EvaMainLoopSigioClass
 EVA_IS_MAIN_LOOP_SIGIO_CLASS
 </SECTION>
 
 <SECTION>
 <FILE>evaurl</FILE>
-<TITLE>GskUrl</TITLE>
-GskUrl
-GskUrlScheme
+<TITLE>EvaUrl</TITLE>
+EvaUrl
+EvaUrlScheme
 EVA_URL_RESERVED_CHARSET
 EVA_URL_UNRESERVED_CHARSET
 eva_url_new
@@ -1197,16 +1197,16 @@ eva_url_is_valid_path
 eva_url_is_valid_query
 eva_url_split_form_urlencoded
 eva_url_to_string
-GskUrlSuccess
-GskUrlFailure
+EvaUrlSuccess
+EvaUrlFailure
 eva_url_download
-GskUrlParser
-GskUrlToString
+EvaUrlParser
+EvaUrlToString
 eva_url_scheme_get_unique
 eva_url_hash
 eva_url_equal
-GskUrlDownload
-GskUrlDownloadMethod
+EvaUrlDownload
+EvaUrlDownloadMethod
 eva_url_scheme_add_dl_method
 eva_url_download_success
 eva_url_download_fail
@@ -1220,19 +1220,19 @@ eva_url_get_type
 EVA_URL_CLASS
 EVA_IS_URL_CLASS
 EVA_URL_GET_CLASS
-GskUrlClass
+EvaUrlClass
 </SECTION>
 
 <SECTION>
 <FILE>evaurltransfer</FILE>
-GskUrlTransferRedirect
-GskUrlTransferResult
+EvaUrlTransferRedirect
+EvaUrlTransferResult
 EVA_URL_TRANSFER_N_RESULTS
 eva_url_transfer_result_name
-GskUrlTransferFunc
-GskUrlUploadFunc
-<TITLE>GskUrlTransfer</TITLE>
-GskUrlTransfer
+EvaUrlTransferFunc
+EvaUrlUploadFunc
+<TITLE>EvaUrlTransfer</TITLE>
+EvaUrlTransfer
 eva_url_transfer
 eva_url_transfer_new
 eva_url_transfer_set_handler
@@ -1262,7 +1262,7 @@ eva_url_transfer_class_register
 eva_url_transfer_get_state_string
 eva_url_transfer_stream_new
 <SUBSECTION Standard>
-GskUrlTransferClass
+EvaUrlTransferClass
 EVA_URL_TRANSFER
 EVA_IS_URL_TRANSFER
 EVA_TYPE_URL_TRANSFER
@@ -1274,15 +1274,15 @@ EVA_URL_TRANSFER_GET_CLASS
 
 <SECTION>
 <FILE>evaurltransferhttp</FILE>
-<TITLE>GskUrlTransferHttp</TITLE>
-GskUrlTransferHttp
+<TITLE>EvaUrlTransferHttp</TITLE>
+EvaUrlTransferHttp
 eva_url_transfer_http_set_ssl_cert
 eva_url_transfer_http_set_ssl_key
 eva_url_transfer_http_set_ssl_password
 eva_url_transfer_http_set_user_agent
 eva_url_transfer_http_add_extra_header
 eva_url_transfer_http_set_proxy_address
-GskUrlTransferHttpRequestModifierFunc
+EvaUrlTransferHttpRequestModifierFunc
 eva_url_transfer_http_add_modifier
 <SUBSECTION Standard>
 EVA_URL_TRANSFER_HTTP
@@ -1292,14 +1292,14 @@ eva_url_transfer_http_get_type
 EVA_URL_TRANSFER_HTTP_CLASS
 EVA_IS_URL_TRANSFER_HTTP_CLASS
 EVA_URL_TRANSFER_HTTP_GET_CLASS
-GskUrlTransferHttpModifierNode
-GskUrlTransferHttpClass
+EvaUrlTransferHttpModifierNode
+EvaUrlTransferHttpClass
 </SECTION>
 
 <SECTION>
 <FILE>evaurltransferfile</FILE>
-<TITLE>GskUrlTransferFile</TITLE>
-GskUrlTransferFile
+<TITLE>EvaUrlTransferFile</TITLE>
+EvaUrlTransferFile
 <SUBSECTION Standard>
 EVA_URL_TRANSFER_FILE
 EVA_IS_URL_TRANSFER_FILE
@@ -1316,8 +1316,8 @@ EVA_URL_TRANSFER_FILE_GET_CLASS
 
 <SECTION>
 <FILE>evabuffer</FILE>
-GskBuffer
-GskBufferFragment
+EvaBuffer
+EvaBufferFragment
 eva_buffer_construct
 eva_buffer_read
 eva_buffer_peek
@@ -1341,7 +1341,7 @@ eva_buffer_index_of
 eva_buffer_polystr_index_of
 eva_buffer_destruct
 eva_buffer_cleanup_recycling_bin
-GskBufferIterator
+EvaBufferIterator
 eva_buffer_iterator_offset
 eva_buffer_iterator_construct
 eva_buffer_iterator_peek
@@ -1353,7 +1353,7 @@ EVA_BUFFER_STATIC_INIT
 
 <SECTION>
 <FILE>evalogringbuffer</FILE>
-GskLogRingBuffer
+EvaLogRingBuffer
 eva_log_ring_buffer_new
 eva_log_ring_buffer_add
 eva_log_ring_buffer_get
@@ -1372,7 +1372,7 @@ eva_g_error_domain_quark
 eva_error_code_type
 EVA_G_ERROR_DOMAIN
 EVA_TYPE_ERROR_CODE
-GskErrorCode
+EvaErrorCode
 eva_error_code_from_errno
 eva_g_error_add_prefix
 eva_fatal_user_error
@@ -1380,7 +1380,7 @@ eva_fatal_user_error
 
 <SECTION>
 <FILE>evafork</FILE>
-GskForkFunc
+EvaForkFunc
 eva_fork
 eva_fork_add_cleanup_fd
 eva_fork_remove_cleanup_fd
@@ -1389,9 +1389,9 @@ eva_fork_child_cleanup
 
 <SECTION>
 <FILE>evanetworkinterface</FILE>
-GskNetworkInterface
-GskNetworkInterfaceSet
-GskNetworkInterfaceFlags
+EvaNetworkInterface
+EvaNetworkInterfaceSet
+EvaNetworkInterfaceFlags
 eva_network_interface_set_new
 eva_network_interface_set_destroy
 </SECTION>
@@ -1413,12 +1413,12 @@ eva_fd_set_nonblocking
 
 <SECTION>
 <FILE>evahook</FILE>
-GskHook
-GskHookFunc
-GskHookSetPollFunc
-GskHookShutdownFunc
-GskHookShutdownErrorFunc
-GskHookFlags
+EvaHook
+EvaHookFunc
+EvaHookSetPollFunc
+EvaHookShutdownFunc
+EvaHookShutdownErrorFunc
+EvaHookFlags
 EVA_HOOK_GET_OBJECT
 EVA_HOOK_TEST_FLAG
 EVA_HOOK_SET_FLAG
@@ -1466,14 +1466,14 @@ eva_memory_source_new_printf
 eva_memory_source_new_vprintf
 eva_memory_source_static_string
 eva_memory_source_static_string_n
-GskMemoryBufferCallback
+EvaMemoryBufferCallback
 eva_memory_buffer_sink_new
 </SECTION>
 
 <SECTION>
 <FILE>evapacket</FILE>
-GskPacket
-GskPacketDestroyFunc
+EvaPacket
+EvaPacketDestroyFunc
 eva_packet_new
 eva_packet_new_copy
 eva_packet_set_src_address
@@ -1489,8 +1489,8 @@ eva_stream_new_connecting
 
 <SECTION>
 <FILE>evatree</FILE>
-GskTreeNode
-GskTree
+EvaTreeNode
+EvaTree
 eva_tree_new
 eva_tree_ref
 eva_tree_unref
@@ -1642,8 +1642,8 @@ EVA_QSORT_ASSERT_STACK_SIZE
 EVA_INSERTION_SORT
 EVA_QSORT_SIMPLE_COMPARATOR
 <SUBSECTION Standard>
-GskQsortStackNode
-GskQsortStack
+EvaQsortStackNode
+EvaQsortStack
 </SECTION>
 
 <SECTION>
@@ -1667,7 +1667,7 @@ eva_base64_encode_alloc
 
 <SECTION>
 <FILE>evahash</FILE>
-GskHash
+EvaHash
 eva_hash_new_md5
 eva_hash_new_sha1
 eva_hash_new_crc32
@@ -1682,7 +1682,7 @@ eva_hash_destroy
 
 <SECTION>
 <FILE>evadate</FILE>
-GskDateFormatMask
+EvaDateFormatMask
 eva_date_parse
 eva_date_parse_timet
 eva_date_print
@@ -1699,11 +1699,11 @@ eva_ipv4_ip_address_localhost
 <SECTION>
 <FILE>evadns</FILE>
 EVA_DNS_PORT
-GskDnsMessage
-GskDnsResourceRecord
-GskDnsQuestion
-GskDnsResourceRecordType
-GskDnsResourceClass
+EvaDnsMessage
+EvaDnsResourceRecord
+EvaDnsQuestion
+EvaDnsResourceRecordType
+EvaDnsResourceClass
 EVA_DNS_SERIAL_LESS_THAN
 eva_dns_rr_new_generic
 eva_dns_rr_new_a
@@ -1725,7 +1725,7 @@ eva_dns_rr_text_parse
 eva_dns_rr_text_to_str
 eva_dns_question_text_to_str
 eva_dns_rr_text_write
-GskDnsResponseCode
+EvaDnsResponseCode
 eva_dns_message_new
 eva_dns_message_parse_buffer
 eva_dns_message_parse_data
@@ -1749,7 +1749,7 @@ eva_test_domain_name_validity
 
 <SECTION>
 <FILE>evadnsrrcache</FILE>
-GskDnsRRCache
+EvaDnsRRCache
 EVA_TYPE_DNS_RR_CACHE
 eva_dns_rr_cache_new
 eva_dns_rr_cache_insert
@@ -1775,12 +1775,12 @@ eva_dns_rr_cache_get_type
 
 <SECTION>
 <FILE>evaftpcommon</FILE>
-GskFtpCommand
-GskFtpCommandType
-GskFtpCharType
-GskFtpTerminalType
-GskFtpFileStructure
-GskFtpTransferMode
+EvaFtpCommand
+EvaFtpCommandType
+EvaFtpCharType
+EvaFtpTerminalType
+EvaFtpFileStructure
+EvaFtpTransferMode
 eva_ftp_command_name
 eva_ftp_command_new_user
 eva_ftp_command_new_password
@@ -1796,7 +1796,7 @@ eva_ftp_command_parse
 eva_ftp_command_to_string
 eva_ftp_command_append
 eva_ftp_command_destroy
-GskFtpReply
+EvaFtpReply
 eva_ftp_reply_new_simple
 eva_ftp_reply_new_status
 eva_ftp_reply_new_system
@@ -1808,8 +1808,8 @@ eva_ftp_reply_append
 
 <SECTION>
 <FILE>evazlibdeflator</FILE>
-<TITLE>GskZlibDeflator</TITLE>
-GskZlibDeflator
+<TITLE>EvaZlibDeflator</TITLE>
+EvaZlibDeflator
 eva_zlib_deflator_new
 <SUBSECTION Standard>
 EVA_ZLIB_DEFLATOR
@@ -1819,13 +1819,13 @@ eva_zlib_deflator_get_type
 EVA_ZLIB_DEFLATOR_CLASS
 EVA_IS_ZLIB_DEFLATOR_CLASS
 EVA_ZLIB_DEFLATOR_GET_CLASS
-GskZlibDeflatorClass
+EvaZlibDeflatorClass
 </SECTION>
 
 <SECTION>
 <FILE>evazlibinflator</FILE>
-<TITLE>GskZlibInflator</TITLE>
-GskZlibInflator
+<TITLE>EvaZlibInflator</TITLE>
+EvaZlibInflator
 eva_zlib_inflator_new
 <SUBSECTION Standard>
 EVA_ZLIB_INFLATOR
@@ -1835,7 +1835,7 @@ eva_zlib_inflator_get_type
 EVA_ZLIB_INFLATOR_CLASS
 EVA_IS_ZLIB_INFLATOR_CLASS
 EVA_ZLIB_INFLATOR_GET_CLASS
-GskZlibInflatorClass
+EvaZlibInflatorClass
 </SECTION>
 
 
@@ -1847,7 +1847,7 @@ eva_zlib_error_to_message
 
 <SECTION>
 <FILE>evastreamssl</FILE>
-GskStreamSsl
+EvaStreamSsl
 eva_stream_ssl_new_client
 eva_stream_ssl_new_server
 eva_stream_ssl_peek_backend
@@ -1860,18 +1860,18 @@ EVA_IS_STREAM_SSL
 EVA_STREAM_SSL
 EVA_TYPE_STREAM_SSL
 EVA_STREAM_SSL_CLASS
-GskStreamSslState
-GskStreamSslClass
+EvaStreamSslState
+EvaStreamSslClass
 </SECTION>
 
 <SECTION>
 <FILE>evastreamlistenerssl</FILE>
-GskStreamListenerSsl
+EvaStreamListenerSsl
 eva_stream_listener_ssl_new
 <SUBSECTION Standard>
 EVA_STREAM_LISTENER_SSL
 EVA_STREAM_LISTENER_SSL_CLASS
-GskStreamListenerSslClass
+EvaStreamListenerSslClass
 EVA_STREAM_LISTENER_SSL_GET_CLASS
 eva_stream_listener_ssl_get_type
 EVA_IS_STREAM_LISTENER_SSL_CLASS
@@ -1881,7 +1881,7 @@ EVA_TYPE_STREAM_LISTENER_SSL
 
 <SECTION>
 <FILE>evamimemultipartpiece</FILE>
-GskMimeMultipartPiece
+EvaMimeMultipartPiece
 eva_mime_multipart_piece_ref
 eva_mime_multipart_piece_unref
 eva_mime_multipart_piece_alloc
@@ -1907,11 +1907,11 @@ eva_mime_identity_filter_new
 
 <SECTION>
 <FILE>evamimemultipartdecoder</FILE>
-GskMimeMultipartDecoderHook
-GskMimeMultipartDecoderMode
-<TITLE>GskMimeMultipartDecoder</TITLE>
-GskMimeMultipartDecoderClass
-GskMimeMultipartDecoder
+EvaMimeMultipartDecoderHook
+EvaMimeMultipartDecoderMode
+<TITLE>EvaMimeMultipartDecoder</TITLE>
+EvaMimeMultipartDecoderClass
+EvaMimeMultipartDecoder
 eva_mime_multipart_decoder_new
 eva_mime_multipart_decoder_set_mode
 eva_mime_multipart_decoder_get_piece
@@ -1931,10 +1931,10 @@ EVA_MIME_MULTIPART_DECODER_GET_CLASS
 
 <SECTION>
 <FILE>evamimemultipartencoder</FILE>
-<TITLE>GskMimeMultipartEncoder</TITLE>
+<TITLE>EvaMimeMultipartEncoder</TITLE>
 EVA_MIME_MULTIPART_ENCODER_GOOD_BOUNDARY
-GskMimeMultipartEncoderClass
-GskMimeMultipartEncoder
+EvaMimeMultipartEncoderClass
+EvaMimeMultipartEncoder
 eva_mime_multipart_encoder_new
 eva_mime_multipart_encoder_add_part
 eva_mime_multipart_encoder_new_defaults
@@ -1952,10 +1952,10 @@ EVA_MIME_MULTIPART_ENCODER_GET_CLASS
 
 <SECTION>
 <FILE>evacontrolclient</FILE>
-<TITLE>GskControlClient</TITLE>
-GskControlClient
-GskControlClientErrorFunc
-GskControlClientFlag
+<TITLE>EvaControlClient</TITLE>
+EvaControlClient
+EvaControlClientErrorFunc
+EvaControlClientFlag
 eva_control_client_get_flag
 eva_control_client_get_prompt_string
 eva_control_client_new
@@ -1968,8 +1968,8 @@ eva_control_client_set_prompt
 
 <SECTION>
 <FILE>evacontrolserver</FILE>
-<TITLE>GskControlServer</TITLE>
-GskControlServer
+<TITLE>EvaControlServer</TITLE>
+EvaControlServer
 eva_control_server_add_command
 eva_control_server_delete_file
 eva_control_server_listen
@@ -1980,14 +1980,14 @@ eva_control_server_set_file
 
 <SECTION>
 <FILE>evaxmlrpc</FILE>
-GskXmlrpcArray
-GskXmlrpcStruct
-GskXmlrpcValue
-GskXmlrpcNamedValue
-GskXmlrpcRequest
-GskXmlrpcResponse
-GskXmlrpcParser
-GskXmlrpcType
+EvaXmlrpcArray
+EvaXmlrpcStruct
+EvaXmlrpcValue
+EvaXmlrpcNamedValue
+EvaXmlrpcRequest
+EvaXmlrpcResponse
+EvaXmlrpcParser
+EvaXmlrpcType
 eva_xmlrpc_struct_new
 eva_xmlrpc_struct_free
 eva_xmlrpc_struct_add_int32
@@ -2051,13 +2051,13 @@ eva_xmlrpc_response_to_buffer
 
 <SECTION>
 <FILE>evaxmlrpcstream</FILE>
-<TITLE>GskXmlrpcStream</TITLE>
-GskXmlrpcStreamClass
-GskXmlrpcStream
+<TITLE>EvaXmlrpcStream</TITLE>
+EvaXmlrpcStreamClass
+EvaXmlrpcStream
 EVA_XMLRPC_STREAM_REQUEST_HOOK
 eva_xmlrpc_stream_get_request
 eva_xmlrpc_stream_respond
-GskXmlrpcResponseNotify
+EvaXmlrpcResponseNotify
 eva_xmlrpc_stream_make_request
 <SUBSECTION Standard>
 EVA_XMLRPC_STREAM
@@ -2067,14 +2067,14 @@ eva_xmlrpc_stream_get_type
 EVA_XMLRPC_STREAM_CLASS
 EVA_IS_XMLRPC_STREAM_CLASS
 EVA_XMLRPC_STREAM_GET_CLASS
-GskXmlrpcIncoming
-GskXmlrpcOutgoing
+EvaXmlrpcIncoming
+EvaXmlrpcOutgoing
 </SECTION>
 
 <SECTION>
 <FILE>evamodule</FILE>
-GskCompileContext
-GskModule
+EvaCompileContext
+EvaModule
 eva_compile_context_new
 eva_compile_context_add_cflags
 eva_compile_context_add_ldflags

@@ -2,11 +2,11 @@
 #define __EVA_STREAM_MAP_H_
 
 /*
- * GskStreamMap -- interface for a mapping between keys and streams,
+ * EvaStreamMap -- interface for a mapping between keys and streams,
  * like a very minimal filesystem.
  *
- * GskStreamMapRequest -- a request for some operation on a key
- * from a GskStreamMap.
+ * EvaStreamMapRequest -- a request for some operation on a key
+ * from a EvaStreamMap.
  */
 
 #include "../evastream.h"
@@ -14,11 +14,11 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskStreamMapIface   GskStreamMapIface;
-typedef struct _GskStreamMap        GskStreamMap;
+typedef struct _EvaStreamMapIface   EvaStreamMapIface;
+typedef struct _EvaStreamMap        EvaStreamMap;
 
-typedef GskRequestClass             GskStreamMapRequestClass;
-typedef struct _GskStreamMapRequest GskStreamMapRequest;
+typedef EvaRequestClass             EvaStreamMapRequestClass;
+typedef struct _EvaStreamMapRequest EvaStreamMapRequest;
 
 typedef enum
   {
@@ -31,30 +31,30 @@ typedef enum
     EVA_STREAM_MAP_REQUEST_UNLOCK
 #endif
   }
-GskStreamMapRequestType;
+EvaStreamMapRequestType;
 
 /*
- * GskStreamMap
+ * EvaStreamMap
  */
 
 GType eva_stream_map_get_type (void) G_GNUC_CONST;
 
 #define EVA_TYPE_STREAM_MAP (eva_stream_map_get_type ())
 #define EVA_STREAM_MAP(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_MAP, GskStreamMap))
+  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_MAP, EvaStreamMap))
 #define EVA_STREAM_MAP_GET_IFACE(obj) \
   (G_TYPE_INSTANCE_GET_INTERFACE ((obj), \
 				  EVA_TYPE_STREAM_MAP, \
-				  GskStreamMapIface))
+				  EvaStreamMapIface))
 #define EVA_IS_STREAM_MAP(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STREAM_MAP))
 
-struct _GskStreamMapIface
+struct _EvaStreamMapIface
 {
   GTypeInterface base_iface;
 
   /* Return a read-only stream for key. */
-  GskStream *           (*get)    (GskStreamMap  *map,
+  EvaStream *           (*get)    (EvaStreamMap  *map,
 				   const char    *key,
 				   GError       **error);
 
@@ -62,24 +62,24 @@ struct _GskStreamMapIface
    * stream and shuts it down without error, a stream containing the
    * same data must be the result of a subsequent get().
    */
-  GskStream *           (*set)    (GskStreamMap  *map,
+  EvaStream *           (*set)    (EvaStreamMap  *map,
 				   const char    *key,
 				   GError       **error);
 
-  GskStreamMapRequest * (*delete) (GskStreamMap  *map,
+  EvaStreamMapRequest * (*delete) (EvaStreamMap  *map,
 				   const char    *key,
 				   GError       **error);
 
-  GskStreamMapRequest * (*exists) (GskStreamMap  *map,
+  EvaStreamMapRequest * (*exists) (EvaStreamMap  *map,
 				   const char    *key,
 				   GError       **error);
 
 #if 0
-  GskStreamMapRequest * (*lock)   (GskStreamMap  *map,
+  EvaStreamMapRequest * (*lock)   (EvaStreamMap  *map,
 				   const char    *key,
 				   GError       **error);
 
-  GskStreamMapRequest * (*unlock) (GskStreamMap  *map,
+  EvaStreamMapRequest * (*unlock) (EvaStreamMap  *map,
 				   const char    *key,
 				   GError       **error);
 #endif
@@ -89,29 +89,29 @@ struct _GskStreamMapIface
  * Convenience wrappers.
  */
 
-G_INLINE_FUNC GskStream *           eva_stream_map_get    (gpointer     map,
+G_INLINE_FUNC EvaStream *           eva_stream_map_get    (gpointer     map,
 							   const char  *key,
 							   GError     **error);
-G_INLINE_FUNC GskStream *           eva_stream_map_set    (gpointer     map,
+G_INLINE_FUNC EvaStream *           eva_stream_map_set    (gpointer     map,
 							   const char  *key,
 							   GError     **error);
-G_INLINE_FUNC GskStreamMapRequest * eva_stream_map_delete (gpointer     map,
+G_INLINE_FUNC EvaStreamMapRequest * eva_stream_map_delete (gpointer     map,
 							   const char  *key,
 							   GError     **error);
-G_INLINE_FUNC GskStreamMapRequest * eva_stream_map_exists (gpointer     map,
+G_INLINE_FUNC EvaStreamMapRequest * eva_stream_map_exists (gpointer     map,
 							   const char  *key,
 							   GError     **error);
 #if 0
-G_INLINE_FUNC GskStreamMapRequest * eva_stream_map_lock   (gpointer     map,
+G_INLINE_FUNC EvaStreamMapRequest * eva_stream_map_lock   (gpointer     map,
 							   const char  *key,
 							   GError     **error);
-G_INLINE_FUNC GskStreamMapRequest * eva_stream_map_unlock (gpointer     map,
+G_INLINE_FUNC EvaStreamMapRequest * eva_stream_map_unlock (gpointer     map,
 							   const char  *key,
 							   GError     **error);
 #endif
 
 /*
- * GskStreamMapRequest
+ * EvaStreamMapRequest
  */
 
 GType eva_stream_map_request_get_type (void) G_GNUC_CONST;
@@ -120,25 +120,25 @@ GType eva_stream_map_request_get_type (void) G_GNUC_CONST;
 #define EVA_STREAM_MAP_REQUEST(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
 			       EVA_TYPE_STREAM_MAP_REQUEST, \
-			       GskStreamMapRequest))
+			       EvaStreamMapRequest))
 #define EVA_STREAM_MAP_REQUEST_CLASS(klass) \
   (G_TYPE_CHECK_CLASS_CAST ((klass), \
 			    EVA_TYPE_STREAM_MAP_REQUEST, \
-			    GskStreamMapRequestClass))
+			    EvaStreamMapRequestClass))
 #define EVA_STREAM_MAP_REQUEST_GET_CLASS(obj) \
   (G_TYPE_INSTANCE_GET_CLASS ((obj), \
 			      EVA_TYPE_STREAM_MAP_REQUEST, \
-			      GskStreamMapRequestClass))
+			      EvaStreamMapRequestClass))
 #define EVA_IS_STREAM_MAP_REQUEST(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STREAM_MAP_REQUEST))
 #define EVA_IS_STREAM_MAP_REQUEST_CLASS(klass) \
   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_STREAM_MAP_REQUEST))
 
-struct _GskStreamMapRequest
+struct _EvaStreamMapRequest
 {
-  GskRequest request;
+  EvaRequest request;
 
-  GskStreamMapRequestType request_type;
+  EvaStreamMapRequestType request_type;
   char *key;
   gboolean exists; /* iff request_type == EVA_STREAM_MAP_REQUEST_EXISTS */
 };
@@ -153,10 +153,10 @@ G_INLINE_FUNC gboolean     eva_stream_map_request_get_exists (gpointer request);
 
 #if defined (G_CAN_INLINE) || defined (__EVA_STREAM_MAP_C__)
 
-G_INLINE_FUNC GskStream *
+G_INLINE_FUNC EvaStream *
 eva_stream_map_get (gpointer ptr, const char *key, GError **error)
 {
-  GskStreamMap *map = EVA_STREAM_MAP (ptr);
+  EvaStreamMap *map = EVA_STREAM_MAP (ptr);
   g_return_val_if_fail (map, NULL);
   g_return_val_if_fail (EVA_IS_STREAM_MAP (map), NULL);
   g_return_val_if_fail (key, NULL);
@@ -165,12 +165,12 @@ eva_stream_map_get (gpointer ptr, const char *key, GError **error)
   return (*EVA_STREAM_MAP_GET_IFACE (map)->get) (map, key, error);
 }
 
-G_INLINE_FUNC GskStream *
+G_INLINE_FUNC EvaStream *
 eva_stream_map_set (gpointer     ptr,
 		    const char  *key,
 		    GError     **error)
 {
-  GskStreamMap *map = EVA_STREAM_MAP (ptr);
+  EvaStreamMap *map = EVA_STREAM_MAP (ptr);
   g_return_val_if_fail (map, NULL);
   g_return_val_if_fail (EVA_IS_STREAM_MAP (map), NULL);
   g_return_val_if_fail (key, NULL);
@@ -179,10 +179,10 @@ eva_stream_map_set (gpointer     ptr,
   return (*EVA_STREAM_MAP_GET_IFACE (map)->set) (map, key, error);
 }
 
-G_INLINE_FUNC GskStreamMapRequest *
+G_INLINE_FUNC EvaStreamMapRequest *
 eva_stream_map_delete (gpointer ptr, const char *key, GError **error)
 {
-  GskStreamMap *map = EVA_STREAM_MAP (ptr);
+  EvaStreamMap *map = EVA_STREAM_MAP (ptr);
   g_return_val_if_fail (map, NULL);
   g_return_val_if_fail (EVA_IS_STREAM_MAP (map), NULL);
   g_return_val_if_fail (key, NULL);
@@ -191,10 +191,10 @@ eva_stream_map_delete (gpointer ptr, const char *key, GError **error)
   return (*EVA_STREAM_MAP_GET_IFACE (map)->delete) (map, key, error);
 }
 
-G_INLINE_FUNC GskStreamMapRequest *
+G_INLINE_FUNC EvaStreamMapRequest *
 eva_stream_map_exists (gpointer ptr, const char *key, GError **error)
 {
-  GskStreamMap *map = EVA_STREAM_MAP (ptr);
+  EvaStreamMap *map = EVA_STREAM_MAP (ptr);
   g_return_val_if_fail (map, NULL);
   g_return_val_if_fail (EVA_IS_STREAM_MAP (map), NULL);
   g_return_val_if_fail (key, NULL);
@@ -204,10 +204,10 @@ eva_stream_map_exists (gpointer ptr, const char *key, GError **error)
 }
 
 #if 0
-G_INLINE_FUNC GskStreamMapRequest *
+G_INLINE_FUNC EvaStreamMapRequest *
 eva_stream_map_lock (gpointer ptr, const char *key, GError **error)
 {
-  GskStreamMap *map = EVA_STREAM_MAP (ptr);
+  EvaStreamMap *map = EVA_STREAM_MAP (ptr);
   g_return_val_if_fail (map, NULL);
   g_return_val_if_fail (EVA_IS_STREAM_MAP (map), NULL);
   g_return_val_if_fail (key, NULL);
@@ -216,10 +216,10 @@ eva_stream_map_lock (gpointer ptr, const char *key, GError **error)
   return (*EVA_STREAM_MAP_GET_IFACE (map)->lock) (map, key, error);
 }
 
-G_INLINE_FUNC GskStreamMapRequest *
+G_INLINE_FUNC EvaStreamMapRequest *
 eva_stream_map_unlock (gpointer ptr, const char *key, GError **error)
 {
-  GskStreamMap *map = EVA_STREAM_MAP (ptr);
+  EvaStreamMap *map = EVA_STREAM_MAP (ptr);
   g_return_val_if_fail (map, NULL);
   g_return_val_if_fail (EVA_IS_STREAM_MAP (map), NULL);
   g_return_val_if_fail (key, NULL);
@@ -232,7 +232,7 @@ eva_stream_map_unlock (gpointer ptr, const char *key, GError **error)
 G_INLINE_FUNC gboolean
 eva_stream_map_request_get_exists (gpointer ptr)
 {
-  GskStreamMapRequest *request = EVA_STREAM_MAP_REQUEST (ptr);
+  EvaStreamMapRequest *request = EVA_STREAM_MAP_REQUEST (ptr);
   g_return_val_if_fail (request, FALSE);
   g_return_val_if_fail (EVA_IS_STREAM_MAP_REQUEST (request), FALSE);
   g_return_val_if_fail (eva_request_get_is_done (request), FALSE);
@@ -245,7 +245,7 @@ eva_stream_map_request_get_exists (gpointer ptr)
 G_INLINE_FUNC const char *
 eva_stream_map_request_get_key (gpointer ptr)
 {
-  GskStreamMapRequest *request = EVA_STREAM_MAP_REQUEST (ptr);
+  EvaStreamMapRequest *request = EVA_STREAM_MAP_REQUEST (ptr);
   g_return_val_if_fail (request, NULL);
   g_return_val_if_fail (EVA_IS_STREAM_MAP_REQUEST (request), NULL);
   return request->key;

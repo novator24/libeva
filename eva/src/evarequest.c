@@ -5,7 +5,7 @@
 #include "debug.h"
 
 #if defined (EVA_DEBUG)
-static void eva_request_debug (GskRequest *request,
+static void eva_request_debug (EvaRequest *request,
 			       const char *format,
 			       ...) G_GNUC_PRINTF(2,3);
 #define DEBUG(args) \
@@ -22,21 +22,21 @@ static guint cancelled_signal = 0;
 
 /* Default signal handler. */
 static void
-eva_request_default_cancelled (GskRequest *request)
+eva_request_default_cancelled (EvaRequest *request)
 {
   eva_request_mark_is_cancelled (request);
 }
 
 /**
  * eva_request_start:
- * @request: the #GskRequest to start.
+ * @request: the #EvaRequest to start.
  *
- * Start a #GskRequest.
+ * Start a #EvaRequest.
  */
 void
 eva_request_start (gpointer request)
 {
-  GskRequestClass *request_class;
+  EvaRequestClass *request_class;
 
   g_return_if_fail (request);
   g_return_if_fail (EVA_IS_REQUEST (request));
@@ -55,9 +55,9 @@ eva_request_start (gpointer request)
 
 /**
  * eva_request_cancel:
- * @request: the #GskRequest to cancel.
+ * @request: the #EvaRequest to cancel.
  *
- * Cancel a running #GskRequest.
+ * Cancel a running #EvaRequest.
  */
 void
 eva_request_cancel (gpointer request)
@@ -70,18 +70,18 @@ eva_request_cancel (gpointer request)
 
 /**
  * eva_request_set_error:
- * @request: the #GskRequest to set the error for.
+ * @request: the #EvaRequest to set the error for.
  * @error: the #GError.
  *
- * Set the error member of a #GskRequest.
+ * Set the error member of a #EvaRequest.
  *
  * Protected; this function should only be used by subclasses of
- * #GskRequest.
+ * #EvaRequest.
  */
 void
 eva_request_set_error (gpointer ptr, GError *error)
 {
-  GskRequest *request = EVA_REQUEST (ptr);
+  EvaRequest *request = EVA_REQUEST (ptr);
 
   g_return_if_fail (request);
   g_return_if_fail (EVA_IS_REQUEST (request));
@@ -95,12 +95,12 @@ eva_request_set_error (gpointer ptr, GError *error)
 
 /**
  * eva_request_done:
- * @request: the #GskRequest which has completed.
+ * @request: the #EvaRequest which has completed.
  *
  * Mark the request as done; emit the "done" signal to notify clients.
  *
  * Protected; this function should only be used by subclasses of
- * #GskRequest.
+ * #EvaRequest.
  */
 void
 eva_request_done (gpointer request)
@@ -115,7 +115,7 @@ eva_request_done (gpointer request)
 }
 
 static void
-eva_request_class_init (GskRequestClass *request_class)
+eva_request_class_init (EvaRequestClass *request_class)
 {
   GType type = G_OBJECT_CLASS_TYPE (request_class);
 
@@ -126,7 +126,7 @@ eva_request_class_init (GskRequestClass *request_class)
     g_signal_new ("done",
 		  type,
 		  G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE,
-		  G_STRUCT_OFFSET (GskRequestClass, done),
+		  G_STRUCT_OFFSET (EvaRequestClass, done),
 		  NULL,		/* accumulator */
 		  NULL,		/* accu_data */
 		  g_cclosure_marshal_VOID__VOID,
@@ -136,7 +136,7 @@ eva_request_class_init (GskRequestClass *request_class)
     g_signal_new ("cancelled",
 		  type,
 		  G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE,
-		  G_STRUCT_OFFSET (GskRequestClass, cancelled),
+		  G_STRUCT_OFFSET (EvaRequestClass, cancelled),
 		  NULL,		/* accumulator */
 		  NULL,		/* accu_data */
 		  g_cclosure_marshal_VOID__VOID,
@@ -152,19 +152,19 @@ eva_request_get_type (void)
     {
       static const GTypeInfo type_info =
 	{
-	  sizeof (GskRequestClass),
+	  sizeof (EvaRequestClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) eva_request_class_init,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskRequest),
+	  sizeof (EvaRequest),
 	  0,		/* n_preallocs */
 	  (GInstanceInitFunc) NULL,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (G_TYPE_OBJECT,
-				     "GskRequest",
+				     "EvaRequest",
 				     &type_info,
 				     G_TYPE_FLAG_ABSTRACT);
     }
@@ -174,7 +174,7 @@ eva_request_get_type (void)
 #if defined (EVA_DEBUG)
 #include <stdio.h>
 static void
-eva_request_debug (GskRequest *request,
+eva_request_debug (EvaRequest *request,
 		   const char *format,
 		   ...)
 {

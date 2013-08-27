@@ -2,18 +2,18 @@
 #include "evastreamclient.h"
 #include "evanameresolver.h"
 
-G_DEFINE_TYPE(GskPersistentConnection, eva_persistent_connection, EVA_TYPE_STREAM);
+G_DEFINE_TYPE(EvaPersistentConnection, eva_persistent_connection, EVA_TYPE_STREAM);
 
 static guint handle_connected_signal_id = 0;
 static guint handle_disconnected_signal_id = 0;
 
-static void eva_persistent_connection_set_poll_read (GskIO    *io,
+static void eva_persistent_connection_set_poll_read (EvaIO    *io,
                                                      gboolean  should_poll);
-static void eva_persistent_connection_set_poll_write(GskIO    *io,
+static void eva_persistent_connection_set_poll_write(EvaIO    *io,
                                                      gboolean  should_poll);
 
 static inline void
-maybe_message (GskPersistentConnection *connection,
+maybe_message (EvaPersistentConnection *connection,
                const char              *verb)
 {
   if (connection->debug_connection)
@@ -25,65 +25,65 @@ maybe_message (GskPersistentConnection *connection,
 }
 
 static void
-eva_persistent_connection_handle_disconnected (GskPersistentConnection *connection)
+eva_persistent_connection_handle_disconnected (EvaPersistentConnection *connection)
 {
   maybe_message (connection, "disconnected from");
 }
 
 static void
-eva_persistent_connection_handle_connected (GskPersistentConnection *connection)
+eva_persistent_connection_handle_connected (EvaPersistentConnection *connection)
 {
   maybe_message (connection, "connected to");
 }
 
 static guint
-eva_persistent_connection_raw_read(GskStream     *stream,
+eva_persistent_connection_raw_read(EvaStream     *stream,
 			 	   gpointer       data,
 			 	   guint          length,
 			 	   GError       **error)
 {
-  GskPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (stream);
+  EvaPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (stream);
   if (connection->transport == NULL)
     return 0;
   return eva_stream_read (connection->transport, data, length, error);
 }
 
 static guint
-eva_persistent_connection_raw_write(GskStream     *stream,
+eva_persistent_connection_raw_write(EvaStream     *stream,
 			 	    gconstpointer  data,
 			 	    guint          length,
 			 	    GError       **error)
 {
-  GskPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (stream);
+  EvaPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (stream);
   if (connection->transport == NULL)
     return 0;
   return eva_stream_write (connection->transport, data, length, error);
 }
 
 static guint
-eva_persistent_connection_raw_read_buffer(GskStream     *stream,
-				          GskBuffer     *buffer,
+eva_persistent_connection_raw_read_buffer(EvaStream     *stream,
+				          EvaBuffer     *buffer,
 				          GError       **error)
 {
-  GskPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (stream);
+  EvaPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (stream);
   if (connection->transport == NULL)
     return 0;
   return eva_stream_read_buffer (connection->transport, buffer, error);
 }
 
 static guint
-eva_persistent_connection_raw_write_buffer(GskStream    *stream,
-                                           GskBuffer     *buffer,
+eva_persistent_connection_raw_write_buffer(EvaStream    *stream,
+                                           EvaBuffer     *buffer,
 				           GError       **error)
 {
-  GskPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (stream);
+  EvaPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (stream);
   if (connection->transport == NULL)
     return 0;
   return eva_stream_write_buffer (connection->transport, buffer, error);
 }
 
 static void
-shutdown_transport (GskPersistentConnection *connection)
+shutdown_transport (EvaPersistentConnection *connection)
 {
   if (eva_io_has_write_hook (connection->transport))
     eva_io_untrap_writable (connection->transport);
@@ -102,12 +102,12 @@ shutdown_transport (GskPersistentConnection *connection)
 static void
 eva_persistent_connection_finalize (GObject *object)
 {
-  GskPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (object);
+  EvaPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (object);
   if (connection->transport != NULL)
     shutdown_transport (connection);
   if (connection->retry_timeout_source)
     {
-      GskSource *source = connection->retry_timeout_source;
+      EvaSource *source = connection->retry_timeout_source;
       connection->retry_timeout_source = NULL;
       eva_source_remove (source);
     }
@@ -115,17 +115,17 @@ eva_persistent_connection_finalize (GObject *object)
 }
 
 static void
-eva_persistent_connection_init (GskPersistentConnection *connection)
+eva_persistent_connection_init (EvaPersistentConnection *connection)
 {
   eva_io_mark_is_readable (connection);
   eva_io_mark_is_writable (connection);
 }
 
 static void
-eva_persistent_connection_class_init (GskPersistentConnectionClass *class)
+eva_persistent_connection_class_init (EvaPersistentConnectionClass *class)
 {
-  GskIOClass *io_class = EVA_IO_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   class->handle_connected = eva_persistent_connection_handle_connected;
   class->handle_disconnected = eva_persistent_connection_handle_disconnected;
@@ -142,7 +142,7 @@ eva_persistent_connection_class_init (GskPersistentConnectionClass *class)
     = g_signal_new ("handle-connected",
                     G_OBJECT_CLASS_TYPE (object_class),
                     G_SIGNAL_RUN_LAST,
-                    G_STRUCT_OFFSET (GskPersistentConnectionClass, handle_connected),
+                    G_STRUCT_OFFSET (EvaPersistentConnectionClass, handle_connected),
                     NULL, NULL,
                     g_cclosure_marshal_VOID__VOID,
                     G_TYPE_NONE,
@@ -151,7 +151,7 @@ eva_persistent_connection_class_init (GskPersistentConnectionClass *class)
     = g_signal_new ("handle-disconnected",
                     G_OBJECT_CLASS_TYPE (object_class),
                     G_SIGNAL_RUN_LAST,
-                    G_STRUCT_OFFSET (GskPersistentConnectionClass, handle_disconnected),
+                    G_STRUCT_OFFSET (EvaPersistentConnectionClass, handle_disconnected),
                     NULL, NULL,
                     g_cclosure_marshal_VOID__VOID,
                     G_TYPE_NONE,
@@ -161,7 +161,7 @@ eva_persistent_connection_class_init (GskPersistentConnectionClass *class)
 static gboolean handle_retry_timeout_expired (gpointer data);
 
 static void
-setup_timeout (GskPersistentConnection *connection)
+setup_timeout (EvaPersistentConnection *connection)
 {
   g_return_if_fail (connection->retry_timeout_source == NULL);
   connection->retry_timeout_source
@@ -175,8 +175,8 @@ setup_timeout (GskPersistentConnection *connection)
 }
 
 static void
-handle_transport_connected (GskStream *stream,
-                            GskPersistentConnection *connection)
+handle_transport_connected (EvaStream *stream,
+                            EvaPersistentConnection *connection)
 {
   g_return_if_fail (connection->transport == stream);
   g_return_if_fail (connection->state == EVA_PERSISTENT_CONNECTION_CONNECTING);
@@ -187,8 +187,8 @@ handle_transport_connected (GskStream *stream,
 }
 
 static gboolean
-handle_transport_readable (GskStream               *transport,
-                           GskPersistentConnection *connection)
+handle_transport_readable (EvaStream               *transport,
+                           EvaPersistentConnection *connection)
 {
   g_return_val_if_fail (connection->transport == transport, FALSE);
   eva_io_notify_ready_to_read (connection);
@@ -196,8 +196,8 @@ handle_transport_readable (GskStream               *transport,
 }
 
 static gboolean
-handle_transport_read_shutdown (GskStream           *transport,
-                                GskPersistentConnection *connection)
+handle_transport_read_shutdown (EvaStream           *transport,
+                                EvaPersistentConnection *connection)
 {
   g_return_val_if_fail (connection->transport == transport, FALSE);
   g_assert (connection->state == EVA_PERSISTENT_CONNECTION_CONNECTED
@@ -212,8 +212,8 @@ handle_transport_read_shutdown (GskStream           *transport,
 }
 
 static gboolean
-handle_transport_writable (GskStream           *transport,
-                           GskPersistentConnection *connection)
+handle_transport_writable (EvaStream           *transport,
+                           EvaPersistentConnection *connection)
 {
   g_return_val_if_fail (connection->transport == transport, FALSE);
   eva_io_notify_ready_to_write (connection);
@@ -221,8 +221,8 @@ handle_transport_writable (GskStream           *transport,
 }
 
 static void
-handle_transport_error (GskStream *transport,
-                        GskPersistentConnection *connection)
+handle_transport_error (EvaStream *transport,
+                        EvaPersistentConnection *connection)
 {
   g_return_if_fail (connection->transport == transport);
   if (connection->warn_on_transport_errors)
@@ -233,8 +233,8 @@ handle_transport_error (GskStream *transport,
 }
 
 static gboolean
-handle_transport_write_shutdown (GskStream           *transport,
-                                 GskPersistentConnection *connection)
+handle_transport_write_shutdown (EvaStream           *transport,
+                                 EvaPersistentConnection *connection)
 {
   g_return_val_if_fail (connection->transport == transport, FALSE);
   g_assert (connection->state == EVA_PERSISTENT_CONNECTION_CONNECTED
@@ -251,11 +251,11 @@ handle_transport_write_shutdown (GskStream           *transport,
 }
 
 static void
-retry_connection (GskPersistentConnection *connection,
-                  GskSocketAddress        *address)
+retry_connection (EvaPersistentConnection *connection,
+                  EvaSocketAddress        *address)
 {
   GError *error = NULL;
-  GskStream *transport = eva_stream_new_connecting (address, &error);
+  EvaStream *transport = eva_stream_new_connecting (address, &error);
   if (transport == NULL)
     {
       eva_io_set_gerror (EVA_IO (connection),
@@ -299,10 +299,10 @@ retry_connection (GskPersistentConnection *connection,
                         connection);
 }
 
-static void eva_persistent_connection_set_poll_read (GskIO    *io,
+static void eva_persistent_connection_set_poll_read (EvaIO    *io,
                                                      gboolean  should_poll)
 {
-  GskPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (io);
+  EvaPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (io);
   if (connection->transport)
     {
       if (should_poll)
@@ -316,10 +316,10 @@ static void eva_persistent_connection_set_poll_read (GskIO    *io,
     }
 }
 
-static void eva_persistent_connection_set_poll_write (GskIO    *io,
+static void eva_persistent_connection_set_poll_write (EvaIO    *io,
                                                       gboolean  should_poll)
 {
-  GskPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (io);
+  EvaPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (io);
   if (connection->transport)
     {
       if (should_poll)
@@ -336,7 +336,7 @@ static void eva_persistent_connection_set_poll_write (GskIO    *io,
 static gboolean
 handle_retry_timeout_expired (gpointer data)
 {
-  GskPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (data);
+  EvaPersistentConnection *connection = EVA_PERSISTENT_CONNECTION (data);
   connection->retry_timeout_source = NULL;
   if (connection->address != NULL)
     retry_connection (connection, connection->address);
@@ -345,29 +345,29 @@ handle_retry_timeout_expired (gpointer data)
   return FALSE;
 }
 
-GskStream *
-eva_persistent_connection_new (GskSocketAddress *address,
+EvaStream *
+eva_persistent_connection_new (EvaSocketAddress *address,
                                guint             retry_timeout_ms)
 {
-  GskPersistentConnection *connection = g_object_new (EVA_TYPE_PERSISTENT_CONNECTION, NULL);
+  EvaPersistentConnection *connection = g_object_new (EVA_TYPE_PERSISTENT_CONNECTION, NULL);
   connection->address = g_object_ref (address);
   connection->retry_timeout_ms = retry_timeout_ms;
   retry_connection (connection, address);
   return EVA_STREAM (connection);
 }
 
-GskStream *
+EvaStream *
 eva_persistent_connection_new_lookup (const char *host,
                                       guint       port,
                                       guint       retry_timeout_ms)
 {
-  GskSocketAddress *symbolic = eva_socket_address_symbolic_ipv4_new (host, port);
-  GskStream *pc = eva_persistent_connection_new (symbolic, retry_timeout_ms);
+  EvaSocketAddress *symbolic = eva_socket_address_symbolic_ipv4_new (host, port);
+  EvaStream *pc = eva_persistent_connection_new (symbolic, retry_timeout_ms);
   g_object_unref (symbolic);
   return pc;
 }
 
-void eva_persistent_connection_restart (GskPersistentConnection *connection,
+void eva_persistent_connection_restart (EvaPersistentConnection *connection,
                                         guint                    retry_wait_ms)
 {
   if (connection->transport != NULL)

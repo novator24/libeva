@@ -21,7 +21,7 @@ struct _TestHookObjectClass
 struct _TestHookObject 
 {
   GObject      object;
-  GskHook      hook;
+  EvaHook      hook;
   gboolean set_polling_true;
   gboolean has_shutdown;
 
@@ -118,7 +118,7 @@ int main (int argc, char **argv)
   g_assert (object1->trigger_count == 0);
   g_assert (object1->max_trigger_count == 1);
   object1->max_trigger_count = 2;
-  eva_hook_trap (TEST_HOOK_OBJECT_HOOK (object1), (GskHookFunc) handle_trigger, NULL, NULL, NULL);
+  eva_hook_trap (TEST_HOOK_OBJECT_HOOK (object1), (EvaHookFunc) handle_trigger, NULL, NULL, NULL);
   g_assert (eva_hook_is_trapped (TEST_HOOK_OBJECT_HOOK (object1)));
   eva_hook_notify (TEST_HOOK_OBJECT_HOOK (object1));
   g_assert (eva_hook_is_trapped (TEST_HOOK_OBJECT_HOOK (object1)));

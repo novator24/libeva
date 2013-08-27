@@ -56,11 +56,11 @@
 <pre class="synopsis">
 #define             <a class="link" href="eva-evamempool.html#EVA-MEM-POOL-FIXED-STATIC-INIT--CAPS" title="EVA_MEM_POOL_FIXED_STATIC_INIT()">EVA_MEM_POOL_FIXED_STATIC_INIT</a>      (size)
 #define             <a class="link" href="eva-evamempool.html#EVA-MEM-POOL-STATIC-INIT--CAPS" title="EVA_MEM_POOL_STATIC_INIT">EVA_MEM_POOL_STATIC_INIT</a>
-                    <a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a>;
-                    <a class="link" href="eva-evamempool.html#GskMemPoolFixed" title="GskMemPoolFixed">GskMemPoolFixed</a>;
-void                <a class="link" href="eva-evamempool.html#eva-mem-pool-construct" title="eva_mem_pool_construct ()">eva_mem_pool_construct</a>              (<a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a> *pool);
+                    <a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a>;
+                    <a class="link" href="eva-evamempool.html#EvaMemPoolFixed" title="EvaMemPoolFixed">EvaMemPoolFixed</a>;
+void                <a class="link" href="eva-evamempool.html#eva-mem-pool-construct" title="eva_mem_pool_construct ()">eva_mem_pool_construct</a>              (<a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a> *pool);
 void                <a class="link" href="eva-evamempool.html#eva-mem-pool-construct-with-scratch-buf" title="eva_mem_pool_construct_with_scratch_buf ()">eva_mem_pool_construct_with_scratch_buf</a>
-                                                        (<a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a> *pool,
+                                                        (<a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a> *pool,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> buffer,
@@ -69,34 +69,34 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
 >gsize</a> buffer_size);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            <a class="link" href="eva-evamempool.html#eva-mem-pool-alloc" title="eva_mem_pool_alloc ()">eva_mem_pool_alloc</a>                  (<a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a> *pool,
+>gpointer</a>            <a class="link" href="eva-evamempool.html#eva-mem-pool-alloc" title="eva_mem_pool_alloc ()">eva_mem_pool_alloc</a>                  (<a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a> *pool,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
 >gsize</a> size);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            <a class="link" href="eva-evamempool.html#eva-mem-pool-alloc0" title="eva_mem_pool_alloc0 ()">eva_mem_pool_alloc0</a>                 (<a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a> *pool,
+>gpointer</a>            <a class="link" href="eva-evamempool.html#eva-mem-pool-alloc0" title="eva_mem_pool_alloc0 ()">eva_mem_pool_alloc0</a>                 (<a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a> *pool,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
 >gsize</a> size);
-char *              <a class="link" href="eva-evamempool.html#eva-mem-pool-strdup" title="eva_mem_pool_strdup ()">eva_mem_pool_strdup</a>                 (<a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a> *pool,
+char *              <a class="link" href="eva-evamempool.html#eva-mem-pool-strdup" title="eva_mem_pool_strdup ()">eva_mem_pool_strdup</a>                 (<a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a> *pool,
                                                          const char *str);
-void                <a class="link" href="eva-evamempool.html#eva-mem-pool-destruct" title="eva_mem_pool_destruct ()">eva_mem_pool_destruct</a>               (<a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a> *pool);
-void                <a class="link" href="eva-evamempool.html#eva-mem-pool-fixed-construct" title="eva_mem_pool_fixed_construct ()">eva_mem_pool_fixed_construct</a>        (<a class="link" href="eva-evamempool.html#GskMemPoolFixed" title="GskMemPoolFixed">GskMemPoolFixed</a> *pool,
+void                <a class="link" href="eva-evamempool.html#eva-mem-pool-destruct" title="eva_mem_pool_destruct ()">eva_mem_pool_destruct</a>               (<a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a> *pool);
+void                <a class="link" href="eva-evamempool.html#eva-mem-pool-fixed-construct" title="eva_mem_pool_fixed_construct ()">eva_mem_pool_fixed_construct</a>        (<a class="link" href="eva-evamempool.html#EvaMemPoolFixed" title="EvaMemPoolFixed">EvaMemPoolFixed</a> *pool,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
 >gsize</a> size);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            <a class="link" href="eva-evamempool.html#eva-mem-pool-fixed-alloc" title="eva_mem_pool_fixed_alloc ()">eva_mem_pool_fixed_alloc</a>            (<a class="link" href="eva-evamempool.html#GskMemPoolFixed" title="GskMemPoolFixed">GskMemPoolFixed</a> *pool);
+>gpointer</a>            <a class="link" href="eva-evamempool.html#eva-mem-pool-fixed-alloc" title="eva_mem_pool_fixed_alloc ()">eva_mem_pool_fixed_alloc</a>            (<a class="link" href="eva-evamempool.html#EvaMemPoolFixed" title="EvaMemPoolFixed">EvaMemPoolFixed</a> *pool);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            <a class="link" href="eva-evamempool.html#eva-mem-pool-fixed-alloc0" title="eva_mem_pool_fixed_alloc0 ()">eva_mem_pool_fixed_alloc0</a>           (<a class="link" href="eva-evamempool.html#GskMemPoolFixed" title="GskMemPoolFixed">GskMemPoolFixed</a> *pool);
-void                <a class="link" href="eva-evamempool.html#eva-mem-pool-fixed-free" title="eva_mem_pool_fixed_free ()">eva_mem_pool_fixed_free</a>             (<a class="link" href="eva-evamempool.html#GskMemPoolFixed" title="GskMemPoolFixed">GskMemPoolFixed</a> *pool,
+>gpointer</a>            <a class="link" href="eva-evamempool.html#eva-mem-pool-fixed-alloc0" title="eva_mem_pool_fixed_alloc0 ()">eva_mem_pool_fixed_alloc0</a>           (<a class="link" href="eva-evamempool.html#EvaMemPoolFixed" title="EvaMemPoolFixed">EvaMemPoolFixed</a> *pool);
+void                <a class="link" href="eva-evamempool.html#eva-mem-pool-fixed-free" title="eva_mem_pool_fixed_free ()">eva_mem_pool_fixed_free</a>             (<a class="link" href="eva-evamempool.html#EvaMemPoolFixed" title="EvaMemPoolFixed">EvaMemPoolFixed</a> *pool,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> from_pool);
-void                <a class="link" href="eva-evamempool.html#eva-mem-pool-fixed-destruct" title="eva_mem_pool_fixed_destruct ()">eva_mem_pool_fixed_destruct</a>         (<a class="link" href="eva-evamempool.html#GskMemPoolFixed" title="GskMemPoolFixed">GskMemPoolFixed</a> *pool);
+void                <a class="link" href="eva-evamempool.html#eva-mem-pool-fixed-destruct" title="eva_mem_pool_fixed_destruct ()">eva_mem_pool_fixed_destruct</a>         (<a class="link" href="eva-evamempool.html#EvaMemPoolFixed" title="EvaMemPoolFixed">EvaMemPoolFixed</a> *pool);
 </pre>
 </div>
 <div class="refsect1" lang="en">
@@ -132,7 +132,7 @@ member-wise given its elements' size.
 Example:
 </p>
 <pre class="programlisting">
-static GskMemPoolFixed request_pool = EVA_MEM_POOL_FIXED_STATIC_INIT(sizeof (Request));
+static EvaMemPoolFixed request_pool = EVA_MEM_POOL_FIXED_STATIC_INIT(sizeof (Request));
 ...
 Request *request = eva_mem_pool_fixed_alloc (&amp;request_pool);
 ...
@@ -163,7 +163,7 @@ Example:
 <pre class="programlisting">
 void foo ()
 {
-  GskMemPool mem_pool = EVA_MEM_POOL_STATIC_INIT;
+  EvaMemPool mem_pool = EVA_MEM_POOL_STATIC_INIT;
   void *garbage = eva_mem_pool_alloc (&amp;mem_pool, 20);
   ...
   eva_mem_pool_destruct (&amp;mem_pool);
@@ -174,9 +174,9 @@ void foo ()
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMemPool"></a><h3>GskMemPool</h3>
+<a name="EvaMemPool"></a><h3>EvaMemPool</h3>
 <pre class="programlisting">typedef struct {
-} GskMemPool;
+} EvaMemPool;
 </pre>
 <p>
 A memory pool.
@@ -186,9 +186,9 @@ object.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskMemPoolFixed"></a><h3>GskMemPoolFixed</h3>
+<a name="EvaMemPoolFixed"></a><h3>EvaMemPoolFixed</h3>
 <pre class="programlisting">typedef struct {
-} GskMemPoolFixed;
+} EvaMemPoolFixed;
 </pre>
 <p>
 A fixed-size memory pool.
@@ -199,7 +199,7 @@ object.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mem-pool-construct"></a><h3>eva_mem_pool_construct ()</h3>
-<pre class="programlisting">void                eva_mem_pool_construct              (<a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a> *pool);</pre>
+<pre class="programlisting">void                eva_mem_pool_construct              (<a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a> *pool);</pre>
 <p>
 Initialize the members of a mem-pool.
 (The memory for the mem-pool structure itself
@@ -220,7 +220,7 @@ structure or on the stack.)</p>
 <div class="refsect2" lang="en">
 <a name="eva-mem-pool-construct-with-scratch-buf"></a><h3>eva_mem_pool_construct_with_scratch_buf ()</h3>
 <pre class="programlisting">void                eva_mem_pool_construct_with_scratch_buf
-                                                        (<a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a> *pool,
+                                                        (<a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a> *pool,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> buffer,
@@ -261,7 +261,7 @@ to use as storage.
 <a name="eva-mem-pool-alloc"></a><h3>eva_mem_pool_alloc ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            eva_mem_pool_alloc                  (<a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a> *pool,
+>gpointer</a>            eva_mem_pool_alloc                  (<a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a> *pool,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
 >gsize</a> size);</pre>
@@ -297,7 +297,7 @@ out-of-memory condition.</p>
 <a name="eva-mem-pool-alloc0"></a><h3>eva_mem_pool_alloc0 ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            eva_mem_pool_alloc0                 (<a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a> *pool,
+>gpointer</a>            eva_mem_pool_alloc0                 (<a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a> *pool,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
 >gsize</a> size);</pre>
@@ -331,7 +331,7 @@ out-of-memory condition.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mem-pool-strdup"></a><h3>eva_mem_pool_strdup ()</h3>
-<pre class="programlisting">char *              eva_mem_pool_strdup                 (<a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a> *pool,
+<pre class="programlisting">char *              eva_mem_pool_strdup                 (<a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a> *pool,
                                                          const char *str);</pre>
 <p>
 Allocated space from the mem-pool to store
@@ -366,7 +366,7 @@ If <em class="parameter"><code>str</code></em> is NULL, then NULL is returned.</
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mem-pool-destruct"></a><h3>eva_mem_pool_destruct ()</h3>
-<pre class="programlisting">void                eva_mem_pool_destruct               (<a class="link" href="eva-evamempool.html#GskMemPool" title="GskMemPool">GskMemPool</a> *pool);</pre>
+<pre class="programlisting">void                eva_mem_pool_destruct               (<a class="link" href="eva-evamempool.html#EvaMemPool" title="EvaMemPool">EvaMemPool</a> *pool);</pre>
 <p>
 Destroy all chunk associated with the given mem-pool.</p>
 <p>
@@ -383,7 +383,7 @@ Destroy all chunk associated with the given mem-pool.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mem-pool-fixed-construct"></a><h3>eva_mem_pool_fixed_construct ()</h3>
-<pre class="programlisting">void                eva_mem_pool_fixed_construct        (<a class="link" href="eva-evamempool.html#GskMemPoolFixed" title="GskMemPoolFixed">GskMemPoolFixed</a> *pool,
+<pre class="programlisting">void                eva_mem_pool_fixed_construct        (<a class="link" href="eva-evamempool.html#EvaMemPoolFixed" title="EvaMemPoolFixed">EvaMemPoolFixed</a> *pool,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
 >gsize</a> size);</pre>
@@ -412,7 +412,7 @@ Set up a fixed-size memory allocator for use.</p>
 <a name="eva-mem-pool-fixed-alloc"></a><h3>eva_mem_pool_fixed_alloc ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            eva_mem_pool_fixed_alloc            (<a class="link" href="eva-evamempool.html#GskMemPoolFixed" title="GskMemPoolFixed">GskMemPoolFixed</a> *pool);</pre>
+>gpointer</a>            eva_mem_pool_fixed_alloc            (<a class="link" href="eva-evamempool.html#EvaMemPoolFixed" title="EvaMemPoolFixed">EvaMemPoolFixed</a> *pool);</pre>
 <p>
 Allocate a block of the Fixed-Pool's size.</p>
 <p>
@@ -438,7 +438,7 @@ Allocate a block of the Fixed-Pool's size.</p>
 <a name="eva-mem-pool-fixed-alloc0"></a><h3>eva_mem_pool_fixed_alloc0 ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>            eva_mem_pool_fixed_alloc0           (<a class="link" href="eva-evamempool.html#GskMemPoolFixed" title="GskMemPoolFixed">GskMemPoolFixed</a> *pool);</pre>
+>gpointer</a>            eva_mem_pool_fixed_alloc0           (<a class="link" href="eva-evamempool.html#EvaMemPoolFixed" title="EvaMemPoolFixed">EvaMemPoolFixed</a> *pool);</pre>
 <p>
 Allocate a block of the Fixed-Pool's size.
 Set its contents to 0.</p>
@@ -463,7 +463,7 @@ Set its contents to 0.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mem-pool-fixed-free"></a><h3>eva_mem_pool_fixed_free ()</h3>
-<pre class="programlisting">void                eva_mem_pool_fixed_free             (<a class="link" href="eva-evamempool.html#GskMemPoolFixed" title="GskMemPoolFixed">GskMemPoolFixed</a> *pool,
+<pre class="programlisting">void                eva_mem_pool_fixed_free             (<a class="link" href="eva-evamempool.html#EvaMemPoolFixed" title="EvaMemPoolFixed">EvaMemPoolFixed</a> *pool,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> from_pool);</pre>
@@ -491,7 +491,7 @@ It must have been allocated from this pool.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mem-pool-fixed-destruct"></a><h3>eva_mem_pool_fixed_destruct ()</h3>
-<pre class="programlisting">void                eva_mem_pool_fixed_destruct         (<a class="link" href="eva-evamempool.html#GskMemPoolFixed" title="GskMemPoolFixed">GskMemPoolFixed</a> *pool);</pre>
+<pre class="programlisting">void                eva_mem_pool_fixed_destruct         (<a class="link" href="eva-evamempool.html#EvaMemPoolFixed" title="EvaMemPoolFixed">EvaMemPoolFixed</a> *pool);</pre>
 <p>
 Free all memory associated with this pool.</p>
 <p>

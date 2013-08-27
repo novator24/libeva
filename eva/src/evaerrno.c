@@ -57,7 +57,7 @@ fd_creation_failed_default_handler (gboolean system_wide)
   else
     g_error ("too many open files in this process (pid=%u)", (guint) getpid ());
 }
-static GskErrnoFdCreateFailedFunc fd_creation_failed_handler
+static EvaErrnoFdCreateFailedFunc fd_creation_failed_handler
   = fd_creation_failed_default_handler;
 
 /* ENFILE = too many files open in system
@@ -84,7 +84,7 @@ void eva_errno_fd_creation_failed_errno (int e)
 }
 
 void
-eva_errno_trap_fd_creation_failed (GskErrnoFdCreateFailedFunc func)
+eva_errno_trap_fd_creation_failed (EvaErrnoFdCreateFailedFunc func)
 {
   fd_creation_failed_handler = func;
 }

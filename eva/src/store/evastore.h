@@ -2,19 +2,19 @@
 #define __EVA_STORE_H_
 
 /*
- * GskStore -- an object store.
+ * EvaStore -- an object store.
  *
- * GskStoreRequest -- a request for some operation on a key from a GskStore.
+ * EvaStoreRequest -- a request for some operation on a key from a EvaStore.
  *
- * GskStoreFormatEntry -- associates a GskStorageFormat with an integer ID
+ * EvaStoreFormatEntry -- associates a EvaStorageFormat with an integer ID
  * and a GType.
  */
 
 /*
  * Notes: user is responsible for maintaining a compatible list of
  * format entries on all clients using the store, with stable IDs, etc.
- * (Otherwise, we would also have to serialize the GskStorageFormats
- * using a known GskStorageFormat, etc.; having a user-specified
+ * (Otherwise, we would also have to serialize the EvaStorageFormats
+ * using a known EvaStorageFormat, etc.; having a user-specified
  * list seems less of a security risk.  But there's nothing preventing
  * someone from writing a "meta-format" that loads other formats
  * dynamically, if that's what they want.  The XML format is already
@@ -32,14 +32,14 @@
 
 G_BEGIN_DECLS
 
-typedef GObjectClass                GskStoreClass;
-typedef struct _GskStore            GskStore;
+typedef GObjectClass                EvaStoreClass;
+typedef struct _EvaStore            EvaStore;
 
-typedef GskRequestClass             GskStoreRequestClass;
-typedef struct _GskStoreRequest     GskStoreRequest;
+typedef EvaRequestClass             EvaStoreRequestClass;
+typedef struct _EvaStoreRequest     EvaStoreRequest;
 
-typedef GObjectClass                GskStoreFormatEntryClass;
-typedef struct _GskStoreFormatEntry GskStoreFormatEntry;
+typedef GObjectClass                EvaStoreFormatEntryClass;
+typedef struct _EvaStoreFormatEntry EvaStoreFormatEntry;
 
 typedef enum
   {
@@ -48,59 +48,59 @@ typedef enum
     EVA_STORE_REQUEST_DELETE,
     EVA_STORE_REQUEST_EXISTS
   }
-GskStoreRequestType;
+EvaStoreRequestType;
 
 /*
- * GskStore
+ * EvaStore
  */
 
 GType eva_store_get_type (void) G_GNUC_CONST;
 
 #define EVA_TYPE_STORE (eva_store_get_type ())
 #define EVA_STORE(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STORE, GskStore))
+  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STORE, EvaStore))
 #define EVA_STORE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STORE, GskStoreClass))
+  (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STORE, EvaStoreClass))
 #define EVA_STORE_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STORE, GskStoreClass))
+  (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STORE, EvaStoreClass))
 #define EVA_IS_STORE(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STORE))
 #define EVA_IS_STORE_CLASS(klass) \
   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_STORE))
 
-struct _GskStore
+struct _EvaStore
 {
   GObject object;
 
-  GskStreamMap *stream_map;
-  GPtrArray *format_entries; /* of GskStoreFormatEntry */
+  EvaStreamMap *stream_map;
+  GPtrArray *format_entries; /* of EvaStoreFormatEntry */
 };
 
-GskStoreRequest * eva_store_save        (GskStore      *store,
+EvaStoreRequest * eva_store_save        (EvaStore      *store,
 					 const char    *key,
 					 const GValue  *value,
 					 GError       **error);
 
-GskStoreRequest * eva_store_load        (GskStore      *store,
+EvaStoreRequest * eva_store_load        (EvaStore      *store,
 					 const char    *key,
 					 GType          value_type,
 					 GError       **error);
 
-GskStoreRequest * eva_store_delete      (GskStore      *store,
+EvaStoreRequest * eva_store_delete      (EvaStore      *store,
 					 const char    *key,
 					 GError       **error);
 
-GskStoreRequest * eva_store_exists      (GskStore      *store,
+EvaStoreRequest * eva_store_exists      (EvaStore      *store,
 					 const char    *key,
 					 GError       **error);
 
 G_INLINE_FUNC
-GskStoreRequest * eva_store_save_object (GskStore      *store,
+EvaStoreRequest * eva_store_save_object (EvaStore      *store,
 					 const char    *key,
 					 gpointer      object,
 					 GError      **error);
 /*
- * GskStoreRequest
+ * EvaStoreRequest
  */
 
 GType eva_store_request_get_type (void) G_GNUC_CONST;
@@ -109,25 +109,25 @@ GType eva_store_request_get_type (void) G_GNUC_CONST;
 #define EVA_STORE_REQUEST(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
 			       EVA_TYPE_STORE_REQUEST, \
-			       GskStoreRequest))
+			       EvaStoreRequest))
 #define EVA_STORE_REQUEST_CLASS(klass) \
   (G_TYPE_CHECK_CLASS_CAST ((klass), \
 			    EVA_TYPE_STORE_REQUEST, \
-			    GskStoreRequestClass))
+			    EvaStoreRequestClass))
 #define EVA_STORE_REQUEST_GET_CLASS(obj) \
   (G_TYPE_INSTANCE_GET_CLASS ((obj), \
 			      EVA_TYPE_STORE_REQUEST, \
-			      GskStoreRequestClass))
+			      EvaStoreRequestClass))
 #define EVA_IS_STORE_REQUEST(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STORE_REQUEST))
 #define EVA_IS_STORE_REQUEST_CLASS(klass) \
   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_STORE_REQUEST))
 
-struct _GskStoreRequest
+struct _EvaStoreRequest
 {
-  GskValueRequest value_request;
+  EvaValueRequest value_request;
 
-  GskStoreRequestType request_type;
+  EvaStoreRequestType request_type;
   char *key;
   gpointer private;
 };
@@ -145,7 +145,7 @@ G_INLINE_FUNC
 gpointer     eva_store_request_get_object (gpointer request);
 
 /*
- * GskStoreFormatEntry
+ * EvaStoreFormatEntry
  */
 
 GType eva_store_format_entry_get_type (void) G_GNUC_CONST;
@@ -154,27 +154,27 @@ GType eva_store_format_entry_get_type (void) G_GNUC_CONST;
 #define EVA_STORE_FORMAT_ENTRY(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
 			       EVA_TYPE_STORE_FORMAT_ENTRY, \
-			       GskStoreFormatEntry))
+			       EvaStoreFormatEntry))
 #define EVA_STORE_FORMAT_ENTRY_CLASS(klass) \
   (G_TYPE_CHECK_CLASS_CAST ((klass), \
 			    EVA_TYPE_STORE_FORMAT_ENTRY, \
-			    GskStoreFormatEntryClass))
+			    EvaStoreFormatEntryClass))
 #define EVA_STORE_FORMAT_ENTRY_GET_CLASS(obj) \
   (G_TYPE_INSTANCE_GET_CLASS ((obj), \
 			      EVA_TYPE_STORE_FORMAT_ENTRY, \
-			      GskStoreFormatEntryClass))
+			      EvaStoreFormatEntryClass))
 #define EVA_IS_STORE_FORMAT_ENTRY(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STORE_FORMAT_ENTRY))
 #define EVA_IS_STORE_FORMAT_ENTRY_CLASS(klass) \
   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_STORE_FORMAT_ENTRY))
 
-struct _GskStoreFormatEntry
+struct _EvaStoreFormatEntry
 {
   GObject object;
 
   guint32 format_id;
   GType value_type;
-  GskStorageFormat *storage_format;
+  EvaStorageFormat *storage_format;
 };
 
 /*
@@ -183,14 +183,14 @@ struct _GskStoreFormatEntry
 
 #if defined (G_CAN_INLINE) || defined (__EVA_STORE_C__)
 
-G_INLINE_FUNC GskStoreRequest *
-eva_store_save_object (GskStore    *store,
+G_INLINE_FUNC EvaStoreRequest *
+eva_store_save_object (EvaStore    *store,
 		       const char  *key,
 		       gpointer    object,
 		       GError    **error)
 {
   GValue value = { 0, { { 0 }, { 0 } } };
-  GskStoreRequest *store_request;
+  EvaStoreRequest *store_request;
 
   g_value_init (&value, G_OBJECT_TYPE (object));
   g_value_set_object (&value, object);
@@ -202,7 +202,7 @@ eva_store_save_object (GskStore    *store,
 G_INLINE_FUNC const char *
 eva_store_request_get_key (gpointer ptr)
 {
-  GskStoreRequest *store_request = EVA_STORE_REQUEST (ptr);
+  EvaStoreRequest *store_request = EVA_STORE_REQUEST (ptr);
   g_return_val_if_fail (store_request, FALSE);
   g_return_val_if_fail (EVA_IS_STORE_REQUEST (store_request), FALSE);
   return store_request->key;
@@ -243,7 +243,7 @@ eva_store_request_get_object (gpointer request)
 G_INLINE_FUNC gboolean
 eva_store_request_get_exists (gpointer ptr)
 {
-  GskStoreRequest *store_request = EVA_STORE_REQUEST (ptr);
+  EvaStoreRequest *store_request = EVA_STORE_REQUEST (ptr);
   g_return_val_if_fail (store_request, FALSE);
   g_return_val_if_fail (EVA_IS_STORE_REQUEST (store_request), FALSE);
   g_return_val_if_fail (eva_request_get_is_done (store_request), FALSE);

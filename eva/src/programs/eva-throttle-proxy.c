@@ -5,7 +5,7 @@
 #include "../evalistmacros.h"
 #include "../http/evahttpcontent.h"
 
-typedef struct _GskThrottleProxyConnection GskThrottleProxyConnection;
+typedef struct _EvaThrottleProxyConnection EvaThrottleProxyConnection;
 typedef struct _Side Side;
 
 /* configuration */
@@ -19,9 +19,9 @@ guint download_per_second_noise = 10*1024;
    shutdown into both.  */
 gboolean half_shutdowns = TRUE;
 
-GskSocketAddress *bind_addr = NULL;
-GskSocketAddress *server_addr = NULL;
-GskSocketAddress *bind_status_addr = NULL;
+EvaSocketAddress *bind_addr = NULL;
+EvaSocketAddress *server_addr = NULL;
+EvaSocketAddress *bind_status_addr = NULL;
 
 static guint n_connections_accepted = 0;
 static guint64 n_bytes_read_total = 0;
@@ -29,10 +29,10 @@ static guint64 n_bytes_written_total = 0;
 
 struct _Side
 {
-  GskThrottleProxyConnection *connection;
+  EvaThrottleProxyConnection *connection;
 
-  GskStream *read_side;		/* client for upload, server for download */
-  GskStream *write_side;	/* client for upload, server for download */
+  EvaStream *read_side;		/* client for upload, server for download */
+  EvaStream *write_side;	/* client for upload, server for download */
   gboolean read_side_blocked;
   gboolean write_side_blocked;
 
@@ -45,26 +45,26 @@ struct _Side
   gulong last_xfer_second;
   guint xferred_in_last_second;
 
-  GskBuffer buffer;
+  EvaBuffer buffer;
 
   guint max_buffer;/* should be set to max_xfer_per_second or a bit more */
 
   guint total_read, total_written;
 };
 
-struct _GskThrottleProxyConnection
+struct _EvaThrottleProxyConnection
 {
   Side upload;
   Side download;
 
   guint ref_count;
 
-  GskThrottleProxyConnection *prev, *next;
+  EvaThrottleProxyConnection *prev, *next;
 };
 
-static GskThrottleProxyConnection *first_conn, *last_conn;
+static EvaThrottleProxyConnection *first_conn, *last_conn;
 #define GET_CONNECTION_LIST() \
-  GskThrottleProxyConnection *, first_conn, last_conn, prev, next
+  EvaThrottleProxyConnection *, first_conn, last_conn, prev, next
 
 static Side *first_throttled, *last_throttled;
 #define GET_THROTTLED_LIST() \
@@ -117,7 +117,7 @@ update_read_block (Side   *side)
 }
 
 static void
-connection_unref (GskThrottleProxyConnection *conn)
+connection_unref (EvaThrottleProxyConnection *conn)
 {
   if (--(conn->ref_count) == 0)
     {
@@ -129,7 +129,7 @@ connection_unref (GskThrottleProxyConnection *conn)
 }
 
 static gboolean
-handle_side_writable (GskStream *stream,
+handle_side_writable (EvaStream *stream,
                       gpointer data)
 {
   Side *side = data;
@@ -157,7 +157,7 @@ handle_side_writable (GskStream *stream,
 }
 
 static gboolean
-handle_side_write_shutdown (GskStream *stream,
+handle_side_write_shutdown (EvaStream *stream,
                             gpointer   data)
 {
   Side *side = data;
@@ -183,7 +183,7 @@ handle_side_write_destroy (gpointer data)
 }
 
 static gboolean
-handle_side_readable (GskStream *stream,
+handle_side_readable (EvaStream *stream,
                       gpointer data)
 {
   Side *side = data;
@@ -233,7 +233,7 @@ handle_side_readable (GskStream *stream,
 }
 
 static gboolean
-handle_side_read_shutdown (GskStream *stream,
+handle_side_read_shutdown (EvaStream *stream,
                            gpointer data)
 {
   return FALSE;
@@ -258,9 +258,9 @@ handle_side_read_destroy (gpointer data)
 
 static void
 side_init (Side      *side,
-           GskThrottleProxyConnection *conn,
-           GskStream *read_side,
-           GskStream *write_side,
+           EvaThrottleProxyConnection *conn,
+           EvaStream *read_side,
+           EvaStream *write_side,
            guint      max_xfer_per_second)
 {
   side->connection = conn;
@@ -304,13 +304,13 @@ pick_rand (guint base, guint noise)
 }
 
 static gboolean
-handle_accept  (GskStream    *stream,
+handle_accept  (EvaStream    *stream,
                 gpointer      data,
                 GError      **error)
 {
-  GskThrottleProxyConnection *conn = g_new (GskThrottleProxyConnection, 1);
+  EvaThrottleProxyConnection *conn = g_new (EvaThrottleProxyConnection, 1);
   GError *e = NULL;
-  GskStream *server = eva_stream_new_connecting (server_addr, &e);
+  EvaStream *server = eva_stream_new_connecting (server_addr, &e);
   if (e)
     g_error ("eva_stream_new_connecting failed: %s", e->message);
   n_connections_accepted++;
@@ -382,7 +382,7 @@ usage (void)
 }
 
 static void
-dump_side_to_buffer (Side *side, GskBuffer *out)
+dump_side_to_buffer (Side *side, EvaBuffer *out)
 {
   eva_buffer_printf (out, "<td>%sreadable%s, %swritable%s, %u buffered [total read/written=%u/%u]</td>\n",
                      side->read_side ? "" : "NOT ",
@@ -394,20 +394,20 @@ dump_side_to_buffer (Side *side, GskBuffer *out)
                      side->total_read, side->total_written);
 }
 
-static GskHttpContentResult
-create_status_page (GskHttpContent   *content,
-                    GskHttpContentHandler *handler,
-                    GskHttpServer  *server,
-                    GskHttpRequest *request,
-                    GskStream      *post_data,
+static EvaHttpContentResult
+create_status_page (EvaHttpContent   *content,
+                    EvaHttpContentHandler *handler,
+                    EvaHttpServer  *server,
+                    EvaHttpRequest *request,
+                    EvaStream      *post_data,
                     gpointer        data)
 {
-  GskThrottleProxyConnection *conn;
-  GskBuffer buffer = EVA_BUFFER_STATIC_INIT;
-  GskHttpResponse *response;
-  GskStream *stream;
+  EvaThrottleProxyConnection *conn;
+  EvaBuffer buffer = EVA_BUFFER_STATIC_INIT;
+  EvaHttpResponse *response;
+  EvaStream *stream;
   eva_buffer_printf (&buffer, "<html><head>\n");
-  eva_buffer_printf (&buffer, "<title>GskThrottleProxy Status Page</title>\n");
+  eva_buffer_printf (&buffer, "<title>EvaThrottleProxy Status Page</title>\n");
   eva_buffer_printf (&buffer, "</head>\n");
   eva_buffer_printf (&buffer, "<body>\n");
   eva_buffer_printf (&buffer, "<h1>Statistics</h1>\n");
@@ -448,7 +448,7 @@ create_status_page (GskHttpContent   *content,
 int main(int argc, char **argv)
 {
   guint i;
-  GskStreamListener *listener;
+  EvaStreamListener *listener;
   GError *error = NULL;
   eva_init_without_threads (&argc, &argv);
   for (i = 1; i < (guint) argc; i++)
@@ -534,9 +534,9 @@ int main(int argc, char **argv)
 
   if (bind_status_addr != NULL)
     {
-      GskHttpContentHandler *handler;
-      GskHttpContent *content = eva_http_content_new ();
-      GskHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
+      EvaHttpContentHandler *handler;
+      EvaHttpContent *content = eva_http_content_new ();
+      EvaHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
       handler = eva_http_content_handler_new (create_status_page, NULL, NULL);
       id.path = "/";
       eva_http_content_add_handler (content, &id, handler, EVA_HTTP_CONTENT_REPLACE);

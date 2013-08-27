@@ -6,7 +6,7 @@ static GObjectClass *parent_class = NULL;
 static void
 eva_packet_queue_finalize (GObject *object)
 {
-  GskPacketQueue *queue = EVA_PACKET_QUEUE (object);
+  EvaPacketQueue *queue = EVA_PACKET_QUEUE (object);
   if (queue->bound_address != NULL)
     g_object_unref (queue->bound_address);
   (*parent_class->finalize) (object);
@@ -14,11 +14,11 @@ eva_packet_queue_finalize (GObject *object)
 
 /* --- functions --- */
 static void
-eva_packet_queue_init (GskPacketQueue *packet_queue)
+eva_packet_queue_init (EvaPacketQueue *packet_queue)
 {
 }
 static void
-eva_packet_queue_class_init (GskPacketQueueClass *class)
+eva_packet_queue_class_init (EvaPacketQueueClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
@@ -32,19 +32,19 @@ GType eva_packet_queue_get_type()
     {
       static const GTypeInfo packet_queue_info =
       {
-	sizeof(GskPacketQueueClass),
+	sizeof(EvaPacketQueueClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_packet_queue_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskPacketQueue),
+	sizeof (EvaPacketQueue),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_packet_queue_init,
 	NULL		/* value_table */
       };
       packet_queue_type = g_type_register_static (EVA_TYPE_IO,
-                                                  "GskPacketQueue",
+                                                  "EvaPacketQueue",
 						  &packet_queue_info, 
 						  G_TYPE_FLAG_ABSTRACT);
     }
@@ -64,11 +64,11 @@ GType eva_packet_queue_get_type()
  * returns: whether the bind call succeeded.
  */
 gboolean
-eva_packet_queue_bind   (GskPacketQueue    *queue,
-			 GskSocketAddress  *address,
+eva_packet_queue_bind   (EvaPacketQueue    *queue,
+			 EvaSocketAddress  *address,
 			 GError           **error)
 {
-  GskPacketQueueClass *class = EVA_PACKET_QUEUE_GET_CLASS (queue);
+  EvaPacketQueueClass *class = EVA_PACKET_QUEUE_GET_CLASS (queue);
   if (class->bind == NULL)
     {
       g_set_error (error, EVA_G_ERROR_DOMAIN,
@@ -100,12 +100,12 @@ eva_packet_queue_bind   (GskPacketQueue    *queue,
  *
  * returns: a new packet, or NULL on error or if no packet was available.
  */
-GskPacket *
-eva_packet_queue_read   (GskPacketQueue    *queue,
+EvaPacket *
+eva_packet_queue_read   (EvaPacketQueue    *queue,
 			 gboolean           save_address,
 			 GError           **error)
 {
-  GskPacketQueueClass *class = EVA_PACKET_QUEUE_GET_CLASS (queue);
+  EvaPacketQueueClass *class = EVA_PACKET_QUEUE_GET_CLASS (queue);
   g_return_val_if_fail (!save_address || queue->allow_address, NULL);
   return (*class->read) (queue, save_address, error);
 }
@@ -123,11 +123,11 @@ eva_packet_queue_read   (GskPacketQueue    *queue,
  * returns: whether the write succeeded.
  */
 gboolean
-eva_packet_queue_write  (GskPacketQueue    *queue,
-			 GskPacket         *out,
+eva_packet_queue_write  (EvaPacketQueue    *queue,
+			 EvaPacket         *out,
 			 GError           **error)
 {
-  GskPacketQueueClass *class = EVA_PACKET_QUEUE_GET_CLASS (queue);
+  EvaPacketQueueClass *class = EVA_PACKET_QUEUE_GET_CLASS (queue);
   g_return_val_if_fail (out->dst_address == NULL || queue->allow_address, FALSE);
   g_return_val_if_fail (out->dst_address != NULL || queue->allow_no_address, FALSE);
   return (*class->write) (queue, out, error);
@@ -145,10 +145,10 @@ eva_packet_queue_write  (GskPacketQueue    *queue,
  * which automatically bind to certain addresses.
  */
 void
-eva_packet_queue_set_bound_addresss (GskPacketQueue   *queue,
-				     GskSocketAddress *address)
+eva_packet_queue_set_bound_addresss (EvaPacketQueue   *queue,
+				     EvaSocketAddress *address)
 {
-  GskSocketAddress *old_address = queue->bound_address;
+  EvaSocketAddress *old_address = queue->bound_address;
   queue->bound_address = address;
   if (address != NULL)
     g_object_ref (address);

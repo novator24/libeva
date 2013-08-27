@@ -20,7 +20,7 @@
         daveb@ffem.org <Dave Benson>
 
 */
-/* GskMainLoopPoll: A main loop based around the poll(2) system call. */
+/* EvaMainLoopPoll: A main loop based around the poll(2) system call. */
 
 
 #ifndef __EVA_MAIN_LOOP_POLL_H_
@@ -33,24 +33,24 @@ G_BEGIN_DECLS
 /* --- type macros --- */
 GType eva_main_loop_poll_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MAIN_LOOP_POLL			(eva_main_loop_poll_get_type ())
-#define EVA_MAIN_LOOP_POLL(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MAIN_LOOP_POLL, GskMainLoopPoll))
-#define EVA_MAIN_LOOP_POLL_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MAIN_LOOP_POLL, GskMainLoopPollClass))
-#define EVA_MAIN_LOOP_POLL_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MAIN_LOOP_POLL, GskMainLoopPollClass))
+#define EVA_MAIN_LOOP_POLL(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MAIN_LOOP_POLL, EvaMainLoopPoll))
+#define EVA_MAIN_LOOP_POLL_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MAIN_LOOP_POLL, EvaMainLoopPollClass))
+#define EVA_MAIN_LOOP_POLL_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MAIN_LOOP_POLL, EvaMainLoopPollClass))
 #define EVA_IS_MAIN_LOOP_POLL(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_MAIN_LOOP_POLL))
 #define EVA_IS_MAIN_LOOP_POLL_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_MAIN_LOOP_POLL))
 
 
 /* --- structures & typedefs --- */
-typedef struct _GskMainLoopPoll GskMainLoopPoll;
-typedef struct _GskMainLoopPollClass GskMainLoopPollClass;
+typedef struct _EvaMainLoopPoll EvaMainLoopPoll;
+typedef struct _EvaMainLoopPollClass EvaMainLoopPollClass;
 
-struct _GskMainLoopPollClass
+struct _EvaMainLoopPollClass
 {
-  GskMainLoopPollBaseClass  main_loop_poll_base_class;
+  EvaMainLoopPollBaseClass  main_loop_poll_base_class;
 };
-struct _GskMainLoopPoll
+struct _EvaMainLoopPoll
 {
-  GskMainLoopPollBase 	    main_loop_poll_base;
+  EvaMainLoopPollBase 	    main_loop_poll_base;
   GArray                   *poll_fds;
   int                       fd_to_poll_fd_alloced;
   int                      *fd_to_poll_fd_index;

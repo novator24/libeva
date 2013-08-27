@@ -15,9 +15,9 @@
 
 G_BEGIN_DECLS
 
-typedef int (*GskForkFunc) (gpointer data);
+typedef int (*EvaForkFunc) (gpointer data);
 
-gint eva_fork (GskForkFunc action,
+gint eva_fork (EvaForkFunc action,
 	       gpointer    data,
 	       GError    **error);
 

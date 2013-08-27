@@ -27,7 +27,7 @@ is_error_signal (guint signal_no)
 }
 
 
-void eva_daemonize_set_defaults  (GskDaemonizeFlags flags,
+void eva_daemonize_set_defaults  (EvaDaemonizeFlags flags,
                                   guint             restart_exit_code)
 {
   if (flags & EVA_DAEMONIZE_RESTART_ERROR_SIGNALS)

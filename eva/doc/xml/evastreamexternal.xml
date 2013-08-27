@@ -1,32 +1,32 @@
-<refentry id="eva-GskStreamExternal">
+<refentry id="eva-EvaStreamExternal">
 <refmeta>
-<refentrytitle role="top_of_page" id="eva-GskStreamExternal.top_of_page">GskStreamExternal</refentrytitle>
+<refentrytitle role="top_of_page" id="eva-EvaStreamExternal.top_of_page">EvaStreamExternal</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskStreamExternal</refname>
+<refname>EvaStreamExternal</refname>
 <refpurpose>streams which connect to another process.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="eva-GskStreamExternal.synopsis" role="synopsis">
+<refsynopsisdiv id="eva-EvaStreamExternal.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-<link linkend="void">void</link>                (<link linkend="GskStreamExternalTerminated">*GskStreamExternalTerminated</link>)      (<link linkend="GskStreamExternal">GskStreamExternal</link> *external,
-                                                         <link linkend="GskMainLoopWaitInfo">GskMainLoopWaitInfo</link> *wait_info,
+<link linkend="void">void</link>                (<link linkend="EvaStreamExternalTerminated">*EvaStreamExternalTerminated</link>)      (<link linkend="EvaStreamExternal">EvaStreamExternal</link> *external,
+                                                         <link linkend="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</link> *wait_info,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="void">void</link>                (<link linkend="GskStreamExternalStderr">*GskStreamExternalStderr</link>)          (<link linkend="GskStreamExternal">GskStreamExternal</link> *external,
+<link linkend="void">void</link>                (<link linkend="EvaStreamExternalStderr">*EvaStreamExternalStderr</link>)          (<link linkend="EvaStreamExternal">EvaStreamExternal</link> *external,
                                                          const <link linkend="char">char</link> *error_text,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-                    <link linkend="GskStreamExternal">GskStreamExternal</link>;
-enum                <link linkend="GskStreamExternalFlags">GskStreamExternalFlags</link>;
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-stream-external-new">eva_stream_external_new</link>             (<link linkend="GskStreamExternalFlags">GskStreamExternalFlags</link> flags,
+                    <link linkend="EvaStreamExternal">EvaStreamExternal</link>;
+enum                <link linkend="EvaStreamExternalFlags">EvaStreamExternalFlags</link>;
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-stream-external-new">eva_stream_external_new</link>             (<link linkend="EvaStreamExternalFlags">EvaStreamExternalFlags</link> flags,
                                                          const <link linkend="char">char</link> *stdin_filename,
                                                          const <link linkend="char">char</link> *stdout_filename,
-                                                         <link linkend="GskStreamExternalTerminated">GskStreamExternalTerminated</link> term_func,
-                                                         <link linkend="GskStreamExternalStderr">GskStreamExternalStderr</link> err_func,
+                                                         <link linkend="EvaStreamExternalTerminated">EvaStreamExternalTerminated</link> term_func,
+                                                         <link linkend="EvaStreamExternalStderr">EvaStreamExternalStderr</link> err_func,
                                                          <link linkend="gpointer">gpointer</link> user_data,
                                                          const <link linkend="char">char</link> *path,
                                                          const <link linkend="char">char</link> *argv[],
@@ -43,7 +43,7 @@ enum                <link linkend="GskStreamExternalFlags">GskStreamExternalFlag
 
 
 
-<refsect1 id="eva-GskStreamExternal.description" role="desc">
+<refsect1 id="eva-EvaStreamExternal.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 These are streams where the input and output
@@ -52,12 +52,12 @@ another process which is exec(2)'d from this one.
 </para>
 </refsect1>
 
-<refsect1 id="eva-GskStreamExternal.details" role="details">
+<refsect1 id="eva-EvaStreamExternal.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskStreamExternalTerminated" role="function">
-<title>GskStreamExternalTerminated ()</title>
-<indexterm zone="GskStreamExternalTerminated"><primary sortas="GskStreamExternalTerminated">GskStreamExternalTerminated</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskStreamExternalTerminated)      (<link linkend="GskStreamExternal">GskStreamExternal</link> *external,
-                                                         <link linkend="GskMainLoopWaitInfo">GskMainLoopWaitInfo</link> *wait_info,
+<refsect2 id="EvaStreamExternalTerminated" role="function">
+<title>EvaStreamExternalTerminated ()</title>
+<indexterm zone="EvaStreamExternalTerminated"><primary sortas="EvaStreamExternalTerminated">EvaStreamExternalTerminated</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaStreamExternalTerminated)      (<link linkend="EvaStreamExternal">EvaStreamExternal</link> *external,
+                                                         <link linkend="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</link> *wait_info,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 Function to run when the process underlying the stream is terminated.
@@ -72,9 +72,9 @@ Function to run when the process underlying the stream is terminated.
 <listitem><simpara>passed in from <link linkend="eva-stream-external-new"><function>eva_stream_external_new()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskStreamExternalStderr" role="function">
-<title>GskStreamExternalStderr ()</title>
-<indexterm zone="GskStreamExternalStderr"><primary sortas="GskStreamExternalStderr">GskStreamExternalStderr</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskStreamExternalStderr)          (<link linkend="GskStreamExternal">GskStreamExternal</link> *external,
+<refsect2 id="EvaStreamExternalStderr" role="function">
+<title>EvaStreamExternalStderr ()</title>
+<indexterm zone="EvaStreamExternalStderr"><primary sortas="EvaStreamExternalStderr">EvaStreamExternalStderr</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaStreamExternalStderr)          (<link linkend="EvaStreamExternal">EvaStreamExternal</link> *external,
                                                          const <link linkend="char">char</link> *error_text,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
@@ -91,45 +91,45 @@ of the subprocess.  The line has had the newline chopped from it.
 <listitem><simpara>passed in from <link linkend="eva-stream-external-new"><function>eva_stream_external_new()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskStreamExternal" role="struct">
-<title>GskStreamExternal</title>
-<indexterm zone="GskStreamExternal"><primary sortas="GskStreamExternal">GskStreamExternal</primary></indexterm><programlisting>typedef struct {
-  GskStream      stream;
+<refsect2 id="EvaStreamExternal" role="struct">
+<title>EvaStreamExternal</title>
+<indexterm zone="EvaStreamExternal"><primary sortas="EvaStreamExternal">EvaStreamExternal</primary></indexterm><programlisting>typedef struct {
+  EvaStream      stream;
 
   /* stdin for the process */
   int write_fd;
-  GskSource *write_source;
-  GskBuffer write_buffer;
+  EvaSource *write_source;
+  EvaBuffer write_buffer;
   gsize max_write_buffer;
 
   /* stdout for the process */
   int read_fd;
-  GskSource *read_source;
-  GskBuffer read_buffer;
+  EvaSource *read_source;
+  EvaBuffer read_buffer;
   gsize max_read_buffer;
 
   /* stderr for the process */
   int read_err_fd;
-  GskSource *read_err_source;
-  GskBuffer read_err_buffer;
+  EvaSource *read_err_source;
+  EvaBuffer read_err_buffer;
   gsize max_err_line_length;
 
   /* process-termination notification */
-  GskSource *process_source;
+  EvaSource *process_source;
   glong pid;
 
   /* user-callback information */
-  GskStreamExternalTerminated term_func;
-  GskStreamExternalStderr err_func;
+  EvaStreamExternalTerminated term_func;
+  EvaStreamExternalStderr err_func;
   gpointer user_data;
-} GskStreamExternal;
+} EvaStreamExternal;
 </programlisting>
 <para>
 Instance of an object whose input and output come
 from another process.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskStream">GskStream</link>&#160;<structfield>stream</structfield>;</term>
+<term><link linkend="EvaStream">EvaStream</link>&#160;<structfield>stream</structfield>;</term>
 <listitem><simpara>parent instance.
 </simpara></listitem>
 </varlistentry>
@@ -140,12 +140,12 @@ standard-input of the child process).
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskSource">GskSource</link>&#160;*<structfield>write_source</structfield>;</term>
+<term><link linkend="EvaSource">EvaSource</link>&#160;*<structfield>write_source</structfield>;</term>
 <listitem><simpara>notification that it's ready to write.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskBuffer">GskBuffer</link>&#160;<structfield>write_buffer</structfield>;</term>
+<term><link linkend="EvaBuffer">EvaBuffer</link>&#160;<structfield>write_buffer</structfield>;</term>
 <listitem><simpara>data pending to be written.
 </simpara></listitem>
 </varlistentry>
@@ -161,12 +161,12 @@ standard-output of the child process).
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskSource">GskSource</link>&#160;*<structfield>read_source</structfield>;</term>
+<term><link linkend="EvaSource">EvaSource</link>&#160;*<structfield>read_source</structfield>;</term>
 <listitem><simpara>notification that it's ready to read.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskBuffer">GskBuffer</link>&#160;<structfield>read_buffer</structfield>;</term>
+<term><link linkend="EvaBuffer">EvaBuffer</link>&#160;<structfield>read_buffer</structfield>;</term>
 <listitem><simpara>data pending read from child.
 </simpara></listitem>
 </varlistentry>
@@ -182,12 +182,12 @@ standard-error of the child process).
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskSource">GskSource</link>&#160;*<structfield>read_err_source</structfield>;</term>
+<term><link linkend="EvaSource">EvaSource</link>&#160;*<structfield>read_err_source</structfield>;</term>
 <listitem><simpara>notification that the error stream is ready-to-read.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskBuffer">GskBuffer</link>&#160;<structfield>read_err_buffer</structfield>;</term>
+<term><link linkend="EvaBuffer">EvaBuffer</link>&#160;<structfield>read_err_buffer</structfield>;</term>
 <listitem><simpara>data pending from error stream.
 </simpara></listitem>
 </varlistentry>
@@ -197,7 +197,7 @@ standard-error of the child process).
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskSource">GskSource</link>&#160;*<structfield>process_source</structfield>;</term>
+<term><link linkend="EvaSource">EvaSource</link>&#160;*<structfield>process_source</structfield>;</term>
 <listitem><simpara>process-termination notification.
 </simpara></listitem>
 </varlistentry>
@@ -207,12 +207,12 @@ standard-error of the child process).
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskStreamExternalTerminated">GskStreamExternalTerminated</link>&#160;<structfield>term_func</structfield>;</term>
+<term><link linkend="EvaStreamExternalTerminated">EvaStreamExternalTerminated</link>&#160;<structfield>term_func</structfield>;</term>
 <listitem><simpara>function to call when the child process dies.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskStreamExternalStderr">GskStreamExternalStderr</link>&#160;<structfield>err_func</structfield>;</term>
+<term><link linkend="EvaStreamExternalStderr">EvaStreamExternalStderr</link>&#160;<structfield>err_func</structfield>;</term>
 <listitem><simpara>function to call with standard error data.
 </simpara></listitem>
 </varlistentry>
@@ -222,13 +222,13 @@ standard-error of the child process).
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskStreamExternalFlags" role="enum">
-<title>enum GskStreamExternalFlags</title>
-<indexterm zone="GskStreamExternalFlags"><primary sortas="GskStreamExternalFlags">GskStreamExternalFlags</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaStreamExternalFlags" role="enum">
+<title>enum EvaStreamExternalFlags</title>
+<indexterm zone="EvaStreamExternalFlags"><primary sortas="EvaStreamExternalFlags">EvaStreamExternalFlags</primary></indexterm><programlisting>typedef enum
 {
   EVA_STREAM_EXTERNAL_ALLOCATE_PSEUDOTTY = (1&lt;&lt;2),
   EVA_STREAM_EXTERNAL_SEARCH_PATH        = (1&lt;&lt;3)
-} GskStreamExternalFlags;
+} EvaStreamExternalFlags;
 </programlisting>
 <para>
 Flags which affect the construction of the stream.
@@ -249,11 +249,11 @@ Search along $PATH for the binary.
 </variablelist></refsect2>
 <refsect2 id="eva-stream-external-new" role="function">
 <title>eva_stream_external_new ()</title>
-<indexterm zone="eva-stream-external-new"><primary sortas="eva_stream_external_new">eva_stream_external_new</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_stream_external_new             (<link linkend="GskStreamExternalFlags">GskStreamExternalFlags</link> flags,
+<indexterm zone="eva-stream-external-new"><primary sortas="eva_stream_external_new">eva_stream_external_new</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_stream_external_new             (<link linkend="EvaStreamExternalFlags">EvaStreamExternalFlags</link> flags,
                                                          const <link linkend="char">char</link> *stdin_filename,
                                                          const <link linkend="char">char</link> *stdout_filename,
-                                                         <link linkend="GskStreamExternalTerminated">GskStreamExternalTerminated</link> term_func,
-                                                         <link linkend="GskStreamExternalStderr">GskStreamExternalStderr</link> err_func,
+                                                         <link linkend="EvaStreamExternalTerminated">EvaStreamExternalTerminated</link> term_func,
+                                                         <link linkend="EvaStreamExternalStderr">EvaStreamExternalStderr</link> err_func,
                                                          <link linkend="gpointer">gpointer</link> user_data,
                                                          const <link linkend="char">char</link> *path,
                                                          const <link linkend="char">char</link> *argv[],

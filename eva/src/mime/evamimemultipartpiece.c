@@ -7,9 +7,9 @@
  *
  * returns: the newly allocated MIME piece.
  */
-GskMimeMultipartPiece *eva_mime_multipart_piece_alloc (void)
+EvaMimeMultipartPiece *eva_mime_multipart_piece_alloc (void)
 {
-  GskMimeMultipartPiece *rv = g_new0 (GskMimeMultipartPiece, 1);
+  EvaMimeMultipartPiece *rv = g_new0 (EvaMimeMultipartPiece, 1);
   rv->ref_count = 1;
   return rv;
 }
@@ -23,7 +23,7 @@ GskMimeMultipartPiece *eva_mime_multipart_piece_alloc (void)
  *
  * returns: the @piece, for convenience.
  */
-GskMimeMultipartPiece *eva_mime_multipart_piece_ref   (GskMimeMultipartPiece *piece)
+EvaMimeMultipartPiece *eva_mime_multipart_piece_ref   (EvaMimeMultipartPiece *piece)
 {
   g_return_val_if_fail (piece->ref_count > 0, NULL);
   ++(piece->ref_count);
@@ -38,7 +38,7 @@ GskMimeMultipartPiece *eva_mime_multipart_piece_ref   (GskMimeMultipartPiece *pi
  * when its reference-count hits 0.
  */
 void
-eva_mime_multipart_piece_unref (GskMimeMultipartPiece *piece)
+eva_mime_multipart_piece_unref (EvaMimeMultipartPiece *piece)
 {
   g_return_if_fail (piece->ref_count > 0);
   --(piece->ref_count);
@@ -76,7 +76,7 @@ eva_mime_multipart_piece_unref (GskMimeMultipartPiece *piece)
  * with destroy notification.
  */
 void
-eva_mime_multipart_piece_set_data (GskMimeMultipartPiece *piece,
+eva_mime_multipart_piece_set_data (EvaMimeMultipartPiece *piece,
 				   gconstpointer          data,
 				   guint                  len,
 				   GDestroyNotify         destroy,
@@ -99,8 +99,8 @@ eva_mime_multipart_piece_set_data (GskMimeMultipartPiece *piece,
  * Set the content of a MIME piece to the @stream.
  */
 void
-eva_mime_multipart_piece_set_stream(GskMimeMultipartPiece *piece,
-				    GskStream             *stream)
+eva_mime_multipart_piece_set_stream(EvaMimeMultipartPiece *piece,
+				    EvaStream             *stream)
 {
   g_return_if_fail (piece->content == NULL);
   g_return_if_fail (piece->is_memory == FALSE);
@@ -116,7 +116,7 @@ eva_mime_multipart_piece_set_stream(GskMimeMultipartPiece *piece,
  * Set the Content-Description tag for this MIME piece.
  */
 void 
-eva_mime_multipart_piece_set_description(GskMimeMultipartPiece *piece,
+eva_mime_multipart_piece_set_description(EvaMimeMultipartPiece *piece,
 					 const char            *description)
 {
   g_free (piece->description);
@@ -133,7 +133,7 @@ eva_mime_multipart_piece_set_description(GskMimeMultipartPiece *piece,
  * See: XXX?
  */
 void
-eva_mime_multipart_piece_set_id    (GskMimeMultipartPiece *piece,
+eva_mime_multipart_piece_set_id    (EvaMimeMultipartPiece *piece,
 				    const char            *id)
 {
   g_free (piece->id);
@@ -141,7 +141,7 @@ eva_mime_multipart_piece_set_id    (GskMimeMultipartPiece *piece,
 }
 
 void
-eva_mime_multipart_piece_set_location   (GskMimeMultipartPiece *piece,
+eva_mime_multipart_piece_set_location   (EvaMimeMultipartPiece *piece,
 				         const char            *location)
 {
   g_free (piece->location);
@@ -164,7 +164,7 @@ eva_mime_multipart_piece_set_location   (GskMimeMultipartPiece *piece,
  */
 void
 eva_mime_multipart_piece_set_transfer_encoding
-                                        (GskMimeMultipartPiece *piece,
+                                        (EvaMimeMultipartPiece *piece,
 					 const char            *encoding)
 {
   /* TODO: check that the encoding is valid. */
@@ -186,7 +186,7 @@ eva_mime_multipart_piece_set_transfer_encoding
  * Set the content-type for the given MIME piece.
  */
 void
-eva_mime_multipart_piece_set_type (GskMimeMultipartPiece *piece,
+eva_mime_multipart_piece_set_type (EvaMimeMultipartPiece *piece,
 				   const char            *type,
 				   const char            *subtype,
 				   const char            *charset,

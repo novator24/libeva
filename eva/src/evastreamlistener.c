@@ -21,9 +21,9 @@ static GObjectClass *parent_class = NULL;
  * then @err_func and @destroy will be run.
  */
 void
-eva_stream_listener_handle_accept   (GskStreamListener *listener,
-				     GskStreamListenerAcceptFunc func,
-				     GskStreamListenerErrorFunc err_func,
+eva_stream_listener_handle_accept   (EvaStreamListener *listener,
+				     EvaStreamListenerAcceptFunc func,
+				     EvaStreamListenerErrorFunc err_func,
 				     gpointer           data,
 				     GDestroyNotify     destroy)
 {
@@ -47,8 +47,8 @@ eva_stream_listener_handle_accept   (GskStreamListener *listener,
  * a new stream has been accepted.
  */
 void
-eva_stream_listener_notify_accepted (GskStreamListener *stream_listener,
-				     GskStream         *new_stream)
+eva_stream_listener_notify_accepted (EvaStreamListener *stream_listener,
+				     EvaStream         *new_stream)
 {
   GError *error = NULL;
 
@@ -83,7 +83,7 @@ eva_stream_listener_notify_accepted (GskStreamListener *stream_listener,
  * an error has occurred.
  */
 void
-eva_stream_listener_notify_error    (GskStreamListener *stream_listener,
+eva_stream_listener_notify_error    (EvaStreamListener *stream_listener,
 				     GError            *error)
 {
   if (stream_listener->error_func != NULL)
@@ -99,7 +99,7 @@ eva_stream_listener_notify_error    (GskStreamListener *stream_listener,
 static void
 eva_stream_listener_finalize (GObject *object)
 {
-  GskStreamListener *listener = EVA_STREAM_LISTENER (object);
+  EvaStreamListener *listener = EVA_STREAM_LISTENER (object);
   if (listener->last_error != NULL)
     g_error_free (listener->last_error);
   if (listener->destroy)
@@ -109,12 +109,12 @@ eva_stream_listener_finalize (GObject *object)
 
 /* --- functions --- */
 static void
-eva_stream_listener_init (GskStreamListener *stream_listener)
+eva_stream_listener_init (EvaStreamListener *stream_listener)
 {
 }
 
 static void
-eva_stream_listener_class_init (GskStreamListenerClass *class)
+eva_stream_listener_class_init (EvaStreamListenerClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
@@ -128,20 +128,20 @@ GType eva_stream_listener_get_type()
     {
       static const GTypeInfo stream_listener_info =
       {
-	sizeof(GskStreamListenerClass),
+	sizeof(EvaStreamListenerClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_stream_listener_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskStreamListener),
+	sizeof (EvaStreamListener),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_stream_listener_init,
 	NULL		/* value_table */
       };
       GType parent = G_TYPE_OBJECT;
       stream_listener_type = g_type_register_static (parent,
-                                                  "GskStreamListener",
+                                                  "EvaStreamListener",
 						  &stream_listener_info, 0);
     }
   return stream_listener_type;

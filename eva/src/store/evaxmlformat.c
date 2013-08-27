@@ -6,12 +6,12 @@
 
 /*
  *
- * GskXmlValueRequest
+ * EvaXmlValueRequest
  *
  */
 
-typedef GskValueRequestClass       GskXmlValueRequestClass;
-typedef struct _GskXmlValueRequest GskXmlValueRequest;
+typedef EvaValueRequestClass       EvaXmlValueRequestClass;
+typedef struct _EvaXmlValueRequest EvaXmlValueRequest;
 
 GType eva_xml_value_request_get_type (void) G_GNUC_CONST;
 
@@ -19,26 +19,26 @@ GType eva_xml_value_request_get_type (void) G_GNUC_CONST;
 #define EVA_XML_VALUE_REQUEST(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
 			       EVA_TYPE_XML_VALUE_REQUEST, \
-			       GskXmlValueRequest))
+			       EvaXmlValueRequest))
 #define EVA_IS_XML_VALUE_REQUEST(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_XML_VALUE_REQUEST))
 
-struct _GskXmlValueRequest
+struct _EvaXmlValueRequest
 {
-  GskValueRequest value_request;
+  EvaValueRequest value_request;
 
-  GskStream *stream;
-  GskXmlValueReader *xml_value_reader;
+  EvaStream *stream;
+  EvaXmlValueReader *xml_value_reader;
 };
 
 static GObjectClass *eva_xml_value_request_parent_class = NULL;
 
-/* GskXmlValueFunc */
+/* EvaXmlValueFunc */
 static void
 handle_value (const GValue *value, gpointer user_data)
 {
-  GskXmlValueRequest *request = EVA_XML_VALUE_REQUEST (user_data);
-  GskStream *stream = request->stream;
+  EvaXmlValueRequest *request = EVA_XML_VALUE_REQUEST (user_data);
+  EvaStream *stream = request->stream;
   GError *error = NULL;
 
   g_return_if_fail (value);
@@ -56,10 +56,10 @@ handle_value (const GValue *value, gpointer user_data)
 }
 
 static gboolean
-handle_stream_is_readable (GskIO *io, gpointer user_data)
+handle_stream_is_readable (EvaIO *io, gpointer user_data)
 {
-  GskXmlValueRequest *request = EVA_XML_VALUE_REQUEST (user_data);
-  GskStream *stream = request->stream;
+  EvaXmlValueRequest *request = EVA_XML_VALUE_REQUEST (user_data);
+  EvaStream *stream = request->stream;
   GError *error = NULL;
   char buf[ATOMIC_READ_SIZE];
   guint num_read;
@@ -88,10 +88,10 @@ ERROR:
 }
 
 static gboolean
-handle_stream_shutdown_read (GskIO *io, gpointer user_data)
+handle_stream_shutdown_read (EvaIO *io, gpointer user_data)
 {
-  GskXmlValueRequest *request = EVA_XML_VALUE_REQUEST (user_data);
-  GskStream *stream = request->stream;
+  EvaXmlValueRequest *request = EVA_XML_VALUE_REQUEST (user_data);
+  EvaStream *stream = request->stream;
 
   g_return_val_if_fail (stream == EVA_STREAM (io), FALSE);
 
@@ -116,8 +116,8 @@ handle_stream_shutdown_read (GskIO *io, gpointer user_data)
 static void
 handle_stream_is_readable_destroy (gpointer user_data)
 {
-  GskXmlValueRequest *request = EVA_XML_VALUE_REQUEST (user_data);
-  GskStream *stream = request->stream;
+  EvaXmlValueRequest *request = EVA_XML_VALUE_REQUEST (user_data);
+  EvaStream *stream = request->stream;
 
   g_return_if_fail (stream);
   g_object_unref (stream);
@@ -127,13 +127,13 @@ handle_stream_is_readable_destroy (gpointer user_data)
   g_object_unref (request);
 }
 
-/* GskRequest methods. */
+/* EvaRequest methods. */
 
 static void
-eva_xml_value_request_cancelled (GskRequest *request_parent)
+eva_xml_value_request_cancelled (EvaRequest *request_parent)
 {
-  GskXmlValueRequest *request = EVA_XML_VALUE_REQUEST (request_parent);
-  GskStream *stream = request->stream;
+  EvaXmlValueRequest *request = EVA_XML_VALUE_REQUEST (request_parent);
+  EvaStream *stream = request->stream;
 
   g_return_if_fail (stream);
   eva_io_read_shutdown (EVA_IO (stream), NULL);
@@ -141,10 +141,10 @@ eva_xml_value_request_cancelled (GskRequest *request_parent)
 }
 
 static void
-eva_xml_value_request_start (GskRequest *request_parent)
+eva_xml_value_request_start (EvaRequest *request_parent)
 {
-  GskXmlValueRequest *request = EVA_XML_VALUE_REQUEST (request_parent);
-  GskStream *stream = request->stream;
+  EvaXmlValueRequest *request = EVA_XML_VALUE_REQUEST (request_parent);
+  EvaStream *stream = request->stream;
 
   g_return_if_fail (!eva_request_get_is_running (request));
   g_return_if_fail (!eva_request_get_is_cancelled (request));
@@ -167,7 +167,7 @@ eva_xml_value_request_start (GskRequest *request_parent)
 static void
 eva_xml_value_request_finalize (GObject *object)
 {
-  GskXmlValueRequest *request = EVA_XML_VALUE_REQUEST (object);
+  EvaXmlValueRequest *request = EVA_XML_VALUE_REQUEST (object);
 
   if (request->stream)
     g_object_unref (request->stream);
@@ -178,7 +178,7 @@ eva_xml_value_request_finalize (GObject *object)
 }
 
 static void
-eva_xml_value_request_class_init (GskRequestClass *request_class)
+eva_xml_value_request_class_init (EvaRequestClass *request_class)
 {
   eva_xml_value_request_parent_class =
     g_type_class_peek_parent (request_class);
@@ -195,19 +195,19 @@ eva_xml_value_request_get_type (void)
     {
       static const GTypeInfo type_info =
 	{
-	  sizeof (GskXmlValueRequestClass),
+	  sizeof (EvaXmlValueRequestClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) eva_xml_value_request_class_init,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskXmlValueRequest),
+	  sizeof (EvaXmlValueRequest),
 	  0,		/* n_preallocs */
 	  (GInstanceInitFunc) NULL,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (EVA_TYPE_VALUE_REQUEST,
-				     "GskXmlValueRequest",
+				     "EvaXmlValueRequest",
 				     &type_info,
 				     0);
     }
@@ -216,25 +216,25 @@ eva_xml_value_request_get_type (void)
 
 /*
  *
- * GskXmlFormat
+ * EvaXmlFormat
  *
  */
 
 static GObjectClass *eva_xml_format_parent_class = NULL;
 
 /*
- * GskStorageFormat methods.
+ * EvaStorageFormat methods.
  */
 
-static GskValueRequest *
-eva_xml_format_deserialize (GskStorageFormat  *storage_format,
-			    GskStream         *stream,
+static EvaValueRequest *
+eva_xml_format_deserialize (EvaStorageFormat  *storage_format,
+			    EvaStream         *stream,
 			    GType              value_type,
 			    GError           **error)
 {
-  GskXmlFormat *xml_format = EVA_XML_FORMAT (storage_format);
-  GskGtypeLoader *type_loader = xml_format->type_loader;
-  GskXmlValueRequest *request;
+  EvaXmlFormat *xml_format = EVA_XML_FORMAT (storage_format);
+  EvaGtypeLoader *type_loader = xml_format->type_loader;
+  EvaXmlValueRequest *request;
 
   (void) error;
 
@@ -250,7 +250,7 @@ eva_xml_format_deserialize (GskStorageFormat  *storage_format,
   request->stream = stream;
   g_object_ref (stream);
 
-  /* The GskXmlValueReader can only call us back when we feed data to
+  /* The EvaXmlValueReader can only call us back when we feed data to
    * it, so no request reference needed here.
    */
   request->xml_value_reader =
@@ -264,8 +264,8 @@ eva_xml_format_deserialize (GskStorageFormat  *storage_format,
   return EVA_VALUE_REQUEST (request);
 }
 
-static GskStream *
-eva_xml_format_serialize (GskStorageFormat  *format,
+static EvaStream *
+eva_xml_format_serialize (EvaStorageFormat  *format,
 			  const GValue      *value,
 			  GError           **error)
 {
@@ -281,7 +281,7 @@ eva_xml_format_serialize (GskStorageFormat  *format,
 static void
 eva_xml_format_finalize (GObject *object)
 {
-  GskXmlFormat *self = EVA_XML_FORMAT (object);
+  EvaXmlFormat *self = EVA_XML_FORMAT (object);
 
   if (self->type_loader)
     eva_gtype_loader_unref (self->type_loader);
@@ -297,7 +297,7 @@ eva_xml_format_class_init (GObjectClass *object_class)
 }
 
 static void
-eva_xml_format_interface_init (GskStorageFormatIface *iface, gpointer unused)
+eva_xml_format_interface_init (EvaStorageFormatIface *iface, gpointer unused)
 {
   (void) unused;
   iface->serialize = eva_xml_format_serialize;
@@ -318,19 +318,19 @@ eva_xml_format_get_type (void)
 	};
       static const GTypeInfo info =
 	{
-	  sizeof (GskXmlFormatClass),
+	  sizeof (EvaXmlFormatClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) eva_xml_format_class_init,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskXmlFormat),
+	  sizeof (EvaXmlFormat),
 	  0,		/* n_preallocs */
 	  (GInstanceInitFunc) NULL,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (G_TYPE_OBJECT,
-				     "GskXmlFormat",
+				     "EvaXmlFormat",
 				     &info,
 				     0);
       g_type_add_interface_static (type,

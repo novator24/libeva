@@ -6,46 +6,46 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskControlServer GskControlServer;
+typedef struct _EvaControlServer EvaControlServer;
 
-GskControlServer *
+EvaControlServer *
 eva_control_server_new (void);
 
 
-typedef gboolean (*GskControlServerCommandFunc) (char **argv,
-                                                 GskStream *input,      /* for POST data */
-                                                 GskStream **output,    /* content: must be plain text */
+typedef gboolean (*EvaControlServerCommandFunc) (char **argv,
+                                                 EvaStream *input,      /* for POST data */
+                                                 EvaStream **output,    /* content: must be plain text */
                                                  gpointer data,
                                                  GError **error);
 void
-eva_control_server_add_command (GskControlServer *server,
+eva_control_server_add_command (EvaControlServer *server,
                                 const char       *command_name,
-                                GskControlServerCommandFunc func,
+                                EvaControlServerCommandFunc func,
                                 gpointer          data);
 
 void
 eva_control_server_set_default_command
-                               (GskControlServer *server,
-                                GskControlServerCommandFunc func,
+                               (EvaControlServer *server,
+                                EvaControlServerCommandFunc func,
                                 gpointer          data);
 
 gboolean
-eva_control_server_set_file    (GskControlServer *server,
+eva_control_server_set_file    (EvaControlServer *server,
                                 const char       *path,
                                 const guint8     *content,
                                 guint             content_length,
                                 GError          **error);
 
-typedef void (*GskControlServerVFileContentsFunc) (gpointer  vfile_data,
+typedef void (*EvaControlServerVFileContentsFunc) (gpointer  vfile_data,
                                                    guint    *len_out,
                                                    guint8   **contents_out,
                                                    GDestroyNotify *done_with_contents_out,
                                                    gpointer *done_with_contents_data_out);
 
 gboolean
-eva_control_server_set_vfile   (GskControlServer *server,
+eva_control_server_set_vfile   (EvaControlServer *server,
                                 const char       *path,
-                                GskControlServerVFileContentsFunc vfile_func,
+                                EvaControlServerVFileContentsFunc vfile_func,
                                 gpointer          vfile_data,
                                 GDestroyNotify    vfile_data_destroy,
                                 GError           **error);
@@ -54,16 +54,16 @@ typedef struct
 {
   const char *domain;
   GLogLevelFlags levels;
-} GskControlServerLogDomain;
+} EvaControlServerLogDomain;
 
 void
-eva_control_server_set_logfile_v (GskControlServer *server,
+eva_control_server_set_logfile_v (EvaControlServer *server,
                                   const char       *path,
                                   guint             ring_buffer_size,
                                   guint             n_log_domains,
-                                  const GskControlServerLogDomain *domains);
+                                  const EvaControlServerLogDomain *domains);
 void
-eva_control_server_set_logfile   (GskControlServer *server,
+eva_control_server_set_logfile   (EvaControlServer *server,
                                   const char       *path,
                                   guint             ring_buffer_size,
                                   const char       *first_log_domain,
@@ -72,12 +72,12 @@ eva_control_server_set_logfile   (GskControlServer *server,
                                   ...);
 
 gboolean
-eva_control_server_delete_file (GskControlServer *server,
+eva_control_server_delete_file (EvaControlServer *server,
                                 const char       *path,
                                 GError          **error);
 
 gboolean
-eva_control_server_delete_directory (GskControlServer *server,
+eva_control_server_delete_directory (EvaControlServer *server,
                                      const char       *path,
                                      GError          **error);
 
@@ -88,20 +88,20 @@ typedef enum
   EVA_CONTROL_SERVER_FILE_VIRTUAL,
   EVA_CONTROL_SERVER_FILE_DIR,
   EVA_CONTROL_SERVER_FILE_NOT_EXIST
-} GskControlServerFileStat;
+} EvaControlServerFileStat;
 
-GskControlServerFileStat
-eva_control_server_stat        (GskControlServer *server,
+EvaControlServerFileStat
+eva_control_server_stat        (EvaControlServer *server,
                                 const char       *path);
 
 gboolean
-eva_control_server_peek_raw_file (GskControlServer *server,
+eva_control_server_peek_raw_file (EvaControlServer *server,
                                   const char       *path,
                                   const guint8    **content_out,
                                   guint            *content_length_out);
 gboolean
 eva_control_server_get_vfile_contents
-                                 (GskControlServer *server,
+                                 (EvaControlServer *server,
                                   const char       *path,
                                   guint8          **content_out,
                                   guint            *content_length_out,
@@ -112,8 +112,8 @@ eva_control_server_get_vfile_contents
 
 
 gboolean
-eva_control_server_listen (GskControlServer *server,
-                           GskSocketAddress *address,
+eva_control_server_listen (EvaControlServer *server,
+                           EvaSocketAddress *address,
                            GError          **error);
 
 G_END_DECLS

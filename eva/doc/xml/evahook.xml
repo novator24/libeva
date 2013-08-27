@@ -15,15 +15,15 @@ structure inside a GObject.</refpurpose>
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskHook">GskHook</link>;
-<link linkend="gboolean">gboolean</link>            (<link linkend="GskHookFunc">*GskHookFunc</link>)                      (<link linkend="GObject">GObject</link> *object,
+                    <link linkend="EvaHook">EvaHook</link>;
+<link linkend="gboolean">gboolean</link>            (<link linkend="EvaHookFunc">*EvaHookFunc</link>)                      (<link linkend="GObject">GObject</link> *object,
                                                          <link linkend="gpointer">gpointer</link> data);
-<link linkend="void">void</link>                (<link linkend="GskHookSetPollFunc">*GskHookSetPollFunc</link>)               (<link linkend="GObject">GObject</link> *object,
+<link linkend="void">void</link>                (<link linkend="EvaHookSetPollFunc">*EvaHookSetPollFunc</link>)               (<link linkend="GObject">GObject</link> *object,
                                                          <link linkend="gboolean">gboolean</link> do_polling);
-<link linkend="void">void</link>                (<link linkend="GskHookShutdownFunc">*GskHookShutdownFunc</link>)              (<link linkend="GObject">GObject</link> *object);
-<link linkend="gboolean">gboolean</link>            (<link linkend="GskHookShutdownErrorFunc">*GskHookShutdownErrorFunc</link>)         (<link linkend="GObject">GObject</link> *object,
+<link linkend="void">void</link>                (<link linkend="EvaHookShutdownFunc">*EvaHookShutdownFunc</link>)              (<link linkend="GObject">GObject</link> *object);
+<link linkend="gboolean">gboolean</link>            (<link linkend="EvaHookShutdownErrorFunc">*EvaHookShutdownErrorFunc</link>)         (<link linkend="GObject">GObject</link> *object,
                                                          <link linkend="GError">GError</link> **error);
-enum                <link linkend="GskHookFlags">GskHookFlags</link>;
+enum                <link linkend="EvaHookFlags">EvaHookFlags</link>;
 #define             <link linkend="EVA-HOOK-GET-OBJECT--CAPS">EVA_HOOK_GET_OBJECT</link>                 (hook)
 #define             <link linkend="EVA-HOOK-TEST-FLAG--CAPS">EVA_HOOK_TEST_FLAG</link>                  (hook, flag_shortname)
 #define             <link linkend="EVA-HOOK-SET-FLAG--CAPS">EVA_HOOK_SET_FLAG</link>
@@ -35,34 +35,34 @@ enum                <link linkend="GskHookFlags">GskHookFlags</link>;
 #define             <link linkend="EVA-HOOK-TEST-NEVER-BLOCKS--CAPS">EVA_HOOK_TEST_NEVER_BLOCKS</link>          (hook)
 #define             <link linkend="EVA-HOOK-TEST-IS-AVAILABLE--CAPS">EVA_HOOK_TEST_IS_AVAILABLE</link>          (hook)
 #define             <link linkend="EVA-HOOK-TEST-IDLE-NOTIFY--CAPS">EVA_HOOK_TEST_IDLE_NOTIFY</link>           (hook)
-<link linkend="void">void</link>                <link linkend="eva-hook-trap">eva_hook_trap</link>                       (<link linkend="GskHook">GskHook</link> *hook,
-                                                         <link linkend="GskHookFunc">GskHookFunc</link> func,
-                                                         <link linkend="GskHookFunc">GskHookFunc</link> shutdown,
+<link linkend="void">void</link>                <link linkend="eva-hook-trap">eva_hook_trap</link>                       (<link linkend="EvaHook">EvaHook</link> *hook,
+                                                         <link linkend="EvaHookFunc">EvaHookFunc</link> func,
+                                                         <link linkend="EvaHookFunc">EvaHookFunc</link> shutdown,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="void">void</link>                <link linkend="eva-hook-untrap">eva_hook_untrap</link>                     (<link linkend="GskHook">GskHook</link> *hook);
+<link linkend="void">void</link>                <link linkend="eva-hook-untrap">eva_hook_untrap</link>                     (<link linkend="EvaHook">EvaHook</link> *hook);
 #define             <link linkend="eva-hook-is-trapped">eva_hook_is_trapped</link>                 (hook)
-<link linkend="void">void</link>                <link linkend="eva-hook-block">eva_hook_block</link>                      (<link linkend="GskHook">GskHook</link> *hook);
-<link linkend="void">void</link>                <link linkend="eva-hook-unblock">eva_hook_unblock</link>                    (<link linkend="GskHook">GskHook</link> *hook);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-hook-shutdown">eva_hook_shutdown</link>                   (<link linkend="GskHook">GskHook</link> *hook,
+<link linkend="void">void</link>                <link linkend="eva-hook-block">eva_hook_block</link>                      (<link linkend="EvaHook">EvaHook</link> *hook);
+<link linkend="void">void</link>                <link linkend="eva-hook-unblock">eva_hook_unblock</link>                    (<link linkend="EvaHook">EvaHook</link> *hook);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-hook-shutdown">eva_hook_shutdown</link>                   (<link linkend="EvaHook">EvaHook</link> *hook,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="void">void</link>                <link linkend="eva-hook-init">eva_hook_init</link>                       (<link linkend="GskHook">GskHook</link> *hook,
-                                                         <link linkend="GskHookFlags">GskHookFlags</link> flags,
+<link linkend="void">void</link>                <link linkend="eva-hook-init">eva_hook_init</link>                       (<link linkend="EvaHook">EvaHook</link> *hook,
+                                                         <link linkend="EvaHookFlags">EvaHookFlags</link> flags,
                                                          <link linkend="guint">guint</link> inset,
                                                          <link linkend="guint">guint</link> class_set_poll_offset,
                                                          <link linkend="guint">guint</link> class_shutdown_offset);
 <link linkend="void">void</link>                <link linkend="eva-hook-class-init">eva_hook_class_init</link>                 (<link linkend="GObjectClass">GObjectClass</link> *object_class,
                                                          const <link linkend="char">char</link> *name,
                                                          <link linkend="guint">guint</link> hook_offset);
-<link linkend="void">void</link>                <link linkend="eva-hook-notify">eva_hook_notify</link>                     (<link linkend="GskHook">GskHook</link> *hook);
-<link linkend="void">void</link>                <link linkend="eva-hook-notify-shutdown">eva_hook_notify_shutdown</link>            (<link linkend="GskHook">GskHook</link> *hook);
-<link linkend="void">void</link>                <link linkend="eva-hook-destruct">eva_hook_destruct</link>                   (<link linkend="GskHook">GskHook</link> *hook);
-<link linkend="void">void</link>                <link linkend="eva-hook-set-idle-notify">eva_hook_set_idle_notify</link>            (<link linkend="GskHook">GskHook</link> *hook,
+<link linkend="void">void</link>                <link linkend="eva-hook-notify">eva_hook_notify</link>                     (<link linkend="EvaHook">EvaHook</link> *hook);
+<link linkend="void">void</link>                <link linkend="eva-hook-notify-shutdown">eva_hook_notify_shutdown</link>            (<link linkend="EvaHook">EvaHook</link> *hook);
+<link linkend="void">void</link>                <link linkend="eva-hook-destruct">eva_hook_destruct</link>                   (<link linkend="EvaHook">EvaHook</link> *hook);
+<link linkend="void">void</link>                <link linkend="eva-hook-set-idle-notify">eva_hook_set_idle_notify</link>            (<link linkend="EvaHook">EvaHook</link> *hook,
                                                          <link linkend="gboolean">gboolean</link> should_idle_notify);
-<link linkend="void">void</link>                <link linkend="eva-hook-mark-idle-notify">eva_hook_mark_idle_notify</link>           (<link linkend="GskHook">GskHook</link> *hook);
-<link linkend="void">void</link>                <link linkend="eva-hook-clear-idle-notify">eva_hook_clear_idle_notify</link>          (<link linkend="GskHook">GskHook</link> *hook);
-<link linkend="void">void</link>                <link linkend="eva-hook-mark-never-blocks">eva_hook_mark_never_blocks</link>          (<link linkend="GskHook">GskHook</link> *hook);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-hook-get-last-poll-state">eva_hook_get_last_poll_state</link>        (<link linkend="GskHook">GskHook</link> *hook);
+<link linkend="void">void</link>                <link linkend="eva-hook-mark-idle-notify">eva_hook_mark_idle_notify</link>           (<link linkend="EvaHook">EvaHook</link> *hook);
+<link linkend="void">void</link>                <link linkend="eva-hook-clear-idle-notify">eva_hook_clear_idle_notify</link>          (<link linkend="EvaHook">EvaHook</link> *hook);
+<link linkend="void">void</link>                <link linkend="eva-hook-mark-never-blocks">eva_hook_mark_never_blocks</link>          (<link linkend="EvaHook">EvaHook</link> *hook);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-hook-get-last-poll-state">eva_hook_get_last_poll_state</link>        (<link linkend="EvaHook">EvaHook</link> *hook);
 #define             <link linkend="EVA-HOOK-INIT--CAPS">EVA_HOOK_INIT</link>                       (object, struct, member, flags, set_poll, shutdown)
 #define             <link linkend="EVA-HOOK-INIT-NO-SHUTDOWN--CAPS">EVA_HOOK_INIT_NO_SHUTDOWN</link>           (object, struct, member, flags, set_poll)
 #define             <link linkend="EVA-HOOK-CLASS-INIT--CAPS">EVA_HOOK_CLASS_INIT</link>                 (object_class, hook_name, Type, member)
@@ -80,8 +80,8 @@ enum                <link linkend="GskHookFlags">GskHookFlags</link>;
 <refsect1 id="eva-evahook.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
-GskHook is to be used as a member of a GObject.
-Its class must have at least a <link linkend="GskHookSetPollFunc"><type>GskHookSetPollFunc</type></link> member,
+EvaHook is to be used as a member of a GObject.
+Its class must have at least a <link linkend="EvaHookSetPollFunc"><type>EvaHookSetPollFunc</type></link> member,
 and for hooks which have a corresponding shutdown method,
 that should be in the class as well.
 </para>
@@ -91,13 +91,13 @@ This means that it must be possible to trap the event,
 and it also must not waste cpu notifying us if the event is not trapped.
 </para>
 <para>
-Therefore, <link linkend="GskHook"><type>GskHook</type></link> has two components:
-(1) methods to make it easy to write classes which have GskHooks in them.
+Therefore, <link linkend="EvaHook"><type>EvaHook</type></link> has two components:
+(1) methods to make it easy to write classes which have EvaHooks in them.
 (2) methods to be exposed to an end user of such a class:
 meaning, ways to trap, untrap, block, unblock the events.
 </para>
 <para>
-To implement a class which contains a <link linkend="GskHook"><type>GskHook</type></link>,
+To implement a class which contains a <link linkend="EvaHook"><type>EvaHook</type></link>,
 traditionally, you should have a set_poll method of the class
 which should just turn on or off whether the class
 tries to call <link linkend="eva-hook-notify"><function>eva_hook_notify()</function></link>.
@@ -126,18 +126,18 @@ will only be run after <link linkend="eva-hook-notify-shutdown"><function>eva_ho
 
 <refsect1 id="eva-evahook.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskHook" role="struct">
-<title>GskHook</title>
-<indexterm zone="GskHook"><primary sortas="GskHook">GskHook</primary></indexterm><programlisting>typedef struct {
-} GskHook;
+<refsect2 id="EvaHook" role="struct">
+<title>EvaHook</title>
+<indexterm zone="EvaHook"><primary sortas="EvaHook">EvaHook</primary></indexterm><programlisting>typedef struct {
+} EvaHook;
 </programlisting>
 <para>
 A structure which you can embed in a GObject.
 All of its members are private.
 </para></refsect2>
-<refsect2 id="GskHookFunc" role="function">
-<title>GskHookFunc ()</title>
-<indexterm zone="GskHookFunc"><primary sortas="GskHookFunc">GskHookFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GskHookFunc)                      (<link linkend="GObject">GObject</link> *object,
+<refsect2 id="EvaHookFunc" role="function">
+<title>EvaHookFunc ()</title>
+<indexterm zone="EvaHookFunc"><primary sortas="EvaHookFunc">EvaHookFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*EvaHookFunc)                      (<link linkend="GObject">GObject</link> *object,
                                                          <link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
 To be called when the hook is triggered.
@@ -151,9 +151,9 @@ To be called when the hook is triggered.
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>whether the hook should stay trapped.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskHookSetPollFunc" role="function">
-<title>GskHookSetPollFunc ()</title>
-<indexterm zone="GskHookSetPollFunc"><primary sortas="GskHookSetPollFunc">GskHookSetPollFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskHookSetPollFunc)               (<link linkend="GObject">GObject</link> *object,
+<refsect2 id="EvaHookSetPollFunc" role="function">
+<title>EvaHookSetPollFunc ()</title>
+<indexterm zone="EvaHookSetPollFunc"><primary sortas="EvaHookSetPollFunc">EvaHookSetPollFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaHookSetPollFunc)               (<link linkend="GObject">GObject</link> *object,
                                                          <link linkend="gboolean">gboolean</link> do_polling);</programlisting>
 <para>
 To be called when the class should start or stop
@@ -166,13 +166,13 @@ calling <link linkend="eva-hook-notify"><type>eva_hook_notify</type></link>.
 <listitem><simpara>whether to trigger the hook.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskHookShutdownFunc" role="function">
-<title>GskHookShutdownFunc ()</title>
-<indexterm zone="GskHookShutdownFunc"><primary sortas="GskHookShutdownFunc">GskHookShutdownFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskHookShutdownFunc)              (<link linkend="GObject">GObject</link> *object);</programlisting>
+<refsect2 id="EvaHookShutdownFunc" role="function">
+<title>EvaHookShutdownFunc ()</title>
+<indexterm zone="EvaHookShutdownFunc"><primary sortas="EvaHookShutdownFunc">EvaHookShutdownFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaHookShutdownFunc)              (<link linkend="GObject">GObject</link> *object);</programlisting>
 <para>
 This function is how the "shutdown" method in a class will
 be invoked (if the hook WAS NOT created
-with <link linkend="EVA-HOOK-CAN-HAVE-SHUTDOWN-ERROR--CAPS"><type>EVA_HOOK_CAN_HAVE_SHUTDOWN_ERROR</type></link>; see <link linkend="GskHookShutdownErrorFunc"><type>GskHookShutdownErrorFunc</type></link>).
+with <link linkend="EVA-HOOK-CAN-HAVE-SHUTDOWN-ERROR--CAPS"><type>EVA_HOOK_CAN_HAVE_SHUTDOWN_ERROR</type></link>; see <link linkend="EvaHookShutdownErrorFunc"><type>EvaHookShutdownErrorFunc</type></link>).
 </para>
 <para>
 EVA automatically untraps after this is over,
@@ -182,14 +182,14 @@ since there is no more potential for this hook to trigger.
 <listitem><simpara>the object whose hook should shut down.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskHookShutdownErrorFunc" role="function">
-<title>GskHookShutdownErrorFunc ()</title>
-<indexterm zone="GskHookShutdownErrorFunc"><primary sortas="GskHookShutdownErrorFunc">GskHookShutdownErrorFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GskHookShutdownErrorFunc)         (<link linkend="GObject">GObject</link> *object,
+<refsect2 id="EvaHookShutdownErrorFunc" role="function">
+<title>EvaHookShutdownErrorFunc ()</title>
+<indexterm zone="EvaHookShutdownErrorFunc"><primary sortas="EvaHookShutdownErrorFunc">EvaHookShutdownErrorFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*EvaHookShutdownErrorFunc)         (<link linkend="GObject">GObject</link> *object,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 This function is how the "shutdown" method in a class will
 be invoked (if the hook WAS NOT created
-without <link linkend="EVA-HOOK-CAN-HAVE-SHUTDOWN-ERROR--CAPS"><type>EVA_HOOK_CAN_HAVE_SHUTDOWN_ERROR</type></link>; see <link linkend="GskHookShutdownErrorFunc"><type>GskHookShutdownErrorFunc</type></link>).
+without <link linkend="EVA-HOOK-CAN-HAVE-SHUTDOWN-ERROR--CAPS"><type>EVA_HOOK_CAN_HAVE_SHUTDOWN_ERROR</type></link>; see <link linkend="EvaHookShutdownErrorFunc"><type>EvaHookShutdownErrorFunc</type></link>).
 </para>
 <para>
 This function returns with whether the shutdown completed successfully.
@@ -209,9 +209,9 @@ object itself later.)
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>whether shutdown succeeds.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskHookFlags" role="enum">
-<title>enum GskHookFlags</title>
-<indexterm zone="GskHookFlags"><primary sortas="GskHookFlags">GskHookFlags</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaHookFlags" role="enum">
+<title>enum EvaHookFlags</title>
+<indexterm zone="EvaHookFlags"><primary sortas="EvaHookFlags">EvaHookFlags</primary></indexterm><programlisting>typedef enum
 {
   EVA_HOOK_IS_AVAILABLE            	= (1 &lt;&lt; 0),
   EVA_HOOK_NEVER_AUTO_SHUTS_DOWN   	= (1 &lt;&lt; 1),
@@ -222,7 +222,7 @@ object itself later.)
   EVA_HOOK_private_CAN_DEFER_SHUTDOWN   = (1 &lt;&lt; 5), /*&lt; private &gt;*/
   EVA_HOOK_private_SHUTTING_DOWN        = (1 &lt;&lt; 6), /*&lt; private &gt;*/
   _EVA_HOOK_FLAGS_RESERVED	   	= (0xff &lt;&lt; 8), /*&lt; private &gt;*/
-} GskHookFlags;
+} EvaHookFlags;
 </programlisting>
 <para>
 Flags which can be read about any hook.
@@ -299,7 +299,7 @@ Get a pointer to the GObject which owns this hook.
 <title>EVA_HOOK_TEST_FLAG()</title>
 <indexterm zone="EVA-HOOK-TEST-FLAG--CAPS"><primary sortas="EVA_HOOK_TEST_FLAG">EVA_HOOK_TEST_FLAG</primary></indexterm><programlisting>#define             EVA_HOOK_TEST_FLAG(hook, flag_shortname)</programlisting>
 <para>
-Test if a particular flag in the GskHook is set.
+Test if a particular flag in the EvaHook is set.
 </para><variablelist role="params">
 <varlistentry><term><parameter>hook</parameter>&#160;:</term>
 <listitem><simpara>the hook to test.
@@ -315,7 +315,7 @@ its EVA_HOOK prefix.
 <para>
 Set the bit of the hook to TRUE.  This should
 only be used by implementors of
-GskHook-containing objects.
+EvaHook-containing objects.
 </para></refsect2>
 <refsect2 id="EVA-HOOK-CLEAR-FLAG--CAPS" role="macro">
 <title>EVA_HOOK_CLEAR_FLAG()</title>
@@ -323,7 +323,7 @@ GskHook-containing objects.
 <para>
 Set the bit of the hook to FALSE.  This should
 only be used by implementors of
-GskHook-containing objects.
+EvaHook-containing objects.
 </para><variablelist role="params">
 <varlistentry><term><parameter>hook</parameter>&#160;:</term>
 <listitem><simpara>the hook to affect.
@@ -415,9 +415,9 @@ meaning that it will trigger an active trap constantly.
 </variablelist></refsect2>
 <refsect2 id="eva-hook-trap" role="function">
 <title>eva_hook_trap ()</title>
-<indexterm zone="eva-hook-trap"><primary sortas="eva_hook_trap">eva_hook_trap</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_trap                       (<link linkend="GskHook">GskHook</link> *hook,
-                                                         <link linkend="GskHookFunc">GskHookFunc</link> func,
-                                                         <link linkend="GskHookFunc">GskHookFunc</link> shutdown,
+<indexterm zone="eva-hook-trap"><primary sortas="eva_hook_trap">eva_hook_trap</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_trap                       (<link linkend="EvaHook">EvaHook</link> *hook,
+                                                         <link linkend="EvaHookFunc">EvaHookFunc</link> func,
+                                                         <link linkend="EvaHookFunc">EvaHookFunc</link> shutdown,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -444,7 +444,7 @@ never trigger again.
 </variablelist></refsect2>
 <refsect2 id="eva-hook-untrap" role="function">
 <title>eva_hook_untrap ()</title>
-<indexterm zone="eva-hook-untrap"><primary sortas="eva_hook_untrap">eva_hook_untrap</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_untrap                     (<link linkend="GskHook">GskHook</link> *hook);</programlisting>
+<indexterm zone="eva-hook-untrap"><primary sortas="eva_hook_untrap">eva_hook_untrap</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_untrap                     (<link linkend="EvaHook">EvaHook</link> *hook);</programlisting>
 <para>
 Stops trapping the hook.  The user's function will
 no longer be run, and invoke the user's destroy method,
@@ -475,7 +475,7 @@ Note that the hook may be blocked.
 </variablelist></refsect2>
 <refsect2 id="eva-hook-block" role="function">
 <title>eva_hook_block ()</title>
-<indexterm zone="eva-hook-block"><primary sortas="eva_hook_block">eva_hook_block</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_block                      (<link linkend="GskHook">GskHook</link> *hook);</programlisting>
+<indexterm zone="eva-hook-block"><primary sortas="eva_hook_block">eva_hook_block</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_block                      (<link linkend="EvaHook">EvaHook</link> *hook);</programlisting>
 <para>
 Temporarily block the hook from triggerring the callback.
 This may cause the set_poll method to be run.
@@ -492,7 +492,7 @@ but you must call <link linkend="eva-hook-unblock"><type>eva_hook_unblock</type>
 </variablelist></refsect2>
 <refsect2 id="eva-hook-unblock" role="function">
 <title>eva_hook_unblock ()</title>
-<indexterm zone="eva-hook-unblock"><primary sortas="eva_hook_unblock">eva_hook_unblock</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_unblock                    (<link linkend="GskHook">GskHook</link> *hook);</programlisting>
+<indexterm zone="eva-hook-unblock"><primary sortas="eva_hook_unblock">eva_hook_unblock</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_unblock                    (<link linkend="EvaHook">EvaHook</link> *hook);</programlisting>
 <para>
 Undoes a <link linkend="eva-hook-block"><function>eva_hook_block()</function></link>.  The block count is decreased,
 and if it gets to 0, the hook may be eligible to start
@@ -505,7 +505,7 @@ triggering again.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-hook-shutdown" role="function">
 <title>eva_hook_shutdown ()</title>
-<indexterm zone="eva-hook-shutdown"><primary sortas="eva_hook_shutdown">eva_hook_shutdown</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_hook_shutdown                   (<link linkend="GskHook">GskHook</link> *hook,
+<indexterm zone="eva-hook-shutdown"><primary sortas="eva_hook_shutdown">eva_hook_shutdown</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_hook_shutdown                   (<link linkend="EvaHook">EvaHook</link> *hook,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Shutdown a hook.  You may call eva_hook_shutdown on a hook more than
@@ -538,13 +538,13 @@ will be false.)</para>
 </variablelist></refsect2>
 <refsect2 id="eva-hook-init" role="function">
 <title>eva_hook_init ()</title>
-<indexterm zone="eva-hook-init"><primary sortas="eva_hook_init">eva_hook_init</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_init                       (<link linkend="GskHook">GskHook</link> *hook,
-                                                         <link linkend="GskHookFlags">GskHookFlags</link> flags,
+<indexterm zone="eva-hook-init"><primary sortas="eva_hook_init">eva_hook_init</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_init                       (<link linkend="EvaHook">EvaHook</link> *hook,
+                                                         <link linkend="EvaHookFlags">EvaHookFlags</link> flags,
                                                          <link linkend="guint">guint</link> inset,
                                                          <link linkend="guint">guint</link> class_set_poll_offset,
                                                          <link linkend="guint">guint</link> class_shutdown_offset);</programlisting>
 <para>
-Prepare a GskHook to be used.  This should almost always
+Prepare a EvaHook to be used.  This should almost always
 be done in the instance-init function of the class which contains the hook.</para>
 <para>
 </para><variablelist role="params">
@@ -589,7 +589,7 @@ to make debugging printouts easier to read.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-hook-notify" role="function">
 <title>eva_hook_notify ()</title>
-<indexterm zone="eva-hook-notify"><primary sortas="eva_hook_notify">eva_hook_notify</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_notify                     (<link linkend="GskHook">GskHook</link> *hook);</programlisting>
+<indexterm zone="eva-hook-notify"><primary sortas="eva_hook_notify">eva_hook_notify</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_notify                     (<link linkend="EvaHook">EvaHook</link> *hook);</programlisting>
 <para>
 This is called by the implementation of a class
 which contains a hook to trigger it, i.e. call the user's
@@ -616,7 +616,7 @@ Some gory details come up now and then:
 </variablelist></refsect2>
 <refsect2 id="eva-hook-notify-shutdown" role="function">
 <title>eva_hook_notify_shutdown ()</title>
-<indexterm zone="eva-hook-notify-shutdown"><primary sortas="eva_hook_notify_shutdown">eva_hook_notify_shutdown</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_notify_shutdown            (<link linkend="GskHook">GskHook</link> *hook);</programlisting>
+<indexterm zone="eva-hook-notify-shutdown"><primary sortas="eva_hook_notify_shutdown">eva_hook_notify_shutdown</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_notify_shutdown            (<link linkend="EvaHook">EvaHook</link> *hook);</programlisting>
 <para>
 Notify the user that a shutdown event has occurred.
 This may happen because you called <link linkend="eva-hook-shutdown"><function>eva_hook_shutdown()</function></link>
@@ -639,7 +639,7 @@ A shutdown hook will no longer be idle-notified.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-hook-destruct" role="function">
 <title>eva_hook_destruct ()</title>
-<indexterm zone="eva-hook-destruct"><primary sortas="eva_hook_destruct">eva_hook_destruct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_destruct                   (<link linkend="GskHook">GskHook</link> *hook);</programlisting>
+<indexterm zone="eva-hook-destruct"><primary sortas="eva_hook_destruct">eva_hook_destruct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_destruct                   (<link linkend="EvaHook">EvaHook</link> *hook);</programlisting>
 <para>
 This should be called only by the class which contains the hook,
 from the instance's finalize method.</para>
@@ -651,7 +651,7 @@ from the instance's finalize method.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-hook-set-idle-notify" role="function">
 <title>eva_hook_set_idle_notify ()</title>
-<indexterm zone="eva-hook-set-idle-notify"><primary sortas="eva_hook_set_idle_notify">eva_hook_set_idle_notify</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_set_idle_notify            (<link linkend="GskHook">GskHook</link> *hook,
+<indexterm zone="eva-hook-set-idle-notify"><primary sortas="eva_hook_set_idle_notify">eva_hook_set_idle_notify</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_set_idle_notify            (<link linkend="EvaHook">EvaHook</link> *hook,
                                                          <link linkend="gboolean">gboolean</link> should_idle_notify);</programlisting>
 <para>
 When idle_notify is set, the hook will run every cycle of the
@@ -672,7 +672,7 @@ continually.
 </variablelist></refsect2>
 <refsect2 id="eva-hook-mark-idle-notify" role="function">
 <title>eva_hook_mark_idle_notify ()</title>
-<indexterm zone="eva-hook-mark-idle-notify"><primary sortas="eva_hook_mark_idle_notify">eva_hook_mark_idle_notify</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_mark_idle_notify           (<link linkend="GskHook">GskHook</link> *hook);</programlisting>
+<indexterm zone="eva-hook-mark-idle-notify"><primary sortas="eva_hook_mark_idle_notify">eva_hook_mark_idle_notify</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_mark_idle_notify           (<link linkend="EvaHook">EvaHook</link> *hook);</programlisting>
 <para>
 When idle_notify is set, the hook will run every cycle of the
 main-loop.  Of course, nothing will happen unless the user
@@ -688,7 +688,7 @@ Opposite of <link linkend="eva-hook-clear-idle-notify"><function>eva_hook_clear_
 </variablelist></refsect2>
 <refsect2 id="eva-hook-clear-idle-notify" role="function">
 <title>eva_hook_clear_idle_notify ()</title>
-<indexterm zone="eva-hook-clear-idle-notify"><primary sortas="eva_hook_clear_idle_notify">eva_hook_clear_idle_notify</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_clear_idle_notify          (<link linkend="GskHook">GskHook</link> *hook);</programlisting>
+<indexterm zone="eva-hook-clear-idle-notify"><primary sortas="eva_hook_clear_idle_notify">eva_hook_clear_idle_notify</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_clear_idle_notify          (<link linkend="EvaHook">EvaHook</link> *hook);</programlisting>
 <para>
 Stop running the hook at every cycle of the main-loop.
 </para>
@@ -702,7 +702,7 @@ Opposite of <link linkend="eva-hook-set-idle-notify"><function>eva_hook_set_idle
 </variablelist></refsect2>
 <refsect2 id="eva-hook-mark-never-blocks" role="function">
 <title>eva_hook_mark_never_blocks ()</title>
-<indexterm zone="eva-hook-mark-never-blocks"><primary sortas="eva_hook_mark_never_blocks">eva_hook_mark_never_blocks</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_mark_never_blocks          (<link linkend="GskHook">GskHook</link> *hook);</programlisting>
+<indexterm zone="eva-hook-mark-never-blocks"><primary sortas="eva_hook_mark_never_blocks">eva_hook_mark_never_blocks</primary></indexterm><programlisting><link linkend="void">void</link>                eva_hook_mark_never_blocks          (<link linkend="EvaHook">EvaHook</link> *hook);</programlisting>
 <para>
 Indicate that you will never block, ever.</para>
 <para>
@@ -713,7 +713,7 @@ Indicate that you will never block, ever.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-hook-get-last-poll-state" role="function">
 <title>eva_hook_get_last_poll_state ()</title>
-<indexterm zone="eva-hook-get-last-poll-state"><primary sortas="eva_hook_get_last_poll_state">eva_hook_get_last_poll_state</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_hook_get_last_poll_state        (<link linkend="GskHook">GskHook</link> *hook);</programlisting>
+<indexterm zone="eva-hook-get-last-poll-state"><primary sortas="eva_hook_get_last_poll_state">eva_hook_get_last_poll_state</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_hook_get_last_poll_state        (<link linkend="EvaHook">EvaHook</link> *hook);</programlisting>
 <para>
 Get whether this hook is supposed to be polling or not.</para>
 <para>
@@ -742,7 +742,7 @@ This should only be used for GObject instance init functions.
 <listitem><simpara>member name of hook inside of type <parameter>struct</parameter>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>flags</parameter>&#160;:</term>
-<listitem><simpara>@GskHookFlags which apply to this hook.
+<listitem><simpara>@EvaHookFlags which apply to this hook.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>set_poll</parameter>&#160;:</term>
 <listitem><simpara>member function of type gboolean(*)(GObject*, gpointer)
@@ -773,7 +773,7 @@ in the base class.
 <listitem><simpara>member name of hook inside of type <parameter>struct</parameter>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>flags</parameter>&#160;:</term>
-<listitem><simpara>@GskHookFlags which apply to this hook.
+<listitem><simpara>@EvaHookFlags which apply to this hook.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>set_poll</parameter>&#160;:</term>
 <listitem><simpara>member function of type gboolean(*)(GObject*, gpointer)
@@ -809,7 +809,7 @@ This is mostly used by debugging printout code.
 <refsect1 id="eva-evahook.see-also">
 <title>See Also</title>
 <para>
-<link linkend="GskIO"><type>GskIO</type></link>, <link linkend="GskStream"><type>GskStream</type></link>
+<link linkend="EvaIO"><type>EvaIO</type></link>, <link linkend="EvaStream"><type>EvaStream</type></link>
 </para>
 </refsect1>
 

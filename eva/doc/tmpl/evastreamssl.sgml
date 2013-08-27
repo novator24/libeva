@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskStreamSsl
+EvaStreamSsl
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -17,28 +17,28 @@ GskStreamSsl
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskStreamSsl ##### -->
+<!-- ##### STRUCT EvaStreamSsl ##### -->
 <para>
 A SSL client or server.
 </para>
 
 
-<!-- ##### ARG GskStreamSsl:cert-file ##### -->
+<!-- ##### ARG EvaStreamSsl:cert-file ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskStreamSsl:is-client ##### -->
+<!-- ##### ARG EvaStreamSsl:is-client ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskStreamSsl:key-file ##### -->
+<!-- ##### ARG EvaStreamSsl:key-file ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskStreamSsl:password ##### -->
+<!-- ##### ARG EvaStreamSsl:password ##### -->
 <para>
 
 </para>

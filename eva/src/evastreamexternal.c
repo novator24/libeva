@@ -19,12 +19,12 @@ static GObjectClass *parent_class = NULL;
 #define DEFAULT_MAX_ERROR_LINE_LEN		2048
 
 static guint
-eva_stream_external_raw_read  (GskStream     *stream,
+eva_stream_external_raw_read  (EvaStream     *stream,
 			       gpointer       data,
 			       guint          length,
 			       GError       **error)
 {
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (stream);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (stream);
   guint rv = eva_buffer_read (&external->read_buffer, data, length);
   if (external->read_buffer.size == 0)
     eva_io_clear_idle_notify_read (external);
@@ -32,12 +32,12 @@ eva_stream_external_raw_read  (GskStream     *stream,
 }
 
 static guint
-eva_stream_external_raw_write (GskStream     *stream,
+eva_stream_external_raw_write (EvaStream     *stream,
 			       gconstpointer  data,
 			       guint          length,
 			       GError       **error)
 {
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (stream);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (stream);
   gsize immediate_write = 0;
   gsize to_buffer;
 
@@ -92,11 +92,11 @@ eva_stream_external_raw_write (GskStream     *stream,
 }
 
 static guint
-eva_stream_external_raw_read_buffer (GskStream     *stream,
-			             GskBuffer     *buffer,
+eva_stream_external_raw_read_buffer (EvaStream     *stream,
+			             EvaBuffer     *buffer,
 			             GError       **error)
 {
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (stream);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (stream);
   guint rv;
   (void) error;
   rv = eva_buffer_drain (buffer, &external->read_buffer);
@@ -105,11 +105,11 @@ eva_stream_external_raw_read_buffer (GskStream     *stream,
 }
 
 static guint
-eva_stream_external_raw_write_buffer (GskStream    *stream,
-			              GskBuffer     *buffer,
+eva_stream_external_raw_write_buffer (EvaStream    *stream,
+			              EvaBuffer     *buffer,
 			              GError       **error)
 {
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (stream);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (stream);
   guint sys_written = 0;
   if (external->write_buffer.size == 0)
     {
@@ -137,10 +137,10 @@ eva_stream_external_raw_write_buffer (GskStream    *stream,
 }
 
 static void
-eva_stream_external_set_poll_read   (GskIO      *io,
+eva_stream_external_set_poll_read   (EvaIO      *io,
 			             gboolean    do_poll)
 {
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (io);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (io);
   if (do_poll)
     {
       if (external->read_buffer.size < external->max_read_buffer
@@ -155,11 +155,11 @@ eva_stream_external_set_poll_read   (GskIO      *io,
 }
 
 static void
-eva_stream_external_set_poll_write  (GskIO      *io,
+eva_stream_external_set_poll_write  (EvaIO      *io,
 			             gboolean    do_poll)
 {
 #if 0
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (io);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (io);
   if (do_poll)
     {
       ???
@@ -172,10 +172,10 @@ eva_stream_external_set_poll_write  (GskIO      *io,
 }
 
 static gboolean
-eva_stream_external_shutdown_read   (GskIO      *io,
+eva_stream_external_shutdown_read   (EvaIO      *io,
 			             GError    **error)
 {
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (io);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (io);
   if (external->read_source != NULL)
     {
       eva_source_remove (external->read_source);
@@ -190,10 +190,10 @@ eva_stream_external_shutdown_read   (GskIO      *io,
 }
 
 static gboolean
-eva_stream_external_shutdown_write  (GskIO      *io,
+eva_stream_external_shutdown_write  (EvaIO      *io,
 			             GError    **error)
 {
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (io);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (io);
   if (external->write_source != NULL)
     {
       eva_source_remove (external->write_source);
@@ -211,7 +211,7 @@ eva_stream_external_shutdown_write  (GskIO      *io,
 static void
 eva_stream_external_finalize (GObject *object)
 {
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (object);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (object);
   g_assert (external->process_source == NULL);
   if (external->read_source != NULL)
     {
@@ -255,7 +255,7 @@ handle_read_fd_ready (int                   fd,
 		      GIOCondition          condition,
 		      gpointer              user_data)
 {
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (user_data);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (user_data);
   int rv;
   gboolean had_data = external->read_buffer.size > 0;
   g_assert (external->read_fd == fd);
@@ -323,7 +323,7 @@ handle_write_fd_ready (int                   fd,
 		       GIOCondition          condition,
 		       gpointer              user_data)
 {
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (user_data);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (user_data);
   int rv;
 
   if ((condition & G_IO_ERR) == G_IO_ERR)
@@ -374,7 +374,7 @@ handle_read_err_fd_ready (int                   fd,
 		          GIOCondition          condition,
 		          gpointer              user_data)
 {
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (user_data);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (user_data);
   int rv;
   char *line;
 
@@ -433,10 +433,10 @@ handle_read_err_fd_ready (int                   fd,
 }
 
 static void
-handle_process_terminated (GskMainLoopWaitInfo  *info,
+handle_process_terminated (EvaMainLoopWaitInfo  *info,
 			   gpointer              user_data)
 {
-  GskStreamExternal *external = EVA_STREAM_EXTERNAL (user_data);
+  EvaStreamExternal *external = EVA_STREAM_EXTERNAL (user_data);
   if (external->term_func != NULL)
     (*external->term_func) (external, info, external->user_data);
   external->process_source = NULL;
@@ -444,7 +444,7 @@ handle_process_terminated (GskMainLoopWaitInfo  *info,
 
 /* --- functions --- */
 static void
-eva_stream_external_init (GskStreamExternal *stream_external)
+eva_stream_external_init (EvaStreamExternal *stream_external)
 {
   stream_external->max_write_buffer = DEFAULT_MAX_WRITE_BUFFER;
   stream_external->max_read_buffer = DEFAULT_MAX_READ_BUFFER;
@@ -452,11 +452,11 @@ eva_stream_external_init (GskStreamExternal *stream_external)
 }
 
 static void
-eva_stream_external_class_init (GskStreamExternalClass *class)
+eva_stream_external_class_init (EvaStreamExternalClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
-  GskIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
 
   stream_class->raw_read = eva_stream_external_raw_read;
@@ -477,19 +477,19 @@ GType eva_stream_external_get_type()
     {
       static const GTypeInfo stream_external_info =
       {
-	sizeof(GskStreamExternalClass),
+	sizeof(EvaStreamExternalClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_stream_external_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskStreamExternal),
+	sizeof (EvaStreamExternal),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_stream_external_init,
 	NULL		/* value_table */
       };
       stream_external_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskStreamExternal",
+                                                  "EvaStreamExternal",
 						  &stream_external_info, 0);
     }
   return stream_external_type;
@@ -558,20 +558,20 @@ retry:
  *
  * returns: the new stream.
  */
-GskStream *
-eva_stream_external_new       (GskStreamExternalFlags      flags,
+EvaStream *
+eva_stream_external_new       (EvaStreamExternalFlags      flags,
 			       const char                 *stdin_filename,
 			       const char                 *stdout_filename,
-                               GskStreamExternalTerminated term_func,
-                               GskStreamExternalStderr     err_func,
+                               EvaStreamExternalTerminated term_func,
+                               EvaStreamExternalStderr     err_func,
                                gpointer                    user_data,
                                const char                 *path,
                                const char                 *argv[],
                                const char                 *env[],
 			       GError                    **error)
 {
-  GskStreamExternal *external = g_object_new (EVA_TYPE_STREAM_EXTERNAL, NULL);
-  GskMainLoop *main_loop = eva_main_loop_default ();
+  EvaStreamExternal *external = g_object_new (EVA_TYPE_STREAM_EXTERNAL, NULL);
+  EvaMainLoop *main_loop = eva_main_loop_default ();
   int rpipe[2], wpipe[2], epipe[2];
   int fork_rv;
   if (stdout_filename == NULL)

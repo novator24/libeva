@@ -30,7 +30,7 @@ typedef void (*GenKeyValue) (guint index,
                              GByteArray *key_out,
                              GByteArray *value_out);
 static void
-inject_entries (GskTableFile *file,
+inject_entries (EvaTableFile *file,
                 GenKeyValue   gen_kv,
                 guint         start,
                 guint         end)
@@ -55,7 +55,7 @@ inject_entries (GskTableFile *file,
   g_byte_array_free (value, TRUE);
 }
 static void
-inject_entries_til_success (GskTableFile *file,
+inject_entries_til_success (EvaTableFile *file,
                             GenKeyValue   gen_kv,
                             guint         start,
                             guint        *end_out)
@@ -103,7 +103,7 @@ compare_by_memcmp (guint         test_key_len,
 }
 
 static void
-query_entries (GskTableFile *file,
+query_entries (EvaTableFile *file,
                GenKeyValue   gen_kv,
                guint         start,
                guint         end,
@@ -112,7 +112,7 @@ query_entries (GskTableFile *file,
   GByteArray *key = g_byte_array_new ();
   GByteArray *value = g_byte_array_new ();
   guint i;
-  GskTableFileQuery query = EVA_TABLE_FILE_QUERY_INIT;
+  EvaTableFileQuery query = EVA_TABLE_FILE_QUERY_INIT;
   GError *error = NULL;
   query.compare = compare_by_memcmp;
   query.compare_data = key;
@@ -129,7 +129,7 @@ query_entries (GskTableFile *file,
 }
 
 static void
-finish_file (GskTableFile *file)
+finish_file (EvaTableFile *file)
 {
   gboolean ready;
   GError *error = NULL;
@@ -141,12 +141,12 @@ finish_file (GskTableFile *file)
 }
 
 static void
-run_test (GskTableFileFactory *factory,
+run_test (EvaTableFileFactory *factory,
           const char          *dir,
           guint64              id)
 {
-  GskTableFile *file;
-  GskTableFileHints hints = EVA_TABLE_FILE_HINTS_DEFAULTS;
+  EvaTableFile *file;
+  EvaTableFileHints hints = EVA_TABLE_FILE_HINTS_DEFAULTS;
   GError *error = NULL;
   guint end;
 
@@ -193,12 +193,12 @@ run_test (GskTableFileFactory *factory,
     g_error ("eva_table_file_destroy: %s", error->message);
 }
 static void
-run_test_big (GskTableFileFactory *factory,
+run_test_big (EvaTableFileFactory *factory,
               const char          *dir,
               guint64              id)
 {
-  GskTableFile *file;
-  GskTableFileHints hints = EVA_TABLE_FILE_HINTS_DEFAULTS;
+  EvaTableFile *file;
+  EvaTableFileHints hints = EVA_TABLE_FILE_HINTS_DEFAULTS;
   GError *error = NULL;
   guint end;
 
@@ -240,7 +240,7 @@ int
 main(int    argc,
      char **argv)
 {
-  GskTableFileFactory *factory;
+  EvaTableFileFactory *factory;
   char *dir;
   eva_init_without_threads (&argc, &argv);
   dir = g_strdup_printf ("test-table-dir-%08x", (guint32) g_random_int ());

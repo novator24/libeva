@@ -9,7 +9,7 @@ static gboolean shutdown_and_unref (gpointer data)
   return FALSE;
 }
 static gboolean
-handle_accept (GskStream    *stream,
+handle_accept (EvaStream    *stream,
                gpointer      data,
                GError      **error)
 {
@@ -24,9 +24,9 @@ handle_accept (GskStream    *stream,
 int
 main(int argc, char **argv)
 {
-  GskStreamListener *listener;
+  EvaStreamListener *listener;
   unsigned port;
-  GskSocketAddress *address;
+  EvaSocketAddress *address;
   GError *error = NULL;
 
   eva_init_without_threads (&argc, &argv);

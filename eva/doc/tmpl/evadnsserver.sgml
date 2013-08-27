@@ -19,13 +19,13 @@ a sensible resolver, or it can be used to implement wacky DNS hacks.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskDnsServerClass ##### -->
+<!-- ##### STRUCT EvaDnsServerClass ##### -->
 <para>
 Base class for DNS servers.
 </para>
 
 
-<!-- ##### STRUCT GskDnsServer ##### -->
+<!-- ##### STRUCT EvaDnsServer ##### -->
 <para>
 Base instance for DNS servers.
 A DNS server is packet-based and must handle an arbitrary
@@ -33,12 +33,12 @@ number of requests.
 </para>
 
 
-<!-- ##### ARG GskDnsServer:packet-queue ##### -->
+<!-- ##### ARG EvaDnsServer:packet-queue ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskDnsServer:resolver ##### -->
+<!-- ##### ARG EvaDnsServer:resolver ##### -->
 <para>
 
 </para>

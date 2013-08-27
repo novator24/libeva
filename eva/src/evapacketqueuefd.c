@@ -35,11 +35,11 @@ static GObjectClass *parent_class = NULL;
 
 /* --- queue methods --- */
 static gboolean
-eva_packet_queue_fd_bind (GskPacketQueue    *queue,
-			  GskSocketAddress  *addr,
+eva_packet_queue_fd_bind (EvaPacketQueue    *queue,
+			  EvaSocketAddress  *addr,
 		          GError           **error)
 {
-  GskPacketQueueFd *queue_fd = EVA_PACKET_QUEUE_FD (queue);
+  EvaPacketQueueFd *queue_fd = EVA_PACKET_QUEUE_FD (queue);
   socklen_t native_len = eva_socket_address_sizeof_native (addr);
   gpointer native = alloca (native_len);
 
@@ -63,18 +63,18 @@ eva_packet_queue_fd_bind (GskPacketQueue    *queue,
   return TRUE;
 }
 
-static GskPacket *
-eva_packet_queue_fd_read (GskPacketQueue    *queue,
+static EvaPacket *
+eva_packet_queue_fd_read (EvaPacketQueue    *queue,
 			  gboolean           save_address,
 		          GError           **error)
 {
-  GskPacketQueueFd *queue_fd = EVA_PACKET_QUEUE_FD (queue);
+  EvaPacketQueueFd *queue_fd = EVA_PACKET_QUEUE_FD (queue);
   char *tmp = alloca (MAX_UDP_PACKET_SIZE);
   int fd = queue_fd->fd;
   struct sockaddr addr;
   socklen_t addrlen = sizeof (addr);
   int rv;
-  GskPacket *packet;
+  EvaPacket *packet;
   gpointer data;
   if (save_address)
     rv = recvfrom (fd, tmp, MAX_UDP_PACKET_SIZE, 0, &addr, &addrlen);
@@ -95,7 +95,7 @@ eva_packet_queue_fd_read (GskPacketQueue    *queue,
       return NULL;
     }
   data = g_memdup (tmp, rv);
-  packet = eva_packet_new (data, rv, (GskPacketDestroyFunc) g_free, data);
+  packet = eva_packet_new (data, rv, (EvaPacketDestroyFunc) g_free, data);
   if (save_address)
     {
       packet->src_address = eva_socket_address_from_native (&addr, addrlen);
@@ -114,11 +114,11 @@ eva_packet_queue_fd_read (GskPacketQueue    *queue,
 }
 
 static gboolean
-eva_packet_queue_fd_write (GskPacketQueue    *queue,
-		           GskPacket         *out,
+eva_packet_queue_fd_write (EvaPacketQueue    *queue,
+		           EvaPacket         *out,
 		           GError           **error)
 {
-  GskPacketQueueFd *queue_fd = EVA_PACKET_QUEUE_FD (queue);
+  EvaPacketQueueFd *queue_fd = EVA_PACKET_QUEUE_FD (queue);
   guint native_size;
   gpointer native_addr;
   gssize rv;
@@ -166,11 +166,11 @@ eva_packet_queue_fd_write (GskPacketQueue    *queue,
  */
      
 #if USE_GLIB_MAIN_LOOP
-typedef struct _GskPacketQueueFdSource GskPacketQueueFdSource;
-struct _GskPacketQueueFdSource
+typedef struct _EvaPacketQueueFdSource EvaPacketQueueFdSource;
+struct _EvaPacketQueueFdSource
 {
   GSource base;
-  GskPacketQueueFd *packet_queue_fd;
+  EvaPacketQueueFd *packet_queue_fd;
 };
 
 static gboolean
@@ -183,7 +183,7 @@ eva_packet_queue_fd_source_prepare (GSource    *source,
 static gboolean
 eva_packet_queue_fd_source_check    (GSource    *source)
 {
-  GskPacketQueueFdSource *fd_source = (GskPacketQueueFdSource *) source;
+  EvaPacketQueueFdSource *fd_source = (EvaPacketQueueFdSource *) source;
   return fd_source->packet_queue_fd->poll_fd.revents != 0;
 }
 
@@ -192,8 +192,8 @@ eva_packet_queue_fd_source_dispatch (GSource    *source,
 			             GSourceFunc callback,
 			             gpointer    user_data)
 {
-  GskPacketQueueFdSource *fd_source = (GskPacketQueueFdSource *) source;
-  GskPacketQueueFd *packet_queue_fd = fd_source->packet_queue_fd;
+  EvaPacketQueueFdSource *fd_source = (EvaPacketQueueFdSource *) source;
+  EvaPacketQueueFd *packet_queue_fd = fd_source->packet_queue_fd;
   guint events = fd_source->packet_queue_fd->poll_fd.revents;
   if ((events & (G_IO_IN|G_IO_HUP)) != 0)
     eva_io_notify_ready_to_read (EVA_IO (packet_queue_fd));
@@ -213,13 +213,13 @@ static GSourceFuncs eva_packet_queue_fd_source_funcs =
 };
 
 static void
-add_poll (GskPacketQueueFd *packet_queue_fd)
+add_poll (EvaPacketQueueFd *packet_queue_fd)
 {
-  GskPacketQueueFdSource *fd_source;
+  EvaPacketQueueFdSource *fd_source;
   packet_queue_fd->poll_fd.fd = packet_queue_fd->fd;
   packet_queue_fd->source = g_source_new (&eva_packet_queue_fd_source_funcs,
-				          sizeof (GskPacketQueueFdSource));
-  fd_source = (GskPacketQueueFdSource *) packet_queue_fd->source;
+				          sizeof (EvaPacketQueueFdSource));
+  fd_source = (EvaPacketQueueFdSource *) packet_queue_fd->source;
   fd_source->packet_queue_fd = packet_queue_fd;
   g_source_add_poll (packet_queue_fd->source, &packet_queue_fd->poll_fd);
   g_source_attach (packet_queue_fd->source, g_main_context_default ());
@@ -227,7 +227,7 @@ add_poll (GskPacketQueueFd *packet_queue_fd)
 }
 
 static void
-remove_poll (GskPacketQueueFd *packet_queue_fd)
+remove_poll (EvaPacketQueueFd *packet_queue_fd)
 {
   if (packet_queue_fd->source != NULL)
     {
@@ -238,10 +238,10 @@ remove_poll (GskPacketQueueFd *packet_queue_fd)
 }
 
 static void
-eva_packet_queue_fd_set_poll_read   (GskIO         *io,
+eva_packet_queue_fd_set_poll_read   (EvaIO         *io,
 			             gboolean       do_poll)
 {
-  GskPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
+  EvaPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
   if (do_poll)
     packet_queue_fd->poll_fd.events |= G_IO_IN;
   else
@@ -249,10 +249,10 @@ eva_packet_queue_fd_set_poll_read   (GskIO         *io,
 }
 
 static void
-eva_packet_queue_fd_set_poll_write  (GskIO         *io,
+eva_packet_queue_fd_set_poll_write  (EvaIO         *io,
 			             gboolean       do_poll)
 {
-  GskPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
+  EvaPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
   if (do_poll)
     packet_queue_fd->poll_fd.events |= G_IO_OUT;
   else
@@ -262,7 +262,7 @@ eva_packet_queue_fd_set_poll_write  (GskIO         *io,
 static gboolean
 handle_io_event (int fd, GIOCondition events, gpointer data)
 {
-  GskPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (data);
+  EvaPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (data);
   if ((events & (G_IO_IN|G_IO_HUP)) != 0)
     eva_io_notify_ready_to_read (EVA_IO (packet_queue_fd));
   if ((events & G_IO_OUT) == G_IO_OUT)
@@ -271,7 +271,7 @@ handle_io_event (int fd, GIOCondition events, gpointer data)
 }
 
 static void
-add_poll (GskPacketQueueFd *packet_queue_fd)
+add_poll (EvaPacketQueueFd *packet_queue_fd)
 {
   packet_queue_fd->source = eva_main_loop_add_io (eva_main_loop_default (),
 						  packet_queue_fd->fd,
@@ -281,7 +281,7 @@ add_poll (GskPacketQueueFd *packet_queue_fd)
 						  NULL);
 }
 static void
-remove_poll (GskPacketQueueFd *packet_queue_fd)
+remove_poll (EvaPacketQueueFd *packet_queue_fd)
 {
   if (packet_queue_fd->source != NULL)
     {
@@ -290,20 +290,20 @@ remove_poll (GskPacketQueueFd *packet_queue_fd)
     }
 }
 static void
-eva_packet_queue_fd_set_poll_read   (GskIO         *io,
+eva_packet_queue_fd_set_poll_read   (EvaIO         *io,
 			             gboolean       do_poll)
 {
-  GskPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
+  EvaPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
   if (do_poll)
     eva_source_add_io_events (packet_queue_fd->source, G_IO_IN);
   else
     eva_source_remove_io_events (packet_queue_fd->source, G_IO_IN);
 }
 static void
-eva_packet_queue_fd_set_poll_write  (GskIO         *io,
+eva_packet_queue_fd_set_poll_write  (EvaIO         *io,
 			             gboolean       do_poll)
 {
-  GskPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
+  EvaPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
   if (do_poll)
     eva_source_add_io_events (packet_queue_fd->source, G_IO_OUT);
   else
@@ -312,10 +312,10 @@ eva_packet_queue_fd_set_poll_write  (GskIO         *io,
 #endif
 
 static gboolean
-eva_packet_queue_fd_shutdown_read   (GskIO         *io,
+eva_packet_queue_fd_shutdown_read   (EvaIO         *io,
 				     GError       **error)
 {
-  GskPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
+  EvaPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
   if (shutdown (packet_queue_fd->fd, SHUT_RD) < 0)
     {
       int e = errno;
@@ -333,10 +333,10 @@ eva_packet_queue_fd_shutdown_read   (GskIO         *io,
 }
 
 static gboolean
-eva_packet_queue_fd_shutdown_write  (GskIO         *io,
+eva_packet_queue_fd_shutdown_write  (EvaIO         *io,
 				     GError       **error)
 {
-  GskPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
+  EvaPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
   if (shutdown (packet_queue_fd->fd, SHUT_WR) < 0)
     {
       int e = errno;
@@ -354,9 +354,9 @@ eva_packet_queue_fd_shutdown_write  (GskIO         *io,
 }
 
 static void
-eva_packet_queue_fd_close (GskIO         *io)
+eva_packet_queue_fd_close (EvaIO         *io)
 {
-  GskPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
+  EvaPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
   remove_poll (packet_queue_fd);
   if (packet_queue_fd->fd >= 0)
     {
@@ -392,7 +392,7 @@ eva_packet_queue_fd_set_property (GObject        *object,
     case PROP_FILE_DESCRIPTOR:
       {
 	int fd = g_value_get_int (value);
-	GskPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (object);
+	EvaPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (object);
 	if (packet_queue_fd->fd >= 0)
 	  eva_fork_remove_cleanup_fd (fd);
 	if (fd >= 0)
@@ -404,11 +404,11 @@ eva_packet_queue_fd_set_property (GObject        *object,
 }
 
 static gboolean
-eva_packet_queue_fd_open (GskIO     *io,
+eva_packet_queue_fd_open (EvaIO     *io,
 		          GError   **error)
 {
-  GskPacketQueue *queue = EVA_PACKET_QUEUE (io);
-  GskPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
+  EvaPacketQueue *queue = EVA_PACKET_QUEUE (io);
+  EvaPacketQueueFd *packet_queue_fd = EVA_PACKET_QUEUE_FD (io);
   if (packet_queue_fd->fd < 0)
     {
       g_set_error (error, EVA_G_ERROR_DOMAIN, EVA_ERROR_OPEN_FAILED,
@@ -425,9 +425,9 @@ eva_packet_queue_fd_open (GskIO     *io,
 
 /* --- functions --- */
 static void
-eva_packet_queue_fd_init (GskPacketQueueFd *packet_queue_fd)
+eva_packet_queue_fd_init (EvaPacketQueueFd *packet_queue_fd)
 {
-  GskPacketQueue *queue = EVA_PACKET_QUEUE (packet_queue_fd);
+  EvaPacketQueue *queue = EVA_PACKET_QUEUE (packet_queue_fd);
   packet_queue_fd->fd = -1;
   eva_packet_queue_mark_misses_packets (queue);
   eva_packet_queue_mark_allow_address (queue);
@@ -435,10 +435,10 @@ eva_packet_queue_fd_init (GskPacketQueueFd *packet_queue_fd)
 
 
 static void
-eva_packet_queue_fd_class_init (GskPacketQueueFdClass *class)
+eva_packet_queue_fd_class_init (EvaPacketQueueFdClass *class)
 {
-  GskPacketQueueClass *queue_class = EVA_PACKET_QUEUE_CLASS (class);
-  GskIOClass *io_class = EVA_IO_CLASS (class);
+  EvaPacketQueueClass *queue_class = EVA_PACKET_QUEUE_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   GParamSpec *pspec;
 
@@ -469,19 +469,19 @@ GType eva_packet_queue_fd_get_type()
     {
       static const GTypeInfo packet_queue_fd_info =
       {
-	sizeof(GskPacketQueueFdClass),
+	sizeof(EvaPacketQueueFdClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_packet_queue_fd_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskPacketQueueFd),
+	sizeof (EvaPacketQueueFd),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_packet_queue_fd_init,
 	NULL		/* value_table */
       };
       packet_queue_fd_type = g_type_register_static (EVA_TYPE_PACKET_QUEUE,
-                                                     "GskPacketQueueFd",
+                                                     "EvaPacketQueueFd",
 						     &packet_queue_fd_info,
 						     0);
     }
@@ -493,12 +493,12 @@ GType eva_packet_queue_fd_get_type()
  * eva_packet_queue_fd_new:
  * @fd: the datagram socket file-descriptor.
  *
- * Create a new #GskPacketQueue from an already opened
+ * Create a new #EvaPacketQueue from an already opened
  * file-descriptor.
  *
  * returns: the new packet-queue.
  */
-GskPacketQueue *
+EvaPacketQueue *
 eva_packet_queue_fd_new           (int  fd)
 {
   eva_fd_set_nonblocking (fd);
@@ -515,12 +515,12 @@ eva_packet_queue_fd_new           (int  fd)
  * is the sequence of AF_ defines in the header &lt;sys/socket.h&gt;
  * on most unices.
  *
- * The address family of a #GskSocketAddress may be found
+ * The address family of a #EvaSocketAddress may be found
  * using eva_socket_address_protocol_family().
  *
  * returns: the new packet-queue, or NULL if there is a problem creating the socket.
  */
-GskPacketQueue *
+EvaPacketQueue *
 eva_packet_queue_fd_new_by_family (int  addr_family,
 				   GError **error)
 {
@@ -559,12 +559,12 @@ retry:
  *
  * returns: the new packet-queue, or NULL if there is a problem creating the socket or binding.
  */
-GskPacketQueue *
-eva_packet_queue_fd_new_bound     (GskSocketAddress *address,
+EvaPacketQueue *
+eva_packet_queue_fd_new_bound     (EvaSocketAddress *address,
 				   GError          **error)
 {
   int family = eva_socket_address_protocol_family (address);
-  GskPacketQueue *queue = eva_packet_queue_fd_new_by_family (family, error);
+  EvaPacketQueue *queue = eva_packet_queue_fd_new_by_family (family, error);
   if (queue == NULL)
     return NULL;
   if (! eva_packet_queue_bind (queue, address, error))
@@ -589,7 +589,7 @@ eva_packet_queue_fd_new_bound     (GskSocketAddress *address,
  *
  * returns: whether the operation was successful.
  */
-gboolean eva_packet_queue_fd_set_broadcast (GskPacketQueueFd *packet_queue_fd,
+gboolean eva_packet_queue_fd_set_broadcast (EvaPacketQueueFd *packet_queue_fd,
 					    gboolean          allow_broadcast,
 					    GError          **error)
 {

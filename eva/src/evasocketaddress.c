@@ -11,11 +11,11 @@
 #include "evaghelpers.h"
 #include "evamacros.h"
 
-G_DEFINE_ABSTRACT_TYPE(GskSocketAddress, eva_socket_address, G_TYPE_OBJECT);
-G_DEFINE_TYPE(GskSocketAddressIpv4, eva_socket_address_ipv4, EVA_TYPE_SOCKET_ADDRESS);
-G_DEFINE_TYPE(GskSocketAddressIpv6, eva_socket_address_ipv6, EVA_TYPE_SOCKET_ADDRESS);
-G_DEFINE_TYPE(GskSocketAddressEthernet, eva_socket_address_ethernet, EVA_TYPE_SOCKET_ADDRESS);
-G_DEFINE_TYPE(GskSocketAddressLocal, eva_socket_address_local, EVA_TYPE_SOCKET_ADDRESS);
+G_DEFINE_ABSTRACT_TYPE(EvaSocketAddress, eva_socket_address, G_TYPE_OBJECT);
+G_DEFINE_TYPE(EvaSocketAddressIpv4, eva_socket_address_ipv4, EVA_TYPE_SOCKET_ADDRESS);
+G_DEFINE_TYPE(EvaSocketAddressIpv6, eva_socket_address_ipv6, EVA_TYPE_SOCKET_ADDRESS);
+G_DEFINE_TYPE(EvaSocketAddressEthernet, eva_socket_address_ethernet, EVA_TYPE_SOCKET_ADDRESS);
+G_DEFINE_TYPE(EvaSocketAddressLocal, eva_socket_address_local, EVA_TYPE_SOCKET_ADDRESS);
 
 /* Macro to initialize the sa_len-like member of
    sockaddr, if it exists. */
@@ -37,24 +37,24 @@ G_DEFINE_TYPE(GskSocketAddressLocal, eva_socket_address_local, EVA_TYPE_SOCKET_A
 #warn "no PF_UNIX or PF_LOCAL macros (?)"
 #endif
 
-/* --- GskSocketAddress implementation --- */
+/* --- EvaSocketAddress implementation --- */
 static void
-eva_socket_address_init (GskSocketAddress *socket_address)
+eva_socket_address_init (EvaSocketAddress *socket_address)
 {
 }
 
 static void
-eva_socket_address_class_init (GskSocketAddressClass *class)
+eva_socket_address_class_init (EvaSocketAddressClass *class)
 {
 }
 
-/* --- GskSocketAddressIpv4 implementation --- */
+/* --- EvaSocketAddressIpv4 implementation --- */
 
 static gboolean
-eva_socket_address_ipv4_to_native   (GskSocketAddress *address,
+eva_socket_address_ipv4_to_native   (EvaSocketAddress *address,
 			             gpointer          output)
 {
-  GskSocketAddressIpv4 *ipv4 = EVA_SOCKET_ADDRESS_IPV4 (address);
+  EvaSocketAddressIpv4 *ipv4 = EVA_SOCKET_ADDRESS_IPV4 (address);
   struct sockaddr_in *addr = output;
   memset (addr, 0, sizeof (struct sockaddr_in));
   addr->sin_family = PF_INET;
@@ -65,11 +65,11 @@ eva_socket_address_ipv4_to_native   (GskSocketAddress *address,
 }
 
 static gboolean
-eva_socket_address_ipv4_from_native (GskSocketAddress *address,
+eva_socket_address_ipv4_from_native (EvaSocketAddress *address,
 			             gconstpointer     sockaddr_data,
 			             gsize             sockaddr_length)
 {
-  GskSocketAddressIpv4 *ipv4 = EVA_SOCKET_ADDRESS_IPV4 (address);
+  EvaSocketAddressIpv4 *ipv4 = EVA_SOCKET_ADDRESS_IPV4 (address);
   const struct sockaddr_in *addr = sockaddr_data;
   ipv4->ip_port = GUINT16_FROM_BE (addr->sin_port);
   memcpy (ipv4->ip_address, &addr->sin_addr, 4);
@@ -77,9 +77,9 @@ eva_socket_address_ipv4_from_native (GskSocketAddress *address,
 }
 
 static char *
-eva_socket_address_ipv4_to_string  (GskSocketAddress *address)
+eva_socket_address_ipv4_to_string  (EvaSocketAddress *address)
 {
-  GskSocketAddressIpv4 *ipv4 = EVA_SOCKET_ADDRESS_IPV4 (address);
+  EvaSocketAddressIpv4 *ipv4 = EVA_SOCKET_ADDRESS_IPV4 (address);
   if (ipv4->ip_port != 0)
     return g_strdup_printf ("%d.%d.%d.%d:%d",
                             ipv4->ip_address[0],
@@ -96,11 +96,11 @@ eva_socket_address_ipv4_to_string  (GskSocketAddress *address)
 }
 
 static gboolean
-eva_socket_address_ipv4_equals (GskSocketAddress *a,
-				GskSocketAddress *b)
+eva_socket_address_ipv4_equals (EvaSocketAddress *a,
+				EvaSocketAddress *b)
 {
-  GskSocketAddressIpv4 *ipv4_a = EVA_SOCKET_ADDRESS_IPV4 (a);
-  GskSocketAddressIpv4 *ipv4_b = EVA_SOCKET_ADDRESS_IPV4 (b);
+  EvaSocketAddressIpv4 *ipv4_a = EVA_SOCKET_ADDRESS_IPV4 (a);
+  EvaSocketAddressIpv4 *ipv4_b = EVA_SOCKET_ADDRESS_IPV4 (b);
   return ipv4_a->ip_address[0] == ipv4_b->ip_address[0]
       && ipv4_a->ip_address[1] == ipv4_b->ip_address[1]
       && ipv4_a->ip_address[2] == ipv4_b->ip_address[2]
@@ -109,9 +109,9 @@ eva_socket_address_ipv4_equals (GskSocketAddress *a,
 }
 
 static guint
-eva_socket_address_ipv4_hash (GskSocketAddress *a)
+eva_socket_address_ipv4_hash (EvaSocketAddress *a)
 {
-  GskSocketAddressIpv4 *ipv4 = EVA_SOCKET_ADDRESS_IPV4 (a);
+  EvaSocketAddressIpv4 *ipv4 = EVA_SOCKET_ADDRESS_IPV4 (a);
   guint hash = ipv4->ip_address[0];
   hash *= 33;
   hash += ipv4->ip_address[1];
@@ -125,14 +125,14 @@ eva_socket_address_ipv4_hash (GskSocketAddress *a)
 }
 
 static void
-eva_socket_address_ipv4_init (GskSocketAddressIpv4 *socket_address_ipv4)
+eva_socket_address_ipv4_init (EvaSocketAddressIpv4 *socket_address_ipv4)
 {
 }
 
 static void
-eva_socket_address_ipv4_class_init (GskSocketAddressIpv4Class *ipv4_class)
+eva_socket_address_ipv4_class_init (EvaSocketAddressIpv4Class *ipv4_class)
 {
-  GskSocketAddressClass *class = EVA_SOCKET_ADDRESS_CLASS (ipv4_class);
+  EvaSocketAddressClass *class = EVA_SOCKET_ADDRESS_CLASS (ipv4_class);
   class->address_family = AF_INET;
   class->protocol_family = PF_INET;
   class->sizeof_native_address = sizeof (struct sockaddr_in);
@@ -147,10 +147,10 @@ eva_socket_address_ipv4_class_init (GskSocketAddressIpv4Class *ipv4_class)
 /* --- ipv6 implementation --- */
 #if SUPPORTS_IPV6
 static gboolean
-eva_socket_address_ipv6_to_native   (GskSocketAddress *address,
+eva_socket_address_ipv6_to_native   (EvaSocketAddress *address,
 			             gpointer          output)
 {
-  GskSocketAddressIpv6 *ipv6 = EVA_SOCKET_ADDRESS_IPV6 (address);
+  EvaSocketAddressIpv6 *ipv6 = EVA_SOCKET_ADDRESS_IPV6 (address);
   struct sockaddr_in6 *addr = output;
   MAYBE_SET_LENGTH_MEMBER (addr->sin6_len, struct sockaddr_in6);
   addr->sin6_family = AF_INET6;
@@ -163,11 +163,11 @@ eva_socket_address_ipv6_to_native   (GskSocketAddress *address,
 }
 
 static gboolean
-eva_socket_address_ipv6_from_native (GskSocketAddress *address,
+eva_socket_address_ipv6_from_native (EvaSocketAddress *address,
 			             gconstpointer     sockaddr_data,
 			             gsize             sockaddr_length)
 {
-  GskSocketAddressIpv6 *ipv6 = EVA_SOCKET_ADDRESS_IPV6 (address);
+  EvaSocketAddressIpv6 *ipv6 = EVA_SOCKET_ADDRESS_IPV6 (address);
   const struct sockaddr_in6 *addr = sockaddr_data;
   ipv6->port = GUINT16_FROM_BE (addr->sin6_port);
   ipv6->flow_info = GUINT32_FROM_BE (addr->sin6_flowinfo);
@@ -178,10 +178,10 @@ eva_socket_address_ipv6_from_native (GskSocketAddress *address,
 #endif
 
 static char *
-eva_socket_address_ipv6_to_string  (GskSocketAddress *address)
+eva_socket_address_ipv6_to_string  (EvaSocketAddress *address)
 {
   GString *str = g_string_new ("");
-  GskSocketAddressIpv6 *ipv6 = EVA_SOCKET_ADDRESS_IPV6 (address);
+  EvaSocketAddressIpv6 *ipv6 = EVA_SOCKET_ADDRESS_IPV6 (address);
   guint8 *a = ipv6->address;
   guint i;
   g_string_printf (str, "%d@%x", ipv6->port, a[0]);
@@ -191,19 +191,19 @@ eva_socket_address_ipv6_to_string  (GskSocketAddress *address)
 }
 
 static gboolean
-eva_socket_address_ipv6_equals (GskSocketAddress *a,
-				GskSocketAddress *b)
+eva_socket_address_ipv6_equals (EvaSocketAddress *a,
+				EvaSocketAddress *b)
 {
-  GskSocketAddressIpv6 *ipv6_a = EVA_SOCKET_ADDRESS_IPV6 (a);
-  GskSocketAddressIpv6 *ipv6_b = EVA_SOCKET_ADDRESS_IPV6 (b);
+  EvaSocketAddressIpv6 *ipv6_a = EVA_SOCKET_ADDRESS_IPV6 (a);
+  EvaSocketAddressIpv6 *ipv6_b = EVA_SOCKET_ADDRESS_IPV6 (b);
   return ipv6_a->port == ipv6_b->port
      &&  memcmp (ipv6_a->address, ipv6_b->address, 16) == 0;
 }
 
 static guint
-eva_socket_address_ipv6_hash (GskSocketAddress *a)
+eva_socket_address_ipv6_hash (EvaSocketAddress *a)
 {
-  GskSocketAddressIpv6 *ipv6 = EVA_SOCKET_ADDRESS_IPV6 (a);
+  EvaSocketAddressIpv6 *ipv6 = EVA_SOCKET_ADDRESS_IPV6 (a);
   guint hash = ipv6->port;
   guint i;
   for (i = 0; i < 16; i++)
@@ -215,14 +215,14 @@ eva_socket_address_ipv6_hash (GskSocketAddress *a)
 }
 
 static void
-eva_socket_address_ipv6_init (GskSocketAddressIpv6 *socket_address_ipv6)
+eva_socket_address_ipv6_init (EvaSocketAddressIpv6 *socket_address_ipv6)
 {
 }
 
 static void
-eva_socket_address_ipv6_class_init (GskSocketAddressIpv6Class *ipv6_class)
+eva_socket_address_ipv6_class_init (EvaSocketAddressIpv6Class *ipv6_class)
 {
-  GskSocketAddressClass *class = EVA_SOCKET_ADDRESS_CLASS (ipv6_class);
+  EvaSocketAddressClass *class = EVA_SOCKET_ADDRESS_CLASS (ipv6_class);
 #if SUPPORTS_IPV6
   class->address_family = AF_INET6;
   class->protocol_family = PF_INET6;
@@ -238,10 +238,10 @@ eva_socket_address_ipv6_class_init (GskSocketAddressIpv6Class *ipv6_class)
 
 /* --- local (aka unix) socket address implementation --- */
 static gboolean
-eva_socket_address_local_to_native   (GskSocketAddress *address,
+eva_socket_address_local_to_native   (EvaSocketAddress *address,
 			             gpointer          output)
 {
-  GskSocketAddressLocal *local = EVA_SOCKET_ADDRESS_LOCAL (address);
+  EvaSocketAddressLocal *local = EVA_SOCKET_ADDRESS_LOCAL (address);
   struct sockaddr_un *addr = output;
   MAYBE_SET_LENGTH_MEMBER (addr->sun_len, struct sockaddr_un);
   addr->sun_family = EVA_PF_LOCAL;
@@ -252,11 +252,11 @@ eva_socket_address_local_to_native   (GskSocketAddress *address,
 
 
 static gboolean
-eva_socket_address_local_from_native (GskSocketAddress *address,
+eva_socket_address_local_from_native (EvaSocketAddress *address,
 			              gconstpointer     sockaddr_data,
 			              gsize             sockaddr_length)
 {
-  GskSocketAddressLocal *local = EVA_SOCKET_ADDRESS_LOCAL (address);
+  EvaSocketAddressLocal *local = EVA_SOCKET_ADDRESS_LOCAL (address);
   const struct sockaddr_un *native = sockaddr_data;
   gint max_len;
   guint len;
@@ -276,45 +276,45 @@ eva_socket_address_local_from_native (GskSocketAddress *address,
 }
 
 static char *
-eva_socket_address_local_to_string  (GskSocketAddress *address)
+eva_socket_address_local_to_string  (EvaSocketAddress *address)
 {
-  GskSocketAddressLocal *local = EVA_SOCKET_ADDRESS_LOCAL (address);
+  EvaSocketAddressLocal *local = EVA_SOCKET_ADDRESS_LOCAL (address);
   return g_strdup (local->path);
 }
 
 static gboolean
-eva_socket_address_local_equals (GskSocketAddress *a,
-				GskSocketAddress *b)
+eva_socket_address_local_equals (EvaSocketAddress *a,
+				EvaSocketAddress *b)
 {
-  GskSocketAddressLocal *local_a = EVA_SOCKET_ADDRESS_LOCAL (a);
-  GskSocketAddressLocal *local_b = EVA_SOCKET_ADDRESS_LOCAL (b);
+  EvaSocketAddressLocal *local_a = EVA_SOCKET_ADDRESS_LOCAL (a);
+  EvaSocketAddressLocal *local_b = EVA_SOCKET_ADDRESS_LOCAL (b);
   return strcmp (local_a->path, local_b->path) == 0;
 }
 
 static guint
-eva_socket_address_local_hash (GskSocketAddress *a)
+eva_socket_address_local_hash (EvaSocketAddress *a)
 {
-  GskSocketAddressLocal *local = EVA_SOCKET_ADDRESS_LOCAL (a);
+  EvaSocketAddressLocal *local = EVA_SOCKET_ADDRESS_LOCAL (a);
   return g_str_hash (local->path);
 }
 
 static void
-eva_socket_address_local_init (GskSocketAddressLocal *socket_address_local)
+eva_socket_address_local_init (EvaSocketAddressLocal *socket_address_local)
 {
 }
 
 static void
 eva_socket_address_local_finalize (GObject *object)
 {
-  GskSocketAddressLocal *local = EVA_SOCKET_ADDRESS_LOCAL (object);
+  EvaSocketAddressLocal *local = EVA_SOCKET_ADDRESS_LOCAL (object);
   g_free (local->path);
   G_OBJECT_CLASS (eva_socket_address_local_parent_class)->finalize (object);
 }
 
 static void
-eva_socket_address_local_class_init (GskSocketAddressLocalClass *class)
+eva_socket_address_local_class_init (EvaSocketAddressLocalClass *class)
 {
-  GskSocketAddressClass *address_class = EVA_SOCKET_ADDRESS_CLASS (class);
+  EvaSocketAddressClass *address_class = EVA_SOCKET_ADDRESS_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   class->max_path_length = EVA_STRUCT_MEMBER_SIZE (struct sockaddr_un, sun_path);
   address_class->sizeof_native_address = sizeof (struct sockaddr_un);
@@ -343,12 +343,12 @@ eva_socket_address_local_class_init (GskSocketAddressLocalClass *class)
  *
  * returns: the newly allocated socket address.
  */
-GskSocketAddress *
+EvaSocketAddress *
 eva_socket_address_local_new (const char *path)
 {
-  GskSocketAddressLocalClass *class = g_type_class_ref (EVA_TYPE_SOCKET_ADDRESS_LOCAL);
+  EvaSocketAddressLocalClass *class = g_type_class_ref (EVA_TYPE_SOCKET_ADDRESS_LOCAL);
   guint path_len = strlen (path);
-  GskSocketAddressLocal *rv;
+  EvaSocketAddressLocal *rv;
   if (path_len > class->max_path_length)
     return NULL;
   rv = g_object_new (G_OBJECT_CLASS_TYPE (class), NULL);
@@ -360,27 +360,27 @@ eva_socket_address_local_new (const char *path)
 /* --- Ethernet (MAC) addresses --- */
 #if 0	/* TODO: conversions to/from native */
 static gboolean
-eva_socket_address_ethernet_to_native (GskSocketAddress *address,
+eva_socket_address_ethernet_to_native (EvaSocketAddress *address,
                                        gpointer          output)
 {
-  GskSocketAddressEthernet *ethernet = EVA_SOCKET_ADDRESS_ETHERNET (address);
+  EvaSocketAddressEthernet *ethernet = EVA_SOCKET_ADDRESS_ETHERNET (address);
   ...
 }
 
 static gboolean
-eva_socket_address_ethernet_from_native (GskSocketAddress *address,
+eva_socket_address_ethernet_from_native (EvaSocketAddress *address,
                                          gconstpointer     sockaddr_data,
                                          gsize             sockaddr_length)
 {
-  GskSocketAddressEthernet *ethernet = EVA_SOCKET_ADDRESS_ETHERNET (address);
+  EvaSocketAddressEthernet *ethernet = EVA_SOCKET_ADDRESS_ETHERNET (address);
   ...
 }
 #endif
 
 static guint
-eva_socket_address_ethernet_hash (GskSocketAddress *addr)
+eva_socket_address_ethernet_hash (EvaSocketAddress *addr)
 {
-  GskSocketAddressEthernet *ethernet = EVA_SOCKET_ADDRESS_ETHERNET (addr);
+  EvaSocketAddressEthernet *ethernet = EVA_SOCKET_ADDRESS_ETHERNET (addr);
   guint i;
   guint rv = 0;
   for (i = 0; i < 6; i++)
@@ -392,9 +392,9 @@ eva_socket_address_ethernet_hash (GskSocketAddress *addr)
 }
 
 static char    *
-eva_socket_address_ethernet_to_string (GskSocketAddress *address)
+eva_socket_address_ethernet_to_string (EvaSocketAddress *address)
 {
-  GskSocketAddressEthernet *ethernet = EVA_SOCKET_ADDRESS_ETHERNET (address);
+  EvaSocketAddressEthernet *ethernet = EVA_SOCKET_ADDRESS_ETHERNET (address);
   return g_strdup_printf ("%02X:%02X:%02X:%02X:%02X:%02X",
 			  ethernet->mac_address[0],
 			  ethernet->mac_address[1],
@@ -405,24 +405,24 @@ eva_socket_address_ethernet_to_string (GskSocketAddress *address)
 }
 
 static gboolean
-eva_socket_address_ethernet_equals (GskSocketAddress *addr1,
-                                    GskSocketAddress *addr2)
+eva_socket_address_ethernet_equals (EvaSocketAddress *addr1,
+                                    EvaSocketAddress *addr2)
 {
-  GskSocketAddressEthernet *ethernet1 = EVA_SOCKET_ADDRESS_ETHERNET (addr1);
-  GskSocketAddressEthernet *ethernet2 = EVA_SOCKET_ADDRESS_ETHERNET (addr2);
+  EvaSocketAddressEthernet *ethernet1 = EVA_SOCKET_ADDRESS_ETHERNET (addr1);
+  EvaSocketAddressEthernet *ethernet2 = EVA_SOCKET_ADDRESS_ETHERNET (addr2);
   return memcmp (ethernet1->mac_address, ethernet2->mac_address, 6) == 0;
 }
 
 /* --- functions --- */
 static void
-eva_socket_address_ethernet_init (GskSocketAddressEthernet *socket_address_ethernet)
+eva_socket_address_ethernet_init (EvaSocketAddressEthernet *socket_address_ethernet)
 {
 }
 
 static void
-eva_socket_address_ethernet_class_init (GskSocketAddressEthernetClass *eth_class)
+eva_socket_address_ethernet_class_init (EvaSocketAddressEthernetClass *eth_class)
 {
-  GskSocketAddressClass *class = EVA_SOCKET_ADDRESS_CLASS (eth_class);
+  EvaSocketAddressClass *class = EVA_SOCKET_ADDRESS_CLASS (eth_class);
   class->hash = eva_socket_address_ethernet_hash;
   class->to_string = eva_socket_address_ethernet_to_string;
   class->equals = eva_socket_address_ethernet_equals;
@@ -446,10 +446,10 @@ eva_socket_address_ethernet_class_init (GskSocketAddressEthernetClass *eth_class
  *
  * returns: the newly allocated socket-address.
  */
-GskSocketAddress *
+EvaSocketAddress *
 eva_socket_address_ethernet_new (const guint8 *mac_addr)
 {
-  GskSocketAddressEthernet *eth = g_object_new (EVA_TYPE_SOCKET_ADDRESS_ETHERNET, NULL);
+  EvaSocketAddressEthernet *eth = g_object_new (EVA_TYPE_SOCKET_ADDRESS_ETHERNET, NULL);
   memcpy (eth->mac_address, mac_addr, 6);
   return EVA_SOCKET_ADDRESS (eth);
 }
@@ -468,20 +468,20 @@ static GStaticRWLock native_to_gtype_lock = G_STATIC_RW_LOCK_INIT;
  * @native_data: a struct sockaddr_t*.
  * @native_size: length of native_data.
  *
- * Allocate a new GskSocketAddress based on
+ * Allocate a new EvaSocketAddress based on
  * native_data, if we know how.
  *
- * returns: a new GskSocketAddress or NULL if we could not interpret the sockaddr.
+ * returns: a new EvaSocketAddress or NULL if we could not interpret the sockaddr.
  */
-GskSocketAddress *
+EvaSocketAddress *
 eva_socket_address_from_native   (gconstpointer native_data,
 				  gsize         native_size)
 {
   const struct sockaddr *addr = native_data;
   GType type;
-  GskSocketAddressClass *class;
+  EvaSocketAddressClass *class;
   GObject *rv_object;
-  GskSocketAddress *rv;
+  EvaSocketAddress *rv;
   guint family;
   N2G_READ_LOCK ();
   if (native_to_gtype == NULL)
@@ -517,7 +517,7 @@ eva_socket_address_from_native   (gconstpointer native_data,
  * returns: the size in bytes of the native sockaddr type.
  */
 guint
-eva_socket_address_sizeof_native (GskSocketAddress *address)
+eva_socket_address_sizeof_native (EvaSocketAddress *address)
 {
   return EVA_SOCKET_ADDRESS_GET_CLASS (address)->sizeof_native_address;
 }
@@ -531,7 +531,7 @@ eva_socket_address_sizeof_native (GskSocketAddress *address)
  * returns: the protocol family.
  */
 gint
-eva_socket_address_protocol_family (GskSocketAddress *address)
+eva_socket_address_protocol_family (EvaSocketAddress *address)
 {
   return EVA_SOCKET_ADDRESS_GET_CLASS (address)->protocol_family;
 }
@@ -545,7 +545,7 @@ eva_socket_address_protocol_family (GskSocketAddress *address)
  * returns: the address family.
  */
 gint
-eva_socket_address_address_family (GskSocketAddress *address)
+eva_socket_address_address_family (EvaSocketAddress *address)
 {
   return EVA_SOCKET_ADDRESS_GET_CLASS (address)->address_family;
 }
@@ -561,11 +561,11 @@ eva_socket_address_address_family (GskSocketAddress *address)
  * returns: whether it was able to convert the address.
  */
 gboolean
-eva_socket_address_to_native     (GskSocketAddress *address,
+eva_socket_address_to_native     (EvaSocketAddress *address,
 				  gpointer          output,
 				  GError          **error)
 {
-  GskSocketAddressClass *class = EVA_SOCKET_ADDRESS_GET_CLASS (address);
+  EvaSocketAddressClass *class = EVA_SOCKET_ADDRESS_GET_CLASS (address);
   if (G_UNLIKELY (!class->to_native (address, output)))
     {
       g_set_error (error, EVA_G_ERROR_DOMAIN, EVA_ERROR_FOREIGN_ADDRESS,
@@ -586,9 +586,9 @@ eva_socket_address_to_native     (GskSocketAddress *address,
  * returns: a string for the user to free.
  */
 char *
-eva_socket_address_to_string     (GskSocketAddress *address)
+eva_socket_address_to_string     (EvaSocketAddress *address)
 {
-  GskSocketAddressClass *class = EVA_SOCKET_ADDRESS_GET_CLASS (address);
+  EvaSocketAddressClass *class = EVA_SOCKET_ADDRESS_GET_CLASS (address);
   return class->to_string (address);
 }
 
@@ -599,13 +599,13 @@ eva_socket_address_to_string     (GskSocketAddress *address)
  *
  * Allocate a new IPv4 address given a numeric IP and port number.
  *
- * returns: a new GskSocketAddress
+ * returns: a new EvaSocketAddress
  */
-GskSocketAddress *
+EvaSocketAddress *
 eva_socket_address_ipv4_new (const guint8 *ip_address,
 			     guint16       port)
 {
-  GskSocketAddressIpv4 *ipv4;
+  EvaSocketAddressIpv4 *ipv4;
   ipv4 = g_object_new (EVA_TYPE_SOCKET_ADDRESS_IPV4, NULL);
   ipv4->ip_port = port;
   memcpy (ipv4->ip_address, ip_address, 4);
@@ -614,15 +614,15 @@ eva_socket_address_ipv4_new (const guint8 *ip_address,
 
 /**
  * eva_socket_address_equals:
- * @address_a_ptr: a pointer to a #GskSocketAddress.
- * @address_b_ptr: a pointer to a #GskSocketAddress.
+ * @address_a_ptr: a pointer to a #EvaSocketAddress.
+ * @address_b_ptr: a pointer to a #EvaSocketAddress.
  *
  * This function is a GEqualFunc which can determine
  * if two socket address are the same.
  * This is principally used with #eva_socket_address_hash
  * to make a hash-table mapping from socket-addresses.
  *
- * (This just uses the virtual method of GskSocketAddressClass)
+ * (This just uses the virtual method of EvaSocketAddressClass)
  *
  * returns: whether the addresses are equal.
  */
@@ -630,9 +630,9 @@ gboolean
 eva_socket_address_equals        (gconstpointer     address_a_ptr,
 				  gconstpointer     address_b_ptr)
 {
-  GskSocketAddress *address_a = (GskSocketAddress *) address_a_ptr;
-  GskSocketAddress *address_b = (GskSocketAddress *) address_b_ptr;
-  GskSocketAddressClass *class;
+  EvaSocketAddress *address_a = (EvaSocketAddress *) address_a_ptr;
+  EvaSocketAddress *address_b = (EvaSocketAddress *) address_b_ptr;
+  EvaSocketAddressClass *class;
   GType type_a, type_b;
   g_return_val_if_fail (EVA_IS_SOCKET_ADDRESS (address_a)
 		     && EVA_IS_SOCKET_ADDRESS (address_b), FALSE);
@@ -646,7 +646,7 @@ eva_socket_address_equals        (gconstpointer     address_a_ptr,
 
 /**
  * eva_socket_address_hash:
- * @address_ptr: a pointer to a #GskSocketAddress.
+ * @address_ptr: a pointer to a #EvaSocketAddress.
  *
  * This function is a GHashFunc which can determine
  * a hash value for a socket-address.
@@ -654,15 +654,15 @@ eva_socket_address_equals        (gconstpointer     address_a_ptr,
  * This is principally used with #eva_socket_address_equals
  * to make a hash-table mapping from socket-addresses.
  *
- * (This just uses the virtual method of GskSocketAddressClass)
+ * (This just uses the virtual method of EvaSocketAddressClass)
  *
  * returns: the hash value for the socket-address.
  */
 guint
 eva_socket_address_hash (gconstpointer  address_ptr)
 {
-  GskSocketAddress *address = (GskSocketAddress *) address_ptr;
-  GskSocketAddressClass *class;
+  EvaSocketAddress *address = (EvaSocketAddress *) address_ptr;
+  EvaSocketAddressClass *class;
   g_return_val_if_fail (EVA_IS_SOCKET_ADDRESS (address), 0);
   class = EVA_SOCKET_ADDRESS_GET_CLASS (address);
   return (*class->hash) (address);
@@ -677,7 +677,7 @@ eva_socket_address_hash (gconstpointer  address_ptr)
  * for use converting from native.
  */
 void
-eva_socket_address_register_subclass (GskSocketAddressClass *klass)
+eva_socket_address_register_subclass (EvaSocketAddressClass *klass)
 {
   GType type = G_OBJECT_CLASS_TYPE (klass);
   N2G_WRITE_LOCK ();
@@ -710,12 +710,12 @@ eva_socket_address_get_local_quark()
 
 /* Deprecated.  included for binary compatibility */
 #undef eva_socket_address_new_local
-GskSocketAddress *eva_socket_address_new_local (const char       *path)
+EvaSocketAddress *eva_socket_address_new_local (const char       *path)
 {
   return eva_socket_address_local_new (path);
 }
 #undef eva_socket_address_new_ethernet
-GskSocketAddress *eva_socket_address_new_ethernet  (const guint8     *mac_addr)
+EvaSocketAddress *eva_socket_address_new_ethernet  (const guint8     *mac_addr)
 {
   return eva_socket_address_ethernet_new (mac_addr);
 }

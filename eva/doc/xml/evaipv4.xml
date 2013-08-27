@@ -60,7 +60,7 @@ Parse a numeric IP address, in the standard fashion (RFC 1034, 3.6.1).</para>
 <indexterm zone="eva-ipv4-ip-address-localhost"><primary sortas="eva_ipv4_ip_address_localhost">eva_ipv4_ip_address_localhost</primary></indexterm><programlisting>#define             eva_ipv4_ip_address_localhost</programlisting>
 <para>
 The IP address of localhost: always <tt>127.0.0.1</tt>.
-For full generality, see <link linkend="GskNetworkInterfaceSet"><type>GskNetworkInterfaceSet</type></link>.
+For full generality, see <link linkend="EvaNetworkInterfaceSet"><type>EvaNetworkInterfaceSet</type></link>.
 </para></refsect2>
 
 </refsect1>
@@ -70,7 +70,7 @@ For full generality, see <link linkend="GskNetworkInterfaceSet"><type>GskNetwork
 <refsect1 id="eva-evaipv4.see-also">
 <title>See Also</title>
 <para>
-<link linkend="GskSocketAddress"><type>GskSocketAddress</type></link>, <link linkend="eva-socket-address-ipv4-new"><function>eva_socket_address_ipv4_new()</function></link>
+<link linkend="EvaSocketAddress"><type>EvaSocketAddress</type></link>, <link linkend="eva-socket-address-ipv4-new"><function>eva_socket_address_ipv4_new()</function></link>
 </para>
 </refsect1>
 

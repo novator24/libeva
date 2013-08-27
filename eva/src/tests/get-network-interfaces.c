@@ -23,7 +23,7 @@ usage ()
 }
 
 static void
-print_address (const char *comment, GskSocketAddress *address)
+print_address (const char *comment, EvaSocketAddress *address)
 {
   char *str = eva_socket_address_to_string (address);
   printf ("\t%s:\t%s\n", comment, str);
@@ -33,7 +33,7 @@ print_address (const char *comment, GskSocketAddress *address)
 int main(int argc, char ** argv)
 {
   guint flags = 0;
-  GskNetworkInterfaceSet *iset;
+  EvaNetworkInterfaceSet *iset;
   guint i;
 
   eva_init_without_threads (&argc, &argv);
@@ -55,7 +55,7 @@ int main(int argc, char ** argv)
 
   for (i = 0; i < iset->num_interfaces; i++)
     {
-      GskNetworkInterface *iface = iset->interfaces + i;
+      EvaNetworkInterface *iface = iset->interfaces + i;
       printf ("Interface %d: %s\n", i, iface->ifname);
 
       if (iface->address != NULL)

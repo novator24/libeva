@@ -20,7 +20,7 @@ eva_stream_attach().
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskStreamConnection ##### -->
+<!-- ##### STRUCT EvaStreamConnection ##### -->
 <para>
 An opaque object representing the connection between
 the input of one stream and the output of another.

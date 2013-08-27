@@ -83,7 +83,7 @@ typedef enum
   EVA_DATE_FORMAT_HTTP = (EVA_DATE_FORMAT_1123 
                         | EVA_DATE_FORMAT_1036
 			| EVA_DATE_FORMAT_ANSI_C)
-} GskDateFormatMask;
+} EvaDateFormatMask;
 
 
 /* --- prototypes --- */
@@ -92,21 +92,21 @@ typedef enum
 gboolean eva_date_parse            (const char        *date_str,
                                     struct tm         *tm_out,
 				    int               *tzoffset_out,
-				    GskDateFormatMask  formats_allowed);
+				    EvaDateFormatMask  formats_allowed);
 gboolean eva_date_parse_timet      (const char        *date_str,
                                     time_t            *out,
-				    GskDateFormatMask  formats_allowed);
+				    EvaDateFormatMask  formats_allowed);
 
 /* Printing */
 #define EVA_DATE_MAX_LENGTH 256
 void     eva_date_print            (const struct tm   *tm,
                                     char              *date_str_out,
 				    int                date_str_max_len,
-				    GskDateFormatMask  format);
+				    EvaDateFormatMask  format);
 void     eva_date_print_timet      (time_t             t,
                                     char              *date_str_out,
 				    int                date_str_max_len,
-				    GskDateFormatMask  format);
+				    EvaDateFormatMask  format);
 
 G_END_DECLS
 

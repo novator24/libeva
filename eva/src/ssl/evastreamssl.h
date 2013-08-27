@@ -6,21 +6,21 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskStreamSsl GskStreamSsl;
-typedef struct _GskStreamSslClass GskStreamSslClass;
+typedef struct _EvaStreamSsl EvaStreamSsl;
+typedef struct _EvaStreamSslClass EvaStreamSslClass;
 /* --- type macros --- */
 GType eva_stream_ssl_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_STREAM_SSL			(eva_stream_ssl_get_type ())
-#define EVA_STREAM_SSL(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_SSL, GskStreamSsl))
-#define EVA_STREAM_SSL_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_SSL, GskStreamSslClass))
-#define EVA_STREAM_SSL_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_SSL, GskStreamSslClass))
+#define EVA_STREAM_SSL(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_SSL, EvaStreamSsl))
+#define EVA_STREAM_SSL_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_SSL, EvaStreamSslClass))
+#define EVA_STREAM_SSL_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_SSL, EvaStreamSslClass))
 #define EVA_IS_STREAM_SSL(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STREAM_SSL))
 #define EVA_IS_STREAM_SSL_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_STREAM_SSL))
 
 /* --- structures --- */
-struct _GskStreamSslClass 
+struct _EvaStreamSslClass 
 {
-  GskStreamClass stream_class;
+  EvaStreamClass stream_class;
 };
 
 typedef enum
@@ -31,11 +31,11 @@ typedef enum
   EVA_STREAM_SSL_STATE_SHUT_DOWN,
 
   EVA_STREAM_SSL_STATE_ERROR
-} GskStreamSslState;
+} EvaStreamSslState;
 
-struct _GskStreamSsl 
+struct _EvaStreamSsl 
 {
-  GskStream      stream;
+  EvaStream      stream;
 
   gpointer       ctx;		/* an SSL_CTX *        */
   gpointer       ssl;           /* an SSL *            */
@@ -70,7 +70,7 @@ struct _GskStreamSsl
   guint8        *write_buffer;
 
 
-  GskStreamSslState state;
+  EvaStreamSslState state;
 
   char    *password;
   char    *ca_file;
@@ -78,22 +78,22 @@ struct _GskStreamSsl
   char    *cert_file;
   char    *key_file;
 
-  GskStream     *backend;     /* buffered transport layer */
-  GskStream     *transport;   /* raw transport layer */
+  EvaStream     *backend;     /* buffered transport layer */
+  EvaStream     *transport;   /* raw transport layer */
 };
 
 /* --- prototypes --- */
-GskStream   *eva_stream_ssl_new_server   (const char   *cert_file,
+EvaStream   *eva_stream_ssl_new_server   (const char   *cert_file,
 					  const char   *key_file,
 					  const char   *password,
-					  GskStream    *transport,
+					  EvaStream    *transport,
 					  GError      **error);
-GskStream   *eva_stream_ssl_new_client   (const char   *cert_file,
+EvaStream   *eva_stream_ssl_new_client   (const char   *cert_file,
 					  const char   *key_file,
 					  const char   *password,
-					  GskStream    *transport,
+					  EvaStream    *transport,
 					  GError      **error);
-GskStream   *eva_stream_ssl_peek_backend (GskStreamSsl *ssl);
+EvaStream   *eva_stream_ssl_peek_backend (EvaStreamSsl *ssl);
 
 
 G_END_DECLS

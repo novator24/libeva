@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskMimeMultipartEncoder
+EvaMimeMultipartEncoder
 
 <!-- ##### SECTION Short_Description ##### -->
 encode several MIME pieces into one body.
@@ -13,7 +13,7 @@ from web servers.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-#GskMimeMultipartDecoder
+#EvaMimeMultipartDecoder
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
@@ -27,7 +27,7 @@ that can handle any quoted-printable or base64 encoded chunk.
 
 
 
-<!-- ##### STRUCT GskMimeMultipartEncoderClass ##### -->
+<!-- ##### STRUCT EvaMimeMultipartEncoderClass ##### -->
 <para>
 
 </para>
@@ -36,7 +36,7 @@ that can handle any quoted-printable or base64 encoded chunk.
 @new_part_needed_set_poll: 
 @new_part_needed_shutdown: 
 
-<!-- ##### STRUCT GskMimeMultipartEncoder ##### -->
+<!-- ##### STRUCT EvaMimeMultipartEncoder ##### -->
 <para>
 
 </para>

@@ -57,11 +57,11 @@ typedef enum
   EVA_SOURCE_TYPE_IO,
   EVA_SOURCE_TYPE_SIGNAL,
   EVA_SOURCE_TYPE_PROCESS
-} GskSourceType;
+} EvaSourceType;
 
-struct _GskSource
+struct _EvaSource
 {
-  GskSourceType          type;
+  EvaSourceType          type;
   /* are we calling the users' callback? */
   guint                  run_count : 16;
 
@@ -79,7 +79,7 @@ struct _GskSource
   guint                  timer_is_red : 1;
   guint                  timer_in_tree : 1;
 
-  GskMainLoop           *main_loop;
+  EvaMainLoop           *main_loop;
 
   gpointer               user_data;
   GDestroyNotify         destroy;
@@ -90,47 +90,47 @@ struct _GskSource
     {
       int                    fd;
       GIOCondition           events;
-      GskMainLoopIOFunc      func;
+      EvaMainLoopIOFunc      func;
     } io;
     struct
     {
       GTimeVal               expire_time;
       gint64                 milli_period;
-      GskMainLoopTimeoutFunc func;
-      GskSource             *left, *right, *parent;
+      EvaMainLoopTimeoutFunc func;
+      EvaSource             *left, *right, *parent;
     } timer;
     struct
     {
       int                    process_id;
-      GskMainLoopWaitPidFunc func;
-      GskSource             *prev;
-      GskSource             *next;
+      EvaMainLoopWaitPidFunc func;
+      EvaSource             *prev;
+      EvaSource             *next;
     } process;
     struct
     {
       int                    number;
-      GskMainLoopSignalFunc  func;
-      GskSource             *prev;
-      GskSource             *next;
+      EvaMainLoopSignalFunc  func;
+      EvaSource             *prev;
+      EvaSource             *next;
     } signal;
     struct
     {
-      GskMainLoopIdleFunc    func;
-      GskSource             *prev;
-      GskSource             *next;
+      EvaMainLoopIdleFunc    func;
+      EvaSource             *prev;
+      EvaSource             *next;
     } idle;
   } data;
 };
 
-struct _GskMainLoopContextList
+struct _EvaMainLoopContextList
 {
   GMainContext *context;
   guint num_fds_alloced;
   GPollFD *poll_fds;
-  GskSource **sources;		/* one for each poll_fd */
+  EvaSource **sources;		/* one for each poll_fd */
   guint num_fds_received;
   gint priority;
-  GskMainLoopContextList *next;
+  EvaMainLoopContextList *next;
 };
 
 /* --- helper macros --- */
@@ -151,12 +151,12 @@ struct _GskMainLoopContextList
   rv = TIMEVALS_COMPARE(a->data.timer.expire_time, b->data.timer.expire_time); \
   if (rv == 0) { if (a < b) rv = -1; else if (a > b) rv = 1; }
 #define GET_MAIN_LOOP_TIMER_TREE(main_loop) \
-  (main_loop)->timers, GskSource *, TIMER_GET_IS_RED, TIMER_SET_IS_RED,  \
+  (main_loop)->timers, EvaSource *, TIMER_GET_IS_RED, TIMER_SET_IS_RED,  \
   data.timer.parent, data.timer.left, data.timer.right, TIMER_COMPARE
 
 
 static inline GIOCondition
-get_io_events (GskMainLoop *main_loop,
+get_io_events (EvaMainLoop *main_loop,
 	       guint        fd)
 {
   return (main_loop->read_sources->pdata[fd] ? (G_IO_IN|G_IO_HUP)  : 0)
@@ -164,11 +164,11 @@ get_io_events (GskMainLoop *main_loop,
 }
 
 static inline void
-eva_main_loop_change_signal (GskMainLoop  *main_loop,
+eva_main_loop_change_signal (EvaMainLoop  *main_loop,
 			     guint         signal,
 			     gboolean      add)
 {
-  GskMainLoopChange change;
+  EvaMainLoopChange change;
   change.type = EVA_MAIN_LOOP_EVENT_SIGNAL;
   change.data.signal.number = signal;
   change.data.signal.add = add;
@@ -178,11 +178,11 @@ eva_main_loop_change_signal (GskMainLoop  *main_loop,
 }
 
 static inline void
-eva_main_loop_change_io (GskMainLoop  *main_loop,
+eva_main_loop_change_io (EvaMainLoop  *main_loop,
 			 GIOCondition  old_events,
 			 guint         fd)
 {
-  GskMainLoopChange change;
+  EvaMainLoopChange change;
   change.type = EVA_MAIN_LOOP_EVENT_IO;
   change.data.io.fd = fd;
   change.data.io.old_events = old_events;
@@ -200,12 +200,12 @@ eva_main_loop_change_io (GskMainLoop  *main_loop,
 }
 
 static inline void
-eva_main_loop_change_process (GskMainLoop  *main_loop,
+eva_main_loop_change_process (EvaMainLoop  *main_loop,
 			      guint         pid,
                               gboolean      did_exit,
 			      gboolean      add)
 {
-  GskMainLoopChange change;
+  EvaMainLoopChange change;
   if (did_exit)
     g_assert (!add);
   change.type = EVA_MAIN_LOOP_EVENT_PROCESS;
@@ -218,12 +218,12 @@ eva_main_loop_change_process (GskMainLoop  *main_loop,
 }
 
 static guint
-eva_main_loop_run_io_sources (GskMainLoop     *main_loop,
+eva_main_loop_run_io_sources (EvaMainLoop     *main_loop,
 			      guint            fd,
 			      GIOCondition     condition)
 {
-  GskSource *read_source = NULL;
-  GskSource *write_source = NULL;
+  EvaSource *read_source = NULL;
+  EvaSource *write_source = NULL;
   g_return_val_if_fail (main_loop->read_sources->len > fd, 0);
   if (condition & G_IO_IN) 
     read_source = main_loop->read_sources->pdata[fd];
@@ -273,10 +273,10 @@ eva_main_loop_run_io_sources (GskMainLoop     *main_loop,
 }
 
 static guint
-eva_main_loop_run_signal_sources (GskMainLoop     *main_loop,
+eva_main_loop_run_signal_sources (EvaMainLoop     *main_loop,
 			          guint            signal)
 {
-  GskSource *at;
+  EvaSource *at;
   guint rv = 0;
   if (main_loop->signal_source_lists->len <= signal)
     return rv;
@@ -285,7 +285,7 @@ eva_main_loop_run_signal_sources (GskMainLoop     *main_loop,
     at->run_count++;
   while (at != NULL)
     {
-      GskSource *next;
+      EvaSource *next;
       rv++;
       if (!(*at->data.signal.func) (signal, at->user_data))
 	at->must_remove = 1;
@@ -301,10 +301,10 @@ eva_main_loop_run_signal_sources (GskMainLoop     *main_loop,
 }
 
 static guint
-eva_main_loop_run_process_sources (GskMainLoop     *main_loop,
-			           GskMainLoopWaitInfo *wait_info)
+eva_main_loop_run_process_sources (EvaMainLoop     *main_loop,
+			           EvaMainLoopWaitInfo *wait_info)
 {
-  GskSource *at;
+  EvaSource *at;
   guint rv = 0;
 
   g_hash_table_remove (main_loop->alive_pids, GUINT_TO_POINTER (wait_info->pid));
@@ -314,7 +314,7 @@ eva_main_loop_run_process_sources (GskMainLoop     *main_loop,
     at->run_count++;
   while (at != NULL)
     {
-      GskSource *next;
+      EvaSource *next;
       rv++;
       (*at->data.process.func) (wait_info, at->user_data);
       at->must_remove = 1;
@@ -501,7 +501,7 @@ eva_get_current_time (GTimeVal *tv)
  * system clock.
  */
 void
-eva_main_loop_update_current_time (GskMainLoop *main_loop)
+eva_main_loop_update_current_time (EvaMainLoop *main_loop)
 {
   eva_get_current_time (&main_loop->current_time);
 }
@@ -518,7 +518,7 @@ eva_main_loop_update_current_time (GskMainLoop *main_loop)
  */
 gboolean
 eva_main_loop_do_waitpid (int                  pid,
-                          GskMainLoopWaitInfo *wait_info)
+                          EvaMainLoopWaitInfo *wait_info)
 {
   int status;
 
@@ -576,20 +576,20 @@ handle_poll_fd_set (int          fd,
  * returns: the number of sources processed.
  */
 guint
-eva_main_loop_run          (GskMainLoop       *main_loop,
+eva_main_loop_run          (EvaMainLoop       *main_loop,
 			    gint               timeout,
 			    guint             *t_waited_out)
 {
-  GskMainLoopEvent *events;
-  GskMainLoopClass *class = MAIN_LOOP_CLASS (main_loop);
+  EvaMainLoopEvent *events;
+  EvaMainLoopClass *class = MAIN_LOOP_CLASS (main_loop);
   guint num_events;
   guint rv = 0;
   GTimeVal old_time;
   GTimeVal *current_time;
   guint i;
-  GskSource *at;
-  GskMainLoopContextList *list;
-  GskMainLoopContextList **plist;
+  EvaSource *at;
+  EvaMainLoopContextList *list;
+  EvaMainLoopContextList **plist;
 
   g_return_val_if_fail (!main_loop->is_running, 0);
   main_loop->is_running = 1;
@@ -629,7 +629,7 @@ eva_main_loop_run          (GskMainLoop       *main_loop,
 
   for (plist = &main_loop->first_context; *plist != NULL; )
     {
-      GskMainLoopContextList *list = *plist;
+      EvaMainLoopContextList *list = *plist;
       GMainContext *context = list->context;
       gint c_timeout;
 
@@ -666,7 +666,7 @@ retry_query:
 	{
 	  guint new_count = list->num_fds_alloced * 2;
 	  list->poll_fds = g_renew (GPollFD, list->poll_fds, new_count);
-	  list->sources = g_renew (GskSource *, list->sources, new_count);
+	  list->sources = g_renew (EvaSource *, list->sources, new_count);
 	  list->num_fds_alloced = new_count;
 	  goto retry_query;
 	}
@@ -727,7 +727,7 @@ retry_query:
     at->run_count++;
   while (at != NULL)
     {
-      GskSource *next;
+      EvaSource *next;
       if (!(*at->data.idle.func) (at->user_data))
 	at->must_remove = 1;
       rv++;
@@ -770,7 +770,7 @@ retry_query:
 				   at->data.timer.milli_period);
           g_assert (!at->timer_in_tree);
           {
-            GskSource *unused;
+            EvaSource *unused;
             EVA_RBTREE_INSERT (GET_MAIN_LOOP_TIMER_TREE (main_loop),
                                at, unused);
             at->timer_in_tree = 1;
@@ -793,7 +793,7 @@ retry_query:
 	 then double the size of our buffer. */
       main_loop->max_events *= 2;
       main_loop->event_array_cache
-	= g_renew (GskMainLoopEvent,
+	= g_renew (EvaMainLoopEvent,
 		   main_loop->event_array_cache, main_loop->max_events);
     }
   return rv;
@@ -802,16 +802,16 @@ retry_query:
 static GMemChunk *eva_source_chunk = NULL;
 G_LOCK_DEFINE_STATIC (eva_source_chunk);
 
-static inline GskSource  *
-eva_source_new   (GskSourceType     type,
-		  GskMainLoop      *main_loop,
+static inline EvaSource  *
+eva_source_new   (EvaSourceType     type,
+		  EvaMainLoop      *main_loop,
 		  gpointer          user_data,
 		  GDestroyNotify    destroy)
 {
-  GskSource *rv;
+  EvaSource *rv;
   G_LOCK (eva_source_chunk);
   if (eva_source_chunk == NULL)
-    eva_source_chunk = g_mem_chunk_create (GskSource, 16, G_ALLOC_AND_FREE);
+    eva_source_chunk = g_mem_chunk_create (EvaSource, 16, G_ALLOC_AND_FREE);
   rv = g_mem_chunk_alloc (eva_source_chunk);
   G_UNLOCK (eva_source_chunk);
   rv->type = type;
@@ -825,7 +825,7 @@ eva_source_new   (GskSourceType     type,
   return rv;
 }
 static inline void
-eva_source_free (GskSource *eva_source)
+eva_source_free (EvaSource *eva_source)
 {
   G_LOCK (eva_source_chunk);
   g_mem_chunk_free (eva_source_chunk, eva_source);
@@ -850,15 +850,15 @@ eva_source_free (GskSource *eva_source)
  * or because there may be many requests that should
  * be handled at one time.
  *
- * returns: a #GskSource which can be removed (or ignored).
+ * returns: a #EvaSource which can be removed (or ignored).
  */
-GskSource *
-eva_main_loop_add_idle     (GskMainLoop       *main_loop,
-			    GskMainLoopIdleFunc source_func,
+EvaSource *
+eva_main_loop_add_idle     (EvaMainLoop       *main_loop,
+			    EvaMainLoopIdleFunc source_func,
 			    gpointer           user_data,
 			    GDestroyNotify     destroy)
 {
-  GskSource *source = eva_source_new (EVA_SOURCE_TYPE_IDLE, main_loop, user_data, destroy);
+  EvaSource *source = eva_source_new (EVA_SOURCE_TYPE_IDLE, main_loop, user_data, destroy);
   source->data.idle.func = source_func;
   source->data.idle.prev = main_loop->last_idle;
   source->data.idle.next = NULL;
@@ -889,18 +889,18 @@ eva_main_loop_add_idle     (GskMainLoop       *main_loop,
  * 
  * It is ok to connect multiple times to a single signal simulataneously.
  *
- * returns: a #GskSource which can be removed (or ignored).
+ * returns: a #EvaSource which can be removed (or ignored).
  */
-GskSource *
-eva_main_loop_add_signal   (GskMainLoop       *main_loop,
+EvaSource *
+eva_main_loop_add_signal   (EvaMainLoop       *main_loop,
 			    int                signal_number,
-			    GskMainLoopSignalFunc signal_func,
+			    EvaMainLoopSignalFunc signal_func,
 			    gpointer           user_data,
 			    GDestroyNotify     destroy)
 {
-  GskSource *source;
-  GskSource *first;
-  GskSource *last;
+  EvaSource *source;
+  EvaSource *first;
+  EvaSource *last;
   //g_return_val_if_fail (signal_number != SIGCHLD, NULL);
   source = eva_source_new (EVA_SOURCE_TYPE_SIGNAL, main_loop, user_data, destroy);
   if (main_loop->signal_source_lists->len <= (guint) signal_number)
@@ -942,18 +942,18 @@ eva_main_loop_add_signal   (GskMainLoop       *main_loop,
  *
  * The handler will be invoked synchronously.
  *
- * returns: #GskSource which can be removed (or ignored).
+ * returns: #EvaSource which can be removed (or ignored).
  */
-GskSource *
-eva_main_loop_add_waitpid  (GskMainLoop       *main_loop,
+EvaSource *
+eva_main_loop_add_waitpid  (EvaMainLoop       *main_loop,
 			    int                process_id,
-			    GskMainLoopWaitPidFunc waitpid_func,
+			    EvaMainLoopWaitPidFunc waitpid_func,
 			    gpointer           user_data,
 			    GDestroyNotify     destroy)
 {
-  GskSource *source = eva_source_new (EVA_SOURCE_TYPE_PROCESS, main_loop, user_data, destroy);
-  GskSource *first;
-  GskSource *last;
+  EvaSource *source = eva_source_new (EVA_SOURCE_TYPE_PROCESS, main_loop, user_data, destroy);
+  EvaSource *first;
+  EvaSource *last;
   first = g_hash_table_lookup (main_loop->process_source_lists,
                                GUINT_TO_POINTER (process_id));
   /* XXX: really need to save last elements!!! */
@@ -997,17 +997,17 @@ eva_main_loop_add_waitpid  (GskMainLoop       *main_loop,
  * the @io_func will be invoked again at every iteration of the main-loop
  * until there is no data available.
  *
- * returns: a #GskSource which can be removed or altered.
+ * returns: a #EvaSource which can be removed or altered.
  */
-GskSource *
-eva_main_loop_add_io       (GskMainLoop       *main_loop,
+EvaSource *
+eva_main_loop_add_io       (EvaMainLoop       *main_loop,
 			    int                fd,
 			    guint              events,
-			    GskMainLoopIOFunc  io_func,
+			    EvaMainLoopIOFunc  io_func,
 			    gpointer           user_data,
 			    GDestroyNotify     destroy)
 {
-  GskSource *source;
+  EvaSource *source;
   GIOCondition old_events;
   g_return_val_if_fail (fd >= 0, NULL);
   if ((guint) fd >= main_loop->read_sources->len)
@@ -1043,8 +1043,8 @@ eva_main_loop_add_io       (GskMainLoop       *main_loop,
  *
  * This changes the types of events being watched by the main-loop.
  *
- * Note:  each new file-descriptor needs a new GskSource.
- * You must reuse this GskSource for a new file-descriptor
+ * Note:  each new file-descriptor needs a new EvaSource.
+ * You must reuse this EvaSource for a new file-descriptor
  * even if it happens to have the same numeric value
  * as a file-descriptor you closed.
  * (The reason why:  EVA automatically coagulates
@@ -1052,18 +1052,18 @@ eva_main_loop_add_io       (GskMainLoop       *main_loop,
  * However, kqueue(2) on BSD, and possibly others, automatically
  * unregister all interest in an event if the file-descriptor closes.
  * Hence, if the file-descriptor is re-opened and re-used with the
- * same GskSource, EVA will not be able to determine
- * that anything has changed, and will not issue a new #GskMainLoopChange.
+ * same EvaSource, EVA will not be able to determine
+ * that anything has changed, and will not issue a new #EvaMainLoopChange.
  * This will break main-loops that are sensitive to exact which file-descriptor
  * (not just the number) was registered.)
  */
 void
-eva_source_adjust_io    (GskSource         *source,
+eva_source_adjust_io    (EvaSource         *source,
 			 guint              events)
 {
   guint fd;
   GIOCondition old_events;
-  GskMainLoop *main_loop = source->main_loop;
+  EvaMainLoop *main_loop = source->main_loop;
 
   g_return_if_fail (source != NULL);
   g_return_if_fail (source->type == EVA_SOURCE_TYPE_IO);
@@ -1076,7 +1076,7 @@ eva_source_adjust_io    (GskSource         *source,
   old_events = get_io_events (main_loop, fd);
   if ((events & G_IO_IN) == G_IO_IN)
     {
-      GskSource *old = main_loop->read_sources->pdata[fd];
+      EvaSource *old = main_loop->read_sources->pdata[fd];
       g_return_if_fail (old == source || old == NULL);
       main_loop->read_sources->pdata[fd] = source;
     }
@@ -1085,7 +1085,7 @@ eva_source_adjust_io    (GskSource         *source,
 
   if ((events & G_IO_OUT) == G_IO_OUT)
     {
-      GskSource *old = main_loop->write_sources->pdata[fd];
+      EvaSource *old = main_loop->write_sources->pdata[fd];
       g_return_if_fail (old == source || old == NULL);
       main_loop->write_sources->pdata[fd] = source;
     }
@@ -1106,7 +1106,7 @@ eva_source_adjust_io    (GskSource         *source,
  * already caused this source to be woken up.
  */
 void
-eva_source_add_io_events (GskSource *source,
+eva_source_add_io_events (EvaSource *source,
 			  guint      events)
 {
   g_return_if_fail (source != NULL);
@@ -1124,7 +1124,7 @@ eva_source_add_io_events (GskSource *source,
  * the @events parameter are set.
  */
 void
-eva_source_remove_io_events (GskSource *source,
+eva_source_remove_io_events (EvaSource *source,
 			     guint      events)
 {
   g_return_if_fail (source != NULL);
@@ -1147,19 +1147,19 @@ eva_source_remove_io_events (GskSource *source,
  * a fixed amount of time passes, and then may be called
  * at a regular interval thereafter.
  *
- * returns: #GskSource which can be removed or altered.
+ * returns: #EvaSource which can be removed or altered.
  */
 #undef eva_main_loop_add_timer
-GskSource *
-eva_main_loop_add_timer64  (GskMainLoop       *main_loop,
-			    GskMainLoopTimeoutFunc timer_func,
+EvaSource *
+eva_main_loop_add_timer64  (EvaMainLoop       *main_loop,
+			    EvaMainLoopTimeoutFunc timer_func,
 			    gpointer           timer_data,
 			    GDestroyNotify     timer_destroy,
 			    gint64             millis_expire,
 			    gint64             milli_period)
 {
-  GskSource *source = eva_source_new (EVA_SOURCE_TYPE_TIMER, main_loop, timer_data, timer_destroy);
-  GskSource *unused;
+  EvaSource *source = eva_source_new (EVA_SOURCE_TYPE_TIMER, main_loop, timer_data, timer_destroy);
+  EvaSource *unused;
   source->data.timer.expire_time = main_loop->current_time;
   g_time_val_add_millis (&source->data.timer.expire_time, millis_expire);
   source->data.timer.milli_period = milli_period;
@@ -1170,9 +1170,9 @@ eva_main_loop_add_timer64  (GskMainLoop       *main_loop,
   main_loop->num_sources++;
   return source;
 }
-GskSource *
-eva_main_loop_add_timer    (GskMainLoop       *main_loop,
-			    GskMainLoopTimeoutFunc timer_func,
+EvaSource *
+eva_main_loop_add_timer    (EvaMainLoop       *main_loop,
+			    EvaMainLoopTimeoutFunc timer_func,
 			    gpointer           timer_data,
 			    GDestroyNotify     timer_destroy,
 			    gint               millis_expire,
@@ -1199,18 +1199,18 @@ eva_main_loop_add_timer    (GskMainLoop       *main_loop,
  * The time to wait until is (@unixtime + @unixtime_micro * 10^{-6}) seconds after
  * New Years, Jan 1, 1970 GMT.
  *
- * returns: a #GskSource which can be removed or altered.
+ * returns: a #EvaSource which can be removed or altered.
  */
-GskSource *
-eva_main_loop_add_timer_absolute (GskMainLoop       *main_loop,
-				  GskMainLoopTimeoutFunc timer_func,
+EvaSource *
+eva_main_loop_add_timer_absolute (EvaMainLoop       *main_loop,
+				  EvaMainLoopTimeoutFunc timer_func,
 				  gpointer           timer_data,
 				  GDestroyNotify     timer_destroy,
 				  int                unixtime,
 				  int                unixtime_micro)
 {
-  GskSource *source = eva_source_new (EVA_SOURCE_TYPE_TIMER, main_loop, timer_data, timer_destroy);
-  GskSource *unused;
+  EvaSource *source = eva_source_new (EVA_SOURCE_TYPE_TIMER, main_loop, timer_data, timer_destroy);
+  EvaSource *unused;
   source->data.timer.expire_time.tv_sec = unixtime;
   source->data.timer.expire_time.tv_usec = unixtime_micro;
   source->data.timer.milli_period = -1;
@@ -1235,11 +1235,11 @@ eva_main_loop_add_timer_absolute (GskMainLoop       *main_loop,
 #undef eva_source_adjust_timer                              /* compatibility hack */
 #define eva_source_adjust_timer eva_source_adjust_timer64   /* compatibility hack */
 void
-eva_source_adjust_timer   (GskSource         *timer_source,
+eva_source_adjust_timer   (EvaSource         *timer_source,
 			   gint64             millis_expire,
 			   gint64             milli_period)
 {
-  GskMainLoop *main_loop = timer_source->main_loop;
+  EvaMainLoop *main_loop = timer_source->main_loop;
   g_return_if_fail (timer_source->type == EVA_SOURCE_TYPE_TIMER);
   if (timer_source->timer_in_tree)
     {
@@ -1253,7 +1253,7 @@ eva_source_adjust_timer   (GskSource         *timer_source,
     {
       if (!timer_source->timer_in_tree)
         {
-          GskSource *unused;
+          EvaSource *unused;
           EVA_RBTREE_INSERT (GET_MAIN_LOOP_TIMER_TREE (main_loop),
                              timer_source,
                              unused);
@@ -1265,7 +1265,7 @@ eva_source_adjust_timer   (GskSource         *timer_source,
 }
 #undef eva_source_adjust_timer                  /* compatibility hack */
 void                                            /* compatibility hack */
-eva_source_adjust_timer   (GskSource         *timer_source,
+eva_source_adjust_timer   (EvaSource         *timer_source,
 			   gint               millis_expire,
 			   gint               milli_period)
 {
@@ -1273,8 +1273,8 @@ eva_source_adjust_timer   (GskSource         *timer_source,
 }
 
 static inline void
-eva_main_loop_block_io (GskMainLoop *main_loop,
-			GskSource   *source)
+eva_main_loop_block_io (EvaMainLoop *main_loop,
+			EvaSource   *source)
 {
   switch (source->type)
     {
@@ -1375,7 +1375,7 @@ eva_main_loop_block_io (GskMainLoop *main_loop,
  *
  * returns: the main-loop associated with the source.
  */
-GskMainLoop *eva_source_peek_main_loop (GskSource *source)
+EvaMainLoop *eva_source_peek_main_loop (EvaSource *source)
 {
   return source->main_loop;
 }
@@ -1392,9 +1392,9 @@ GskMainLoop *eva_source_peek_main_loop (GskSource *source)
  * deleted unexpectedly in the middle of the user's callback.)
  */
 void
-eva_source_remove (GskSource         *source)
+eva_source_remove (EvaSource         *source)
 {
-  GskMainLoop *main_loop = source->main_loop;
+  EvaMainLoop *main_loop = source->main_loop;
   if (source->run_count > 0)
     {
       /* Remove fd interest immediately, even if reenterring.
@@ -1439,12 +1439,12 @@ eva_source_remove (GskSource         *source)
  *
  * Set the main-loop flag that indicates that it should really stop running.
  *
- * If you are executing a GskMainLoop using eva_main_loop_run(),
+ * If you are executing a EvaMainLoop using eva_main_loop_run(),
  * then you should probably check eva_main_loop_should_continue() at every iteration
  * to ensure that you should not have quit by now.
  */
 void
-eva_main_loop_quit (GskMainLoop       *main_loop)
+eva_main_loop_quit (EvaMainLoop       *main_loop)
 {
   main_loop->quit = 1;
 }
@@ -1458,7 +1458,7 @@ eva_main_loop_quit (GskMainLoop       *main_loop)
  * returns: whether to keep running this main-loop.
  */
 gboolean
-eva_main_loop_should_continue (GskMainLoop       *main_loop)
+eva_main_loop_should_continue (EvaMainLoop       *main_loop)
 {
 #if 0
   if (main_loop->quit)
@@ -1472,7 +1472,7 @@ eva_main_loop_should_continue (GskMainLoop       *main_loop)
 /* XXX: this kind of trick should be done constantly (whenever a source
         of the appropriate type is removed) */
 static void
-check_if_all_handlers_clear (GskMainLoop *main_loop)
+check_if_all_handlers_clear (EvaMainLoop *main_loop)
 {
   guint max_len;
   guint i;
@@ -1495,10 +1495,10 @@ check_if_all_handlers_clear (GskMainLoop *main_loop)
 }
 
 void
-eva_main_loop_destroy_all_sources (GskMainLoop *main_loop)
+eva_main_loop_destroy_all_sources (EvaMainLoop *main_loop)
 {
   /* temporary variables */
-  GskSource *at;
+  EvaSource *at;
   GSList *list, *at_list;
   guint i;
 
@@ -1506,7 +1506,7 @@ eva_main_loop_destroy_all_sources (GskMainLoop *main_loop)
   at = main_loop->first_idle;
   while (at != NULL)
     {
-      GskSource *next = at->data.idle.next;
+      EvaSource *next = at->data.idle.next;
       if (next != NULL)
 	next->run_count++;
       eva_source_remove (at);
@@ -1537,7 +1537,7 @@ eva_main_loop_destroy_all_sources (GskMainLoop *main_loop)
       at = main_loop->signal_source_lists->pdata[i];
       while (at != NULL)
 	{
-	  GskSource *next = at->data.signal.next;
+	  EvaSource *next = at->data.signal.next;
 	  if (next != NULL)
 	    next->run_count++;
 	  eva_source_remove (at);
@@ -1556,7 +1556,7 @@ eva_main_loop_destroy_all_sources (GskMainLoop *main_loop)
       at = g_hash_table_lookup (main_loop->process_source_lists, at_list->data);
       while (at != NULL)
 	{
-	  GskSource *next = at->data.idle.next;
+	  EvaSource *next = at->data.idle.next;
 	  if (next != NULL)
 	    next->run_count++;
 	  eva_source_remove (at);
@@ -1579,7 +1579,7 @@ eva_main_loop_destroy_all_sources (GskMainLoop *main_loop)
 static void
 eva_main_loop_finalize (GObject *object)
 {
-  GskMainLoop *main_loop = EVA_MAIN_LOOP (object);
+  EvaMainLoop *main_loop = EVA_MAIN_LOOP (object);
   eva_main_loop_destroy_all_sources (main_loop);
 
   g_assert (main_loop->first_idle == NULL);
@@ -1602,7 +1602,7 @@ eva_main_loop_finalize (GObject *object)
 
 /* --- functions --- */
 static void
-eva_main_loop_init (GskMainLoop *main_loop)
+eva_main_loop_init (EvaMainLoop *main_loop)
 {
   main_loop->timers = NULL;
   main_loop->read_sources = g_ptr_array_new ();
@@ -1611,12 +1611,12 @@ eva_main_loop_init (GskMainLoop *main_loop)
   main_loop->process_source_lists = g_hash_table_new (NULL, NULL);
   main_loop->alive_pids = g_hash_table_new (NULL, NULL);
   main_loop->max_events = INITIAL_MAX_EVENTS;
-  main_loop->event_array_cache = g_new (GskMainLoopEvent, main_loop->max_events);
+  main_loop->event_array_cache = g_new (EvaMainLoopEvent, main_loop->max_events);
   eva_main_loop_update_current_time (main_loop);
 }
 
 static void
-eva_main_loop_class_init (GskMainLoopClass *class)
+eva_main_loop_class_init (EvaMainLoopClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
@@ -1630,37 +1630,37 @@ GType eva_main_loop_get_type()
     {
       static const GTypeInfo main_loop_info =
       {
-	sizeof(GskMainLoopClass),
+	sizeof(EvaMainLoopClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_main_loop_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMainLoop),
+	sizeof (EvaMainLoop),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_main_loop_init,
 	NULL		/* value_table */
       };
       GType parent = G_TYPE_OBJECT;
       main_loop_type = g_type_register_static (parent,
-                                                  "GskMainLoop",
+                                                  "EvaMainLoop",
 						  &main_loop_info, 0);
     }
   return main_loop_type;
 }
 
-/* --- GskMainLoopWaitInfo type registration --- */
-static GskMainLoopWaitInfo *
-eva_main_loop_wait_info_copy (const GskMainLoopWaitInfo *wait_info)
+/* --- EvaMainLoopWaitInfo type registration --- */
+static EvaMainLoopWaitInfo *
+eva_main_loop_wait_info_copy (const EvaMainLoopWaitInfo *wait_info)
 {
-  return g_memdup (wait_info, sizeof (GskMainLoopWaitInfo));
+  return g_memdup (wait_info, sizeof (EvaMainLoopWaitInfo));
 }
 
 GType eva_main_loop_wait_info_get_type(void)
 {
   static GType rv = 0;
   if (rv == 0)
-    rv = g_boxed_type_register_static ("GskMainLoopWaitInfo",
+    rv = g_boxed_type_register_static ("EvaMainLoopWaitInfo",
                                        (GBoxedCopyFunc) eva_main_loop_wait_info_copy,
                                        (GBoxedFreeFunc) g_free);
   return rv;
@@ -1699,8 +1699,8 @@ static struct
 };
 
 
-GskMainLoop *
-eva_main_loop_new (GskMainLoopCreateFlags create_flags)
+EvaMainLoop *
+eva_main_loop_new (EvaMainLoopCreateFlags create_flags)
 {
   gboolean threads = (create_flags & EVA_MAIN_LOOP_NEEDS_THREADS) != 0;
   GType type = 0;
@@ -1717,7 +1717,7 @@ eva_main_loop_new (GskMainLoopCreateFlags create_flags)
 
   if (env_type != NULL)
     {
-      GskMainLoop *main_loop;
+      EvaMainLoop *main_loop;
       while (main_loop_types[i].get_type_func != NULL)
 	{
 	  if (strcmp (env_type, main_loop_types[i].env_value) == 0
@@ -1738,7 +1738,7 @@ eva_main_loop_new (GskMainLoopCreateFlags create_flags)
 	}
       else
 	{
-	  GskMainLoopClass *class;
+	  EvaMainLoopClass *class;
 	  main_loop = g_object_new (type, NULL);
 	  class = EVA_MAIN_LOOP_GET_CLASS (main_loop);
 	  if (class->setup == NULL || (*class->setup) (main_loop))
@@ -1756,8 +1756,8 @@ eva_main_loop_new (GskMainLoopCreateFlags create_flags)
     {
       if (!threads || main_loop_types[i].supports_threads)
 	{
-	  GskMainLoop *main_loop;
-	  GskMainLoopClass *class;
+	  EvaMainLoop *main_loop;
+	  EvaMainLoopClass *class;
 	  type = (*main_loop_types[i].get_type_func) ();
 	  main_loop = g_object_new (type, NULL);
 	  class = EVA_MAIN_LOOP_GET_CLASS (main_loop);
@@ -1772,7 +1772,7 @@ eva_main_loop_new (GskMainLoopCreateFlags create_flags)
       i++;
     }
 
-  g_warning ("No type of GskMainLoop can be constructed");
+  g_warning ("No type of EvaMainLoop can be constructed");
   return NULL;
 }
 
@@ -1782,18 +1782,18 @@ eva_main_loop_new (GskMainLoopCreateFlags create_flags)
  * @main_loop: main-loop which will take responsibility for @context.
  * @context: a GMainContext that should be handled by eva_main_loop_run().
  * 
- * Indicate that a particular #GskMainLoop will take care of
+ * Indicate that a particular #EvaMainLoop will take care of
  * invoking the necessary methods of @context.
  */
 void
-eva_main_loop_add_context (GskMainLoop  *main_loop,
+eva_main_loop_add_context (EvaMainLoop  *main_loop,
 			   GMainContext *context)
 {
-  GskMainLoopContextList *node = g_new (GskMainLoopContextList, 1);
+  EvaMainLoopContextList *node = g_new (EvaMainLoopContextList, 1);
   node->context = context;
   node->num_fds_alloced = 16;
   node->poll_fds = g_new (GPollFD, node->num_fds_alloced);
-  node->sources = g_new (GskSource *, node->num_fds_alloced);
+  node->sources = g_new (EvaSource *, node->num_fds_alloced);
   node->num_fds_received = 0;
   node->priority = G_PRIORITY_DEFAULT;
 
@@ -1808,7 +1808,7 @@ eva_main_loop_add_context (GskMainLoop  *main_loop,
 /* --- per-thread default main-loop --- */
 
 /* globals for non-threaded main-loops */
-static GskMainLoop *non_thread_main_loop = NULL;
+static EvaMainLoop *non_thread_main_loop = NULL;
 
 /* globals for per-thread main-loops */
 static GPrivate *private_main_loop_key;
@@ -1822,12 +1822,12 @@ static GPrivate *private_main_loop_key;
  * increase the ref-count on the main-loop, so you do not need 
  * to call g_object_unref() on the return value.
  */
-GskMainLoop *
+EvaMainLoop *
 eva_main_loop_default ()
 {
   if (eva_init_get_support_threads ())
     {
-      GskMainLoop *main_loop = g_private_get (private_main_loop_key);
+      EvaMainLoop *main_loop = g_private_get (private_main_loop_key);
       if (main_loop != NULL)
 	return main_loop;
       main_loop = eva_main_loop_new (EVA_MAIN_LOOP_NEEDS_THREADS);

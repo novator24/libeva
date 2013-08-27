@@ -16,7 +16,7 @@ just another kind of event.
 Task done notification is run in the main-thread.
 The Main-thread is the thread to which the main-loop
 belongs, and is the only thread from
-which the #GskThreadPool methods (eg #eva_thread_pool_push)
+which the #EvaThreadPool methods (eg #eva_thread_pool_push)
 may be run.
 </para>
 
@@ -28,13 +28,13 @@ may be run.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskThreadPool ##### -->
+<!-- ##### STRUCT EvaThreadPool ##### -->
 <para>
 An opaque structure which houses a number of worker threads.
 </para>
 
 
-<!-- ##### USER_FUNCTION GskThreadPoolRunFunc ##### -->
+<!-- ##### USER_FUNCTION EvaThreadPoolRunFunc ##### -->
 <para>
 A function to be run in the background thread.
 It may create a return value that will be
@@ -49,28 +49,28 @@ or it can be guarded by mutexes.
 
 @run_data: data that was passed to eva_thread_pool_push().
 @Returns: the result_data, which will be passed
-to the #GskThreadPoolResultFunc.
+to the #EvaThreadPoolResultFunc.
 
 
-<!-- ##### USER_FUNCTION GskThreadPoolResultFunc ##### -->
+<!-- ##### USER_FUNCTION EvaThreadPoolResultFunc ##### -->
 <para>
 A function to be run in the main thread with the
 result of the background processing.
 </para>
 
 @run_data: data that was passed to eva_thread_pool_push().
-@result_data: data that was returned by the #GskThreadPoolRunFunc.
+@result_data: data that was returned by the #EvaThreadPoolRunFunc.
 
 
-<!-- ##### USER_FUNCTION GskThreadPoolDestroyFunc ##### -->
+<!-- ##### USER_FUNCTION EvaThreadPoolDestroyFunc ##### -->
 <para>
-Function to run in the main thread after #GskThreadPoolRunFunc is finished,
+Function to run in the main thread after #EvaThreadPoolRunFunc is finished,
 or if the thread-pool is destroyed before the
 task can be started.
 </para>
 
 @run_data: data that was passed to eva_thread_pool_push().
-@result_data: data that was returned by the #GskThreadPoolRunFunc,
+@result_data: data that was returned by the #EvaThreadPoolRunFunc,
 or #NULL if the task had not been started before the thread-pool
 was destroyed.
 

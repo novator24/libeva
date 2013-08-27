@@ -14,35 +14,35 @@
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskCompileContext">GskCompileContext</link>;
-                    <link linkend="GskModule">GskModule</link>;
-<link linkend="GskCompileContext">GskCompileContext</link> * <link linkend="eva-compile-context-new">eva_compile_context_new</link>             (void);
-<link linkend="void">void</link>                <link linkend="eva-compile-context-add-cflags">eva_compile_context_add_cflags</link>      (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+                    <link linkend="EvaCompileContext">EvaCompileContext</link>;
+                    <link linkend="EvaModule">EvaModule</link>;
+<link linkend="EvaCompileContext">EvaCompileContext</link> * <link linkend="eva-compile-context-new">eva_compile_context_new</link>             (void);
+<link linkend="void">void</link>                <link linkend="eva-compile-context-add-cflags">eva_compile_context_add_cflags</link>      (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          const <link linkend="char">char</link> *flags);
-<link linkend="void">void</link>                <link linkend="eva-compile-context-add-ldflags">eva_compile_context_add_ldflags</link>     (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<link linkend="void">void</link>                <link linkend="eva-compile-context-add-ldflags">eva_compile_context_add_ldflags</link>     (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          const <link linkend="char">char</link> *flags);
-<link linkend="void">void</link>                <link linkend="eva-compile-context-add-pkg">eva_compile_context_add_pkg</link>         (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<link linkend="void">void</link>                <link linkend="eva-compile-context-add-pkg">eva_compile_context_add_pkg</link>         (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          const <link linkend="char">char</link> *pkg);
-<link linkend="void">void</link>                <link linkend="eva-compile-context-set-tmp-dir">eva_compile_context_set_tmp_dir</link>     (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<link linkend="void">void</link>                <link linkend="eva-compile-context-set-tmp-dir">eva_compile_context_set_tmp_dir</link>     (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          const <link linkend="char">char</link> *tmp_dir);
-<link linkend="void">void</link>                <link linkend="eva-compile-context-set-gdb">eva_compile_context_set_gdb</link>         (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<link linkend="void">void</link>                <link linkend="eva-compile-context-set-gdb">eva_compile_context_set_gdb</link>         (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          <link linkend="gboolean">gboolean</link> support);
-<link linkend="void">void</link>                <link linkend="eva-compile-context-set-verbose">eva_compile_context_set_verbose</link>     (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<link linkend="void">void</link>                <link linkend="eva-compile-context-set-verbose">eva_compile_context_set_verbose</link>     (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          <link linkend="gboolean">gboolean</link> support);
-<link linkend="void">void</link>                <link linkend="eva-compile-context-free">eva_compile_context_free</link>            (<link linkend="GskCompileContext">GskCompileContext</link> *context);
-<link linkend="GskModule">GskModule</link> *         <link linkend="eva-module-compile">eva_module_compile</link>                  (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<link linkend="void">void</link>                <link linkend="eva-compile-context-free">eva_compile_context_free</link>            (<link linkend="EvaCompileContext">EvaCompileContext</link> *context);
+<link linkend="EvaModule">EvaModule</link> *         <link linkend="eva-module-compile">eva_module_compile</link>                  (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          <link linkend="guint">guint</link> n_sources,
                                                          <link linkend="char">char</link> **sources,
                                                          <link linkend="GModuleFlags">GModuleFlags</link> flags,
                                                          <link linkend="gboolean">gboolean</link> delete_sources,
                                                          <link linkend="char">char</link> **program_output,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskModule">GskModule</link> *         <link linkend="eva-module-open">eva_module_open</link>                     (const <link linkend="char">char</link> *filename,
+<link linkend="EvaModule">EvaModule</link> *         <link linkend="eva-module-open">eva_module_open</link>                     (const <link linkend="char">char</link> *filename,
                                                          <link linkend="GModuleFlags">GModuleFlags</link> flags,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskModule">GskModule</link> *         <link linkend="eva-module-ref">eva_module_ref</link>                      (<link linkend="GskModule">GskModule</link> *module);
-<link linkend="void">void</link>                <link linkend="eva-module-unref">eva_module_unref</link>                    (<link linkend="GskModule">GskModule</link> *module);
-<link linkend="gpointer">gpointer</link>            <link linkend="eva-module-lookup">eva_module_lookup</link>                   (<link linkend="GskModule">GskModule</link> *module,
+<link linkend="EvaModule">EvaModule</link> *         <link linkend="eva-module-ref">eva_module_ref</link>                      (<link linkend="EvaModule">EvaModule</link> *module);
+<link linkend="void">void</link>                <link linkend="eva-module-unref">eva_module_unref</link>                    (<link linkend="EvaModule">EvaModule</link> *module);
+<link linkend="gpointer">gpointer</link>            <link linkend="eva-module-lookup">eva_module_lookup</link>                   (<link linkend="EvaModule">EvaModule</link> *module,
                                                          const <link linkend="char">char</link> *symbol_name);
 </synopsis>
 </refsynopsisdiv>
@@ -63,19 +63,19 @@
 
 <refsect1 id="eva-evamodule.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskCompileContext" role="struct">
-<title>GskCompileContext</title>
-<indexterm zone="GskCompileContext"><primary sortas="GskCompileContext">GskCompileContext</primary></indexterm><programlisting>typedef struct _GskCompileContext GskCompileContext;</programlisting>
+<refsect2 id="EvaCompileContext" role="struct">
+<title>EvaCompileContext</title>
+<indexterm zone="EvaCompileContext"><primary sortas="EvaCompileContext">EvaCompileContext</primary></indexterm><programlisting>typedef struct _EvaCompileContext EvaCompileContext;</programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GskModule" role="struct">
-<title>GskModule</title>
-<indexterm zone="GskModule"><primary sortas="GskModule">GskModule</primary></indexterm><programlisting>typedef struct _GskModule GskModule;</programlisting>
+<refsect2 id="EvaModule" role="struct">
+<title>EvaModule</title>
+<indexterm zone="EvaModule"><primary sortas="EvaModule">EvaModule</primary></indexterm><programlisting>typedef struct _EvaModule EvaModule;</programlisting>
 <para>
 </para></refsect2>
 <refsect2 id="eva-compile-context-new" role="function">
 <title>eva_compile_context_new ()</title>
-<indexterm zone="eva-compile-context-new"><primary sortas="eva_compile_context_new">eva_compile_context_new</primary></indexterm><programlisting><link linkend="GskCompileContext">GskCompileContext</link> * eva_compile_context_new             (void);</programlisting>
+<indexterm zone="eva-compile-context-new"><primary sortas="eva_compile_context_new">eva_compile_context_new</primary></indexterm><programlisting><link linkend="EvaCompileContext">EvaCompileContext</link> * eva_compile_context_new             (void);</programlisting>
 <para>
 Create a new compilation context.</para>
 <para>
@@ -85,7 +85,7 @@ Create a new compilation context.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-compile-context-add-cflags" role="function">
 <title>eva_compile_context_add_cflags ()</title>
-<indexterm zone="eva-compile-context-add-cflags"><primary sortas="eva_compile_context_add_cflags">eva_compile_context_add_cflags</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_add_cflags      (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<indexterm zone="eva-compile-context-add-cflags"><primary sortas="eva_compile_context_add_cflags">eva_compile_context_add_cflags</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_add_cflags      (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          const <link linkend="char">char</link> *flags);</programlisting>
 <para>
 Add compiler flags that you want used in
@@ -102,7 +102,7 @@ This will be passed through the shell.
 </variablelist></refsect2>
 <refsect2 id="eva-compile-context-add-ldflags" role="function">
 <title>eva_compile_context_add_ldflags ()</title>
-<indexterm zone="eva-compile-context-add-ldflags"><primary sortas="eva_compile_context_add_ldflags">eva_compile_context_add_ldflags</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_add_ldflags     (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<indexterm zone="eva-compile-context-add-ldflags"><primary sortas="eva_compile_context_add_ldflags">eva_compile_context_add_ldflags</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_add_ldflags     (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          const <link linkend="char">char</link> *flags);</programlisting>
 <para>
 Add linker flags that you want used in
@@ -119,7 +119,7 @@ This will be passed through the shell.
 </variablelist></refsect2>
 <refsect2 id="eva-compile-context-add-pkg" role="function">
 <title>eva_compile_context_add_pkg ()</title>
-<indexterm zone="eva-compile-context-add-pkg"><primary sortas="eva_compile_context_add_pkg">eva_compile_context_add_pkg</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_add_pkg         (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<indexterm zone="eva-compile-context-add-pkg"><primary sortas="eva_compile_context_add_pkg">eva_compile_context_add_pkg</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_add_pkg         (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          const <link linkend="char">char</link> *pkg);</programlisting>
 <para>
 Add a package-dependency for this compilation context.
@@ -137,7 +137,7 @@ TODO error-handling.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-compile-context-set-tmp-dir" role="function">
 <title>eva_compile_context_set_tmp_dir ()</title>
-<indexterm zone="eva-compile-context-set-tmp-dir"><primary sortas="eva_compile_context_set_tmp_dir">eva_compile_context_set_tmp_dir</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_set_tmp_dir     (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<indexterm zone="eva-compile-context-set-tmp-dir"><primary sortas="eva_compile_context_set_tmp_dir">eva_compile_context_set_tmp_dir</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_set_tmp_dir     (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          const <link linkend="char">char</link> *tmp_dir);</programlisting>
 <para>
 Set the directory to use for temporary files.</para>
@@ -152,7 +152,7 @@ Set the directory to use for temporary files.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-compile-context-set-gdb" role="function">
 <title>eva_compile_context_set_gdb ()</title>
-<indexterm zone="eva-compile-context-set-gdb"><primary sortas="eva_compile_context_set_gdb">eva_compile_context_set_gdb</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_set_gdb         (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<indexterm zone="eva-compile-context-set-gdb"><primary sortas="eva_compile_context_set_gdb">eva_compile_context_set_gdb</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_set_gdb         (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          <link linkend="gboolean">gboolean</link> support);</programlisting>
 <para>
 Set whether gdb will be supported on shared-libraries
@@ -169,7 +169,7 @@ The default is FALSE.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-compile-context-set-verbose" role="function">
 <title>eva_compile_context_set_verbose ()</title>
-<indexterm zone="eva-compile-context-set-verbose"><primary sortas="eva_compile_context_set_verbose">eva_compile_context_set_verbose</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_set_verbose     (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<indexterm zone="eva-compile-context-set-verbose"><primary sortas="eva_compile_context_set_verbose">eva_compile_context_set_verbose</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_set_verbose     (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          <link linkend="gboolean">gboolean</link> support);</programlisting>
 <para>
 Set whether to be verbose.
@@ -189,7 +189,7 @@ The default is FALSE.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-compile-context-free" role="function">
 <title>eva_compile_context_free ()</title>
-<indexterm zone="eva-compile-context-free"><primary sortas="eva_compile_context_free">eva_compile_context_free</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_free            (<link linkend="GskCompileContext">GskCompileContext</link> *context);</programlisting>
+<indexterm zone="eva-compile-context-free"><primary sortas="eva_compile_context_free">eva_compile_context_free</primary></indexterm><programlisting><link linkend="void">void</link>                eva_compile_context_free            (<link linkend="EvaCompileContext">EvaCompileContext</link> *context);</programlisting>
 <para>
 Free memory used by the compilation context.</para>
 <para>
@@ -200,7 +200,7 @@ Free memory used by the compilation context.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-module-compile" role="function">
 <title>eva_module_compile ()</title>
-<indexterm zone="eva-module-compile"><primary sortas="eva_module_compile">eva_module_compile</primary></indexterm><programlisting><link linkend="GskModule">GskModule</link> *         eva_module_compile                  (<link linkend="GskCompileContext">GskCompileContext</link> *context,
+<indexterm zone="eva-module-compile"><primary sortas="eva_module_compile">eva_module_compile</primary></indexterm><programlisting><link linkend="EvaModule">EvaModule</link> *         eva_module_compile                  (<link linkend="EvaCompileContext">EvaCompileContext</link> *context,
                                                          <link linkend="guint">guint</link> n_sources,
                                                          <link linkend="char">char</link> **sources,
                                                          <link linkend="GModuleFlags">GModuleFlags</link> flags,
@@ -245,7 +245,7 @@ as possible (depending on whether gdb support is enabled)
 </variablelist></refsect2>
 <refsect2 id="eva-module-open" role="function">
 <title>eva_module_open ()</title>
-<indexterm zone="eva-module-open"><primary sortas="eva_module_open">eva_module_open</primary></indexterm><programlisting><link linkend="GskModule">GskModule</link> *         eva_module_open                     (const <link linkend="char">char</link> *filename,
+<indexterm zone="eva-module-open"><primary sortas="eva_module_open">eva_module_open</primary></indexterm><programlisting><link linkend="EvaModule">EvaModule</link> *         eva_module_open                     (const <link linkend="char">char</link> *filename,
                                                          <link linkend="GModuleFlags">GModuleFlags</link> flags,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
@@ -264,7 +264,7 @@ as possible (depending on whether gdb support is enabled)
 </variablelist></refsect2>
 <refsect2 id="eva-module-ref" role="function">
 <title>eva_module_ref ()</title>
-<indexterm zone="eva-module-ref"><primary sortas="eva_module_ref">eva_module_ref</primary></indexterm><programlisting><link linkend="GskModule">GskModule</link> *         eva_module_ref                      (<link linkend="GskModule">GskModule</link> *module);</programlisting>
+<indexterm zone="eva-module-ref"><primary sortas="eva_module_ref">eva_module_ref</primary></indexterm><programlisting><link linkend="EvaModule">EvaModule</link> *         eva_module_ref                      (<link linkend="EvaModule">EvaModule</link> *module);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>module</parameter>&#160;:</term>
@@ -275,7 +275,7 @@ as possible (depending on whether gdb support is enabled)
 </variablelist></refsect2>
 <refsect2 id="eva-module-unref" role="function">
 <title>eva_module_unref ()</title>
-<indexterm zone="eva-module-unref"><primary sortas="eva_module_unref">eva_module_unref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_module_unref                    (<link linkend="GskModule">GskModule</link> *module);</programlisting>
+<indexterm zone="eva-module-unref"><primary sortas="eva_module_unref">eva_module_unref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_module_unref                    (<link linkend="EvaModule">EvaModule</link> *module);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>module</parameter>&#160;:</term>
@@ -284,7 +284,7 @@ as possible (depending on whether gdb support is enabled)
 </variablelist></refsect2>
 <refsect2 id="eva-module-lookup" role="function">
 <title>eva_module_lookup ()</title>
-<indexterm zone="eva-module-lookup"><primary sortas="eva_module_lookup">eva_module_lookup</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_module_lookup                   (<link linkend="GskModule">GskModule</link> *module,
+<indexterm zone="eva-module-lookup"><primary sortas="eva_module_lookup">eva_module_lookup</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_module_lookup                   (<link linkend="EvaModule">EvaModule</link> *module,
                                                          const <link linkend="char">char</link> *symbol_name);</programlisting>
 <para>
 </para><variablelist role="params">

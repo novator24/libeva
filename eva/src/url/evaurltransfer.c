@@ -7,13 +7,13 @@
  *
  * @result: the enumeration value.
  *
- * Convert a GskUrlTransferResult value
+ * Convert a EvaUrlTransferResult value
  * into a human-readable string.
  *
  * returns: the constant string.
  */
 const char *
-eva_url_transfer_result_name (GskUrlTransferResult result)
+eva_url_transfer_result_name (EvaUrlTransferResult result)
 {
   switch (result)
     {
@@ -45,7 +45,7 @@ eva_url_transfer_result_name (GskUrlTransferResult result)
     }
 }
 
-G_DEFINE_TYPE(GskUrlTransfer, eva_url_transfer, G_TYPE_OBJECT);
+G_DEFINE_TYPE(EvaUrlTransfer, eva_url_transfer, G_TYPE_OBJECT);
 
 typedef enum
 {
@@ -53,10 +53,10 @@ typedef enum
   EVA_URL_TRANSFER_STATE_STARTED,
   EVA_URL_TRANSFER_STATE_DONE,
   EVA_URL_TRANSFER_STATE_ERROR
-} GskUrlTransferState;
+} EvaUrlTransferState;
 
 static inline void
-eva_url_transfer_redirect_free_1 (GskUrlTransferRedirect *redirect)
+eva_url_transfer_redirect_free_1 (EvaUrlTransferRedirect *redirect)
 {
   g_object_unref (redirect->url);
   if (redirect->request)
@@ -69,8 +69,8 @@ eva_url_transfer_redirect_free_1 (GskUrlTransferRedirect *redirect)
 static void
 eva_url_transfer_finalize (GObject *object)
 {
-  GskUrlTransfer *transfer = EVA_URL_TRANSFER (object);
-  GskUrlTransferRedirect *redir_at;
+  EvaUrlTransfer *transfer = EVA_URL_TRANSFER (object);
+  EvaUrlTransferRedirect *redir_at;
   g_assert (transfer->transfer_state != EVA_URL_TRANSFER_STATE_STARTED);
 
   if (transfer->url)
@@ -78,7 +78,7 @@ eva_url_transfer_finalize (GObject *object)
   redir_at = transfer->first_redirect;
   while (redir_at)
     {
-      GskUrlTransferRedirect *next = redir_at->next;
+      EvaUrlTransferRedirect *next = redir_at->next;
       eva_url_transfer_redirect_free_1 (redir_at);
       redir_at = next;
     }
@@ -104,7 +104,7 @@ eva_url_transfer_finalize (GObject *object)
 }
 
 static void
-eva_url_transfer_real_timed_out (GskUrlTransfer *transfer)
+eva_url_transfer_real_timed_out (EvaUrlTransfer *transfer)
 {
   eva_url_transfer_take_error (transfer,
                                g_error_new (EVA_G_ERROR_DOMAIN,
@@ -115,7 +115,7 @@ eva_url_transfer_real_timed_out (GskUrlTransfer *transfer)
 }
 
 static char    *
-eva_url_transfer_real_get_constructing_state (GskUrlTransfer *transfer)
+eva_url_transfer_real_get_constructing_state (EvaUrlTransfer *transfer)
 {
   if (transfer->url)
     {
@@ -128,7 +128,7 @@ eva_url_transfer_real_get_constructing_state (GskUrlTransfer *transfer)
 }
 
 static char    *
-eva_url_transfer_real_get_running_state (GskUrlTransfer *transfer)
+eva_url_transfer_real_get_running_state (EvaUrlTransfer *transfer)
 {
   if (transfer->url)
     {
@@ -141,7 +141,7 @@ eva_url_transfer_real_get_running_state (GskUrlTransfer *transfer)
 }
 
 static char    *
-eva_url_transfer_real_get_done_state (GskUrlTransfer *transfer)
+eva_url_transfer_real_get_done_state (EvaUrlTransfer *transfer)
 {
   if (transfer->url)
     {
@@ -156,14 +156,14 @@ eva_url_transfer_real_get_done_state (GskUrlTransfer *transfer)
 }
 
 static void
-eva_url_transfer_init (GskUrlTransfer *transfer)
+eva_url_transfer_init (EvaUrlTransfer *transfer)
 {
   transfer->transfer_state = EVA_URL_TRANSFER_STATE_CONSTRUCTING;
   transfer->follow_redirects = 1;
 }
 
 static void
-eva_url_transfer_class_init (GskUrlTransferClass *transfer_class)
+eva_url_transfer_class_init (EvaUrlTransferClass *transfer_class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (transfer_class);
   object_class->finalize = eva_url_transfer_finalize;
@@ -178,7 +178,7 @@ eva_url_transfer_class_init (GskUrlTransferClass *transfer_class)
  * eva_url_transfer:
  * @url: the URL to which to upload or from which to download data.
  * @upload_func: optional function that can create the upload's content
- * as a #GskStream.
+ * as a #EvaStream.
  * @upload_data: data which can be used by the upload function.
  * @upload_destroy: optional function that will be notified when upload()
  * will no longer be called (note that the streams it created may
@@ -211,16 +211,16 @@ eva_url_transfer_class_init (GskUrlTransferClass *transfer_class)
  * most common ways for this function to fail.
  */
 gboolean
-eva_url_transfer            (GskUrl            *url,
-                             GskUrlUploadFunc   upload_func,
+eva_url_transfer            (EvaUrl            *url,
+                             EvaUrlUploadFunc   upload_func,
                              gpointer           upload_data,
                              GDestroyNotify     upload_destroy,
-                             GskUrlTransferFunc handler,
+                             EvaUrlTransferFunc handler,
                              gpointer           data,
                              GDestroyNotify     destroy,
                              GError           **error)
 {
-  GskUrlTransfer *transfer = eva_url_transfer_new (url);
+  EvaUrlTransfer *transfer = eva_url_transfer_new (url);
   if (transfer == NULL)
     {
       g_set_error (error,
@@ -241,8 +241,8 @@ eva_url_transfer            (GskUrl            *url,
 static gboolean
 handle_timeout (gpointer data)
 {
-  GskUrlTransfer *transfer = EVA_URL_TRANSFER (data);
-  GskUrlTransferClass *class = EVA_URL_TRANSFER_GET_CLASS (transfer);
+  EvaUrlTransfer *transfer = EVA_URL_TRANSFER (data);
+  EvaUrlTransferClass *class = EVA_URL_TRANSFER_GET_CLASS (transfer);
   g_return_val_if_fail (transfer->transfer_state == EVA_URL_TRANSFER_STATE_STARTED, FALSE);
   transfer->timeout_source = NULL;
   transfer->timed_out = TRUE;
@@ -268,10 +268,10 @@ handle_timeout (gpointer data)
  * receive done-notification.
  */
 gboolean
-eva_url_transfer_start      (GskUrlTransfer     *transfer,
+eva_url_transfer_start      (EvaUrlTransfer     *transfer,
                              GError            **error)
 {
-  GskUrlTransferClass *class = EVA_URL_TRANSFER_GET_CLASS (transfer);
+  EvaUrlTransferClass *class = EVA_URL_TRANSFER_GET_CLASS (transfer);
   g_assert (class->start != NULL);
   g_return_val_if_fail (transfer->transfer_state == EVA_URL_TRANSFER_STATE_CONSTRUCTING, FALSE);
   g_object_ref (transfer);
@@ -311,8 +311,8 @@ eva_url_transfer_start      (GskUrlTransfer     *transfer,
  * examining transfer->result.
  */
 void
-eva_url_transfer_set_handler(GskUrlTransfer     *transfer,
-                             GskUrlTransferFunc  handler,
+eva_url_transfer_set_handler(EvaUrlTransfer     *transfer,
+                             EvaUrlTransferFunc  handler,
                              gpointer            data,
                              GDestroyNotify      destroy)
 {
@@ -336,8 +336,8 @@ eva_url_transfer_set_handler(GskUrlTransfer     *transfer,
  * is called by eva_url_transfer_new().
  */
 void
-eva_url_transfer_set_url    (GskUrlTransfer     *transfer,
-                             GskUrl             *url)
+eva_url_transfer_set_url    (EvaUrlTransfer     *transfer,
+                             EvaUrl             *url)
 {
   g_return_if_fail (transfer->transfer_state == EVA_URL_TRANSFER_STATE_CONSTRUCTING);
   g_return_if_fail (transfer->url == NULL);
@@ -358,7 +358,7 @@ eva_url_transfer_set_url    (GskUrlTransfer     *transfer,
  * (with eva_url_transfer_start).
  */
 void
-eva_url_transfer_set_timeout(GskUrlTransfer     *transfer,
+eva_url_transfer_set_timeout(EvaUrlTransfer     *transfer,
                              guint               millis)
 {
   g_return_if_fail (transfer->transfer_state == EVA_URL_TRANSFER_STATE_CONSTRUCTING);
@@ -376,7 +376,7 @@ eva_url_transfer_set_timeout(GskUrlTransfer     *transfer,
  * (with eva_url_transfer_start).
  */
 void
-eva_url_transfer_clear_timeout(GskUrlTransfer     *transfer)
+eva_url_transfer_clear_timeout(EvaUrlTransfer     *transfer)
 {
   g_return_if_fail (transfer->transfer_state == EVA_URL_TRANSFER_STATE_CONSTRUCTING);
   transfer->has_timeout = 0;
@@ -398,7 +398,7 @@ eva_url_transfer_clear_timeout(GskUrlTransfer     *transfer)
  * even if the download led to a redirect.
  */
 void
-eva_url_transfer_set_follow_redirects(GskUrlTransfer     *transfer,
+eva_url_transfer_set_follow_redirects(EvaUrlTransfer     *transfer,
                                       gboolean            follow_redirs)
 {
   g_return_if_fail (transfer->transfer_state == EVA_URL_TRANSFER_STATE_CONSTRUCTING);
@@ -420,8 +420,8 @@ eva_url_transfer_set_follow_redirects(GskUrlTransfer     *transfer,
  * otherwise, DNS may be used on the redirected URLs.
  */
 void
-eva_url_transfer_set_address_hint (GskUrlTransfer *transfer,
-                                   GskSocketAddress *address)
+eva_url_transfer_set_address_hint (EvaUrlTransfer *transfer,
+                                   EvaSocketAddress *address)
 {
   g_return_if_fail (transfer->transfer_state == EVA_URL_TRANSFER_STATE_CONSTRUCTING);
   g_return_if_fail (transfer->address_hint == NULL);
@@ -433,7 +433,7 @@ eva_url_transfer_set_address_hint (GskUrlTransfer *transfer,
  * eva_url_transfer_set_upload:
  * @transfer: the Transfer to affect.
  * @func: function that can create the upload's content
- * as a #GskStream.
+ * as a #EvaStream.
  * @data: data which can be used by the upload function.
  * @destroy: optional function that will be notified when upload()
  * will no longer be called (note that the streams it created may
@@ -455,8 +455,8 @@ eva_url_transfer_set_address_hint (GskUrlTransfer *transfer,
  * consider using eva_url_transfer_set_upload_packet().
  */
 void
-eva_url_transfer_set_upload (GskUrlTransfer     *transfer,
-                             GskUrlUploadFunc    func,
+eva_url_transfer_set_upload (EvaUrlTransfer     *transfer,
+                             EvaUrlUploadFunc    func,
                              gpointer            data,
                              GDestroyNotify      destroy)
 {
@@ -471,17 +471,17 @@ eva_url_transfer_set_upload (GskUrlTransfer     *transfer,
 /**
  * eva_url_transfer_set_upload_packet:
  * @transfer: the Transfer to affect.
- * @packet: the GskPacket containing the upload content as data.
+ * @packet: the EvaPacket containing the upload content as data.
  *
- * Set the upload stream in an easy, reliable way using a GskPacket.
+ * Set the upload stream in an easy, reliable way using a EvaPacket.
  */
-static GskStream *
+static EvaStream *
 make_packet_into_stream (gpointer data,
                          gssize  *size_out,
                          GError **error)
 {
-  GskPacket *packet = data;
-  GskStream *rv = eva_memory_slab_source_new (packet->data, packet->len,
+  EvaPacket *packet = data;
+  EvaStream *rv = eva_memory_slab_source_new (packet->data, packet->len,
                                               (GDestroyNotify) eva_packet_unref,
                                               eva_packet_ref (packet));
   *size_out = packet->len;
@@ -489,8 +489,8 @@ make_packet_into_stream (gpointer data,
 }
 
 void
-eva_url_transfer_set_upload_packet (GskUrlTransfer *transfer,
-                                    GskPacket      *packet)
+eva_url_transfer_set_upload_packet (EvaUrlTransfer *transfer,
+                                    EvaPacket      *packet)
 {
   eva_url_transfer_set_upload (transfer,
                                make_packet_into_stream,
@@ -505,7 +505,7 @@ eva_url_transfer_set_upload_packet (GskUrlTransfer *transfer,
  * @stream: the upload content stream.
  *
  * Set the content to upload to the remote URL,
- * as a #GskStream.
+ * as a #EvaStream.
  *
  * Since streams can only be read once,
  * this method only works on URLs that do not require
@@ -513,17 +513,17 @@ eva_url_transfer_set_upload_packet (GskUrlTransfer *transfer,
  */
 typedef struct
 {
-  GskStream *stream;
+  EvaStream *stream;
   gssize size;
 } ReturnStreamOnce;
 
-static GskStream *
+static EvaStream *
 return_stream_once      (gpointer data,
                          gssize  *size_out,
                          GError **error)
 {
   ReturnStreamOnce *once = data;
-  GskStream *rv;
+  EvaStream *rv;
   if (once->stream == NULL)
     {
       g_set_error (error,
@@ -547,8 +547,8 @@ destroy_return_stream_once (gpointer data)
 }
 
 void
-eva_url_transfer_set_oneshot_upload (GskUrlTransfer *transfer,
-                                     GskStream      *stream,
+eva_url_transfer_set_oneshot_upload (EvaUrlTransfer *transfer,
+                                     EvaStream      *stream,
                                      gssize          size)
 {
   ReturnStreamOnce *once;
@@ -572,9 +572,9 @@ eva_url_transfer_set_oneshot_upload (GskUrlTransfer *transfer,
  * result EVA_URL_TRANSFER_CANCELLED.
  */
 void
-eva_url_transfer_cancel     (GskUrlTransfer     *transfer)
+eva_url_transfer_cancel     (EvaUrlTransfer     *transfer)
 {
-  GskUrlTransferClass *class = EVA_URL_TRANSFER_GET_CLASS (transfer);
+  EvaUrlTransferClass *class = EVA_URL_TRANSFER_GET_CLASS (transfer);
   g_return_if_fail (transfer->transfer_state == EVA_URL_TRANSFER_STATE_STARTED);
   if (class->cancel == NULL)
     {
@@ -592,12 +592,12 @@ eva_url_transfer_cancel     (GskUrlTransfer     *transfer)
  * Figure out whether this transfer has upload data.
  *
  * This function should only be needed by implementors
- * of types of GskUrlTransfer.
+ * of types of EvaUrlTransfer.
  *
  * returns: whether the transfer has upload data.
  */
 gboolean
-eva_url_transfer_has_upload      (GskUrlTransfer     *transfer)
+eva_url_transfer_has_upload      (EvaUrlTransfer     *transfer)
 {
   return transfer->upload_func != NULL;
 }
@@ -612,12 +612,12 @@ eva_url_transfer_has_upload      (GskUrlTransfer     *transfer)
  * function.
  *
  * This function should only be needed by implementors
- * of types of GskUrlTransfer.
+ * of types of EvaUrlTransfer.
  *
- * returns: a newly allocated #GskStream, or NULL if an error occurs.
+ * returns: a newly allocated #EvaStream, or NULL if an error occurs.
  */
-GskStream *
-eva_url_transfer_create_upload   (GskUrlTransfer     *transfer,
+EvaStream *
+eva_url_transfer_create_upload   (EvaUrlTransfer     *transfer,
                                   gssize             *size_out,
                                   GError            **error)
 {
@@ -634,10 +634,10 @@ eva_url_transfer_create_upload   (GskUrlTransfer     *transfer,
  * This function can be used to see if download-content is expected.
  *
  * This function should only be needed by implementors
- * of types of GskUrlTransfer.
+ * of types of EvaUrlTransfer.
  */
 gboolean
-eva_url_transfer_peek_expects_download_stream (GskUrlTransfer *transfer)
+eva_url_transfer_peek_expects_download_stream (EvaUrlTransfer *transfer)
 {
   g_return_val_if_fail (transfer->transfer_state == EVA_URL_TRANSFER_STATE_STARTED, FALSE);
   return transfer->handler != NULL;
@@ -652,11 +652,11 @@ eva_url_transfer_peek_expects_download_stream (GskUrlTransfer *transfer)
  * This is occasionally interesting to the user of the Transfer.
  *
  * This function should only be needed by implementors
- * of types of GskUrlTransfer.
+ * of types of EvaUrlTransfer.
  */
 void
-eva_url_transfer_set_address     (GskUrlTransfer     *transfer,
-                                  GskSocketAddress   *addr)
+eva_url_transfer_set_address     (EvaUrlTransfer     *transfer,
+                                  EvaSocketAddress   *addr)
 {
   g_object_ref (addr);
   if (transfer->address)
@@ -676,8 +676,8 @@ strings_equal (const char *a, const char *b)
 }
 
 static gboolean
-urls_equal_up_to_fragment (const GskUrl *a,
-                           const GskUrl *b)
+urls_equal_up_to_fragment (const EvaUrl *a,
+                           const EvaUrl *b)
 {
   return a->scheme == b->scheme
       && strings_equal (a->host, b->host)
@@ -700,26 +700,26 @@ urls_equal_up_to_fragment (const GskUrl *a,
  * that we have encountered while trying to
  * service this request.
  *
- * Most users of GskUrlTransfer won't care about these redirects--
+ * Most users of EvaUrlTransfer won't care about these redirects--
  * they are provided to the rare client that cares about the redirect-path.
  * More commonly, users merely wish to suppress redirect handling: that can be done
  * more easily by eva_url_transfer_set_follow_redirects().
  *
  * This function should only be needed by implementors
- * of types of GskUrlTransfer.
+ * of types of EvaUrlTransfer.
  *
  * returns: whether the redirect was allowed (it is disallowed if
  * it is a circular redirect. In that case, we will set 'transfer->error',
  * and call eva_url_transfer_notify_done().
  */
 gboolean
-eva_url_transfer_add_redirect    (GskUrlTransfer     *transfer,
+eva_url_transfer_add_redirect    (EvaUrlTransfer     *transfer,
                                   GObject            *request,
                                   GObject            *response,
                                   gboolean            is_permanent,
-                                  GskUrl             *dest_url)
+                                  EvaUrl             *dest_url)
 {
-  GskUrlTransferRedirect *redirect;
+  EvaUrlTransferRedirect *redirect;
   g_return_val_if_fail (transfer->transfer_state == EVA_URL_TRANSFER_STATE_STARTED, TRUE);
   g_return_val_if_fail (EVA_IS_URL (dest_url), TRUE);
 
@@ -730,7 +730,7 @@ eva_url_transfer_add_redirect    (GskUrlTransfer     *transfer,
     if (urls_equal_up_to_fragment (redirect->url, dest_url))
       goto circular_redirect;
 
-  redirect = g_new (GskUrlTransferRedirect, 1);
+  redirect = g_new (EvaUrlTransferRedirect, 1);
   redirect->is_permanent = is_permanent;
   redirect->url = g_object_ref (dest_url);
   redirect->request = request ? g_object_ref (request) : transfer->request ? g_object_ref (transfer->request) : NULL;
@@ -766,11 +766,11 @@ circular_redirect:
  * This will used by the user of the Transfer.
  *
  * This function should only be needed by implementors
- * of types of GskUrlTransfer.
+ * of types of EvaUrlTransfer.
  */
 void
-eva_url_transfer_set_download    (GskUrlTransfer     *transfer,
-                                  GskStream          *content)
+eva_url_transfer_set_download    (EvaUrlTransfer     *transfer,
+                                  EvaStream          *content)
 {
   g_return_if_fail (transfer->transfer_state == EVA_URL_TRANSFER_STATE_STARTED);
   g_return_if_fail (transfer->content == NULL);
@@ -786,10 +786,10 @@ eva_url_transfer_set_download    (GskUrlTransfer     *transfer,
  * Set the outgoing-request header data for this transaction.
  *
  * This function should only be needed by implementors
- * of types of GskUrlTransfer.
+ * of types of EvaUrlTransfer.
  */
 void
-eva_url_transfer_set_request     (GskUrlTransfer     *transfer,
+eva_url_transfer_set_request     (EvaUrlTransfer     *transfer,
                                   GObject            *request)
 {
   GObject *old_request = transfer->request;
@@ -808,10 +808,10 @@ eva_url_transfer_set_request     (GskUrlTransfer     *transfer,
  * Set the incoming-response header data for this transaction.
  *
  * This function should only be needed by implementors
- * of types of GskUrlTransfer.
+ * of types of EvaUrlTransfer.
  */
 void
-eva_url_transfer_set_response    (GskUrlTransfer     *transfer,
+eva_url_transfer_set_response    (EvaUrlTransfer     *transfer,
                                   GObject            *response)
 {
   GObject *old_response = transfer->response;
@@ -831,10 +831,10 @@ eva_url_transfer_set_response    (GskUrlTransfer     *transfer,
  * A copy of the error parameter is made.
  *
  * This function should only be needed by implementors
- * of types of GskUrlTransfer.
+ * of types of EvaUrlTransfer.
  */
 void
-eva_url_transfer_set_error       (GskUrlTransfer     *transfer,
+eva_url_transfer_set_error       (EvaUrlTransfer     *transfer,
                                   const GError       *error)
 {
   GError *copy = g_error_copy (error);
@@ -851,13 +851,13 @@ eva_url_transfer_set_error       (GskUrlTransfer     *transfer,
  *
  * Set the error field for this transaction.
  * The error parameter will be freed eventually by the
- * #GskUrlTransfer.
+ * #EvaUrlTransfer.
  *
  * This function should only be needed by implementors
- * of types of GskUrlTransfer.
+ * of types of EvaUrlTransfer.
  */
 void
-eva_url_transfer_take_error      (GskUrlTransfer     *transfer,
+eva_url_transfer_take_error      (EvaUrlTransfer     *transfer,
                                   GError             *error)
 {
   g_return_if_fail (error != NULL);
@@ -878,7 +878,7 @@ eva_url_transfer_take_error      (GskUrlTransfer     *transfer,
  * returns: whether the function is done.
  */
 gboolean
-eva_url_transfer_is_done (GskUrlTransfer *transfer)
+eva_url_transfer_is_done (EvaUrlTransfer *transfer)
 {
   return (transfer->transfer_state == EVA_URL_TRANSFER_STATE_DONE);
 }
@@ -893,11 +893,11 @@ eva_url_transfer_is_done (GskUrlTransfer *transfer)
  * This function may only be invoked once per transfer.
  *
  * This function should only be needed by implementors
- * of types of GskUrlTransfer.
+ * of types of EvaUrlTransfer.
  */
 void
-eva_url_transfer_notify_done     (GskUrlTransfer     *transfer,
-                                  GskUrlTransferResult result)
+eva_url_transfer_notify_done     (EvaUrlTransfer     *transfer,
+                                  EvaUrlTransferResult result)
 {
   g_assert (transfer->transfer_state == EVA_URL_TRANSFER_STATE_STARTED);
   transfer->transfer_state = EVA_URL_TRANSFER_STATE_DONE;
@@ -905,7 +905,7 @@ eva_url_transfer_notify_done     (GskUrlTransfer     *transfer,
 
   if (transfer->timeout_source)
     {
-      GskSource *timeout = transfer->timeout_source;
+      EvaSource *timeout = transfer->timeout_source;
       transfer->timeout_source = NULL;
       eva_source_remove (timeout);
     }
@@ -917,7 +917,7 @@ eva_url_transfer_notify_done     (GskUrlTransfer     *transfer,
      if the user tries to do tricks like the above commented code. */
   if (transfer->content != NULL)
     {
-      GskStream *tmp = transfer->content;
+      EvaStream *tmp = transfer->content;
       transfer->content = NULL;
       g_object_unref (tmp);
     }
@@ -954,8 +954,8 @@ static GHashTable *scheme_to_slist_of_classes = NULL;
  * returns TRUE, to indicate that it can handle the specific URL.
  */
 void
-eva_url_transfer_class_register  (GskUrlScheme            scheme,
-                                  GskUrlTransferClass    *transfer_class)
+eva_url_transfer_class_register  (EvaUrlScheme            scheme,
+                                  EvaUrlTransferClass    *transfer_class)
 {
   GSList *list;
   if (scheme_to_slist_of_classes == NULL)
@@ -980,16 +980,16 @@ eva_url_transfer_class_register  (GskUrlScheme            scheme,
  * returns: a newly allocated Transfer object, or NULL if no transfer-class
  * could handle the URL.
  */
-GskUrlTransfer *
-eva_url_transfer_new             (GskUrl             *url)
+EvaUrlTransfer *
+eva_url_transfer_new             (EvaUrl             *url)
 {
   GSList *list = g_hash_table_lookup (scheme_to_slist_of_classes, GUINT_TO_POINTER (url->scheme));
   while (list != NULL)
     {
-      GskUrlTransferClass *class = EVA_URL_TRANSFER_CLASS (list->data);
+      EvaUrlTransferClass *class = EVA_URL_TRANSFER_CLASS (list->data);
       if (class->test == NULL || class->test (class, url))
         {
-          GskUrlTransfer *transfer = g_object_new (G_OBJECT_CLASS_TYPE (class), NULL);
+          EvaUrlTransfer *transfer = g_object_new (G_OBJECT_CLASS_TYPE (class), NULL);
           eva_url_transfer_set_url (transfer, url);
           return transfer;
         }
@@ -1008,9 +1008,9 @@ eva_url_transfer_new             (GskUrl             *url)
  * returns: the newly-allocated string.
  */
 char *
-eva_url_transfer_get_state_string (GskUrlTransfer *transfer)
+eva_url_transfer_get_state_string (EvaUrlTransfer *transfer)
 {
-  GskUrlTransferClass *class = EVA_URL_TRANSFER_GET_CLASS (transfer);
+  EvaUrlTransferClass *class = EVA_URL_TRANSFER_GET_CLASS (transfer);
   switch (transfer->transfer_state)
     {
     case EVA_URL_TRANSFER_STATE_CONSTRUCTING:
@@ -1028,30 +1028,30 @@ eva_url_transfer_get_state_string (GskUrlTransfer *transfer)
 /* --- convert a transfer to a stream --- */
 GType eva_url_transfer_stream_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_URL_TRANSFER_STREAM              (eva_url_transfer_stream_get_type ())
-#define EVA_URL_TRANSFER_STREAM(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_URL_TRANSFER_STREAM, GskUrlTransferStream))
-#define EVA_URL_TRANSFER_STREAM_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_URL_TRANSFER_STREAM, GskUrlTransferStreamClass))
-#define EVA_URL_TRANSFER_STREAM_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_URL_TRANSFER_STREAM, GskUrlTransferStreamClass))
+#define EVA_URL_TRANSFER_STREAM(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_URL_TRANSFER_STREAM, EvaUrlTransferStream))
+#define EVA_URL_TRANSFER_STREAM_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_URL_TRANSFER_STREAM, EvaUrlTransferStreamClass))
+#define EVA_URL_TRANSFER_STREAM_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_URL_TRANSFER_STREAM, EvaUrlTransferStreamClass))
 #define EVA_IS_URL_TRANSFER_STREAM(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_URL_TRANSFER_STREAM))
 #define EVA_IS_URL_TRANSFER_STREAM_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_URL_TRANSFER_STREAM))
-typedef struct _UfUrlTransferStreamClass GskUrlTransferStreamClass;
-typedef struct _UfUrlTransferStream GskUrlTransferStream;
+typedef struct _UfUrlTransferStreamClass EvaUrlTransferStreamClass;
+typedef struct _UfUrlTransferStream EvaUrlTransferStream;
 struct _UfUrlTransferStreamClass
 {
-  GskStreamClass base_class;
+  EvaStreamClass base_class;
 };
 struct _UfUrlTransferStream
 {
-  GskStream base_instance;
-  GskUrlTransfer *transfer;
-  GskStream *substream;
+  EvaStream base_instance;
+  EvaUrlTransfer *transfer;
+  EvaStream *substream;
 };
 
-G_DEFINE_TYPE(GskUrlTransferStream, eva_url_transfer_stream, EVA_TYPE_STREAM);
+G_DEFINE_TYPE(EvaUrlTransferStream, eva_url_transfer_stream, EVA_TYPE_STREAM);
 
 static void
 eva_url_transfer_stream_finalize (GObject *object)
 {
-  GskUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (object);
+  EvaUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (object);
   g_assert (transfer_stream->transfer == NULL);
   if (transfer_stream->substream)
     {
@@ -1061,15 +1061,15 @@ eva_url_transfer_stream_finalize (GObject *object)
   G_OBJECT_CLASS (eva_url_transfer_stream_parent_class)->finalize (object);
 }
 static gboolean
-handle_substream_is_readable (GskIO *io, gpointer data)
+handle_substream_is_readable (EvaIO *io, gpointer data)
 {
   eva_io_notify_ready_to_read (data);
   return TRUE;
 }
 static gboolean
-handle_substream_read_shutdown (GskIO *io, gpointer data)
+handle_substream_read_shutdown (EvaIO *io, gpointer data)
 {
-  GskUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (data);
+  EvaUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (data);
   eva_io_notify_read_shutdown (EVA_IO (transfer_stream));
   if (transfer_stream->substream)
     {
@@ -1081,10 +1081,10 @@ handle_substream_read_shutdown (GskIO *io, gpointer data)
 }
 
 static void
-eva_url_transfer_stream_set_poll_read   (GskIO      *io,
+eva_url_transfer_stream_set_poll_read   (EvaIO      *io,
 				        gboolean    do_poll)
 {
-  GskUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (io);
+  EvaUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (io);
   if (transfer_stream->substream == NULL)
     return;
   if (do_poll)
@@ -1098,10 +1098,10 @@ eva_url_transfer_stream_set_poll_read   (GskIO      *io,
 }
 
 static gboolean
-eva_url_transfer_stream_shutdown_read   (GskIO      *io,
+eva_url_transfer_stream_shutdown_read   (EvaIO      *io,
                                         GError    **error)
 {
-  GskUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (io);
+  EvaUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (io);
   if (transfer_stream->transfer != NULL)
     eva_url_transfer_cancel (transfer_stream->transfer);
   if (transfer_stream->substream != NULL)
@@ -1110,33 +1110,33 @@ eva_url_transfer_stream_shutdown_read   (GskIO      *io,
 }
 
 static guint
-eva_url_transfer_stream_raw_read (GskStream     *stream,
+eva_url_transfer_stream_raw_read (EvaStream     *stream,
 			 	 gpointer       data,
 			 	 guint          length,
 			 	 GError       **error)
 {
-  GskUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (stream);
+  EvaUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (stream);
   if (transfer_stream->substream == NULL)
     return 0;
   return eva_stream_read (transfer_stream->substream, data, length, error);
 }
 
 static guint
-eva_url_transfer_stream_raw_read_buffer (GskStream     *stream,
-				        GskBuffer     *buffer,
+eva_url_transfer_stream_raw_read_buffer (EvaStream     *stream,
+				        EvaBuffer     *buffer,
 				        GError       **error)
 {
-  GskUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (stream);
+  EvaUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (stream);
   if (transfer_stream->substream == NULL)
     return 0;
   return eva_stream_read_buffer (transfer_stream->substream, buffer, error);
 }
 
 static void
-eva_url_transfer_stream_class_init (GskUrlTransferStreamClass *class)
+eva_url_transfer_stream_class_init (EvaUrlTransferStreamClass *class)
 {
-  GskIOClass *io_class = EVA_IO_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   stream_class->raw_read = eva_url_transfer_stream_raw_read;
   stream_class->raw_read_buffer = eva_url_transfer_stream_raw_read_buffer;
@@ -1146,16 +1146,16 @@ eva_url_transfer_stream_class_init (GskUrlTransferStreamClass *class)
 }
 
 static void
-eva_url_transfer_stream_init (GskUrlTransferStream *transfer_stream)
+eva_url_transfer_stream_init (EvaUrlTransferStream *transfer_stream)
 {
   eva_stream_mark_is_readable (transfer_stream);
 }
 
 static void
-handle_transfer_done (GskUrlTransfer *transfer,
+handle_transfer_done (EvaUrlTransfer *transfer,
                       gpointer        data)
 {
-  GskUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (data);
+  EvaUrlTransferStream *transfer_stream = EVA_URL_TRANSFER_STREAM (data);
   g_assert (transfer_stream->transfer == transfer);
   transfer_stream->transfer = NULL;
 
@@ -1188,11 +1188,11 @@ handle_transfer_done (GskUrlTransfer *transfer,
  *
  * returns: the new stream, or NULL if an error occurred.
  */
-GskStream *
-eva_url_transfer_stream_new (GskUrlTransfer *transfer,
+EvaStream *
+eva_url_transfer_stream_new (EvaUrlTransfer *transfer,
                              GError        **error)
 {
-  GskUrlTransferStream *transfer_stream = g_object_new (EVA_TYPE_URL_TRANSFER_STREAM, NULL);
+  EvaUrlTransferStream *transfer_stream = g_object_new (EVA_TYPE_URL_TRANSFER_STREAM, NULL);
   transfer_stream->transfer = transfer;
   eva_url_transfer_set_handler (transfer,
                                 handle_transfer_done,

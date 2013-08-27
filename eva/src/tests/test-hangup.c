@@ -8,7 +8,7 @@ static gboolean done;
 static gboolean timed_out;
 
 static gboolean
-handle_readable (GskStream *stream, gpointer data)
+handle_readable (EvaStream *stream, gpointer data)
 {
   char buf[1024];
   unsigned n_read;
@@ -28,7 +28,7 @@ handle_readable (GskStream *stream, gpointer data)
 }
 
 static gboolean
-handle_read_shutdown (GskStream *stream, gpointer data)
+handle_read_shutdown (EvaStream *stream, gpointer data)
 {
   return FALSE;
 }
@@ -40,7 +40,7 @@ read_destroy_notify (gpointer data)
 }
 
 static gboolean
-handle_writable (GskStream *stream, gpointer data)
+handle_writable (EvaStream *stream, gpointer data)
 {
   //g_printerr ("handle_writable (after read-end hung up) ??\n");
   char buf = 0;
@@ -50,7 +50,7 @@ handle_writable (GskStream *stream, gpointer data)
 }
 
 static gboolean
-handle_write_shutdown (GskStream *stream, gpointer data)
+handle_write_shutdown (EvaStream *stream, gpointer data)
 {
   g_message ("handle_write_shutdown");
   return FALSE;
@@ -73,7 +73,7 @@ handle_main_loop_timeout (void *user_data)
 
 int main(int argc, char **argv)
 {
-  GskStream *read_side, *write_side;
+  EvaStream *read_side, *write_side;
   GError *error = 0;
   eva_init_without_threads (&argc, &argv);
   if (!eva_stream_fd_pipe (&read_side, &write_side, &error))

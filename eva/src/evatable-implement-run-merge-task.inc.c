@@ -6,7 +6,7 @@
 #endif
 
 static gboolean
-MANGLE_FUNC_NAME(copy_file_reader) (GskTable  *table,
+MANGLE_FUNC_NAME(copy_file_reader) (EvaTable  *table,
                                     MergeTask *task,
                                     guint      input_index,
                                     guint      n_written,
@@ -14,8 +14,8 @@ MANGLE_FUNC_NAME(copy_file_reader) (GskTable  *table,
                                     gboolean  *is_done_out,
                                     GError   **error)
 {
-  GskTableReader *reader = task->info.started.inputs[input_index].reader;
-  GskTableFile *output = task->info.started.output;
+  EvaTableReader *reader = task->info.started.inputs[input_index].reader;
+  EvaTableFile *output = task->info.started.output;
   for (;;)
     {
       n_written++;
@@ -65,7 +65,7 @@ MANGLE_FUNC_NAME(copy_file_reader) (GskTable  *table,
 
 
 static gboolean
-MANGLE_FUNC_NAME(run_merge_task)  (GskTable      *table,
+MANGLE_FUNC_NAME(run_merge_task)  (EvaTable      *table,
                                    guint          iterations,
 	                           GError       **error)
 {
@@ -75,42 +75,42 @@ MANGLE_FUNC_NAME(run_merge_task)  (GskTable      *table,
 
 #if !USE_MEMCMP
 # if HAS_LEN
-  GskTableCompareFunc compare = table->compare.with_len;
+  EvaTableCompareFunc compare = table->compare.with_len;
 # else
-  GskTableCompareFuncNoLen compare = table->compare.no_len;
+  EvaTableCompareFuncNoLen compare = table->compare.no_len;
 # endif
 #endif
 
 #if HAS_MERGE
 # if HAS_LEN
-  GskTableMergeFunc merge = table->merge.with_len;
+  EvaTableMergeFunc merge = table->merge.with_len;
 # else
-  GskTableMergeFuncNoLen merge = table->merge.no_len;
+  EvaTableMergeFuncNoLen merge = table->merge.no_len;
 # endif
 #endif
 
 #if DO_SIMPLIFY
 # if HAS_LEN
-  GskTableSimplifyFunc simplify = table->simplify.with_len;
+  EvaTableSimplifyFunc simplify = table->simplify.with_len;
 # else
-  GskTableSimplifyFuncNoLen simplify = table->simplify.no_len;
+  EvaTableSimplifyFuncNoLen simplify = table->simplify.no_len;
 # endif
-  GskTableBuffer *simp_buffer = &table->simplify_buffer;
+  EvaTableBuffer *simp_buffer = &table->simplify_buffer;
 #endif
 
 #if !USE_MEMCMP || DO_SIMPLIFY || HAS_MERGE
   gpointer user_data = table->user_data;
 #endif
 #if HAS_MERGE
-  GskTableBuffer *merge_buf = &table->merge_buffer;
+  EvaTableBuffer *merge_buf = &table->merge_buffer;
 #endif
 
 #if DO_FLUSH
   gboolean is_finished = FALSE;
 #endif
-  GskTableFile *output = task->info.started.output;
+  EvaTableFile *output = task->info.started.output;
 
-  GskTableReader *readers[2] = { task->info.started.inputs[0].reader,
+  EvaTableReader *readers[2] = { task->info.started.inputs[0].reader,
                                  task->info.started.inputs[1].reader };
 
 restart_testing_eof:

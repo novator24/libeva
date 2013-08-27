@@ -49,38 +49,38 @@
 #include "evabuffer.h"
 #include "evaerrno.h"
 
-/* --- GskBufferFragment implementation --- */
+/* --- EvaBufferFragment implementation --- */
 static inline int 
-eva_buffer_fragment_avail (GskBufferFragment *frag)
+eva_buffer_fragment_avail (EvaBufferFragment *frag)
 {
   return frag->buf_max_size - frag->buf_start - frag->buf_length;
 }
 static inline char *
-eva_buffer_fragment_start (GskBufferFragment *frag)
+eva_buffer_fragment_start (EvaBufferFragment *frag)
 {
   return frag->buf + frag->buf_start;
 }
 static inline char *
-eva_buffer_fragment_end (GskBufferFragment *frag)
+eva_buffer_fragment_end (EvaBufferFragment *frag)
 {
   return frag->buf + frag->buf_start + frag->buf_length;
 }
 
-/* --- GskBufferFragment recycling --- */
+/* --- EvaBufferFragment recycling --- */
 #if !EVA_DEBUG_BUFFER_ALLOCATIONS
 static int num_recycled = 0;
-static GskBufferFragment* recycling_stack = 0;
+static EvaBufferFragment* recycling_stack = 0;
 G_LOCK_DEFINE_STATIC (recycling_stack);
 
 #endif
 
-static GskBufferFragment *
+static EvaBufferFragment *
 new_native_fragment()
 {
-  GskBufferFragment *frag;
+  EvaBufferFragment *frag;
 #if EVA_DEBUG_BUFFER_ALLOCATIONS
-  frag = (GskBufferFragment *) g_malloc (BUF_CHUNK_SIZE);
-  frag->buf_max_size = BUF_CHUNK_SIZE - sizeof (GskBufferFragment);
+  frag = (EvaBufferFragment *) g_malloc (BUF_CHUNK_SIZE);
+  frag->buf_max_size = BUF_CHUNK_SIZE - sizeof (EvaBufferFragment);
 #else  /* optimized (?) */
   G_LOCK (recycling_stack);
   if (recycling_stack)
@@ -93,8 +93,8 @@ new_native_fragment()
   else
     {
       G_UNLOCK (recycling_stack);
-      frag = (GskBufferFragment *) g_malloc (BUF_CHUNK_SIZE);
-      frag->buf_max_size = BUF_CHUNK_SIZE - sizeof (GskBufferFragment);
+      frag = (EvaBufferFragment *) g_malloc (BUF_CHUNK_SIZE);
+      frag->buf_max_size = BUF_CHUNK_SIZE - sizeof (EvaBufferFragment);
     }
 #endif	/* !EVA_DEBUG_BUFFER_ALLOCATIONS */
   frag->buf_start = frag->buf_length = 0;
@@ -104,14 +104,14 @@ new_native_fragment()
   return frag;
 }
 
-static GskBufferFragment *
+static EvaBufferFragment *
 new_foreign_fragment (gconstpointer        ptr,
 		      int                  length,
 		      GDestroyNotify       destroy,
 		      gpointer             ddata)
 {
-  GskBufferFragment *fragment;
-  fragment = g_slice_new (GskBufferFragment);
+  EvaBufferFragment *fragment;
+  fragment = g_slice_new (EvaBufferFragment);
   fragment->is_foreign = 1;
   fragment->buf_start = 0;
   fragment->buf_length = length;
@@ -127,18 +127,18 @@ new_foreign_fragment (gconstpointer        ptr,
 #define recycle(frag) G_STMT_START{ \
     if (frag->is_foreign) { \
       { if (frag->destroy) frag->destroy (frag->destroy_data); \
-        g_slice_free(GskBufferFragment, frag); } \
+        g_slice_free(EvaBufferFragment, frag); } \
     else g_free (frag); \
    }G_STMT_END
 #else	/* optimized (?) */
 static void
-recycle(GskBufferFragment* frag)
+recycle(EvaBufferFragment* frag)
 {
   if (frag->is_foreign)
     {
       if (frag->destroy)
         frag->destroy (frag->destroy_data);
-      g_slice_free (GskBufferFragment, frag);
+      g_slice_free (EvaBufferFragment, frag);
       return;
     }
   G_LOCK (recycling_stack);
@@ -171,7 +171,7 @@ eva_buffer_cleanup_recycling_bin ()
   G_LOCK (recycling_stack);
   while (recycling_stack != NULL)
     {
-      GskBufferFragment *next;
+      EvaBufferFragment *next;
       next = recycling_stack->next;
       g_free (recycling_stack);
       recycling_stack = next;
@@ -190,7 +190,7 @@ eva_buffer_cleanup_recycling_bin ()
  * (This is equivalent to filling the buffer with 0s)
  */
 void
-eva_buffer_construct(GskBuffer *buffer)
+eva_buffer_construct(EvaBuffer *buffer)
 {
   buffer->first_frag = buffer->last_frag = NULL;
   buffer->size = 0;
@@ -198,9 +198,9 @@ eva_buffer_construct(GskBuffer *buffer)
 
 #if defined(EVA_DEBUG) || EVA_DEBUG_BUFFER_ALLOCATIONS
 static inline gboolean
-verify_buffer (const GskBuffer *buffer)
+verify_buffer (const EvaBuffer *buffer)
 {
-  const GskBufferFragment *frag;
+  const EvaBufferFragment *frag;
   guint total = 0;
   for (frag = buffer->first_frag; frag != NULL; frag = frag->next)
     total += frag->buf_length;
@@ -220,7 +220,7 @@ verify_buffer (const GskBuffer *buffer)
  * Append data into the buffer.
  */
 void
-eva_buffer_append(GskBuffer    *buffer,
+eva_buffer_append(EvaBuffer    *buffer,
                   gconstpointer data,
 		  guint         length)
 {
@@ -255,7 +255,7 @@ eva_buffer_append(GskBuffer    *buffer,
 }
 
 void
-eva_buffer_append_repeated_char (GskBuffer    *buffer, 
+eva_buffer_append_repeated_char (EvaBuffer    *buffer, 
                                  char          character,
                                  gsize         count)
 {
@@ -290,7 +290,7 @@ eva_buffer_append_repeated_char (GskBuffer    *buffer,
 
 #if 0
 void
-eva_buffer_append_repeated_data (GskBuffer    *buffer, 
+eva_buffer_append_repeated_data (EvaBuffer    *buffer, 
                                  gconstpointer data_to_repeat,
                                  gsize         data_length,
                                  gsize         count)
@@ -308,7 +308,7 @@ eva_buffer_append_repeated_data (GskBuffer    *buffer,
  * Append a string to the buffer.
  */
 void
-eva_buffer_append_string(GskBuffer  *buffer,
+eva_buffer_append_string(EvaBuffer  *buffer,
                          const char *string)
 {
   g_return_if_fail (string != NULL);
@@ -323,7 +323,7 @@ eva_buffer_append_string(GskBuffer  *buffer,
  * Append a byte to a buffer.
  */
 void
-eva_buffer_append_char(GskBuffer *buffer,
+eva_buffer_append_char(EvaBuffer *buffer,
 		       char       character)
 {
   eva_buffer_append (buffer, &character, 1);
@@ -338,7 +338,7 @@ eva_buffer_append_char(GskBuffer *buffer,
  * Append a NUL-terminated string to the buffer.  The NUL is appended.
  */
 void
-eva_buffer_append_string0      (GskBuffer    *buffer,
+eva_buffer_append_string0      (EvaBuffer    *buffer,
 				const char   *string)
 {
   eva_buffer_append (buffer, string, strlen (string) + 1);
@@ -357,7 +357,7 @@ eva_buffer_append_string0      (GskBuffer    *buffer,
  * returns: number of bytes transferred.
  */
 guint
-eva_buffer_read(GskBuffer    *buffer,
+eva_buffer_read(EvaBuffer    *buffer,
                 gpointer      data,
 		guint         max_length)
 {
@@ -366,7 +366,7 @@ eva_buffer_read(GskBuffer    *buffer,
   CHECK_INTEGRITY (buffer);
   while (max_length > 0 && buffer->first_frag)
     {
-      GskBufferFragment *first = buffer->first_frag;
+      EvaBufferFragment *first = buffer->first_frag;
       if (first->buf_length <= max_length)
 	{
 	  memcpy (data, eva_buffer_fragment_start (first), first->buf_length);
@@ -411,12 +411,12 @@ eva_buffer_read(GskBuffer    *buffer,
  * returns: number of bytes copied into data.
  */
 guint
-eva_buffer_peek     (const GskBuffer *buffer,
+eva_buffer_peek     (const EvaBuffer *buffer,
                      gpointer         data,
 		     guint            max_length)
 {
   int rv = 0;
-  GskBufferFragment *frag = (GskBufferFragment *) buffer->first_frag;
+  EvaBufferFragment *frag = (EvaBufferFragment *) buffer->first_frag;
   CHECK_INTEGRITY (buffer);
   while (max_length > 0 && frag)
     {
@@ -452,11 +452,11 @@ eva_buffer_peek     (const GskBuffer *buffer,
  * returns: a newly allocated NUL-terminated string, or NULL.
  */
 char *
-eva_buffer_read_line(GskBuffer *buffer)
+eva_buffer_read_line(EvaBuffer *buffer)
 {
   int len = 0;
   char *rv;
-  GskBufferFragment *at;
+  EvaBufferFragment *at;
   int newline_length;
   CHECK_INTEGRITY (buffer);
   for (at = buffer->first_frag; at; at = at->next)
@@ -498,7 +498,7 @@ eva_buffer_read_line(GskBuffer *buffer)
  * returns: a newly allocated NUL-terminated string, or NULL.
  */
 char *
-eva_buffer_parse_string0(GskBuffer *buffer)
+eva_buffer_parse_string0(EvaBuffer *buffer)
 {
   int index0 = eva_buffer_index_of (buffer, '\0');
   char *rv;
@@ -520,9 +520,9 @@ eva_buffer_parse_string0(GskBuffer *buffer)
  * returns: an unsigned character or -1.
  */
 int
-eva_buffer_peek_char(const GskBuffer *buffer)
+eva_buffer_peek_char(const EvaBuffer *buffer)
 {
-  const GskBufferFragment *frag;
+  const EvaBufferFragment *frag;
 
   if (buffer->size == 0)
     return -1;
@@ -530,7 +530,7 @@ eva_buffer_peek_char(const GskBuffer *buffer)
   for (frag = buffer->first_frag; frag; frag = frag->next)
     if (frag->buf_length > 0)
       break;
-  return * (const unsigned char *) (eva_buffer_fragment_start ((GskBufferFragment*)frag));
+  return * (const unsigned char *) (eva_buffer_fragment_start ((EvaBufferFragment*)frag));
 }
 
 /**
@@ -544,7 +544,7 @@ eva_buffer_peek_char(const GskBuffer *buffer)
  * returns: an unsigned character or -1.
  */
 int
-eva_buffer_read_char (GskBuffer *buffer)
+eva_buffer_read_char (EvaBuffer *buffer)
 {
   char c;
   if (eva_buffer_read (buffer, &c, 1) == 0)
@@ -563,14 +563,14 @@ eva_buffer_read_char (GskBuffer *buffer)
  * returns: number of bytes discarded.
  */
 int
-eva_buffer_discard(GskBuffer *buffer,
+eva_buffer_discard(EvaBuffer *buffer,
                    guint      max_discard)
 {
   int rv = 0;
   CHECK_INTEGRITY (buffer);
   while (max_discard > 0 && buffer->first_frag)
     {
-      GskBufferFragment *first = buffer->first_frag;
+      EvaBufferFragment *first = buffer->first_frag;
       if (first->buf_length <= max_discard)
 	{
 	  rv += first->buf_length;
@@ -607,13 +607,13 @@ eva_buffer_discard(GskBuffer *buffer,
  * or -1 on a write error (consult errno).
  */
 int
-eva_buffer_writev (GskBuffer       *read_from,
+eva_buffer_writev (EvaBuffer       *read_from,
 		   int              fd)
 {
   int rv;
   struct iovec *iov;
   int nfrag, i;
-  GskBufferFragment *frag_at = read_from->first_frag;
+  EvaBufferFragment *frag_at = read_from->first_frag;
   CHECK_INTEGRITY (read_from);
   for (nfrag = 0; frag_at != NULL
 #ifdef MAX_FRAGMENTS_TO_WRITE
@@ -653,7 +653,7 @@ eva_buffer_writev (GskBuffer       *read_from,
  * or -1 on a write error (consult errno).
  */
 int
-eva_buffer_writev_len (GskBuffer *read_from,
+eva_buffer_writev_len (EvaBuffer *read_from,
 		       int        fd,
 		       guint      max_bytes)
 {
@@ -661,7 +661,7 @@ eva_buffer_writev_len (GskBuffer *read_from,
   struct iovec *iov;
   int nfrag, i;
   guint bytes;
-  GskBufferFragment *frag_at = read_from->first_frag;
+  EvaBufferFragment *frag_at = read_from->first_frag;
   CHECK_INTEGRITY (read_from);
   for (nfrag = 0, bytes = 0; frag_at != NULL && bytes < max_bytes
 #ifdef MAX_FRAGMENTS_TO_WRITE
@@ -704,7 +704,7 @@ eva_buffer_writev_len (GskBuffer *read_from,
  */
 /* TODO: zero-copy! */
 int
-eva_buffer_read_in_fd(GskBuffer *write_to,
+eva_buffer_read_in_fd(EvaBuffer *write_to,
                       int        read_from)
 {
   char buf[8192];
@@ -724,13 +724,13 @@ eva_buffer_read_in_fd(GskBuffer *write_to,
  * but it also is allowed to start using it again.
  */
 void
-eva_buffer_destruct(GskBuffer *to_destroy)
+eva_buffer_destruct(EvaBuffer *to_destroy)
 {
-  GskBufferFragment *at = to_destroy->first_frag;
+  EvaBufferFragment *at = to_destroy->first_frag;
   CHECK_INTEGRITY (to_destroy);
   while (at)
     {
-      GskBufferFragment *next = at->next;
+      EvaBufferFragment *next = at->next;
       recycle (at);
       at = next;
     }
@@ -748,10 +748,10 @@ eva_buffer_destruct(GskBuffer *to_destroy)
  * is not in the buffer.
  */
 int
-eva_buffer_index_of(GskBuffer *buffer,
+eva_buffer_index_of(EvaBuffer *buffer,
                     char       char_to_find)
 {
-  GskBufferFragment *at = buffer->first_frag;
+  EvaBufferFragment *at = buffer->first_frag;
   int rv = 0;
   while (at)
     {
@@ -776,10 +776,10 @@ eva_buffer_index_of(GskBuffer *buffer,
  * is not in the buffer.
  */
 int 
-eva_buffer_str_index_of (GskBuffer *buffer,
+eva_buffer_str_index_of (EvaBuffer *buffer,
                          const char *str_to_find)
 {
-  GskBufferFragment *frag = buffer->first_frag;
+  EvaBufferFragment *frag = buffer->first_frag;
   guint rv = 0;
   for (frag = buffer->first_frag; frag; frag = frag->next)
     {
@@ -787,7 +787,7 @@ eva_buffer_str_index_of (GskBuffer *buffer,
       guint frag_rem = frag->buf_length;
       while (frag_rem > 0)
         {
-          GskBufferFragment *subfrag;
+          EvaBufferFragment *subfrag;
           const char *subfrag_at;
           guint subfrag_rem;
           const char *str_at;
@@ -844,11 +844,11 @@ bad_guess:
  */
 #if EVA_DEBUG_BUFFER_ALLOCATIONS
 guint
-eva_buffer_drain (GskBuffer *dst,
-		  GskBuffer *src)
+eva_buffer_drain (EvaBuffer *dst,
+		  EvaBuffer *src)
 {
   guint rv = src->size;
-  GskBufferFragment *frag;
+  EvaBufferFragment *frag;
   CHECK_INTEGRITY (dst);
   CHECK_INTEGRITY (src);
   for (frag = src->first_frag; frag; frag = frag->next)
@@ -862,8 +862,8 @@ eva_buffer_drain (GskBuffer *dst,
 }
 #else	/* optimized */
 guint
-eva_buffer_drain (GskBuffer *dst,
-		  GskBuffer *src)
+eva_buffer_drain (EvaBuffer *dst,
+		  EvaBuffer *src)
 {
   guint rv = src->size;
 
@@ -905,12 +905,12 @@ eva_buffer_drain (GskBuffer *dst,
  */
 #if EVA_DEBUG_BUFFER_ALLOCATIONS
 guint
-eva_buffer_transfer(GskBuffer *dst,
-		    GskBuffer *src,
+eva_buffer_transfer(EvaBuffer *dst,
+		    EvaBuffer *src,
 		    guint max_transfer)
 {
   guint rv = 0;
-  GskBufferFragment *frag;
+  EvaBufferFragment *frag;
   CHECK_INTEGRITY (dst);
   CHECK_INTEGRITY (src);
   for (frag = src->first_frag; frag && max_transfer > 0; frag = frag->next)
@@ -936,8 +936,8 @@ eva_buffer_transfer(GskBuffer *dst,
 }
 #else	/* optimized */
 guint
-eva_buffer_transfer(GskBuffer *dst,
-		    GskBuffer *src,
+eva_buffer_transfer(EvaBuffer *dst,
+		    EvaBuffer *src,
 		    guint max_transfer)
 {
   guint rv = 0;
@@ -945,7 +945,7 @@ eva_buffer_transfer(GskBuffer *dst,
   CHECK_INTEGRITY (src);
   while (src->first_frag && max_transfer >= src->first_frag->buf_length)
     {
-      GskBufferFragment *frag = src->first_frag;
+      EvaBufferFragment *frag = src->first_frag;
       src->first_frag = frag->next;
       frag->next = NULL;
       if (src->first_frag == NULL)
@@ -963,7 +963,7 @@ eva_buffer_transfer(GskBuffer *dst,
   dst->size += rv;
   if (src->first_frag && max_transfer)
     {
-      GskBufferFragment *frag = src->first_frag;
+      EvaBufferFragment *frag = src->first_frag;
       eva_buffer_append (dst, eva_buffer_fragment_start (frag), max_transfer);
       frag->buf_start += max_transfer;
       frag->buf_length -= max_transfer;
@@ -991,13 +991,13 @@ eva_buffer_transfer(GskBuffer *dst,
  * @destroy may be omitted if @data is permanent, for example,
  * if appended a static string into a buffer.
  */
-void eva_buffer_append_foreign (GskBuffer        *buffer,
+void eva_buffer_append_foreign (EvaBuffer        *buffer,
                                 gconstpointer     data,
 				int               length,
 				GDestroyNotify    destroy,
 				gpointer          destroy_data)
 {
-  GskBufferFragment *fragment;
+  EvaBufferFragment *fragment;
 
   CHECK_INTEGRITY (buffer);
 
@@ -1023,7 +1023,7 @@ void eva_buffer_append_foreign (GskBuffer        *buffer,
  *
  * Append printf-style content to a buffer.
  */
-void     eva_buffer_printf              (GskBuffer    *buffer,
+void     eva_buffer_printf              (EvaBuffer    *buffer,
 					 const char   *format,
 					 ...)
 {
@@ -1041,7 +1041,7 @@ void     eva_buffer_printf              (GskBuffer    *buffer,
  *
  * Append printf-style content to a buffer, given a va_list.
  */
-void     eva_buffer_vprintf             (GskBuffer    *buffer,
+void     eva_buffer_vprintf             (EvaBuffer    *buffer,
 					 const char   *format,
 					 va_list       args)
 {
@@ -1064,7 +1064,7 @@ void     eva_buffer_vprintf             (GskBuffer    *buffer,
  * starts with a particular NUL-terminated string.
  */
 static gboolean
-fragment_n_str(GskBufferFragment   *frag,
+fragment_n_str(EvaBufferFragment   *frag,
                guint                frag_index,
                const char          *string)
 {
@@ -1106,14 +1106,14 @@ fragment_n_str(GskBufferFragment   *frag,
  * returns: the index of that instance, or -1 if not found.
  */
 int     
-eva_buffer_polystr_index_of    (GskBuffer    *buffer,
+eva_buffer_polystr_index_of    (EvaBuffer    *buffer,
                                 char        **strings)
 {
   guint8 init_char_map[16];
   int num_strings;
   int num_bits = 0;
   int total_index = 0;
-  GskBufferFragment *frag;
+  EvaBufferFragment *frag;
   memset (init_char_map, 0, sizeof (init_char_map));
   for (num_strings = 0; strings[num_strings] != NULL; num_strings++)
     {
@@ -1179,18 +1179,18 @@ eva_buffer_polystr_index_of    (GskBuffer    *buffer,
   return -1;
 }
 
-/* --- GskBufferIterator --- */
+/* --- EvaBufferIterator --- */
 
 /**
  * eva_buffer_iterator_construct:
  * @iterator: to initialize.
  * @to_iterate: the buffer to walk through.
  *
- * Initialize a new #GskBufferIterator.
+ * Initialize a new #EvaBufferIterator.
  */
 void 
-eva_buffer_iterator_construct (GskBufferIterator *iterator,
-			       GskBuffer         *to_iterate)
+eva_buffer_iterator_construct (EvaBufferIterator *iterator,
+			       EvaBuffer         *to_iterate)
 {
   iterator->fragment = to_iterate->first_frag;
   if (iterator->fragment != NULL)
@@ -1220,11 +1220,11 @@ eva_buffer_iterator_construct (GskBufferIterator *iterator,
  * returns: number of bytes peeked into @out.
  */
 guint
-eva_buffer_iterator_peek      (GskBufferIterator *iterator,
+eva_buffer_iterator_peek      (EvaBufferIterator *iterator,
 			       gpointer           out,
 			       guint              max_length)
 {
-  GskBufferFragment *fragment = iterator->fragment;
+  EvaBufferFragment *fragment = iterator->fragment;
 
   guint frag_length = iterator->cur_length;
   const guint8 *frag_data = iterator->cur_data;
@@ -1271,11 +1271,11 @@ eva_buffer_iterator_peek      (GskBufferIterator *iterator,
  * returns: number of bytes read into @out.
  */
 guint
-eva_buffer_iterator_read      (GskBufferIterator *iterator,
+eva_buffer_iterator_read      (EvaBufferIterator *iterator,
 			       gpointer           out,
 			       guint              max_length)
 {
-  GskBufferFragment *fragment = iterator->fragment;
+  EvaBufferFragment *fragment = iterator->fragment;
 
   guint frag_length = iterator->cur_length;
   const guint8 *frag_data = iterator->cur_data;
@@ -1328,10 +1328,10 @@ eva_buffer_iterator_read      (GskBufferIterator *iterator,
  */
 
 gboolean
-eva_buffer_iterator_find_char (GskBufferIterator *iterator,
+eva_buffer_iterator_find_char (EvaBufferIterator *iterator,
 			       char               c)
 {
-  GskBufferFragment *fragment = iterator->fragment;
+  EvaBufferFragment *fragment = iterator->fragment;
 
   guint frag_length = iterator->cur_length;
   const guint8 *frag_data = iterator->cur_data;
@@ -1375,10 +1375,10 @@ eva_buffer_iterator_find_char (GskBufferIterator *iterator,
  * returns: number of bytes skipped forward.
  */
 guint
-eva_buffer_iterator_skip      (GskBufferIterator *iterator,
+eva_buffer_iterator_skip      (EvaBufferIterator *iterator,
 			       guint              max_length)
 {
-  GskBufferFragment *fragment = iterator->fragment;
+  EvaBufferFragment *fragment = iterator->fragment;
 
   guint frag_length = iterator->cur_length;
   const guint8 *frag_data = iterator->cur_data;

@@ -6,7 +6,7 @@ Base class for server-type objects.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-Derived classes of GskStreamListener provide new GskStreams
+Derived classes of EvaStreamListener provide new EvaStreams
 as connections are accepted.  Users can receive notification
 of this, and usually attach the stream to a new protocol object
 to handle the connection.
@@ -20,7 +20,7 @@ to handle the connection.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### USER_FUNCTION GskStreamListenerAcceptFunc ##### -->
+<!-- ##### USER_FUNCTION EvaStreamListenerAcceptFunc ##### -->
 <para>
 A method for handling a new connection.
 </para>
@@ -34,7 +34,7 @@ TODO: One can interpret this as meaning that the ownership of the
 stream is passed through this callback,
 which is irregular.
 We will probably fix this by
-implementing listener attachment with a GskHook
+implementing listener attachment with a EvaHook
 and deprecating this API.
 </para>
 
@@ -45,7 +45,7 @@ This should be g_object_unref()d eventually be the called code.
 @Returns: whether everything is ok.
 
 
-<!-- ##### USER_FUNCTION GskStreamListenerErrorFunc ##### -->
+<!-- ##### USER_FUNCTION EvaStreamListenerErrorFunc ##### -->
 <para>
 A method for handling a low-level server error.
 </para>
@@ -54,18 +54,18 @@ A method for handling a low-level server error.
 @data: the data provided to eva_stream_listener_handle_accept()
 
 
-<!-- ##### STRUCT GskStreamListenerClass ##### -->
+<!-- ##### STRUCT EvaStreamListenerClass ##### -->
 <para>
 The base class of an object which accepts
-new incoming #GskStream's.
+new incoming #EvaStream's.
 </para>
 
 @object_class: parent class of this class.
 
-<!-- ##### STRUCT GskStreamListener ##### -->
+<!-- ##### STRUCT EvaStreamListener ##### -->
 <para>
 The base instance of an object which accepts
-new incoming #GskStream's.
+new incoming #EvaStream's.
 </para>
 
 

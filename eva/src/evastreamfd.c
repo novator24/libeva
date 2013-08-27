@@ -41,20 +41,20 @@ enum
   PROP_IS_WRITABLE
 };
 
-typedef struct _GskStreamFdPrivate GskStreamFdPrivate;
-struct _GskStreamFdPrivate
+typedef struct _EvaStreamFdPrivate EvaStreamFdPrivate;
+struct _EvaStreamFdPrivate
 {
-  GskSocketAddressSymbolic *symbolic;
+  EvaSocketAddressSymbolic *symbolic;
   gpointer name_resolver;
 };
 #define GET_PRIVATE(stream_fd) \
-  G_TYPE_INSTANCE_GET_PRIVATE(stream_fd, EVA_TYPE_STREAM_FD, GskStreamFdPrivate)
+  G_TYPE_INSTANCE_GET_PRIVATE(stream_fd, EVA_TYPE_STREAM_FD, EvaStreamFdPrivate)
 
 
 static GObjectClass *parent_class = NULL;
 
 static void
-set_events (GskStreamFd *stream_fd, GIOCondition events)
+set_events (EvaStreamFd *stream_fd, GIOCondition events)
 {
 #if USE_GLIB_MAIN_LOOP
   stream_fd->poll_fd.events = events;
@@ -65,7 +65,7 @@ set_events (GskStreamFd *stream_fd, GIOCondition events)
 }
 
 static void
-handle_stream_fd_events (GskStreamFd *stream_fd,
+handle_stream_fd_events (EvaStreamFd *stream_fd,
 			 GIOCondition events)
 {
   if (eva_stream_get_is_connecting (stream_fd))
@@ -111,7 +111,7 @@ handle_stream_fd_events (GskStreamFd *stream_fd,
   else if ((events & G_IO_ERR) == G_IO_ERR)
     {
       int e = eva_errno_from_fd (stream_fd->fd);
-      GskErrorCode code = eva_error_code_from_errno (e);
+      EvaErrorCode code = eva_error_code_from_errno (e);
       eva_io_set_error (EVA_IO (stream_fd),
 			EVA_IO_ERROR_POLL,
 			code,
@@ -123,25 +123,25 @@ handle_stream_fd_events (GskStreamFd *stream_fd,
 
 
 #if USE_GLIB_MAIN_LOOP
-typedef struct _GskStreamFdSource GskStreamFdSource;
-struct _GskStreamFdSource
+typedef struct _EvaStreamFdSource EvaStreamFdSource;
+struct _EvaStreamFdSource
 {
   GSource base;
-  GskStreamFd *stream_fd;
+  EvaStreamFd *stream_fd;
 };
 
 static gboolean
 eva_stream_fd_source_prepare (GSource    *source,
 			      gint       *timeout)
 {
-  DEBUG ("eva_stream_fd_source_prepare: events=%d", ((GskStreamFdSource*)source)->stream_fd->poll_fd.events);
+  DEBUG ("eva_stream_fd_source_prepare: events=%d", ((EvaStreamFdSource*)source)->stream_fd->poll_fd.events);
   return FALSE;
 }
 
 static gboolean
 eva_stream_fd_source_check    (GSource    *source)
 {
-  GskStreamFdSource *fd_source = (GskStreamFdSource *) source;
+  EvaStreamFdSource *fd_source = (EvaStreamFdSource *) source;
   DEBUG ("eva_stream_fd_source_check: events=%d, revents=%d", fd_source->stream_fd->poll_fd.events,fd_source->stream_fd->poll_fd.revents);
   return fd_source->stream_fd->poll_fd.revents != 0;
 }
@@ -151,8 +151,8 @@ eva_stream_fd_source_dispatch (GSource    *source,
 			       GSourceFunc callback,
 			       gpointer    user_data)
 {
-  GskStreamFdSource *fd_source = (GskStreamFdSource *) source;
-  GskStreamFd *stream_fd = fd_source->stream_fd;
+  EvaStreamFdSource *fd_source = (EvaStreamFdSource *) source;
+  EvaStreamFd *stream_fd = fd_source->stream_fd;
   g_object_ref (stream_fd);	/* XXX: maybe unnecessary (for destroy-in-destroy) */
   handle_stream_fd_events (stream_fd, stream_fd->poll_fd.revents);
   g_object_unref (stream_fd);
@@ -170,13 +170,13 @@ static GSourceFuncs eva_stream_fd_source_funcs =
 };
 
 static gboolean
-add_poll (GskStreamFd *stream_fd)
+add_poll (EvaStreamFd *stream_fd)
 {
   g_return_val_if_fail (stream_fd->source == NULL, FALSE);
 
   stream_fd->source = g_source_new (&eva_stream_fd_source_funcs,
-				    sizeof (GskStreamFdSource));
-  fd_source = (GskStreamFdSource *) stream_fd->source;
+				    sizeof (EvaStreamFdSource));
+  fd_source = (EvaStreamFdSource *) stream_fd->source;
   fd_source->stream_fd = stream_fd;
   stream_fd->poll_fd.fd = stream_fd->fd;
   stream_fd->poll_fd.events = G_IO_HUP;
@@ -186,7 +186,7 @@ add_poll (GskStreamFd *stream_fd)
 }
 
 static void
-remove_poll (GskStreamFd *stream_fd)
+remove_poll (EvaStreamFd *stream_fd)
 {
   if (stream_fd->source != NULL)
     {
@@ -199,7 +199,7 @@ remove_poll (GskStreamFd *stream_fd)
 static gboolean
 handle_io_event (int fd, GIOCondition events, gpointer user_data)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (user_data);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (user_data);
   g_return_val_if_fail (stream_fd->fd == fd, TRUE);
   g_object_ref (stream_fd);	/* XXX: maybe unnecessary (for destroy-in-destroy) */
   handle_stream_fd_events (stream_fd, events);
@@ -208,7 +208,7 @@ handle_io_event (int fd, GIOCondition events, gpointer user_data)
 }
 
 static gboolean
-add_poll (GskStreamFd *stream_fd)
+add_poll (EvaStreamFd *stream_fd)
 {
   if (stream_fd->is_pollable)
     {
@@ -221,7 +221,7 @@ add_poll (GskStreamFd *stream_fd)
     }
   else
     {
-      GskIO *io = EVA_IO (stream_fd);
+      EvaIO *io = EVA_IO (stream_fd);
       if (eva_io_get_is_readable (io))
 	eva_io_mark_idle_notify_read (io);
       if (eva_io_get_is_writable (io))
@@ -231,7 +231,7 @@ add_poll (GskStreamFd *stream_fd)
 }
 
 static void
-remove_poll (GskStreamFd *stream_fd)
+remove_poll (EvaStreamFd *stream_fd)
 {
   if (stream_fd->is_pollable)
     {
@@ -243,7 +243,7 @@ remove_poll (GskStreamFd *stream_fd)
     }
   else
     {
-      GskIO *io = EVA_IO (stream_fd);
+      EvaIO *io = EVA_IO (stream_fd);
       eva_io_clear_idle_notify_read (io);
       eva_io_clear_idle_notify_write (io);
     }
@@ -255,7 +255,7 @@ remove_poll (GskStreamFd *stream_fd)
  */
 
 static inline void
-eva_stream_fd_set_poll_event  (GskStreamFd   *stream_fd,
+eva_stream_fd_set_poll_event  (EvaStreamFd   *stream_fd,
 			       gushort        event_mask,
 			       gboolean       do_poll)
 {
@@ -288,31 +288,31 @@ eva_stream_fd_set_poll_event  (GskStreamFd   *stream_fd,
 }
 
 static void
-eva_stream_fd_set_poll_read   (GskIO         *io,
+eva_stream_fd_set_poll_read   (EvaIO         *io,
 			       gboolean       do_poll)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (io);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (io);
   if (stream_fd->is_pollable)
     eva_stream_fd_set_poll_event (stream_fd, G_IO_IN, do_poll);
 }
 
 static void
-eva_stream_fd_set_poll_write  (GskIO         *io,
+eva_stream_fd_set_poll_write  (EvaIO         *io,
 			       gboolean       do_poll)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (io);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (io);
   if (stream_fd->is_pollable)
     eva_stream_fd_set_poll_event (stream_fd, G_IO_OUT, do_poll);
 }
 
 /* --- reading and writing --- */
 static guint
-eva_stream_fd_raw_read        (GskStream     *stream,
+eva_stream_fd_raw_read        (EvaStream     *stream,
 			       gpointer       data,
 			       guint          length,
 			       GError       **error)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (stream);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (stream);
   int rv = read (stream_fd->fd, data, length);
   if (rv < 0)
     {
@@ -339,12 +339,12 @@ eva_stream_fd_raw_read        (GskStream     *stream,
 }
 
 static guint
-eva_stream_fd_raw_write       (GskStream     *stream,
+eva_stream_fd_raw_write       (EvaStream     *stream,
 			       gconstpointer  data,
 			       guint          length,
 			       GError       **error)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (stream);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (stream);
   int rv;
   if (stream_fd->fd == -1)
     return 0;
@@ -372,11 +372,11 @@ eva_stream_fd_raw_write       (GskStream     *stream,
 }
 
 static guint
-eva_stream_fd_raw_read_buffer(GskStream    *stream,
-			      GskBuffer     *buffer,
+eva_stream_fd_raw_read_buffer(EvaStream    *stream,
+			      EvaBuffer     *buffer,
 			      GError       **error)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (stream);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (stream);
   int rv;
   if (stream_fd->fd == -1)
     return 0;
@@ -400,11 +400,11 @@ eva_stream_fd_raw_read_buffer(GskStream    *stream,
 }
 
 static guint
-eva_stream_fd_raw_write_buffer (GskStream     *stream,
-				GskBuffer     *buffer,
+eva_stream_fd_raw_write_buffer (EvaStream     *stream,
+				EvaBuffer     *buffer,
 			        GError       **error)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (stream);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (stream);
   int rv;
   if (stream_fd->fd == -1)
     return 0;
@@ -427,9 +427,9 @@ eva_stream_fd_raw_write_buffer (GskStream     *stream,
 
 /* --- shutting-down and closing --- */
 static void
-eva_stream_fd_close (GskIO         *io)
+eva_stream_fd_close (EvaIO         *io)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (io);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (io);
   remove_poll (stream_fd);
   if (stream_fd->fd >= 0)
     {
@@ -443,15 +443,15 @@ eva_stream_fd_close (GskIO         *io)
 }
 
 static gboolean
-eva_stream_fd_shutdown_read   (GskIO         *io,
+eva_stream_fd_shutdown_read   (EvaIO         *io,
 			       GError       **error)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (io);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (io);
   if (stream_fd->is_resolving_name)
     {
       if (!eva_io_get_is_writable (io))
         {
-          GskStreamFdPrivate *priv = GET_PRIVATE (stream_fd);
+          EvaStreamFdPrivate *priv = GET_PRIVATE (stream_fd);
           eva_socket_address_symbolic_cancel_resolution (priv->symbolic,
                                                          priv->name_resolver);
         }
@@ -489,15 +489,15 @@ eva_stream_fd_shutdown_read   (GskIO         *io,
 }
 
 static gboolean
-eva_stream_fd_shutdown_write  (GskIO         *io,
+eva_stream_fd_shutdown_write  (EvaIO         *io,
 			       GError       **error)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (io);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (io);
   if (stream_fd->is_resolving_name)
     {
       if (!eva_io_get_is_readable (io))
         {
-          GskStreamFdPrivate *priv = GET_PRIVATE (stream_fd);
+          EvaStreamFdPrivate *priv = GET_PRIVATE (stream_fd);
           eva_socket_address_symbolic_cancel_resolution (priv->symbolic,
                                                          priv->name_resolver);
         }
@@ -568,7 +568,7 @@ eva_stream_fd_set_property (GObject        *object,
     case PROP_FILE_DESCRIPTOR:
       {
 	int fd = g_value_get_int (value);
-	GskStreamFd *stream_fd = EVA_STREAM_FD (object);
+	EvaStreamFd *stream_fd = EVA_STREAM_FD (object);
 	if (stream_fd->fd >= 0)
 	  eva_fork_remove_cleanup_fd (fd);
 	if (fd >= 0)
@@ -603,10 +603,10 @@ eva_stream_fd_set_property (GObject        *object,
 static void
 eva_stream_fd_finalize (GObject *object)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (object);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (object);
   if (stream_fd->is_resolving_name)
     {
-      GskStreamFdPrivate *priv = GET_PRIVATE (stream_fd);
+      EvaStreamFdPrivate *priv = GET_PRIVATE (stream_fd);
       if (priv->name_resolver != NULL)
         {
           eva_socket_address_symbolic_cancel_resolution (priv->symbolic, priv->name_resolver);
@@ -621,10 +621,10 @@ eva_stream_fd_finalize (GObject *object)
 
 
 static gboolean
-eva_stream_fd_open (GskIO     *io,
+eva_stream_fd_open (EvaIO     *io,
 		    GError   **error)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (io);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (io);
   if (stream_fd->fd < 0)
     return TRUE;                /* permit postponed fd assignment */
   return add_poll (stream_fd);
@@ -632,16 +632,16 @@ eva_stream_fd_open (GskIO     *io,
 
 /* --- functions --- */
 static void
-eva_stream_fd_init (GskStreamFd *stream_fd)
+eva_stream_fd_init (EvaStreamFd *stream_fd)
 {
   stream_fd->fd = -1;
 }
 
 static void
-eva_stream_fd_class_init (GskStreamClass *class)
+eva_stream_fd_class_init (EvaStreamClass *class)
 {
   GParamSpec *pspec;
-  GskIOClass *io_class = EVA_IO_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
   class->raw_read = eva_stream_fd_raw_read;
@@ -658,7 +658,7 @@ eva_stream_fd_class_init (GskStreamClass *class)
   object_class->set_property = eva_stream_fd_set_property;
   object_class->finalize = eva_stream_fd_finalize;
 
-  g_type_class_add_private (class, sizeof (GskStreamFdPrivate));
+  g_type_class_add_private (class, sizeof (EvaStreamFdPrivate));
 
   pspec = eva_param_spec_fd ("file-descriptor",
 			     _("File Descriptor"),
@@ -693,29 +693,29 @@ GType eva_stream_fd_get_type()
     {
       static const GTypeInfo stream_fd_info =
       {
-	sizeof(GskStreamFdClass),
+	sizeof(EvaStreamFdClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_stream_fd_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskStreamFd),
+	sizeof (EvaStreamFd),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_stream_fd_init,
 	NULL		/* value_table */
       };
       GType parent = EVA_TYPE_STREAM;
       stream_fd_type = g_type_register_static (parent,
-					       "GskStreamFd",
+					       "EvaStreamFd",
 					       &stream_fd_info, 0);
     }
   return stream_fd_type;
 }
 
-GskStreamFdFlags eva_stream_fd_flags_guess (gint            fd)
+EvaStreamFdFlags eva_stream_fd_flags_guess (gint            fd)
 {
   struct stat stat_buf;
-  GskStreamFdFlags rv = 0;
+  EvaStreamFdFlags rv = 0;
   guint flags;
   if (fstat (fd, &stat_buf) < 0)
     {
@@ -755,11 +755,11 @@ GskStreamFdFlags eva_stream_fd_flags_guess (gint            fd)
  * Try to guess the nature of the file-descriptor using fstat(),
  * isatty().
  *
- * returns: a new GskStream which will free @fd when it is closed.
+ * returns: a new EvaStream which will free @fd when it is closed.
  */
-GskStream   *eva_stream_fd_new_auto        (gint            fd)
+EvaStream   *eva_stream_fd_new_auto        (gint            fd)
 {
-  GskStreamFdFlags flags = eva_stream_fd_flags_guess (fd);
+  EvaStreamFdFlags flags = eva_stream_fd_flags_guess (fd);
   if (flags == 0)
     return NULL;
   return eva_stream_fd_new (fd, flags);
@@ -770,16 +770,16 @@ GskStream   *eva_stream_fd_new_auto        (gint            fd)
  * @fd: the raw file descriptor.
  * @flags: information about how to use the file descriptor.
  *
- * Create a new GskStream based on an already open file descriptor.
+ * Create a new EvaStream based on an already open file descriptor.
  *
- * returns: a new GskStream
+ * returns: a new EvaStream
  */
-GskStream *
+EvaStream *
 eva_stream_fd_new (gint fd,
-		   GskStreamFdFlags flags)
+		   EvaStreamFdFlags flags)
 {
-  GskStream *rv;
-  GskStreamFd *rv_fd;
+  EvaStream *rv;
+  EvaStreamFd *rv_fd;
   g_return_val_if_fail (fd >= 0, NULL);
   rv = g_object_new (EVA_TYPE_STREAM_FD, "file-descriptor", fd,
 		     "is-pollable",
@@ -803,15 +803,15 @@ eva_stream_fd_new (gint fd,
  * eva_stream_fd_new_connecting:
  * @fd: the raw file descriptor.
  *
- * Create a new GskStream based on a socket which is still in the process of connecting.
+ * Create a new EvaStream based on a socket which is still in the process of connecting.
  *
- * returns: a new GskStream
+ * returns: a new EvaStream
  */
-GskStream *
+EvaStream *
 eva_stream_fd_new_connecting (gint fd)
 {
-  GskStream *rv;
-  GskStreamFd *stream_fd;
+  EvaStream *rv;
+  EvaStreamFd *stream_fd;
   g_return_val_if_fail (fd >= 0, NULL);
   rv = g_object_new (EVA_TYPE_STREAM_FD,
 		     "file-descriptor", fd,
@@ -838,12 +838,12 @@ eva_stream_fd_new_connecting (gint fd)
  *
  * Create a stream connecting to a symbolic socket-address.
  *
- * returns: a new GskStream
+ * returns: a new EvaStream
  */
 static void
-done_resolving_name (GskStreamFd *stream_fd)
+done_resolving_name (EvaStreamFd *stream_fd)
 {
-  GskStreamFdPrivate *priv = GET_PRIVATE (stream_fd);
+  EvaStreamFdPrivate *priv = GET_PRIVATE (stream_fd);
   stream_fd->is_resolving_name = 0;
   priv->name_resolver = NULL;
   g_object_unref (priv->symbolic);
@@ -851,11 +851,11 @@ done_resolving_name (GskStreamFd *stream_fd)
 }
 
 static void
-handle_name_lookup_success  (GskSocketAddressSymbolic *orig,
-                             GskSocketAddress         *resolved,
+handle_name_lookup_success  (EvaSocketAddressSymbolic *orig,
+                             EvaSocketAddress         *resolved,
                              gpointer                  user_data)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (user_data);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (user_data);
   GError *error = NULL;
   gboolean is_connected;
 
@@ -887,11 +887,11 @@ cleanup:
 }
 
 static void
-handle_name_lookup_failure  (GskSocketAddressSymbolic *orig,
+handle_name_lookup_failure  (EvaSocketAddressSymbolic *orig,
                              const GError             *error,
                              gpointer                  user_data)
 {
-  GskStreamFd *stream_fd = EVA_STREAM_FD (user_data);
+  EvaStreamFd *stream_fd = EVA_STREAM_FD (user_data);
 
   stream_fd->failed_name_resolution = 1;
 
@@ -902,12 +902,12 @@ handle_name_lookup_failure  (GskSocketAddressSymbolic *orig,
   g_object_unref (stream_fd);
 }
 
-GskStream *
-eva_stream_fd_new_from_symbolic_address (GskSocketAddressSymbolic *symbolic,
+EvaStream *
+eva_stream_fd_new_from_symbolic_address (EvaSocketAddressSymbolic *symbolic,
                                          GError                  **error)
 {
-  GskStreamFd *stream_fd = g_object_new (EVA_TYPE_STREAM_FD, NULL);
-  GskStreamFdPrivate *priv = GET_PRIVATE (stream_fd);
+  EvaStreamFd *stream_fd = g_object_new (EVA_TYPE_STREAM_FD, NULL);
+  EvaStreamFdPrivate *priv = GET_PRIVATE (stream_fd);
   stream_fd->is_resolving_name = 1;
   stream_fd->is_pollable = 1;
   eva_stream_mark_is_readable (stream_fd);
@@ -933,21 +933,21 @@ eva_stream_fd_new_from_symbolic_address (GskSocketAddressSymbolic *symbolic,
  * @permission: permissions if creating a new file.
  * @error: optional error return value.
  *
- * Open a file as a #GskStream; this interface strongly
+ * Open a file as a #EvaStream; this interface strongly
  * reflects its underlying open(2) implementation.
  * Using eva_stream_fd_new_read_file()
  * and eva_stream_fd_new_write_file() may be more portable ultimately.
  *
- * returns: a new GskStream
+ * returns: a new EvaStream
  */
-GskStream *
+EvaStream *
 eva_stream_fd_new_open (const char     *filename,
 			guint           open_flags,
 			guint           permission,
 			GError        **error)
 {
   int fd = open (filename, open_flags, permission);
-  GskStream *rv;
+  EvaStream *rv;
   if (fd < 0)
     {
       int e = errno;
@@ -969,12 +969,12 @@ eva_stream_fd_new_open (const char     *filename,
  * @filename: file to open readonly.
  * @error: optional error return value.
  *
- * Open a file for reading as a #GskStream.
+ * Open a file for reading as a #EvaStream.
  * The stream is not writable.
  *
- * returns: a new GskStream
+ * returns: a new EvaStream
  */
-GskStream *
+EvaStream *
 eva_stream_fd_new_read_file   (const char     *filename,
 			       GError        **error)
 {
@@ -988,12 +988,12 @@ eva_stream_fd_new_read_file   (const char     *filename,
  * @should_truncate: whether an existing filename should be truncated.
  * @error: optional error return value.
  *
- * Open a file for writing as a #GskStream.
+ * Open a file for writing as a #EvaStream.
  * The stream is not readable.
  *
- * returns: a new GskStream
+ * returns: a new EvaStream
  */
-GskStream  *
+EvaStream  *
 eva_stream_fd_new_write_file  (const char     *filename,
 			       gboolean        may_create,
 			       gboolean        should_truncate,
@@ -1010,12 +1010,12 @@ eva_stream_fd_new_write_file  (const char     *filename,
  * @may_exist: whether file may exist.
  * @error: optional error return value.
  *
- * Create a file for writing as a #GskStream.
+ * Create a file for writing as a #EvaStream.
  * The stream is not readable.
  *
- * returns: a new GskStream
+ * returns: a new EvaStream
  */
-GskStream *
+EvaStream *
 eva_stream_fd_new_create_file (const char     *filename,
 			       gboolean        may_exist,
 			       GError        **error)
@@ -1036,8 +1036,8 @@ eva_stream_fd_new_create_file (const char     *filename,
  *
  * returns: whether the streams were allocated successfully.
  */
-gboolean    eva_stream_fd_pipe     (GskStream     **read_side_out,
-                                    GskStream     **write_side_out,
+gboolean    eva_stream_fd_pipe     (EvaStream     **read_side_out,
+                                    EvaStream     **write_side_out,
 			            GError        **error)
 {
   int pipe_fds[2];
@@ -1089,12 +1089,12 @@ retry:
  * @error: optional error return value.
  *
  * Create a pair of file-descriptors that 
- * are connected to eachother, and make GskStreamFds around them.
+ * are connected to eachother, and make EvaStreamFds around them.
  *
  * returns: whether the streams were allocated successfully.
  */
-gboolean    eva_stream_fd_duplex_pipe (GskStream     **side_a_out,
-                                       GskStream     **side_b_out,
+gboolean    eva_stream_fd_duplex_pipe (EvaStream     **side_a_out,
+                                       EvaStream     **side_b_out,
 			               GError        **error)
 {
   int fds[2];
@@ -1117,11 +1117,11 @@ gboolean    eva_stream_fd_duplex_pipe (GskStream     **side_a_out,
  * @error: optional error return value.
  *
  * Create a pair of file-descriptors that 
- * are connected to eachother, and make a GskStreamFd around one of them.
+ * are connected to eachother, and make a EvaStreamFd around one of them.
  *
  * returns: whether the file-descriptors were allocated successfully.
  */
-gboolean    eva_stream_fd_duplex_pipe_fd (GskStream     **side_a_out,
+gboolean    eva_stream_fd_duplex_pipe_fd (EvaStream     **side_a_out,
                                           int            *side_b_fd_out,
 			                  GError        **error)
 {

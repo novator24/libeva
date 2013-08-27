@@ -14,11 +14,11 @@
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskNetworkInterface">GskNetworkInterface</link>;
-                    <link linkend="GskNetworkInterfaceSet">GskNetworkInterfaceSet</link>;
-enum                <link linkend="GskNetworkInterfaceFlags">GskNetworkInterfaceFlags</link>;
-<link linkend="GskNetworkInterfaceSet">GskNetworkInterfaceSet</link> * <link linkend="eva-network-interface-set-new">eva_network_interface_set_new</link>  (<link linkend="GskNetworkInterfaceFlags">GskNetworkInterfaceFlags</link> flags);
-<link linkend="void">void</link>                <link linkend="eva-network-interface-set-destroy">eva_network_interface_set_destroy</link>   (<link linkend="GskNetworkInterfaceSet">GskNetworkInterfaceSet</link> *set);
+                    <link linkend="EvaNetworkInterface">EvaNetworkInterface</link>;
+                    <link linkend="EvaNetworkInterfaceSet">EvaNetworkInterfaceSet</link>;
+enum                <link linkend="EvaNetworkInterfaceFlags">EvaNetworkInterfaceFlags</link>;
+<link linkend="EvaNetworkInterfaceSet">EvaNetworkInterfaceSet</link> * <link linkend="eva-network-interface-set-new">eva_network_interface_set_new</link>  (<link linkend="EvaNetworkInterfaceFlags">EvaNetworkInterfaceFlags</link> flags);
+<link linkend="void">void</link>                <link linkend="eva-network-interface-set-destroy">eva_network_interface_set_destroy</link>   (<link linkend="EvaNetworkInterfaceSet">EvaNetworkInterfaceSet</link> *set);
 </synopsis>
 </refsynopsisdiv>
 
@@ -54,9 +54,9 @@ ie your IP address (with port set to 0).
 
 <refsect1 id="eva-evanetworkinterface.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskNetworkInterface" role="struct">
-<title>GskNetworkInterface</title>
-<indexterm zone="GskNetworkInterface"><primary sortas="GskNetworkInterface">GskNetworkInterface</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaNetworkInterface" role="struct">
+<title>EvaNetworkInterface</title>
+<indexterm zone="EvaNetworkInterface"><primary sortas="EvaNetworkInterface">EvaNetworkInterface</primary></indexterm><programlisting>typedef struct {
   const char *ifname;
 
   /* whether this interface is "virtual" -- just connects back to this host */
@@ -69,19 +69,19 @@ ie your IP address (with port set to 0).
   unsigned is_promiscuous : 1;
 
   /* ip-address if the interface is up. */
-  GskSocketAddress *address;
+  EvaSocketAddress *address;
 
   /* if !is_loopback, this is the device's MAC address. */
-  GskSocketAddress *hw_address;
+  EvaSocketAddress *hw_address;
 
   /* if is_point_to_point, this is the address of the other end of
    * the connection.
    */
-  GskSocketAddress *p2p_address;
+  EvaSocketAddress *p2p_address;
 
   /* if supports_broadcast, this is the broadcast address. */
-  GskSocketAddress *broadcast;
-} GskNetworkInterface;
+  EvaSocketAddress *broadcast;
+} EvaNetworkInterface;
 </programlisting>
 <para>
 Information about a single network interface.
@@ -92,32 +92,32 @@ Information about a single network interface.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskSocketAddress">GskSocketAddress</link>&#160;*<structfield>address</structfield>;</term>
+<term><link linkend="EvaSocketAddress">EvaSocketAddress</link>&#160;*<structfield>address</structfield>;</term>
 <listitem><simpara>the IP address of the interface (with port set to 0).
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskSocketAddress">GskSocketAddress</link>&#160;*<structfield>hw_address</structfield>;</term>
+<term><link linkend="EvaSocketAddress">EvaSocketAddress</link>&#160;*<structfield>hw_address</structfield>;</term>
 <listitem><simpara>the ethernet address of the interface.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskSocketAddress">GskSocketAddress</link>&#160;*<structfield>p2p_address</structfield>;</term>
+<term><link linkend="EvaSocketAddress">EvaSocketAddress</link>&#160;*<structfield>p2p_address</structfield>;</term>
 <listitem><simpara>the remote IP address of a point-to-point connection.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskSocketAddress">GskSocketAddress</link>&#160;*<structfield>broadcast</structfield>;</term>
+<term><link linkend="EvaSocketAddress">EvaSocketAddress</link>&#160;*<structfield>broadcast</structfield>;</term>
 <listitem><simpara>the broadcast IP address.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskNetworkInterfaceSet" role="struct">
-<title>GskNetworkInterfaceSet</title>
-<indexterm zone="GskNetworkInterfaceSet"><primary sortas="GskNetworkInterfaceSet">GskNetworkInterfaceSet</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaNetworkInterfaceSet" role="struct">
+<title>EvaNetworkInterfaceSet</title>
+<indexterm zone="EvaNetworkInterfaceSet"><primary sortas="EvaNetworkInterfaceSet">EvaNetworkInterfaceSet</primary></indexterm><programlisting>typedef struct {
   guint num_interfaces;
-  GskNetworkInterface *interfaces;
-} GskNetworkInterfaceSet;
+  EvaNetworkInterface *interfaces;
+} EvaNetworkInterfaceSet;
 </programlisting>
 <para>
 Information about a number of network interfaces.
@@ -128,21 +128,21 @@ Information about a number of network interfaces.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskNetworkInterface">GskNetworkInterface</link>&#160;*<structfield>interfaces</structfield>;</term>
+<term><link linkend="EvaNetworkInterface">EvaNetworkInterface</link>&#160;*<structfield>interfaces</structfield>;</term>
 <listitem><simpara>the interfaces.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskNetworkInterfaceFlags" role="enum">
-<title>enum GskNetworkInterfaceFlags</title>
-<indexterm zone="GskNetworkInterfaceFlags"><primary sortas="GskNetworkInterfaceFlags">GskNetworkInterfaceFlags</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaNetworkInterfaceFlags" role="enum">
+<title>enum EvaNetworkInterfaceFlags</title>
+<indexterm zone="EvaNetworkInterfaceFlags"><primary sortas="EvaNetworkInterfaceFlags">EvaNetworkInterfaceFlags</primary></indexterm><programlisting>typedef enum
 {
   EVA_NETWORK_INTERFACE_UP			= (1&lt;&lt;0),
   EVA_NETWORK_INTERFACE_LOOPBACK		= (1&lt;&lt;1),
   EVA_NETWORK_INTERFACE_NON_LOOPBACK		= (1&lt;&lt;2),
   EVA_NETWORK_INTERFACE_HAS_BROADCAST		= (1&lt;&lt;3),
   EVA_NETWORK_INTERFACE_HAS_MULTICAST		= (1&lt;&lt;4)
-} GskNetworkInterfaceFlags;
+} EvaNetworkInterfaceFlags;
 </programlisting>
 <para>
 Constraints governing which interfaces to return.
@@ -178,7 +178,7 @@ an actual piece of hardware.
 </variablelist></refsect2>
 <refsect2 id="eva-network-interface-set-new" role="function">
 <title>eva_network_interface_set_new ()</title>
-<indexterm zone="eva-network-interface-set-new"><primary sortas="eva_network_interface_set_new">eva_network_interface_set_new</primary></indexterm><programlisting><link linkend="GskNetworkInterfaceSet">GskNetworkInterfaceSet</link> * eva_network_interface_set_new  (<link linkend="GskNetworkInterfaceFlags">GskNetworkInterfaceFlags</link> flags);</programlisting>
+<indexterm zone="eva-network-interface-set-new"><primary sortas="eva_network_interface_set_new">eva_network_interface_set_new</primary></indexterm><programlisting><link linkend="EvaNetworkInterfaceSet">EvaNetworkInterfaceSet</link> * eva_network_interface_set_new  (<link linkend="EvaNetworkInterfaceFlags">EvaNetworkInterfaceFlags</link> flags);</programlisting>
 <para>
 Create a new list of interfaces, subject to the constraints given.
 </para>
@@ -198,7 +198,7 @@ must be freed with <link linkend="eva-network-interface-set-destroy"><function>e
 </variablelist></refsect2>
 <refsect2 id="eva-network-interface-set-destroy" role="function">
 <title>eva_network_interface_set_destroy ()</title>
-<indexterm zone="eva-network-interface-set-destroy"><primary sortas="eva_network_interface_set_destroy">eva_network_interface_set_destroy</primary></indexterm><programlisting><link linkend="void">void</link>                eva_network_interface_set_destroy   (<link linkend="GskNetworkInterfaceSet">GskNetworkInterfaceSet</link> *set);</programlisting>
+<indexterm zone="eva-network-interface-set-destroy"><primary sortas="eva_network_interface_set_destroy">eva_network_interface_set_destroy</primary></indexterm><programlisting><link linkend="void">void</link>                eva_network_interface_set_destroy   (<link linkend="EvaNetworkInterfaceSet">EvaNetworkInterfaceSet</link> *set);</programlisting>
 <para>
 Free the memory used by the list of interfaces.</para>
 <para>

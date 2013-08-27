@@ -22,7 +22,7 @@ static GOptionEntry entries[] =
 int
 main (int argc, char **argv)
 {
-  GskStream *in, *zlib, *out;
+  EvaStream *in, *zlib, *out;
   GOptionContext *context;
   GError *error = NULL;
   eva_init_without_threads (&argc, &argv);

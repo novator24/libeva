@@ -1,35 +1,35 @@
 #include <string.h>
 #include "evamemory.h"
 
-/* === GskMemoryBufferSource === */
-typedef struct _GskMemoryBufferSource GskMemoryBufferSource;
-typedef struct _GskMemoryBufferSourceClass GskMemoryBufferSourceClass;
+/* === EvaMemoryBufferSource === */
+typedef struct _EvaMemoryBufferSource EvaMemoryBufferSource;
+typedef struct _EvaMemoryBufferSourceClass EvaMemoryBufferSourceClass;
 static GType eva_memory_buffer_source_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MEMORY_BUFFER_SOURCE			(eva_memory_buffer_source_get_type ())
-#define EVA_MEMORY_BUFFER_SOURCE(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MEMORY_BUFFER_SOURCE, GskMemoryBufferSource))
-#define EVA_MEMORY_BUFFER_SOURCE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MEMORY_BUFFER_SOURCE, GskMemoryBufferSourceClass))
-#define EVA_MEMORY_BUFFER_SOURCE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MEMORY_BUFFER_SOURCE, GskMemoryBufferSourceClass))
+#define EVA_MEMORY_BUFFER_SOURCE(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MEMORY_BUFFER_SOURCE, EvaMemoryBufferSource))
+#define EVA_MEMORY_BUFFER_SOURCE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MEMORY_BUFFER_SOURCE, EvaMemoryBufferSourceClass))
+#define EVA_MEMORY_BUFFER_SOURCE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MEMORY_BUFFER_SOURCE, EvaMemoryBufferSourceClass))
 #define EVA_IS_MEMORY_BUFFER_SOURCE(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_MEMORY_BUFFER_SOURCE))
 #define EVA_IS_MEMORY_BUFFER_SOURCE_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_MEMORY_BUFFER_SOURCE))
 
-struct _GskMemoryBufferSourceClass 
+struct _EvaMemoryBufferSourceClass 
 {
-  GskStreamClass stream_class;
+  EvaStreamClass stream_class;
 };
-struct _GskMemoryBufferSource 
+struct _EvaMemoryBufferSource 
 {
-  GskStream      stream;
-  GskBuffer      buffer;
+  EvaStream      stream;
+  EvaBuffer      buffer;
 };
 static GObjectClass *global_stream_class = NULL;
 
 static guint
-eva_memory_buffer_source_raw_read  (GskStream     *stream,
+eva_memory_buffer_source_raw_read  (EvaStream     *stream,
 			 	    gpointer       data,
 			 	    guint          length,
 			 	    GError       **error)
 {
-  GskMemoryBufferSource *source = EVA_MEMORY_BUFFER_SOURCE (stream);
+  EvaMemoryBufferSource *source = EVA_MEMORY_BUFFER_SOURCE (stream);
   guint rv = eva_buffer_read (&source->buffer, data, length);
   if (rv == 0 && source->buffer.size == 0)
     eva_io_notify_read_shutdown (stream);
@@ -37,11 +37,11 @@ eva_memory_buffer_source_raw_read  (GskStream     *stream,
 }
 
 static guint
-eva_memory_buffer_source_raw_read_buffer (GskStream     *stream,
-					  GskBuffer     *buffer,
+eva_memory_buffer_source_raw_read_buffer (EvaStream     *stream,
+					  EvaBuffer     *buffer,
 					  GError       **error)
 {
-  GskMemoryBufferSource *source = EVA_MEMORY_BUFFER_SOURCE (stream);
+  EvaMemoryBufferSource *source = EVA_MEMORY_BUFFER_SOURCE (stream);
   guint rv = eva_buffer_drain (buffer, &source->buffer);
   if (rv == 0)
     eva_io_notify_read_shutdown (stream);
@@ -51,22 +51,22 @@ eva_memory_buffer_source_raw_read_buffer (GskStream     *stream,
 static void
 eva_memory_buffer_source_finalize(GObject *object)
 {
-  GskMemoryBufferSource *source = EVA_MEMORY_BUFFER_SOURCE (object);
+  EvaMemoryBufferSource *source = EVA_MEMORY_BUFFER_SOURCE (object);
   eva_buffer_destruct (&source->buffer);
   (*global_stream_class->finalize) (object);
 }
 
 static void
-eva_memory_buffer_source_init (GskMemoryBufferSource *memory_buffer_source)
+eva_memory_buffer_source_init (EvaMemoryBufferSource *memory_buffer_source)
 {
   eva_stream_mark_is_readable (memory_buffer_source);
   eva_stream_mark_never_blocks_read (memory_buffer_source);
 }
 
 static void
-eva_memory_buffer_source_class_init (GskMemoryBufferSourceClass *class)
+eva_memory_buffer_source_class_init (EvaMemoryBufferSourceClass *class)
 {
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   global_stream_class = g_type_class_peek_parent (class);
   stream_class->raw_read = eva_memory_buffer_source_raw_read;
@@ -81,19 +81,19 @@ static GType eva_memory_buffer_source_get_type()
     {
       static const GTypeInfo memory_buffer_source_info =
       {
-	sizeof(GskMemoryBufferSourceClass),
+	sizeof(EvaMemoryBufferSourceClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_memory_buffer_source_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMemoryBufferSource),
+	sizeof (EvaMemoryBufferSource),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_memory_buffer_source_init,
 	NULL		/* value_table */
       };
       memory_buffer_source_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskMemoryBufferSource",
+                                                  "EvaMemoryBufferSource",
 						  &memory_buffer_source_info, 0);
     }
   return memory_buffer_source_type;
@@ -105,39 +105,39 @@ static GType eva_memory_buffer_source_get_type()
  * It will be immediately (before the function returns) drained of all
  * data, and will not be used any more by the stream.
  *
- * Create a read-only #GskStream that will drain the 
+ * Create a read-only #EvaStream that will drain the 
  * data from @buffer and may it available for reading on the stream.
  *
  * returns: the new read-only stream.
  */
-GskStream *
-eva_memory_buffer_source_new (GskBuffer              *buffer)
+EvaStream *
+eva_memory_buffer_source_new (EvaBuffer              *buffer)
 {
-  GskMemoryBufferSource *source;
+  EvaMemoryBufferSource *source;
   g_return_val_if_fail (buffer != NULL, NULL);
   source = g_object_new (EVA_TYPE_MEMORY_BUFFER_SOURCE, NULL);
   eva_buffer_drain (&source->buffer, buffer);
   return EVA_STREAM (source);
 }
 
-/* === GskMemorySlabSource === */
-typedef struct _GskMemorySlabSource GskMemorySlabSource;
-typedef struct _GskMemorySlabSourceClass GskMemorySlabSourceClass;
+/* === EvaMemorySlabSource === */
+typedef struct _EvaMemorySlabSource EvaMemorySlabSource;
+typedef struct _EvaMemorySlabSourceClass EvaMemorySlabSourceClass;
 GType eva_memory_slab_source_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MEMORY_SLAB_SOURCE			(eva_memory_slab_source_get_type ())
-#define EVA_MEMORY_SLAB_SOURCE(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MEMORY_SLAB_SOURCE, GskMemorySlabSource))
-#define EVA_MEMORY_SLAB_SOURCE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MEMORY_SLAB_SOURCE, GskMemorySlabSourceClass))
-#define EVA_MEMORY_SLAB_SOURCE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MEMORY_SLAB_SOURCE, GskMemorySlabSourceClass))
+#define EVA_MEMORY_SLAB_SOURCE(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MEMORY_SLAB_SOURCE, EvaMemorySlabSource))
+#define EVA_MEMORY_SLAB_SOURCE_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MEMORY_SLAB_SOURCE, EvaMemorySlabSourceClass))
+#define EVA_MEMORY_SLAB_SOURCE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MEMORY_SLAB_SOURCE, EvaMemorySlabSourceClass))
 #define EVA_IS_MEMORY_SLAB_SOURCE(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_MEMORY_SLAB_SOURCE))
 #define EVA_IS_MEMORY_SLAB_SOURCE_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_MEMORY_SLAB_SOURCE))
 
-struct _GskMemorySlabSourceClass 
+struct _EvaMemorySlabSourceClass 
 {
-  GskStreamClass stream_class;
+  EvaStreamClass stream_class;
 };
-struct _GskMemorySlabSource 
+struct _EvaMemorySlabSource 
 {
-  GskStream      	  stream;
+  EvaStream      	  stream;
   gconstpointer           data;
   guint                   data_len;
   GDestroyNotify          destroy;
@@ -145,12 +145,12 @@ struct _GskMemorySlabSource
 };
 
 static guint
-eva_memory_slab_source_raw_read  (GskStream     *stream,
+eva_memory_slab_source_raw_read  (EvaStream     *stream,
 				  gpointer       data,
 				  guint          length,
 				  GError       **error)
 {
-  GskMemorySlabSource *source = EVA_MEMORY_SLAB_SOURCE (stream);
+  EvaMemorySlabSource *source = EVA_MEMORY_SLAB_SOURCE (stream);
   guint rv = MIN (source->data_len, length);
   if (rv != 0)
     {
@@ -165,11 +165,11 @@ eva_memory_slab_source_raw_read  (GskStream     *stream,
 }
 
 static guint
-eva_memory_slab_source_raw_read_buffer (GskStream     *stream,
-					GskBuffer     *buffer,
+eva_memory_slab_source_raw_read_buffer (EvaStream     *stream,
+					EvaBuffer     *buffer,
 					GError       **error)
 {
-  GskMemorySlabSource *source = EVA_MEMORY_SLAB_SOURCE (stream);
+  EvaMemorySlabSource *source = EVA_MEMORY_SLAB_SOURCE (stream);
   guint rv = source->data_len;
   if (rv != 0)
     {
@@ -185,23 +185,23 @@ eva_memory_slab_source_raw_read_buffer (GskStream     *stream,
 static void
 eva_memory_slab_source_finalize (GObject *object)
 {
-  GskMemorySlabSource *source = EVA_MEMORY_SLAB_SOURCE (object);
+  EvaMemorySlabSource *source = EVA_MEMORY_SLAB_SOURCE (object);
   if (source->destroy)
     source->destroy (source->destroy_data);
   global_stream_class->finalize (object);
 }
 
 static void
-eva_memory_slab_source_init (GskMemorySlabSource *memory_slab_source)
+eva_memory_slab_source_init (EvaMemorySlabSource *memory_slab_source)
 {
   eva_stream_mark_is_readable (memory_slab_source);
   eva_stream_mark_never_blocks_read (memory_slab_source);
 }
 
 static void
-eva_memory_slab_source_class_init (GskMemorySlabSourceClass *class)
+eva_memory_slab_source_class_init (EvaMemorySlabSourceClass *class)
 {
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   global_stream_class = g_type_class_peek_parent (class);
   stream_class->raw_read = eva_memory_slab_source_raw_read;
@@ -216,19 +216,19 @@ GType eva_memory_slab_source_get_type()
     {
       static const GTypeInfo memory_slab_source_info =
       {
-	sizeof(GskMemorySlabSourceClass),
+	sizeof(EvaMemorySlabSourceClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_memory_slab_source_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMemorySlabSource),
+	sizeof (EvaMemorySlabSource),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_memory_slab_source_init,
 	NULL		/* value_table */
       };
       memory_slab_source_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskMemorySlabSource",
+                                                  "EvaMemorySlabSource",
 						  &memory_slab_source_info, 0);
     }
   return memory_slab_source_type;
@@ -253,13 +253,13 @@ GType eva_memory_slab_source_get_type()
  *
  * returns: the new read-only stream.
  */
-GskStream *
+EvaStream *
 eva_memory_slab_source_new   (gconstpointer           data,
 			      guint                   data_len,
 			      GDestroyNotify          destroy,
 			      gpointer                destroy_data)
 {
-  GskMemorySlabSource *slab_source;
+  EvaMemorySlabSource *slab_source;
   slab_source = g_object_new (EVA_TYPE_MEMORY_SLAB_SOURCE, NULL);
   slab_source->data = data;
   slab_source->data_len = data_len;
@@ -278,7 +278,7 @@ eva_memory_slab_source_new   (gconstpointer           data,
  *
  * returns: the new read-only stream.
  */
-GskStream *
+EvaStream *
 eva_memory_source_new_printf (const char             *format,
 			      ...)
 {
@@ -301,7 +301,7 @@ eva_memory_source_new_printf (const char             *format,
  *
  * returns: the new read-only stream.
  */
-GskStream *
+EvaStream *
 eva_memory_source_new_vprintf (const char             *format,
 			       va_list                 args)
 {
@@ -320,7 +320,7 @@ eva_memory_source_new_vprintf (const char             *format,
  *
  * returns: the new read-only stream.
  */
-GskStream *
+EvaStream *
 eva_memory_source_static_string (const char *str)
 {
   return eva_memory_slab_source_new (str, strlen (str), NULL, NULL);
@@ -336,7 +336,7 @@ eva_memory_source_static_string (const char *str)
  *
  * returns: the new read-only stream.
  */
-GskStream *
+EvaStream *
 eva_memory_source_static_string_n (const char *str,
 				   guint       length)
 {
@@ -345,39 +345,39 @@ eva_memory_source_static_string_n (const char *str,
 
 /* --- streams which can be written to --- */
 
-/* === GskMemorySink === */
+/* === EvaMemorySink === */
 
 /* Insert header here. */
-typedef struct _GskMemorySink GskMemorySink;
-typedef struct _GskMemorySinkClass GskMemorySinkClass;
+typedef struct _EvaMemorySink EvaMemorySink;
+typedef struct _EvaMemorySinkClass EvaMemorySinkClass;
 GType eva_memory_sink_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MEMORY_SINK			(eva_memory_sink_get_type ())
-#define EVA_MEMORY_SINK(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MEMORY_SINK, GskMemorySink))
-#define EVA_MEMORY_SINK_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MEMORY_SINK, GskMemorySinkClass))
-#define EVA_MEMORY_SINK_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MEMORY_SINK, GskMemorySinkClass))
+#define EVA_MEMORY_SINK(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MEMORY_SINK, EvaMemorySink))
+#define EVA_MEMORY_SINK_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MEMORY_SINK, EvaMemorySinkClass))
+#define EVA_MEMORY_SINK_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MEMORY_SINK, EvaMemorySinkClass))
 #define EVA_IS_MEMORY_SINK(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_MEMORY_SINK))
 #define EVA_IS_MEMORY_SINK_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_MEMORY_SINK))
 
-struct _GskMemorySinkClass 
+struct _EvaMemorySinkClass 
 {
-  GskStreamClass stream_class;
+  EvaStreamClass stream_class;
 };
-struct _GskMemorySink 
+struct _EvaMemorySink 
 {
-  GskStream      stream;
+  EvaStream      stream;
 
   /* underlying data store */
-  GskBuffer      buffer;
+  EvaBuffer      buffer;
 
   /* from the user; callback and destroy are set to NULL when they are
      run, since they should only be run once. */
-  GskMemoryBufferCallback callback;
+  EvaMemoryBufferCallback callback;
   gpointer                data;
   GDestroyNotify          destroy;
 };
 
 static guint
-eva_memory_sink_raw_write       (GskStream     *stream,
+eva_memory_sink_raw_write       (EvaStream     *stream,
 			 	 gconstpointer  data,
 			 	 guint          length,
 			 	 GError       **error)
@@ -387,21 +387,21 @@ eva_memory_sink_raw_write       (GskStream     *stream,
 }
 
 static guint
-eva_memory_sink_raw_write_buffer(GskStream    *stream,
-				 GskBuffer     *buffer,
+eva_memory_sink_raw_write_buffer(EvaStream    *stream,
+				 EvaBuffer     *buffer,
 				 GError       **error)
 {
   return eva_buffer_drain (&EVA_MEMORY_SINK (stream)->buffer, buffer);
 }
 
 static gboolean
-eva_memory_sink_shutdown_write(GskIO      *io,
+eva_memory_sink_shutdown_write(EvaIO      *io,
 			       GError    **error)
 {
-  GskMemorySink *sink = EVA_MEMORY_SINK (io);
+  EvaMemorySink *sink = EVA_MEMORY_SINK (io);
   if (sink->callback)
     {
-      GskMemoryBufferCallback callback = sink->callback;
+      EvaMemoryBufferCallback callback = sink->callback;
       sink->callback = NULL;
       (*callback) (&sink->buffer, sink->data);
     }
@@ -412,7 +412,7 @@ eva_memory_sink_shutdown_write(GskIO      *io,
 static void
 eva_memory_sink_finalize (GObject *object)
 {
-  GskMemorySink *sink = EVA_MEMORY_SINK (object);
+  EvaMemorySink *sink = EVA_MEMORY_SINK (object);
   eva_buffer_destruct (&sink->buffer);
   if (sink->destroy != NULL)
     (*sink->destroy) (sink->data);
@@ -420,7 +420,7 @@ eva_memory_sink_finalize (GObject *object)
 }
 
 static void
-eva_memory_sink_init (GskMemorySink *memory_sink)
+eva_memory_sink_init (EvaMemorySink *memory_sink)
 {
   eva_io_mark_is_writable (memory_sink);
   eva_stream_mark_never_blocks_write (memory_sink);
@@ -428,11 +428,11 @@ eva_memory_sink_init (GskMemorySink *memory_sink)
 }
 
 static void
-eva_memory_sink_class_init (GskMemorySinkClass *class)
+eva_memory_sink_class_init (EvaMemorySinkClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
-  GskIOClass *io_class = EVA_IO_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
 
   global_stream_class = g_type_class_peek_parent (class);
 
@@ -449,19 +449,19 @@ GType eva_memory_sink_get_type()
     {
       static const GTypeInfo memory_sink_info =
       {
-	sizeof(GskMemorySinkClass),
+	sizeof(EvaMemorySinkClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_memory_sink_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMemorySink),
+	sizeof (EvaMemorySink),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_memory_sink_init,
 	NULL		/* value_table */
       };
       memory_sink_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskMemorySink",
+                                                  "EvaMemorySink",
 						  &memory_sink_info, 0);
     }
   return memory_sink_type;
@@ -477,13 +477,13 @@ GType eva_memory_sink_get_type()
  * a binary buffer.  When the stream is done,
  * the @callback will be run with the full buffer.
  *
- * returns: the writable stream whose destination is a #GskBuffer.
+ * returns: the writable stream whose destination is a #EvaBuffer.
  */
-GskStream *eva_memory_buffer_sink_new   (GskMemoryBufferCallback callback,
+EvaStream *eva_memory_buffer_sink_new   (EvaMemoryBufferCallback callback,
 					 gpointer                data,
 					 GDestroyNotify          destroy)
 {
-  GskMemorySink *sink = g_object_new (EVA_TYPE_MEMORY_SINK, NULL);
+  EvaMemorySink *sink = g_object_new (EVA_TYPE_MEMORY_SINK, NULL);
   sink->callback = callback;
   sink->data = data;
   sink->destroy = destroy;

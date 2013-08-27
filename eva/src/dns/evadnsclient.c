@@ -1,4 +1,4 @@
-#define G_LOG_DOMAIN    "Gsk-Dns"
+#define G_LOG_DOMAIN    "Eva-Dns"
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -18,7 +18,7 @@
 #define EVA_DNS_MAX_CACHE_BYTES         (128 * 1024)
 #define EVA_DNS_MAX_CACHE_RECORDS       (2048)
 
-typedef struct _GskDnsNameServerInfo GskDnsNameServerInfo;
+typedef struct _EvaDnsNameServerInfo EvaDnsNameServerInfo;
 typedef struct _ClientTask ClientTask;
 typedef struct _IpPermissionTable IpPermissionTable;
 
@@ -32,26 +32,26 @@ typedef struct _IpPermissionTable IpPermissionTable;
 #define DEBUG_PRINT_MESSAGE(mess)
 #endif
 
-struct _GskDnsClientClass 
+struct _EvaDnsClientClass 
 {
-  GskPacketQueueClass           base_class;
+  EvaPacketQueueClass           base_class;
 };
 
-struct _GskDnsNameServerInfo
+struct _EvaDnsNameServerInfo
 {
-  GskSocketAddressIpv4         *address;
+  EvaSocketAddressIpv4         *address;
   guint                         is_default_ns : 1;
   guint                         num_msg_sent;
   guint                         num_msg_received;
-  GskDnsNameServerInfo         *next_ns;
-  GskDnsNameServerInfo         *prev_ns;
+  EvaDnsNameServerInfo         *next_ns;
+  EvaDnsNameServerInfo         *prev_ns;
 };
 
-struct _GskDnsClient 
+struct _EvaDnsClient 
 {
   GObject                       base_instance;
-  GskPacketQueue               *packet_queue;
-  GskDnsRRCache                *rr_cache;
+  EvaPacketQueue               *packet_queue;
+  EvaDnsRRCache                *rr_cache;
   ClientTask                   *tasks;
   GHashTable                   *id_to_task_list;
   guint16                       last_message_id;
@@ -65,21 +65,21 @@ struct _GskDnsClient
   GSList                       *first_outgoing_packet;
   GSList                       *last_outgoing_packet;
 
-  GskMainLoop                  *main_loop;
+  EvaMainLoop                  *main_loop;
 
   /* temporary permissions granted to other nameservers */
   IpPermissionTable            *ip_perm_table;
 
   /* --- basic configuration --- */
-  GskDnsNameServerInfo         *first_ns;
-  GskDnsNameServerInfo         *last_ns;
+  EvaDnsNameServerInfo         *first_ns;
+  EvaDnsNameServerInfo         *last_ns;
   GPtrArray                    *searchpath_array;
 };
 
 
 struct _ClientTask
 {
-  GskDnsClient                 *client;
+  EvaDnsClient                 *client;
 
   guint16                       message_id;
   guint16                       ref_count;
@@ -102,11 +102,11 @@ struct _ClientTask
   guint16                       n_iterations;
   guint16                       max_iterations;
 
-  /* GskDnsRRCache to be used for this task.
+  /* EvaDnsRRCache to be used for this task.
    * This will never be NULL unless stub_resolver is specified,
-   * although GskDnsRRCache may be specific to this query.
+   * although EvaDnsRRCache may be specific to this query.
    */
-  GskDnsRRCache                *rr_cache;
+  EvaDnsRRCache                *rr_cache;
 
   /* a collection of resource records we've locked from
    * the cache that might be useful.
@@ -114,8 +114,8 @@ struct _ClientTask
   GSList                       *locked_records;
 
   /* The name servers which we know apply to this zone. */
-  GskDnsNameServerInfo         *first_ns;
-  GskDnsNameServerInfo         *last_ns;
+  EvaDnsNameServerInfo         *first_ns;
+  EvaDnsNameServerInfo         *last_ns;
 
   /* List of questions which need answering */
   GSList                       *questions;
@@ -127,13 +127,13 @@ struct _ClientTask
      (also in answered_questions) */
   GSList                       *negatives;
 
-  GskDnsResolverResponseFunc    func;
-  GskDnsResolverFailFunc        on_fail;
+  EvaDnsResolverResponseFunc    func;
+  EvaDnsResolverFailFunc        on_fail;
   gpointer                      func_data;
   GDestroyNotify                destroy;
 
   /* Timeout for the query which will timeout first. */
-  GskSource                    *timeout_source;
+  EvaSource                    *timeout_source;
 
   /* list of all queries pending. */
   ClientTask                   *next;
@@ -146,7 +146,7 @@ struct _ClientTask
 
 
 
-EVA_DECLARE_POOL_ALLOCATORS(GskDnsNameServerInfo, eva_dns_name_server_info, 16)
+EVA_DECLARE_POOL_ALLOCATORS(EvaDnsNameServerInfo, eva_dns_name_server_info, 16)
 
 /* Attempt to Resolve the given questions -- eventually we unref
  * the task, possibly before returning from this function.
@@ -158,9 +158,9 @@ static void try_local_cache_or_proceed (ClientTask *task);
  */
 static gboolean handle_timeout (ClientTask *task);
 
-static void eva_dns_client_transmit (GskDnsClient         *client,
-				     GskSocketAddressIpv4 *address,
-				     GskDnsMessage        *message);
+static void eva_dns_client_transmit (EvaDnsClient         *client,
+				     EvaSocketAddressIpv4 *address,
+				     EvaDnsMessage        *message);
 
 /* Fail a single client and remove it from the client list. */
 static void client_task_fail        (ClientTask           *task,
@@ -169,14 +169,14 @@ static void client_task_fail        (ClientTask           *task,
 /* --- ip-permission table prototypes --- */
 static IpPermissionTable * ip_permission_table_new ();
 static void ip_permission_table_insert   (IpPermissionTable *table,
-			                  GskSocketAddressIpv4  *address,
+			                  EvaSocketAddressIpv4  *address,
 			                  gboolean           any_suffixed_domain,
 			                  const char        *owner,
 			                  guint              expire_time);
 static void ip_permission_table_expire   (IpPermissionTable *table,
 			                  guint              cur_time);
 static gboolean ip_permission_table_check(IpPermissionTable *table,
-                                          GskSocketAddressIpv4  *address,
+                                          EvaSocketAddressIpv4  *address,
                                           const char        *owner,
                                           guint              cur_time);
 static void ip_permission_table_destroy  (IpPermissionTable *table);
@@ -226,7 +226,7 @@ maybe_remove_timeout_source (ClientTask *task)
     }
 }
 
-/* --- GskDnsResolver interface --- */
+/* --- EvaDnsResolver interface --- */
 static void
 eva_dns_client_task_ref (ClientTask *task)
 {
@@ -280,14 +280,14 @@ eva_dns_client_task_unref (ClientTask *task)
 
       while (task->first_ns != NULL)
 	{
-	  GskDnsNameServerInfo *ns_info = task->first_ns;
+	  EvaDnsNameServerInfo *ns_info = task->first_ns;
 	  task->first_ns = ns_info->next_ns;
 	  g_object_unref (ns_info->address);
 	  eva_dns_name_server_info_free (ns_info);
 	}
       while (task->locked_records != NULL)
 	{
-	  GskDnsResourceRecord *rr = task->locked_records->data;
+	  EvaDnsResourceRecord *rr = task->locked_records->data;
 	  task->locked_records = g_slist_remove (task->locked_records, rr);
 	  eva_dns_rr_cache_unlock (task->rr_cache, rr);
 	}
@@ -298,11 +298,11 @@ eva_dns_client_task_unref (ClientTask *task)
 }
 
 static void
-eva_dns_client_resolver_cancel  (GskDnsResolver    *resolver,
+eva_dns_client_resolver_cancel  (EvaDnsResolver    *resolver,
 				 gpointer           task_data)
 {
   ClientTask *task = task_data;
-  GskDnsClient *client = EVA_DNS_CLIENT (resolver);
+  EvaDnsClient *client = EVA_DNS_CLIENT (resolver);
   g_assert (client == task->client);
 
   task->cancelled = 1;
@@ -345,17 +345,17 @@ find_name_pieces (const char  *str,
 }
 
 static inline guint
-eva_dns_client_generate_message_id (GskDnsClient *client)
+eva_dns_client_generate_message_id (EvaDnsClient *client)
 {
   return ++(client->last_message_id);
 }
 
-static GskDnsMessage *
+static EvaDnsMessage *
 maybe_make_message (ClientTask    *task,
 		    GHashTable            *table,
-		    GskDnsNameServerInfo  *ns_info)
+		    EvaDnsNameServerInfo  *ns_info)
 {
-  GskDnsMessage *message = g_hash_table_lookup (table, ns_info);
+  EvaDnsMessage *message = g_hash_table_lookup (table, ns_info);
   if (message == NULL)
     {
       guint16 msg_id = task->message_id;
@@ -372,7 +372,7 @@ add_timeout (ClientTask *task,
 {
   task->timeout_source 
     = eva_main_loop_add_timer (task->client->main_loop,
-			       (GskMainLoopTimeoutFunc) handle_timeout,
+			       (EvaMainLoopTimeoutFunc) handle_timeout,
 			       task,
 			       NULL,
 			       num_seconds * 1000 + 500,
@@ -397,14 +397,14 @@ handle_timeout (ClientTask *task)
 static void
 eva_dns_client_task_use_conf_nameservers (ClientTask *task)
 {
-  GskDnsNameServerInfo *ns_info;
+  EvaDnsNameServerInfo *ns_info;
   g_return_if_fail (!task->used_conf_nameservers);
   task->used_conf_nameservers = 1;
   for (ns_info = task->client->first_ns;
        ns_info != NULL;
        ns_info = ns_info->next_ns)
     {
-      GskDnsNameServerInfo *new_ns_info = eva_dns_name_server_info_alloc ();
+      EvaDnsNameServerInfo *new_ns_info = eva_dns_name_server_info_alloc ();
       new_ns_info->num_msg_received = 0;
       new_ns_info->num_msg_sent = 0;
       new_ns_info->address = g_object_ref (ns_info->address);
@@ -431,11 +431,11 @@ struct _MessageLists
   ClientTask *task;
 };
 
-/* Append a GskDnsResourceRecord to whichever return list
+/* Append a EvaDnsResourceRecord to whichever return list
  * looks best (using additional as a catchall.)
  */
 static void
-categorize_rr (GskDnsResourceRecord *record,
+categorize_rr (EvaDnsResourceRecord *record,
 	       MessageLists         *lists)
 {
   ClientTask *task = lists->task;
@@ -448,7 +448,7 @@ categorize_rr (GskDnsResourceRecord *record,
        answered != NULL;
        answered = answered->next)
     {
-      GskDnsQuestion *question = answered->data;
+      EvaDnsQuestion *question = answered->data;
       if (strcasecmp (question->query_name, record->owner) == 0
        && (record->type == question->query_type
 	|| record->type == EVA_DNS_RR_CANONICAL_NAME
@@ -514,7 +514,7 @@ eva_dns_client_task_fail (ClientTask *task,
 
 static void
 move_ns_to_end_of_list (ClientTask   *task,
-			GskDnsNameServerInfo *name_server)
+			EvaDnsNameServerInfo *name_server)
 {
   /* If we are the last element, nothing to do. */
   if (name_server->next_ns == NULL)
@@ -543,7 +543,7 @@ move_ns_to_end_of_list (ClientTask   *task,
  * which packet this is in the task's requests to that NS (0,1,2,etc)
  */
 static inline guint
-get_expire_from_attempt_index (GskDnsNameServerInfo *ns_info)
+get_expire_from_attempt_index (EvaDnsNameServerInfo *ns_info)
 {
   return (1 << MIN (ns_info->num_msg_sent, 6)) + 3;
 }
@@ -559,8 +559,8 @@ struct _DnsQueryData
 };
 
 static void
-do_dns_query (GskDnsNameServerInfo *name_server,
-	      GskDnsMessage        *message,
+do_dns_query (EvaDnsNameServerInfo *name_server,
+	      EvaDnsMessage        *message,
 	      DnsQueryData         *query_data)
 {
   ClientTask *task = query_data->task;
@@ -613,7 +613,7 @@ do_dns_query (GskDnsNameServerInfo *name_server,
     {
       GSList *question_list;
       gulong cur_time;
-      GskMainLoop *main_loop = task->client->main_loop;
+      EvaMainLoop *main_loop = task->client->main_loop;
 
       cur_time = main_loop->current_time.tv_sec;
 
@@ -621,7 +621,7 @@ do_dns_query (GskDnsNameServerInfo *name_server,
 	   question_list != NULL;
 	   question_list = question_list->next)
 	{
-	  GskSocketAddress addr;
+	  EvaSocketAddress addr;
 	  addr.address_family = EVA_SOCKET_ADDRESS_IPv4;
 	  addr.ipv4.ip_port = EVA_DNS_PORT;
 	  memcpy (addr.ipv4.ip_address, name_server->ip_address, 4);
@@ -634,11 +634,11 @@ do_dns_query (GskDnsNameServerInfo *name_server,
 /* Return a (possibly newly allocated) Nameserver
  * based on a socket-address.
  */
-static GskDnsNameServerInfo *
+static EvaDnsNameServerInfo *
 get_nameserver (ClientTask    *task,
-		GskSocketAddressIpv4  *address)
+		EvaSocketAddressIpv4  *address)
 {
-  GskDnsNameServerInfo *rv;
+  EvaDnsNameServerInfo *rv;
   const guint8 *ip;
   ip = address->ip_address;
   for (rv = task->first_ns; rv != NULL; rv = rv->next_ns)
@@ -661,18 +661,18 @@ get_nameserver (ClientTask    *task,
 static void
 try_local_cache_or_proceed (ClientTask  *task)
 {
-  /* An map from a GskDnsNameServerInfo for this request
-   * to a dns-message;  if GskDnsNameServerInfo==NULL,
+  /* An map from a EvaDnsNameServerInfo for this request
+   * to a dns-message;  if EvaDnsNameServerInfo==NULL,
    * the request should be sent to the nameservers
    * from the config file.
    */
   GHashTable *ns_to_dns_message = NULL;
 
   GSList *questions = task->questions;
-  GskDnsRRCache *rr_cache = task->rr_cache;
+  EvaDnsRRCache *rr_cache = task->rr_cache;
   
   GSList *last = NULL;
-  GskMainLoop *main_loop = task->client->main_loop;
+  EvaMainLoop *main_loop = task->client->main_loop;
   gulong cur_time;
 
   if (main_loop == NULL)
@@ -693,12 +693,12 @@ try_local_cache_or_proceed (ClientTask  *task)
 
   while (questions != NULL)
     {
-      GskDnsResourceRecord *record;
+      EvaDnsResourceRecord *record;
       GSList *results;
-      GskDnsQuestion *question = questions->data;
+      EvaDnsQuestion *question = questions->data;
       const char *name = question->query_name;
-      GskDnsResourceClass query_class = question->query_class;
-      GskDnsResourceRecordType query_type = question->query_type;
+      EvaDnsResourceClass query_class = question->query_class;
+      EvaDnsResourceRecordType query_type = question->query_type;
       GSList *cnames = NULL;
 
       guint n_dots;
@@ -711,7 +711,7 @@ try_local_cache_or_proceed (ClientTask  *task)
       const char *pieces[255];
 
       guint found_ns_index;
-      GskSocketAddressIpv4 *address;
+      EvaSocketAddressIpv4 *address;
 
 restart_with_local_cache:
       results = NULL;
@@ -847,8 +847,8 @@ restart_with_local_cache:
       /* Implement a stub resolver.  See RFC 1034, 5.3.3. */
       if (task->stub_resolver)
 	{
-	  GskDnsMessage *message;
-	  GskDnsQuestion *q;
+	  EvaDnsMessage *message;
+	  EvaDnsQuestion *q;
 	  message = maybe_make_message (task, ns_to_dns_message, NULL);
 	  message->recursion_desired = 1;
 	  q = eva_dns_question_copy (question, message);
@@ -902,9 +902,9 @@ restart_with_local_cache:
 	}
 
       {
-	GskDnsMessage *message;
-	GskDnsQuestion *q;
-	GskDnsNameServerInfo *ns;
+	EvaDnsMessage *message;
+	EvaDnsQuestion *q;
+	EvaDnsNameServerInfo *ns;
 	char *tmp_name;
 	if (found_ns_index == n_pieces)
 	  ns = NULL;
@@ -978,16 +978,16 @@ restart_with_local_cache:
 }
 
 static gpointer
-eva_dns_client_resolve (GskDnsResolver               *resolver,
+eva_dns_client_resolve (EvaDnsResolver               *resolver,
 			gboolean                      recursive,
 			GSList                       *questions,
-			GskDnsResolverResponseFunc    func,
-			GskDnsResolverFailFunc        on_fail,
+			EvaDnsResolverResponseFunc    func,
+			EvaDnsResolverFailFunc        on_fail,
 			gpointer                      func_data,
 			GDestroyNotify                destroy,
-			GskDnsResolverHints          *hints)
+			EvaDnsResolverHints          *hints)
 {
-  GskDnsClient *client = EVA_DNS_CLIENT (resolver);
+  EvaDnsClient *client = EVA_DNS_CLIENT (resolver);
   ClientTask *task;
   ClientTask *rv;
 
@@ -1039,8 +1039,8 @@ eva_dns_client_resolve (GskDnsResolver               *resolver,
     GSList *copy_list = NULL;
     for (tmp = questions; tmp != NULL; tmp = tmp->next)
       {
-	GskDnsQuestion *orig = tmp->data;
-	GskDnsQuestion *copy = eva_dns_question_copy (orig, NULL);
+	EvaDnsQuestion *orig = tmp->data;
+	EvaDnsQuestion *copy = eva_dns_question_copy (orig, NULL);
 	copy_list = g_slist_prepend (copy_list, copy);
       }
     task->questions = g_slist_reverse (copy_list);
@@ -1074,13 +1074,13 @@ eva_dns_client_resolve (GskDnsResolver               *resolver,
  * address can be trusted enough to be put in our cache.
  */
 static gboolean
-check_rr_authority (GskDnsClient         *client,
-		    GskSocketAddressIpv4 *address,
-		    GskDnsResourceRecord *record,
+check_rr_authority (EvaDnsClient         *client,
+		    EvaSocketAddressIpv4 *address,
+		    EvaDnsResourceRecord *record,
 		    guint                 cur_time)
 {
   const guint8 *ip_address;
-  GskDnsNameServerInfo *ns_info;
+  EvaDnsNameServerInfo *ns_info;
   ip_address = address->ip_address;
 
   /* See if `address' is a configured nameserver.
@@ -1107,11 +1107,11 @@ check_rr_authority (GskDnsClient         *client,
 static gboolean
 is_or_is_cname_for (const char            *owner,
 		    const char            *ask_name,
-		    GskDnsRRCache         *rr_cache)
+		    EvaDnsRRCache         *rr_cache)
 {
   while (ask_name != NULL)
     {
-      GskDnsResourceRecord *rr;
+      EvaDnsResourceRecord *rr;
       if (strcasecmp (owner, ask_name) == 0)
 	return TRUE;
       rr = eva_dns_rr_cache_lookup_one (rr_cache,
@@ -1140,9 +1140,9 @@ is_suffix_for (const char *name, const char *suffix)
 }
 
 static inline gboolean
-check_does_rr_answer_question (GskDnsResourceRecord *record,
-			       GskDnsQuestion       *question,
-			       GskDnsRRCache        *rr_cache)
+check_does_rr_answer_question (EvaDnsResourceRecord *record,
+			       EvaDnsQuestion       *question,
+			       EvaDnsRRCache        *rr_cache)
 {
 
   if (record->type == EVA_DNS_RR_NAME_SERVER)
@@ -1150,7 +1150,7 @@ check_does_rr_answer_question (GskDnsResourceRecord *record,
       const char *query_name = question->query_name;
       while (query_name != NULL)
 	{
-	  GskDnsResourceRecord *rr;
+	  EvaDnsResourceRecord *rr;
 	  if (is_suffix_for (query_name, record->owner))
 	    return TRUE;
 
@@ -1172,7 +1172,7 @@ check_does_rr_answer_question (GskDnsResourceRecord *record,
                                                        (gpointer) query_name);
       while (query_name != NULL)
 	{
-	  GskDnsResourceRecord *rr;
+	  EvaDnsResourceRecord *rr;
 	  const char *qn = query_name;
 	  GSList *ns_list;
 	  do {
@@ -1185,7 +1185,7 @@ check_does_rr_answer_question (GskDnsResourceRecord *record,
 	  } while (ns_list == NULL && qn != NULL);
 	  while (ns_list)
 	    {
-	      GskDnsResourceRecord *ns_rr = ns_list->data;
+	      EvaDnsResourceRecord *ns_rr = ns_list->data;
 	      ns_list = g_slist_remove (ns_list, ns_rr);
 	      if (strcasecmp (ns_rr->rdata.domain_name, record->owner) == 0)
                 {
@@ -1229,13 +1229,13 @@ check_does_rr_answer_question (GskDnsResourceRecord *record,
  */
 static gboolean
 check_is_rr_relevant (ClientTask   *task,
-		      GskDnsResourceRecord *record,
-		      GskDnsRRCache        *rr_cache)
+		      EvaDnsResourceRecord *record,
+		      EvaDnsRRCache        *rr_cache)
 {
   GSList *list;
   for (list = task->questions; list != NULL; list = list->next)
     if (check_does_rr_answer_question (record,
-				       (GskDnsQuestion *) list->data,
+				       (EvaDnsQuestion *) list->data,
 				       rr_cache))
       return TRUE;
   return FALSE;
@@ -1244,13 +1244,13 @@ check_is_rr_relevant (ClientTask   *task,
 static void
 append_and_lock_rr_list_to_task (GSList               *rr_list,
 			         ClientTask   *task,
-				 GskSocketAddressIpv4 *address,
+				 EvaSocketAddressIpv4 *address,
 				 gboolean              is_authoritative,
 				 guint                 cur_time)
 {
   while (rr_list != NULL)
     {
-      GskDnsResourceRecord *record = rr_list->data;
+      EvaDnsResourceRecord *record = rr_list->data;
       if (!check_rr_authority (task->client, address, record, cur_time))
 	{
 	  rr_list = rr_list->next;
@@ -1268,7 +1268,7 @@ append_and_lock_rr_list_to_task (GSList               *rr_list,
 }
 
 static int
-question_equal_or_ends_with (GskDnsQuestion *question,
+question_equal_or_ends_with (EvaDnsQuestion *question,
 			     const char     *ns_owner)
 {
   const char *query_name = question->query_name;
@@ -1289,7 +1289,7 @@ question_equal_or_ends_with (GskDnsQuestion *question,
 }
 
 static int
-look_for_relevant_ns_entry (GskDnsResourceRecord *record,
+look_for_relevant_ns_entry (EvaDnsResourceRecord *record,
 			    ClientTask   *task)
 {
   if (record->type != EVA_DNS_RR_NAME_SERVER)
@@ -1307,8 +1307,8 @@ look_for_relevant_ns_entry (GskDnsResourceRecord *record,
 
 static void
 task_handle_message (ClientTask   *task,
-		     GskSocketAddressIpv4 *address,
-		     GskDnsMessage        *message)
+		     EvaSocketAddressIpv4 *address,
+		     EvaDnsMessage        *message)
 {
   GSList *lists[3];
   GSList *list;
@@ -1335,7 +1335,7 @@ task_handle_message (ClientTask   *task,
   for (iteration = 0; iteration < 3; iteration++)
     for (list = lists[iteration]; list != NULL; list = list->next)
       {
-	GskDnsResourceRecord *record = list->data;
+	EvaDnsResourceRecord *record = list->data;
 
 	/* Check whether the source nameserver has the authority
 	 * to give us a record like this.
@@ -1453,7 +1453,7 @@ task_handle_message (ClientTask   *task,
 
     case EVA_DNS_RESPONSE_ERROR_NAME_ERROR:
       {
-	GskDnsQuestion *question = message->questions ? message->questions->data : NULL;
+	EvaDnsQuestion *question = message->questions ? message->questions->data : NULL;
 	GError *error = g_error_new (EVA_G_ERROR_DOMAIN,
 			             EVA_ERROR_RESOLVER_NOT_FOUND,
 				     _("name %s not found"),
@@ -1537,9 +1537,9 @@ task_handle_message (ClientTask   *task,
 }
 
 static void
-client_handle_message  (GskDnsClient           *client,
-			GskDnsMessage          *message,
-			GskSocketAddressIpv4   *address)
+client_handle_message  (EvaDnsClient           *client,
+			EvaDnsMessage          *message,
+			EvaSocketAddressIpv4   *address)
 {
   ClientTask *task_list;
   guint message_id = message->id;
@@ -1565,7 +1565,7 @@ client_handle_message  (GskDnsClient           *client,
 
 /* --- utility methods --- */
 static void
-eva_dns_client_fail_all_tasks (GskDnsClient  *client,
+eva_dns_client_fail_all_tasks (EvaDnsClient  *client,
 			       GError        *error)
 {
   while (client->tasks != NULL)
@@ -1600,11 +1600,11 @@ client_task_fail (ClientTask *task,
 }
 
 static void
-eva_dns_client_transmit (GskDnsClient         *client,
-			 GskSocketAddressIpv4 *address,
-			 GskDnsMessage        *message)
+eva_dns_client_transmit (EvaDnsClient         *client,
+			 EvaSocketAddressIpv4 *address,
+			 EvaDnsMessage        *message)
 {
-  GskPacket *packet = eva_dns_message_to_packet (message);
+  EvaPacket *packet = eva_dns_message_to_packet (message);
   eva_packet_set_dst_address (packet, EVA_SOCKET_ADDRESS (address));
 #ifdef EVA_DEBUG
   if (eva_debug_flags & EVA_DEBUG_DNS)
@@ -1654,13 +1654,13 @@ eva_dns_client_transmit (GskDnsClient         *client,
 
 /* --- io handlers --- */
 static gboolean
-handle_queue_is_readable (GskIO         *io,
+handle_queue_is_readable (EvaIO         *io,
 			  gpointer       data)
 {
-  GskPacket *packet;
-  GskDnsMessage *message;
-  GskSocketAddress *address;
-  GskDnsClient *client = EVA_DNS_CLIENT (data);
+  EvaPacket *packet;
+  EvaDnsMessage *message;
+  EvaSocketAddress *address;
+  EvaDnsClient *client = EVA_DNS_CLIENT (data);
   GError *error = NULL;
   guint used;
   packet = eva_packet_queue_read (EVA_PACKET_QUEUE (io), TRUE, &error);
@@ -1719,7 +1719,7 @@ handle_queue_is_readable (GskIO         *io,
 }
 
 static gboolean
-handle_queue_is_readable_shutdown (GskIO         *io,
+handle_queue_is_readable_shutdown (EvaIO         *io,
 			           gpointer       data)
 {
   GError *error = g_error_new (EVA_G_ERROR_DOMAIN,
@@ -1732,15 +1732,15 @@ handle_queue_is_readable_shutdown (GskIO         *io,
 
 
 static gboolean
-handle_queue_is_writable (GskIO         *io,
+handle_queue_is_writable (EvaIO         *io,
 			  gpointer       data)
 {
-  GskDnsClient *client = EVA_DNS_CLIENT (data);
+  EvaDnsClient *client = EVA_DNS_CLIENT (data);
   while (client->first_outgoing_packet != NULL)
     {
       GError *error = NULL;
       GSList *list = client->first_outgoing_packet;
-      GskPacket *packet = list->data;
+      EvaPacket *packet = list->data;
       if (!eva_packet_queue_write (EVA_PACKET_QUEUE (io), packet, &error))
 	{
 	  if (error == NULL)
@@ -1768,7 +1768,7 @@ handle_queue_is_writable (GskIO         *io,
 }
 
 static gboolean
-handle_queue_is_writable_shutdown (GskIO         *io,
+handle_queue_is_writable_shutdown (EvaIO         *io,
 			           gpointer       data)
 {
   GError *error = g_error_new (EVA_G_ERROR_DOMAIN,
@@ -1788,9 +1788,9 @@ unref_packet_queue (gpointer c)
 /* --- GObject functions --- */
 
 static void
-eva_dns_client_destroy_all_queries (GskDnsClient *client)
+eva_dns_client_destroy_all_queries (EvaDnsClient *client)
 {
-  GskDnsResolver *resolver = EVA_DNS_RESOLVER (client);
+  EvaDnsResolver *resolver = EVA_DNS_RESOLVER (client);
   while (client->tasks != NULL)
     eva_dns_client_resolver_cancel (resolver, client->tasks);
 }
@@ -1798,7 +1798,7 @@ eva_dns_client_destroy_all_queries (GskDnsClient *client)
 static void
 eva_dns_client_finalize (GObject *object)
 {
-  GskDnsClient *client = EVA_DNS_CLIENT (object);
+  EvaDnsClient *client = EVA_DNS_CLIENT (object);
   eva_dns_client_destroy_all_queries (client);
   ip_permission_table_destroy (client->ip_perm_table);
   g_hash_table_destroy (client->id_to_task_list);
@@ -1819,7 +1819,7 @@ eva_dns_client_finalize (GObject *object)
 
 /* --- functions --- */
 static void
-eva_dns_client_init (GskDnsClient *dns_client)
+eva_dns_client_init (EvaDnsClient *dns_client)
 {
   dns_client->last_message_id = (guint16) rand ();
   dns_client->ip_perm_table = ip_permission_table_new ();
@@ -1833,14 +1833,14 @@ eva_dns_client_init (GskDnsClient *dns_client)
 }
 
 static void
-eva_dns_client_resolver_init (GskDnsResolverIface *resolver_iface)
+eva_dns_client_resolver_init (EvaDnsResolverIface *resolver_iface)
 {
   resolver_iface->resolve = eva_dns_client_resolve;
   resolver_iface->cancel = eva_dns_client_resolver_cancel;
 }
 
 static void
-eva_dns_client_class_init (GskDnsClientClass *dns_client_class)
+eva_dns_client_class_init (EvaDnsClientClass *dns_client_class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (dns_client_class);
   parent_class = g_type_class_peek_parent (object_class);
@@ -1854,13 +1854,13 @@ GType eva_dns_client_get_type()
     {
       static const GTypeInfo dns_client_info =
       {
-	sizeof(GskDnsClientClass),
+	sizeof(EvaDnsClientClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_dns_client_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskDnsClient),
+	sizeof (EvaDnsClient),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_dns_client_init,
 	NULL		/* value_table */
@@ -1872,7 +1872,7 @@ GType eva_dns_client_get_type()
 	NULL			/* interface_data */
       };
       dns_client_type = g_type_register_static (G_TYPE_OBJECT,
-						"GskDnsClient",
+						"EvaDnsClient",
 						&dns_client_info, 0);
       g_type_add_interface_static (dns_client_type,
 				   EVA_TYPE_DNS_RESOLVER,
@@ -1892,15 +1892,15 @@ GType eva_dns_client_get_type()
  * or stub resolver.
  *
  * Create a new DNS client.
- * This implements the #GskDnsResolver interface.
+ * This implements the #EvaDnsResolver interface.
  *
  * returns: the newly allocated DNS client.
  */
-GskDnsClient   *eva_dns_client_new           (GskPacketQueue     *packet_queue,
-					      GskDnsRRCache      *rr_cache,
-					      GskDnsClientFlags   flags)
+EvaDnsClient   *eva_dns_client_new           (EvaPacketQueue     *packet_queue,
+					      EvaDnsRRCache      *rr_cache,
+					      EvaDnsClientFlags   flags)
 {
-  GskDnsClient *client;
+  EvaDnsClient *client;
 
   client = g_object_new (EVA_TYPE_DNS_CLIENT, NULL);
   client->packet_queue = g_object_ref (packet_queue);
@@ -1946,7 +1946,7 @@ GskDnsClient   *eva_dns_client_new           (GskPacketQueue     *packet_queue,
  * However, looking up "cvs.com." will ONLY search the global namespace.
  */
 void
-eva_dns_client_add_searchpath(GskDnsClient       *client,
+eva_dns_client_add_searchpath(EvaDnsClient       *client,
 			      const char         *searchpath)
 {
   g_return_if_fail (searchpath != NULL);
@@ -1965,10 +1965,10 @@ eva_dns_client_add_searchpath(GskDnsClient       *client,
  * All nameservers will be queried simultaneously.
  */
 void
-eva_dns_client_add_ns        (GskDnsClient           *client,
-			      GskSocketAddressIpv4   *address)
+eva_dns_client_add_ns        (EvaDnsClient           *client,
+			      EvaSocketAddressIpv4   *address)
 {
-  GskDnsNameServerInfo *ns_info;
+  EvaDnsNameServerInfo *ns_info;
   for (ns_info = client->first_ns; ns_info != NULL; ns_info = ns_info->next_ns)
     if (eva_socket_address_equals (address, ns_info->address))
       break;
@@ -1995,8 +1995,8 @@ eva_dns_client_add_ns        (GskDnsClient           *client,
  * Switch the client to use a new resource-record cache.
  */
 void
-eva_dns_client_set_cache     (GskDnsClient       *client,
-			      GskDnsRRCache      *rr_cache)
+eva_dns_client_set_cache     (EvaDnsClient       *client,
+			      EvaDnsRRCache      *rr_cache)
 {
   if (rr_cache != client->rr_cache)
     {
@@ -2009,14 +2009,14 @@ eva_dns_client_set_cache     (GskDnsClient       *client,
 }
 
 void
-eva_dns_client_set_flags     (GskDnsClient       *client,
-			      GskDnsClientFlags   flags)
+eva_dns_client_set_flags     (EvaDnsClient       *client,
+			      EvaDnsClientFlags   flags)
 {
   client->stub_resolver = (flags & EVA_DNS_CLIENT_STUB_RESOLVER) ? 1 : 0;
 }
 
-GskDnsClientFlags
-eva_dns_client_get_flags     (GskDnsClient       *client)
+EvaDnsClientFlags
+eva_dns_client_get_flags     (EvaDnsClient       *client)
 {
   return client->stub_resolver ? EVA_DNS_CLIENT_STUB_RESOLVER : 0;
 }
@@ -2052,7 +2052,7 @@ eva_dns_client_get_flags     (GskDnsClient       *client)
  *                                   should be sorted.
  */
 gboolean
-eva_dns_client_parse_resolv_conf_line(GskDnsClient       *client,
+eva_dns_client_parse_resolv_conf_line(EvaDnsClient       *client,
 				      const char         *text)
 {
   EVA_SKIP_WHITESPACE (text);
@@ -2060,7 +2060,7 @@ eva_dns_client_parse_resolv_conf_line(GskDnsClient       *client,
     return TRUE;
   if (g_strncasecmp (text, "nameserver", 10) == 0)
     {
-      GskSocketAddress *address;
+      EvaSocketAddress *address;
       guint8 ip_address[4];
       text += 10;
       EVA_SKIP_WHITESPACE (text);
@@ -2109,7 +2109,7 @@ eva_dns_client_parse_resolv_conf_line(GskDnsClient       *client,
  * returns: whether the file was parsed successfully.
  */
 gboolean
-eva_dns_client_parse_resolv_conf (GskDnsClient       *client,
+eva_dns_client_parse_resolv_conf (EvaDnsClient       *client,
 				  const char         *filename,
 				  gboolean            may_be_missing)
 {
@@ -2152,10 +2152,10 @@ eva_dns_client_parse_resolv_conf (GskDnsClient       *client,
  * returns: whether the files were parsed successfully.
  */
 gboolean
-eva_dns_client_parse_system_files(GskDnsClient       *client)
+eva_dns_client_parse_system_files(EvaDnsClient       *client)
 {
   gboolean rv1, rv2;
-  GskDnsRRCache *rr_cache = client->rr_cache;
+  EvaDnsRRCache *rr_cache = client->rr_cache;
   g_return_val_if_fail (rr_cache != NULL, FALSE);
   rv1 = eva_dns_client_parse_resolv_conf (client, "/etc/resolv.conf", TRUE);
   rv2 = eva_dns_rr_cache_parse_etc_hosts (rr_cache, "/etc/hosts", TRUE);
@@ -2184,7 +2184,7 @@ struct _IpPermData
 struct _IpPermAddress
 {
   /* must be first member for hash functions to work out! */
-  GskSocketAddress *sock_addr;
+  EvaSocketAddress *sock_addr;
 
   /* XXX: we may want a hashtable here instead! */
   IpPermData      *first_data;
@@ -2271,7 +2271,7 @@ ip_permission_table_new ()
 
 static void
 ip_permission_table_insert (IpPermissionTable     *table,
-			    GskSocketAddressIpv4  *address,
+			    EvaSocketAddressIpv4  *address,
 			    gboolean               any_suffixed_domain,
 			    const char            *owner,
 			    guint                  expire_time)
@@ -2387,7 +2387,7 @@ ip_permission_table_expire (IpPermissionTable *table,
 
 static gboolean
 ip_permission_table_check (IpPermissionTable     *table,
-                           GskSocketAddressIpv4  *address,
+                           EvaSocketAddressIpv4  *address,
                            const char            *owner,
                            guint                  cur_time)
 {

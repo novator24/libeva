@@ -14,42 +14,42 @@
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskFtpCommand">GskFtpCommand</link>;
-enum                <link linkend="GskFtpCommandType">GskFtpCommandType</link>;
-enum                <link linkend="GskFtpCharType">GskFtpCharType</link>;
-enum                <link linkend="GskFtpTerminalType">GskFtpTerminalType</link>;
-enum                <link linkend="GskFtpFileStructure">GskFtpFileStructure</link>;
-enum                <link linkend="GskFtpTransferMode">GskFtpTransferMode</link>;
-const <link linkend="char">char</link> *        <link linkend="eva-ftp-command-name">eva_ftp_command_name</link>                (<link linkend="GskFtpCommandType">GskFtpCommandType</link> command_type);
-<link linkend="GskFtpCommand">GskFtpCommand</link> *     <link linkend="eva-ftp-command-new-user">eva_ftp_command_new_user</link>            (const <link linkend="char">char</link> *username);
-<link linkend="GskFtpCommand">GskFtpCommand</link> *     <link linkend="eva-ftp-command-new-password">eva_ftp_command_new_password</link>        (const <link linkend="char">char</link> *username);
-<link linkend="GskFtpCommand">GskFtpCommand</link> *     <link linkend="eva-ftp-command-new-account">eva_ftp_command_new_account</link>         (const <link linkend="char">char</link> *account);
-<link linkend="GskFtpCommand">GskFtpCommand</link> *     <link linkend="eva-ftp-command-new-mount">eva_ftp_command_new_mount</link>           (const <link linkend="char">char</link> *mount_point);
-<link linkend="GskFtpCommand">GskFtpCommand</link> *     <link linkend="eva-ftp-command-new-rep-type">eva_ftp_command_new_rep_type</link>        (<link linkend="GskFtpCharType">GskFtpCharType</link> char_type,
-                                                         <link linkend="GskFtpTerminalType">GskFtpTerminalType</link> terminal_type,
+                    <link linkend="EvaFtpCommand">EvaFtpCommand</link>;
+enum                <link linkend="EvaFtpCommandType">EvaFtpCommandType</link>;
+enum                <link linkend="EvaFtpCharType">EvaFtpCharType</link>;
+enum                <link linkend="EvaFtpTerminalType">EvaFtpTerminalType</link>;
+enum                <link linkend="EvaFtpFileStructure">EvaFtpFileStructure</link>;
+enum                <link linkend="EvaFtpTransferMode">EvaFtpTransferMode</link>;
+const <link linkend="char">char</link> *        <link linkend="eva-ftp-command-name">eva_ftp_command_name</link>                (<link linkend="EvaFtpCommandType">EvaFtpCommandType</link> command_type);
+<link linkend="EvaFtpCommand">EvaFtpCommand</link> *     <link linkend="eva-ftp-command-new-user">eva_ftp_command_new_user</link>            (const <link linkend="char">char</link> *username);
+<link linkend="EvaFtpCommand">EvaFtpCommand</link> *     <link linkend="eva-ftp-command-new-password">eva_ftp_command_new_password</link>        (const <link linkend="char">char</link> *username);
+<link linkend="EvaFtpCommand">EvaFtpCommand</link> *     <link linkend="eva-ftp-command-new-account">eva_ftp_command_new_account</link>         (const <link linkend="char">char</link> *account);
+<link linkend="EvaFtpCommand">EvaFtpCommand</link> *     <link linkend="eva-ftp-command-new-mount">eva_ftp_command_new_mount</link>           (const <link linkend="char">char</link> *mount_point);
+<link linkend="EvaFtpCommand">EvaFtpCommand</link> *     <link linkend="eva-ftp-command-new-rep-type">eva_ftp_command_new_rep_type</link>        (<link linkend="EvaFtpCharType">EvaFtpCharType</link> char_type,
+                                                         <link linkend="EvaFtpTerminalType">EvaFtpTerminalType</link> terminal_type,
                                                          <link linkend="int">int</link> byte_size);
-<link linkend="GskFtpCommand">GskFtpCommand</link> *     <link linkend="eva-ftp-command-new-file-struct">eva_ftp_command_new_file_struct</link>     (<link linkend="GskFtpFileStructure">GskFtpFileStructure</link> file_struct);
-<link linkend="GskFtpCommand">GskFtpCommand</link> *     <link linkend="eva-ftp-command-new-transfer-mode">eva_ftp_command_new_transfer_mode</link>   (<link linkend="GskFtpTransferMode">GskFtpTransferMode</link> transfer_mode);
-<link linkend="GskFtpCommand">GskFtpCommand</link> *     <link linkend="eva-ftp-command-new-help">eva_ftp_command_new_help</link>            (const <link linkend="char">char</link> *topic);
-<link linkend="GskFtpCommand">GskFtpCommand</link> *     <link linkend="eva-ftp-command-new-file">eva_ftp_command_new_file</link>            (<link linkend="GskFtpCommandType">GskFtpCommandType</link> cmd_type,
+<link linkend="EvaFtpCommand">EvaFtpCommand</link> *     <link linkend="eva-ftp-command-new-file-struct">eva_ftp_command_new_file_struct</link>     (<link linkend="EvaFtpFileStructure">EvaFtpFileStructure</link> file_struct);
+<link linkend="EvaFtpCommand">EvaFtpCommand</link> *     <link linkend="eva-ftp-command-new-transfer-mode">eva_ftp_command_new_transfer_mode</link>   (<link linkend="EvaFtpTransferMode">EvaFtpTransferMode</link> transfer_mode);
+<link linkend="EvaFtpCommand">EvaFtpCommand</link> *     <link linkend="eva-ftp-command-new-help">eva_ftp_command_new_help</link>            (const <link linkend="char">char</link> *topic);
+<link linkend="EvaFtpCommand">EvaFtpCommand</link> *     <link linkend="eva-ftp-command-new-file">eva_ftp_command_new_file</link>            (<link linkend="EvaFtpCommandType">EvaFtpCommandType</link> cmd_type,
                                                          const <link linkend="char">char</link> *path);
-<link linkend="GskFtpCommand">GskFtpCommand</link> *     <link linkend="eva-ftp-command-new-simple">eva_ftp_command_new_simple</link>          (<link linkend="GskFtpCommandType">GskFtpCommandType</link> cmd_type);
-<link linkend="GskFtpCommand">GskFtpCommand</link> *     <link linkend="eva-ftp-command-parse">eva_ftp_command_parse</link>               (const <link linkend="char">char</link> *parse);
-<link linkend="char">char</link> *              <link linkend="eva-ftp-command-to-string">eva_ftp_command_to_string</link>           (<link linkend="GskFtpCommand">GskFtpCommand</link> *command);
-<link linkend="void">void</link>                <link linkend="eva-ftp-command-append">eva_ftp_command_append</link>              (<link linkend="GskFtpCommand">GskFtpCommand</link> *command,
-                                                         <link linkend="GskBuffer">GskBuffer</link> *buffer);
-<link linkend="void">void</link>                <link linkend="eva-ftp-command-destroy">eva_ftp_command_destroy</link>             (<link linkend="GskFtpCommand">GskFtpCommand</link> *command);
-struct              <link linkend="GskFtpReply">GskFtpReply</link>;
-<link linkend="GskFtpReply">GskFtpReply</link> *       <link linkend="eva-ftp-reply-new-simple">eva_ftp_reply_new_simple</link>            (<link linkend="GskFtpReplyType">GskFtpReplyType</link> type);
-<link linkend="GskFtpReply">GskFtpReply</link> *       <link linkend="eva-ftp-reply-new-status">eva_ftp_reply_new_status</link>            (<link linkend="GskFtpReplyType">GskFtpReplyType</link> type,
+<link linkend="EvaFtpCommand">EvaFtpCommand</link> *     <link linkend="eva-ftp-command-new-simple">eva_ftp_command_new_simple</link>          (<link linkend="EvaFtpCommandType">EvaFtpCommandType</link> cmd_type);
+<link linkend="EvaFtpCommand">EvaFtpCommand</link> *     <link linkend="eva-ftp-command-parse">eva_ftp_command_parse</link>               (const <link linkend="char">char</link> *parse);
+<link linkend="char">char</link> *              <link linkend="eva-ftp-command-to-string">eva_ftp_command_to_string</link>           (<link linkend="EvaFtpCommand">EvaFtpCommand</link> *command);
+<link linkend="void">void</link>                <link linkend="eva-ftp-command-append">eva_ftp_command_append</link>              (<link linkend="EvaFtpCommand">EvaFtpCommand</link> *command,
+                                                         <link linkend="EvaBuffer">EvaBuffer</link> *buffer);
+<link linkend="void">void</link>                <link linkend="eva-ftp-command-destroy">eva_ftp_command_destroy</link>             (<link linkend="EvaFtpCommand">EvaFtpCommand</link> *command);
+struct              <link linkend="EvaFtpReply">EvaFtpReply</link>;
+<link linkend="EvaFtpReply">EvaFtpReply</link> *       <link linkend="eva-ftp-reply-new-simple">eva_ftp_reply_new_simple</link>            (<link linkend="EvaFtpReplyType">EvaFtpReplyType</link> type);
+<link linkend="EvaFtpReply">EvaFtpReply</link> *       <link linkend="eva-ftp-reply-new-status">eva_ftp_reply_new_status</link>            (<link linkend="EvaFtpReplyType">EvaFtpReplyType</link> type,
                                                          const <link linkend="char">char</link> *message);
-<link linkend="GskFtpReply">GskFtpReply</link> *       <link linkend="eva-ftp-reply-new-system">eva_ftp_reply_new_system</link>            (const <link linkend="char">char</link> *system,
+<link linkend="EvaFtpReply">EvaFtpReply</link> *       <link linkend="eva-ftp-reply-new-system">eva_ftp_reply_new_system</link>            (const <link linkend="char">char</link> *system,
                                                          const <link linkend="char">char</link> *additional);
-<link linkend="GskFtpReply">GskFtpReply</link> *       <link linkend="eva-ftp-reply-new-ready-in-n">eva_ftp_reply_new_ready_in_n</link>        (<link linkend="int">int</link> num_minutes);
-<link linkend="GskFtpReply">GskFtpReply</link> *       <link linkend="eva-ftp-reply-parse">eva_ftp_reply_parse</link>                 (const <link linkend="char">char</link> *raw_string);
-<link linkend="char">char</link> *              <link linkend="eva-ftp-reply-to-string">eva_ftp_reply_to_string</link>             (<link linkend="GskFtpReply">GskFtpReply</link> *reply);
-<link linkend="void">void</link>                <link linkend="eva-ftp-reply-append">eva_ftp_reply_append</link>                (<link linkend="GskFtpReply">GskFtpReply</link> *reply,
-                                                         <link linkend="GskBuffer">GskBuffer</link> *buffer);
+<link linkend="EvaFtpReply">EvaFtpReply</link> *       <link linkend="eva-ftp-reply-new-ready-in-n">eva_ftp_reply_new_ready_in_n</link>        (<link linkend="int">int</link> num_minutes);
+<link linkend="EvaFtpReply">EvaFtpReply</link> *       <link linkend="eva-ftp-reply-parse">eva_ftp_reply_parse</link>                 (const <link linkend="char">char</link> *raw_string);
+<link linkend="char">char</link> *              <link linkend="eva-ftp-reply-to-string">eva_ftp_reply_to_string</link>             (<link linkend="EvaFtpReply">EvaFtpReply</link> *reply);
+<link linkend="void">void</link>                <link linkend="eva-ftp-reply-append">eva_ftp_reply_append</link>                (<link linkend="EvaFtpReply">EvaFtpReply</link> *reply,
+                                                         <link linkend="EvaBuffer">EvaBuffer</link> *buffer);
 </synopsis>
 </refsynopsisdiv>
 
@@ -70,10 +70,10 @@ Structures and definitions for the FTP protocol implementation.
 
 <refsect1 id="eva-evaftpcommon.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskFtpCommand" role="struct">
-<title>GskFtpCommand</title>
-<indexterm zone="GskFtpCommand"><primary sortas="GskFtpCommand">GskFtpCommand</primary></indexterm><programlisting>typedef struct {
-  GskFtpCommandType      type;
+<refsect2 id="EvaFtpCommand" role="struct">
+<title>EvaFtpCommand</title>
+<indexterm zone="EvaFtpCommand"><primary sortas="EvaFtpCommand">EvaFtpCommand</primary></indexterm><programlisting>typedef struct {
+  EvaFtpCommandType      type;
   union
   {
     /* The following commands take no argument:
@@ -96,12 +96,12 @@ Structures and definitions for the FTP protocol implementation.
     } data_port;
     struct 
     {                                      /* for TYPE */
-      GskFtpCharType     char_type;
-      GskFtpTerminalType term_type;
+      EvaFtpCharType     char_type;
+      EvaFtpTerminalType term_type;
       int                local_byte_size;
     } representation_type;
-    GskFtpFileStructure  struct_type;      /* for STRU */
-    GskFtpTransferMode   transfer_mode;    /* for MODE */
+    EvaFtpFileStructure  struct_type;      /* for STRU */
+    EvaFtpTransferMode   transfer_mode;    /* for MODE */
 
     /*           The following commands use pathname:
      *                  CWD RETR STOR APPE ALLO REST RNFR RNTO
@@ -110,13 +110,13 @@ Structures and definitions for the FTP protocol implementation.
     char                *pathname;
     char                *help_topic;       /* for HELP (may be NULL) */
   } d;
-} GskFtpCommand;
+} EvaFtpCommand;
 </programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GskFtpCommandType" role="enum">
-<title>enum GskFtpCommandType</title>
-<indexterm zone="GskFtpCommandType"><primary sortas="GskFtpCommandType">GskFtpCommandType</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaFtpCommandType" role="enum">
+<title>enum EvaFtpCommandType</title>
+<indexterm zone="EvaFtpCommandType"><primary sortas="EvaFtpCommandType">EvaFtpCommandType</primary></indexterm><programlisting>typedef enum
 {
   /* ---  Authorization commands.  See RFC 959, Section 4.1.1. --- */
 
@@ -168,57 +168,57 @@ Structures and definitions for the FTP protocol implementation.
   EVA_FTP_COMMAND_STAT,		/* stat a remote file */
   EVA_FTP_COMMAND_HELP,		/* request help */
   EVA_FTP_COMMAND_NOOP		/* no operation */
-} GskFtpCommandType;
+} EvaFtpCommandType;
 </programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GskFtpCharType" role="enum">
-<title>enum GskFtpCharType</title>
-<indexterm zone="GskFtpCharType"><primary sortas="GskFtpCharType">GskFtpCharType</primary></indexterm><programlisting>typedef enum                            /* for ftp TYPE command */
+<refsect2 id="EvaFtpCharType" role="enum">
+<title>enum EvaFtpCharType</title>
+<indexterm zone="EvaFtpCharType"><primary sortas="EvaFtpCharType">EvaFtpCharType</primary></indexterm><programlisting>typedef enum                            /* for ftp TYPE command */
 { 
   EVA_FTP_CHAR_TYPE_ASCII,
   EVA_FTP_CHAR_TYPE_EBCDIC,
   EVA_FTP_CHAR_TYPE_IMAGE
-} GskFtpCharType;
+} EvaFtpCharType;
 </programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GskFtpTerminalType" role="enum">
-<title>enum GskFtpTerminalType</title>
-<indexterm zone="GskFtpTerminalType"><primary sortas="GskFtpTerminalType">GskFtpTerminalType</primary></indexterm><programlisting>typedef enum                            /* for ftp TYPE command */
+<refsect2 id="EvaFtpTerminalType" role="enum">
+<title>enum EvaFtpTerminalType</title>
+<indexterm zone="EvaFtpTerminalType"><primary sortas="EvaFtpTerminalType">EvaFtpTerminalType</primary></indexterm><programlisting>typedef enum                            /* for ftp TYPE command */
 {
   EVA_FTP_TERMINAL_NONPRINT,
   EVA_FTP_TERMINAL_TELNET,
   EVA_FTP_TERMINAL_CARRIAGE_CONTROL
-} GskFtpTerminalType;
+} EvaFtpTerminalType;
 </programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GskFtpFileStructure" role="enum">
-<title>enum GskFtpFileStructure</title>
-<indexterm zone="GskFtpFileStructure"><primary sortas="GskFtpFileStructure">GskFtpFileStructure</primary></indexterm><programlisting>typedef enum                            /* for ftp STRU command */
+<refsect2 id="EvaFtpFileStructure" role="enum">
+<title>enum EvaFtpFileStructure</title>
+<indexterm zone="EvaFtpFileStructure"><primary sortas="EvaFtpFileStructure">EvaFtpFileStructure</primary></indexterm><programlisting>typedef enum                            /* for ftp STRU command */
 {
   EVA_FTP_FILE_STRUCTURE_FILE,
   EVA_FTP_FILE_STRUCTURE_RECORD,
   EVA_FTP_FILE_STRUCTURE_PAGE
-} GskFtpFileStructure;
+} EvaFtpFileStructure;
 </programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GskFtpTransferMode" role="enum">
-<title>enum GskFtpTransferMode</title>
-<indexterm zone="GskFtpTransferMode"><primary sortas="GskFtpTransferMode">GskFtpTransferMode</primary></indexterm><programlisting>typedef enum                            /* for ftp MODE command */
+<refsect2 id="EvaFtpTransferMode" role="enum">
+<title>enum EvaFtpTransferMode</title>
+<indexterm zone="EvaFtpTransferMode"><primary sortas="EvaFtpTransferMode">EvaFtpTransferMode</primary></indexterm><programlisting>typedef enum                            /* for ftp MODE command */
 {
   EVA_FTP_TRANSFER_MODE_STREAM,
   EVA_FTP_TRANSFER_MODE_BLOCK,
   EVA_FTP_TRANSFER_MODE_COMPRESSED
-} GskFtpTransferMode;
+} EvaFtpTransferMode;
 </programlisting>
 <para>
 </para></refsect2>
 <refsect2 id="eva-ftp-command-name" role="function">
 <title>eva_ftp_command_name ()</title>
-<indexterm zone="eva-ftp-command-name"><primary sortas="eva_ftp_command_name">eva_ftp_command_name</primary></indexterm><programlisting>const <link linkend="char">char</link> *        eva_ftp_command_name                (<link linkend="GskFtpCommandType">GskFtpCommandType</link> command_type);</programlisting>
+<indexterm zone="eva-ftp-command-name"><primary sortas="eva_ftp_command_name">eva_ftp_command_name</primary></indexterm><programlisting>const <link linkend="char">char</link> *        eva_ftp_command_name                (<link linkend="EvaFtpCommandType">EvaFtpCommandType</link> command_type);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>command_type</parameter>&#160;:</term>
@@ -229,7 +229,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-new-user" role="function">
 <title>eva_ftp_command_new_user ()</title>
-<indexterm zone="eva-ftp-command-new-user"><primary sortas="eva_ftp_command_new_user">eva_ftp_command_new_user</primary></indexterm><programlisting><link linkend="GskFtpCommand">GskFtpCommand</link> *     eva_ftp_command_new_user            (const <link linkend="char">char</link> *username);</programlisting>
+<indexterm zone="eva-ftp-command-new-user"><primary sortas="eva_ftp_command_new_user">eva_ftp_command_new_user</primary></indexterm><programlisting><link linkend="EvaFtpCommand">EvaFtpCommand</link> *     eva_ftp_command_new_user            (const <link linkend="char">char</link> *username);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>username</parameter>&#160;:</term>
@@ -240,7 +240,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-new-password" role="function">
 <title>eva_ftp_command_new_password ()</title>
-<indexterm zone="eva-ftp-command-new-password"><primary sortas="eva_ftp_command_new_password">eva_ftp_command_new_password</primary></indexterm><programlisting><link linkend="GskFtpCommand">GskFtpCommand</link> *     eva_ftp_command_new_password        (const <link linkend="char">char</link> *username);</programlisting>
+<indexterm zone="eva-ftp-command-new-password"><primary sortas="eva_ftp_command_new_password">eva_ftp_command_new_password</primary></indexterm><programlisting><link linkend="EvaFtpCommand">EvaFtpCommand</link> *     eva_ftp_command_new_password        (const <link linkend="char">char</link> *username);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>username</parameter>&#160;:</term>
@@ -251,7 +251,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-new-account" role="function">
 <title>eva_ftp_command_new_account ()</title>
-<indexterm zone="eva-ftp-command-new-account"><primary sortas="eva_ftp_command_new_account">eva_ftp_command_new_account</primary></indexterm><programlisting><link linkend="GskFtpCommand">GskFtpCommand</link> *     eva_ftp_command_new_account         (const <link linkend="char">char</link> *account);</programlisting>
+<indexterm zone="eva-ftp-command-new-account"><primary sortas="eva_ftp_command_new_account">eva_ftp_command_new_account</primary></indexterm><programlisting><link linkend="EvaFtpCommand">EvaFtpCommand</link> *     eva_ftp_command_new_account         (const <link linkend="char">char</link> *account);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>account</parameter>&#160;:</term>
@@ -262,7 +262,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-new-mount" role="function">
 <title>eva_ftp_command_new_mount ()</title>
-<indexterm zone="eva-ftp-command-new-mount"><primary sortas="eva_ftp_command_new_mount">eva_ftp_command_new_mount</primary></indexterm><programlisting><link linkend="GskFtpCommand">GskFtpCommand</link> *     eva_ftp_command_new_mount           (const <link linkend="char">char</link> *mount_point);</programlisting>
+<indexterm zone="eva-ftp-command-new-mount"><primary sortas="eva_ftp_command_new_mount">eva_ftp_command_new_mount</primary></indexterm><programlisting><link linkend="EvaFtpCommand">EvaFtpCommand</link> *     eva_ftp_command_new_mount           (const <link linkend="char">char</link> *mount_point);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>mount_point</parameter>&#160;:</term>
@@ -273,8 +273,8 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-new-rep-type" role="function">
 <title>eva_ftp_command_new_rep_type ()</title>
-<indexterm zone="eva-ftp-command-new-rep-type"><primary sortas="eva_ftp_command_new_rep_type">eva_ftp_command_new_rep_type</primary></indexterm><programlisting><link linkend="GskFtpCommand">GskFtpCommand</link> *     eva_ftp_command_new_rep_type        (<link linkend="GskFtpCharType">GskFtpCharType</link> char_type,
-                                                         <link linkend="GskFtpTerminalType">GskFtpTerminalType</link> terminal_type,
+<indexterm zone="eva-ftp-command-new-rep-type"><primary sortas="eva_ftp_command_new_rep_type">eva_ftp_command_new_rep_type</primary></indexterm><programlisting><link linkend="EvaFtpCommand">EvaFtpCommand</link> *     eva_ftp_command_new_rep_type        (<link linkend="EvaFtpCharType">EvaFtpCharType</link> char_type,
+                                                         <link linkend="EvaFtpTerminalType">EvaFtpTerminalType</link> terminal_type,
                                                          <link linkend="int">int</link> byte_size);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -292,7 +292,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-new-file-struct" role="function">
 <title>eva_ftp_command_new_file_struct ()</title>
-<indexterm zone="eva-ftp-command-new-file-struct"><primary sortas="eva_ftp_command_new_file_struct">eva_ftp_command_new_file_struct</primary></indexterm><programlisting><link linkend="GskFtpCommand">GskFtpCommand</link> *     eva_ftp_command_new_file_struct     (<link linkend="GskFtpFileStructure">GskFtpFileStructure</link> file_struct);</programlisting>
+<indexterm zone="eva-ftp-command-new-file-struct"><primary sortas="eva_ftp_command_new_file_struct">eva_ftp_command_new_file_struct</primary></indexterm><programlisting><link linkend="EvaFtpCommand">EvaFtpCommand</link> *     eva_ftp_command_new_file_struct     (<link linkend="EvaFtpFileStructure">EvaFtpFileStructure</link> file_struct);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>file_struct</parameter>&#160;:</term>
@@ -303,7 +303,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-new-transfer-mode" role="function">
 <title>eva_ftp_command_new_transfer_mode ()</title>
-<indexterm zone="eva-ftp-command-new-transfer-mode"><primary sortas="eva_ftp_command_new_transfer_mode">eva_ftp_command_new_transfer_mode</primary></indexterm><programlisting><link linkend="GskFtpCommand">GskFtpCommand</link> *     eva_ftp_command_new_transfer_mode   (<link linkend="GskFtpTransferMode">GskFtpTransferMode</link> transfer_mode);</programlisting>
+<indexterm zone="eva-ftp-command-new-transfer-mode"><primary sortas="eva_ftp_command_new_transfer_mode">eva_ftp_command_new_transfer_mode</primary></indexterm><programlisting><link linkend="EvaFtpCommand">EvaFtpCommand</link> *     eva_ftp_command_new_transfer_mode   (<link linkend="EvaFtpTransferMode">EvaFtpTransferMode</link> transfer_mode);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer_mode</parameter>&#160;:</term>
@@ -314,7 +314,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-new-help" role="function">
 <title>eva_ftp_command_new_help ()</title>
-<indexterm zone="eva-ftp-command-new-help"><primary sortas="eva_ftp_command_new_help">eva_ftp_command_new_help</primary></indexterm><programlisting><link linkend="GskFtpCommand">GskFtpCommand</link> *     eva_ftp_command_new_help            (const <link linkend="char">char</link> *topic);</programlisting>
+<indexterm zone="eva-ftp-command-new-help"><primary sortas="eva_ftp_command_new_help">eva_ftp_command_new_help</primary></indexterm><programlisting><link linkend="EvaFtpCommand">EvaFtpCommand</link> *     eva_ftp_command_new_help            (const <link linkend="char">char</link> *topic);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>topic</parameter>&#160;:</term>
@@ -325,7 +325,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-new-file" role="function">
 <title>eva_ftp_command_new_file ()</title>
-<indexterm zone="eva-ftp-command-new-file"><primary sortas="eva_ftp_command_new_file">eva_ftp_command_new_file</primary></indexterm><programlisting><link linkend="GskFtpCommand">GskFtpCommand</link> *     eva_ftp_command_new_file            (<link linkend="GskFtpCommandType">GskFtpCommandType</link> cmd_type,
+<indexterm zone="eva-ftp-command-new-file"><primary sortas="eva_ftp_command_new_file">eva_ftp_command_new_file</primary></indexterm><programlisting><link linkend="EvaFtpCommand">EvaFtpCommand</link> *     eva_ftp_command_new_file            (<link linkend="EvaFtpCommandType">EvaFtpCommandType</link> cmd_type,
                                                          const <link linkend="char">char</link> *path);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -340,7 +340,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-new-simple" role="function">
 <title>eva_ftp_command_new_simple ()</title>
-<indexterm zone="eva-ftp-command-new-simple"><primary sortas="eva_ftp_command_new_simple">eva_ftp_command_new_simple</primary></indexterm><programlisting><link linkend="GskFtpCommand">GskFtpCommand</link> *     eva_ftp_command_new_simple          (<link linkend="GskFtpCommandType">GskFtpCommandType</link> cmd_type);</programlisting>
+<indexterm zone="eva-ftp-command-new-simple"><primary sortas="eva_ftp_command_new_simple">eva_ftp_command_new_simple</primary></indexterm><programlisting><link linkend="EvaFtpCommand">EvaFtpCommand</link> *     eva_ftp_command_new_simple          (<link linkend="EvaFtpCommandType">EvaFtpCommandType</link> cmd_type);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>cmd_type</parameter>&#160;:</term>
@@ -351,7 +351,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-parse" role="function">
 <title>eva_ftp_command_parse ()</title>
-<indexterm zone="eva-ftp-command-parse"><primary sortas="eva_ftp_command_parse">eva_ftp_command_parse</primary></indexterm><programlisting><link linkend="GskFtpCommand">GskFtpCommand</link> *     eva_ftp_command_parse               (const <link linkend="char">char</link> *parse);</programlisting>
+<indexterm zone="eva-ftp-command-parse"><primary sortas="eva_ftp_command_parse">eva_ftp_command_parse</primary></indexterm><programlisting><link linkend="EvaFtpCommand">EvaFtpCommand</link> *     eva_ftp_command_parse               (const <link linkend="char">char</link> *parse);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>parse</parameter>&#160;:</term>
@@ -362,7 +362,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-to-string" role="function">
 <title>eva_ftp_command_to_string ()</title>
-<indexterm zone="eva-ftp-command-to-string"><primary sortas="eva_ftp_command_to_string">eva_ftp_command_to_string</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_ftp_command_to_string           (<link linkend="GskFtpCommand">GskFtpCommand</link> *command);</programlisting>
+<indexterm zone="eva-ftp-command-to-string"><primary sortas="eva_ftp_command_to_string">eva_ftp_command_to_string</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_ftp_command_to_string           (<link linkend="EvaFtpCommand">EvaFtpCommand</link> *command);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>command</parameter>&#160;:</term>
@@ -373,8 +373,8 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-append" role="function">
 <title>eva_ftp_command_append ()</title>
-<indexterm zone="eva-ftp-command-append"><primary sortas="eva_ftp_command_append">eva_ftp_command_append</primary></indexterm><programlisting><link linkend="void">void</link>                eva_ftp_command_append              (<link linkend="GskFtpCommand">GskFtpCommand</link> *command,
-                                                         <link linkend="GskBuffer">GskBuffer</link> *buffer);</programlisting>
+<indexterm zone="eva-ftp-command-append"><primary sortas="eva_ftp_command_append">eva_ftp_command_append</primary></indexterm><programlisting><link linkend="void">void</link>                eva_ftp_command_append              (<link linkend="EvaFtpCommand">EvaFtpCommand</link> *command,
+                                                         <link linkend="EvaBuffer">EvaBuffer</link> *buffer);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>command</parameter>&#160;:</term>
@@ -386,17 +386,17 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-command-destroy" role="function">
 <title>eva_ftp_command_destroy ()</title>
-<indexterm zone="eva-ftp-command-destroy"><primary sortas="eva_ftp_command_destroy">eva_ftp_command_destroy</primary></indexterm><programlisting><link linkend="void">void</link>                eva_ftp_command_destroy             (<link linkend="GskFtpCommand">GskFtpCommand</link> *command);</programlisting>
+<indexterm zone="eva-ftp-command-destroy"><primary sortas="eva_ftp_command_destroy">eva_ftp_command_destroy</primary></indexterm><programlisting><link linkend="void">void</link>                eva_ftp_command_destroy             (<link linkend="EvaFtpCommand">EvaFtpCommand</link> *command);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>command</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskFtpReply" role="struct">
-<title>struct GskFtpReply</title>
-<indexterm zone="GskFtpReply"><primary sortas="GskFtpReply">GskFtpReply</primary></indexterm><programlisting>struct GskFtpReply {
-  GskFtpReplyType type;
+<refsect2 id="EvaFtpReply" role="struct">
+<title>struct EvaFtpReply</title>
+<indexterm zone="EvaFtpReply"><primary sortas="EvaFtpReply">EvaFtpReply</primary></indexterm><programlisting>struct EvaFtpReply {
+  EvaFtpReplyType type;
   union
   {
     struct
@@ -427,7 +427,7 @@ Structures and definitions for the FTP protocol implementation.
 </para></refsect2>
 <refsect2 id="eva-ftp-reply-new-simple" role="function">
 <title>eva_ftp_reply_new_simple ()</title>
-<indexterm zone="eva-ftp-reply-new-simple"><primary sortas="eva_ftp_reply_new_simple">eva_ftp_reply_new_simple</primary></indexterm><programlisting><link linkend="GskFtpReply">GskFtpReply</link> *       eva_ftp_reply_new_simple            (<link linkend="GskFtpReplyType">GskFtpReplyType</link> type);</programlisting>
+<indexterm zone="eva-ftp-reply-new-simple"><primary sortas="eva_ftp_reply_new_simple">eva_ftp_reply_new_simple</primary></indexterm><programlisting><link linkend="EvaFtpReply">EvaFtpReply</link> *       eva_ftp_reply_new_simple            (<link linkend="EvaFtpReplyType">EvaFtpReplyType</link> type);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>type</parameter>&#160;:</term>
@@ -438,7 +438,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-reply-new-status" role="function">
 <title>eva_ftp_reply_new_status ()</title>
-<indexterm zone="eva-ftp-reply-new-status"><primary sortas="eva_ftp_reply_new_status">eva_ftp_reply_new_status</primary></indexterm><programlisting><link linkend="GskFtpReply">GskFtpReply</link> *       eva_ftp_reply_new_status            (<link linkend="GskFtpReplyType">GskFtpReplyType</link> type,
+<indexterm zone="eva-ftp-reply-new-status"><primary sortas="eva_ftp_reply_new_status">eva_ftp_reply_new_status</primary></indexterm><programlisting><link linkend="EvaFtpReply">EvaFtpReply</link> *       eva_ftp_reply_new_status            (<link linkend="EvaFtpReplyType">EvaFtpReplyType</link> type,
                                                          const <link linkend="char">char</link> *message);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -453,7 +453,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-reply-new-system" role="function">
 <title>eva_ftp_reply_new_system ()</title>
-<indexterm zone="eva-ftp-reply-new-system"><primary sortas="eva_ftp_reply_new_system">eva_ftp_reply_new_system</primary></indexterm><programlisting><link linkend="GskFtpReply">GskFtpReply</link> *       eva_ftp_reply_new_system            (const <link linkend="char">char</link> *system,
+<indexterm zone="eva-ftp-reply-new-system"><primary sortas="eva_ftp_reply_new_system">eva_ftp_reply_new_system</primary></indexterm><programlisting><link linkend="EvaFtpReply">EvaFtpReply</link> *       eva_ftp_reply_new_system            (const <link linkend="char">char</link> *system,
                                                          const <link linkend="char">char</link> *additional);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -468,7 +468,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-reply-new-ready-in-n" role="function">
 <title>eva_ftp_reply_new_ready_in_n ()</title>
-<indexterm zone="eva-ftp-reply-new-ready-in-n"><primary sortas="eva_ftp_reply_new_ready_in_n">eva_ftp_reply_new_ready_in_n</primary></indexterm><programlisting><link linkend="GskFtpReply">GskFtpReply</link> *       eva_ftp_reply_new_ready_in_n        (<link linkend="int">int</link> num_minutes);</programlisting>
+<indexterm zone="eva-ftp-reply-new-ready-in-n"><primary sortas="eva_ftp_reply_new_ready_in_n">eva_ftp_reply_new_ready_in_n</primary></indexterm><programlisting><link linkend="EvaFtpReply">EvaFtpReply</link> *       eva_ftp_reply_new_ready_in_n        (<link linkend="int">int</link> num_minutes);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>num_minutes</parameter>&#160;:</term>
@@ -479,7 +479,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-reply-parse" role="function">
 <title>eva_ftp_reply_parse ()</title>
-<indexterm zone="eva-ftp-reply-parse"><primary sortas="eva_ftp_reply_parse">eva_ftp_reply_parse</primary></indexterm><programlisting><link linkend="GskFtpReply">GskFtpReply</link> *       eva_ftp_reply_parse                 (const <link linkend="char">char</link> *raw_string);</programlisting>
+<indexterm zone="eva-ftp-reply-parse"><primary sortas="eva_ftp_reply_parse">eva_ftp_reply_parse</primary></indexterm><programlisting><link linkend="EvaFtpReply">EvaFtpReply</link> *       eva_ftp_reply_parse                 (const <link linkend="char">char</link> *raw_string);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>raw_string</parameter>&#160;:</term>
@@ -490,7 +490,7 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-reply-to-string" role="function">
 <title>eva_ftp_reply_to_string ()</title>
-<indexterm zone="eva-ftp-reply-to-string"><primary sortas="eva_ftp_reply_to_string">eva_ftp_reply_to_string</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_ftp_reply_to_string             (<link linkend="GskFtpReply">GskFtpReply</link> *reply);</programlisting>
+<indexterm zone="eva-ftp-reply-to-string"><primary sortas="eva_ftp_reply_to_string">eva_ftp_reply_to_string</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_ftp_reply_to_string             (<link linkend="EvaFtpReply">EvaFtpReply</link> *reply);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>reply</parameter>&#160;:</term>
@@ -501,8 +501,8 @@ Structures and definitions for the FTP protocol implementation.
 </variablelist></refsect2>
 <refsect2 id="eva-ftp-reply-append" role="function">
 <title>eva_ftp_reply_append ()</title>
-<indexterm zone="eva-ftp-reply-append"><primary sortas="eva_ftp_reply_append">eva_ftp_reply_append</primary></indexterm><programlisting><link linkend="void">void</link>                eva_ftp_reply_append                (<link linkend="GskFtpReply">GskFtpReply</link> *reply,
-                                                         <link linkend="GskBuffer">GskBuffer</link> *buffer);</programlisting>
+<indexterm zone="eva-ftp-reply-append"><primary sortas="eva_ftp_reply_append">eva_ftp_reply_append</primary></indexterm><programlisting><link linkend="void">void</link>                eva_ftp_reply_append                (<link linkend="EvaFtpReply">EvaFtpReply</link> *reply,
+                                                         <link linkend="EvaBuffer">EvaBuffer</link> *buffer);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>reply</parameter>&#160;:</term>

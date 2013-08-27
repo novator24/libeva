@@ -7,14 +7,14 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskStreamListenerSocket GskStreamListenerSocket;
-typedef struct _GskStreamListenerSocketClass GskStreamListenerSocketClass;
+typedef struct _EvaStreamListenerSocket EvaStreamListenerSocket;
+typedef struct _EvaStreamListenerSocketClass EvaStreamListenerSocketClass;
 /* --- type macros --- */
 GType eva_stream_listener_socket_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_STREAM_LISTENER_SOCKET			(eva_stream_listener_socket_get_type ())
-#define EVA_STREAM_LISTENER_SOCKET(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_LISTENER_SOCKET, GskStreamListenerSocket))
-#define EVA_STREAM_LISTENER_SOCKET_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_LISTENER_SOCKET, GskStreamListenerSocketClass))
-#define EVA_STREAM_LISTENER_SOCKET_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_LISTENER_SOCKET, GskStreamListenerSocketClass))
+#define EVA_STREAM_LISTENER_SOCKET(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_LISTENER_SOCKET, EvaStreamListenerSocket))
+#define EVA_STREAM_LISTENER_SOCKET_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_LISTENER_SOCKET, EvaStreamListenerSocketClass))
+#define EVA_STREAM_LISTENER_SOCKET_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_LISTENER_SOCKET, EvaStreamListenerSocketClass))
 #define EVA_IS_STREAM_LISTENER_SOCKET(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STREAM_LISTENER_SOCKET))
 #define EVA_IS_STREAM_LISTENER_SOCKET_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_STREAM_LISTENER_SOCKET))
 
@@ -25,31 +25,31 @@ GType eva_stream_listener_socket_get_type(void) G_GNUC_CONST;
 #endif
 
 /* --- structures --- */
-struct _GskStreamListenerSocketClass 
+struct _EvaStreamListenerSocketClass 
 {
-  GskStreamListenerClass stream_listener_class;
+  EvaStreamListenerClass stream_listener_class;
 };
-struct _GskStreamListenerSocket 
+struct _EvaStreamListenerSocket 
 {
-  GskStreamListener      stream_listener;
+  EvaStreamListener      stream_listener;
   gint                   fd;
 #if EVA_STREAM_LISTENER_SOCKET_USE_GLIB_MAIN_LOOP
   GPollFD                poll_fd;
   GSource               *source;
 #else
-  GskSource             *source;
+  EvaSource             *source;
 #endif 
-  GskSocketAddress      *listening_address;
+  EvaSocketAddress      *listening_address;
   gboolean               may_reuse_address;
   gboolean               unlink_when_done;      /* only available if listening_address is 'local' */
 };
 
 /* --- prototypes --- */
-GskStreamListener *
-eva_stream_listener_socket_new_bind     (GskSocketAddress *address,
+EvaStreamListener *
+eva_stream_listener_socket_new_bind     (EvaSocketAddress *address,
 					 GError          **error);
 
-GskStreamListener *
+EvaStreamListener *
 eva_stream_listener_socket_new_from_fd (int      fd,
                                         GError **error);
 
@@ -59,19 +59,19 @@ typedef enum
 {
   EVA_STREAM_LISTENER_SOCKET_DONT_REUSE_ADDRESS = (1<<0),
   EVA_STREAM_LISTENER_SOCKET_UNLINK_WHEN_DONE = (1<<1)
-} GskStreamListenerSocketFlags;
+} EvaStreamListenerSocketFlags;
 GType eva_stream_listener_socket_flags_get_type (void) G_GNUC_CONST;
 
-GskStreamListener *
-eva_stream_listener_socket_new_bind_full(GskSocketAddress *address,
-					 GskStreamListenerSocketFlags flags,
+EvaStreamListener *
+eva_stream_listener_socket_new_bind_full(EvaSocketAddress *address,
+					 EvaStreamListenerSocketFlags flags,
 					 GError          **error);
-void    eva_stream_listener_socket_set_backlog (GskStreamListenerSocket *lis,
+void    eva_stream_listener_socket_set_backlog (EvaStreamListenerSocket *lis,
 						guint             backlog);
 
 
 /*< private >*/
-void _eva_socket_address_local_maybe_delete_stale_socket (GskSocketAddress *local_socket);
+void _eva_socket_address_local_maybe_delete_stale_socket (EvaSocketAddress *local_socket);
 G_END_DECLS
 
 #endif

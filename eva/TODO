@@ -1,4 +1,4 @@
-- GskBuffer profiling... currently we use 16 32k buffers...
+- EvaBuffer profiling... currently we use 16 32k buffers...
   is there any way to optimize this?
 - searchpath in dns is not obeyed (eva-dns-client's client-task needs
   a "searchpath_index" member that tries the global domain only
@@ -8,7 +8,7 @@
   - hunt down g_warnings and g_messages that should be GError returns
 - fix XXX marks in dns code
 - fix XXX marks in http code
-- add sufficient test code to GskMimeMultipartDecoder to remove
+- add sufficient test code to EvaMimeMultipartDecoder to remove
   debugging prints
 - FTP support
 - mailto: URIs
@@ -16,7 +16,7 @@
 - BUILD: should check for zlib
 - TODO: contention on POST data:  right now, we buffer as much
    data as the user feels like giving us... need to block the hook.
-- TODO: GskStreamConnection::handle_error() needs to NOT just warn, 
+- TODO: EvaStreamConnection::handle_error() needs to NOT just warn, 
   it needs to be adjustable (ie a signal or trap)
   (or a bunch of bits to suppress certain errors, EPIPE, ECONNREFUSED etc)
 - optimization: use read_buffer() and write_buffer() in evastreamconnection
@@ -24,12 +24,12 @@
 - HTTP authentication.
   - DONE: most of the structures and parsing are in place.
     Still some TODOs in the parsing code that may require structural changes.
-    GskHttp{Request,Response} have the necessary members.
+    EvaHttp{Request,Response} have the necessary members.
   - Need methods to compute and check "authorization".
     Hence digest does not even come close to working.
   - Need to add support to evahttpheader-output.c
   - Need support in url-transfer-http (for client-side)
-  - Need support in GskHttpContent (for server-side)
+  - Need support in EvaHttpContent (for server-side)
 - missing HTTP headers:
    Vary: *
    Cache-Expires: Thu, 24 Mar 2005 13:11:58 GMT
@@ -73,16 +73,16 @@
   and evahttpheader-input.c.
 
 Someday:
-- GskHttpClientCache, to take advantage of Keep-Alive transparently.
-  XXX: instead integrate into GskUrlTransferHttp
+- EvaHttpClientCache, to take advantage of Keep-Alive transparently.
+  XXX: instead integrate into EvaUrlTransferHttp
 - MAIL support [IMAP and POP3/4 etc] [client first, then server]
 - RFC compliance sections in the docs would be awesome.
 
 need full test code:
-- GskHook basics [test all macros and basic interactions]
-- GskMemory tests [test hooking memory sources together]
-- GskHttpHeader tests: [test TEXT->PARSED->TEXT->PARSED->TEXT expectations]
+- EvaHook basics [test all macros and basic interactions]
+- EvaMemory tests [test hooking memory sources together]
+- EvaHttpHeader tests: [test TEXT->PARSED->TEXT->PARSED->TEXT expectations]
   [see test-http-header for beginnings]
-- GskHook recursion tests [test various reentrance conditions]
+- EvaHook recursion tests [test various reentrance conditions]
 - see the 'coverage' file output by utils/get-coverage.
 - test code for evaxmlrpcstream

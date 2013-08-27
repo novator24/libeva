@@ -14,7 +14,7 @@
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-<link linkend="GskErrorCode">GskErrorCode</link>        <link linkend="eva-zlib-error-to-eva-error">eva_zlib_error_to_eva_error</link>         (<link linkend="gint">gint</link> zlib_error_rv);
+<link linkend="EvaErrorCode">EvaErrorCode</link>        <link linkend="eva-zlib-error-to-eva-error">eva_zlib_error_to_eva_error</link>         (<link linkend="gint">gint</link> zlib_error_rv);
 const <link linkend="char">char</link> *        <link linkend="eva-zlib-error-to-message">eva_zlib_error_to_message</link>           (<link linkend="gint">gint</link> zlib_error_rv);
 </synopsis>
 </refsynopsisdiv>
@@ -37,9 +37,9 @@ const <link linkend="char">char</link> *        <link linkend="eva-zlib-error-to
 <title role="details.title">Details</title>
 <refsect2 id="eva-zlib-error-to-eva-error" role="function">
 <title>eva_zlib_error_to_eva_error ()</title>
-<indexterm zone="eva-zlib-error-to-eva-error"><primary sortas="eva_zlib_error_to_eva_error">eva_zlib_error_to_eva_error</primary></indexterm><programlisting><link linkend="GskErrorCode">GskErrorCode</link>        eva_zlib_error_to_eva_error         (<link linkend="gint">gint</link> zlib_error_rv);</programlisting>
+<indexterm zone="eva-zlib-error-to-eva-error"><primary sortas="eva_zlib_error_to_eva_error">eva_zlib_error_to_eva_error</primary></indexterm><programlisting><link linkend="EvaErrorCode">EvaErrorCode</link>        eva_zlib_error_to_eva_error         (<link linkend="gint">gint</link> zlib_error_rv);</programlisting>
 <para>
-Converts a zlib error code to a <link linkend="GskErrorCode"><type>GskErrorCode</type></link>.</para>
+Converts a zlib error code to a <link linkend="EvaErrorCode"><type>EvaErrorCode</type></link>.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>zlib_error_rv</parameter>&#160;:</term>

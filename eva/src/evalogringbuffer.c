@@ -3,7 +3,7 @@
 #include <string.h>
 #include "evalogringbuffer.h"
 
-struct _GskLogRingBuffer
+struct _EvaLogRingBuffer
 {
   guint buffer_alloced;
   char *buffer;
@@ -12,16 +12,16 @@ struct _GskLogRingBuffer
 };
 
 
-GskLogRingBuffer *eva_log_ring_buffer_new (gsize             size)
+EvaLogRingBuffer *eva_log_ring_buffer_new (gsize             size)
 {
-  GskLogRingBuffer *rv = g_new (GskLogRingBuffer, 1);
+  EvaLogRingBuffer *rv = g_new (EvaLogRingBuffer, 1);
   rv->buffer_alloced = size;
   rv->buffer = g_malloc (size);
   rv->read_pos = rv->amount_buffered = 0;
   return rv;
 }
 
-void              eva_log_ring_buffer_add (GskLogRingBuffer *buffer,
+void              eva_log_ring_buffer_add (EvaLogRingBuffer *buffer,
                                            const char       *line)
 {
   guint line_len = strlen (line);
@@ -93,7 +93,7 @@ void              eva_log_ring_buffer_add (GskLogRingBuffer *buffer,
 }
 
 char *
-eva_log_ring_buffer_get (const GskLogRingBuffer *buffer)
+eva_log_ring_buffer_get (const EvaLogRingBuffer *buffer)
 {
   char *rv = g_malloc (buffer->amount_buffered + 1);
   if (buffer->amount_buffered + buffer->read_pos > buffer->buffer_alloced)
@@ -153,7 +153,7 @@ pass_line:
   return g_string_free (rv, FALSE);
 }
 
-void eva_log_ring_buffer_free(GskLogRingBuffer *buffer)
+void eva_log_ring_buffer_free(EvaLogRingBuffer *buffer)
 {
   g_free (buffer->buffer);
   g_free (buffer);

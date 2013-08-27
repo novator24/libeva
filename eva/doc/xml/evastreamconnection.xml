@@ -15,22 +15,22 @@ and the output of another.</refpurpose>
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskStreamConnection">GskStreamConnection</link>;
-<link linkend="GskStreamConnection">GskStreamConnection</link> * <link linkend="eva-stream-connection-new">eva_stream_connection_new</link>         (<link linkend="GskStream">GskStream</link> *input_stream,
-                                                         <link linkend="GskStream">GskStream</link> *output_stream,
+                    <link linkend="EvaStreamConnection">EvaStreamConnection</link>;
+<link linkend="EvaStreamConnection">EvaStreamConnection</link> * <link linkend="eva-stream-connection-new">eva_stream_connection_new</link>         (<link linkend="EvaStream">EvaStream</link> *input_stream,
+                                                         <link linkend="EvaStream">EvaStream</link> *output_stream,
                                                          <link linkend="GError">GError</link> **error);
 <link linkend="guint">guint</link>               <link linkend="eva-stream-connection-get-atomic-read-size">eva_stream_connection_get_atomic_read_size</link>
-                                                        (<link linkend="GskStreamConnection">GskStreamConnection</link> *connection);
+                                                        (<link linkend="EvaStreamConnection">EvaStreamConnection</link> *connection);
 <link linkend="void">void</link>                <link linkend="eva-stream-connection-set-atomic-read-size">eva_stream_connection_set_atomic_read_size</link>
-                                                        (<link linkend="GskStreamConnection">GskStreamConnection</link> *connection,
+                                                        (<link linkend="EvaStreamConnection">EvaStreamConnection</link> *connection,
                                                          <link linkend="guint">guint</link> atomic_read_size);
 <link linkend="guint">guint</link>               <link linkend="eva-stream-connection-get-max-buffered">eva_stream_connection_get_max_buffered</link>
-                                                        (<link linkend="GskStreamConnection">GskStreamConnection</link> *connection);
+                                                        (<link linkend="EvaStreamConnection">EvaStreamConnection</link> *connection);
 <link linkend="void">void</link>                <link linkend="eva-stream-connection-set-max-buffered">eva_stream_connection_set_max_buffered</link>
-                                                        (<link linkend="GskStreamConnection">GskStreamConnection</link> *connection,
+                                                        (<link linkend="EvaStreamConnection">EvaStreamConnection</link> *connection,
                                                          <link linkend="guint">guint</link> max_buffered);
-<link linkend="void">void</link>                <link linkend="eva-stream-connection-shutdown">eva_stream_connection_shutdown</link>      (<link linkend="GskStreamConnection">GskStreamConnection</link> *connection);
-<link linkend="void">void</link>                <link linkend="eva-stream-connection-detach">eva_stream_connection_detach</link>        (<link linkend="GskStreamConnection">GskStreamConnection</link> *connection);
+<link linkend="void">void</link>                <link linkend="eva-stream-connection-shutdown">eva_stream_connection_shutdown</link>      (<link linkend="EvaStreamConnection">EvaStreamConnection</link> *connection);
+<link linkend="void">void</link>                <link linkend="eva-stream-connection-detach">eva_stream_connection_detach</link>        (<link linkend="EvaStreamConnection">EvaStreamConnection</link> *connection);
 </synopsis>
 </refsynopsisdiv>
 
@@ -53,16 +53,16 @@ between two streams more precisely than
 
 <refsect1 id="eva-evastreamconnection.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskStreamConnection" role="struct">
-<title>GskStreamConnection</title>
-<indexterm zone="GskStreamConnection"><primary sortas="GskStreamConnection">GskStreamConnection</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaStreamConnection" role="struct">
+<title>EvaStreamConnection</title>
+<indexterm zone="EvaStreamConnection"><primary sortas="EvaStreamConnection">EvaStreamConnection</primary></indexterm><programlisting>typedef struct {
   GObject      object;
 
   /* The stream to read from. */
-  GskStream *read_side;
+  EvaStream *read_side;
 
   /* The stream to write to. */
-  GskStream *write_side;
+  EvaStream *write_side;
 
   /* Whether we are blocking the read-side because the buffer is 0 length. */
   guint blocking_write_side : 1;
@@ -77,14 +77,14 @@ between two streams more precisely than
 
   /* Data which is to be transferred from read_side to write_side,
      which hasn't been processed on the write side. */
-  GskBuffer buffer;
+  EvaBuffer buffer;
 
   /* The maximum number of bytes to store in buffer. */
   guint max_buffered;
 
   /* The maximum number of bytes to read atomically from the input stream. */
   guint atomic_read_size;
-} GskStreamConnection;
+} EvaStreamConnection;
 </programlisting>
 <para>
 An opaque object representing the connection between
@@ -92,8 +92,8 @@ the input of one stream and the output of another.
 </para></refsect2>
 <refsect2 id="eva-stream-connection-new" role="function">
 <title>eva_stream_connection_new ()</title>
-<indexterm zone="eva-stream-connection-new"><primary sortas="eva_stream_connection_new">eva_stream_connection_new</primary></indexterm><programlisting><link linkend="GskStreamConnection">GskStreamConnection</link> * eva_stream_connection_new         (<link linkend="GskStream">GskStream</link> *input_stream,
-                                                         <link linkend="GskStream">GskStream</link> *output_stream,
+<indexterm zone="eva-stream-connection-new"><primary sortas="eva_stream_connection_new">eva_stream_connection_new</primary></indexterm><programlisting><link linkend="EvaStreamConnection">EvaStreamConnection</link> * eva_stream_connection_new         (<link linkend="EvaStream">EvaStream</link> *input_stream,
+                                                         <link linkend="EvaStream">EvaStream</link> *output_stream,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Attach the read end of <parameter>input_stream</parameter>
@@ -117,7 +117,7 @@ You should use eventually call <link linkend="g-object-unref"><function>g_object
 <refsect2 id="eva-stream-connection-get-atomic-read-size" role="function">
 <title>eva_stream_connection_get_atomic_read_size ()</title>
 <indexterm zone="eva-stream-connection-get-atomic-read-size"><primary sortas="eva_stream_connection_get_atomic_read_size">eva_stream_connection_get_atomic_read_size</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_stream_connection_get_atomic_read_size
-                                                        (<link linkend="GskStreamConnection">GskStreamConnection</link> *connection);</programlisting>
+                                                        (<link linkend="EvaStreamConnection">EvaStreamConnection</link> *connection);</programlisting>
 <para>
 Set the number of bytes to read atomically from
 an underlying source.</para>
@@ -132,7 +132,7 @@ an underlying source.</para>
 <refsect2 id="eva-stream-connection-set-atomic-read-size" role="function">
 <title>eva_stream_connection_set_atomic_read_size ()</title>
 <indexterm zone="eva-stream-connection-set-atomic-read-size"><primary sortas="eva_stream_connection_set_atomic_read_size">eva_stream_connection_set_atomic_read_size</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_connection_set_atomic_read_size
-                                                        (<link linkend="GskStreamConnection">GskStreamConnection</link> *connection,
+                                                        (<link linkend="EvaStreamConnection">EvaStreamConnection</link> *connection,
                                                          <link linkend="guint">guint</link> atomic_read_size);</programlisting>
 <para>
 Set the number of bytes to read atomically from
@@ -150,7 +150,7 @@ used if the input stream has no read_buffer method.</para>
 <refsect2 id="eva-stream-connection-get-max-buffered" role="function">
 <title>eva_stream_connection_get_max_buffered ()</title>
 <indexterm zone="eva-stream-connection-get-max-buffered"><primary sortas="eva_stream_connection_get_max_buffered">eva_stream_connection_get_max_buffered</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_stream_connection_get_max_buffered
-                                                        (<link linkend="GskStreamConnection">GskStreamConnection</link> *connection);</programlisting>
+                                                        (<link linkend="EvaStreamConnection">EvaStreamConnection</link> *connection);</programlisting>
 <para>
 Get the maximum number of bytes of data to buffer between the input and
 output ends of the connection.
@@ -168,7 +168,7 @@ The actual number of bytes of data can be found with <link linkend="eva-stream-c
 <refsect2 id="eva-stream-connection-set-max-buffered" role="function">
 <title>eva_stream_connection_set_max_buffered ()</title>
 <indexterm zone="eva-stream-connection-set-max-buffered"><primary sortas="eva_stream_connection_set_max_buffered">eva_stream_connection_set_max_buffered</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_connection_set_max_buffered
-                                                        (<link linkend="GskStreamConnection">GskStreamConnection</link> *connection,
+                                                        (<link linkend="EvaStreamConnection">EvaStreamConnection</link> *connection,
                                                          <link linkend="guint">guint</link> max_buffered);</programlisting>
 <para>
 Adjust the maximum amount of memory buffer to use between these streams.
@@ -191,7 +191,7 @@ we will no longer read from the input stream.
 </variablelist></refsect2>
 <refsect2 id="eva-stream-connection-shutdown" role="function">
 <title>eva_stream_connection_shutdown ()</title>
-<indexterm zone="eva-stream-connection-shutdown"><primary sortas="eva_stream_connection_shutdown">eva_stream_connection_shutdown</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_connection_shutdown      (<link linkend="GskStreamConnection">GskStreamConnection</link> *connection);</programlisting>
+<indexterm zone="eva-stream-connection-shutdown"><primary sortas="eva_stream_connection_shutdown">eva_stream_connection_shutdown</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_connection_shutdown      (<link linkend="EvaStreamConnection">EvaStreamConnection</link> *connection);</programlisting>
 <para>
 Shut down both ends of a connection.</para>
 <para>
@@ -202,7 +202,7 @@ Shut down both ends of a connection.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-connection-detach" role="function">
 <title>eva_stream_connection_detach ()</title>
-<indexterm zone="eva-stream-connection-detach"><primary sortas="eva_stream_connection_detach">eva_stream_connection_detach</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_connection_detach        (<link linkend="GskStreamConnection">GskStreamConnection</link> *connection);</programlisting>
+<indexterm zone="eva-stream-connection-detach"><primary sortas="eva_stream_connection_detach">eva_stream_connection_detach</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_connection_detach        (<link linkend="EvaStreamConnection">EvaStreamConnection</link> *connection);</programlisting>
 <para>
 Disconnects the input/output pair of a connection.
 Data held in the buffer will be lost.</para>

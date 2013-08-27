@@ -1,34 +1,34 @@
-<refentry id="GskMainLoopPollBase">
+<refentry id="EvaMainLoopPollBase">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskMainLoopPollBase.top_of_page">GskMainLoopPollBase</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaMainLoopPollBase.top_of_page">EvaMainLoopPollBase</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskMainLoopPollBase</refname>
+<refname>EvaMainLoopPollBase</refname>
 <refpurpose>a base class for file-descriptor-only polling mechanisms.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskMainLoopPollBase.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaMainLoopPollBase.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskMainLoopPollBaseClass">GskMainLoopPollBaseClass</link>;
-                    <link linkend="GskMainLoopPollBase-struct">GskMainLoopPollBase</link>;
-<link linkend="void">void</link>                <link linkend="eva-main-loop-poll-base-wakeup">eva_main_loop_poll_base_wakeup</link>      (<link linkend="GskMainLoopPollBase">GskMainLoopPollBase</link> *poll_base);
+                    <link linkend="EvaMainLoopPollBaseClass">EvaMainLoopPollBaseClass</link>;
+                    <link linkend="EvaMainLoopPollBase-struct">EvaMainLoopPollBase</link>;
+<link linkend="void">void</link>                <link linkend="eva-main-loop-poll-base-wakeup">eva_main_loop_poll_base_wakeup</link>      (<link linkend="EvaMainLoopPollBase">EvaMainLoopPollBase</link> *poll_base);
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskMainLoopPollBase.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaMainLoopPollBase.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskMainLoop">GskMainLoop</link>
-         +----GskMainLoopPollBase
-               +----<link linkend="GskMainLoopDevPoll">GskMainLoopDevPoll</link>
-               +----<link linkend="GskMainLoopPoll">GskMainLoopPoll</link>
-               +----<link linkend="GskMainLoopSelect">GskMainLoopSelect</link>
+   +----<link linkend="EvaMainLoop">EvaMainLoop</link>
+         +----EvaMainLoopPollBase
+               +----<link linkend="EvaMainLoopDevPoll">EvaMainLoopDevPoll</link>
+               +----<link linkend="EvaMainLoopPoll">EvaMainLoopPoll</link>
+               +----<link linkend="EvaMainLoopSelect">EvaMainLoopSelect</link>
 </synopsis>
 </refsect1>
 
@@ -39,7 +39,7 @@
 
 
 
-<refsect1 id="GskMainLoopPollBase.description" role="desc">
+<refsect1 id="EvaMainLoopPollBase.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 This class converts signals and child-process-termination notification
@@ -49,26 +49,26 @@ are implemented in terms of pipes.
 </para>
 </refsect1>
 
-<refsect1 id="GskMainLoopPollBase.details" role="details">
+<refsect1 id="EvaMainLoopPollBase.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskMainLoopPollBaseClass" role="struct">
-<title>GskMainLoopPollBaseClass</title>
-<indexterm zone="GskMainLoopPollBaseClass"><primary sortas="GskMainLoopPollBaseClass">GskMainLoopPollBaseClass</primary></indexterm><programlisting>typedef struct {
-  GskMainLoopClass    main_loop_class;
+<refsect2 id="EvaMainLoopPollBaseClass" role="struct">
+<title>EvaMainLoopPollBaseClass</title>
+<indexterm zone="EvaMainLoopPollBaseClass"><primary sortas="EvaMainLoopPollBaseClass">EvaMainLoopPollBaseClass</primary></indexterm><programlisting>typedef struct {
+  EvaMainLoopClass    main_loop_class;
 
-  void              (*config_fd)       (GskMainLoopPollBase   *main_loop,
+  void              (*config_fd)       (EvaMainLoopPollBase   *main_loop,
                                         int                    fd,
 					GIOCondition           old_io_conditions,
 				        GIOCondition           io_conditions);
 
   /* returns FALSE if the poll function has an error.
    */
-  gboolean          (*do_polling)      (GskMainLoopPollBase   *main_loop,
+  gboolean          (*do_polling)      (EvaMainLoopPollBase   *main_loop,
 				        int                    max_timeout,
 				        guint                  max_events,
 				        guint                 *num_events_out,
-                                        GskMainLoopEvent      *events);
-} GskMainLoopPollBaseClass;
+                                        EvaMainLoopEvent      *events);
+} EvaMainLoopPollBaseClass;
 </programlisting>
 <para>
 Base-class for I/O-only main-loops.
@@ -76,7 +76,7 @@ The <parameter>config_fd</parameter> and <parameter>do_polling</parameter> funct
 by specific polling mechanisms.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskMainLoopClass">GskMainLoopClass</link>&#160;<structfield>main_loop_class</structfield>;</term>
+<term><link linkend="EvaMainLoopClass">EvaMainLoopClass</link>&#160;<structfield>main_loop_class</structfield>;</term>
 <listitem><simpara>the base-class from which this is derived.
 </simpara></listitem>
 </varlistentry>
@@ -95,15 +95,15 @@ is auto-unpolled when it is closed.)
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMainLoopPollBase-struct" role="struct">
-<title>GskMainLoopPollBase</title>
-<indexterm zone="GskMainLoopPollBase-struct"><primary sortas="GskMainLoopPollBase">GskMainLoopPollBase</primary></indexterm><programlisting>typedef struct _GskMainLoopPollBase GskMainLoopPollBase;</programlisting>
+<refsect2 id="EvaMainLoopPollBase-struct" role="struct">
+<title>EvaMainLoopPollBase</title>
+<indexterm zone="EvaMainLoopPollBase-struct"><primary sortas="EvaMainLoopPollBase">EvaMainLoopPollBase</primary></indexterm><programlisting>typedef struct _EvaMainLoopPollBase EvaMainLoopPollBase;</programlisting>
 <para>
 Base data for I/O-only main loop mechanisms.
 </para></refsect2>
 <refsect2 id="eva-main-loop-poll-base-wakeup" role="function">
 <title>eva_main_loop_poll_base_wakeup ()</title>
-<indexterm zone="eva-main-loop-poll-base-wakeup"><primary sortas="eva_main_loop_poll_base_wakeup">eva_main_loop_poll_base_wakeup</primary></indexterm><programlisting><link linkend="void">void</link>                eva_main_loop_poll_base_wakeup      (<link linkend="GskMainLoopPollBase">GskMainLoopPollBase</link> *poll_base);</programlisting>
+<indexterm zone="eva-main-loop-poll-base-wakeup"><primary sortas="eva_main_loop_poll_base_wakeup">eva_main_loop_poll_base_wakeup</primary></indexterm><programlisting><link linkend="void">void</link>                eva_main_loop_poll_base_wakeup      (<link linkend="EvaMainLoopPollBase">EvaMainLoopPollBase</link> *poll_base);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>poll_base</parameter>&#160;:</term>

@@ -1,44 +1,44 @@
-<refentry id="GskHttpServer">
+<refentry id="EvaHttpServer">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskHttpServer.top_of_page">GskHttpServer</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaHttpServer.top_of_page">EvaHttpServer</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskHttpServer</refname>
+<refname>EvaHttpServer</refname>
 <refpurpose>The server end of an HTTP connection.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskHttpServer.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaHttpServer.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-<link linkend="gboolean">gboolean</link>            (<link linkend="GskHttpServerTrap">*GskHttpServerTrap</link>)                (<link linkend="GskHttpServer">GskHttpServer</link> *server,
+<link linkend="gboolean">gboolean</link>            (<link linkend="EvaHttpServerTrap">*EvaHttpServerTrap</link>)                (<link linkend="EvaHttpServer">EvaHttpServer</link> *server,
                                                          <link linkend="gpointer">gpointer</link> data);
-                    <link linkend="GskHttpServerClass">GskHttpServerClass</link>;
-                    <link linkend="GskHttpServer-struct">GskHttpServer</link>;
+                    <link linkend="EvaHttpServerClass">EvaHttpServerClass</link>;
+                    <link linkend="EvaHttpServer-struct">EvaHttpServer</link>;
 #define             <link linkend="EVA-HTTP-SERVER-HOOK--CAPS">EVA_HTTP_SERVER_HOOK</link>                (client)
 #define             <link linkend="eva-http-server-trap">eva_http_server_trap</link>                (server,func,shutdown,data,destroy)
 #define             <link linkend="eva-http-server-untrap">eva_http_server_untrap</link>              (server)
-<link linkend="GskHttpServer">GskHttpServer</link> *     <link linkend="eva-http-server-new">eva_http_server_new</link>                 (void);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-http-server-get-request">eva_http_server_get_request</link>         (<link linkend="GskHttpServer">GskHttpServer</link> *server,
-                                                         <link linkend="GskHttpRequest">GskHttpRequest</link> **request_out,
-                                                         <link linkend="GskStream">GskStream</link> **post_data_out);
-<link linkend="void">void</link>                <link linkend="eva-http-server-respond">eva_http_server_respond</link>             (<link linkend="GskHttpServer">GskHttpServer</link> *server,
-                                                         <link linkend="GskHttpRequest">GskHttpRequest</link> *request,
-                                                         <link linkend="GskHttpResponse">GskHttpResponse</link> *response,
-                                                         <link linkend="GskStream">GskStream</link> *content);
+<link linkend="EvaHttpServer">EvaHttpServer</link> *     <link linkend="eva-http-server-new">eva_http_server_new</link>                 (void);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-http-server-get-request">eva_http_server_get_request</link>         (<link linkend="EvaHttpServer">EvaHttpServer</link> *server,
+                                                         <link linkend="EvaHttpRequest">EvaHttpRequest</link> **request_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **post_data_out);
+<link linkend="void">void</link>                <link linkend="eva-http-server-respond">eva_http_server_respond</link>             (<link linkend="EvaHttpServer">EvaHttpServer</link> *server,
+                                                         <link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
+                                                         <link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
+                                                         <link linkend="EvaStream">EvaStream</link> *content);
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskHttpServer.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaHttpServer.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskIO">GskIO</link>
-         +----<link linkend="GskStream">GskStream</link>
-               +----GskHttpServer
+   +----<link linkend="EvaIO">EvaIO</link>
+         +----<link linkend="EvaStream">EvaStream</link>
+               +----EvaHttpServer
 </synopsis>
 </refsect1>
 
@@ -49,20 +49,20 @@
 
 
 
-<refsect1 id="GskHttpServer.description" role="desc">
+<refsect1 id="EvaHttpServer.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 This class manages incoming requests (including post-data),
-and outgoing responses (by passing a supplied <link linkend="GskStream"><type>GskStream</type></link>
+and outgoing responses (by passing a supplied <link linkend="EvaStream"><type>EvaStream</type></link>
 as HTTP content).
 </para>
 </refsect1>
 
-<refsect1 id="GskHttpServer.details" role="details">
+<refsect1 id="EvaHttpServer.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskHttpServerTrap" role="function">
-<title>GskHttpServerTrap ()</title>
-<indexterm zone="GskHttpServerTrap"><primary sortas="GskHttpServerTrap">GskHttpServerTrap</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GskHttpServerTrap)                (<link linkend="GskHttpServer">GskHttpServer</link> *server,
+<refsect2 id="EvaHttpServerTrap" role="function">
+<title>EvaHttpServerTrap ()</title>
+<indexterm zone="EvaHttpServerTrap"><primary sortas="EvaHttpServerTrap">EvaHttpServerTrap</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*EvaHttpServerTrap)                (<link linkend="EvaHttpServer">EvaHttpServer</link> *server,
                                                          <link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
 Function which will be called when the server has a request ready.
@@ -76,21 +76,21 @@ Function which will be called when the server has a request ready.
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>whether to keep the trap active.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskHttpServerClass" role="struct">
-<title>GskHttpServerClass</title>
-<indexterm zone="GskHttpServerClass"><primary sortas="GskHttpServerClass">GskHttpServerClass</primary></indexterm><programlisting>typedef struct {
-  GskStreamClass stream_class;
-  void         (*set_poll_request) (GskHttpServer *server,
+<refsect2 id="EvaHttpServerClass" role="struct">
+<title>EvaHttpServerClass</title>
+<indexterm zone="EvaHttpServerClass"><primary sortas="EvaHttpServerClass">EvaHttpServerClass</primary></indexterm><programlisting>typedef struct {
+  EvaStreamClass stream_class;
+  void         (*set_poll_request) (EvaHttpServer *server,
 				    gboolean       do_poll);
-  void         (*shutdown_request) (GskHttpServer *server);
-} GskHttpServerClass;
+  void         (*shutdown_request) (EvaHttpServer *server);
+} EvaHttpServerClass;
 </programlisting>
 <para>
 Virtual functions which are implemented by an
 HTTP server.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskStreamClass">GskStreamClass</link>&#160;<structfield>stream_class</structfield>;</term>
+<term><link linkend="EvaStreamClass">EvaStreamClass</link>&#160;<structfield>stream_class</structfield>;</term>
 <listitem><simpara>the base server class.
 </simpara></listitem>
 </varlistentry>
@@ -107,9 +107,9 @@ accepting requests.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskHttpServer-struct" role="struct">
-<title>GskHttpServer</title>
-<indexterm zone="GskHttpServer-struct"><primary sortas="GskHttpServer">GskHttpServer</primary></indexterm><programlisting>typedef struct _GskHttpServer GskHttpServer;</programlisting>
+<refsect2 id="EvaHttpServer-struct" role="struct">
+<title>EvaHttpServer</title>
+<indexterm zone="EvaHttpServer-struct"><primary sortas="EvaHttpServer">EvaHttpServer</primary></indexterm><programlisting>typedef struct _EvaHttpServer EvaHttpServer;</programlisting>
 <para>
 Stream which is the server end of an HTTP connection.
 </para>
@@ -170,7 +170,7 @@ registered with <link linkend="eva-http-server-trap"><function>eva_http_server_t
 </variablelist></refsect2>
 <refsect2 id="eva-http-server-new" role="function">
 <title>eva_http_server_new ()</title>
-<indexterm zone="eva-http-server-new"><primary sortas="eva_http_server_new">eva_http_server_new</primary></indexterm><programlisting><link linkend="GskHttpServer">GskHttpServer</link> *     eva_http_server_new                 (void);</programlisting>
+<indexterm zone="eva-http-server-new"><primary sortas="eva_http_server_new">eva_http_server_new</primary></indexterm><programlisting><link linkend="EvaHttpServer">EvaHttpServer</link> *     eva_http_server_new                 (void);</programlisting>
 <para>
 Allocate a new HTTP server protocol processor.
 (Note that generally you will need to connect it
@@ -182,9 +182,9 @@ to an accepted socket)</para>
 </variablelist></refsect2>
 <refsect2 id="eva-http-server-get-request" role="function">
 <title>eva_http_server_get_request ()</title>
-<indexterm zone="eva-http-server-get-request"><primary sortas="eva_http_server_get_request">eva_http_server_get_request</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_http_server_get_request         (<link linkend="GskHttpServer">GskHttpServer</link> *server,
-                                                         <link linkend="GskHttpRequest">GskHttpRequest</link> **request_out,
-                                                         <link linkend="GskStream">GskStream</link> **post_data_out);</programlisting>
+<indexterm zone="eva-http-server-get-request"><primary sortas="eva_http_server_get_request">eva_http_server_get_request</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_http_server_get_request         (<link linkend="EvaHttpServer">EvaHttpServer</link> *server,
+                                                         <link linkend="EvaHttpRequest">EvaHttpRequest</link> **request_out,
+                                                         <link linkend="EvaStream">EvaStream</link> **post_data_out);</programlisting>
 <para>
 Grab a client request if available.  Use <link linkend="eva-http-server-trap"><function>eva_http_server_trap()</function></link>
 to get notification when a request is available.
@@ -209,10 +209,10 @@ or NULL will be stored if this is not a POST-type request.
 </variablelist></refsect2>
 <refsect2 id="eva-http-server-respond" role="function">
 <title>eva_http_server_respond ()</title>
-<indexterm zone="eva-http-server-respond"><primary sortas="eva_http_server_respond">eva_http_server_respond</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_server_respond             (<link linkend="GskHttpServer">GskHttpServer</link> *server,
-                                                         <link linkend="GskHttpRequest">GskHttpRequest</link> *request,
-                                                         <link linkend="GskHttpResponse">GskHttpResponse</link> *response,
-                                                         <link linkend="GskStream">GskStream</link> *content);</programlisting>
+<indexterm zone="eva-http-server-respond"><primary sortas="eva_http_server_respond">eva_http_server_respond</primary></indexterm><programlisting><link linkend="void">void</link>                eva_http_server_respond             (<link linkend="EvaHttpServer">EvaHttpServer</link> *server,
+                                                         <link linkend="EvaHttpRequest">EvaHttpRequest</link> *request,
+                                                         <link linkend="EvaHttpResponse">EvaHttpResponse</link> *response,
+                                                         <link linkend="EvaStream">EvaStream</link> *content);</programlisting>
 <para>
 Give a response to a client's request.</para>
 <para>
@@ -235,10 +235,10 @@ Give a response to a client's request.</para>
 
 
 
-<refsect1 id="GskHttpServer.see-also">
+<refsect1 id="EvaHttpServer.see-also">
 <title>See Also</title>
 <para>
-GskHttpClient
+EvaHttpClient
 </para>
 </refsect1>
 

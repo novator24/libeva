@@ -2,7 +2,7 @@
 #define __EVA_STREAM_TRANSFER_REQUEST_H_
 
 /*
- * GskStreamTransferRequest -- basically just like a GskStreamConnection,
+ * EvaStreamTransferRequest -- basically just like a EvaStreamConnection,
  * except the requester gets notified when the read stream's data has been
  * fully transferred without error, or when an error occurs.
  */
@@ -16,8 +16,8 @@
 
 G_BEGIN_DECLS
 
-typedef GskRequestClass                  GskStreamTransferRequestClass;
-typedef struct _GskStreamTransferRequest GskStreamTransferRequest;
+typedef EvaRequestClass                  EvaStreamTransferRequestClass;
+typedef struct _EvaStreamTransferRequest EvaStreamTransferRequest;
 
 GType eva_stream_transfer_request_get_type (void) G_GNUC_CONST;
 
@@ -26,24 +26,24 @@ GType eva_stream_transfer_request_get_type (void) G_GNUC_CONST;
 #define EVA_STREAM_TRANSFER_REQUEST(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
 			       EVA_TYPE_STREAM_TRANSFER_REQUEST, \
-			       GskStreamTransferRequest))
+			       EvaStreamTransferRequest))
 #define EVA_IS_STREAM_TRANSFER_REQUEST(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STREAM_TRANSFER_REQUEST))
 
-struct _GskStreamTransferRequest
+struct _EvaStreamTransferRequest
 {
-  GskRequest request;
+  EvaRequest request;
 
   /* The stream to read from. */
-  GskStream *read_side;
+  EvaStream *read_side;
 
   /* The stream to write to. */
-  GskStream *write_side;
+  EvaStream *write_side;
 
   /* Data which is to be transferred from read_side to write_side,
    * which hasn't been processed on the write side.
    */
-  GskBuffer buffer;
+  EvaBuffer buffer;
 
   /* The maximum number of bytes to store in buffer. */
   guint max_buffered;
@@ -61,24 +61,24 @@ struct _GskStreamTransferRequest
 /* The request references both input_stream and output_stream
  * (i.e., you must also unref them at some point).
  */
-GskStreamTransferRequest *
+EvaStreamTransferRequest *
        eva_stream_transfer_request_new
-				  (GskStream                *input_stream,
-				   GskStream                *output_stream);
+				  (EvaStream                *input_stream,
+				   EvaStream                *output_stream);
 
 void   eva_stream_transfer_request_set_max_buffered
-				  (GskStreamTransferRequest *request,
+				  (EvaStreamTransferRequest *request,
 				   guint                     max_buffered);
 
 guint  eva_stream_transfer_request_get_max_buffered
-				  (GskStreamTransferRequest *request);
+				  (EvaStreamTransferRequest *request);
 
 void   eva_stream_transfer_request_set_atomic_read_size
-				  (GskStreamTransferRequest *request,
+				  (EvaStreamTransferRequest *request,
 				   guint                     atomic_read_size);
 
 guint  eva_stream_transfer_request_get_atomic_read_size
-				  (GskStreamTransferRequest *request);
+				  (EvaStreamTransferRequest *request);
 
 G_END_DECLS
 

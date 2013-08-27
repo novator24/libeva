@@ -7,33 +7,33 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskStreamListenerSsl GskStreamListenerSsl;
-typedef struct _GskStreamListenerSslClass GskStreamListenerSslClass;
+typedef struct _EvaStreamListenerSsl EvaStreamListenerSsl;
+typedef struct _EvaStreamListenerSslClass EvaStreamListenerSslClass;
 /* --- type macros --- */
 GType eva_stream_listener_ssl_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_STREAM_LISTENER_SSL			(eva_stream_listener_ssl_get_type ())
-#define EVA_STREAM_LISTENER_SSL(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_LISTENER_SSL, GskStreamListenerSsl))
-#define EVA_STREAM_LISTENER_SSL_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_LISTENER_SSL, GskStreamListenerSslClass))
-#define EVA_STREAM_LISTENER_SSL_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_LISTENER_SSL, GskStreamListenerSslClass))
+#define EVA_STREAM_LISTENER_SSL(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_LISTENER_SSL, EvaStreamListenerSsl))
+#define EVA_STREAM_LISTENER_SSL_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_LISTENER_SSL, EvaStreamListenerSslClass))
+#define EVA_STREAM_LISTENER_SSL_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_LISTENER_SSL, EvaStreamListenerSslClass))
 #define EVA_IS_STREAM_LISTENER_SSL(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STREAM_LISTENER_SSL))
 #define EVA_IS_STREAM_LISTENER_SSL_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_STREAM_LISTENER_SSL))
 
 /* --- structures --- */
-struct _GskStreamListenerSslClass 
+struct _EvaStreamListenerSslClass 
 {
-  GskStreamListenerClass stream_listener_class;
+  EvaStreamListenerClass stream_listener_class;
 };
-struct _GskStreamListenerSsl 
+struct _EvaStreamListenerSsl 
 {
-  GskStreamListener      stream_listener;
+  EvaStreamListener      stream_listener;
   char *cert_file;
   char *key_file;
   char *password;
-  GskStreamListener *underlying;
+  EvaStreamListener *underlying;
 };
 
 /* --- prototypes --- */
-GskStreamListener *eva_stream_listener_ssl_new (GskStreamListener *underlying,
+EvaStreamListener *eva_stream_listener_ssl_new (EvaStreamListener *underlying,
 						const char        *cert_file,
 						const char        *key_file);
 

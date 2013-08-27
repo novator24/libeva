@@ -14,11 +14,11 @@
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-enum                <link linkend="GskDebugFlags">GskDebugFlags</link>;
+enum                <link linkend="EvaDebugFlags">EvaDebugFlags</link>;
 extern              const gboolean <link linkend="eva-debugging-on">eva_debugging_on</link>;
-<link linkend="void">void</link>                <link linkend="eva-debug-set-flags">eva_debug_set_flags</link>                 (<link linkend="GskDebugFlags">GskDebugFlags</link> flags);
-<link linkend="void">void</link>                <link linkend="eva-debug-add-flags">eva_debug_add_flags</link>                 (<link linkend="GskDebugFlags">GskDebugFlags</link> flags);
-extern              GskDebugFlags <link linkend="eva-debug-flags">eva_debug_flags</link>;
+<link linkend="void">void</link>                <link linkend="eva-debug-set-flags">eva_debug_set_flags</link>                 (<link linkend="EvaDebugFlags">EvaDebugFlags</link> flags);
+<link linkend="void">void</link>                <link linkend="eva-debug-add-flags">eva_debug_add_flags</link>                 (<link linkend="EvaDebugFlags">EvaDebugFlags</link> flags);
+extern              EvaDebugFlags <link linkend="eva-debug-flags">eva_debug_flags</link>;
 </synopsis>
 </refsynopsisdiv>
 
@@ -48,9 +48,9 @@ EVA's configure script.
 
 <refsect1 id="eva-evadebug.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskDebugFlags" role="enum">
-<title>enum GskDebugFlags</title>
-<indexterm zone="GskDebugFlags"><primary sortas="GskDebugFlags">GskDebugFlags</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaDebugFlags" role="enum">
+<title>enum EvaDebugFlags</title>
+<indexterm zone="EvaDebugFlags"><primary sortas="EvaDebugFlags">EvaDebugFlags</primary></indexterm><programlisting>typedef enum
 {
   EVA_DEBUG_IO     		= (1&lt;&lt;0),
   EVA_DEBUG_STREAM 		= (1&lt;&lt;1),
@@ -67,7 +67,7 @@ EVA's configure script.
   EVA_DEBUG_FD                  = (1&lt;&lt;12),
 
   EVA_DEBUG_ALL			= 0xffffffff
-} GskDebugFlags;
+} EvaDebugFlags;
 </programlisting>
 <para>
 Flags which may be turned on to print debugging messages about
@@ -170,7 +170,7 @@ script was run with the <arg>--enable-eva-debug</arg> option.
 </para></refsect2>
 <refsect2 id="eva-debug-set-flags" role="function">
 <title>eva_debug_set_flags ()</title>
-<indexterm zone="eva-debug-set-flags"><primary sortas="eva_debug_set_flags">eva_debug_set_flags</primary></indexterm><programlisting><link linkend="void">void</link>                eva_debug_set_flags                 (<link linkend="GskDebugFlags">GskDebugFlags</link> flags);</programlisting>
+<indexterm zone="eva-debug-set-flags"><primary sortas="eva_debug_set_flags">eva_debug_set_flags</primary></indexterm><programlisting><link linkend="void">void</link>                eva_debug_set_flags                 (<link linkend="EvaDebugFlags">EvaDebugFlags</link> flags);</programlisting>
 <para>
 Set which types of debug logs to emit.</para>
 <para>
@@ -181,7 +181,7 @@ Set which types of debug logs to emit.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-debug-add-flags" role="function">
 <title>eva_debug_add_flags ()</title>
-<indexterm zone="eva-debug-add-flags"><primary sortas="eva_debug_add_flags">eva_debug_add_flags</primary></indexterm><programlisting><link linkend="void">void</link>                eva_debug_add_flags                 (<link linkend="GskDebugFlags">GskDebugFlags</link> flags);</programlisting>
+<indexterm zone="eva-debug-add-flags"><primary sortas="eva_debug_add_flags">eva_debug_add_flags</primary></indexterm><programlisting><link linkend="void">void</link>                eva_debug_add_flags                 (<link linkend="EvaDebugFlags">EvaDebugFlags</link> flags);</programlisting>
 <para>
 Add new types of debug logs to emit.</para>
 <para>
@@ -192,7 +192,7 @@ Add new types of debug logs to emit.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-debug-flags" role="variable">
 <title>eva_debug_flags</title>
-<indexterm zone="eva-debug-flags"><primary sortas="eva_debug_flags">eva_debug_flags</primary></indexterm><programlisting>extern GskDebugFlags eva_debug_flags;
+<indexterm zone="eva-debug-flags"><primary sortas="eva_debug_flags">eva_debug_flags</primary></indexterm><programlisting>extern EvaDebugFlags eva_debug_flags;
 </programlisting>
 <para>
 </para></refsect2>

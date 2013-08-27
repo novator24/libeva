@@ -37,7 +37,7 @@
  * slab of data.
  */
 void
-eva_hash_feed       (GskHash        *hash,
+eva_hash_feed       (EvaHash        *hash,
 		     gconstpointer   data,
 		     guint           length)
 {
@@ -54,7 +54,7 @@ eva_hash_feed       (GskHash        *hash,
  * You may mix calls to eva_hash_feed() and eva_hash_feed_str().
  */
 void
-eva_hash_feed_str   (GskHash        *hash,
+eva_hash_feed_str   (EvaHash        *hash,
 		     const char     *str)
 {
   EVA_HASH_FEED (hash, str, strlen (str));
@@ -69,7 +69,7 @@ eva_hash_feed_str   (GskHash        *hash,
  * the lifetime of the hash.
  */
 void
-eva_hash_done       (GskHash        *hash)
+eva_hash_done       (EvaHash        *hash)
 {
   g_return_if_fail ((hash->flags & 1) == 0);
   EVA_HASH_DONE (hash);
@@ -85,7 +85,7 @@ eva_hash_done       (GskHash        *hash)
  * returns: the number of bytes of binary data in this hash.
  */
 guint
-eva_hash_get_size   (GskHash        *hash)
+eva_hash_get_size   (EvaHash        *hash)
 {
   return EVA_HASH_GET_SIZE (hash);
 }
@@ -99,7 +99,7 @@ eva_hash_get_size   (GskHash        *hash)
  * size returned by eva_hash_get_size().
  */
 void
-eva_hash_get       (GskHash        *hash,
+eva_hash_get       (EvaHash        *hash,
 		    guint8         *data_out)
 {
   g_return_if_fail ((hash->flags & 1) == 1);
@@ -115,7 +115,7 @@ eva_hash_get       (GskHash        *hash,
  * size returned by (eva_hash_get_size() * 2 + 1).
  */
 void
-eva_hash_get_hex   (GskHash        *hash,
+eva_hash_get_hex   (EvaHash        *hash,
 		    gchar          *hex_out)
 {
   static const char hex_digits[] = "0123456789abcdef";
@@ -137,7 +137,7 @@ eva_hash_get_hex   (GskHash        *hash,
  * Free memory used by the hash object.
  */
 void
-eva_hash_destroy    (GskHash        *hash)
+eva_hash_destroy    (EvaHash        *hash)
 {
   EVA_HASH_DESTROY (hash);
 }
@@ -565,7 +565,7 @@ static void md5_calc(b64, ctxt)
 typedef struct _HashMD5 HashMD5;
 struct _HashMD5
 {
-  GskHash hash;
+  EvaHash hash;
   guint8  md5value[16];
   MD5_CTX context;
 };
@@ -573,7 +573,7 @@ struct _HashMD5
 EVA_DECLARE_POOL_ALLOCATORS(HashMD5, hash_md5, 4)
 
 static void
-eva_hash_md5_feed (GskHash       *hash,
+eva_hash_md5_feed (EvaHash       *hash,
 		   gconstpointer  data,
 		   guint          len)
 {
@@ -582,7 +582,7 @@ eva_hash_md5_feed (GskHash       *hash,
 }
 
 static gpointer
-eva_hash_md5_done (GskHash        *hash)
+eva_hash_md5_done (EvaHash        *hash)
 {
   HashMD5 *hash_md5 = (HashMD5 *) hash;
   MD5Final (hash_md5->md5value, &hash_md5->context);
@@ -590,7 +590,7 @@ eva_hash_md5_done (GskHash        *hash)
 }
 
 static void
-eva_hash_md5_destroy (GskHash *hash)
+eva_hash_md5_destroy (EvaHash *hash)
 {
   hash_md5_free ((HashMD5 *) hash);
 }
@@ -602,11 +602,11 @@ eva_hash_md5_destroy (GskHash *hash)
  *
  * returns: the newly allocated hash object.
  */
-GskHash *
+EvaHash *
 eva_hash_new_md5 ()
 {
   HashMD5 *hash_md5 = hash_md5_alloc ();
-  GskHash *hash = (GskHash *) hash_md5;
+  EvaHash *hash = (EvaHash *) hash_md5;
   hash->size = 16;
   hash->feed = eva_hash_md5_feed;
   hash->done = eva_hash_md5_done;
@@ -968,7 +968,7 @@ sha1_result(ctxt, digest)
 typedef struct _HashSHA1 HashSHA1;
 struct _HashSHA1
 {
-  GskHash hash;
+  EvaHash hash;
   guint8  sha1value[16];
   SHA1_CTX context;
 };
@@ -976,7 +976,7 @@ struct _HashSHA1
 EVA_DECLARE_POOL_ALLOCATORS(HashSHA1, hash_sha1, 4);
 
 static void
-eva_hash_sha1_feed (GskHash       *hash,
+eva_hash_sha1_feed (EvaHash       *hash,
 		   gconstpointer  data,
 		   guint          len)
 {
@@ -985,7 +985,7 @@ eva_hash_sha1_feed (GskHash       *hash,
 }
 
 static gpointer
-eva_hash_sha1_done (GskHash        *hash)
+eva_hash_sha1_done (EvaHash        *hash)
 {
   HashSHA1 *hash_sha1 = (HashSHA1 *) hash;
   SHA1Final (hash_sha1->sha1value, &hash_sha1->context);
@@ -993,7 +993,7 @@ eva_hash_sha1_done (GskHash        *hash)
 }
 
 static void
-eva_hash_sha1_destroy (GskHash *hash)
+eva_hash_sha1_destroy (EvaHash *hash)
 {
   hash_sha1_free ((HashSHA1 *) hash);
 }
@@ -1005,11 +1005,11 @@ eva_hash_sha1_destroy (GskHash *hash)
  *
  * returns: the newly allocated hash object.
  */
-GskHash *
+EvaHash *
 eva_hash_new_sha1 ()
 {
   HashSHA1 *hash_sha1 = hash_sha1_alloc ();
-  GskHash *hash = (GskHash *) hash_sha1;
+  EvaHash *hash = (EvaHash *) hash_sha1;
   hash->size = 20;
   hash->feed = eva_hash_sha1_feed;
   hash->done = eva_hash_sha1_done;
@@ -1030,7 +1030,7 @@ eva_hash_new_sha1 ()
 typedef struct _HashSHA256 HashSHA256;
 struct _HashSHA256
 {
-  GskHash hash;
+  EvaHash hash;
   guint32 total[2];
   guint32 state[8];
   guint8 buffer[64];
@@ -1197,7 +1197,7 @@ G_STMT_START{                                   \
 }
 
 static void
-sha256_feed (GskHash *hash, gconstpointer buffer, guint length)
+sha256_feed (EvaHash *hash, gconstpointer buffer, guint length)
 {
   HashSHA256 *ctx = (HashSHA256 *) hash;
   guint32 left, fill;
@@ -1244,7 +1244,7 @@ static guint8 sha256_padding[64] =
 };
 
 static gpointer
-sha256_done (GskHash *hash)
+sha256_done (EvaHash *hash)
 {
   HashSHA256 *ctx = (HashSHA256 *) hash;
   guint32 last, padn;
@@ -1278,11 +1278,11 @@ sha256_done (GskHash *hash)
 #undef PUT_UINT32
 #undef GET_UINT32
 
-GskHash *
+EvaHash *
 eva_hash_new_sha256 (void)
 {
   HashSHA256 *rv = g_new (HashSHA256, 1);
-  GskHash *h;
+  EvaHash *h;
   rv->total[0] = 0;
   rv->total[1] = 0;
 
@@ -1295,11 +1295,11 @@ eva_hash_new_sha256 (void)
   rv->state[6] = 0x1F83D9AB;
   rv->state[7] = 0x5BE0CD19;
 
-  h = (GskHash *) rv;
+  h = (EvaHash *) rv;
   h->size = 32;
   h->feed = sha256_feed;
   h->done = sha256_done;
-  h->destroy = (void (*)(GskHash*)) g_free;
+  h->destroy = (void (*)(EvaHash*)) g_free;
   return h;
 }
 
@@ -1419,14 +1419,14 @@ crc32(guint32 val, const void *ss, int len)
 typedef struct _HashCRC32 HashCRC32;
 struct _HashCRC32
 {
-  GskHash base;
+  EvaHash base;
   guint32 cur_value;
 };
 
 EVA_DECLARE_POOL_ALLOCATORS (HashCRC32, hash_crc32, 4)
 
 static void
-eva_hash_crc32_feed (GskHash       *hash,
+eva_hash_crc32_feed (EvaHash       *hash,
 		     gconstpointer  data,
 		     guint          len)
 {
@@ -1435,14 +1435,14 @@ eva_hash_crc32_feed (GskHash       *hash,
 }
 
 static gpointer
-eva_hash_crc32_done (GskHash        *hash)
+eva_hash_crc32_done (EvaHash        *hash)
 {
   HashCRC32 *hash_crc32 = (HashCRC32 *) hash;
   return &hash_crc32->cur_value;
 }
 
 static gpointer
-eva_hash_crc32_done_swap (GskHash        *hash)
+eva_hash_crc32_done_swap (EvaHash        *hash)
 {
   HashCRC32 *hash_crc32 = (HashCRC32 *) hash;
   hash_crc32->cur_value = GUINT32_SWAP_LE_BE (hash_crc32->cur_value);
@@ -1450,7 +1450,7 @@ eva_hash_crc32_done_swap (GskHash        *hash)
 }
 
 static void
-eva_hash_crc32_destroy (GskHash *hash)
+eva_hash_crc32_destroy (EvaHash *hash)
 {
   hash_crc32_free ((HashCRC32 *) hash);
 }
@@ -1464,11 +1464,11 @@ eva_hash_crc32_destroy (GskHash *hash)
  *
  * returns: the newly allocated hash object.
  */
-GskHash *
+EvaHash *
 eva_hash_new_crc32 (gboolean big_endian)
 {
   HashCRC32 *hash_crc32 = hash_crc32_alloc ();
-  GskHash *hash = (GskHash *) hash_crc32;
+  EvaHash *hash = (EvaHash *) hash_crc32;
   hash->size = 4;
   hash->feed = eva_hash_crc32_feed;
   if (big_endian == (G_BYTE_ORDER == G_BIG_ENDIAN))

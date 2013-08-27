@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskSocketAddressSymbolicIpv4
+EvaSocketAddressSymbolicIpv4
 
 <!-- ##### SECTION Short_Description ##### -->
 A symbolic IPv4 socket-address description.
@@ -18,14 +18,14 @@ However, most interfaces will handle this for you.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-#GskSocketAddressSymbolic, which has generic instructions
+#EvaSocketAddressSymbolic, which has generic instructions
 about making a symbolic socket-address into a native one.
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### USER_FUNCTION GskSocketAddressSymbolicResolveFunc ##### -->
+<!-- ##### USER_FUNCTION EvaSocketAddressSymbolicResolveFunc ##### -->
 <para>
 A callback which will be invoked when 
 the symbolic socket-address is resolved into a 
@@ -40,7 +40,7 @@ was invoked.
 @user_data: opaque data passed in to eva_socket_address_symbolic_create_name_resolver().
 
 
-<!-- ##### USER_FUNCTION GskSocketAddressSymbolicErrorFunc ##### -->
+<!-- ##### USER_FUNCTION EvaSocketAddressSymbolicErrorFunc ##### -->
 <para>
 Invoked when symbolic socket-address name-resolution
 fails.
@@ -53,7 +53,7 @@ was invoked.
 @user_data: opaque data passed in to eva_socket_address_symbolic_create_name_resolver().
 
 
-<!-- ##### STRUCT GskSocketAddressSymbolic ##### -->
+<!-- ##### STRUCT EvaSocketAddressSymbolic ##### -->
 <para>
 A symbolic socket-addresss.
 </para>
@@ -61,7 +61,7 @@ A symbolic socket-addresss.
 @socket_address: 
 @name: hostname.
 
-<!-- ##### STRUCT GskSocketAddressSymbolicIpv4 ##### -->
+<!-- ##### STRUCT EvaSocketAddressSymbolicIpv4 ##### -->
 <para>
 A symbolic socket-addresss in ipv4 space.
 </para>

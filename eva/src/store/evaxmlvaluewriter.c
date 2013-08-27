@@ -64,7 +64,7 @@ get_serialized_properties (GObjectClass *object_class)
 
 /*
  *
- * GskXmlValueWriter
+ * EvaXmlValueWriter
  *
  */
 
@@ -340,7 +340,7 @@ string_atom (GValue      *value,
 }
 
 static inline guint
-next_atom (GskXmlValueWriter  *self,
+next_atom (EvaXmlValueWriter  *self,
 	   char                atom_buf[MAX_SIMPLE_TYPE_ATOM_LEN],
 	   const char        **atom_out,
 	   gboolean           *free_atom)
@@ -573,13 +573,13 @@ next_atom (GskXmlValueWriter  *self,
 }
 
 static guint
-eva_xml_value_writer_raw_read (GskStream  *stream,
+eva_xml_value_writer_raw_read (EvaStream  *stream,
 			       gpointer    data,
 			       guint       length,
 			       GError    **error)
 {
   char atom_buf[MAX_SIMPLE_TYPE_ATOM_LEN];
-  GskXmlValueWriter *self = EVA_XML_VALUE_WRITER (stream);
+  EvaXmlValueWriter *self = EVA_XML_VALUE_WRITER (stream);
   char *out = data;
   guint num_written = 0;
 
@@ -632,7 +632,7 @@ eva_xml_value_writer_raw_read (GskStream  *stream,
 static void
 eva_xml_value_writer_finalize (GObject *object)
 {
-  GskXmlValueWriter *self = EVA_XML_VALUE_WRITER (object);
+  EvaXmlValueWriter *self = EVA_XML_VALUE_WRITER (object);
 
   while (self->stack)
     self->stack = xml_stack_frame_pop ((XmlStackFrame *) self->stack);
@@ -641,14 +641,14 @@ eva_xml_value_writer_finalize (GObject *object)
 }
 
 static void
-eva_xml_value_writer_init (GskXmlValueWriter *xml_value_writer)
+eva_xml_value_writer_init (EvaXmlValueWriter *xml_value_writer)
 {
   eva_stream_mark_is_readable (xml_value_writer);
   eva_stream_mark_never_blocks_read (xml_value_writer);
 }
 
 static void
-eva_xml_value_writer_class_init (GskStreamClass *stream_class)
+eva_xml_value_writer_class_init (EvaStreamClass *stream_class)
 {
   parent_class = g_type_class_peek_parent (stream_class);
   G_OBJECT_CLASS (stream_class)->finalize = eva_xml_value_writer_finalize;
@@ -663,29 +663,29 @@ eva_xml_value_writer_get_type (void)
     {
       static const GTypeInfo type_info =
 	{
-	  sizeof(GskXmlValueWriterClass),
+	  sizeof(EvaXmlValueWriterClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) eva_xml_value_writer_class_init,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskXmlValueWriter),
+	  sizeof (EvaXmlValueWriter),
 	  0,		/* n_preallocs */
 	  (GInstanceInitFunc) eva_xml_value_writer_init,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (EVA_TYPE_STREAM,
-				     "GskXmlValueWriter",
+				     "EvaXmlValueWriter",
 				     &type_info,
 				     0);
     }
   return type;
 }
 
-GskXmlValueWriter *
+EvaXmlValueWriter *
 eva_xml_value_writer_new (const GValue *value)
 {
-  GskXmlValueWriter *stream;
+  EvaXmlValueWriter *stream;
 
   stream = g_object_new (EVA_TYPE_XML_VALUE_WRITER, NULL);
   stream->stack = push_value (value, NULL);

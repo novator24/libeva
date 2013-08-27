@@ -13,13 +13,13 @@ It contains a generic parser that has no I/O dependencies.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-GskXmlrpcStream
+EvaXmlrpcStream
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskXmlrpcArray ##### -->
+<!-- ##### STRUCT EvaXmlrpcArray ##### -->
 <para>
 An array of XMLRPC values.
 Each may have a different type.
@@ -27,14 +27,14 @@ Each may have a different type.
 
 @values: the values in the array.
 
-<!-- ##### STRUCT GskXmlrpcStruct ##### -->
+<!-- ##### STRUCT EvaXmlrpcStruct ##### -->
 <para>
 A structure, which is a set of named members.
 </para>
 
 @members: 
 
-<!-- ##### STRUCT GskXmlrpcValue ##### -->
+<!-- ##### STRUCT EvaXmlrpcValue ##### -->
 <para>
 A XMLRPC value that may be of any of the XMLRPC types.
 The type is included with the value.
@@ -42,7 +42,7 @@ The type is included with the value.
 
 @type: 
 
-<!-- ##### STRUCT GskXmlrpcNamedValue ##### -->
+<!-- ##### STRUCT EvaXmlrpcNamedValue ##### -->
 <para>
 A name/value pair, appropriate as a structure member.
 </para>
@@ -50,7 +50,7 @@ A name/value pair, appropriate as a structure member.
 @name: the string, name, label.
 @value: the typed value.
 
-<!-- ##### STRUCT GskXmlrpcRequest ##### -->
+<!-- ##### STRUCT EvaXmlrpcRequest ##### -->
 <para>
 An XMLRPC request (invocation).
 </para>
@@ -59,7 +59,7 @@ An XMLRPC request (invocation).
 @params: 
 @xmlrpc_stream: 
 
-<!-- ##### STRUCT GskXmlrpcResponse ##### -->
+<!-- ##### STRUCT EvaXmlrpcResponse ##### -->
 <para>
 An XMLRPC response (return).
 </para>
@@ -68,14 +68,14 @@ An XMLRPC response (return).
 @has_fault: 
 @fault: 
 
-<!-- ##### STRUCT GskXmlrpcParser ##### -->
+<!-- ##### STRUCT EvaXmlrpcParser ##### -->
 <para>
 An object which can parse XMLRPC requests and responses,
 in any order.  It does no interpretation of the requests or responses.
 </para>
 
 
-<!-- ##### ENUM GskXmlrpcType ##### -->
+<!-- ##### ENUM EvaXmlrpcType ##### -->
 <para>
 The type of a XMLRPC value.
 </para>

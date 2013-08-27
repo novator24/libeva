@@ -8,7 +8,7 @@
 typedef struct _SignalInfo SignalInfo;
 struct _SignalInfo
 {
-  GskMainLoop *main_loop;
+  EvaMainLoop *main_loop;
   int sig_no;
   int test_num;
   gboolean got_destroyed;
@@ -51,7 +51,7 @@ static void mark_got_destroyed(gpointer data)
 int main (int argc, char **argv)
 {
   SignalInfo signal_info;
-  GskMainLoop *main_loop;
+  EvaMainLoop *main_loop;
   eva_init_without_threads (&argc, &argv);
   
   main_loop = eva_main_loop_new (0);

@@ -14,21 +14,21 @@
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskPacket">GskPacket</link>;
-<link linkend="void">void</link>                (<link linkend="GskPacketDestroyFunc">*GskPacketDestroyFunc</link>)             (<link linkend="gpointer">gpointer</link> destroy_data,
-                                                         <link linkend="GskPacket">GskPacket</link> *packet);
-<link linkend="GskPacket">GskPacket</link> *         <link linkend="eva-packet-new">eva_packet_new</link>                      (<link linkend="gpointer">gpointer</link> data,
+                    <link linkend="EvaPacket">EvaPacket</link>;
+<link linkend="void">void</link>                (<link linkend="EvaPacketDestroyFunc">*EvaPacketDestroyFunc</link>)             (<link linkend="gpointer">gpointer</link> destroy_data,
+                                                         <link linkend="EvaPacket">EvaPacket</link> *packet);
+<link linkend="EvaPacket">EvaPacket</link> *         <link linkend="eva-packet-new">eva_packet_new</link>                      (<link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="guint">guint</link> length,
-                                                         <link linkend="GskPacketDestroyFunc">GskPacketDestroyFunc</link> destroy,
+                                                         <link linkend="EvaPacketDestroyFunc">EvaPacketDestroyFunc</link> destroy,
                                                          <link linkend="gpointer">gpointer</link> destroy_data);
-<link linkend="GskPacket">GskPacket</link> *         <link linkend="eva-packet-new-copy">eva_packet_new_copy</link>                 (<link linkend="gconstpointer">gconstpointer</link> data,
+<link linkend="EvaPacket">EvaPacket</link> *         <link linkend="eva-packet-new-copy">eva_packet_new_copy</link>                 (<link linkend="gconstpointer">gconstpointer</link> data,
                                                          <link linkend="guint">guint</link> length);
-<link linkend="void">void</link>                <link linkend="eva-packet-set-src-address">eva_packet_set_src_address</link>          (<link linkend="GskPacket">GskPacket</link> *packet,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address);
-<link linkend="void">void</link>                <link linkend="eva-packet-set-dst-address">eva_packet_set_dst_address</link>          (<link linkend="GskPacket">GskPacket</link> *packet,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address);
-<link linkend="void">void</link>                <link linkend="eva-packet-unref">eva_packet_unref</link>                    (<link linkend="GskPacket">GskPacket</link> *packet);
-<link linkend="GskPacket">GskPacket</link> *         <link linkend="eva-packet-ref">eva_packet_ref</link>                      (<link linkend="GskPacket">GskPacket</link> *packet);
+<link linkend="void">void</link>                <link linkend="eva-packet-set-src-address">eva_packet_set_src_address</link>          (<link linkend="EvaPacket">EvaPacket</link> *packet,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);
+<link linkend="void">void</link>                <link linkend="eva-packet-set-dst-address">eva_packet_set_dst_address</link>          (<link linkend="EvaPacket">EvaPacket</link> *packet,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);
+<link linkend="void">void</link>                <link linkend="eva-packet-unref">eva_packet_unref</link>                    (<link linkend="EvaPacket">EvaPacket</link> *packet);
+<link linkend="EvaPacket">EvaPacket</link> *         <link linkend="eva-packet-ref">eva_packet_ref</link>                      (<link linkend="EvaPacket">EvaPacket</link> *packet);
 </synopsis>
 </refsynopsisdiv>
 
@@ -47,24 +47,24 @@ A reference-counted binary piece of data with a destroy-notify
 to allow arbitrary memory management.
 </para>
 <para>
-It may optionally have two <link linkend="GskSocketAddress"><type>GskSocketAddress</type></link> to denote the source
+It may optionally have two <link linkend="EvaSocketAddress"><type>EvaSocketAddress</type></link> to denote the source
 and destination of the packet.
 </para>
 </refsect1>
 
 <refsect1 id="eva-evapacket.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskPacket" role="struct">
-<title>GskPacket</title>
-<indexterm zone="GskPacket"><primary sortas="GskPacket">GskPacket</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaPacket" role="struct">
+<title>EvaPacket</title>
+<indexterm zone="EvaPacket"><primary sortas="EvaPacket">EvaPacket</primary></indexterm><programlisting>typedef struct {
   /*&lt; public: readonly &gt;*/
   gpointer data;
   guint len;
-  GskSocketAddress *src_address;
-  GskSocketAddress *dst_address;
-  GskPacketDestroyFunc destroy;
+  EvaSocketAddress *src_address;
+  EvaSocketAddress *dst_address;
+  EvaPacketDestroyFunc destroy;
   gpointer destroy_data;
-} GskPacket;
+} EvaPacket;
 </programlisting>
 <para>
 A packet of binary data, optionally associated with
@@ -81,17 +81,17 @@ a particular host.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskSocketAddress">GskSocketAddress</link>&#160;*<structfield>src_address</structfield>;</term>
+<term><link linkend="EvaSocketAddress">EvaSocketAddress</link>&#160;*<structfield>src_address</structfield>;</term>
 <listitem><simpara>
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskSocketAddress">GskSocketAddress</link>&#160;*<structfield>dst_address</structfield>;</term>
+<term><link linkend="EvaSocketAddress">EvaSocketAddress</link>&#160;*<structfield>dst_address</structfield>;</term>
 <listitem><simpara>
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskPacketDestroyFunc">GskPacketDestroyFunc</link>&#160;<structfield>destroy</structfield>;</term>
+<term><link linkend="EvaPacketDestroyFunc">EvaPacketDestroyFunc</link>&#160;<structfield>destroy</structfield>;</term>
 <listitem><simpara>destroy notification.
 </simpara></listitem>
 </varlistentry>
@@ -101,14 +101,14 @@ a particular host.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskPacketDestroyFunc" role="function">
-<title>GskPacketDestroyFunc ()</title>
-<indexterm zone="GskPacketDestroyFunc"><primary sortas="GskPacketDestroyFunc">GskPacketDestroyFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskPacketDestroyFunc)             (<link linkend="gpointer">gpointer</link> destroy_data,
-                                                         <link linkend="GskPacket">GskPacket</link> *packet);</programlisting>
+<refsect2 id="EvaPacketDestroyFunc" role="function">
+<title>EvaPacketDestroyFunc ()</title>
+<indexterm zone="EvaPacketDestroyFunc"><primary sortas="EvaPacketDestroyFunc">EvaPacketDestroyFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaPacketDestroyFunc)             (<link linkend="gpointer">gpointer</link> destroy_data,
+                                                         <link linkend="EvaPacket">EvaPacket</link> *packet);</programlisting>
 <para>
 The actual function prototype of destroy.
 This is only useful if you want to examine the whole
-GskPacket from your destroy function.
+EvaPacket from your destroy function.
 </para><variablelist role="params">
 <varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
 <listitem><simpara>as passed to <link linkend="eva-packet-new"><function>eva_packet_new()</function></link>
@@ -119,9 +119,9 @@ GskPacket from your destroy function.
 </variablelist></refsect2>
 <refsect2 id="eva-packet-new" role="function">
 <title>eva_packet_new ()</title>
-<indexterm zone="eva-packet-new"><primary sortas="eva_packet_new">eva_packet_new</primary></indexterm><programlisting><link linkend="GskPacket">GskPacket</link> *         eva_packet_new                      (<link linkend="gpointer">gpointer</link> data,
+<indexterm zone="eva-packet-new"><primary sortas="eva_packet_new">eva_packet_new</primary></indexterm><programlisting><link linkend="EvaPacket">EvaPacket</link> *         eva_packet_new                      (<link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="guint">guint</link> length,
-                                                         <link linkend="GskPacketDestroyFunc">GskPacketDestroyFunc</link> destroy,
+                                                         <link linkend="EvaPacketDestroyFunc">EvaPacketDestroyFunc</link> destroy,
                                                          <link linkend="gpointer">gpointer</link> destroy_data);</programlisting>
 <para>
 Creates a new packet with the given data.
@@ -141,12 +141,12 @@ when it gets to 0.</para>
 <varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
 <listitem><simpara> the argument to the <parameter>destroy</parameter> method.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new GskPacket
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new EvaPacket
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-packet-new-copy" role="function">
 <title>eva_packet_new_copy ()</title>
-<indexterm zone="eva-packet-new-copy"><primary sortas="eva_packet_new_copy">eva_packet_new_copy</primary></indexterm><programlisting><link linkend="GskPacket">GskPacket</link> *         eva_packet_new_copy                 (<link linkend="gconstpointer">gconstpointer</link> data,
+<indexterm zone="eva-packet-new-copy"><primary sortas="eva_packet_new_copy">eva_packet_new_copy</primary></indexterm><programlisting><link linkend="EvaPacket">EvaPacket</link> *         eva_packet_new_copy                 (<link linkend="gconstpointer">gconstpointer</link> data,
                                                          <link linkend="guint">guint</link> length);</programlisting>
 <para>
 Creates a new packet with a copy of the given data.
@@ -160,13 +160,13 @@ when it gets to 0.</para>
 <varlistentry><term><parameter>length</parameter>&#160;:</term>
 <listitem><simpara> length of binary data
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new GskPacket
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a new EvaPacket
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-packet-set-src-address" role="function">
 <title>eva_packet_set_src_address ()</title>
-<indexterm zone="eva-packet-set-src-address"><primary sortas="eva_packet_set_src_address">eva_packet_set_src_address</primary></indexterm><programlisting><link linkend="void">void</link>                eva_packet_set_src_address          (<link linkend="GskPacket">GskPacket</link> *packet,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address);</programlisting>
+<indexterm zone="eva-packet-set-src-address"><primary sortas="eva_packet_set_src_address">eva_packet_set_src_address</primary></indexterm><programlisting><link linkend="void">void</link>                eva_packet_set_src_address          (<link linkend="EvaPacket">EvaPacket</link> *packet,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);</programlisting>
 <para>
 Change the source address associated with a packet.
 This should be the address of the interface
@@ -182,8 +182,8 @@ the packet was sent from.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-packet-set-dst-address" role="function">
 <title>eva_packet_set_dst_address ()</title>
-<indexterm zone="eva-packet-set-dst-address"><primary sortas="eva_packet_set_dst_address">eva_packet_set_dst_address</primary></indexterm><programlisting><link linkend="void">void</link>                eva_packet_set_dst_address          (<link linkend="GskPacket">GskPacket</link> *packet,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address);</programlisting>
+<indexterm zone="eva-packet-set-dst-address"><primary sortas="eva_packet_set_dst_address">eva_packet_set_dst_address</primary></indexterm><programlisting><link linkend="void">void</link>                eva_packet_set_dst_address          (<link linkend="EvaPacket">EvaPacket</link> *packet,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);</programlisting>
 <para>
 Change the destination address associated with a packet.
 This should be the address of the interface
@@ -199,7 +199,7 @@ the packet was sent to.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-packet-unref" role="function">
 <title>eva_packet_unref ()</title>
-<indexterm zone="eva-packet-unref"><primary sortas="eva_packet_unref">eva_packet_unref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_packet_unref                    (<link linkend="GskPacket">GskPacket</link> *packet);</programlisting>
+<indexterm zone="eva-packet-unref"><primary sortas="eva_packet_unref">eva_packet_unref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_packet_unref                    (<link linkend="EvaPacket">EvaPacket</link> *packet);</programlisting>
 <para>
 Remove a reference-count from the packet, deleting the packet 
 if it gets to 0.</para>
@@ -211,7 +211,7 @@ if it gets to 0.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-packet-ref" role="function">
 <title>eva_packet_ref ()</title>
-<indexterm zone="eva-packet-ref"><primary sortas="eva_packet_ref">eva_packet_ref</primary></indexterm><programlisting><link linkend="GskPacket">GskPacket</link> *         eva_packet_ref                      (<link linkend="GskPacket">GskPacket</link> *packet);</programlisting>
+<indexterm zone="eva-packet-ref"><primary sortas="eva_packet_ref">eva_packet_ref</primary></indexterm><programlisting><link linkend="EvaPacket">EvaPacket</link> *         eva_packet_ref                      (<link linkend="EvaPacket">EvaPacket</link> *packet);</programlisting>
 <para>
 Add a reference-count to the packet.</para>
 <para>

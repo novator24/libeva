@@ -731,7 +731,7 @@ parse_iso8601 (const char *date,
 gboolean eva_date_parse            (const char        *date_str,
                                     struct tm         *tm_out,
 				    int               *tzoffset_out,
-				    GskDateFormatMask  allowed)
+				    EvaDateFormatMask  allowed)
 {
   init_tables ();
   if (date_str[0] == '\0'
@@ -777,7 +777,7 @@ gboolean eva_date_parse            (const char        *date_str,
  */
 gboolean eva_date_parse_timet      (const char        *date_str,
                                     time_t            *out,
-				    GskDateFormatMask  formats_allowed)
+				    EvaDateFormatMask  formats_allowed)
 {
   struct tm tm_out;
   int tz_offset;
@@ -855,7 +855,7 @@ static const char *month_to_three_letter_stud_capped[] =
 void     eva_date_print            (const struct tm   *tm,
                                     char              *date_str_out,
 				    int                date_str_max_len,
-				    GskDateFormatMask  format)
+				    EvaDateFormatMask  format)
 {
   if ((format & EVA_DATE_FORMAT_1036) == EVA_DATE_FORMAT_1036)
     {
@@ -929,7 +929,7 @@ void     eva_date_print            (const struct tm   *tm,
 void     eva_date_print_timet      (time_t             t,
                                     char              *date_str_out,
 				    int                date_str_max_len,
-				    GskDateFormatMask  format)
+				    EvaDateFormatMask  format)
 {
   /* XXX: there is a gmtime_r function we should use on some systems. */
   struct tm *tm_out;

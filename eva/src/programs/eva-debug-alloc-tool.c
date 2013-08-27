@@ -14,11 +14,11 @@ usage (void)
 }
 
 static void
-do_usage_stats (GskDebugLog *log)
+do_usage_stats (EvaDebugLog *log)
 {
   guint64 usage = 0;
   guint64 max_usage = 0;
-  GskDebugLogPacket *entry;
+  EvaDebugLogPacket *entry;
   while ((entry=eva_debug_log_read (log)) != NULL)
     {
       if (entry->type == EVA_DEBUG_LOG_PACKET_MALLOC)
@@ -38,9 +38,9 @@ int main(int argc, char **argv)
 {
   const char *logfile = NULL;
   const char *op = NULL;
-  GskDebugLog *log = NULL;
+  EvaDebugLog *log = NULL;
   guint i;
-  void (*op_func) (GskDebugLog *) = NULL;
+  void (*op_func) (EvaDebugLog *) = NULL;
   GError *error = NULL;
 
   for (i = 1; i < (guint) argc; i++)

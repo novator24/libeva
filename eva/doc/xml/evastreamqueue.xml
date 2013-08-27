@@ -1,30 +1,30 @@
-<refentry id="eva-GskStreamQueue">
+<refentry id="eva-EvaStreamQueue">
 <refmeta>
-<refentrytitle role="top_of_page" id="eva-GskStreamQueue.top_of_page">GskStreamQueue</refentrytitle>
+<refentrytitle role="top_of_page" id="eva-EvaStreamQueue.top_of_page">EvaStreamQueue</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskStreamQueue</refname>
+<refname>EvaStreamQueue</refname>
 <refpurpose></refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="eva-GskStreamQueue.synopsis" role="synopsis">
+<refsynopsisdiv id="eva-EvaStreamQueue.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-<link linkend="GskStreamQueue">GskStreamQueue</link> *    <link linkend="eva-stream-queue-new">eva_stream_queue_new</link>                (<link linkend="gboolean">gboolean</link> is_readable,
+<link linkend="EvaStreamQueue">EvaStreamQueue</link> *    <link linkend="eva-stream-queue-new">eva_stream_queue_new</link>                (<link linkend="gboolean">gboolean</link> is_readable,
                                                          <link linkend="gboolean">gboolean</link> is_writable);
-<link linkend="void">void</link>                <link linkend="eva-stream-queue-append-read-stream">eva_stream_queue_append_read_stream</link> (<link linkend="GskStreamQueue">GskStreamQueue</link> *queue,
-                                                         <link linkend="GskStream">GskStream</link> *substream);
+<link linkend="void">void</link>                <link linkend="eva-stream-queue-append-read-stream">eva_stream_queue_append_read_stream</link> (<link linkend="EvaStreamQueue">EvaStreamQueue</link> *queue,
+                                                         <link linkend="EvaStream">EvaStream</link> *substream);
 <link linkend="void">void</link>                <link linkend="eva-stream-queue-append-write-stream">eva_stream_queue_append_write_stream</link>
-                                                        (<link linkend="GskStreamQueue">GskStreamQueue</link> *queue,
-                                                         <link linkend="GskStream">GskStream</link> *substream);
+                                                        (<link linkend="EvaStreamQueue">EvaStreamQueue</link> *queue,
+                                                         <link linkend="EvaStream">EvaStream</link> *substream);
 <link linkend="void">void</link>                <link linkend="eva-stream-queue-no-more-read-streams">eva_stream_queue_no_more_read_streams</link>
-                                                        (<link linkend="GskStreamQueue">GskStreamQueue</link> *queue);
+                                                        (<link linkend="EvaStreamQueue">EvaStreamQueue</link> *queue);
 <link linkend="void">void</link>                <link linkend="eva-stream-queue-no-more-write-streams">eva_stream_queue_no_more_write_streams</link>
-                                                        (<link linkend="GskStreamQueue">GskStreamQueue</link> *queue);
+                                                        (<link linkend="EvaStreamQueue">EvaStreamQueue</link> *queue);
 #define             <link linkend="EVA-STREAM-QUEUE-READ-EMPTY-HOOK--CAPS">EVA_STREAM_QUEUE_READ_EMPTY_HOOK</link>    (queue)
 #define             <link linkend="eva-stream-queue-trap-read-empty">eva_stream_queue_trap_read_empty</link>    (queue, func, shutdown, data, destroy)
 #define             <link linkend="eva-stream-queue-untrap-read-empty">eva_stream_queue_untrap_read_empty</link>  (queue)
@@ -42,17 +42,17 @@
 
 
 
-<refsect1 id="eva-GskStreamQueue.description" role="desc">
+<refsect1 id="eva-EvaStreamQueue.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 </para>
 </refsect1>
 
-<refsect1 id="eva-GskStreamQueue.details" role="details">
+<refsect1 id="eva-EvaStreamQueue.details" role="details">
 <title role="details.title">Details</title>
 <refsect2 id="eva-stream-queue-new" role="function">
 <title>eva_stream_queue_new ()</title>
-<indexterm zone="eva-stream-queue-new"><primary sortas="eva_stream_queue_new">eva_stream_queue_new</primary></indexterm><programlisting><link linkend="GskStreamQueue">GskStreamQueue</link> *    eva_stream_queue_new                (<link linkend="gboolean">gboolean</link> is_readable,
+<indexterm zone="eva-stream-queue-new"><primary sortas="eva_stream_queue_new">eva_stream_queue_new</primary></indexterm><programlisting><link linkend="EvaStreamQueue">EvaStreamQueue</link> *    eva_stream_queue_new                (<link linkend="gboolean">gboolean</link> is_readable,
                                                          <link linkend="gboolean">gboolean</link> is_writable);</programlisting>
 <para>
 Create a stream which can have other
@@ -72,8 +72,8 @@ appended to it.
 </variablelist></refsect2>
 <refsect2 id="eva-stream-queue-append-read-stream" role="function">
 <title>eva_stream_queue_append_read_stream ()</title>
-<indexterm zone="eva-stream-queue-append-read-stream"><primary sortas="eva_stream_queue_append_read_stream">eva_stream_queue_append_read_stream</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_queue_append_read_stream (<link linkend="GskStreamQueue">GskStreamQueue</link> *queue,
-                                                         <link linkend="GskStream">GskStream</link> *substream);</programlisting>
+<indexterm zone="eva-stream-queue-append-read-stream"><primary sortas="eva_stream_queue_append_read_stream">eva_stream_queue_append_read_stream</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_queue_append_read_stream (<link linkend="EvaStreamQueue">EvaStreamQueue</link> *queue,
+                                                         <link linkend="EvaStream">EvaStream</link> *substream);</programlisting>
 <para>
 Append a readable stream to a queue-stream.
 It will be read in the order in which it was appended.</para>
@@ -91,8 +91,8 @@ so you must <link linkend="g-object-unref"><function>g_object_unref()</function>
 <refsect2 id="eva-stream-queue-append-write-stream" role="function">
 <title>eva_stream_queue_append_write_stream ()</title>
 <indexterm zone="eva-stream-queue-append-write-stream"><primary sortas="eva_stream_queue_append_write_stream">eva_stream_queue_append_write_stream</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_queue_append_write_stream
-                                                        (<link linkend="GskStreamQueue">GskStreamQueue</link> *queue,
-                                                         <link linkend="GskStream">GskStream</link> *substream);</programlisting>
+                                                        (<link linkend="EvaStreamQueue">EvaStreamQueue</link> *queue,
+                                                         <link linkend="EvaStream">EvaStream</link> *substream);</programlisting>
 <para>
 Append a writable stream to a queue-stream.
 It will be written to in the order in which it was appended.</para>
@@ -110,7 +110,7 @@ so you must <link linkend="g-object-unref"><function>g_object_unref()</function>
 <refsect2 id="eva-stream-queue-no-more-read-streams" role="function">
 <title>eva_stream_queue_no_more_read_streams ()</title>
 <indexterm zone="eva-stream-queue-no-more-read-streams"><primary sortas="eva_stream_queue_no_more_read_streams">eva_stream_queue_no_more_read_streams</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_queue_no_more_read_streams
-                                                        (<link linkend="GskStreamQueue">GskStreamQueue</link> *queue);</programlisting>
+                                                        (<link linkend="EvaStreamQueue">EvaStreamQueue</link> *queue);</programlisting>
 <para>
 Indicate that you are done added substreams to a queue-stream.
 When the last stream shuts down for reading, and all the buffered
@@ -125,7 +125,7 @@ will shut down.</para>
 <refsect2 id="eva-stream-queue-no-more-write-streams" role="function">
 <title>eva_stream_queue_no_more_write_streams ()</title>
 <indexterm zone="eva-stream-queue-no-more-write-streams"><primary sortas="eva_stream_queue_no_more_write_streams">eva_stream_queue_no_more_write_streams</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_queue_no_more_write_streams
-                                                        (<link linkend="GskStreamQueue">GskStreamQueue</link> *queue);</programlisting>
+                                                        (<link linkend="EvaStreamQueue">EvaStreamQueue</link> *queue);</programlisting>
 <para>
 Indicate that you are done added substreams to a queue-stream.
 When the last stream shuts down for writeing, then this queue-stream
@@ -140,7 +140,7 @@ will shut down.</para>
 <title>EVA_STREAM_QUEUE_READ_EMPTY_HOOK()</title>
 <indexterm zone="EVA-STREAM-QUEUE-READ-EMPTY-HOOK--CAPS"><primary sortas="EVA_STREAM_QUEUE_READ_EMPTY_HOOK">EVA_STREAM_QUEUE_READ_EMPTY_HOOK</primary></indexterm><programlisting>#define             EVA_STREAM_QUEUE_READ_EMPTY_HOOK(queue)</programlisting>
 <para>
-GskHook which notifies as long as the queue's supply of readable streams is empty.
+EvaHook which notifies as long as the queue's supply of readable streams is empty.
 </para><variablelist role="params">
 <varlistentry><term><parameter>queue</parameter>&#160;:</term>
 <listitem><simpara>queue whose hook should be returned.
@@ -189,7 +189,7 @@ The destroy function, if any, will be called (possibly not immediately)
 <title>EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK()</title>
 <indexterm zone="EVA-STREAM-QUEUE-WRITE-EMPTY-HOOK--CAPS"><primary sortas="EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK">EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK</primary></indexterm><programlisting>#define             EVA_STREAM_QUEUE_WRITE_EMPTY_HOOK(queue)</programlisting>
 <para>
-GskHook which notifies as long as the queue's supply of writable streams is empty.
+EvaHook which notifies as long as the queue's supply of writable streams is empty.
 </para><variablelist role="params">
 <varlistentry><term><parameter>queue</parameter>&#160;:</term>
 <listitem><simpara>queue whose hook should be returned.

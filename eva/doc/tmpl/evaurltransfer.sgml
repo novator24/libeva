@@ -1,12 +1,12 @@
 <!-- ##### SECTION Title ##### -->
-GskUrlTransfer
+EvaUrlTransfer
 
 <!-- ##### SECTION Short_Description ##### -->
 Transfer data with a location by URL.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-A GskUrlTransfer represents a single upload and/or download with
+A EvaUrlTransfer represents a single upload and/or download with
 a resource designed by a URL.  Although most of the interface
 is URL-scheme independent, for convenience we allow users to see
 the URL-specific portions as well.
@@ -16,7 +16,7 @@ Some types of URLs are download only,
 and others support upload, but possibly not at the same time.
 </para>
 <para>
-The basic plan is to make a #GskUrlTransfer
+The basic plan is to make a #EvaUrlTransfer
 object.  If you wish to upload, provide a way of constructing 
 an upload content-stream.  If you wish to download, provide a function
 that will be called with the downloading content-stream.
@@ -38,7 +38,7 @@ exactly once, after or during the invocation of eva_url_transfer_start().
 </para>
 <para>
 Internally, the URL-transfer code maintains a mapping from url-scheme to
-a list of GskUrlTransferClasses responsible for that type of URL.
+a list of EvaUrlTransferClasses responsible for that type of URL.
 When eva_url_transfer_new(url) is called, each handler for the url's scheme is tried in
 sequence until one is found that accepts the URL, or NULL will returned
 if no suitable class is found.
@@ -46,13 +46,13 @@ if no suitable class is found.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-#GskUrlTransferHttp.
+#EvaUrlTransferHttp.
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskUrlTransferRedirect ##### -->
+<!-- ##### STRUCT EvaUrlTransferRedirect ##### -->
 <para>
 A node in the linked-list of redirections we have receieved.
 </para>
@@ -63,7 +63,7 @@ A node in the linked-list of redirections we have receieved.
 @response: the response object.
 @next: next redirect chronologically.
 
-<!-- ##### ENUM GskUrlTransferResult ##### -->
+<!-- ##### ENUM EvaUrlTransferResult ##### -->
 <para>
 The result element of transfer is prepared before
 the user's done-handler is invoked and is a general indicator
@@ -123,7 +123,7 @@ Get a mixed-case human-readable name for the Transfer-Result.
 @Returns: the name as an ASCII string.
 
 
-<!-- ##### USER_FUNCTION GskUrlTransferFunc ##### -->
+<!-- ##### USER_FUNCTION EvaUrlTransferFunc ##### -->
 <para>
 A function that is called when the transfer is "done".
 This function is called if the transfer is successful,
@@ -138,7 +138,7 @@ It will only be called after eva_url_transfer_start() returns TRUE.
 or eva_url_transfer_set_handler().
 
 
-<!-- ##### USER_FUNCTION GskUrlUploadFunc ##### -->
+<!-- ##### USER_FUNCTION EvaUrlUploadFunc ##### -->
 <para>
 In order to upload content and still follow redirects,
 we need to be able to make any number of upload streams.
@@ -160,7 +160,7 @@ and indicates that the length is not known in advance.
 @Returns: a newly allocated stream, or NULL if an error occurs.
 
 
-<!-- ##### STRUCT GskUrlTransfer ##### -->
+<!-- ##### STRUCT EvaUrlTransfer ##### -->
 <para>
 A GObject that represents a transfer of data with the entity responsible
 for that type of URL.

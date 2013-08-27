@@ -13,7 +13,7 @@ any type of data.
 <para>
 The primary interesting feature is
 that one can iterate the trees in a robust manner
-using the #GskTreeNode, which takes the place of an iterator.
+using the #EvaTreeNode, which takes the place of an iterator.
 In particular, when walking around the tree,
 any nodes which are being visited cannot be destroyed
 until their are no more visitors.  Even though the nodes
@@ -36,15 +36,15 @@ return the new node???
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskTreeNode ##### -->
+<!-- ##### STRUCT EvaTreeNode ##### -->
 <para>
 An opaque type representing a node of the tree.
-You should not hold on to a #GskTreeNode unless you
+You should not hold on to a #EvaTreeNode unless you
 "own" a visit count on the node.
 </para>
 
 
-<!-- ##### STRUCT GskTree ##### -->
+<!-- ##### STRUCT EvaTree ##### -->
 <para>
 A map from keys to values implemented as a Red-Black tree.
 </para>

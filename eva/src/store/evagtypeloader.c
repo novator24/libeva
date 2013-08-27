@@ -8,28 +8,28 @@ typedef struct _TypeTest TypeTest;
 struct _TypeTest
 {
   gpointer test_data;
-  GskTestTypeFunc test_func;
+  EvaTestTypeFunc test_func;
   TypeTest *next;
   GDestroyNotify destroy;
 };
 
-struct _GskGtypeLoader
+struct _EvaGtypeLoader
 {
   int ref_count;
   TypeTest *first_test;
   TypeTest *last_test;
 
-  GskLoadTypeFunc load_type_func;
+  EvaLoadTypeFunc load_type_func;
   gpointer load_type_data;
   GDestroyNotify load_type_destroy;
 };
 
-GskGtypeLoader *
+EvaGtypeLoader *
 eva_gtype_loader_new (void)
 {
-  GskGtypeLoader *loader;
+  EvaGtypeLoader *loader;
 
-  loader = g_new0 (GskGtypeLoader, 1);
+  loader = g_new0 (EvaGtypeLoader, 1);
   loader->ref_count = 1;
   return loader;
 }
@@ -41,7 +41,7 @@ test_type_is_a (GType type, gpointer is_a_type)
 }
 
 void
-eva_gtype_loader_add_type (GskGtypeLoader *loader, GType type)
+eva_gtype_loader_add_type (EvaGtypeLoader *loader, GType type)
 {
   eva_gtype_loader_add_test (loader,
 			     test_type_is_a,
@@ -50,8 +50,8 @@ eva_gtype_loader_add_type (GskGtypeLoader *loader, GType type)
 }
 
 void
-eva_gtype_loader_add_test (GskGtypeLoader  *loader,
-			   GskTestTypeFunc  type_func,
+eva_gtype_loader_add_test (EvaGtypeLoader  *loader,
+			   EvaTestTypeFunc  type_func,
 			   gpointer         test_data,
 			   GDestroyNotify   test_destroy)
 {
@@ -68,7 +68,7 @@ eva_gtype_loader_add_test (GskGtypeLoader  *loader,
 }
 
 gboolean
-eva_gtype_loader_test_type (GskGtypeLoader *loader, GType type)
+eva_gtype_loader_test_type (EvaGtypeLoader *loader, GType type)
 {
   TypeTest *test;
   for (test = loader->first_test; test != NULL; test = test->next)
@@ -78,8 +78,8 @@ eva_gtype_loader_test_type (GskGtypeLoader *loader, GType type)
 }
 
 void
-eva_gtype_loader_set_loader (GskGtypeLoader      *loader,
-			     GskLoadTypeFunc  load_type_func,
+eva_gtype_loader_set_loader (EvaGtypeLoader      *loader,
+			     EvaLoadTypeFunc  load_type_func,
 			     gpointer           load_type_data,
 			     GDestroyNotify     load_type_destroy)
 {
@@ -91,7 +91,7 @@ eva_gtype_loader_set_loader (GskGtypeLoader      *loader,
 }
 
 GType
-eva_gtype_loader_load_type (GskGtypeLoader  *loader,
+eva_gtype_loader_load_type (EvaGtypeLoader  *loader,
 			  const char    *type_name,
 			  GError       **error)
 {
@@ -102,14 +102,14 @@ eva_gtype_loader_load_type (GskGtypeLoader  *loader,
 }
 
 void
-eva_gtype_loader_ref (GskGtypeLoader *loader)
+eva_gtype_loader_ref (EvaGtypeLoader *loader)
 {
   g_return_if_fail (loader->ref_count > 0);
   ++loader->ref_count;
 }
 
 void
-eva_gtype_loader_unref (GskGtypeLoader *loader)
+eva_gtype_loader_unref (EvaGtypeLoader *loader)
 {
   g_return_if_fail (loader->ref_count > 0);
   if (--loader->ref_count == 0)
@@ -139,9 +139,9 @@ return_true (GType type, gpointer data)
   return TRUE;
 }
 
-static GskGtypeLoader *default_config = NULL;
+static EvaGtypeLoader *default_config = NULL;
 
-GskGtypeLoader *
+EvaGtypeLoader *
 eva_gtype_loader_default (void)
 {
   if (!default_config)

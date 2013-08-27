@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskImapClient
+EvaImapClient
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -14,7 +14,7 @@ GskImapClient
 
 </para>
 
-<!-- ##### ENUM GskImapClientState ##### -->
+<!-- ##### ENUM EvaImapClientState ##### -->
 <para>
 
 </para>

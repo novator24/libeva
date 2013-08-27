@@ -19,43 +19,43 @@ G_BEGIN_DECLS
 
      - ...
 
-     - make a GskTableTree type for managing hierarchical data 
+     - make a EvaTableTree type for managing hierarchical data 
        like this, to clean it up (pretty hard!)
  */
 
 /* class to help run an http server */
 
 /* opaque class */
-typedef struct _GskHttpContentHandler GskHttpContentHandler;
-typedef struct _GskHttpContent GskHttpContent;
-typedef struct _GskHttpContentId GskHttpContentId;
+typedef struct _EvaHttpContentHandler EvaHttpContentHandler;
+typedef struct _EvaHttpContent EvaHttpContent;
+typedef struct _EvaHttpContentId EvaHttpContentId;
 
 typedef enum
 {
   EVA_HTTP_CONTENT_OK,
   EVA_HTTP_CONTENT_CHAIN,
   EVA_HTTP_CONTENT_ERROR        /* causes a 500 error to result */
-} GskHttpContentResult;
+} EvaHttpContentResult;
 
-typedef GskHttpContentResult (*GskHttpContentFunc)    (GskHttpContent   *content,
-                                                       GskHttpContentHandler *handler,
-                                                       GskHttpServer  *server,
-                                                       GskHttpRequest *request,
-                                                       GskStream      *post_data,
+typedef EvaHttpContentResult (*EvaHttpContentFunc)    (EvaHttpContent   *content,
+                                                       EvaHttpContentHandler *handler,
+                                                       EvaHttpServer  *server,
+                                                       EvaHttpRequest *request,
+                                                       EvaStream      *post_data,
                                                        gpointer        data);
 
 
 /* note: CGIs cannot chain */
-typedef void                 (*GskHttpContentCGIFunc) (GskHttpContent   *content,
-                                                       GskHttpContentHandler *handler,
-                                                       GskHttpServer  *server,
-                                                       GskHttpRequest *request,
+typedef void                 (*EvaHttpContentCGIFunc) (EvaHttpContent   *content,
+                                                       EvaHttpContentHandler *handler,
+                                                       EvaHttpServer  *server,
+                                                       EvaHttpRequest *request,
 					               guint           n_vars,
-					               GskMimeMultipartPiece **vars,
+					               EvaMimeMultipartPiece **vars,
                                                        gpointer        data);
 
 
-struct _GskHttpContentId
+struct _EvaHttpContentId
 {
   const char *host;
   const char *user_agent_prefix;
@@ -75,19 +75,19 @@ struct _GskHttpContentId
       without user_agent, with path
       without user_agent, no path or host */
 
-GskHttpContent *eva_http_content_new     (void);
-GskHttpContentHandler *
-eva_http_content_handler_new     (GskHttpContentFunc    func,
+EvaHttpContent *eva_http_content_new     (void);
+EvaHttpContentHandler *
+eva_http_content_handler_new     (EvaHttpContentFunc    func,
                                   gpointer              data,
                                   GDestroyNotify        destroy);
 
-GskHttpContentHandler *
-eva_http_content_handler_new_cgi (GskHttpContentCGIFunc func,
+EvaHttpContentHandler *
+eva_http_content_handler_new_cgi (EvaHttpContentCGIFunc func,
                                   gpointer              data,
                                   GDestroyNotify        destroy);
 
-void eva_http_content_handler_ref  (GskHttpContentHandler *handler);
-void eva_http_content_handler_unref(GskHttpContentHandler *handler);
+void eva_http_content_handler_ref  (EvaHttpContentHandler *handler);
+void eva_http_content_handler_unref(EvaHttpContentHandler *handler);
 
 
 typedef enum
@@ -95,49 +95,49 @@ typedef enum
   EVA_HTTP_CONTENT_PREPEND,
   EVA_HTTP_CONTENT_APPEND,
   EVA_HTTP_CONTENT_REPLACE
-} GskHttpContentAction;
+} EvaHttpContentAction;
 
-void           eva_http_content_add_handler  (GskHttpContent          *content,
-                                              const GskHttpContentId  *id,
-                                              GskHttpContentHandler   *handler,
-                                              GskHttpContentAction     action);
+void           eva_http_content_add_handler  (EvaHttpContent          *content,
+                                              const EvaHttpContentId  *id,
+                                              EvaHttpContentHandler   *handler,
+                                              EvaHttpContentAction     action);
 
-void           eva_http_content_set_mime_type(GskHttpContent *content,
+void           eva_http_content_set_mime_type(EvaHttpContent *content,
                                               const char     *prefix,
                                               const char     *suffix,
 					      const char     *type,
 					      const char     *subtype);
 void           eva_http_content_set_default_mime_type
-                                             (GskHttpContent *content,
+                                             (EvaHttpContent *content,
 					      const char     *type,
 					      const char     *subtype);
-gboolean       eva_http_content_get_mime_type(GskHttpContent *content,
+gboolean       eva_http_content_get_mime_type(EvaHttpContent *content,
                                               const char     *path,
 					      const char    **type_out,
 					      const char    **subtype_out);
-void       eva_http_content_set_idle_timeout (GskHttpContent *content);
+void       eva_http_content_set_idle_timeout (EvaHttpContent *content);
 
-typedef void (*GskHttpContentErrorHandler)(GskHttpContent          *content,
+typedef void (*EvaHttpContentErrorHandler)(EvaHttpContent          *content,
                                            GError                  *error,
-                                           GskHttpServer           *server,
-                                           GskHttpRequest          *request,
-                                           GskHttpStatus            code,
+                                           EvaHttpServer           *server,
+                                           EvaHttpRequest          *request,
+                                           EvaHttpStatus            code,
                                            gpointer                 data);
 
-void eva_http_content_set_error_handler  (GskHttpContent          *content,
-                                          GskHttpContentErrorHandler handler,
+void eva_http_content_set_error_handler  (EvaHttpContent          *content,
+                                          EvaHttpContentErrorHandler handler,
                                           gpointer                 data,
                                           GDestroyNotify           destroy);
 
 /* helpers */
-void           eva_http_content_add_data (GskHttpContent          *content,
-                                          const GskHttpContentId  *id,
+void           eva_http_content_add_data (EvaHttpContent          *content,
+                                          const EvaHttpContentId  *id,
                                           gconstpointer            data,
 					  guint                    data_len,
 					  gpointer                 destroy_data,
 				          GDestroyNotify           destroy);
 void           eva_http_content_add_data_by_path
-                                         (GskHttpContent          *content,
+                                         (EvaHttpContent          *content,
                                           const char              *path,
                                           gconstpointer            data,
 					  guint                    data_len,
@@ -148,30 +148,30 @@ typedef enum
   EVA_HTTP_CONTENT_FILE_EXACT,
   EVA_HTTP_CONTENT_FILE_DIR,
   EVA_HTTP_CONTENT_FILE_DIR_TREE
-} GskHttpContentFileType;
-void           eva_http_content_add_file (GskHttpContent          *content,
+} EvaHttpContentFileType;
+void           eva_http_content_add_file (EvaHttpContent          *content,
                                           const char              *path,
 					  const char              *fs_path,
-					  GskHttpContentFileType   type);
+					  EvaHttpContentFileType   type);
 
 /* note: id must include a path_prefix */
 void           eva_http_content_add_file_by_id
-                                         (GskHttpContent          *content,
-                                          const GskHttpContentId  *id,
+                                         (EvaHttpContent          *content,
+                                          const EvaHttpContentId  *id,
 					  const char              *fs_path,
-					  GskHttpContentFileType   type);
+					  EvaHttpContentFileType   type);
 
 
 /* --- serving pages --- */
-gboolean eva_http_content_listen (GskHttpContent *content,
-                                  GskSocketAddress *address,
+gboolean eva_http_content_listen (EvaHttpContent *content,
+                                  EvaSocketAddress *address,
                                   GError          **error);
-void eva_http_content_respond    (GskHttpContent *content,
-                                  GskHttpServer  *server,
-                                  GskHttpRequest *request,
-			          GskStream      *post_data);
-void eva_http_content_manage_server (GskHttpContent *content,
-                                     GskHttpServer  *server);
+void eva_http_content_respond    (EvaHttpContent *content,
+                                  EvaHttpServer  *server,
+                                  EvaHttpRequest *request,
+			          EvaStream      *post_data);
+void eva_http_content_manage_server (EvaHttpContent *content,
+                                     EvaHttpServer  *server);
 
 G_END_DECLS
 

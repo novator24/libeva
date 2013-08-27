@@ -39,7 +39,7 @@ typedef struct
 {
   char *host;
   guint port;
-  GskSocketAddress *address;
+  EvaSocketAddress *address;
   GHookList traps;
   gboolean doing_name_lookup;
 } HostPort;
@@ -73,9 +73,9 @@ host_port_init (HostPort *hp)
 }
 
 static void
-connect_to_stdio (GskStream *str, gboolean terminate_on_input_death)
+connect_to_stdio (EvaStream *str, gboolean terminate_on_input_death)
 {
-  GskStream *in, *out;
+  EvaStream *in, *out;
   GError *error  =NULL;
   in = eva_stream_fd_new_auto (STDIN_FILENO);
   out = eva_stream_fd_new_auto (STDOUT_FILENO);
@@ -95,7 +95,7 @@ void
 setup_client (void)
 {
   GError *error = NULL;
-  GskStream *str;
+  EvaStream *str;
   if (client_hostport.port == 0 || client_hostport.host == NULL)
     g_error ("client usage error: you must specify a host and port");
   client_hostport.address = eva_socket_address_symbolic_ipv4_new (client_hostport.host,
@@ -107,7 +107,7 @@ setup_client (void)
 
   if (use_ssl)
     {
-      GskStream *ssl_client = eva_stream_ssl_new_client (ssl_cert,
+      EvaStream *ssl_client = eva_stream_ssl_new_client (ssl_cert,
                                                          ssl_key,
                                                          ssl_password,
                                                          str, &error);
@@ -124,7 +124,7 @@ setup_client (void)
 
 /* --- Server --- */
 static gboolean
-handle_server_listener_accept (GskStream *new_connection,
+handle_server_listener_accept (EvaStream *new_connection,
                                gpointer data,
                                GError **error)
 {
@@ -143,8 +143,8 @@ void
 setup_server (void)
 {
   /* Create the listener, either regular, or with SSL. */
-  GskSocketAddress *address;
-  GskStreamListener *listener;
+  EvaSocketAddress *address;
+  EvaStreamListener *listener;
   GError *error = NULL;
 
   address = eva_socket_address_ipv4_new (eva_ipv4_ip_address_any, server_port);
@@ -154,7 +154,7 @@ setup_server (void)
   g_object_unref (address);
   if (use_ssl)
     {
-      GskStreamListener *ssl_listener = eva_stream_listener_ssl_new (listener, ssl_cert, ssl_key);
+      EvaStreamListener *ssl_listener = eva_stream_listener_ssl_new (listener, ssl_cert, ssl_key);
       /* XXX: don't we need to handle ssl_password???? */
       g_object_unref (listener);
       listener = ssl_listener;

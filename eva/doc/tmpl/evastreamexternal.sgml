@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskStreamExternal
+EvaStreamExternal
 
 <!-- ##### SECTION Short_Description ##### -->
 streams which connect to another process.
@@ -19,7 +19,7 @@ another process which is exec(2)'d from this one.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### USER_FUNCTION GskStreamExternalTerminated ##### -->
+<!-- ##### USER_FUNCTION EvaStreamExternalTerminated ##### -->
 <para>
 Function to run when the process underlying the stream is terminated.
 </para>
@@ -29,7 +29,7 @@ Function to run when the process underlying the stream is terminated.
 @user_data: passed in from eva_stream_external_new().
 
 
-<!-- ##### USER_FUNCTION GskStreamExternalStderr ##### -->
+<!-- ##### USER_FUNCTION EvaStreamExternalStderr ##### -->
 <para>
 Function to be run with single lines taken from standard-error
 of the subprocess.  The line has had the newline chopped from it.
@@ -40,7 +40,7 @@ of the subprocess.  The line has had the newline chopped from it.
 @user_data: passed in from eva_stream_external_new().
 
 
-<!-- ##### STRUCT GskStreamExternal ##### -->
+<!-- ##### STRUCT EvaStreamExternal ##### -->
 <para>
 Instance of an object whose input and output come
 from another process.
@@ -68,7 +68,7 @@ standard-error of the child process).
 @err_func: function to call with standard error data.
 @user_data: parameter to pass to @term_func and @err_func.
 
-<!-- ##### ENUM GskStreamExternalFlags ##### -->
+<!-- ##### ENUM EvaStreamExternalFlags ##### -->
 <para>
 Flags which affect the construction of the stream.
 </para>

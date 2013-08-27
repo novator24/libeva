@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskHttpHeader
+EvaHttpHeader
 
 <!-- ##### SECTION Short_Description ##### -->
 Base class for HTTP headers.
@@ -12,13 +12,13 @@ examime HTTP requests and responses.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-GskHttpRequest, GskHttpResponse
+EvaHttpRequest, EvaHttpResponse
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskHttpAuthorization ##### -->
+<!-- ##### STRUCT EvaHttpAuthorization ##### -->
 <para>
   A response to a Authenticate: challenge.
   This string may provide a cryptographic proof that the
@@ -41,7 +41,7 @@ GskHttpRequest, GskHttpResponse
 @mode: 
 @auth_scheme_name: 
 
-<!-- ##### STRUCT GskHttpAuthenticate ##### -->
+<!-- ##### STRUCT EvaHttpAuthenticate ##### -->
 <para>
 XXX: should be a list of possible authenification strategies.
 </para>
@@ -56,7 +56,7 @@ parameters applicable to the Request-URI.
 @auth_scheme_name: 
 @realm: 
 
-<!-- ##### STRUCT GskHttpCharSet ##### -->
+<!-- ##### STRUCT EvaHttpCharSet ##### -->
 <para>
 A character set, along with optional quality factor.
 The default quality is 1.0.  See also eva_http_request_add_charsets()
@@ -73,7 +73,7 @@ RFC 2277 "IETF Policy on Character Sets and Languages".
 @charset_name: the name of the character set, as recommended by IETF policy.
 @quality: ranking of the character set, on a range from 0 to 1.
 
-<!-- ##### STRUCT GskHttpCookie ##### -->
+<!-- ##### STRUCT EvaHttpCookie ##### -->
 <para>
 See RFC 2964 "Use of HTTP State Management"
 and RFC 2965 "HTTP State Management Mechanism".
@@ -89,7 +89,7 @@ and RFC 2965 "HTTP State Management Mechanism".
 @secure: 
 @version: 
 
-<!-- ##### STRUCT GskHttpLanguageSet ##### -->
+<!-- ##### STRUCT EvaHttpLanguageSet ##### -->
 <para>
 A list of natural languages that may be acceptable
 to the client.  Examples: en, en-US, en-cockney, i-cherokee, x-pig-latin.
@@ -105,7 +105,7 @@ Any two-letter subtag ('US') must be an ISO-3166 country abbreviation.
 @language: the ASCII text of the language name.
 @quality: quality from 0 to 1, or -1 for unspecified.
 
-<!-- ##### STRUCT GskHttpMediaTypeSet ##### -->
+<!-- ##### STRUCT EvaHttpMediaTypeSet ##### -->
 <para>
 A list of media types that the client can handle, and
 some quality factors to break ties.
@@ -117,7 +117,7 @@ May be "*" to mean any major type.
 May be "*" to mean any subtype.
 @quality: quality from 0 to 1, or -1 for unspecified.
 
-<!-- ##### STRUCT GskHttpContentEncodingSet ##### -->
+<!-- ##### STRUCT EvaHttpContentEncodingSet ##### -->
 <para>
 A node in a list of content-encodings allowed by the server.
 Each element may have an associated quality.
@@ -128,7 +128,7 @@ comparison purposes it should be treated at +1.
 @encoding: the encoding being rated.
 @quality: quality from 0 to 1, or -1 for unspecified.
 
-<!-- ##### STRUCT GskHttpTransferEncodingSet ##### -->
+<!-- ##### STRUCT EvaHttpTransferEncodingSet ##### -->
 <para>
 A node in a list of transfer-encodings allowed by the server.
 Each element may have an associated quality.
@@ -139,7 +139,7 @@ comparison purposes it should be treated at +1.
 @encoding: the encoding being rated.
 @quality: quality from 0 to 1, or -1 for unspecified.
 
-<!-- ##### STRUCT GskHttpRangeSet ##### -->
+<!-- ##### STRUCT EvaHttpRangeSet ##### -->
 <para>
 A node in a list of range-specifiers allowed by the server.
 Each element may have an associated quality.
@@ -153,7 +153,7 @@ one valid unit allowed, 'bytes'.
 
 @range_type: the units permitted for partial content requests.
 
-<!-- ##### ENUM GskHttpStatus ##### -->
+<!-- ##### ENUM EvaHttpStatus ##### -->
 <para>
 Status code corresponding to the number on the
 first line of an HTTP response. This enum
@@ -650,7 +650,7 @@ takes on the same numerical value.
    an entity describing why that version is not supported and what other
    protocols are supported by that server.
 
-<!-- ##### ENUM GskHttpVerb ##### -->
+<!-- ##### ENUM EvaHttpVerb ##### -->
 <para>
 The type of action requested by the User or User-Agent.
 It is common practice that GET and HEAD requests
@@ -904,7 +904,7 @@ have this property, as well as the safe methods GET and HEAD.
    proxy that can dynamically switch to being a tunnel (e.g. SSL
    tunneling [44]).
 
-<!-- ##### ENUM GskHttpRange ##### -->
+<!-- ##### ENUM EvaHttpRange ##### -->
 <para>
 This gives units, or allowed units, for the Content-Range.
 This is used when you want to retreive part of a document.
@@ -918,7 +918,7 @@ Currently, only bytes are allowed.
 Indicate that the range of the partial content will be given in
 bytes.
 
-<!-- ##### ENUM GskHttpContentEncoding ##### -->
+<!-- ##### ENUM EvaHttpContentEncoding ##### -->
 <para>
 This gives ways in which content can be encoded.
 The default encoding is "identity", which means that the
@@ -947,7 +947,7 @@ There is no RFC corresponding to this format.
 @EVA_HTTP_CONTENT_ENCODING_UNRECOGNIZED: 
 An unrecognized type of content-encoding was requested.
 
-<!-- ##### ENUM GskHttpTransferEncoding ##### -->
+<!-- ##### ENUM EvaHttpTransferEncoding ##### -->
 <para>
    [RFC 2616, Section 3.6]
    Transfer-coding values are used to indicate an encoding
@@ -962,7 +962,7 @@ The data is transferred in length-prefixed packets.
 @EVA_HTTP_TRANSFER_ENCODING_UNRECOGNIZED: 
 An unrecognized transfer encoding was received.
 
-<!-- ##### ENUM GskHttpConnection ##### -->
+<!-- ##### ENUM EvaHttpConnection ##### -->
 <para>
 Specify what should happen once the transaction is done.
 </para>
@@ -1246,14 +1246,14 @@ length in advance.
 @orig: 
 
 
-<!-- ##### STRUCT GskHttpHeaderClass ##### -->
+<!-- ##### STRUCT EvaHttpHeaderClass ##### -->
 <para>
 Virtual functions of HTTP headers (none, for now).
 </para>
 
 @base_class: object system.
 
-<!-- ##### STRUCT GskHttpHeader ##### -->
+<!-- ##### STRUCT EvaHttpHeader ##### -->
 <para>
 Base class for all HTTP headers.
 </para>
@@ -1309,87 +1309,87 @@ A list of strings from Pragma: header lines.
 A #GError that indicates what last went wrong with
 this header.  Usually NULL.
 
-<!-- ##### ARG GskHttpHeader:connection ##### -->
+<!-- ##### ARG EvaHttpHeader:connection ##### -->
 <para>
 The type of connection.  See eva_http_header_set_connection_type()
 for more documentation.
 </para>
 
-<!-- ##### ARG GskHttpHeader:connection-string ##### -->
+<!-- ##### ARG EvaHttpHeader:connection-string ##### -->
 <para>
 The type of connection as a string.
 </para>
 
-<!-- ##### ARG GskHttpHeader:content-charset ##### -->
+<!-- ##### ARG EvaHttpHeader:content-charset ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpHeader:content-encoding ##### -->
+<!-- ##### ARG EvaHttpHeader:content-encoding ##### -->
 <para>
-The way the content is encoded, see #GskHttpConnection
+The way the content is encoded, see #EvaHttpConnection
 for more documentation.
 </para>
 
-<!-- ##### ARG GskHttpHeader:content-encoding-string ##### -->
+<!-- ##### ARG EvaHttpHeader:content-encoding-string ##### -->
 <para>
 The way the content is encoded, as a string.  Typical
 values are "identity", "gzip" and "compress".
 </para>
 
-<!-- ##### ARG GskHttpHeader:content-length ##### -->
+<!-- ##### ARG EvaHttpHeader:content-length ##### -->
 <para>
 Length of content associated with this header.
 </para>
 
-<!-- ##### ARG GskHttpHeader:content-subtype ##### -->
+<!-- ##### ARG EvaHttpHeader:content-subtype ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpHeader:content-type ##### -->
+<!-- ##### ARG EvaHttpHeader:content-type ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpHeader:date ##### -->
+<!-- ##### ARG EvaHttpHeader:date ##### -->
 <para>
 the date of the content of this response.
 </para>
 
-<!-- ##### ARG GskHttpHeader:major-version ##### -->
+<!-- ##### ARG EvaHttpHeader:major-version ##### -->
 <para>
 major version number of the HTTP protocol.
 Always 1.
 </para>
 
-<!-- ##### ARG GskHttpHeader:minor-version ##### -->
+<!-- ##### ARG EvaHttpHeader:minor-version ##### -->
 <para>
 minor version number of the HTTP protocol.
 Always 0 or 1, usually 1, indicating HTTP/1.1.
 </para>
 
-<!-- ##### ARG GskHttpHeader:range-end ##### -->
+<!-- ##### ARG EvaHttpHeader:range-end ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpHeader:range-start ##### -->
+<!-- ##### ARG EvaHttpHeader:range-start ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpHeader:transfer-encoding ##### -->
+<!-- ##### ARG EvaHttpHeader:transfer-encoding ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpHeader:transfer-encoding-string ##### -->
+<!-- ##### ARG EvaHttpHeader:transfer-encoding-string ##### -->
 <para>
 
 </para>
 
-<!-- ##### ENUM GskHttpParseFlags ##### -->
+<!-- ##### ENUM EvaHttpParseFlags ##### -->
 <para>
 Flags which affect how headers are parsed.
 </para>
@@ -1434,7 +1434,7 @@ the misc-headers hashtable.
 <!-- ##### FUNCTION eva_http_header_set_content_encoding ##### -->
 <para>
 Set encoding method for the content.
-The actual encoding is done transparently by #GskHttpClient and #GskHttpServer usually.
+The actual encoding is done transparently by #EvaHttpClient and #EvaHttpServer usually.
 Encoding is only used for POST and PUT requests
 and any response that has a body (most do).
 The default is the identity encoding.
@@ -1447,7 +1447,7 @@ The default is the identity encoding.
 <!-- ##### MACRO eva_http_header_get_content_encoding ##### -->
 <para>
 Get encoding method for the content.
-(The actual encoding is done transparently by #GskHttpClient and #GskHttpServer usually.)
+(The actual encoding is done transparently by #EvaHttpClient and #EvaHttpServer usually.)
 </para>
 
 @header: the header to query.
@@ -1504,7 +1504,7 @@ in [RFC 2616, Section 14.18].
 @key: 
 
 
-<!-- ##### STRUCT GskHttpHeaderLineParser ##### -->
+<!-- ##### STRUCT EvaHttpHeaderLineParser ##### -->
 <para>
 A structure giving a HTTP header line field-name,
 and a function to parse the value of that kind of field.
@@ -1517,7 +1517,7 @@ then this function will be called with "Thu Jun  5 06:27:39 PDT 2003",
 and a header to add that information to.
 @data: data to pass to function.
 
-<!-- ##### USER_FUNCTION GskHttpHeaderLineParserFunc ##### -->
+<!-- ##### USER_FUNCTION EvaHttpHeaderLineParserFunc ##### -->
 <para>
 A function to be invoked with the value of a specific type of header-line.
 This will add information to @header frequently.
@@ -1528,7 +1528,7 @@ If it encounters a parse error, it can indicate that by returning FALSE.
 @text: value of the header line.  That is, everything that follows
 the initial colon and space(s).  So for the header line "Content-Length: 42",
 the @text should merely be "42".
-@data: pointer from the #GskHttpHeaderLineParser to give auxilliary info.
+@data: pointer from the #EvaHttpHeaderLineParser to give auxilliary info.
 @Returns: whether it was able to process the value.
 
 
@@ -1541,7 +1541,7 @@ the @text should merely be "42".
 @Returns: 
 
 
-<!-- ##### USER_FUNCTION GskHttpHeaderPrintFunc ##### -->
+<!-- ##### USER_FUNCTION EvaHttpHeaderPrintFunc ##### -->
 <para>
 Function to print a line of HTTP header data.
 </para>

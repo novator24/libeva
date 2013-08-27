@@ -12,11 +12,11 @@ typedef enum
   /* trap SIGILL, SIGABRT, SIGSEGV, SIGIOT, SIGBUG, SIGFPE (where available) */
   EVA_DAEMONIZE_RESTART_ERROR_SIGNALS = (1<<1),
   EVA_DAEMONIZE_SUPPORT_RESTART_EXIT_CODE = (1<<2)
-} GskDaemonizeFlags;
+} EvaDaemonizeFlags;
 
 #define EVA_DAEMONIZE_DEFAULT_RESTART_EXIT_CODE         100
 
-void eva_daemonize_set_defaults  (GskDaemonizeFlags flags,
+void eva_daemonize_set_defaults  (EvaDaemonizeFlags flags,
                                   guint             restart_exit_code);
 void eva_daemonize_set_pid_filename (const char *filename);
 void eva_daemonize_parse_options (int              *argc_inout,

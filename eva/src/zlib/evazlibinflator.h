@@ -6,33 +6,33 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskZlibInflator GskZlibInflator;
-typedef struct _GskZlibInflatorClass GskZlibInflatorClass;
+typedef struct _EvaZlibInflator EvaZlibInflator;
+typedef struct _EvaZlibInflatorClass EvaZlibInflatorClass;
 /* --- type macros --- */
 GType eva_zlib_inflator_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_ZLIB_INFLATOR			(eva_zlib_inflator_get_type ())
-#define EVA_ZLIB_INFLATOR(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_ZLIB_INFLATOR, GskZlibInflator))
-#define EVA_ZLIB_INFLATOR_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_ZLIB_INFLATOR, GskZlibInflatorClass))
-#define EVA_ZLIB_INFLATOR_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_ZLIB_INFLATOR, GskZlibInflatorClass))
+#define EVA_ZLIB_INFLATOR(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_ZLIB_INFLATOR, EvaZlibInflator))
+#define EVA_ZLIB_INFLATOR_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_ZLIB_INFLATOR, EvaZlibInflatorClass))
+#define EVA_ZLIB_INFLATOR_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_ZLIB_INFLATOR, EvaZlibInflatorClass))
 #define EVA_IS_ZLIB_INFLATOR(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_ZLIB_INFLATOR))
 #define EVA_IS_ZLIB_INFLATOR_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_ZLIB_INFLATOR))
 
 /* --- structures --- */
-struct _GskZlibInflatorClass 
+struct _EvaZlibInflatorClass 
 {
-  GskStreamClass stream_class;
+  EvaStreamClass stream_class;
 };
-struct _GskZlibInflator 
+struct _EvaZlibInflator 
 {
-  GskStream      stream;
+  EvaStream      stream;
   gpointer       private_stream;
-  GskBuffer      decompressed;
+  EvaBuffer      decompressed;
   gboolean       use_gzip;
 };
 
 /* --- prototypes --- */
-GskStream *eva_zlib_inflator_new (void);
-GskStream *eva_zlib_inflator_new2 (gboolean use_gzip);
+EvaStream *eva_zlib_inflator_new (void);
+EvaStream *eva_zlib_inflator_new2 (gboolean use_gzip);
 
 G_END_DECLS
 

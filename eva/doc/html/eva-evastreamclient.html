@@ -6,8 +6,8 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch01.html" title="Core Library Support">
-<link rel="prev" href="GskStreamListener.html" title="Listening for Connections">
-<link rel="next" href="GskSocketAddress.html" title="Socket Addresses.">
+<link rel="prev" href="EvaStreamListener.html" title="Listening for Connections">
+<link rel="next" href="EvaSocketAddress.html" title="Socket Addresses.">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -30,11 +30,11 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskStreamListener.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaStreamListener.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="GskSocketAddress.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="EvaSocketAddress.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#eva-evastreamclient.synopsis" class="shortcut">Top</a>
@@ -47,14 +47,14 @@
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2><span class="refentrytitle"><a name="eva-evastreamclient.top_of_page"></a>Client Stream</span></h2>
-<p>Client Stream — Create a GskStream which is connecting to a remote address.</p>
+<p>Client Stream — Create a EvaStream which is connecting to a remote address.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
 <a name="eva-evastreamclient.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-<a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         <a class="link" href="eva-evastreamclient.html#eva-stream-new-connecting" title="eva_stream_new_connecting ()">eva_stream_new_connecting</a>           (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address,
+<a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         <a class="link" href="eva-evastreamclient.html#eva-stream-new-connecting" title="eva_stream_new_connecting ()">eva_stream_new_connecting</a>           (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
@@ -63,7 +63,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <div class="refsect1" lang="en">
 <a name="eva-evastreamclient.description"></a><h2>Description</h2>
 <p>
-A simple method to create a GskStream which is connecting
+A simple method to create a EvaStream which is connecting
 to a remote address, without any of the low-level hassles.
 </p>
 </div>
@@ -71,7 +71,7 @@ to a remote address, without any of the low-level hassles.
 <a name="eva-evastreamclient.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
 <a name="eva-stream-new-connecting"></a><h3>eva_stream_new_connecting ()</h3>
-<pre class="programlisting"><a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *         eva_stream_new_connecting           (<a class="link" href="GskSocketAddress.html" title="Socket Addresses.">GskSocketAddress</a> *address,
+<pre class="programlisting"><a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *         eva_stream_new_connecting           (<a class="link" href="EvaSocketAddress.html" title="Socket Addresses.">EvaSocketAddress</a> *address,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>

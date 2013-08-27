@@ -13,7 +13,7 @@ static GObjectClass *parent_class = NULL;
 /* epoll_create() etc based main-loop.
 
    Note that we use Level-Triggered behavior,
-   not edge-triggered, since that is how GskMainLoops are.
+   not edge-triggered, since that is how EvaMainLoops are.
  */
 
 #define EPOLL_INITIAL_SIZE	2048
@@ -28,11 +28,11 @@ op_to_string (int op)
        : "op-unknown";
 }
 
-/* --- GskMainLoopPollBase methods --- */
+/* --- EvaMainLoopPollBase methods --- */
 static gboolean
-eva_main_loop_epoll_setup  (GskMainLoop       *main_loop)
+eva_main_loop_epoll_setup  (EvaMainLoop       *main_loop)
 {
-  GskMainLoopClass *pclass = EVA_MAIN_LOOP_CLASS (parent_class);
+  EvaMainLoopClass *pclass = EVA_MAIN_LOOP_CLASS (parent_class);
   int fd;
   if (pclass->setup != NULL)
     if (!(*pclass->setup) (main_loop))
@@ -46,12 +46,12 @@ eva_main_loop_epoll_setup  (GskMainLoop       *main_loop)
 }
 
 static void
-eva_main_loop_epoll_config_fd (GskMainLoopPollBase   *main_loop,
+eva_main_loop_epoll_config_fd (EvaMainLoopPollBase   *main_loop,
                                int                    fd,
 			       GIOCondition           old_io_conditions,
                                GIOCondition           io_conditions)
 {
-  GskMainLoopEpoll *epoll = EVA_MAIN_LOOP_EPOLL (main_loop);
+  EvaMainLoopEpoll *epoll = EVA_MAIN_LOOP_EPOLL (main_loop);
   int op = (io_conditions == 0) ? EPOLL_CTL_DEL
          : (old_io_conditions == 0) ? EPOLL_CTL_ADD
 	 : EPOLL_CTL_MOD;
@@ -71,13 +71,13 @@ eva_main_loop_epoll_config_fd (GskMainLoopPollBase   *main_loop,
 }
 
 static gboolean
-eva_main_loop_epoll_do_polling (GskMainLoopPollBase   *main_loop,
+eva_main_loop_epoll_do_polling (EvaMainLoopPollBase   *main_loop,
                                 int                    max_timeout,
                                 guint                  max_events,
                                 guint                 *num_events_out,
-                                GskMainLoopEvent      *events)
+                                EvaMainLoopEvent      *events)
 {
-  GskMainLoopEpoll *main_loop_epoll = EVA_MAIN_LOOP_EPOLL (main_loop);
+  EvaMainLoopEpoll *main_loop_epoll = EVA_MAIN_LOOP_EPOLL (main_loop);
   struct epoll_event *e_events = main_loop_epoll->epoll_events;
   int n_events;
   int i;
@@ -126,7 +126,7 @@ eva_main_loop_epoll_do_polling (GskMainLoopPollBase   *main_loop,
 static void
 eva_main_loop_epoll_finalize (GObject *object)
 {
-  GskMainLoopEpoll *main_loop_epoll = EVA_MAIN_LOOP_EPOLL (object);
+  EvaMainLoopEpoll *main_loop_epoll = EVA_MAIN_LOOP_EPOLL (object);
   g_free (main_loop_epoll->epoll_events);
   (*parent_class->finalize) (object);
 }
@@ -134,7 +134,7 @@ eva_main_loop_epoll_finalize (GObject *object)
 
 /* --- functions --- */
 static void
-eva_main_loop_epoll_init (GskMainLoopEpoll *main_loop_epoll)
+eva_main_loop_epoll_init (EvaMainLoopEpoll *main_loop_epoll)
 {
 #if HAVE_EPOLL_SUPPORT
   main_loop_epoll->fd = -1;
@@ -143,11 +143,11 @@ eva_main_loop_epoll_init (GskMainLoopEpoll *main_loop_epoll)
 }
 
 static void
-eva_main_loop_epoll_class_init (GskMainLoopEpollClass *class)
+eva_main_loop_epoll_class_init (EvaMainLoopEpollClass *class)
 {
 #if HAVE_EPOLL_SUPPORT
-  GskMainLoopPollBaseClass *main_loop_poll_base_class = EVA_MAIN_LOOP_POLL_BASE_CLASS (class);
-  GskMainLoopClass *main_loop_class = EVA_MAIN_LOOP_CLASS (class);
+  EvaMainLoopPollBaseClass *main_loop_poll_base_class = EVA_MAIN_LOOP_POLL_BASE_CLASS (class);
+  EvaMainLoopClass *main_loop_class = EVA_MAIN_LOOP_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   main_loop_class->setup = eva_main_loop_epoll_setup;
   main_loop_poll_base_class->config_fd = eva_main_loop_epoll_config_fd;
@@ -164,19 +164,19 @@ GType eva_main_loop_epoll_get_type()
     {
       static const GTypeInfo main_loop_epoll_info =
       {
-	sizeof(GskMainLoopEpollClass),
+	sizeof(EvaMainLoopEpollClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_main_loop_epoll_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMainLoopEpoll),
+	sizeof (EvaMainLoopEpoll),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_main_loop_epoll_init,
 	NULL		/* value_table */
       };
       main_loop_epoll_type = g_type_register_static (EVA_TYPE_MAIN_LOOP_POLL_BASE,
-                                                  "GskMainLoopEpoll",
+                                                  "EvaMainLoopEpoll",
 						  &main_loop_epoll_info, 0);
     }
   return main_loop_epoll_type;

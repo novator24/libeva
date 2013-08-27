@@ -57,25 +57,25 @@
 </tr></table></div>
 <div class="refsynopsisdiv">
 <a name="eva-evadnsclient.synopsis"></a><h2>Synopsis</h2>
-<a name="GskDnsClient"></a><pre class="synopsis">
-                    <a class="link" href="eva-evadnsclient.html#GskDnsClient-struct" title="GskDnsClient">GskDnsClient</a>;
-                    <a class="link" href="eva-evadnsclient.html#GskDnsClientClass" title="GskDnsClientClass">GskDnsClientClass</a>;
-enum                <a class="link" href="eva-evadnsclient.html#GskDnsClientFlags" title="enum GskDnsClientFlags">GskDnsClientFlags</a>;
-<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *      <a class="link" href="eva-evadnsclient.html#eva-dns-client-new" title="eva_dns_client_new ()">eva_dns_client_new</a>                  (<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *packet_queue,
-                                                         <a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         <a class="link" href="eva-evadnsclient.html#GskDnsClientFlags" title="enum GskDnsClientFlags">GskDnsClientFlags</a> flags);
-void                <a class="link" href="eva-evadnsclient.html#eva-dns-client-add-searchpath" title="eva_dns_client_add_searchpath ()">eva_dns_client_add_searchpath</a>       (<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *client,
+<a name="EvaDnsClient"></a><pre class="synopsis">
+                    <a class="link" href="eva-evadnsclient.html#EvaDnsClient-struct" title="EvaDnsClient">EvaDnsClient</a>;
+                    <a class="link" href="eva-evadnsclient.html#EvaDnsClientClass" title="EvaDnsClientClass">EvaDnsClientClass</a>;
+enum                <a class="link" href="eva-evadnsclient.html#EvaDnsClientFlags" title="enum EvaDnsClientFlags">EvaDnsClientFlags</a>;
+<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *      <a class="link" href="eva-evadnsclient.html#eva-dns-client-new" title="eva_dns_client_new ()">eva_dns_client_new</a>                  (<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *packet_queue,
+                                                         <a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadnsclient.html#EvaDnsClientFlags" title="enum EvaDnsClientFlags">EvaDnsClientFlags</a> flags);
+void                <a class="link" href="eva-evadnsclient.html#eva-dns-client-add-searchpath" title="eva_dns_client_add_searchpath ()">eva_dns_client_add_searchpath</a>       (<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *client,
                                                          const char *searchpath);
-void                <a class="link" href="eva-evadnsclient.html#eva-dns-client-add-ns" title="eva_dns_client_add_ns ()">eva_dns_client_add_ns</a>               (<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *client,
-                                                         <a class="link" href="GskSocketAddress.html#GskSocketAddressIpv4">GskSocketAddressIpv4</a> *address);
-void                <a class="link" href="eva-evadnsclient.html#eva-dns-client-set-cache" title="eva_dns_client_set_cache ()">eva_dns_client_set_cache</a>            (<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *client,
-                                                         <a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache);
-void                <a class="link" href="eva-evadnsclient.html#eva-dns-client-set-flags" title="eva_dns_client_set_flags ()">eva_dns_client_set_flags</a>            (<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *client,
-                                                         <a class="link" href="eva-evadnsclient.html#GskDnsClientFlags" title="enum GskDnsClientFlags">GskDnsClientFlags</a> flags);
-<a class="link" href="eva-evadnsclient.html#GskDnsClientFlags" title="enum GskDnsClientFlags">GskDnsClientFlags</a>   <a class="link" href="eva-evadnsclient.html#eva-dns-client-get-flags" title="eva_dns_client_get_flags ()">eva_dns_client_get_flags</a>            (<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *client);
+void                <a class="link" href="eva-evadnsclient.html#eva-dns-client-add-ns" title="eva_dns_client_add_ns ()">eva_dns_client_add_ns</a>               (<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *client,
+                                                         <a class="link" href="EvaSocketAddress.html#EvaSocketAddressIpv4">EvaSocketAddressIpv4</a> *address);
+void                <a class="link" href="eva-evadnsclient.html#eva-dns-client-set-cache" title="eva_dns_client_set_cache ()">eva_dns_client_set_cache</a>            (<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *client,
+                                                         <a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache);
+void                <a class="link" href="eva-evadnsclient.html#eva-dns-client-set-flags" title="eva_dns_client_set_flags ()">eva_dns_client_set_flags</a>            (<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *client,
+                                                         <a class="link" href="eva-evadnsclient.html#EvaDnsClientFlags" title="enum EvaDnsClientFlags">EvaDnsClientFlags</a> flags);
+<a class="link" href="eva-evadnsclient.html#EvaDnsClientFlags" title="enum EvaDnsClientFlags">EvaDnsClientFlags</a>   <a class="link" href="eva-evadnsclient.html#eva-dns-client-get-flags" title="eva_dns_client_get_flags ()">eva_dns_client_get_flags</a>            (<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *client);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="eva-evadnsclient.html#eva-dns-client-parse-system-files" title="eva_dns_client_parse_system_files ()">eva_dns_client_parse_system_files</a>   (<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *client);
+>gboolean</a>            <a class="link" href="eva-evadnsclient.html#eva-dns-client-parse-system-files" title="eva_dns_client_parse_system_files ()">eva_dns_client_parse_system_files</a>   (<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *client);
 </pre>
 </div>
 <div class="refsect1" lang="en">
@@ -84,14 +84,14 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
   <a
 href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
 >GObject</a>
-   +----GskDnsClient
+   +----EvaDnsClient
 </pre>
 </div>
 <div class="refsect1" lang="en">
 <a name="eva-evadnsclient.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
-GskDnsClient implements
- <a class="link" href="eva-evanameresolver.html#GskNameResolver">GskNameResolver</a> and  <a class="link" href="eva-evadnsresolver.html#GskDnsResolver">GskDnsResolver</a>.</p>
+EvaDnsClient implements
+ <a class="link" href="eva-evanameresolver.html#EvaNameResolver">EvaNameResolver</a> and  <a class="link" href="eva-evadnsresolver.html#EvaDnsResolver">EvaDnsResolver</a>.</p>
 </div>
 <div class="refsect1" lang="en">
 <a name="eva-evadnsclient.description"></a><h2>Description</h2>
@@ -107,27 +107,27 @@ since the default name resolver uses DNS.
 <div class="refsect1" lang="en">
 <a name="eva-evadnsclient.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskDnsClient-struct"></a><h3>GskDnsClient</h3>
-<pre class="programlisting">typedef struct _GskDnsClient GskDnsClient;</pre>
+<a name="EvaDnsClient-struct"></a><h3>EvaDnsClient</h3>
+<pre class="programlisting">typedef struct _EvaDnsClient EvaDnsClient;</pre>
 <p>
 An instance of the DNS client.
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskDnsClientClass"></a><h3>GskDnsClientClass</h3>
-<pre class="programlisting">typedef struct _GskDnsClientClass GskDnsClientClass;</pre>
+<a name="EvaDnsClientClass"></a><h3>EvaDnsClientClass</h3>
+<pre class="programlisting">typedef struct _EvaDnsClientClass EvaDnsClientClass;</pre>
 <p>
 The class of the DNS client.
 </p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskDnsClientFlags"></a><h3>enum GskDnsClientFlags</h3>
+<a name="EvaDnsClientFlags"></a><h3>enum EvaDnsClientFlags</h3>
 <pre class="programlisting">typedef enum
 {
   EVA_DNS_CLIENT_STUB_RESOLVER = (1&lt;&lt;0)
-} GskDnsClientFlags;
+} EvaDnsClientFlags;
 </pre>
 <p>
 Flags which affect how the DNS client operates.
@@ -147,12 +147,12 @@ recursion and caching for it.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-client-new"></a><h3>eva_dns_client_new ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *      eva_dns_client_new                  (<a class="link" href="GskPacketQueue.html" title="Datagram I/O">GskPacketQueue</a> *packet_queue,
-                                                         <a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache,
-                                                         <a class="link" href="eva-evadnsclient.html#GskDnsClientFlags" title="enum GskDnsClientFlags">GskDnsClientFlags</a> flags);</pre>
+<pre class="programlisting"><a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *      eva_dns_client_new                  (<a class="link" href="EvaPacketQueue.html" title="Datagram I/O">EvaPacketQueue</a> *packet_queue,
+                                                         <a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache,
+                                                         <a class="link" href="eva-evadnsclient.html#EvaDnsClientFlags" title="enum EvaDnsClientFlags">EvaDnsClientFlags</a> flags);</pre>
 <p>
 Create a new DNS client.
-This implements the <a class="link" href="eva-evadnsresolver.html#GskDnsResolver"><span class="type">GskDnsResolver</span></a> interface.</p>
+This implements the <a class="link" href="eva-evadnsresolver.html#EvaDnsResolver"><span class="type">EvaDnsResolver</span></a> interface.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -187,7 +187,7 @@ or stub resolver.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-client-add-searchpath"></a><h3>eva_dns_client_add_searchpath ()</h3>
-<pre class="programlisting">void                eva_dns_client_add_searchpath       (<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *client,
+<pre class="programlisting">void                eva_dns_client_add_searchpath       (<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *client,
                                                          const char *searchpath);</pre>
 <p>
 Add a new implicit domain to the list the client keeps.
@@ -226,8 +226,8 @@ However, looking up "cvs.com." will ONLY search the global namespace.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-client-add-ns"></a><h3>eva_dns_client_add_ns ()</h3>
-<pre class="programlisting">void                eva_dns_client_add_ns               (<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *client,
-                                                         <a class="link" href="GskSocketAddress.html#GskSocketAddressIpv4">GskSocketAddressIpv4</a> *address);</pre>
+<pre class="programlisting">void                eva_dns_client_add_ns               (<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *client,
+                                                         <a class="link" href="EvaSocketAddress.html#EvaSocketAddressIpv4">EvaSocketAddressIpv4</a> *address);</pre>
 <p>
 Add a new nameserver to query.
 All nameservers will be queried simultaneously.</p>
@@ -252,8 +252,8 @@ All nameservers will be queried simultaneously.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-client-set-cache"></a><h3>eva_dns_client_set_cache ()</h3>
-<pre class="programlisting">void                eva_dns_client_set_cache            (<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *client,
-                                                         <a class="link" href="eva-evadnsrrcache.html#GskDnsRRCache" title="GskDnsRRCache">GskDnsRRCache</a> *rr_cache);</pre>
+<pre class="programlisting">void                eva_dns_client_set_cache            (<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *client,
+                                                         <a class="link" href="eva-evadnsrrcache.html#EvaDnsRRCache" title="EvaDnsRRCache">EvaDnsRRCache</a> *rr_cache);</pre>
 <p>
 Switch the client to use a new resource-record cache.</p>
 <p>
@@ -277,8 +277,8 @@ Switch the client to use a new resource-record cache.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-client-set-flags"></a><h3>eva_dns_client_set_flags ()</h3>
-<pre class="programlisting">void                eva_dns_client_set_flags            (<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *client,
-                                                         <a class="link" href="eva-evadnsclient.html#GskDnsClientFlags" title="enum GskDnsClientFlags">GskDnsClientFlags</a> flags);</pre>
+<pre class="programlisting">void                eva_dns_client_set_flags            (<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *client,
+                                                         <a class="link" href="eva-evadnsclient.html#EvaDnsClientFlags" title="enum EvaDnsClientFlags">EvaDnsClientFlags</a> flags);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -300,7 +300,7 @@ Switch the client to use a new resource-record cache.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-dns-client-get-flags"></a><h3>eva_dns_client_get_flags ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evadnsclient.html#GskDnsClientFlags" title="enum GskDnsClientFlags">GskDnsClientFlags</a>   eva_dns_client_get_flags            (<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *client);</pre>
+<pre class="programlisting"><a class="link" href="eva-evadnsclient.html#EvaDnsClientFlags" title="enum EvaDnsClientFlags">EvaDnsClientFlags</a>   eva_dns_client_get_flags            (<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *client);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -324,7 +324,7 @@ Switch the client to use a new resource-record cache.</p>
 <a name="eva-dns-client-parse-system-files"></a><h3>eva_dns_client_parse_system_files ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_dns_client_parse_system_files   (<a class="link" href="eva-evadnsclient.html#GskDnsClient">GskDnsClient</a> *client);</pre>
+>gboolean</a>            eva_dns_client_parse_system_files   (<a class="link" href="eva-evadnsclient.html#EvaDnsClient">EvaDnsClient</a> *client);</pre>
 <p>
 Parse system DNS configuration.
 </p>

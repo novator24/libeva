@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskControlServer
+EvaControlServer
 
 <!-- ##### SECTION Short_Description ##### -->
 a simple mechanism for handling control connections
@@ -16,13 +16,13 @@ will be able to invoke.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-GskControlClient, eva-control-client.
+EvaControlClient, eva-control-client.
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskControlServer ##### -->
+<!-- ##### STRUCT EvaControlServer ##### -->
 <para>
 Opaque class which acts as a database of virtual files and commands.
 </para>

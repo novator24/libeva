@@ -9,7 +9,7 @@ int main (int argc, char **argv)
   for (i = 1; i < (guint) argc; i++)
     {
       guint pid = atoi (argv[i]);
-      GskProcessInfo *info;
+      EvaProcessInfo *info;
       GError *error = NULL;
       if (pid == 0)
         g_error ("error: pid must be nonzero");

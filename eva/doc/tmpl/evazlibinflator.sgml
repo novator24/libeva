@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskZlibInflator
+EvaZlibInflator
 
 <!-- ##### SECTION Short_Description ##### -->
 a zlib decompressor
@@ -11,13 +11,13 @@ A stream which decompresses data on its input to decompressed data on its output
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-GskZlibDeflator
+EvaZlibDeflator
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskZlibInflator ##### -->
+<!-- ##### STRUCT EvaZlibInflator ##### -->
 <para>
 The instance of a zlib inflator stream (a decompressor).
 One writes deflated input to it, and then

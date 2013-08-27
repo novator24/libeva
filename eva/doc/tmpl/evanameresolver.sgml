@@ -19,14 +19,14 @@ its name, and (2) a way of registering new types of address families and namespa
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskNameResolver ##### -->
+<!-- ##### STRUCT EvaNameResolver ##### -->
 <para>
 Opaque object representing an instance which implements
 the NameResolver interface.
 </para>
 
 
-<!-- ##### STRUCT GskNameResolverIface ##### -->
+<!-- ##### STRUCT EvaNameResolverIface ##### -->
 <para>
 An interface that can be implemented by a class which provides name-lookups.
 </para>
@@ -35,14 +35,14 @@ An interface that can be implemented by a class which provides name-lookups.
 @start_resolve: method to start a name lookup.
 @cancel_resolve: method to cancel a name lookup.
 
-<!-- ##### STRUCT GskNameResolverTask ##### -->
+<!-- ##### STRUCT EvaNameResolverTask ##### -->
 <para>
 An opaque type representing a name lookup (which may be running,
 or it may be succeeded, failed or been cancelled).
 </para>
 
 
-<!-- ##### USER_FUNCTION GskNameResolverSuccessFunc ##### -->
+<!-- ##### USER_FUNCTION EvaNameResolverSuccessFunc ##### -->
 <para>
 Function to call when an address has been successfully found for the name.
 </para>
@@ -51,7 +51,7 @@ Function to call when an address has been successfully found for the name.
 @func_data: data passed to eva_name_resolve().
 
 
-<!-- ##### USER_FUNCTION GskNameResolverFailureFunc ##### -->
+<!-- ##### USER_FUNCTION EvaNameResolverFailureFunc ##### -->
 <para>
 Function to call when a name lookup fails.
 </para>
@@ -60,7 +60,7 @@ Function to call when a name lookup fails.
 @func_data: data passed to eva_name_resolve().
 
 
-<!-- ##### ENUM GskNameResolverFamily ##### -->
+<!-- ##### ENUM EvaNameResolverFamily ##### -->
 <para>
 Namespaces.  This enum is extendable.
 </para>
@@ -157,7 +157,7 @@ The IPv4 namespace, used for practically all of the internet (in 2003)
 @name: 
 
 
-<!-- ##### USER_FUNCTION GskNameResolverFamilyHandler ##### -->
+<!-- ##### USER_FUNCTION EvaNameResolverFamilyHandler ##### -->
 <para>
 Create a reference to a name-resolver on demand.
 </para>

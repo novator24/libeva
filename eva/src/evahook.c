@@ -26,7 +26,7 @@ static GQuark eva_hook_main_loop_quark = 0;
 
 #ifdef EVA_DEBUG
 static void
-eva_hook_debug (GskHook    *hook,
+eva_hook_debug (EvaHook    *hook,
 		const char *format,
 		...) G_GNUC_PRINTF(2,3);
 #define DEBUG(args)			\
@@ -38,7 +38,7 @@ eva_hook_debug (GskHook    *hook,
 #define DEBUG(args)
 #endif
 
-extern GskDebugFlags eva_debug_flags;
+extern EvaDebugFlags eva_debug_flags;
 
 /* --- implementation of non-blocking hooks --- */
 typedef struct _PendingDestroyNotify PendingDestroyNotify;
@@ -55,8 +55,8 @@ struct _PendingDestroyNotify
 
 typedef struct 
 {
-  GskTree *hook_tree;
-  GskSource *source;
+  EvaTree *hook_tree;
+  EvaSource *source;
   PendingDestroyNotify *first_destroy;
   PendingDestroyNotify *last_destroy;
 } NBThreadData;
@@ -79,8 +79,8 @@ static gboolean
 run_all_nonblocking_hooks (gpointer data)
 {
   NBThreadData *nb_data = data;
-  GskTree *tree = nb_data->hook_tree;
-  GskTreeNode *node;
+  EvaTree *tree = nb_data->hook_tree;
+  EvaTreeNode *node;
 
   flush_pending_destroys (nb_data);
 
@@ -96,7 +96,7 @@ run_all_nonblocking_hooks (gpointer data)
     }
   do
     {
-      GskHook *hook = eva_tree_node_peek_key (node);
+      EvaHook *hook = eva_tree_node_peek_key (node);
       DEBUG((hook, "about to run notify, since this hook is nonblocking"));
       eva_hook_notify (hook);
       node = eva_tree_node_next (tree, node);
@@ -127,7 +127,7 @@ pointer_compare (gconstpointer a, gconstpointer b)
 }
 
 static inline NBThreadData *
-main_loop_force_nonblocking_data (GskMainLoop *loop)
+main_loop_force_nonblocking_data (EvaMainLoop *loop)
 {
   NBThreadData *data = g_object_get_qdata (G_OBJECT (loop), eva_hook_main_loop_quark);
   if (data == NULL)
@@ -144,7 +144,7 @@ main_loop_force_nonblocking_data (GskMainLoop *loop)
 
 static inline void
 verify_nonblocking_data_has_source (NBThreadData *nb_data,
-			            GskMainLoop  *main_loop)
+			            EvaMainLoop  *main_loop)
 {
   if (nb_data->source == NULL)
     nb_data->source = eva_main_loop_add_idle (main_loop,
@@ -153,18 +153,18 @@ verify_nonblocking_data_has_source (NBThreadData *nb_data,
 }
 
 static inline void
-eva_hook_add_to_nonblocking_list (GskHook *hook)
+eva_hook_add_to_nonblocking_list (EvaHook *hook)
 {
-  GskMainLoop *loop = eva_main_loop_default ();
+  EvaMainLoop *loop = eva_main_loop_default ();
   NBThreadData *data = main_loop_force_nonblocking_data (loop);
   eva_tree_insert (data->hook_tree, hook, hook);
   verify_nonblocking_data_has_source (data, loop);
 }
 
 static inline void
-eva_hook_remove_from_nonblocking_list (GskHook *hook)
+eva_hook_remove_from_nonblocking_list (EvaHook *hook)
 {
-  GskMainLoop *loop = eva_main_loop_default ();
+  EvaMainLoop *loop = eva_main_loop_default ();
   NBThreadData *data = main_loop_force_nonblocking_data (loop);
   eva_tree_remove (data->hook_tree, hook);
 
@@ -179,7 +179,7 @@ eva_hook_maybe_defer_destroy (GDestroyNotify destroy, gpointer destroy_data)
 {
   if (destroy)
     {
-      GskMainLoop *loop = eva_main_loop_default ();
+      EvaMainLoop *loop = eva_main_loop_default ();
       NBThreadData *data = main_loop_force_nonblocking_data (loop);
       PendingDestroyNotify *notify = pending_destroy_notify_alloc ();
       verify_nonblocking_data_has_source (data, loop);
@@ -207,12 +207,12 @@ eva_hook_maybe_defer_destroy (GDestroyNotify destroy, gpointer destroy_data)
   * method in the containing object's class, or 0 if there is no shutdown
   * method.
   *
-  * Prepare a GskHook to be used.  This should almost always
+  * Prepare a EvaHook to be used.  This should almost always
   * be done in the instance-init function of the class which contains the hook.
   */
 void
-eva_hook_init           (GskHook        *hook,
-			 GskHookFlags    flags,
+eva_hook_init           (EvaHook        *hook,
+			 EvaHookFlags    flags,
 			 guint           inset,
 			 guint           class_set_poll_offset,
 			 guint           class_shutdown_offset)
@@ -234,19 +234,19 @@ eva_hook_init           (GskHook        *hook,
 }
 
 static inline void
-eva_hook_call_set_poll_func (GskHook *hook,
+eva_hook_call_set_poll_func (EvaHook *hook,
 		             gboolean value)
 {
   GObject *object = EVA_HOOK_GET_OBJECT (hook);
   GObjectClass *class = G_OBJECT_GET_CLASS (object);
-  GskHookSetPollFunc set_poll_func =
-    G_STRUCT_MEMBER (GskHookSetPollFunc, class, hook->class_set_poll_offset);
+  EvaHookSetPollFunc set_poll_func =
+    G_STRUCT_MEMBER (EvaHookSetPollFunc, class, hook->class_set_poll_offset);
   if (set_poll_func)
     (*set_poll_func) (object, value);
 }
 
 static inline gboolean
-eva_hook_call_shutdown_func (GskHook *hook,
+eva_hook_call_shutdown_func (EvaHook *hook,
 			     GError **error)
 {
   GObject *object = EVA_HOOK_GET_OBJECT (hook);
@@ -257,16 +257,16 @@ eva_hook_call_shutdown_func (GskHook *hook,
   if (!shutdown_func)
     return TRUE;
   if (EVA_HOOK_TEST_FLAG (hook, CAN_HAVE_SHUTDOWN_ERROR))
-    return (* (GskHookShutdownErrorFunc) shutdown_func) (object, error);
+    return (* (EvaHookShutdownErrorFunc) shutdown_func) (object, error);
   else
     {
-      (* (GskHookShutdownFunc) shutdown_func) (object);
+      (* (EvaHookShutdownFunc) shutdown_func) (object);
       return TRUE;
     }
 }
 
 static inline void
-eva_hook_set_poll (GskHook *hook)
+eva_hook_set_poll (EvaHook *hook)
 {
   DEBUG ((hook, "eva_hook_set_poll: idle-notify=%d",
 	  EVA_HOOK_TEST_FLAG (hook, IDLE_NOTIFY)));
@@ -278,7 +278,7 @@ eva_hook_set_poll (GskHook *hook)
 }
 
 static inline void
-eva_hook_clear_poll (GskHook *hook)
+eva_hook_clear_poll (EvaHook *hook)
 {
   DEBUG ((hook, "eva_hook_clear_poll: idle-notify=%d",
 	  EVA_HOOK_TEST_FLAG (hook, IDLE_NOTIFY)));
@@ -302,9 +302,9 @@ eva_hook_clear_poll (GskHook *hook)
  * be run in response to #eva_hook_notify.
  */
 void
-eva_hook_trap           (GskHook        *hook,
-			 GskHookFunc     func,
-			 GskHookFunc     shutdown,
+eva_hook_trap           (EvaHook        *hook,
+			 EvaHookFunc     func,
+			 EvaHookFunc     shutdown,
 			 gpointer        data,
 			 GDestroyNotify  destroy)
 {
@@ -333,7 +333,7 @@ eva_hook_trap           (GskHook        *hook,
  * until after the hook is done notifying and/or shutdown-notifying.
  */
 void
-eva_hook_untrap          (GskHook        *hook)
+eva_hook_untrap          (EvaHook        *hook)
 {
   GDestroyNotify old_destroy = hook->destroy;
   gpointer old_data = hook->data;
@@ -373,7 +373,7 @@ eva_hook_untrap          (GskHook        *hook)
  * but you must call #eva_hook_unblock an equal number of times.
  */
 void
-eva_hook_block           (GskHook        *hook)
+eva_hook_block           (EvaHook        *hook)
 {
   hook->block_count++;
   DEBUG ((hook, "eva_hook_block: new-count=%d", hook->block_count));
@@ -390,7 +390,7 @@ eva_hook_block           (GskHook        *hook)
  * triggering again.
  */
 void
-eva_hook_unblock         (GskHook        *hook)
+eva_hook_unblock         (EvaHook        *hook)
 {
   g_return_if_fail (hook->block_count > 0);
   hook->block_count--;
@@ -425,7 +425,7 @@ eva_hook_unblock         (GskHook        *hook)
  * returns: true if successful, or false if an error occurred.
  */
 gboolean
-eva_hook_shutdown        (GskHook        *hook,
+eva_hook_shutdown        (EvaHook        *hook,
 			  GError        **error)
 {
   GObject *object = EVA_HOOK_GET_OBJECT (hook);
@@ -514,7 +514,7 @@ eva_hook_shutdown        (GskHook        *hook,
  *   to do anything.  Also, notify within shutdown is not allowed.
  */
 void
-eva_hook_notify          (GskHook        *hook)
+eva_hook_notify          (EvaHook        *hook)
 {
   GObject *object;
   gboolean handler_rv;
@@ -577,7 +577,7 @@ got_shutdown_notify:
 }
 
 static inline void
-_eva_hook_clear_idle_notify (GskHook        *hook)
+_eva_hook_clear_idle_notify (EvaHook        *hook)
 {
   EVA_HOOK_CLEAR_FLAG (hook, IDLE_NOTIFY);
   if (EVA_HOOK_TEST_FLAG (hook, HAS_POLL))
@@ -601,7 +601,7 @@ _eva_hook_clear_idle_notify (GskHook        *hook)
  * A shutdown hook will no longer be idle-notified.
  */
 void
-eva_hook_notify_shutdown (GskHook        *hook)
+eva_hook_notify_shutdown (EvaHook        *hook)
 {
   DEBUG ((hook, "eva_hook_notify_shutdown: available=%d, shutting-down=%d, notifying=%d, notifying-shutdown=%d",
 	 EVA_HOOK_TEST_FLAG (hook, IS_AVAILABLE),
@@ -674,7 +674,7 @@ eva_hook_notify_shutdown (GskHook        *hook)
  * Opposite of eva_hook_clear_idle_notify().
  */
 void
-eva_hook_set_idle_notify   (GskHook        *hook,
+eva_hook_set_idle_notify   (EvaHook        *hook,
 			    gboolean        should_idle_notify)
 {
   /* TODO: optimize */
@@ -695,7 +695,7 @@ eva_hook_set_idle_notify   (GskHook        *hook,
  * Opposite of eva_hook_clear_idle_notify().
  */
 void
-eva_hook_mark_idle_notify (GskHook        *hook)
+eva_hook_mark_idle_notify (EvaHook        *hook)
 {
   g_return_if_fail (!EVA_HOOK_TEST_FLAG (hook, JUST_NEVER_BLOCKS));
   if (!EVA_HOOK_TEST_FLAG (hook, IS_AVAILABLE))
@@ -719,7 +719,7 @@ eva_hook_mark_idle_notify (GskHook        *hook)
  * Opposite of eva_hook_set_idle_notify().
  */
 void
-eva_hook_clear_idle_notify (GskHook        *hook)
+eva_hook_clear_idle_notify (EvaHook        *hook)
 {
   g_return_if_fail (!EVA_HOOK_TEST_FLAG (hook, JUST_NEVER_BLOCKS));
   if (!EVA_HOOK_TEST_FLAG (hook, IDLE_NOTIFY))
@@ -736,7 +736,7 @@ eva_hook_clear_idle_notify (GskHook        *hook)
  */
 
 void
-eva_hook_mark_never_blocks  (GskHook        *hook)
+eva_hook_mark_never_blocks  (EvaHook        *hook)
 {
   eva_hook_mark_idle_notify (hook);
   EVA_HOOK_SET_FLAG (hook, JUST_NEVER_BLOCKS);
@@ -757,7 +757,7 @@ eva_hook_mark_never_blocks  (GskHook        *hook)
  * setting this flag has no effect unless you also set SHUTDOWN_HAS_ERROR.)
  */
 void
-eva_hook_mark_can_defer_shutdown (GskHook *hook)
+eva_hook_mark_can_defer_shutdown (EvaHook *hook)
 {
   EVA_HOOK_SET_FLAG (hook, CAN_DEFER_SHUTDOWN);
 }
@@ -770,7 +770,7 @@ eva_hook_mark_can_defer_shutdown (GskHook *hook)
  * from the instance's finalize method.
  */
 void
-eva_hook_destruct        (GskHook        *hook)
+eva_hook_destruct        (EvaHook        *hook)
 {
   if (hook->flags & EVA_HOOK_HAS_POLL)
     eva_hook_clear_poll (hook);
@@ -839,14 +839,14 @@ eva_hook_class_init     (GObjectClass   *object_class,
  * returns: whether the hook is being polled.
  */
 gboolean
-eva_hook_get_last_poll_state(GskHook       *hook)
+eva_hook_get_last_poll_state(EvaHook       *hook)
 {
   return EVA_HOOK_TEST_FLAG (hook, HAS_POLL);
 }
 
 #ifdef EVA_DEBUG
 static const char *
-get_hook_name_and_type (GskHook        *hook,
+get_hook_name_and_type (EvaHook        *hook,
 			GType          *type_out)
 {
   guint index = hook->inset;
@@ -875,7 +875,7 @@ fail:
 
 #include <stdio.h>
 static void
-eva_hook_debug (GskHook    *hook,
+eva_hook_debug (EvaHook    *hook,
 		const char *format,
 		...)
 {
@@ -903,5 +903,5 @@ eva_hook_debug (GskHook    *hook,
 void  _eva_hook_init ()
 {
   per_offset = g_ptr_array_new ();
-  eva_hook_main_loop_quark = g_quark_from_static_string ("GskHook--main-loop-nonblocking");
+  eva_hook_main_loop_quark = g_quark_from_static_string ("EvaHook--main-loop-nonblocking");
 }

@@ -1,20 +1,20 @@
-<refentry id="eva-GskMainLoopEpoll">
+<refentry id="eva-EvaMainLoopEpoll">
 <refmeta>
-<refentrytitle role="top_of_page" id="eva-GskMainLoopEpoll.top_of_page">GskMainLoopEpoll</refentrytitle>
+<refentrytitle role="top_of_page" id="eva-EvaMainLoopEpoll.top_of_page">EvaMainLoopEpoll</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskMainLoopEpoll</refname>
+<refname>EvaMainLoopEpoll</refname>
 <refpurpose>a libepoll-based event loop.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="eva-GskMainLoopEpoll.synopsis" role="synopsis">
+<refsynopsisdiv id="eva-EvaMainLoopEpoll.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskMainLoopEpoll">GskMainLoopEpoll</link>;
+                    <link linkend="EvaMainLoopEpoll">EvaMainLoopEpoll</link>;
 </synopsis>
 </refsynopsisdiv>
 
@@ -26,7 +26,7 @@
 
 
 
-<refsect1 id="eva-GskMainLoopEpoll.description" role="desc">
+<refsect1 id="eva-EvaMainLoopEpoll.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 A main-loop which uses libepoll as its underlying
@@ -35,15 +35,15 @@ multiplexing method.
 </para>
 </refsect1>
 
-<refsect1 id="eva-GskMainLoopEpoll.details" role="details">
+<refsect1 id="eva-EvaMainLoopEpoll.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskMainLoopEpoll" role="struct">
-<title>GskMainLoopEpoll</title>
-<indexterm zone="GskMainLoopEpoll"><primary sortas="GskMainLoopEpoll">GskMainLoopEpoll</primary></indexterm><programlisting>typedef struct {
-  GskMainLoopPollBase      main_loop_poll_base;
+<refsect2 id="EvaMainLoopEpoll" role="struct">
+<title>EvaMainLoopEpoll</title>
+<indexterm zone="EvaMainLoopEpoll"><primary sortas="EvaMainLoopEpoll">EvaMainLoopEpoll</primary></indexterm><programlisting>typedef struct {
+  EvaMainLoopPollBase      main_loop_poll_base;
   int                      fd;
   gpointer                 epoll_events;
-} GskMainLoopEpoll;
+} EvaMainLoopEpoll;
 </programlisting>
 <para>
 </para></refsect2>

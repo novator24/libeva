@@ -20,7 +20,7 @@ a callback oriented fork interface.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### USER_FUNCTION GskForkFunc ##### -->
+<!-- ##### USER_FUNCTION EvaForkFunc ##### -->
 <para>
 Function to call from the background process.
 </para>

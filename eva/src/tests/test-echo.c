@@ -6,7 +6,7 @@
 #include "../evamain.h"
 
 static gboolean
-handle_on_accept (GskStream         *stream,
+handle_on_accept (EvaStream         *stream,
 		  gpointer           data,
 		  GError           **error)
 {
@@ -27,8 +27,8 @@ handle_errors (GError     *error,
 
 int main (int argc, char **argv)
 {
-  GskStreamListener *listener;
-  GskSocketAddress *bind_addr;
+  EvaStreamListener *listener;
+  EvaSocketAddress *bind_addr;
   GError *error = NULL;
   eva_init_without_threads (&argc, &argv);
 

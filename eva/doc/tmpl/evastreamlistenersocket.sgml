@@ -1,12 +1,12 @@
 <!-- ##### SECTION Title ##### -->
-GskStreamListenerSocket
+EvaStreamListenerSocket
 
 <!-- ##### SECTION Short_Description ##### -->
 socket-based stream-listener.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-This is a #GskStreamListener that takes new input streams
+This is a #EvaStreamListener that takes new input streams
 from a raw socket.
 </para>
 
@@ -18,28 +18,28 @@ from a raw socket.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskStreamListenerSocket ##### -->
+<!-- ##### STRUCT EvaStreamListenerSocket ##### -->
 <para>
-An instance of a socket-based #GskStreamListener.
+An instance of a socket-based #EvaStreamListener.
 </para>
 
 
-<!-- ##### ARG GskStreamListenerSocket:file-descriptor ##### -->
-<para>
-
-</para>
-
-<!-- ##### ARG GskStreamListenerSocket:listening-address ##### -->
+<!-- ##### ARG EvaStreamListenerSocket:file-descriptor ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskStreamListenerSocket:may-reuse-address ##### -->
+<!-- ##### ARG EvaStreamListenerSocket:listening-address ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskStreamListenerSocket:unlink-when-done ##### -->
+<!-- ##### ARG EvaStreamListenerSocket:may-reuse-address ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG EvaStreamListenerSocket:unlink-when-done ##### -->
 <para>
 
 </para>

@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskMainLoopPoll
+EvaMainLoopPoll
 
 <!-- ##### SECTION Short_Description ##### -->
 a poll(2)-based main-loop.
@@ -17,7 +17,7 @@ A main-loop which uses poll(2) as its underlying multiplexing method.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskMainLoopPoll ##### -->
+<!-- ##### STRUCT EvaMainLoopPoll ##### -->
 <para>
 The poll(2)-based main-loop.
 </para>

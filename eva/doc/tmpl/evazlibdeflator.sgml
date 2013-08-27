@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskZlibDeflator
+EvaZlibDeflator
 
 <!-- ##### SECTION Short_Description ##### -->
 a zlib compressor.
@@ -15,13 +15,13 @@ We use the implementation in a shared library -lz.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-GskZlibInflator
+EvaZlibInflator
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskZlibDeflator ##### -->
+<!-- ##### STRUCT EvaZlibDeflator ##### -->
 <para>
 A zlib deflator (compressor) object.
 One writes raw data to it, and one can

@@ -18,7 +18,7 @@ enum
   /* Whether to shutdown the hook when the buffer empties. */
   DEFERRED_READ_SHUTDOWN = (1<<0)
 };
-void eva_buffer_stream_mark_deferred_write_shutdown (GskBufferStream *stream);
+void eva_buffer_stream_mark_deferred_write_shutdown (EvaBufferStream *stream);
 
 #define eva_buffer_stream_has_deferred_write_shutdown(stream)	\
   EVA_HOOK_TEST_USER_FLAG (eva_buffer_stream_write_hook(stream), DEFERRED_WRITE_SHUTDOWN)
@@ -41,7 +41,7 @@ void eva_buffer_stream_mark_deferred_write_shutdown (GskBufferStream *stream);
  * Shutdown the read-end of the buffer-stream,
  * waiting for the buffer to be drained first.
  */
-void eva_buffer_stream_read_shutdown (GskBufferStream *stream)
+void eva_buffer_stream_read_shutdown (EvaBufferStream *stream)
 {
   if (stream->read_buffer.size == 0)
     eva_io_notify_read_shutdown (EVA_IO (stream));
@@ -49,15 +49,15 @@ void eva_buffer_stream_read_shutdown (GskBufferStream *stream)
     eva_buffer_stream_mark_deferred_read_shutdown (stream);
 }
 
-/* --- GskStream methods --- */
+/* --- EvaStream methods --- */
 static guint
-eva_buffer_stream_raw_read (GskStream     *stream,
+eva_buffer_stream_raw_read (EvaStream     *stream,
                             gpointer       data,
                             guint          length,
                             GError       **error)
 {
-  GskBufferStream *bs = EVA_BUFFER_STREAM (stream);
-  GskBuffer *buffer = &bs->read_buffer;
+  EvaBufferStream *bs = EVA_BUFFER_STREAM (stream);
+  EvaBuffer *buffer = &bs->read_buffer;
   guint rv = eva_buffer_read (buffer, data, length);
   if (rv > 0)
     eva_buffer_stream_read_buffer_changed (bs);
@@ -65,13 +65,13 @@ eva_buffer_stream_raw_read (GskStream     *stream,
 }
 
 static guint
-eva_buffer_stream_raw_write (GskStream     *stream,
+eva_buffer_stream_raw_write (EvaStream     *stream,
                              gconstpointer  data,
                              guint          length,
                              GError       **error)
 {
-  GskBufferStream *bs = EVA_BUFFER_STREAM (stream);
-  GskBuffer *buffer = &bs->write_buffer;
+  EvaBufferStream *bs = EVA_BUFFER_STREAM (stream);
+  EvaBuffer *buffer = &bs->write_buffer;
   if (eva_buffer_stream_has_strict_max_write (bs))
     {
       if (buffer->size >= bs->max_write_buffer)
@@ -86,12 +86,12 @@ eva_buffer_stream_raw_write (GskStream     *stream,
 }
 
 static guint
-eva_buffer_stream_raw_read_buffer (GskStream     *stream,
-                                   GskBuffer     *buffer,
+eva_buffer_stream_raw_read_buffer (EvaStream     *stream,
+                                   EvaBuffer     *buffer,
                                    GError       **error)
 {
-  GskBufferStream *bs = EVA_BUFFER_STREAM (stream);
-  GskBuffer *read_buffer = &bs->read_buffer;
+  EvaBufferStream *bs = EVA_BUFFER_STREAM (stream);
+  EvaBuffer *read_buffer = &bs->read_buffer;
   guint rv = eva_buffer_drain (buffer, read_buffer);
   if (rv > 0)
     eva_buffer_stream_read_buffer_changed (bs);
@@ -99,12 +99,12 @@ eva_buffer_stream_raw_read_buffer (GskStream     *stream,
 }
 
 static guint
-eva_buffer_stream_raw_write_buffer (GskStream    *stream,
-                                    GskBuffer     *buffer,
+eva_buffer_stream_raw_write_buffer (EvaStream    *stream,
+                                    EvaBuffer     *buffer,
                                     GError       **error)
 {
-  GskBufferStream *bs = EVA_BUFFER_STREAM (stream);
-  GskBuffer *write_buffer = &bs->write_buffer;
+  EvaBufferStream *bs = EVA_BUFFER_STREAM (stream);
+  EvaBuffer *write_buffer = &bs->write_buffer;
   guint length = buffer->size;
   guint rv;
   if (eva_buffer_stream_has_strict_max_write (bs))
@@ -124,7 +124,7 @@ eva_buffer_stream_raw_write_buffer (GskStream    *stream,
   return rv;
 }
 
-/* --- GskIO methods --- */
+/* --- EvaIO methods --- */
 /**
  * eva_buffer_stream_read_buffer_changed:
  * @stream: stream whose read buffer has been modified.
@@ -134,7 +134,7 @@ eva_buffer_stream_raw_write_buffer (GskStream    *stream,
  * an implementor has appended data into it
  * for the attached stream to read.
  */
-void eva_buffer_stream_read_buffer_changed  (GskBufferStream *stream)
+void eva_buffer_stream_read_buffer_changed  (EvaBufferStream *stream)
 {
   if (stream->read_buffer.size == 0)
     {
@@ -160,7 +160,7 @@ void eva_buffer_stream_read_buffer_changed  (GskBufferStream *stream)
  * an implementor has read data from it.
  */
 void
-eva_buffer_stream_write_buffer_changed (GskBufferStream *stream)
+eva_buffer_stream_write_buffer_changed (EvaBufferStream *stream)
 {
   if (stream->write_buffer.size < stream->max_write_buffer)
     eva_io_mark_idle_notify_write (stream);
@@ -189,17 +189,17 @@ eva_buffer_stream_write_buffer_changed (GskBufferStream *stream)
  * max_write_buffer.
  */
 void
-eva_buffer_stream_changed              (GskBufferStream *stream)
+eva_buffer_stream_changed              (EvaBufferStream *stream)
 {
   eva_buffer_stream_read_buffer_changed (stream);
   eva_buffer_stream_write_buffer_changed (stream);
 }
 
 static void
-eva_buffer_stream_set_poll_read (GskIO      *io,
+eva_buffer_stream_set_poll_read (EvaIO      *io,
                                  gboolean    do_poll)
 {
-  GskBufferStream *bs = EVA_BUFFER_STREAM (io);
+  EvaBufferStream *bs = EVA_BUFFER_STREAM (io);
   if (bs->read_buffer.size == 0)
     {
       eva_hook_set_idle_notify (eva_buffer_stream_read_hook (bs), do_poll);
@@ -211,7 +211,7 @@ eva_buffer_stream_set_poll_read (GskIO      *io,
 }
 
 static void
-eva_buffer_stream_set_poll_write (GskIO      *io,
+eva_buffer_stream_set_poll_write (EvaIO      *io,
                                   gboolean    do_poll)
 {
   /* Nothing to do.
@@ -221,7 +221,7 @@ eva_buffer_stream_set_poll_write (GskIO      *io,
 }
 
 static gboolean
-eva_buffer_stream_shutdown_read (GskIO      *io,
+eva_buffer_stream_shutdown_read (EvaIO      *io,
                                  GError    **error)
 {
   eva_hook_notify_shutdown (eva_buffer_stream_read_hook (EVA_BUFFER_STREAM (io)));
@@ -229,10 +229,10 @@ eva_buffer_stream_shutdown_read (GskIO      *io,
 }
 
 static gboolean
-eva_buffer_stream_shutdown_write (GskIO      *io,
+eva_buffer_stream_shutdown_write (EvaIO      *io,
                                   GError    **error)
 {
-  GskBufferStream *bs = EVA_BUFFER_STREAM (io);
+  EvaBufferStream *bs = EVA_BUFFER_STREAM (io);
   if (bs->write_buffer.size == 0)
     eva_hook_notify_shutdown (eva_buffer_stream_write_hook (bs));
   else
@@ -250,7 +250,7 @@ eva_buffer_stream_shutdown_write (GskIO      *io,
 static void
 eva_buffer_stream_finalize (GObject        *object)
 {
-  GskBufferStream *bs = EVA_BUFFER_STREAM (object);
+  EvaBufferStream *bs = EVA_BUFFER_STREAM (object);
   eva_buffer_destruct (&bs->read_buffer);
   eva_buffer_destruct (&bs->write_buffer);
   eva_hook_destruct (&bs->buffered_read_hook);
@@ -260,15 +260,15 @@ eva_buffer_stream_finalize (GObject        *object)
 
 /* --- functions --- */
 static void
-eva_buffer_stream_init (GskBufferStream *buffer_stream)
+eva_buffer_stream_init (EvaBufferStream *buffer_stream)
 {
   EVA_HOOK_INIT (buffer_stream,
-		 GskBufferStream,
+		 EvaBufferStream,
 		 buffered_read_hook,
 		 EVA_HOOK_IS_AVAILABLE,
 		 buffered_read_set_poll, buffered_read_shutdown);
   EVA_HOOK_INIT (buffer_stream,
-		 GskBufferStream,
+		 EvaBufferStream,
 		 buffered_write_hook,
 		 EVA_HOOK_IS_AVAILABLE,
 		 buffered_write_set_poll, buffered_write_shutdown);
@@ -279,11 +279,11 @@ eva_buffer_stream_init (GskBufferStream *buffer_stream)
   eva_buffer_stream_changed (buffer_stream);
 }
 static void
-eva_buffer_stream_class_init (GskBufferStreamClass *class)
+eva_buffer_stream_class_init (EvaBufferStreamClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
-  GskIOClass *io_class = EVA_IO_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
   object_class->finalize = eva_buffer_stream_finalize;
   io_class->set_poll_read = eva_buffer_stream_set_poll_read;
@@ -294,8 +294,8 @@ eva_buffer_stream_class_init (GskBufferStreamClass *class)
   stream_class->raw_write = eva_buffer_stream_raw_write;
   stream_class->raw_read_buffer = eva_buffer_stream_raw_read_buffer;
   stream_class->raw_write_buffer = eva_buffer_stream_raw_write_buffer;
-  EVA_HOOK_CLASS_INIT (object_class, "buffered-read-hook", GskBufferStream, buffered_read_hook);
-  EVA_HOOK_CLASS_INIT (object_class, "buffered-write-hook", GskBufferStream, buffered_write_hook);
+  EVA_HOOK_CLASS_INIT (object_class, "buffered-read-hook", EvaBufferStream, buffered_read_hook);
+  EVA_HOOK_CLASS_INIT (object_class, "buffered-write-hook", EvaBufferStream, buffered_write_hook);
 }
 
 GType eva_buffer_stream_get_type()
@@ -305,19 +305,19 @@ GType eva_buffer_stream_get_type()
     {
       static const GTypeInfo buffer_stream_info =
       {
-	sizeof(GskBufferStreamClass),
+	sizeof(EvaBufferStreamClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_buffer_stream_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskBufferStream),
+	sizeof (EvaBufferStream),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_buffer_stream_init,
 	NULL		/* value_table */
       };
       buffer_stream_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskBufferStream",
+                                                  "EvaBufferStream",
 						  &buffer_stream_info, 0);
     }
   return buffer_stream_type;
@@ -326,11 +326,11 @@ GType eva_buffer_stream_get_type()
 /**
  * eva_buffer_stream_new:
  *
- * Create a new #GskBufferStream.
+ * Create a new #EvaBufferStream.
  *
- * returns: the newly allocated GskBufferStream.
+ * returns: the newly allocated EvaBufferStream.
  */
-GskBufferStream *
+EvaBufferStream *
 eva_buffer_stream_new (void)
 {
   return g_object_new (EVA_TYPE_BUFFER_STREAM, NULL);

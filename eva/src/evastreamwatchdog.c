@@ -23,20 +23,20 @@
 
 #include "evastreamwatchdog.h"
 
-G_DEFINE_TYPE(GskStreamWatchdog, eva_stream_watchdog, EVA_TYPE_STREAM);
+G_DEFINE_TYPE(EvaStreamWatchdog, eva_stream_watchdog, EVA_TYPE_STREAM);
 
-/* --- GskIO methods --- */
+/* --- EvaIO methods --- */
 static gboolean
-handle_underlying_readable (GskStream *underlying,
-                            GskStreamWatchdog *watchdog)
+handle_underlying_readable (EvaStream *underlying,
+                            EvaStreamWatchdog *watchdog)
 {
   eva_io_notify_ready_to_read (watchdog);
   return TRUE;
 }
 
 static gboolean
-handle_underlying_read_shutdown (GskStream *underlying,
-                                 GskStreamWatchdog *watchdog)
+handle_underlying_read_shutdown (EvaStream *underlying,
+                                 EvaStreamWatchdog *watchdog)
 {
   eva_io_notify_read_shutdown (watchdog);
   return FALSE;
@@ -45,17 +45,17 @@ handle_underlying_read_shutdown (GskStream *underlying,
 static gboolean
 notify_read_shutdown (gpointer data)
 {
-  GskStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (data);
+  EvaStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (data);
   eva_io_notify_read_shutdown (watchdog);
   g_object_unref (watchdog);
   return FALSE;
 }
 
 static void
-eva_stream_watchdog_set_poll_read   (GskIO      *io,
+eva_stream_watchdog_set_poll_read   (EvaIO      *io,
                                      gboolean    do_poll)
 {
-  GskStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (io);
+  EvaStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (io);
   if (watchdog->underlying == NULL)
     return;
   if (do_poll)
@@ -85,16 +85,16 @@ eva_stream_watchdog_set_poll_read   (GskIO      *io,
 }
 
 static gboolean
-handle_underlying_writable (GskStream *underlying,
-                            GskStreamWatchdog *watchdog)
+handle_underlying_writable (EvaStream *underlying,
+                            EvaStreamWatchdog *watchdog)
 {
   eva_io_notify_ready_to_write (watchdog);
   return TRUE;
 }
 
 static gboolean
-handle_underlying_write_shutdown (GskStream *underlying,
-                                  GskStreamWatchdog *watchdog)
+handle_underlying_write_shutdown (EvaStream *underlying,
+                                  EvaStreamWatchdog *watchdog)
 {
   eva_io_notify_write_shutdown (watchdog);
   return FALSE;
@@ -103,17 +103,17 @@ handle_underlying_write_shutdown (GskStream *underlying,
 static gboolean
 notify_write_shutdown (gpointer data)
 {
-  GskStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (data);
+  EvaStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (data);
   eva_io_notify_write_shutdown (watchdog);
   g_object_unref (watchdog);
   return FALSE;
 }
 
 static void
-eva_stream_watchdog_set_poll_write   (GskIO      *io,
+eva_stream_watchdog_set_poll_write   (EvaIO      *io,
                                      gboolean    do_poll)
 {
-  GskStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (io);
+  EvaStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (io);
   if (watchdog->underlying == NULL)
     return;
   if (do_poll)
@@ -142,20 +142,20 @@ eva_stream_watchdog_set_poll_write   (GskIO      *io,
 }
 
 static gboolean
-eva_stream_watchdog_shutdown_read   (GskIO      *io,
+eva_stream_watchdog_shutdown_read   (EvaIO      *io,
                                      GError    **error)
 {
-  GskStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (io);
+  EvaStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (io);
   if (watchdog->underlying == NULL)
     return TRUE;
   return eva_io_read_shutdown (watchdog->underlying, error);
 }
 
 static gboolean
-eva_stream_watchdog_shutdown_write  (GskIO      *io,
+eva_stream_watchdog_shutdown_write  (EvaIO      *io,
                                      GError    **error)
 {
-  GskStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (io);
+  EvaStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (io);
   if (watchdog->underlying == NULL)
     return TRUE;
   return eva_io_write_shutdown (watchdog->underlying, error);
@@ -164,7 +164,7 @@ eva_stream_watchdog_shutdown_write  (GskIO      *io,
 static gboolean
 handle_inactivity_timeout (gpointer data)
 {
-  GskStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (data);
+  EvaStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (data);
   if (watchdog->underlying)
     {
       eva_io_untrap_readable (watchdog->underlying);
@@ -176,9 +176,9 @@ handle_inactivity_timeout (gpointer data)
   return FALSE;
 }
 
-/* --- GskStream methods --- */
+/* --- EvaStream methods --- */
 static inline void
-touch_timer (GskStreamWatchdog *watchdog)
+touch_timer (EvaStreamWatchdog *watchdog)
 {
   eva_source_adjust_timer (watchdog->timeout,
                            watchdog->max_inactivity_millis,
@@ -186,12 +186,12 @@ touch_timer (GskStreamWatchdog *watchdog)
 }
 
 static guint
-eva_stream_watchdog_raw_read  (GskStream     *stream,
+eva_stream_watchdog_raw_read  (EvaStream     *stream,
                                gpointer       data,
                                guint          length,
                                GError       **error)
 {
-  GskStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (stream);
+  EvaStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (stream);
   guint rv;
   g_return_val_if_fail (watchdog->underlying != NULL, 0);
   rv = eva_stream_read (watchdog->underlying, data, length, error);
@@ -200,12 +200,12 @@ eva_stream_watchdog_raw_read  (GskStream     *stream,
 }
 
 static guint
-eva_stream_watchdog_raw_write (GskStream     *stream,
+eva_stream_watchdog_raw_write (EvaStream     *stream,
                                gconstpointer  data,
                                guint          length,
                                GError       **error)
 {
-  GskStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (stream);
+  EvaStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (stream);
   guint rv;
   g_return_val_if_fail (watchdog->underlying != NULL, 0);
   rv = eva_stream_write (watchdog->underlying, data, length, error);
@@ -214,11 +214,11 @@ eva_stream_watchdog_raw_write (GskStream     *stream,
 }
 
 static guint
-eva_stream_watchdog_raw_read_buffer (GskStream     *stream,
-                                     GskBuffer     *buffer,
+eva_stream_watchdog_raw_read_buffer (EvaStream     *stream,
+                                     EvaBuffer     *buffer,
                                      GError       **error)
 {
-  GskStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (stream);
+  EvaStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (stream);
   guint rv;
   g_return_val_if_fail (watchdog->underlying != NULL, 0);
   rv = eva_stream_read_buffer (watchdog->underlying, buffer, error);
@@ -227,11 +227,11 @@ eva_stream_watchdog_raw_read_buffer (GskStream     *stream,
 }
 
 static guint
-eva_stream_watchdog_raw_write_buffer(GskStream    *stream,
-                                     GskBuffer     *buffer,
+eva_stream_watchdog_raw_write_buffer(EvaStream    *stream,
+                                     EvaBuffer     *buffer,
                                      GError       **error)
 {
-  GskStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (stream);
+  EvaStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (stream);
   guint rv;
   g_return_val_if_fail (watchdog->underlying != NULL, 0);
   rv = eva_stream_write_buffer (watchdog->underlying, buffer, error);
@@ -243,7 +243,7 @@ eva_stream_watchdog_raw_write_buffer(GskStream    *stream,
 static void
 eva_stream_watchdog_finalize (GObject *object)
 {
-  GskStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (object);
+  EvaStreamWatchdog *watchdog = EVA_STREAM_WATCHDOG (object);
   if (watchdog->timeout)
     eva_source_remove (watchdog->timeout);
   if (watchdog->underlying)
@@ -256,15 +256,15 @@ eva_stream_watchdog_finalize (GObject *object)
 }
 
 static void
-eva_stream_watchdog_init (GskStreamWatchdog *watchdog)
+eva_stream_watchdog_init (EvaStreamWatchdog *watchdog)
 {
 }
 
 static void
-eva_stream_watchdog_class_init (GskStreamWatchdogClass *class)
+eva_stream_watchdog_class_init (EvaStreamWatchdogClass *class)
 {
-  GskIOClass *io_class = EVA_IO_CLASS (class);
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   io_class->set_poll_read = eva_stream_watchdog_set_poll_read;
   io_class->set_poll_write = eva_stream_watchdog_set_poll_write;
@@ -290,10 +290,10 @@ eva_stream_watchdog_class_init (GskStreamWatchdogClass *class)
  *
  * returns: the newly allocated stream.
  */
-GskStream *eva_stream_watchdog_new (GskStream       *underlying_stream,
+EvaStream *eva_stream_watchdog_new (EvaStream       *underlying_stream,
                                     guint            max_inactivity_millis)
 {
-  GskStreamWatchdog *watchdog = g_object_new (EVA_TYPE_STREAM_WATCHDOG, NULL);
+  EvaStreamWatchdog *watchdog = g_object_new (EVA_TYPE_STREAM_WATCHDOG, NULL);
   watchdog->underlying = g_object_ref (underlying_stream);
   watchdog->max_inactivity_millis = max_inactivity_millis;
   watchdog->timeout = eva_main_loop_add_timer (eva_main_loop_default (),

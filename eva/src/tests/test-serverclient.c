@@ -4,19 +4,19 @@
 #include "../evainit.h"
 #include <unistd.h>
 
-static GskSocketAddress *addr = 0;
-static GskStreamListener *listener = NULL;
+static EvaSocketAddress *addr = 0;
+static EvaStreamListener *listener = NULL;
 static gboolean done_test = FALSE;
 static guint client_count = 0;
 
 static gboolean
-accept_connection (GskStream    *stream,
+accept_connection (EvaStream    *stream,
 		   gpointer      data,
 		   GError      **error)
 {
   guint8 c8 = client_count;
   guint8 *d = g_memdup (&c8, 1);
-  GskStream *source = eva_memory_slab_source_new (d, 1, g_free, d);
+  EvaStream *source = eva_memory_slab_source_new (d, 1, g_free, d);
   eva_stream_attach (source, stream, NULL);
   eva_io_read_shutdown (stream, NULL);
   g_object_unref (stream);
@@ -47,7 +47,7 @@ create_server ()
 
 static void create_client();
 
-static gboolean handle_client_readable (GskStream *stream, gpointer data)
+static gboolean handle_client_readable (EvaStream *stream, gpointer data)
 {
   guint8 c;
   GError *error = NULL;
@@ -74,7 +74,7 @@ static void
 create_client ()
 {
   GError *error = NULL;
-  GskStream *client = eva_stream_new_connecting (addr, &error);
+  EvaStream *client = eva_stream_new_connecting (addr, &error);
   g_assert (client != NULL);
   eva_io_trap_readable (client, handle_client_readable, NULL, g_object_ref (client), g_object_unref);
   eva_io_write_shutdown (client, NULL);

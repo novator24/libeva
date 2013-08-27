@@ -7,15 +7,15 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskStream GskStream;
-typedef struct _GskStreamClass GskStreamClass;
+typedef struct _EvaStream EvaStream;
+typedef struct _EvaStreamClass EvaStreamClass;
 
 /* --- type macros --- */
 GType eva_stream_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_STREAM			(eva_stream_get_type ())
-#define EVA_STREAM(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM, GskStream))
-#define EVA_STREAM_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM, GskStreamClass))
-#define EVA_STREAM_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM, GskStreamClass))
+#define EVA_STREAM(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM, EvaStream))
+#define EVA_STREAM_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM, EvaStreamClass))
+#define EVA_STREAM_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM, EvaStreamClass))
 #define EVA_IS_STREAM(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STREAM))
 #define EVA_IS_STREAM_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_STREAM))
 
@@ -35,30 +35,30 @@ GType eva_stream_get_type(void) G_GNUC_CONST;
  */
 
 /* --- structures --- */
-struct _GskStreamClass 
+struct _EvaStreamClass 
 {
-  GskIOClass base_class;
+  EvaIOClass base_class;
 
   /* --- virtuals --- */
-  guint      (*raw_read)        (GskStream     *stream,
+  guint      (*raw_read)        (EvaStream     *stream,
 			 	 gpointer       data,
 			 	 guint          length,
 			 	 GError       **error);
-  guint      (*raw_write)       (GskStream     *stream,
+  guint      (*raw_write)       (EvaStream     *stream,
 			 	 gconstpointer  data,
 			 	 guint          length,
 			 	 GError       **error);
-  guint      (*raw_read_buffer) (GskStream     *stream,
-				 GskBuffer     *buffer,
+  guint      (*raw_read_buffer) (EvaStream     *stream,
+				 EvaBuffer     *buffer,
 				 GError       **error);
-  guint      (*raw_write_buffer)(GskStream    *stream,
-				 GskBuffer     *buffer,
+  guint      (*raw_write_buffer)(EvaStream    *stream,
+				 EvaBuffer     *buffer,
 				 GError       **error);
 };
 
-struct _GskStream 
+struct _EvaStream 
 {
-  GskIO        base_io;
+  EvaIO        base_io;
 
   /*< protected >*/
   guint        never_partial_reads : 1;
@@ -69,30 +69,30 @@ struct _GskStream
 /* --- prototypes --- */
 
 /* read-from/write-to a stream */
-gsize    eva_stream_read              (GskStream        *stream,
+gsize    eva_stream_read              (EvaStream        *stream,
 		                       gpointer          buffer,
 		                       gsize             buffer_length,
 		                       GError          **error);
-gsize    eva_stream_write             (GskStream        *stream,
+gsize    eva_stream_write             (EvaStream        *stream,
 		                       gconstpointer     buffer,
 		                       gsize             buffer_length,
 		                       GError          **error);
 /* read into buffer from stream */
-gsize    eva_stream_read_buffer       (GskStream        *stream,
-		                       GskBuffer        *buffer,
+gsize    eva_stream_read_buffer       (EvaStream        *stream,
+		                       EvaBuffer        *buffer,
 		                       GError          **error);
 /* write out of buffer to stream */
-gsize    eva_stream_write_buffer      (GskStream        *stream,
-		                       GskBuffer        *buffer,
+gsize    eva_stream_write_buffer      (EvaStream        *stream,
+		                       EvaBuffer        *buffer,
 		                       GError          **error);
 
 /* connections from the output of one stream to the input of another. */
-gboolean eva_stream_attach            (GskStream        *input_stream,
-                                       GskStream        *output_stream,
+gboolean eva_stream_attach            (EvaStream        *input_stream,
+                                       EvaStream        *output_stream,
 				       GError          **error);
 
-gboolean eva_stream_attach_pair       (GskStream        *stream_a,
-                                       GskStream        *stream_b,
+gboolean eva_stream_attach_pair       (EvaStream        *stream_a,
+                                       EvaStream        *stream_b,
 				       GError          **error);
 
 /* public */

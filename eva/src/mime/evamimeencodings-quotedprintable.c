@@ -10,28 +10,28 @@
 static GObjectClass *parent_class = NULL;
 
 /* --- typedefs --- */
-typedef struct _GskMimeQuotedPrintableDecoder GskMimeQuotedPrintableDecoder;
-typedef struct _GskMimeQuotedPrintableDecoderClass GskMimeQuotedPrintableDecoderClass;
+typedef struct _EvaMimeQuotedPrintableDecoder EvaMimeQuotedPrintableDecoder;
+typedef struct _EvaMimeQuotedPrintableDecoderClass EvaMimeQuotedPrintableDecoderClass;
 /* --- type macros --- */
 GType eva_mime_quoted_printable_decoder_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MIME_QUOTED_PRINTABLE_DECODER			(eva_mime_quoted_printable_decoder_get_type ())
-#define EVA_MIME_QUOTED_PRINTABLE_DECODER(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MIME_QUOTED_PRINTABLE_DECODER, GskMimeQuotedPrintableDecoder))
-#define EVA_MIME_QUOTED_PRINTABLE_DECODER_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MIME_QUOTED_PRINTABLE_DECODER, GskMimeQuotedPrintableDecoderClass))
-#define EVA_MIME_QUOTED_PRINTABLE_DECODER_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MIME_QUOTED_PRINTABLE_DECODER, GskMimeQuotedPrintableDecoderClass))
+#define EVA_MIME_QUOTED_PRINTABLE_DECODER(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MIME_QUOTED_PRINTABLE_DECODER, EvaMimeQuotedPrintableDecoder))
+#define EVA_MIME_QUOTED_PRINTABLE_DECODER_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MIME_QUOTED_PRINTABLE_DECODER, EvaMimeQuotedPrintableDecoderClass))
+#define EVA_MIME_QUOTED_PRINTABLE_DECODER_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MIME_QUOTED_PRINTABLE_DECODER, EvaMimeQuotedPrintableDecoderClass))
 #define EVA_IS_MIME_QUOTED_PRINTABLE_DECODER(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_MIME_QUOTED_PRINTABLE_DECODER))
 #define EVA_IS_MIME_QUOTED_PRINTABLE_DECODER_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_MIME_QUOTED_PRINTABLE_DECODER))
 
 /* --- structures --- */
-struct _GskMimeQuotedPrintableDecoderClass 
+struct _EvaMimeQuotedPrintableDecoderClass 
 {
-  GskSimpleFilterClass simple_filter_class;
+  EvaSimpleFilterClass simple_filter_class;
 };
-struct _GskMimeQuotedPrintableDecoder 
+struct _EvaMimeQuotedPrintableDecoder 
 {
-  GskSimpleFilter      simple_filter;
+  EvaSimpleFilter      simple_filter;
 };
 
-/* --- GskSimpleFilter methods --- */
+/* --- EvaSimpleFilter methods --- */
 
 static gboolean
 quoteprintable_char_to_hexval (char c, guint8 *val_out, GError **error)
@@ -49,9 +49,9 @@ quoteprintable_char_to_hexval (char c, guint8 *val_out, GError **error)
   return TRUE;
 }
 static gboolean
-eva_mime_quoted_printable_decoder_process (GskSimpleFilter *filter,
-                                           GskBuffer       *dst,
-                                           GskBuffer       *src,
+eva_mime_quoted_printable_decoder_process (EvaSimpleFilter *filter,
+                                           EvaBuffer       *dst,
+                                           EvaBuffer       *src,
                                            GError         **error)
 {
   for (;;)
@@ -99,9 +99,9 @@ eva_mime_quoted_printable_decoder_process (GskSimpleFilter *filter,
 }
 
 static gboolean
-eva_mime_quoted_printable_decoder_flush (GskSimpleFilter *filter,
-                                         GskBuffer       *dst,
-                                         GskBuffer       *src,
+eva_mime_quoted_printable_decoder_flush (EvaSimpleFilter *filter,
+                                         EvaBuffer       *dst,
+                                         EvaBuffer       *src,
                                          GError         **error)
 {
   if (src->size > 0)
@@ -116,14 +116,14 @@ eva_mime_quoted_printable_decoder_flush (GskSimpleFilter *filter,
 
 /* --- functions --- */
 static void
-eva_mime_quoted_printable_decoder_init (GskMimeQuotedPrintableDecoder *mime_quoted_printable_decoder)
+eva_mime_quoted_printable_decoder_init (EvaMimeQuotedPrintableDecoder *mime_quoted_printable_decoder)
 {
 }
 
 static void
-eva_mime_quoted_printable_decoder_class_init (GskMimeQuotedPrintableDecoderClass *class)
+eva_mime_quoted_printable_decoder_class_init (EvaMimeQuotedPrintableDecoderClass *class)
 {
-  GskSimpleFilterClass *simple_filter_class = EVA_SIMPLE_FILTER_CLASS (class);
+  EvaSimpleFilterClass *simple_filter_class = EVA_SIMPLE_FILTER_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
   simple_filter_class->process = eva_mime_quoted_printable_decoder_process;
   simple_filter_class->flush = eva_mime_quoted_printable_decoder_flush;
@@ -136,19 +136,19 @@ GType eva_mime_quoted_printable_decoder_get_type()
     {
       static const GTypeInfo mime_quoted_printable_decoder_info =
       {
-	sizeof(GskMimeQuotedPrintableDecoderClass),
+	sizeof(EvaMimeQuotedPrintableDecoderClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_mime_quoted_printable_decoder_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMimeQuotedPrintableDecoder),
+	sizeof (EvaMimeQuotedPrintableDecoder),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_mime_quoted_printable_decoder_init,
 	NULL		/* value_table */
       };
       mime_quoted_printable_decoder_type = g_type_register_static (EVA_TYPE_SIMPLE_FILTER,
-                                                  "GskMimeQuotedPrintableDecoder",
+                                                  "EvaMimeQuotedPrintableDecoder",
 						  &mime_quoted_printable_decoder_info, 0);
     }
   return mime_quoted_printable_decoder_type;
@@ -164,7 +164,7 @@ GType eva_mime_quoted_printable_decoder_get_type()
  *
  * returns: the newly allocated decoder.
  */
-GskStream *
+EvaStream *
 eva_mime_quoted_printable_decoder_new (void)
 {
   return g_object_new (EVA_TYPE_MIME_QUOTED_PRINTABLE_DECODER, NULL);
@@ -172,25 +172,25 @@ eva_mime_quoted_printable_decoder_new (void)
 
 /* ================================= Encoder ================================ */
 /* --- typedefs --- */
-typedef struct _GskMimeQuotedPrintableEncoder GskMimeQuotedPrintableEncoder;
-typedef struct _GskMimeQuotedPrintableEncoderClass GskMimeQuotedPrintableEncoderClass;
+typedef struct _EvaMimeQuotedPrintableEncoder EvaMimeQuotedPrintableEncoder;
+typedef struct _EvaMimeQuotedPrintableEncoderClass EvaMimeQuotedPrintableEncoderClass;
 /* --- type macros --- */
 GType eva_mime_quoted_printable_encoder_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MIME_QUOTED_PRINTABLE_ENCODER			(eva_mime_quoted_printable_encoder_get_type ())
-#define EVA_MIME_QUOTED_PRINTABLE_ENCODER(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MIME_QUOTED_PRINTABLE_ENCODER, GskMimeQuotedPrintableEncoder))
-#define EVA_MIME_QUOTED_PRINTABLE_ENCODER_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MIME_QUOTED_PRINTABLE_ENCODER, GskMimeQuotedPrintableEncoderClass))
-#define EVA_MIME_QUOTED_PRINTABLE_ENCODER_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MIME_QUOTED_PRINTABLE_ENCODER, GskMimeQuotedPrintableEncoderClass))
+#define EVA_MIME_QUOTED_PRINTABLE_ENCODER(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MIME_QUOTED_PRINTABLE_ENCODER, EvaMimeQuotedPrintableEncoder))
+#define EVA_MIME_QUOTED_PRINTABLE_ENCODER_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MIME_QUOTED_PRINTABLE_ENCODER, EvaMimeQuotedPrintableEncoderClass))
+#define EVA_MIME_QUOTED_PRINTABLE_ENCODER_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MIME_QUOTED_PRINTABLE_ENCODER, EvaMimeQuotedPrintableEncoderClass))
 #define EVA_IS_MIME_QUOTED_PRINTABLE_ENCODER(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_MIME_QUOTED_PRINTABLE_ENCODER))
 #define EVA_IS_MIME_QUOTED_PRINTABLE_ENCODER_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_MIME_QUOTED_PRINTABLE_ENCODER))
 
 /* --- structures --- */
-struct _GskMimeQuotedPrintableEncoderClass 
+struct _EvaMimeQuotedPrintableEncoderClass 
 {
-  GskSimpleFilterClass simple_filter_class;
+  EvaSimpleFilterClass simple_filter_class;
 };
-struct _GskMimeQuotedPrintableEncoder 
+struct _EvaMimeQuotedPrintableEncoder 
 {
-  GskSimpleFilter      simple_filter;
+  EvaSimpleFilter      simple_filter;
   guint n_chars_in_line;
 };
 /* --- prototypes --- */
@@ -198,14 +198,14 @@ struct _GskMimeQuotedPrintableEncoder
 #define IS_ENCODABLE_AS_ITSELF(c)	\
 	((33 <= (c) && (c) <= 60) || (62 <= (c) && (c) <= 126))
 
-/* --- GskSimpleFilter methods --- */
+/* --- EvaSimpleFilter methods --- */
 static gboolean
-eva_mime_quoted_printable_encoder_process (GskSimpleFilter *filter,
-                                           GskBuffer       *dst,
-                                           GskBuffer       *src,
+eva_mime_quoted_printable_encoder_process (EvaSimpleFilter *filter,
+                                           EvaBuffer       *dst,
+                                           EvaBuffer       *src,
                                            GError         **error)
 {
-  GskMimeQuotedPrintableEncoder *encoder = EVA_MIME_QUOTED_PRINTABLE_ENCODER (filter);
+  EvaMimeQuotedPrintableEncoder *encoder = EVA_MIME_QUOTED_PRINTABLE_ENCODER (filter);
   guint n_chars_in_line = encoder->n_chars_in_line;
   guint n_peeked;
   char buf[256];
@@ -264,12 +264,12 @@ eva_mime_quoted_printable_encoder_process (GskSimpleFilter *filter,
 }
 
 static gboolean
-eva_mime_quoted_printable_encoder_flush (GskSimpleFilter *filter,
-                                         GskBuffer       *dst,
-                                         GskBuffer       *src,
+eva_mime_quoted_printable_encoder_flush (EvaSimpleFilter *filter,
+                                         EvaBuffer       *dst,
+                                         EvaBuffer       *src,
                                          GError         **error)
 {
-  GskMimeQuotedPrintableEncoder *encoder = EVA_MIME_QUOTED_PRINTABLE_ENCODER (filter);
+  EvaMimeQuotedPrintableEncoder *encoder = EVA_MIME_QUOTED_PRINTABLE_ENCODER (filter);
   g_return_val_if_fail (src->size <= 1, FALSE);
   if (src->size == 1)
     {
@@ -283,13 +283,13 @@ eva_mime_quoted_printable_encoder_flush (GskSimpleFilter *filter,
 
 /* --- functions --- */
 static void
-eva_mime_quoted_printable_encoder_init (GskMimeQuotedPrintableEncoder *mime_quoted_printable_encoder)
+eva_mime_quoted_printable_encoder_init (EvaMimeQuotedPrintableEncoder *mime_quoted_printable_encoder)
 {
 }
 static void
-eva_mime_quoted_printable_encoder_class_init (GskMimeQuotedPrintableEncoderClass *class)
+eva_mime_quoted_printable_encoder_class_init (EvaMimeQuotedPrintableEncoderClass *class)
 {
-  GskSimpleFilterClass *simple_filter_class = EVA_SIMPLE_FILTER_CLASS (class);
+  EvaSimpleFilterClass *simple_filter_class = EVA_SIMPLE_FILTER_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
   simple_filter_class->process = eva_mime_quoted_printable_encoder_process;
   simple_filter_class->flush = eva_mime_quoted_printable_encoder_flush;
@@ -302,19 +302,19 @@ GType eva_mime_quoted_printable_encoder_get_type()
     {
       static const GTypeInfo mime_quoted_printable_encoder_info =
       {
-	sizeof(GskMimeQuotedPrintableEncoderClass),
+	sizeof(EvaMimeQuotedPrintableEncoderClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_mime_quoted_printable_encoder_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMimeQuotedPrintableEncoder),
+	sizeof (EvaMimeQuotedPrintableEncoder),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_mime_quoted_printable_encoder_init,
 	NULL		/* value_table */
       };
       mime_quoted_printable_encoder_type = g_type_register_static (EVA_TYPE_SIMPLE_FILTER,
-                                                  "GskMimeQuotedPrintableEncoder",
+                                                  "EvaMimeQuotedPrintableEncoder",
 						  &mime_quoted_printable_encoder_info, 0);
     }
   return mime_quoted_printable_encoder_type;
@@ -330,7 +330,7 @@ GType eva_mime_quoted_printable_encoder_get_type()
  *
  * returns: the newly allocated encoder.
  */
-GskStream *
+EvaStream *
 eva_mime_quoted_printable_encoder_new (void)
 {
   return g_object_new (EVA_TYPE_MIME_QUOTED_PRINTABLE_ENCODER, NULL);

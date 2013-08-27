@@ -18,37 +18,37 @@ static guint8      ascii_to_base64[256];
 #define BASE64_VALUE_TERMINAL		254
 #define BASE64_VALUE_BAD_CHAR		253
 
-/* ==================== GskMimeBase64Decoder =========================== */
+/* ==================== EvaMimeBase64Decoder =========================== */
 /* --- typedefs --- */
-typedef struct _GskMimeBase64Decoder GskMimeBase64Decoder;
-typedef struct _GskMimeBase64DecoderClass GskMimeBase64DecoderClass;
+typedef struct _EvaMimeBase64Decoder EvaMimeBase64Decoder;
+typedef struct _EvaMimeBase64DecoderClass EvaMimeBase64DecoderClass;
 /* --- type macros --- */
 GType eva_mime_base64_decoder_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MIME_BASE64_DECODER			(eva_mime_base64_decoder_get_type ())
-#define EVA_MIME_BASE64_DECODER(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MIME_BASE64_DECODER, GskMimeBase64Decoder))
-#define EVA_MIME_BASE64_DECODER_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MIME_BASE64_DECODER, GskMimeBase64DecoderClass))
-#define EVA_MIME_BASE64_DECODER_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MIME_BASE64_DECODER, GskMimeBase64DecoderClass))
+#define EVA_MIME_BASE64_DECODER(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MIME_BASE64_DECODER, EvaMimeBase64Decoder))
+#define EVA_MIME_BASE64_DECODER_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MIME_BASE64_DECODER, EvaMimeBase64DecoderClass))
+#define EVA_MIME_BASE64_DECODER_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MIME_BASE64_DECODER, EvaMimeBase64DecoderClass))
 #define EVA_IS_MIME_BASE64_DECODER(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_MIME_BASE64_DECODER))
 #define EVA_IS_MIME_BASE64_DECODER_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_MIME_BASE64_DECODER))
 
 /* --- structures --- */
-struct _GskMimeBase64DecoderClass 
+struct _EvaMimeBase64DecoderClass 
 {
-  GskSimpleFilterClass simple_filter_class;
+  EvaSimpleFilterClass simple_filter_class;
 };
-struct _GskMimeBase64Decoder 
+struct _EvaMimeBase64Decoder 
 {
-  GskSimpleFilter      simple_filter;
+  EvaSimpleFilter      simple_filter;
 
   guint8 cur_bits_in_byte;
   guint8 byte;
   guint8 got_terminal : 1;
 };
 
-/* --- GskSimpleFilter methods --- */
+/* --- EvaSimpleFilter methods --- */
 static inline gboolean
-decoder_process_one (GskMimeBase64Decoder *decoder,
-                     GskBuffer            *dst,
+decoder_process_one (EvaMimeBase64Decoder *decoder,
+                     EvaBuffer            *dst,
 		     int                   input,
 		     GError              **error)
 {
@@ -99,12 +99,12 @@ decoder_process_one (GskMimeBase64Decoder *decoder,
 
 
 static gboolean
-eva_mime_base64_decoder_process (GskSimpleFilter *filter,
-                                 GskBuffer       *dst,
-                                 GskBuffer       *src,
+eva_mime_base64_decoder_process (EvaSimpleFilter *filter,
+                                 EvaBuffer       *dst,
+                                 EvaBuffer       *src,
                                  GError         **error)
 {
-  GskMimeBase64Decoder *decoder = EVA_MIME_BASE64_DECODER (filter);
+  EvaMimeBase64Decoder *decoder = EVA_MIME_BASE64_DECODER (filter);
   /* Decode to binary data one character at a time. */
   int c;
   while ((c = eva_buffer_read_char (src)) != -1)
@@ -116,9 +116,9 @@ eva_mime_base64_decoder_process (GskSimpleFilter *filter,
 }
 
 static gboolean
-eva_mime_base64_decoder_flush (GskSimpleFilter *filter,
-                               GskBuffer       *dst,
-                               GskBuffer       *src,
+eva_mime_base64_decoder_flush (EvaSimpleFilter *filter,
+                               EvaBuffer       *dst,
+                               EvaBuffer       *src,
                                GError         **error)
 {
   eva_mime_base64_decoder_process (filter, dst, src, error);
@@ -135,14 +135,14 @@ eva_mime_base64_decoder_flush (GskSimpleFilter *filter,
 
 /* --- functions --- */
 static void
-eva_mime_base64_decoder_init (GskMimeBase64Decoder *mime_base64_decoder)
+eva_mime_base64_decoder_init (EvaMimeBase64Decoder *mime_base64_decoder)
 {
 }
 
 static void
-eva_mime_base64_decoder_class_init (GskMimeBase64DecoderClass *class)
+eva_mime_base64_decoder_class_init (EvaMimeBase64DecoderClass *class)
 {
-  GskSimpleFilterClass *simple_filter_class = EVA_SIMPLE_FILTER_CLASS (class);
+  EvaSimpleFilterClass *simple_filter_class = EVA_SIMPLE_FILTER_CLASS (class);
   guint i;
   parent_class = g_type_class_peek_parent (class);
   simple_filter_class->process = eva_mime_base64_decoder_process;
@@ -164,19 +164,19 @@ GType eva_mime_base64_decoder_get_type()
     {
       static const GTypeInfo mime_base64_decoder_info =
       {
-	sizeof(GskMimeBase64DecoderClass),
+	sizeof(EvaMimeBase64DecoderClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_mime_base64_decoder_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMimeBase64Decoder),
+	sizeof (EvaMimeBase64Decoder),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_mime_base64_decoder_init,
 	NULL		/* value_table */
       };
       mime_base64_decoder_type = g_type_register_static (EVA_TYPE_SIMPLE_FILTER,
-                                                  "GskMimeBase64Decoder",
+                                                  "EvaMimeBase64Decoder",
 						  &mime_base64_decoder_info, 0);
     }
   return mime_base64_decoder_type;
@@ -191,34 +191,34 @@ GType eva_mime_base64_decoder_get_type()
  *
  * returns: the newly allocated decoder.
  */
-GskStream *
+EvaStream *
 eva_mime_base64_decoder_new (void)
 {
   return g_object_new (EVA_TYPE_MIME_BASE64_DECODER, NULL);
 }
 
-/* ==================== GskMimeBase64Encoder =========================== */
+/* ==================== EvaMimeBase64Encoder =========================== */
 
 /* --- typedefs --- */
-typedef struct _GskMimeBase64Encoder GskMimeBase64Encoder;
-typedef struct _GskMimeBase64EncoderClass GskMimeBase64EncoderClass;
+typedef struct _EvaMimeBase64Encoder EvaMimeBase64Encoder;
+typedef struct _EvaMimeBase64EncoderClass EvaMimeBase64EncoderClass;
 /* --- type macros --- */
 GType eva_mime_base64_encoder_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_MIME_BASE64_ENCODER			(eva_mime_base64_encoder_get_type ())
-#define EVA_MIME_BASE64_ENCODER(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MIME_BASE64_ENCODER, GskMimeBase64Encoder))
-#define EVA_MIME_BASE64_ENCODER_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MIME_BASE64_ENCODER, GskMimeBase64EncoderClass))
-#define EVA_MIME_BASE64_ENCODER_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MIME_BASE64_ENCODER, GskMimeBase64EncoderClass))
+#define EVA_MIME_BASE64_ENCODER(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_MIME_BASE64_ENCODER, EvaMimeBase64Encoder))
+#define EVA_MIME_BASE64_ENCODER_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_MIME_BASE64_ENCODER, EvaMimeBase64EncoderClass))
+#define EVA_MIME_BASE64_ENCODER_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_MIME_BASE64_ENCODER, EvaMimeBase64EncoderClass))
 #define EVA_IS_MIME_BASE64_ENCODER(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_MIME_BASE64_ENCODER))
 #define EVA_IS_MIME_BASE64_ENCODER_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_MIME_BASE64_ENCODER))
 
 /* --- structures --- */
-struct _GskMimeBase64EncoderClass 
+struct _EvaMimeBase64EncoderClass 
 {
-  GskSimpleFilterClass simple_filter_class;
+  EvaSimpleFilterClass simple_filter_class;
 };
-struct _GskMimeBase64Encoder 
+struct _EvaMimeBase64Encoder 
 {
-  GskSimpleFilter      simple_filter;
+  EvaSimpleFilter      simple_filter;
   guint chars_per_line;
   guint chars_in_this_line;
   guint8 n_bits;	/* 0,2,4 */
@@ -226,14 +226,14 @@ struct _GskMimeBase64Encoder
 };
 /* --- prototypes --- */
 
-/* --- GskSimpleFilter methods --- */
+/* --- EvaSimpleFilter methods --- */
 static gboolean
-eva_mime_base64_encoder_process (GskSimpleFilter *filter,
-                                 GskBuffer       *dst,
-                                 GskBuffer       *src,
+eva_mime_base64_encoder_process (EvaSimpleFilter *filter,
+                                 EvaBuffer       *dst,
+                                 EvaBuffer       *src,
                                  GError         **error)
 {
-  GskMimeBase64Encoder *encoder = EVA_MIME_BASE64_ENCODER (filter);
+  EvaMimeBase64Encoder *encoder = EVA_MIME_BASE64_ENCODER (filter);
   guint8 n_bits = encoder->n_bits;
   guint8 partial_data = encoder->partial_data;
   guint chars_in_this_line = encoder->chars_in_this_line;
@@ -281,12 +281,12 @@ eva_mime_base64_encoder_process (GskSimpleFilter *filter,
 }
 
 static gboolean
-eva_mime_base64_encoder_flush (GskSimpleFilter *filter,
-                               GskBuffer       *dst,
-                               GskBuffer       *src,
+eva_mime_base64_encoder_flush (EvaSimpleFilter *filter,
+                               EvaBuffer       *dst,
+                               EvaBuffer       *src,
                                GError         **error)
 {
-  GskMimeBase64Encoder *encoder = EVA_MIME_BASE64_ENCODER (filter);
+  EvaMimeBase64Encoder *encoder = EVA_MIME_BASE64_ENCODER (filter);
 
   /* These are use by APPEND_CHARS_AND_MAYBE_ADD_NEWLINE. */
   guint chars_in_this_line = encoder->chars_in_this_line;
@@ -301,14 +301,14 @@ eva_mime_base64_encoder_flush (GskSimpleFilter *filter,
 
 /* --- functions --- */
 static void
-eva_mime_base64_encoder_init (GskMimeBase64Encoder *mime_base64_encoder)
+eva_mime_base64_encoder_init (EvaMimeBase64Encoder *mime_base64_encoder)
 {
 }
 
 static void
-eva_mime_base64_encoder_class_init (GskMimeBase64EncoderClass *class)
+eva_mime_base64_encoder_class_init (EvaMimeBase64EncoderClass *class)
 {
-  GskSimpleFilterClass *simple_filter_class = EVA_SIMPLE_FILTER_CLASS (class);
+  EvaSimpleFilterClass *simple_filter_class = EVA_SIMPLE_FILTER_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
   simple_filter_class->process = eva_mime_base64_encoder_process;
   simple_filter_class->flush = eva_mime_base64_encoder_flush;
@@ -321,19 +321,19 @@ GType eva_mime_base64_encoder_get_type()
     {
       static const GTypeInfo mime_base64_encoder_info =
       {
-	sizeof(GskMimeBase64EncoderClass),
+	sizeof(EvaMimeBase64EncoderClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_mime_base64_encoder_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMimeBase64Encoder),
+	sizeof (EvaMimeBase64Encoder),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_mime_base64_encoder_init,
 	NULL		/* value_table */
       };
       mime_base64_encoder_type = g_type_register_static (EVA_TYPE_SIMPLE_FILTER,
-                                                  "GskMimeBase64Encoder",
+                                                  "EvaMimeBase64Encoder",
 						  &mime_base64_encoder_info, 0);
     }
   return mime_base64_encoder_type;
@@ -348,7 +348,7 @@ GType eva_mime_base64_encoder_get_type()
  *
  * returns: the newly allocated encoder.
  */
-GskStream *
+EvaStream *
 eva_mime_base64_encoder_new (void)
 {
   return g_object_new (EVA_TYPE_MIME_BASE64_ENCODER, NULL);

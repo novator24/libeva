@@ -7,11 +7,11 @@ An exhaustive composite list of error codes.
 <!-- ##### SECTION Long_Description ##### -->
 <para>
 This code principally consists of an enum
-#GskErrorCode which can hopefully cover a wide range
+#EvaErrorCode which can hopefully cover a wide range
 of error conditions.  It encapsulates it in a GType'd enum
 so that you can get the name and nickname as usual.
 There is also support for mapping errno codes to
-GskErrorCode (eva_error_code_from_errno())
+EvaErrorCode (eva_error_code_from_errno())
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
@@ -24,31 +24,31 @@ GskErrorCode (eva_error_code_from_errno())
 
 <!-- ##### VARIABLE eva_g_error_domain_quark ##### -->
 <para>
-Quark used in all GErrors that use GskErrorCode. (private)
+Quark used in all GErrors that use EvaErrorCode. (private)
 </para>
 
 
 <!-- ##### VARIABLE eva_error_code_type ##### -->
 <para>
-GType of the GskErrorCode enum. (private)
+GType of the EvaErrorCode enum. (private)
 </para>
 
 
 <!-- ##### MACRO EVA_G_ERROR_DOMAIN ##### -->
 <para>
-Quark used in all GErrors that use GskErrorCode.
+Quark used in all GErrors that use EvaErrorCode.
 </para>
 
 
 
 <!-- ##### MACRO EVA_TYPE_ERROR_CODE ##### -->
 <para>
-GType of GskErrorCode.
+GType of EvaErrorCode.
 </para>
 
 
 
-<!-- ##### ENUM GskErrorCode ##### -->
+<!-- ##### ENUM EvaErrorCode ##### -->
 <para>
 This is a list compiled from several sources
 of error conditions.

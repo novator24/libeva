@@ -5,8 +5,8 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskMimeMultipartPiece GskMimeMultipartPiece;
-struct _GskMimeMultipartPiece
+typedef struct _EvaMimeMultipartPiece EvaMimeMultipartPiece;
+struct _EvaMimeMultipartPiece
 {
   char *type;
   char *subtype;
@@ -25,7 +25,7 @@ struct _GskMimeMultipartPiece
   gpointer destroy_data;	/*< private >*/
 
   /* if !is_memory */
-  GskStream *content;
+  EvaStream *content;
 
   guint16 is_memory : 1;
 
@@ -33,30 +33,30 @@ struct _GskMimeMultipartPiece
   guint16 ref_count;
 };
 
-GskMimeMultipartPiece *eva_mime_multipart_piece_alloc (void);
-GskMimeMultipartPiece *eva_mime_multipart_piece_ref   (GskMimeMultipartPiece *piece);
-void                   eva_mime_multipart_piece_unref (GskMimeMultipartPiece *piece);
+EvaMimeMultipartPiece *eva_mime_multipart_piece_alloc (void);
+EvaMimeMultipartPiece *eva_mime_multipart_piece_ref   (EvaMimeMultipartPiece *piece);
+void                   eva_mime_multipart_piece_unref (EvaMimeMultipartPiece *piece);
 
-void  eva_mime_multipart_piece_set_data (GskMimeMultipartPiece *piece,
+void  eva_mime_multipart_piece_set_data (EvaMimeMultipartPiece *piece,
 					 gconstpointer          data,
 					 guint                  len,
 					 GDestroyNotify         destroy,
 					 gpointer               destroy_data);
 void
-eva_mime_multipart_piece_set_stream     (GskMimeMultipartPiece *piece,
-				         GskStream             *stream);
+eva_mime_multipart_piece_set_stream     (EvaMimeMultipartPiece *piece,
+				         EvaStream             *stream);
 void 
-eva_mime_multipart_piece_set_description(GskMimeMultipartPiece *piece,
+eva_mime_multipart_piece_set_description(EvaMimeMultipartPiece *piece,
 					 const char            *description);
-void eva_mime_multipart_piece_set_id    (GskMimeMultipartPiece *piece,
+void eva_mime_multipart_piece_set_id    (EvaMimeMultipartPiece *piece,
 				         const char            *id);
 void
-eva_mime_multipart_piece_set_location   (GskMimeMultipartPiece *piece,
+eva_mime_multipart_piece_set_location   (EvaMimeMultipartPiece *piece,
 				         const char            *location);
 void eva_mime_multipart_piece_set_transfer_encoding
-                                        (GskMimeMultipartPiece *piece,
+                                        (EvaMimeMultipartPiece *piece,
 					 const char            *encoding);
-void eva_mime_multipart_piece_set_type  (GskMimeMultipartPiece *piece,
+void eva_mime_multipart_piece_set_type  (EvaMimeMultipartPiece *piece,
 				         const char            *type,
 					 const char            *subtype,
 					 const char            *charset,

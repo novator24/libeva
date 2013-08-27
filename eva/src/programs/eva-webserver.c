@@ -18,7 +18,7 @@ usage (void)
 int main(int argc, char **argv)
 {
   guint i;
-  GskHttpContent *content;
+  EvaHttpContent *content;
   GError *error = NULL;
   eva_init_without_threads (&argc, &argv);
   content = eva_http_content_new ();
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
       if (g_str_has_prefix (argv[i], "--bind-tcp="))
         {
 	  guint port = atoi (strchr (argv[i], '=') + 1);
-          GskSocketAddress *addr;
+          EvaSocketAddress *addr;
           addr = eva_socket_address_ipv4_new (eva_ipv4_ip_address_any, port);
           if (!eva_http_content_listen (content, addr, &error))
             g_error ("error binding: %s", error->message);

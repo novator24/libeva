@@ -92,8 +92,8 @@ int main(int argc, char **argv)
     g_error ("client_key_file file %s does not exist", client_key_file);
 
   {
-    GskBufferStream *client, *server;
-    GskStreamSsl *client_ssl, *server_ssl;
+    EvaBufferStream *client, *server;
+    EvaStreamSsl *client_ssl, *server_ssl;
     char buf[256];
     GError *error = NULL;
     server = eva_buffer_stream_new ();

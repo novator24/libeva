@@ -50,16 +50,16 @@
 This section of the tutorial describes how to write a server.
 </p>
 <p>
-Most servers bind to a #GskSocketAddress using a #GskStreamListenerSocket.
+Most servers bind to a #EvaSocketAddress using a #EvaStreamListenerSocket.
 They call eva_stream_listener_handle_accept()
 to receive notification when new clients have connected.
 </p>
 <p>
 The easiest way to handle incoming client connections is 
-to make a #GskStream that can handle the protocol.
+to make a #EvaStream that can handle the protocol.
 If you do not have an appropriate protocol stream,
 and don't wish to make one,
-use a #GskBufferStream to get simple I/O buffering,
+use a #EvaBufferStream to get simple I/O buffering,
 or one can directly call eva_stream_trap_readable()
 and eva_stream_trap_writable() to get notification when
 the stream can be written or read.
@@ -143,7 +143,7 @@ compute_response (const char *request)
 <a name="id2635583"></a><h3>Implementing the accept handler with a custom stream</h3>
 <p>
 To implement this the handler we must make a GObject that derives
-from GskStream.  Here is, once again the boilerplate GObject code:
+from EvaStream.  Here is, once again the boilerplate GObject code:
 </p>
 <pre class="programlisting">
 typedef struct _MyStream MyStream;
@@ -158,13 +158,13 @@ GType my_stream_get_type(void) G_GNUC_CONST;
 
 struct _MyStreamClass 
 {
-  GskStreamClass base_class;
+  EvaStreamClass base_class;
 };
 struct _MyStream 
 {
-  GskStream      base_instance;
-  GskBuffer      incoming;
-  GskBuffer      outgoing;
+  EvaStream      base_instance;
+  EvaBuffer      incoming;
+  EvaBuffer      outgoing;
 };
 G_DEFINE_TYPE (MyStream, my_stream, EVA_TYPE_STREAM);
 
@@ -178,8 +178,8 @@ my_stream_init (MyStream *stream)
 static void
 my_stream_class_init (MyStreamClass *class)
 {
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
-  GskIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
   GObjectclass *object_class = G_OBJECT_CLASS (class);
   stream_class-&gt;raw_read = my_stream_raw_read;
   stream_class-&gt;raw_write = my_stream_raw_write;
@@ -219,7 +219,7 @@ my_stream_class_init (MyStreamClass *class)
 </p>
 <pre class="programlisting">
   static guint
-  my_stream_raw_read        (GskStream     *stream,
+  my_stream_raw_read        (EvaStream     *stream,
 			     gpointer       data,
 			     guint          length,
 			     GError       **error)
@@ -239,7 +239,7 @@ my_stream_class_init (MyStreamClass *class)
   }
 
   static guint
-  my_stream_raw_write       (GskStream     *stream,
+  my_stream_raw_write       (EvaStream     *stream,
 			     gconstpointer  data,
 			     guint          length,
 			     GError       **error)
@@ -264,14 +264,14 @@ since it is easy to have one side waiting for the other.
 </p>
 <pre class="programlisting">
   static gboolean
-  my_stream_shutdown_read   (GskIO      *io,
+  my_stream_shutdown_read   (EvaIO      *io,
 			     GError    **error)
   {
     eva_io_notify_write_shutdown (io);
     return TRUE;
   }
   static gboolean
-  my_stream_shutdown_write  (GskIO      *io,
+  my_stream_shutdown_write  (EvaIO      *io,
 		    	     GError    **error)
   {
     MyStream *my_stream = MY_STREAM (io);
@@ -287,11 +287,11 @@ at least handle_connection is easy to implement:
 </p>
 <pre class="programlisting">
 static gboolean
-handle_connection (GskStream *stream,
+handle_connection (EvaStream *stream,
                    gpointer   data,
 		   GError   **error)
 {
-  GskStream *my_stream = g_object_new (MY_TYPE_STREAM, NULL);
+  EvaStream *my_stream = g_object_new (MY_TYPE_STREAM, NULL);
   gboolean rv = eva_stream_attach_pair (my_stream, stream, error);
   g_object_unref (my_stream);
   return rv;

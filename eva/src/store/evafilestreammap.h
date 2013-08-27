@@ -3,7 +3,7 @@
 
 /*
  *
- * GskFileStreamMap -- implementation of GskStreamMap that uses the
+ * EvaFileStreamMap -- implementation of EvaStreamMap that uses the
  * filesystem.
  *
  * Properties:
@@ -14,8 +14,8 @@
 
 G_BEGIN_DECLS
 
-typedef GObjectClass             GskFileStreamMapClass;
-typedef struct _GskFileStreamMap GskFileStreamMap;
+typedef GObjectClass             EvaFileStreamMapClass;
+typedef struct _EvaFileStreamMap EvaFileStreamMap;
 
 GType eva_file_stream_map_get_type (void) G_GNUC_CONST;
 
@@ -23,28 +23,28 @@ GType eva_file_stream_map_get_type (void) G_GNUC_CONST;
 #define EVA_FILE_STREAM_MAP(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
 			       EVA_TYPE_FILE_STREAM_MAP, \
-			       GskFileStreamMap))
+			       EvaFileStreamMap))
 #define EVA_FILE_STREAM_MAP_CLASS(klass) \
   (G_TYPE_CHECK_CLASS_CAST ((klass), \
 			    EVA_TYPE_FILE_STREAM_MAP, \
-			    GskFileStreamMapClass))
+			    EvaFileStreamMapClass))
 #define EVA_FILE_STREAM_MAP_GET_CLASS(obj) \
   (G_TYPE_INSTANCE_GET_CLASS ((obj), \
 			      EVA_TYPE_FILE_STREAM_MAP, \
-			      GskFileStreamMapClass))
+			      EvaFileStreamMapClass))
 #define EVA_IS_FILE_STREAM_MAP(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_FILE_STREAM_MAP))
 #define EVA_IS_FILE_STREAM_MAP_CLASS(klass) \
   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_FILE_STREAM_MAP))
 
-struct _GskFileStreamMap
+struct _EvaFileStreamMap
 {
   GObject object;
 
   char *directory;
 };
 
-GskFileStreamMap * eva_file_stream_map_new (const char *directory);
+EvaFileStreamMap * eva_file_stream_map_new (const char *directory);
 
 G_END_DECLS
 

@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskHttpResponse
+EvaHttpResponse
 
 <!-- ##### SECTION Short_Description ##### -->
 An HTTP header that is sent from server to client.
@@ -13,49 +13,49 @@ It may also include often information about the content.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-GskHttpHeader, GskHttpRequest
+EvaHttpHeader, EvaHttpRequest
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskHttpResponse ##### -->
+<!-- ##### STRUCT EvaHttpResponse ##### -->
 <para>
 An instance of a HTTP response header.
 </para>
 
 
-<!-- ##### ARG GskHttpResponse:age ##### -->
+<!-- ##### ARG EvaHttpResponse:age ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpResponse:e-tag ##### -->
+<!-- ##### ARG EvaHttpResponse:e-tag ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpResponse:expires ##### -->
+<!-- ##### ARG EvaHttpResponse:expires ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpResponse:last-modified ##### -->
+<!-- ##### ARG EvaHttpResponse:last-modified ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpResponse:location ##### -->
+<!-- ##### ARG EvaHttpResponse:location ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpResponse:server ##### -->
+<!-- ##### ARG EvaHttpResponse:server ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskHttpResponse:status-code ##### -->
+<!-- ##### ARG EvaHttpResponse:status-code ##### -->
 <para>
 
 </para>
@@ -101,7 +101,7 @@ An instance of a HTTP response header.
 <!-- ##### MACRO eva_http_response_set_status_code ##### -->
 <para>
 Set what kind of response is going to be given.
-See #GskHttpStatus for a description of all the status codes
+See #EvaHttpStatus for a description of all the status codes
 defined in HTTP/1.1 (RFC 2616).
 </para>
 
@@ -230,7 +230,7 @@ ETag field.
 
 <!-- ##### MACRO eva_http_response_peek_cache_control ##### -->
 <para>
-Obtain the #GskHttpCacheDirective associated with the
+Obtain the #EvaHttpCacheDirective associated with the
 response.
 </para>
 

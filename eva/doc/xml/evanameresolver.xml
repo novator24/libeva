@@ -13,44 +13,44 @@
 
 <refsynopsisdiv id="eva-evanameresolver.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
-<anchor id="GskNameResolver"/>
+<anchor id="EvaNameResolver"/>
 <synopsis>
-                    <link linkend="GskNameResolver-struct">GskNameResolver</link>;
-                    <link linkend="GskNameResolverIface">GskNameResolverIface</link>;
-                    <link linkend="GskNameResolverTask">GskNameResolverTask</link>;
-<link linkend="void">void</link>                (<link linkend="GskNameResolverSuccessFunc">*GskNameResolverSuccessFunc</link>)       (<link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+                    <link linkend="EvaNameResolver-struct">EvaNameResolver</link>;
+                    <link linkend="EvaNameResolverIface">EvaNameResolverIface</link>;
+                    <link linkend="EvaNameResolverTask">EvaNameResolverTask</link>;
+<link linkend="void">void</link>                (<link linkend="EvaNameResolverSuccessFunc">*EvaNameResolverSuccessFunc</link>)       (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="gpointer">gpointer</link> func_data);
-<link linkend="void">void</link>                (<link linkend="GskNameResolverFailureFunc">*GskNameResolverFailureFunc</link>)       (<link linkend="GError">GError</link> *error,
+<link linkend="void">void</link>                (<link linkend="EvaNameResolverFailureFunc">*EvaNameResolverFailureFunc</link>)       (<link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> func_data);
-enum                <link linkend="GskNameResolverFamily">GskNameResolverFamily</link>;
-<link linkend="GskNameResolverFamily">GskNameResolverFamily</link>  <link linkend="eva-name-resolver-family-get-by-name">eva_name_resolver_family_get_by_name</link>
+enum                <link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link>;
+<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link>  <link linkend="eva-name-resolver-family-get-by-name">eva_name_resolver_family_get_by_name</link>
                                                         (const <link linkend="char">char</link> *name);
-const <link linkend="char">char</link> *        <link linkend="eva-name-resolver-family-get-name">eva_name_resolver_family_get_name</link>   (<link linkend="GskNameResolverFamily">GskNameResolverFamily</link> family);
-<link linkend="void">void</link>                <link linkend="eva-name-resolver-lookup">eva_name_resolver_lookup</link>            (<link linkend="GskNameResolverFamily">GskNameResolverFamily</link> family,
+const <link linkend="char">char</link> *        <link linkend="eva-name-resolver-family-get-name">eva_name_resolver_family_get_name</link>   (<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link> family);
+<link linkend="void">void</link>                <link linkend="eva-name-resolver-lookup">eva_name_resolver_lookup</link>            (<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link> family,
                                                          const <link linkend="char">char</link> *name,
-                                                         <link linkend="GskNameResolverSuccessFunc">GskNameResolverSuccessFunc</link> success,
-                                                         <link linkend="GskNameResolverFailureFunc">GskNameResolverFailureFunc</link> failure,
+                                                         <link linkend="EvaNameResolverSuccessFunc">EvaNameResolverSuccessFunc</link> success,
+                                                         <link linkend="EvaNameResolverFailureFunc">EvaNameResolverFailureFunc</link> failure,
                                                          <link linkend="gpointer">gpointer</link> func_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="GskNameResolverTask">GskNameResolverTask</link> * <link linkend="eva-name-resolver-task-new">eva_name_resolver_task_new</link>        (<link linkend="GskNameResolverFamily">GskNameResolverFamily</link> family,
+<link linkend="EvaNameResolverTask">EvaNameResolverTask</link> * <link linkend="eva-name-resolver-task-new">eva_name_resolver_task_new</link>        (<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link> family,
                                                          const <link linkend="char">char</link> *name,
-                                                         <link linkend="GskNameResolverSuccessFunc">GskNameResolverSuccessFunc</link> success,
-                                                         <link linkend="GskNameResolverFailureFunc">GskNameResolverFailureFunc</link> failure,
+                                                         <link linkend="EvaNameResolverSuccessFunc">EvaNameResolverSuccessFunc</link> success,
+                                                         <link linkend="EvaNameResolverFailureFunc">EvaNameResolverFailureFunc</link> failure,
                                                          <link linkend="gpointer">gpointer</link> func_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="void">void</link>                <link linkend="eva-name-resolver-task-cancel">eva_name_resolver_task_cancel</link>       (<link linkend="GskNameResolverTask">GskNameResolverTask</link> *task);
-<link linkend="void">void</link>                <link linkend="eva-name-resolver-task-ref">eva_name_resolver_task_ref</link>          (<link linkend="GskNameResolverTask">GskNameResolverTask</link> *task);
-<link linkend="void">void</link>                <link linkend="eva-name-resolver-task-unref">eva_name_resolver_task_unref</link>        (<link linkend="GskNameResolverTask">GskNameResolverTask</link> *task);
-<link linkend="GskNameResolverFamily">GskNameResolverFamily</link>  <link linkend="eva-name-resolver-family-unique">eva_name_resolver_family_unique</link>  (const <link linkend="char">char</link> *name);
-<link linkend="void">void</link>                <link linkend="eva-name-resolver-add-family-name">eva_name_resolver_add_family_name</link>   (<link linkend="GskNameResolverFamily">GskNameResolverFamily</link> family,
+<link linkend="void">void</link>                <link linkend="eva-name-resolver-task-cancel">eva_name_resolver_task_cancel</link>       (<link linkend="EvaNameResolverTask">EvaNameResolverTask</link> *task);
+<link linkend="void">void</link>                <link linkend="eva-name-resolver-task-ref">eva_name_resolver_task_ref</link>          (<link linkend="EvaNameResolverTask">EvaNameResolverTask</link> *task);
+<link linkend="void">void</link>                <link linkend="eva-name-resolver-task-unref">eva_name_resolver_task_unref</link>        (<link linkend="EvaNameResolverTask">EvaNameResolverTask</link> *task);
+<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link>  <link linkend="eva-name-resolver-family-unique">eva_name_resolver_family_unique</link>  (const <link linkend="char">char</link> *name);
+<link linkend="void">void</link>                <link linkend="eva-name-resolver-add-family-name">eva_name_resolver_add_family_name</link>   (<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link> family,
                                                          const <link linkend="char">char</link> *name);
-<link linkend="GskNameResolver">GskNameResolver</link> *   (<link linkend="GskNameResolverFamilyHandler">*GskNameResolverFamilyHandler</link>)     (<link linkend="gpointer">gpointer</link> data);
+<link linkend="EvaNameResolver">EvaNameResolver</link> *   (<link linkend="EvaNameResolverFamilyHandler">*EvaNameResolverFamilyHandler</link>)     (<link linkend="gpointer">gpointer</link> data);
 <link linkend="void">void</link>                <link linkend="eva-name-resolver-add-family-resolver">eva_name_resolver_add_family_resolver</link>
-                                                        (<link linkend="GskNameResolverFamily">GskNameResolverFamily</link> family,
-                                                         <link linkend="GskNameResolver">GskNameResolver</link> *resolver);
+                                                        (<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link> family,
+                                                         <link linkend="EvaNameResolver">EvaNameResolver</link> *resolver);
 <link linkend="void">void</link>                <link linkend="eva-name-resolver-add-family-handler">eva_name_resolver_add_family_handler</link>
-                                                        (<link linkend="GskNameResolverFamily">GskNameResolverFamily</link> family,
-                                                         <link linkend="GskNameResolverFamilyHandler">GskNameResolverFamilyHandler</link> handler,
+                                                        (<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link> family,
+                                                         <link linkend="EvaNameResolverFamilyHandler">EvaNameResolverFamilyHandler</link> handler,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
 </synopsis>
@@ -60,7 +60,7 @@ const <link linkend="char">char</link> *        <link linkend="eva-name-resolver
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GInterface">GInterface</link>
-   +----GskNameResolver
+   +----EvaNameResolver
 </synopsis>
 </refsect1>
 
@@ -70,8 +70,8 @@ const <link linkend="char">char</link> *        <link linkend="eva-name-resolver
 <refsect1 id="eva-evanameresolver.implementations" role="implementations">
 <title role="implementations.title">Known Implementations</title>
 <para>
-GskNameResolver is implemented by
- <link linkend="GskDnsClient">GskDnsClient</link>.</para>
+EvaNameResolver is implemented by
+ <link linkend="EvaDnsClient">EvaDnsClient</link>.</para>
 </refsect1>
 
 
@@ -87,27 +87,27 @@ its name, and (2) a way of registering new types of address families and namespa
 
 <refsect1 id="eva-evanameresolver.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskNameResolver-struct" role="struct">
-<title>GskNameResolver</title>
-<indexterm zone="GskNameResolver-struct"><primary sortas="GskNameResolver">GskNameResolver</primary></indexterm><programlisting>typedef struct _GskNameResolver GskNameResolver;</programlisting>
+<refsect2 id="EvaNameResolver-struct" role="struct">
+<title>EvaNameResolver</title>
+<indexterm zone="EvaNameResolver-struct"><primary sortas="EvaNameResolver">EvaNameResolver</primary></indexterm><programlisting>typedef struct _EvaNameResolver EvaNameResolver;</programlisting>
 <para>
 Opaque object representing an instance which implements
 the NameResolver interface.
 </para></refsect2>
-<refsect2 id="GskNameResolverIface" role="struct">
-<title>GskNameResolverIface</title>
-<indexterm zone="GskNameResolverIface"><primary sortas="GskNameResolverIface">GskNameResolverIface</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaNameResolverIface" role="struct">
+<title>EvaNameResolverIface</title>
+<indexterm zone="EvaNameResolverIface"><primary sortas="EvaNameResolverIface">EvaNameResolverIface</primary></indexterm><programlisting>typedef struct {
   GObjectClass object_class;
-  gpointer (*start_resolve)  (GskNameResolver           *resolver,
-			      GskNameResolverFamily      family,
+  gpointer (*start_resolve)  (EvaNameResolver           *resolver,
+			      EvaNameResolverFamily      family,
                               const char                *name,
-                              GskNameResolverSuccessFunc success,
-                              GskNameResolverFailureFunc failure,
+                              EvaNameResolverSuccessFunc success,
+                              EvaNameResolverFailureFunc failure,
                               gpointer                   func_data,
                               GDestroyNotify             destroy);
-  gboolean (*cancel_resolve) (GskNameResolver           *resolver,
+  gboolean (*cancel_resolve) (EvaNameResolver           *resolver,
                               gpointer                   handle);
-} GskNameResolverIface;
+} EvaNameResolverIface;
 </programlisting>
 <para>
 An interface that can be implemented by a class which provides name-lookups.
@@ -128,16 +128,16 @@ An interface that can be implemented by a class which provides name-lookups.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskNameResolverTask" role="struct">
-<title>GskNameResolverTask</title>
-<indexterm zone="GskNameResolverTask"><primary sortas="GskNameResolverTask">GskNameResolverTask</primary></indexterm><programlisting>typedef struct _GskNameResolverTask GskNameResolverTask;</programlisting>
+<refsect2 id="EvaNameResolverTask" role="struct">
+<title>EvaNameResolverTask</title>
+<indexterm zone="EvaNameResolverTask"><primary sortas="EvaNameResolverTask">EvaNameResolverTask</primary></indexterm><programlisting>typedef struct _EvaNameResolverTask EvaNameResolverTask;</programlisting>
 <para>
 An opaque type representing a name lookup (which may be running,
 or it may be succeeded, failed or been cancelled).
 </para></refsect2>
-<refsect2 id="GskNameResolverSuccessFunc" role="function">
-<title>GskNameResolverSuccessFunc ()</title>
-<indexterm zone="GskNameResolverSuccessFunc"><primary sortas="GskNameResolverSuccessFunc">GskNameResolverSuccessFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskNameResolverSuccessFunc)       (<link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+<refsect2 id="EvaNameResolverSuccessFunc" role="function">
+<title>EvaNameResolverSuccessFunc ()</title>
+<indexterm zone="EvaNameResolverSuccessFunc"><primary sortas="EvaNameResolverSuccessFunc">EvaNameResolverSuccessFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaNameResolverSuccessFunc)       (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="gpointer">gpointer</link> func_data);</programlisting>
 <para>
 Function to call when an address has been successfully found for the name.
@@ -149,9 +149,9 @@ Function to call when an address has been successfully found for the name.
 <listitem><simpara>data passed to <link linkend="eva-name-resolve"><function>eva_name_resolve()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskNameResolverFailureFunc" role="function">
-<title>GskNameResolverFailureFunc ()</title>
-<indexterm zone="GskNameResolverFailureFunc"><primary sortas="GskNameResolverFailureFunc">GskNameResolverFailureFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskNameResolverFailureFunc)       (<link linkend="GError">GError</link> *error,
+<refsect2 id="EvaNameResolverFailureFunc" role="function">
+<title>EvaNameResolverFailureFunc ()</title>
+<indexterm zone="EvaNameResolverFailureFunc"><primary sortas="EvaNameResolverFailureFunc">EvaNameResolverFailureFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaNameResolverFailureFunc)       (<link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> func_data);</programlisting>
 <para>
 Function to call when a name lookup fails.
@@ -163,13 +163,13 @@ Function to call when a name lookup fails.
 <listitem><simpara>data passed to <link linkend="eva-name-resolve"><function>eva_name_resolve()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskNameResolverFamily" role="enum">
-<title>enum GskNameResolverFamily</title>
-<indexterm zone="GskNameResolverFamily"><primary sortas="GskNameResolverFamily">GskNameResolverFamily</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaNameResolverFamily" role="enum">
+<title>enum EvaNameResolverFamily</title>
+<indexterm zone="EvaNameResolverFamily"><primary sortas="EvaNameResolverFamily">EvaNameResolverFamily</primary></indexterm><programlisting>typedef enum
 {
   EVA_NAME_RESOLVER_FAMILY_NONE,
   EVA_NAME_RESOLVER_FAMILY_IPV4
-} GskNameResolverFamily;
+} EvaNameResolverFamily;
 </programlisting>
 <para>
 Namespaces.  This enum is extendable.
@@ -189,10 +189,10 @@ The IPv4 namespace, used for practically all of the internet (in 2003)
 </variablelist></refsect2>
 <refsect2 id="eva-name-resolver-family-get-by-name" role="function">
 <title>eva_name_resolver_family_get_by_name ()</title>
-<indexterm zone="eva-name-resolver-family-get-by-name"><primary sortas="eva_name_resolver_family_get_by_name">eva_name_resolver_family_get_by_name</primary></indexterm><programlisting><link linkend="GskNameResolverFamily">GskNameResolverFamily</link>  eva_name_resolver_family_get_by_name
+<indexterm zone="eva-name-resolver-family-get-by-name"><primary sortas="eva_name_resolver_family_get_by_name">eva_name_resolver_family_get_by_name</primary></indexterm><programlisting><link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link>  eva_name_resolver_family_get_by_name
                                                         (const <link linkend="char">char</link> *name);</programlisting>
 <para>
-Get the <link linkend="GskNameResolverFamily"><type>GskNameResolverFamily</type></link> of a resolver namespace
+Get the <link linkend="EvaNameResolverFamily"><type>EvaNameResolverFamily</type></link> of a resolver namespace
 by ascii string.</para>
 <para>
 </para><variablelist role="params">
@@ -204,7 +204,7 @@ by ascii string.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-name-resolver-family-get-name" role="function">
 <title>eva_name_resolver_family_get_name ()</title>
-<indexterm zone="eva-name-resolver-family-get-name"><primary sortas="eva_name_resolver_family_get_name">eva_name_resolver_family_get_name</primary></indexterm><programlisting>const <link linkend="char">char</link> *        eva_name_resolver_family_get_name   (<link linkend="GskNameResolverFamily">GskNameResolverFamily</link> family);</programlisting>
+<indexterm zone="eva-name-resolver-family-get-name"><primary sortas="eva_name_resolver_family_get_name">eva_name_resolver_family_get_name</primary></indexterm><programlisting>const <link linkend="char">char</link> *        eva_name_resolver_family_get_name   (<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link> family);</programlisting>
 <para>
 Get the resolver-namespace as a printable c string.</para>
 <para>
@@ -217,10 +217,10 @@ Get the resolver-namespace as a printable c string.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-name-resolver-lookup" role="function">
 <title>eva_name_resolver_lookup ()</title>
-<indexterm zone="eva-name-resolver-lookup"><primary sortas="eva_name_resolver_lookup">eva_name_resolver_lookup</primary></indexterm><programlisting><link linkend="void">void</link>                eva_name_resolver_lookup            (<link linkend="GskNameResolverFamily">GskNameResolverFamily</link> family,
+<indexterm zone="eva-name-resolver-lookup"><primary sortas="eva_name_resolver_lookup">eva_name_resolver_lookup</primary></indexterm><programlisting><link linkend="void">void</link>                eva_name_resolver_lookup            (<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link> family,
                                                          const <link linkend="char">char</link> *name,
-                                                         <link linkend="GskNameResolverSuccessFunc">GskNameResolverSuccessFunc</link> success,
-                                                         <link linkend="GskNameResolverFailureFunc">GskNameResolverFailureFunc</link> failure,
+                                                         <link linkend="EvaNameResolverSuccessFunc">EvaNameResolverSuccessFunc</link> success,
+                                                         <link linkend="EvaNameResolverFailureFunc">EvaNameResolverFailureFunc</link> failure,
                                                          <link linkend="gpointer">gpointer</link> func_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -235,7 +235,7 @@ Begin a non-cancellable name-lookup.</para>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>success</parameter>&#160;:</term>
 <listitem><simpara> callback for successful name-lookup: this will
-be called with the <link linkend="GskSocketAddress"><type>GskSocketAddress</type></link> that was found.
+be called with the <link linkend="EvaSocketAddress"><type>EvaSocketAddress</type></link> that was found.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>failure</parameter>&#160;:</term>
 <listitem><simpara> callback for failure.  This is invoked with the
@@ -250,10 +250,10 @@ be called with the <link linkend="GskSocketAddress"><type>GskSocketAddress</type
 </variablelist></refsect2>
 <refsect2 id="eva-name-resolver-task-new" role="function">
 <title>eva_name_resolver_task_new ()</title>
-<indexterm zone="eva-name-resolver-task-new"><primary sortas="eva_name_resolver_task_new">eva_name_resolver_task_new</primary></indexterm><programlisting><link linkend="GskNameResolverTask">GskNameResolverTask</link> * eva_name_resolver_task_new        (<link linkend="GskNameResolverFamily">GskNameResolverFamily</link> family,
+<indexterm zone="eva-name-resolver-task-new"><primary sortas="eva_name_resolver_task_new">eva_name_resolver_task_new</primary></indexterm><programlisting><link linkend="EvaNameResolverTask">EvaNameResolverTask</link> * eva_name_resolver_task_new        (<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link> family,
                                                          const <link linkend="char">char</link> *name,
-                                                         <link linkend="GskNameResolverSuccessFunc">GskNameResolverSuccessFunc</link> success,
-                                                         <link linkend="GskNameResolverFailureFunc">GskNameResolverFailureFunc</link> failure,
+                                                         <link linkend="EvaNameResolverSuccessFunc">EvaNameResolverSuccessFunc</link> success,
+                                                         <link linkend="EvaNameResolverFailureFunc">EvaNameResolverFailureFunc</link> failure,
                                                          <link linkend="gpointer">gpointer</link> func_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -271,7 +271,7 @@ with the handle.  (This will NOT cause a running task to be cancelled.)</para>
 <listitem><simpara> name within <parameter>family</parameter>'s namespace.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>success</parameter>&#160;:</term>
-<listitem><simpara> function to be called with an appropriate <link linkend="GskSocketAddress"><type>GskSocketAddress</type></link>
+<listitem><simpara> function to be called with an appropriate <link linkend="EvaSocketAddress"><type>EvaSocketAddress</type></link>
    once the name is successfully resolved.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>failure</parameter>&#160;:</term>
@@ -284,13 +284,13 @@ with the handle.  (This will NOT cause a running task to be cancelled.)</para>
 <listitem><simpara> optionally called after <parameter>success</parameter> or <parameter>failure</parameter>, to deallocate
 func_data usually.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a reference to a <link linkend="GskNameResolverTask"><type>GskNameResolverTask</type></link> which can
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a reference to a <link linkend="EvaNameResolverTask"><type>EvaNameResolverTask</type></link> which can
 be used to cancel or query the task.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-name-resolver-task-cancel" role="function">
 <title>eva_name_resolver_task_cancel ()</title>
-<indexterm zone="eva-name-resolver-task-cancel"><primary sortas="eva_name_resolver_task_cancel">eva_name_resolver_task_cancel</primary></indexterm><programlisting><link linkend="void">void</link>                eva_name_resolver_task_cancel       (<link linkend="GskNameResolverTask">GskNameResolverTask</link> *task);</programlisting>
+<indexterm zone="eva-name-resolver-task-cancel"><primary sortas="eva_name_resolver_task_cancel">eva_name_resolver_task_cancel</primary></indexterm><programlisting><link linkend="void">void</link>                eva_name_resolver_task_cancel       (<link linkend="EvaNameResolverTask">EvaNameResolverTask</link> *task);</programlisting>
 <para>
 Stops the name lookup from continuing.
 Neither the success or failure functions will be invoked subsequently,
@@ -303,7 +303,7 @@ but the destroy method will be.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-name-resolver-task-ref" role="function">
 <title>eva_name_resolver_task_ref ()</title>
-<indexterm zone="eva-name-resolver-task-ref"><primary sortas="eva_name_resolver_task_ref">eva_name_resolver_task_ref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_name_resolver_task_ref          (<link linkend="GskNameResolverTask">GskNameResolverTask</link> *task);</programlisting>
+<indexterm zone="eva-name-resolver-task-ref"><primary sortas="eva_name_resolver_task_ref">eva_name_resolver_task_ref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_name_resolver_task_ref          (<link linkend="EvaNameResolverTask">EvaNameResolverTask</link> *task);</programlisting>
 <para>
 Increase the reference count on a name-resolver task.
 This is mostly useless outside the resolver code.</para>
@@ -315,7 +315,7 @@ This is mostly useless outside the resolver code.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-name-resolver-task-unref" role="function">
 <title>eva_name_resolver_task_unref ()</title>
-<indexterm zone="eva-name-resolver-task-unref"><primary sortas="eva_name_resolver_task_unref">eva_name_resolver_task_unref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_name_resolver_task_unref        (<link linkend="GskNameResolverTask">GskNameResolverTask</link> *task);</programlisting>
+<indexterm zone="eva-name-resolver-task-unref"><primary sortas="eva_name_resolver_task_unref">eva_name_resolver_task_unref</primary></indexterm><programlisting><link linkend="void">void</link>                eva_name_resolver_task_unref        (<link linkend="EvaNameResolverTask">EvaNameResolverTask</link> *task);</programlisting>
 <para>
 Decrease the reference count on a name-resolver task, freeing it if needed.
 This does NOT cancel the task.  You MUST unref the task returned by
@@ -328,10 +328,10 @@ This does NOT cancel the task.  You MUST unref the task returned by
 </variablelist></refsect2>
 <refsect2 id="eva-name-resolver-family-unique" role="function">
 <title>eva_name_resolver_family_unique ()</title>
-<indexterm zone="eva-name-resolver-family-unique"><primary sortas="eva_name_resolver_family_unique">eva_name_resolver_family_unique</primary></indexterm><programlisting><link linkend="GskNameResolverFamily">GskNameResolverFamily</link>  eva_name_resolver_family_unique  (const <link linkend="char">char</link> *name);</programlisting>
+<indexterm zone="eva-name-resolver-family-unique"><primary sortas="eva_name_resolver_family_unique">eva_name_resolver_family_unique</primary></indexterm><programlisting><link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link>  eva_name_resolver_family_unique  (const <link linkend="char">char</link> *name);</programlisting>
 <para>
-Allocate a unique GskNameResolverFamily
-given a new name, or return the old GskNameResolverFamily
+Allocate a unique EvaNameResolverFamily
+given a new name, or return the old EvaNameResolverFamily
 if one already exists.</para>
 <para>
 </para><variablelist role="params">
@@ -343,7 +343,7 @@ if one already exists.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-name-resolver-add-family-name" role="function">
 <title>eva_name_resolver_add_family_name ()</title>
-<indexterm zone="eva-name-resolver-add-family-name"><primary sortas="eva_name_resolver_add_family_name">eva_name_resolver_add_family_name</primary></indexterm><programlisting><link linkend="void">void</link>                eva_name_resolver_add_family_name   (<link linkend="GskNameResolverFamily">GskNameResolverFamily</link> family,
+<indexterm zone="eva-name-resolver-add-family-name"><primary sortas="eva_name_resolver_add_family_name">eva_name_resolver_add_family_name</primary></indexterm><programlisting><link linkend="void">void</link>                eva_name_resolver_add_family_name   (<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link> family,
                                                          const <link linkend="char">char</link> *name);</programlisting>
 <para>
 Add a new nickname for the name resolver family.
@@ -359,9 +359,9 @@ The family is the name of the namespace.</para>
 <listitem><simpara> alias name for <parameter>family</parameter>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskNameResolverFamilyHandler" role="function">
-<title>GskNameResolverFamilyHandler ()</title>
-<indexterm zone="GskNameResolverFamilyHandler"><primary sortas="GskNameResolverFamilyHandler">GskNameResolverFamilyHandler</primary></indexterm><programlisting><link linkend="GskNameResolver">GskNameResolver</link> *   (*GskNameResolverFamilyHandler)     (<link linkend="gpointer">gpointer</link> data);</programlisting>
+<refsect2 id="EvaNameResolverFamilyHandler" role="function">
+<title>EvaNameResolverFamilyHandler ()</title>
+<indexterm zone="EvaNameResolverFamilyHandler"><primary sortas="EvaNameResolverFamilyHandler">EvaNameResolverFamilyHandler</primary></indexterm><programlisting><link linkend="EvaNameResolver">EvaNameResolver</link> *   (*EvaNameResolverFamilyHandler)     (<link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
 Create a reference to a name-resolver on demand.
 </para><variablelist role="params">
@@ -374,8 +374,8 @@ Create a reference to a name-resolver on demand.
 <refsect2 id="eva-name-resolver-add-family-resolver" role="function">
 <title>eva_name_resolver_add_family_resolver ()</title>
 <indexterm zone="eva-name-resolver-add-family-resolver"><primary sortas="eva_name_resolver_add_family_resolver">eva_name_resolver_add_family_resolver</primary></indexterm><programlisting><link linkend="void">void</link>                eva_name_resolver_add_family_resolver
-                                                        (<link linkend="GskNameResolverFamily">GskNameResolverFamily</link> family,
-                                                         <link linkend="GskNameResolver">GskNameResolver</link> *resolver);</programlisting>
+                                                        (<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link> family,
+                                                         <link linkend="EvaNameResolver">EvaNameResolver</link> *resolver);</programlisting>
 <para>
 Add a name-resolver that will handle a request
 of a given family.</para>
@@ -391,8 +391,8 @@ of a given family.</para>
 <refsect2 id="eva-name-resolver-add-family-handler" role="function">
 <title>eva_name_resolver_add_family_handler ()</title>
 <indexterm zone="eva-name-resolver-add-family-handler"><primary sortas="eva_name_resolver_add_family_handler">eva_name_resolver_add_family_handler</primary></indexterm><programlisting><link linkend="void">void</link>                eva_name_resolver_add_family_handler
-                                                        (<link linkend="GskNameResolverFamily">GskNameResolverFamily</link> family,
-                                                         <link linkend="GskNameResolverFamilyHandler">GskNameResolverFamilyHandler</link> handler,
+                                                        (<link linkend="EvaNameResolverFamily">EvaNameResolverFamily</link> family,
+                                                         <link linkend="EvaNameResolverFamilyHandler">EvaNameResolverFamilyHandler</link> handler,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>

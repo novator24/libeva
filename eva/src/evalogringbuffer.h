@@ -1,20 +1,20 @@
 #ifndef __EVA_LOG_RING_BUFFER_H_
 #define __EVA_LOG_RING_BUFFER_H_
 
-typedef struct _GskLogRingBuffer GskLogRingBuffer;
+typedef struct _EvaLogRingBuffer EvaLogRingBuffer;
 
 #include <glib.h>
 
 G_BEGIN_DECLS
 
-GskLogRingBuffer *eva_log_ring_buffer_new (gsize             size);
-void              eva_log_ring_buffer_add (GskLogRingBuffer *buffer,
+EvaLogRingBuffer *eva_log_ring_buffer_new (gsize             size);
+void              eva_log_ring_buffer_add (EvaLogRingBuffer *buffer,
                                            const char       *line);
 
 /* get the contents of the ring-buffer as a NUL-terminated string */
-char             *eva_log_ring_buffer_get (const GskLogRingBuffer *buffer);
+char             *eva_log_ring_buffer_get (const EvaLogRingBuffer *buffer);
 
-void              eva_log_ring_buffer_free(GskLogRingBuffer *buffer);
+void              eva_log_ring_buffer_free(EvaLogRingBuffer *buffer);
 
 
 /* This is a little helper function to rewrite strings

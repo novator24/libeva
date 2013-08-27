@@ -5,18 +5,18 @@
 
 G_BEGIN_DECLS
 /* --- typedefs --- */
-typedef struct _GskXmlrpcStream GskXmlrpcStream;
-typedef struct _GskXmlrpcStreamClass GskXmlrpcStreamClass;
-typedef struct _GskXmlrpcOutgoing GskXmlrpcOutgoing;
-typedef struct _GskXmlrpcIncoming GskXmlrpcIncoming;
+typedef struct _EvaXmlrpcStream EvaXmlrpcStream;
+typedef struct _EvaXmlrpcStreamClass EvaXmlrpcStreamClass;
+typedef struct _EvaXmlrpcOutgoing EvaXmlrpcOutgoing;
+typedef struct _EvaXmlrpcIncoming EvaXmlrpcIncoming;
 
-typedef struct _GskXmlrpcArray GskXmlrpcArray;
-typedef struct _GskXmlrpcStruct GskXmlrpcStruct;
-typedef struct _GskXmlrpcValue GskXmlrpcValue;
-typedef struct _GskXmlrpcNamedValue GskXmlrpcNamedValue;
-typedef struct _GskXmlrpcRequest GskXmlrpcRequest;
-typedef struct _GskXmlrpcResponse GskXmlrpcResponse;
-typedef struct _GskXmlrpcParser GskXmlrpcParser;
+typedef struct _EvaXmlrpcArray EvaXmlrpcArray;
+typedef struct _EvaXmlrpcStruct EvaXmlrpcStruct;
+typedef struct _EvaXmlrpcValue EvaXmlrpcValue;
+typedef struct _EvaXmlrpcNamedValue EvaXmlrpcNamedValue;
+typedef struct _EvaXmlrpcRequest EvaXmlrpcRequest;
+typedef struct _EvaXmlrpcResponse EvaXmlrpcResponse;
+typedef struct _EvaXmlrpcParser EvaXmlrpcParser;
 
 typedef enum
 {
@@ -28,29 +28,29 @@ typedef enum
   EVA_XMLRPC_BINARY_DATA,
   EVA_XMLRPC_STRUCT,
   EVA_XMLRPC_ARRAY
-} GskXmlrpcType;
+} EvaXmlrpcType;
 
-struct _GskXmlrpcArray
+struct _EvaXmlrpcArray
 {
   unsigned len;
-  GskXmlrpcValue *values;
+  EvaXmlrpcValue *values;
 
   /*< private >*/
   unsigned alloced;
 };
 
-struct _GskXmlrpcStruct
+struct _EvaXmlrpcStruct
 {
   unsigned n_members;
-  GskXmlrpcNamedValue *members;
+  EvaXmlrpcNamedValue *members;
 
   /*< private >*/
   unsigned alloced;
 };
 
-struct _GskXmlrpcValue
+struct _EvaXmlrpcValue
 {
-  GskXmlrpcType type;
+  EvaXmlrpcType type;
   union
   {
     int v_int32;
@@ -59,200 +59,200 @@ struct _GskXmlrpcValue
     char *v_string;
     gulong v_date;
     GByteArray *v_binary_data;
-    GskXmlrpcStruct *v_struct;
-    GskXmlrpcArray *v_array;
+    EvaXmlrpcStruct *v_struct;
+    EvaXmlrpcArray *v_array;
   } data;
 };
 
-struct _GskXmlrpcNamedValue
+struct _EvaXmlrpcNamedValue
 {
   char *name;
-  GskXmlrpcValue value;
+  EvaXmlrpcValue value;
 };
 
-struct _GskXmlrpcRequest
+struct _EvaXmlrpcRequest
 {
   unsigned magic;		/* private, must be first */
   char *method_name;
-  GskXmlrpcArray *params;
-  GskXmlrpcStream *xmlrpc_stream;
+  EvaXmlrpcArray *params;
+  EvaXmlrpcStream *xmlrpc_stream;
   /*< private >*/
   unsigned ref_count;
 };
 
-struct _GskXmlrpcResponse
+struct _EvaXmlrpcResponse
 {
   unsigned magic;		/* private, must be first */
 
-  GskXmlrpcArray *params;
+  EvaXmlrpcArray *params;
   gboolean has_fault;
-  GskXmlrpcValue fault;
+  EvaXmlrpcValue fault;
 
   /*< private >*/
   unsigned ref_count;
 };
 
 
-GskXmlrpcStruct *eva_xmlrpc_struct_new         (void);
-void             eva_xmlrpc_struct_free        (GskXmlrpcStruct *structure);
-void             eva_xmlrpc_struct_add_int32   (GskXmlrpcStruct *structure,
+EvaXmlrpcStruct *eva_xmlrpc_struct_new         (void);
+void             eva_xmlrpc_struct_free        (EvaXmlrpcStruct *structure);
+void             eva_xmlrpc_struct_add_int32   (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 gint32           value);
-void             eva_xmlrpc_struct_add_boolean(GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_boolean(EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 gboolean         value);
-void             eva_xmlrpc_struct_add_double  (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_double  (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 gdouble          value);
-void             eva_xmlrpc_struct_add_string  (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_string  (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 const char      *value);
-void             eva_xmlrpc_struct_add_date    (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_date    (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 gulong           value);
 
 /* these take ownership of second argument */  
-void             eva_xmlrpc_struct_add_data    (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_data    (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 GByteArray      *data);
-void             eva_xmlrpc_struct_add_struct  (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_struct  (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
-                                                GskXmlrpcStruct *substructure);
-void             eva_xmlrpc_struct_add_array   (GskXmlrpcStruct *structure,
+                                                EvaXmlrpcStruct *substructure);
+void             eva_xmlrpc_struct_add_array   (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
-                                                GskXmlrpcArray  *array);
+                                                EvaXmlrpcArray  *array);
 
 /* lookups */
-gboolean         eva_xmlrpc_struct_peek_int32  (GskXmlrpcStruct *structure,
+gboolean         eva_xmlrpc_struct_peek_int32  (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 gint32          *out);
-gboolean         eva_xmlrpc_struct_peek_boolean(GskXmlrpcStruct *structure,
+gboolean         eva_xmlrpc_struct_peek_boolean(EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 gboolean        *out);
-gboolean         eva_xmlrpc_struct_peek_double (GskXmlrpcStruct *structure,
+gboolean         eva_xmlrpc_struct_peek_double (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 double          *out);
-const char *     eva_xmlrpc_struct_peek_string (GskXmlrpcStruct *structure,
+const char *     eva_xmlrpc_struct_peek_string (EvaXmlrpcStruct *structure,
                                                 const char      *member_name);
-gboolean         eva_xmlrpc_struct_peek_date   (GskXmlrpcStruct *structure,
+gboolean         eva_xmlrpc_struct_peek_date   (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
 						gulong          *out);
-const GByteArray*eva_xmlrpc_struct_peek_data   (GskXmlrpcStruct *structure,
+const GByteArray*eva_xmlrpc_struct_peek_data   (EvaXmlrpcStruct *structure,
                                                 const char      *member_name);
-GskXmlrpcStruct *eva_xmlrpc_struct_peek_struct (GskXmlrpcStruct *structure,
+EvaXmlrpcStruct *eva_xmlrpc_struct_peek_struct (EvaXmlrpcStruct *structure,
                                                 const char      *member_name);
-GskXmlrpcArray  *eva_xmlrpc_struct_peek_array  (GskXmlrpcStruct *structure,
+EvaXmlrpcArray  *eva_xmlrpc_struct_peek_array  (EvaXmlrpcStruct *structure,
                                                 const char      *member_name);
 
 
-GskXmlrpcArray  *eva_xmlrpc_array_new          (void);
-void             eva_xmlrpc_array_free         (GskXmlrpcArray  *array);
-void             eva_xmlrpc_array_add_int32    (GskXmlrpcArray  *array,
+EvaXmlrpcArray  *eva_xmlrpc_array_new          (void);
+void             eva_xmlrpc_array_free         (EvaXmlrpcArray  *array);
+void             eva_xmlrpc_array_add_int32    (EvaXmlrpcArray  *array,
                                                 gint32           value);
-void             eva_xmlrpc_array_add_boolean  (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_boolean  (EvaXmlrpcArray  *array,
                                                 gboolean         value);
-void             eva_xmlrpc_array_add_double   (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_double   (EvaXmlrpcArray  *array,
                                                 gdouble          value);
-void             eva_xmlrpc_array_add_string   (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_string   (EvaXmlrpcArray  *array,
                                                 const char      *value);
-void             eva_xmlrpc_array_add_date     (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_date     (EvaXmlrpcArray  *array,
                                                 gulong           value);
 
 /* these take ownership of second argument */  
-void             eva_xmlrpc_array_add_data     (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_data     (EvaXmlrpcArray  *array,
                                                 GByteArray      *data);
-void             eva_xmlrpc_array_add_struct   (GskXmlrpcArray  *array,
-                                                GskXmlrpcStruct *substructure);
+void             eva_xmlrpc_array_add_struct   (EvaXmlrpcArray  *array,
+                                                EvaXmlrpcStruct *substructure);
 
 
-GskXmlrpcArray  *eva_xmlrpc_array_new          (void);
-void             eva_xmlrpc_array_free         (GskXmlrpcArray  *array);
-void             eva_xmlrpc_array_add_int32    (GskXmlrpcArray  *array,
+EvaXmlrpcArray  *eva_xmlrpc_array_new          (void);
+void             eva_xmlrpc_array_free         (EvaXmlrpcArray  *array);
+void             eva_xmlrpc_array_add_int32    (EvaXmlrpcArray  *array,
                                                 gint32           value);
-void             eva_xmlrpc_array_add_boolean  (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_boolean  (EvaXmlrpcArray  *array,
                                                 gboolean         value);
-void             eva_xmlrpc_array_add_double   (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_double   (EvaXmlrpcArray  *array,
                                                 gdouble          value);
-void             eva_xmlrpc_array_add_string   (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_string   (EvaXmlrpcArray  *array,
                                                 const char      *value);
-void             eva_xmlrpc_array_add_date     (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_date     (EvaXmlrpcArray  *array,
                                                 gulong           value);
 
 /* these take ownership of second argument */  
-void             eva_xmlrpc_array_add_data     (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_data     (EvaXmlrpcArray  *array,
                                                 GByteArray      *data);
-void             eva_xmlrpc_array_add_struct   (GskXmlrpcArray  *array,
-                                                GskXmlrpcStruct *substructure);
-void             eva_xmlrpc_array_add_array    (GskXmlrpcArray  *array,
-                                                GskXmlrpcArray  *subarray);
+void             eva_xmlrpc_array_add_struct   (EvaXmlrpcArray  *array,
+                                                EvaXmlrpcStruct *substructure);
+void             eva_xmlrpc_array_add_array    (EvaXmlrpcArray  *array,
+                                                EvaXmlrpcArray  *subarray);
 
-GskXmlrpcRequest*eva_xmlrpc_request_new        (GskXmlrpcStream *xmlrpc_stream);
-GskXmlrpcRequest*eva_xmlrpc_request_ref        (GskXmlrpcRequest*request);
-void             eva_xmlrpc_request_unref      (GskXmlrpcRequest*request);
-void             eva_xmlrpc_request_set_name   (GskXmlrpcRequest*request,
+EvaXmlrpcRequest*eva_xmlrpc_request_new        (EvaXmlrpcStream *xmlrpc_stream);
+EvaXmlrpcRequest*eva_xmlrpc_request_ref        (EvaXmlrpcRequest*request);
+void             eva_xmlrpc_request_unref      (EvaXmlrpcRequest*request);
+void             eva_xmlrpc_request_set_name   (EvaXmlrpcRequest*request,
                                                 const char      *name);
-void             eva_xmlrpc_request_add_int32  (GskXmlrpcRequest *request,
+void             eva_xmlrpc_request_add_int32  (EvaXmlrpcRequest *request,
                                                 gint32           value);
-void             eva_xmlrpc_request_add_boolean(GskXmlrpcRequest *request,
+void             eva_xmlrpc_request_add_boolean(EvaXmlrpcRequest *request,
                                                 gboolean         value);
-void             eva_xmlrpc_request_add_double (GskXmlrpcRequest *request,
+void             eva_xmlrpc_request_add_double (EvaXmlrpcRequest *request,
                                                 gdouble          value);
-void             eva_xmlrpc_request_add_string (GskXmlrpcRequest *request,
+void             eva_xmlrpc_request_add_string (EvaXmlrpcRequest *request,
                                                 const char      *value);
-void             eva_xmlrpc_request_add_date   (GskXmlrpcRequest *request,
+void             eva_xmlrpc_request_add_date   (EvaXmlrpcRequest *request,
                                                 gulong           value);
 
 /* these take ownership of second argument */
-void             eva_xmlrpc_request_add_data (GskXmlrpcRequest *request,
+void             eva_xmlrpc_request_add_data (EvaXmlrpcRequest *request,
                                               GByteArray      *data);
-void             eva_xmlrpc_request_add_struct(GskXmlrpcRequest *request,
-                                              GskXmlrpcStruct *substructure);
-void             eva_xmlrpc_request_add_array(GskXmlrpcRequest *request,
-                                              GskXmlrpcArray  *array);
+void             eva_xmlrpc_request_add_struct(EvaXmlrpcRequest *request,
+                                              EvaXmlrpcStruct *substructure);
+void             eva_xmlrpc_request_add_array(EvaXmlrpcRequest *request,
+                                              EvaXmlrpcArray  *array);
 
-GskXmlrpcResponse  *eva_xmlrpc_response_new      (void);
-GskXmlrpcResponse  *eva_xmlrpc_response_ref      (GskXmlrpcResponse   *response);
-void             eva_xmlrpc_response_unref    (GskXmlrpcResponse   *response);
-void             eva_xmlrpc_response_add_int32(GskXmlrpcResponse *response,
+EvaXmlrpcResponse  *eva_xmlrpc_response_new      (void);
+EvaXmlrpcResponse  *eva_xmlrpc_response_ref      (EvaXmlrpcResponse   *response);
+void             eva_xmlrpc_response_unref    (EvaXmlrpcResponse   *response);
+void             eva_xmlrpc_response_add_int32(EvaXmlrpcResponse *response,
                                               gint32           value);
-void             eva_xmlrpc_response_add_double(GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_add_double(EvaXmlrpcResponse *response,
                                               gdouble          value);
-void             eva_xmlrpc_response_add_boolean(GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_add_boolean(EvaXmlrpcResponse *response,
                                                 gboolean         value);
-void             eva_xmlrpc_response_add_string(GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_add_string(EvaXmlrpcResponse *response,
                                               const char      *value);
-void             eva_xmlrpc_response_add_date (GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_add_date (EvaXmlrpcResponse *response,
                                               gulong           value);
 
 /* these take ownership of second argument */
-void             eva_xmlrpc_response_add_data (GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_add_data (EvaXmlrpcResponse *response,
                                               GByteArray      *data);
-void             eva_xmlrpc_response_add_struct(GskXmlrpcResponse *response,
-                                              GskXmlrpcStruct *substructure);
-void             eva_xmlrpc_response_add_array(GskXmlrpcResponse *response,
-                                              GskXmlrpcArray  *array);
+void             eva_xmlrpc_response_add_struct(EvaXmlrpcResponse *response,
+                                              EvaXmlrpcStruct *substructure);
+void             eva_xmlrpc_response_add_array(EvaXmlrpcResponse *response,
+                                              EvaXmlrpcArray  *array);
 
 
-void             eva_xmlrpc_response_fault   (GskXmlrpcResponse *response,
-                                              GskXmlrpcStruct   *structure);
+void             eva_xmlrpc_response_fault   (EvaXmlrpcResponse *response,
+                                              EvaXmlrpcStruct   *structure);
 
 /* a parser */
-GskXmlrpcParser  *eva_xmlrpc_parser_new (GskXmlrpcStream* stream);
-gboolean          eva_xmlrpc_parser_feed (GskXmlrpcParser *parser,
+EvaXmlrpcParser  *eva_xmlrpc_parser_new (EvaXmlrpcStream* stream);
+gboolean          eva_xmlrpc_parser_feed (EvaXmlrpcParser *parser,
 				          const char              *text,
 				          gssize                   len,
 				          GError                 **error);
-GskXmlrpcRequest *eva_xmlrpc_parser_get_request (GskXmlrpcParser *parser);
-GskXmlrpcResponse *eva_xmlrpc_parser_get_response (GskXmlrpcParser *parser);
-void              eva_xmlrpc_parser_free (GskXmlrpcParser *parser);
+EvaXmlrpcRequest *eva_xmlrpc_parser_get_request (EvaXmlrpcParser *parser);
+EvaXmlrpcResponse *eva_xmlrpc_parser_get_response (EvaXmlrpcParser *parser);
+void              eva_xmlrpc_parser_free (EvaXmlrpcParser *parser);
 
 
 /* printing */
 #include "../evabuffer.h"
-void eva_xmlrpc_response_to_buffer (GskXmlrpcResponse *response,
-				    GskBuffer         *buffer);
-void eva_xmlrpc_request_to_buffer  (GskXmlrpcRequest  *request,
-				    GskBuffer         *buffer);
+void eva_xmlrpc_response_to_buffer (EvaXmlrpcResponse *response,
+				    EvaBuffer         *buffer);
+void eva_xmlrpc_request_to_buffer  (EvaXmlrpcRequest  *request,
+				    EvaBuffer         *buffer);
 
 G_END_DECLS
 

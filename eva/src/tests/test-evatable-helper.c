@@ -145,10 +145,10 @@ parse_hex (const char *line,
 int main(int argc, char **argv)
 {
   GOptionContext *context;
-  GskTableOptions *options;
-  GskTableNewFlags new_flags = EVA_TABLE_MAY_EXIST|EVA_TABLE_MAY_CREATE;
+  EvaTableOptions *options;
+  EvaTableNewFlags new_flags = EVA_TABLE_MAY_EXIST|EVA_TABLE_MAY_CREATE;
   GError *error = NULL;
-  GskTable *table = NULL;
+  EvaTable *table = NULL;
   FILE *input_fp;
 
   eva_init_without_threads (&argc,&argv);

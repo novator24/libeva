@@ -37,7 +37,7 @@ enum
 /* --- dealing with the main-loop --- */
 
 static void
-notify_error (GskStreamListenerSocket *listener,
+notify_error (EvaStreamListenerSocket *listener,
               int                      errno_value)
 {
   GError *err = g_error_new (EVA_G_ERROR_DOMAIN,
@@ -48,14 +48,14 @@ notify_error (GskStreamListenerSocket *listener,
 }
 
 static void
-handle_input_event (GskStreamListenerSocket *listener)
+handle_input_event (EvaStreamListenerSocket *listener)
 {
-  GskStreamListener *stream_listener = EVA_STREAM_LISTENER (listener);
+  EvaStreamListener *stream_listener = EVA_STREAM_LISTENER (listener);
   int fd = listener->fd;
   struct sockaddr addr;
   socklen_t addr_len = sizeof (addr);
   int accept_fd;
-  GskStream *stream;
+  EvaStream *stream;
 
   accept_fd = accept (fd, &addr, &addr_len);
   if (EVA_IS_DEBUGGING(FD))
@@ -76,7 +76,7 @@ handle_input_event (GskStreamListenerSocket *listener)
     }
   else
     {
-      GskSocketAddress *remote_addr;
+      EvaSocketAddress *remote_addr;
       eva_fd_set_close_on_exec (accept_fd, TRUE);
       eva_fd_set_nonblocking (accept_fd);
       stream = eva_stream_fd_new (accept_fd, EVA_STREAM_FD_FOR_NEW_SOCKET);
@@ -97,11 +97,11 @@ handle_input_event (GskStreamListenerSocket *listener)
 
 
 #if USE_GLIB_MAIN_LOOP
-typedef struct _GskStreamListenerSocketSource GskStreamListenerSocketSource;
-struct _GskStreamListenerSocketSource
+typedef struct _EvaStreamListenerSocketSource EvaStreamListenerSocketSource;
+struct _EvaStreamListenerSocketSource
 {
   GSource source;
-  GskStreamListenerSocket *listener;
+  EvaStreamListenerSocket *listener;
 };
 
 static gboolean
@@ -114,9 +114,9 @@ eva_stream_listener_socket_source_prepare (GSource    *source,
 static gboolean
 eva_stream_listener_socket_source_check (GSource    *source)
 {
-  GskStreamListenerSocketSource *listener_source
-    = (GskStreamListenerSocketSource *) source;
-  GskStreamListenerSocket *listener = listener_source->listener;
+  EvaStreamListenerSocketSource *listener_source
+    = (EvaStreamListenerSocketSource *) source;
+  EvaStreamListenerSocket *listener = listener_source->listener;
   return (listener->poll_fd.revents & (G_IO_IN | G_IO_ERR)) != 0;
 }
 
@@ -125,9 +125,9 @@ eva_stream_listener_socket_source_dispatch (GSource    *source,
 				            GSourceFunc callback,
 				            gpointer    user_data)
 {
-  GskStreamListenerSocketSource *listener_source
-    = (GskStreamListenerSocketSource *) source;
-  GskStreamListenerSocket *listener = listener_source->listener;
+  EvaStreamListenerSocketSource *listener_source
+    = (EvaStreamListenerSocketSource *) source;
+  EvaStreamListenerSocket *listener = listener_source->listener;
   guint events = listener->poll_fd.revents;
   if (events & G_IO_ERR)
     handle_input_event (listener, TRUE);
@@ -147,15 +147,15 @@ static GSourceFuncs eva_stream_listener_socket_source_funcs =
 };
 
 static void
-add_poll (GskStreamListenerSocket *socket)
+add_poll (EvaStreamListenerSocket *socket)
 {
   GPollFD *poll_fd = &socket->poll_fd;
-  GskStreamListenerSocketSource *socket_source;
+  EvaStreamListenerSocketSource *socket_source;
   g_return_if_fail (socket->fd >= 0);
   g_return_if_fail (socket->source == NULL);
   socket->source = g_source_new (&eva_stream_listener_socket_source_funcs,
-				 sizeof (GskStreamListenerSocketSource));
-  socket_source = (GskStreamListenerSocketSource *) socket->source;
+				 sizeof (EvaStreamListenerSocketSource));
+  socket_source = (EvaStreamListenerSocketSource *) socket->source;
   socket_source->listener = socket;
   poll_fd->fd = socket->fd;
   poll_fd->events = G_IO_IN | G_IO_ERR;
@@ -164,7 +164,7 @@ add_poll (GskStreamListenerSocket *socket)
 }
 
 static void
-remove_poll (GskStreamListenerSocket *socket)
+remove_poll (EvaStreamListenerSocket *socket)
 {
   GSource *source = socket->source;
   g_return_if_fail (source != NULL);
@@ -176,7 +176,7 @@ remove_poll (GskStreamListenerSocket *socket)
 static gboolean
 handle_fd_event (int fd, GIOCondition events, gpointer user_data)
 {
-  GskStreamListenerSocket *listener = EVA_STREAM_LISTENER_SOCKET (user_data);
+  EvaStreamListenerSocket *listener = EVA_STREAM_LISTENER_SOCKET (user_data);
   g_return_val_if_fail (fd == listener->fd, TRUE);
   if (events & G_IO_ERR)
     notify_error (listener, eva_errno_from_fd (fd));
@@ -187,7 +187,7 @@ handle_fd_event (int fd, GIOCondition events, gpointer user_data)
 }
 
 static void
-add_poll (GskStreamListenerSocket *socket)
+add_poll (EvaStreamListenerSocket *socket)
 {
   socket->source = eva_main_loop_add_io (eva_main_loop_default (),
 					 socket->fd,
@@ -197,7 +197,7 @@ add_poll (GskStreamListenerSocket *socket)
 				         NULL);
 }
 static void
-remove_poll (GskStreamListenerSocket *socket)
+remove_poll (EvaStreamListenerSocket *socket)
 {
   if (socket->source != NULL)
     {
@@ -217,7 +217,7 @@ eva_stream_listener_socket_set_property (GObject         *object,
                                          const GValue    *value,
                                          GParamSpec      *pspec)
 {
-  GskStreamListenerSocket *socket = EVA_STREAM_LISTENER_SOCKET (object);
+  EvaStreamListenerSocket *socket = EVA_STREAM_LISTENER_SOCKET (object);
   switch (property_id)
     {
     case PROP_FILE_DESCRIPTOR:
@@ -261,7 +261,7 @@ eva_stream_listener_socket_get_property (GObject        *object,
                                          GValue         *value,
                                          GParamSpec     *pspec)
 {
-  GskStreamListenerSocket *socket = EVA_STREAM_LISTENER_SOCKET (object);
+  EvaStreamListenerSocket *socket = EVA_STREAM_LISTENER_SOCKET (object);
   switch (property_id)
     {
     case PROP_FILE_DESCRIPTOR:
@@ -302,7 +302,7 @@ eva_stream_listener_socket_get_property (GObject        *object,
    XXX: we should survey what others do here... like x-windows...
  */
 void
-_eva_socket_address_local_maybe_delete_stale_socket (GskSocketAddress *local_socket)
+_eva_socket_address_local_maybe_delete_stale_socket (EvaSocketAddress *local_socket)
 {
   const char *path = EVA_SOCKET_ADDRESS_LOCAL (local_socket)->path;
   gboolean is_connected;
@@ -334,14 +334,14 @@ _eva_socket_address_local_maybe_delete_stale_socket (GskSocketAddress *local_soc
 
 
 static gboolean
-try_init_fd (GskStreamListenerSocket *listener_socket)
+try_init_fd (EvaStreamListenerSocket *listener_socket)
 {
   size_t sizeof_addr;
   struct sockaddr *addr;
   int fd;
   int may_reuse_address = listener_socket->may_reuse_address ? 1 : 0;
-  GskSocketAddress *address = listener_socket->listening_address;
-  GskStreamListener *listener = EVA_STREAM_LISTENER (listener_socket);
+  EvaSocketAddress *address = listener_socket->listening_address;
+  EvaStreamListener *listener = EVA_STREAM_LISTENER (listener_socket);
   if (address == NULL)
     {
       eva_stream_listener_notify_error (listener,
@@ -442,7 +442,7 @@ eva_stream_listener_socket_constructor (GType                  type,
                                         GObjectConstructParam *properties)
 {
   GObject *rv = parent_class->constructor (type, n_properties, properties);
-  GskStreamListenerSocket *socket = EVA_STREAM_LISTENER_SOCKET (rv);
+  EvaStreamListenerSocket *socket = EVA_STREAM_LISTENER_SOCKET (rv);
   g_assert (socket->source == NULL);
   if (socket->fd < 0)
     {
@@ -458,15 +458,15 @@ eva_stream_listener_socket_constructor (GType                  type,
 static void
 eva_stream_listener_socket_finalize (GObject *object)
 {
-  GskStreamListenerSocket *socket = EVA_STREAM_LISTENER_SOCKET (object);
-  GskSocketAddress *address = socket->listening_address;
+  EvaStreamListenerSocket *socket = EVA_STREAM_LISTENER_SOCKET (object);
+  EvaSocketAddress *address = socket->listening_address;
   remove_poll (socket);
   if (address != NULL)
     {
       if (socket->unlink_when_done
        && EVA_IS_SOCKET_ADDRESS_LOCAL (address))
         {
-          GskSocketAddressLocal *local = EVA_SOCKET_ADDRESS_LOCAL (address);
+          EvaSocketAddressLocal *local = EVA_SOCKET_ADDRESS_LOCAL (address);
           const char *filename = local->path;
           unlink (filename);
         }
@@ -484,13 +484,13 @@ eva_stream_listener_socket_finalize (GObject *object)
 
 /* --- functions --- */
 static void
-eva_stream_listener_socket_init (GskStreamListenerSocket *socket)
+eva_stream_listener_socket_init (EvaStreamListenerSocket *socket)
 {
   socket->fd = -1;
 }
 
 static void
-eva_stream_listener_socket_class_init (GskStreamListenerSocketClass *class)
+eva_stream_listener_socket_class_init (EvaStreamListenerSocketClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   GParamSpec *pspec;
@@ -540,20 +540,20 @@ GType eva_stream_listener_socket_get_type()
     {
       static const GTypeInfo stream_listener_socket_info =
       {
-        sizeof(GskStreamListenerSocketClass),
+        sizeof(EvaStreamListenerSocketClass),
         (GBaseInitFunc) NULL,
         (GBaseFinalizeFunc) NULL,
         (GClassInitFunc) eva_stream_listener_socket_class_init,
         NULL,           /* class_finalize */
         NULL,           /* class_data */
-        sizeof (GskStreamListenerSocket),
+        sizeof (EvaStreamListenerSocket),
         0,              /* n_preallocs */
         (GInstanceInitFunc) eva_stream_listener_socket_init,
 	NULL		/* value_table */
       };
       GType parent = EVA_TYPE_STREAM_LISTENER;
       stream_listener_socket_type = g_type_register_static (parent,
-                                                  "GskStreamListenerSocket",
+                                                  "EvaStreamListenerSocket",
                                                   &stream_listener_socket_info,
 						  0);
     }
@@ -575,9 +575,9 @@ GType eva_stream_listener_socket_get_type()
  *
  * returns: the newly created stream-listener.
  */
-GskStreamListener *
-eva_stream_listener_socket_new_bind_full (GskSocketAddress   *address,
-				     GskStreamListenerSocketFlags flags,
+EvaStreamListener *
+eva_stream_listener_socket_new_bind_full (EvaSocketAddress   *address,
+				     EvaStreamListenerSocketFlags flags,
 			             GError            **error)
 {
   gboolean may_reuse_addr = (flags & EVA_STREAM_LISTENER_SOCKET_DONT_REUSE_ADDRESS) ? 0 : 1;
@@ -585,7 +585,7 @@ eva_stream_listener_socket_new_bind_full (GskSocketAddress   *address,
 		              "listening-address", address,
 			      "may-reuse-address", may_reuse_addr,
 			      NULL);
-  GskStreamListener *listener = EVA_STREAM_LISTENER (rv);
+  EvaStreamListener *listener = EVA_STREAM_LISTENER (rv);
   if (listener->last_error != NULL)
     {
       if (error != NULL)
@@ -611,8 +611,8 @@ eva_stream_listener_socket_new_bind_full (GskSocketAddress   *address,
  *
  * returns: the newly created stream-listener.
  */
-GskStreamListener *
-eva_stream_listener_socket_new_bind (GskSocketAddress   *address,
+EvaStreamListener *
+eva_stream_listener_socket_new_bind (EvaSocketAddress   *address,
 			             GError            **error)
 {
   return eva_stream_listener_socket_new_bind_full (address, 0, error);
@@ -627,12 +627,12 @@ eva_stream_listener_socket_new_bind (GskSocketAddress   *address,
  *
  * Create a new listener for an already bound socket.
  */
-GskStreamListener *
+EvaStreamListener *
 eva_stream_listener_socket_new_from_fd (gint     fd,
                                         GError **error)
 {
-  GskSocketAddress *address;
-  GskStreamListener *rv;
+  EvaSocketAddress *address;
+  EvaStreamListener *rv;
   struct sockaddr sock_addr;
   socklen_t sock_addr_len;
 
@@ -676,7 +676,7 @@ eva_stream_listener_socket_new_from_fd (gint     fd,
  * Set the number of incoming connections that can
  * be accepted before they are rejected outright.
  */
-void    eva_stream_listener_socket_set_backlog (GskStreamListenerSocket *lis,
+void    eva_stream_listener_socket_set_backlog (EvaStreamListenerSocket *lis,
 						guint             backlog)
 {
   listen (lis->fd, backlog);

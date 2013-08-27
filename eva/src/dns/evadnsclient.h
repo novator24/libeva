@@ -9,15 +9,15 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskDnsClient GskDnsClient;
-typedef struct _GskDnsClientClass GskDnsClientClass;
+typedef struct _EvaDnsClient EvaDnsClient;
+typedef struct _EvaDnsClientClass EvaDnsClientClass;
 
 /* --- type macros --- */
 GType eva_dns_client_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_DNS_CLIENT			(eva_dns_client_get_type ())
-#define EVA_DNS_CLIENT(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_DNS_CLIENT, GskDnsClient))
-#define EVA_DNS_CLIENT_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_DNS_CLIENT, GskDnsClientClass))
-#define EVA_DNS_CLIENT_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_DNS_CLIENT, GskDnsClientClass))
+#define EVA_DNS_CLIENT(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_DNS_CLIENT, EvaDnsClient))
+#define EVA_DNS_CLIENT_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_DNS_CLIENT, EvaDnsClientClass))
+#define EVA_DNS_CLIENT_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_DNS_CLIENT, EvaDnsClientClass))
 #define EVA_IS_DNS_CLIENT(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_DNS_CLIENT))
 #define EVA_IS_DNS_CLIENT_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_DNS_CLIENT))
 
@@ -25,21 +25,21 @@ GType eva_dns_client_get_type(void) G_GNUC_CONST;
 typedef enum
 {
   EVA_DNS_CLIENT_STUB_RESOLVER = (1<<0)
-} GskDnsClientFlags;
+} EvaDnsClientFlags;
 
-GskDnsClient   *eva_dns_client_new           (GskPacketQueue     *packet_queue,
-					      GskDnsRRCache      *rr_cache,
-					      GskDnsClientFlags   flags);
-void            eva_dns_client_add_searchpath(GskDnsClient       *client,
+EvaDnsClient   *eva_dns_client_new           (EvaPacketQueue     *packet_queue,
+					      EvaDnsRRCache      *rr_cache,
+					      EvaDnsClientFlags   flags);
+void            eva_dns_client_add_searchpath(EvaDnsClient       *client,
 					      const char         *searchpath);
-void            eva_dns_client_add_ns        (GskDnsClient       *client,
-					      GskSocketAddressIpv4 *address);
-void            eva_dns_client_set_cache     (GskDnsClient       *client,
-					      GskDnsRRCache      *rr_cache);
-void            eva_dns_client_set_flags     (GskDnsClient       *client,
-					      GskDnsClientFlags   flags);
-GskDnsClientFlags eva_dns_client_get_flags   (GskDnsClient       *client);
-gboolean    eva_dns_client_parse_system_files(GskDnsClient       *client);
+void            eva_dns_client_add_ns        (EvaDnsClient       *client,
+					      EvaSocketAddressIpv4 *address);
+void            eva_dns_client_set_cache     (EvaDnsClient       *client,
+					      EvaDnsRRCache      *rr_cache);
+void            eva_dns_client_set_flags     (EvaDnsClient       *client,
+					      EvaDnsClientFlags   flags);
+EvaDnsClientFlags eva_dns_client_get_flags   (EvaDnsClient       *client);
+gboolean    eva_dns_client_parse_system_files(EvaDnsClient       *client);
 
 
 G_END_DECLS

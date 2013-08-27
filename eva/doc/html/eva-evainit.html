@@ -54,19 +54,19 @@
 <div class="refsynopsisdiv">
 <a name="eva-evainit.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="eva-evainit.html#GskInitInfo" title="GskInitInfo">GskInitInfo</a>;
-void                <a class="link" href="eva-evainit.html#eva-init-info-get-defaults" title="eva_init_info_get_defaults ()">eva_init_info_get_defaults</a>          (<a class="link" href="eva-evainit.html#GskInitInfo" title="GskInitInfo">GskInitInfo</a> *info);
+                    <a class="link" href="eva-evainit.html#EvaInitInfo" title="EvaInitInfo">EvaInitInfo</a>;
+void                <a class="link" href="eva-evainit.html#eva-init-info-get-defaults" title="eva_init_info_get_defaults ()">eva_init_info_get_defaults</a>          (<a class="link" href="eva-evainit.html#EvaInitInfo" title="EvaInitInfo">EvaInitInfo</a> *info);
 void                <a class="link" href="eva-evainit.html#eva-init" title="eva_init ()">eva_init</a>                            (int *argc,
                                                          char ***argv,
-                                                         <a class="link" href="eva-evainit.html#GskInitInfo" title="GskInitInfo">GskInitInfo</a> *info);
+                                                         <a class="link" href="eva-evainit.html#EvaInitInfo" title="EvaInitInfo">EvaInitInfo</a> *info);
 void                <a class="link" href="eva-evainit.html#eva-init-without-threads" title="eva_init_without_threads ()">eva_init_without_threads</a>            (int *argc,
                                                          char ***argv);
 #define             <a class="link" href="eva-evainit.html#eva-init-get-support-threads" title="eva_init_get_support_threads()">eva_init_get_support_threads</a>        ()
-void                <a class="link" href="eva-evainit.html#eva-init-info-parse-args" title="eva_init_info_parse_args ()">eva_init_info_parse_args</a>            (<a class="link" href="eva-evainit.html#GskInitInfo" title="GskInitInfo">GskInitInfo</a> *in_out,
+void                <a class="link" href="eva-evainit.html#eva-init-info-parse-args" title="eva_init_info_parse_args ()">eva_init_info_parse_args</a>            (<a class="link" href="eva-evainit.html#EvaInitInfo" title="EvaInitInfo">EvaInitInfo</a> *in_out,
                                                          int *argc,
                                                          char ***argv);
-void                <a class="link" href="eva-evainit.html#eva-init-raw" title="eva_init_raw ()">eva_init_raw</a>                        (<a class="link" href="eva-evainit.html#GskInitInfo" title="GskInitInfo">GskInitInfo</a> *info);
-extern              _GskInitFlags <a class="link" href="eva-evainit.html#eva-init-flags" title="eva_init_flags">eva_init_flags</a>;
+void                <a class="link" href="eva-evainit.html#eva-init-raw" title="eva_init_raw ()">eva_init_raw</a>                        (<a class="link" href="eva-evainit.html#EvaInitInfo" title="EvaInitInfo">EvaInitInfo</a> *info);
+extern              _EvaInitFlags <a class="link" href="eva-evainit.html#eva-init-flags" title="eva_init_flags">eva_init_flags</a>;
 extern              gpointer <a class="link" href="eva-evainit.html#eva-main-thread" title="eva_main_thread">eva_main_thread</a>;
 </pre>
 </div>
@@ -83,11 +83,11 @@ the real initialization into <a class="link" href="eva-evainit.html#eva-init-raw
 <div class="refsect1" lang="en">
 <a name="eva-evainit.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskInitInfo"></a><h3>GskInitInfo</h3>
+<a name="EvaInitInfo"></a><h3>EvaInitInfo</h3>
 <pre class="programlisting">typedef struct {
   char *prgname;
   guint needs_threads : 1;
-} GskInitInfo;
+} EvaInitInfo;
 </pre>
 <p>
 Information about how to initialize EVA.
@@ -113,7 +113,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-init-info-get-defaults"></a><h3>eva_init_info_get_defaults ()</h3>
-<pre class="programlisting">void                eva_init_info_get_defaults          (<a class="link" href="eva-evainit.html#GskInitInfo" title="GskInitInfo">GskInitInfo</a> *info);</pre>
+<pre class="programlisting">void                eva_init_info_get_defaults          (<a class="link" href="eva-evainit.html#EvaInitInfo" title="EvaInitInfo">EvaInitInfo</a> *info);</pre>
 <p>
 Obtain the default initialization information.
 This should be run before <a class="link" href="eva-evainit.html#eva-init" title="eva_init ()"><code class="function">eva_init()</code></a> or <a class="link" href="eva-evainit.html#eva-init-info-parse-args" title="eva_init_info_parse_args ()"><code class="function">eva_init_info_parse_args()</code></a>.
@@ -121,7 +121,7 @@ This should be run before <a class="link" href="eva-evainit.html#eva-init" title
 <p>
 This API has been deprecated for public use,
 because it doesn't allow us to expand
-GskInitInfo without breaking binary-compatibility.
+EvaInitInfo without breaking binary-compatibility.
 </p>
 <p>
 Use <code class="function">eva_init_info_new()</code> instead.</p>
@@ -131,7 +131,7 @@ Use <code class="function">eva_init_info_new()</code> instead.</p>
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>info</code></em> :</span></p></td>
-<td> the <a class="link" href="eva-evainit.html#GskInitInfo" title="GskInitInfo"><span class="type">GskInitInfo</span></a> to fill.
+<td> the <a class="link" href="eva-evainit.html#EvaInitInfo" title="EvaInitInfo"><span class="type">EvaInitInfo</span></a> to fill.
 </td>
 </tr></tbody>
 </table></div>
@@ -141,7 +141,7 @@ Use <code class="function">eva_init_info_new()</code> instead.</p>
 <a name="eva-init"></a><h3>eva_init ()</h3>
 <pre class="programlisting">void                eva_init                            (int *argc,
                                                          char ***argv,
-                                                         <a class="link" href="eva-evainit.html#GskInitInfo" title="GskInitInfo">GskInitInfo</a> *info);</pre>
+                                                         <a class="link" href="eva-evainit.html#EvaInitInfo" title="EvaInitInfo">EvaInitInfo</a> *info);</pre>
 <p>
 Initialize the EVA library.</p>
 <p>
@@ -164,7 +164,7 @@ this may have arguments removed.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>info</code></em> :</span></p></td>
-<td> the <a class="link" href="eva-evainit.html#GskInitInfo" title="GskInitInfo"><span class="type">GskInitInfo</span></a> to use as hints,
+<td> the <a class="link" href="eva-evainit.html#EvaInitInfo" title="EvaInitInfo"><span class="type">EvaInitInfo</span></a> to use as hints,
 which will be filled with the
 actual initialization information used.
 If NULL, default initialization parameters
@@ -213,7 +213,7 @@ Ascertain whether thread support is necessary.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-init-info-parse-args"></a><h3>eva_init_info_parse_args ()</h3>
-<pre class="programlisting">void                eva_init_info_parse_args            (<a class="link" href="eva-evainit.html#GskInitInfo" title="GskInitInfo">GskInitInfo</a> *in_out,
+<pre class="programlisting">void                eva_init_info_parse_args            (<a class="link" href="eva-evainit.html#EvaInitInfo" title="EvaInitInfo">EvaInitInfo</a> *in_out,
                                                          int *argc,
                                                          char ***argv);</pre>
 <p>
@@ -228,7 +228,7 @@ The only currently supported argument is --eva-debug=FLAGS.</p>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>in_out</code></em> :</span></p></td>
-<td> the <a class="link" href="eva-evainit.html#GskInitInfo" title="GskInitInfo"><span class="type">GskInitInfo</span></a> to fill.
+<td> the <a class="link" href="eva-evainit.html#EvaInitInfo" title="EvaInitInfo"><span class="type">EvaInitInfo</span></a> to fill.
 </td>
 </tr>
 <tr>
@@ -247,7 +247,7 @@ The only currently supported argument is --eva-debug=FLAGS.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-init-raw"></a><h3>eva_init_raw ()</h3>
-<pre class="programlisting">void                eva_init_raw                        (<a class="link" href="eva-evainit.html#GskInitInfo" title="GskInitInfo">GskInitInfo</a> *info);</pre>
+<pre class="programlisting">void                eva_init_raw                        (<a class="link" href="eva-evainit.html#EvaInitInfo" title="EvaInitInfo">EvaInitInfo</a> *info);</pre>
 <p>
 Initialize EVA.</p>
 <p>
@@ -264,7 +264,7 @@ Initialize EVA.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-init-flags"></a><h3>eva_init_flags</h3>
-<pre class="programlisting">extern _GskInitFlags eva_init_flags;
+<pre class="programlisting">extern _EvaInitFlags eva_init_flags;
 </pre>
 <p>
 Flags given to <a class="link" href="eva-evainit.html#eva-init" title="eva_init ()"><code class="function">eva_init()</code></a>.

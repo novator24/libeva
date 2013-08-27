@@ -10,7 +10,7 @@
 static GObjectClass *parent_class = NULL;
 
 static inline void
-check_internal_write_block (GskStreamTransferRequest *request, gboolean block)
+check_internal_write_block (EvaStreamTransferRequest *request, gboolean block)
 {
   if (block && !request->blocking_write_side)
     {
@@ -25,7 +25,7 @@ check_internal_write_block (GskStreamTransferRequest *request, gboolean block)
 }
 
 static inline void
-check_internal_read_block (GskStreamTransferRequest *request, gboolean block)
+check_internal_read_block (EvaStreamTransferRequest *request, gboolean block)
 {
   if (block && !request->blocking_read_side)
     {
@@ -40,7 +40,7 @@ check_internal_read_block (GskStreamTransferRequest *request, gboolean block)
 }
 
 static inline void
-check_internal_blocks (GskStreamTransferRequest *request)
+check_internal_blocks (EvaStreamTransferRequest *request)
 {
   guint size = request->buffer.size;
   check_internal_read_block (request, size > request->max_buffered);
@@ -48,10 +48,10 @@ check_internal_blocks (GskStreamTransferRequest *request)
 }
 
 static void
-handle_error (GskStreamTransferRequest *self, GError *error)
+handle_error (EvaStreamTransferRequest *self, GError *error)
 {
   g_return_if_fail (error);
-  g_warning ("GskStreamTransferRequest: %s", error->message);
+  g_warning ("EvaStreamTransferRequest: %s", error->message);
 
   if (eva_request_had_error (self))
     g_free (error);
@@ -69,11 +69,11 @@ handle_error (GskStreamTransferRequest *self, GError *error)
 }
 
 static gboolean
-handle_input_is_readable (GskIO *io, gpointer user_data)
+handle_input_is_readable (EvaIO *io, gpointer user_data)
 {
-  GskStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (user_data);
-  GskStream *read_side = self->read_side;
-  GskStream *write_side = self->write_side;
+  EvaStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (user_data);
+  EvaStream *read_side = self->read_side;
+  EvaStream *write_side = self->write_side;
   guint atomic_read_size = self->atomic_read_size;
   gboolean read_on_stack = (atomic_read_size > MAX_READ_ON_STACK);
   GError *error = NULL;
@@ -129,10 +129,10 @@ handle_input_is_readable (GskIO *io, gpointer user_data)
 }
 
 static gboolean
-handle_input_shutdown_read (GskIO *io, gpointer user_data)
+handle_input_shutdown_read (EvaIO *io, gpointer user_data)
 {
-  GskStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (user_data);
-  GskStream *write_side = self->write_side;
+  EvaStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (user_data);
+  EvaStream *write_side = self->write_side;
 
   g_return_val_if_fail (self->read_side == EVA_STREAM (io), FALSE);
 
@@ -160,8 +160,8 @@ handle_input_shutdown_read (GskIO *io, gpointer user_data)
 static void
 handle_input_is_readable_destroy (gpointer user_data)
 {
-  GskStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (user_data);
-  GskStream *read_side = self->read_side;
+  EvaStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (user_data);
+  EvaStream *read_side = self->read_side;
 
   g_return_if_fail (read_side);
   g_return_if_fail (!eva_stream_get_is_readable (read_side));
@@ -171,10 +171,10 @@ handle_input_is_readable_destroy (gpointer user_data)
 }
 
 static gboolean
-handle_output_is_writable (GskIO *io, gpointer user_data)
+handle_output_is_writable (EvaIO *io, gpointer user_data)
 {
-  GskStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (user_data);
-  GskStream *write_side = self->write_side;
+  EvaStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (user_data);
+  EvaStream *write_side = self->write_side;
   GError *error = NULL;
 
   g_return_val_if_fail (write_side == EVA_STREAM (io), FALSE);
@@ -208,10 +208,10 @@ handle_output_is_writable (GskIO *io, gpointer user_data)
 }
 
 static gboolean
-handle_output_shutdown_write (GskIO *io, gpointer user_data)
+handle_output_shutdown_write (EvaIO *io, gpointer user_data)
 {
-  GskStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (user_data);
-  GskStream *read_side = self->read_side;
+  EvaStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (user_data);
+  EvaStream *read_side = self->read_side;
 
   g_return_val_if_fail (self->write_side == EVA_STREAM (io), FALSE);
 
@@ -245,8 +245,8 @@ handle_output_shutdown_write (GskIO *io, gpointer user_data)
 static void
 handle_output_is_writable_destroy (gpointer user_data)
 {
-  GskStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (user_data);
-  GskStream *write_side = self->write_side;
+  EvaStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (user_data);
+  EvaStream *write_side = self->write_side;
 
   g_return_if_fail (write_side);
   g_return_if_fail (!eva_io_get_is_writable (write_side));
@@ -256,15 +256,15 @@ handle_output_is_writable_destroy (gpointer user_data)
 }
 
 /*
- * GskRequest methods.
+ * EvaRequest methods.
  */
 
 static void
-eva_stream_transfer_request_start (GskRequest *request)
+eva_stream_transfer_request_start (EvaRequest *request)
 {
-  GskStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (request);
-  GskStream *read_side = self->read_side;
-  GskStream *write_side = self->write_side;
+  EvaStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (request);
+  EvaStream *read_side = self->read_side;
+  EvaStream *write_side = self->write_side;
 
   g_return_if_fail (read_side);
   g_return_if_fail (eva_stream_get_is_readable (read_side));
@@ -290,14 +290,14 @@ eva_stream_transfer_request_start (GskRequest *request)
 }
 
 void
-eva_stream_transfer_request_cancelled (GskRequest *request)
+eva_stream_transfer_request_cancelled (EvaRequest *request)
 {
-  GskStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (request);
+  EvaStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (request);
 
   if (eva_request_get_is_running (self))
     {
-      GskStream *read_side = self->read_side;
-      GskStream *write_side = self->write_side;
+      EvaStream *read_side = self->read_side;
+      EvaStream *write_side = self->write_side;
 
 /* XXX: should a cancellation shut down the streams, or just untrap them?
  * (Clearly not, if there's an "only transfer n bytes" mode...)
@@ -317,7 +317,7 @@ eva_stream_transfer_request_cancelled (GskRequest *request)
 static void
 eva_stream_transfer_request_finalize (GObject *object)
 {
-  GskStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (object);
+  EvaStreamTransferRequest *self = EVA_STREAM_TRANSFER_REQUEST (object);
 
   if (self->read_side)
     g_object_unref (self->read_side);
@@ -329,7 +329,7 @@ eva_stream_transfer_request_finalize (GObject *object)
 }
 
 static void
-eva_stream_transfer_request_init (GskStreamTransferRequest *request)
+eva_stream_transfer_request_init (EvaStreamTransferRequest *request)
 {
   request->max_buffered = DEFAULT_MAX_BUFFERED;
   request->atomic_read_size = DEFAULT_MAX_ATOMIC_READ;
@@ -337,7 +337,7 @@ eva_stream_transfer_request_init (GskStreamTransferRequest *request)
 }
 
 static void
-eva_stream_transfer_request_class_init (GskRequestClass *request_class)
+eva_stream_transfer_request_class_init (EvaRequestClass *request_class)
 {
   parent_class = g_type_class_peek_parent (request_class);
   G_OBJECT_CLASS (request_class)->finalize =
@@ -354,19 +354,19 @@ eva_stream_transfer_request_get_type (void)
     {
       static const GTypeInfo type_info =
 	{
-	  sizeof(GskStreamTransferRequestClass),
+	  sizeof(EvaStreamTransferRequestClass),
 	  (GBaseInitFunc) NULL,
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) eva_stream_transfer_request_class_init,
 	  NULL,		/* class_finalize */
 	  NULL,		/* class_data */
-	  sizeof (GskStreamTransferRequest),
+	  sizeof (EvaStreamTransferRequest),
 	  16,		/* n_preallocs */
 	  (GInstanceInitFunc) eva_stream_transfer_request_init,
 	  NULL		/* value_table */
 	};
       type = g_type_register_static (EVA_TYPE_REQUEST,
-				     "GskStreamTransferRequest",
+				     "EvaStreamTransferRequest",
 				     &type_info,
 				     0);
     }
@@ -381,7 +381,7 @@ eva_stream_transfer_request_get_type (void)
 
 void
 eva_stream_transfer_request_set_max_buffered
-	(GskStreamTransferRequest *request, guint max_buffered)
+	(EvaStreamTransferRequest *request, guint max_buffered)
 {
   request->max_buffered = max_buffered;
   check_internal_blocks (request);
@@ -389,30 +389,30 @@ eva_stream_transfer_request_set_max_buffered
 
 guint
 eva_stream_transfer_request_get_max_buffered
-	(GskStreamTransferRequest *request)
+	(EvaStreamTransferRequest *request)
 {
   return request->max_buffered;
 }
 
 void
 eva_stream_transfer_request_set_atomic_read_size
-	(GskStreamTransferRequest *request, guint atomic_read_size)
+	(EvaStreamTransferRequest *request, guint atomic_read_size)
 {
   request->atomic_read_size = atomic_read_size;
 }
 
 guint
 eva_stream_transfer_request_get_atomic_read_size
-	(GskStreamTransferRequest *request)
+	(EvaStreamTransferRequest *request)
 {
   return request->atomic_read_size;
 }
 
-GskStreamTransferRequest *
-eva_stream_transfer_request_new (GskStream *input_stream,
-				 GskStream *output_stream)
+EvaStreamTransferRequest *
+eva_stream_transfer_request_new (EvaStream *input_stream,
+				 EvaStream *output_stream)
 {
-  GskStreamTransferRequest *request;
+  EvaStreamTransferRequest *request;
 
   g_return_val_if_fail (input_stream, NULL);
   g_return_val_if_fail (output_stream, NULL);

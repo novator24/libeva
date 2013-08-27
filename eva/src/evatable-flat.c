@@ -67,7 +67,7 @@ static const char *file_extensions[N_FILES] = { "index", "firstkeys", "data" };
 
 struct _FlatFactory
 {
-  GskTableFileFactory base_factory;
+  EvaTableFileFactory base_factory;
   guint bytes_per_chunk;
   guint compression_level;
   guint n_recycled_builders;
@@ -82,7 +82,7 @@ struct _MmapReader
   gint fd;
   guint64 file_size;
   guint8 *mmapped;
-  GskTableBuffer tmp_buf;               /* only if !mmapped */
+  EvaTableBuffer tmp_buf;               /* only if !mmapped */
 };
 
 struct _MmapWriter
@@ -92,20 +92,20 @@ struct _MmapWriter
   guint64 mmap_offset;
   guint8 *mmapped;
   guint cur_offset;             /* in mmapped */
-  GskTableBuffer tmp_buf;
+  EvaTableBuffer tmp_buf;
 };
 
 
 struct _FlatFileBuilder
 {
-  GskTableBuffer input;
+  EvaTableBuffer input;
 
   gboolean has_last_key;
-  GskTableBuffer first_key;
-  GskTableBuffer last_key;
+  EvaTableBuffer first_key;
+  EvaTableBuffer last_key;
 
-  GskTableBuffer uncompressed;
-  GskTableBuffer compressed;
+  EvaTableBuffer uncompressed;
+  EvaTableBuffer compressed;
 
   guint n_compressed_entries;
   guint uncompressed_data_len;
@@ -113,7 +113,7 @@ struct _FlatFileBuilder
   MmapWriter writers[N_FILES];
  
   z_stream compressor;
-  GskMemPool compressor_allocator;
+  EvaMemPool compressor_allocator;
   guint8 *compressor_allocator_scratchpad;
   gsize compressor_allocator_scratchpad_len;
 
@@ -140,7 +140,7 @@ struct _CacheEntry
 
 struct _FlatFile
 {
-  GskTableFile base_file;
+  EvaTableFile base_file;
   gint         fds[N_FILES];
   FlatFileBuilder *builder;
 
@@ -157,7 +157,7 @@ struct _FlatFile
 
 struct _FlatFileReader
 {
-  GskTableReader base_reader;
+  EvaTableReader base_reader;
   FILE *fps[N_FILES];
   guint64 chunk_file_offsets[N_FILES];
   CacheEntry *cache_entry;
@@ -940,11 +940,11 @@ open_3_files (FlatFile                 *file,
   return TRUE;
 }
 
-static GskTableFile *
-flat__create_file      (GskTableFileFactory      *factory,
+static EvaTableFile *
+flat__create_file      (EvaTableFileFactory      *factory,
                         const char               *dir,
                         guint64                   id,
-                        const GskTableFileHints  *hints,
+                        const EvaTableFileHints  *hints,
                         GError                  **error)
 {
   FlatFactory *ffactory = (FlatFactory *) factory;
@@ -1001,8 +1001,8 @@ flat__create_file      (GskTableFileFactory      *factory,
   return &rv->base_file;
 }
 
-static GskTableFile *
-flat__open_building_file(GskTableFileFactory     *factory,
+static EvaTableFile *
+flat__open_building_file(EvaTableFileFactory     *factory,
                          const char               *dir,
                          guint64                   id,
                          guint                     state_len,
@@ -1061,8 +1061,8 @@ flat__open_building_file(GskTableFileFactory     *factory,
   return &rv->base_file;
 }
 
-GskTableFile *
-flat__open_file        (GskTableFileFactory      *factory,
+EvaTableFile *
+flat__open_file        (EvaTableFileFactory      *factory,
                         const char               *dir,
                         guint64                   id,
                         GError                  **error)
@@ -1256,8 +1256,8 @@ flush_to_files (FlatFileBuilder *builder,
 }
 
 /* methods for a file which is being built */
-static GskTableFeedEntryResult
-flat__feed_entry      (GskTableFile             *file,
+static EvaTableFeedEntryResult
+flat__feed_entry      (EvaTableFile             *file,
                        guint                     key_len,
                        const guint8             *key_data,
                        guint                     value_len,
@@ -1337,7 +1337,7 @@ flat__feed_entry      (GskTableFile             *file,
 }
 
 static gboolean 
-flat__done_feeding     (GskTableFile             *file,
+flat__done_feeding     (EvaTableFile             *file,
                         gboolean                 *ready_out,
                         GError                  **error)
 {
@@ -1406,7 +1406,7 @@ flat__done_feeding     (GskTableFile             *file,
 }
 
 static gboolean 
-flat__get_build_state  (GskTableFile             *file,
+flat__get_build_state  (EvaTableFile             *file,
                         guint                    *state_len_out,
                         guint8                  **state_data_out,
                         GError                  **error)
@@ -1434,7 +1434,7 @@ flat__get_build_state  (GskTableFile             *file,
 }
 
 static gboolean 
-flat__build_file       (GskTableFile             *file,
+flat__build_file       (EvaTableFile             *file,
                         gboolean                 *ready_out,
                         GError                  **error)
 {
@@ -1443,7 +1443,7 @@ flat__build_file       (GskTableFile             *file,
 }
 
 static void     
-flat__release_build_data(GskTableFile            *file)
+flat__release_build_data(EvaTableFile            *file)
 {
   /* nothing to do, since we finish building immediately */
 }
@@ -1471,8 +1471,8 @@ do_pread (FlatFile *ffile,
 }
 
 static gboolean 
-flat__query_file       (GskTableFile             *file,
-                        GskTableFileQuery        *query_inout,
+flat__query_file       (EvaTableFile             *file,
+                        EvaTableFileQuery        *query_inout,
                         GError                  **error)
 {
   FlatFile *ffile = (FlatFile *) file;
@@ -1502,7 +1502,7 @@ flat__query_file       (GskTableFile             *file,
     }
   first = 0;
   n = n_index_records;
-  GskTableBuffer firstkey;
+  EvaTableBuffer firstkey;
   eva_table_buffer_init (&firstkey);
   while (n > 1)
     {
@@ -1709,7 +1709,7 @@ init_base_reader_record (FlatFileReader *freader)
 }
 
 static void
-reader_advance (GskTableReader *reader)
+reader_advance (EvaTableReader *reader)
 {
   FlatFileReader *freader = (FlatFileReader *) reader;
   if (freader->base_reader.eof || freader->base_reader.error)
@@ -1726,7 +1726,7 @@ reader_advance (GskTableReader *reader)
   init_base_reader_record (freader);
 }
 static void
-reader_destroy (GskTableReader *reader)
+reader_destroy (EvaTableReader *reader)
 {
   guint f;
   FlatFileReader *freader = (FlatFileReader *) reader;
@@ -1739,7 +1739,7 @@ reader_destroy (GskTableReader *reader)
 }
 
 static FlatFileReader *
-reader_open_fps (GskTableFile *file,
+reader_open_fps (EvaTableFile *file,
                  const char   *dir,
                  GError      **error)
 {
@@ -1780,8 +1780,8 @@ reader_open_eof (void)
   return freader;
 }
 
-static GskTableReader *
-flat__create_reader    (GskTableFile             *file,
+static EvaTableReader *
+flat__create_reader    (EvaTableFile             *file,
                         const char               *dir,
                         GError                  **error)
 {
@@ -1809,8 +1809,8 @@ flat__create_reader    (GskTableFile             *file,
 
 /* you must always be able to get reader state */
 static gboolean 
-flat__get_reader_state (GskTableFile             *file,
-                        GskTableReader           *reader,
+flat__get_reader_state (EvaTableFile             *file,
+                        EvaTableReader           *reader,
                         guint                    *state_len_out,
                         guint8                  **state_data_out,
                         GError                  **error)
@@ -1853,8 +1853,8 @@ flat__get_reader_state (GskTableFile             *file,
   return TRUE;
 }
 
-static GskTableReader *
-flat__recreate_reader  (GskTableFile             *file,
+static EvaTableReader *
+flat__recreate_reader  (EvaTableFile             *file,
                         const char               *dir,
                         guint                     state_len,
                         const guint8             *state_data,
@@ -1941,7 +1941,7 @@ flat__recreate_reader  (GskTableFile             *file,
 
 /* destroying files and factories */
 static gboolean
-flat__destroy_file     (GskTableFile             *file,
+flat__destroy_file     (EvaTableFile             *file,
                         const char               *dir,
                         gboolean                  erase,
                         GError                  **error)
@@ -1977,14 +1977,14 @@ flat__destroy_file     (GskTableFile             *file,
 }
 
 static void
-flat__destroy_factory  (GskTableFileFactory      *factory)
+flat__destroy_factory  (EvaTableFileFactory      *factory)
 {
   /* static factory */
 }
 
 
 /* for now, return a static factory object */
-GskTableFileFactory *eva_table_file_factory_new_flat (void)
+EvaTableFileFactory *eva_table_file_factory_new_flat (void)
 {
   static FlatFactory the_factory =
     {

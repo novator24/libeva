@@ -7,7 +7,7 @@ SSL stream listener.
 <!-- ##### SECTION Long_Description ##### -->
 <para>
 Accept SSL encrypted connections on top of a raw transport layer
-#GskStreamListener.
+#EvaStreamListener.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
@@ -18,7 +18,7 @@ Accept SSL encrypted connections on top of a raw transport layer
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskStreamListenerSsl ##### -->
+<!-- ##### STRUCT EvaStreamListenerSsl ##### -->
 <para>
 The SSL listener.
 </para>

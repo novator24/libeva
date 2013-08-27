@@ -1,6 +1,6 @@
-<refentry id="GskStreamListener">
+<refentry id="EvaStreamListener">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskStreamListener.top_of_page">Listening for Connections</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaStreamListener.top_of_page">Listening for Connections</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
@@ -10,35 +10,35 @@
 <refpurpose>Base class for server-type objects.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskStreamListener.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaStreamListener.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-<link linkend="gboolean">gboolean</link>            (<link linkend="GskStreamListenerAcceptFunc">*GskStreamListenerAcceptFunc</link>)      (<link linkend="GskStream">GskStream</link> *stream,
+<link linkend="gboolean">gboolean</link>            (<link linkend="EvaStreamListenerAcceptFunc">*EvaStreamListenerAcceptFunc</link>)      (<link linkend="EvaStream">EvaStream</link> *stream,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="void">void</link>                (<link linkend="GskStreamListenerErrorFunc">*GskStreamListenerErrorFunc</link>)       (<link linkend="GError">GError</link> *err,
+<link linkend="void">void</link>                (<link linkend="EvaStreamListenerErrorFunc">*EvaStreamListenerErrorFunc</link>)       (<link linkend="GError">GError</link> *err,
                                                          <link linkend="gpointer">gpointer</link> data);
-                    <link linkend="GskStreamListenerClass">GskStreamListenerClass</link>;
-                    <link linkend="GskStreamListener-struct">GskStreamListener</link>;
-<link linkend="void">void</link>                <link linkend="eva-stream-listener-handle-accept">eva_stream_listener_handle_accept</link>   (<link linkend="GskStreamListener">GskStreamListener</link> *listener,
-                                                         <link linkend="GskStreamListenerAcceptFunc">GskStreamListenerAcceptFunc</link> func,
-                                                         <link linkend="GskStreamListenerErrorFunc">GskStreamListenerErrorFunc</link> err_func,
+                    <link linkend="EvaStreamListenerClass">EvaStreamListenerClass</link>;
+                    <link linkend="EvaStreamListener-struct">EvaStreamListener</link>;
+<link linkend="void">void</link>                <link linkend="eva-stream-listener-handle-accept">eva_stream_listener_handle_accept</link>   (<link linkend="EvaStreamListener">EvaStreamListener</link> *listener,
+                                                         <link linkend="EvaStreamListenerAcceptFunc">EvaStreamListenerAcceptFunc</link> func,
+                                                         <link linkend="EvaStreamListenerErrorFunc">EvaStreamListenerErrorFunc</link> err_func,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="void">void</link>                <link linkend="eva-stream-listener-notify-accepted">eva_stream_listener_notify_accepted</link> (<link linkend="GskStreamListener">GskStreamListener</link> *stream_listener,
-                                                         <link linkend="GskStream">GskStream</link> *new_stream);
-<link linkend="void">void</link>                <link linkend="eva-stream-listener-notify-error">eva_stream_listener_notify_error</link>    (<link linkend="GskStreamListener">GskStreamListener</link> *stream_listener,
+<link linkend="void">void</link>                <link linkend="eva-stream-listener-notify-accepted">eva_stream_listener_notify_accepted</link> (<link linkend="EvaStreamListener">EvaStreamListener</link> *stream_listener,
+                                                         <link linkend="EvaStream">EvaStream</link> *new_stream);
+<link linkend="void">void</link>                <link linkend="eva-stream-listener-notify-error">eva_stream_listener_notify_error</link>    (<link linkend="EvaStreamListener">EvaStreamListener</link> *stream_listener,
                                                          <link linkend="GError">GError</link> *error);
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskStreamListener.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaStreamListener.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----GskStreamListener
-         +----<link linkend="GskStreamListenerSocket">GskStreamListenerSocket</link>
+   +----EvaStreamListener
+         +----<link linkend="EvaStreamListenerSocket">EvaStreamListenerSocket</link>
 </synopsis>
 </refsect1>
 
@@ -49,21 +49,21 @@
 
 
 
-<refsect1 id="GskStreamListener.description" role="desc">
+<refsect1 id="EvaStreamListener.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
-Derived classes of GskStreamListener provide new GskStreams
+Derived classes of EvaStreamListener provide new EvaStreams
 as connections are accepted.  Users can receive notification
 of this, and usually attach the stream to a new protocol object
 to handle the connection.
 </para>
 </refsect1>
 
-<refsect1 id="GskStreamListener.details" role="details">
+<refsect1 id="EvaStreamListener.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskStreamListenerAcceptFunc" role="function">
-<title>GskStreamListenerAcceptFunc ()</title>
-<indexterm zone="GskStreamListenerAcceptFunc"><primary sortas="GskStreamListenerAcceptFunc">GskStreamListenerAcceptFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GskStreamListenerAcceptFunc)      (<link linkend="GskStream">GskStream</link> *stream,
+<refsect2 id="EvaStreamListenerAcceptFunc" role="function">
+<title>EvaStreamListenerAcceptFunc ()</title>
+<indexterm zone="EvaStreamListenerAcceptFunc"><primary sortas="EvaStreamListenerAcceptFunc">EvaStreamListenerAcceptFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*EvaStreamListenerAcceptFunc)      (<link linkend="EvaStream">EvaStream</link> *stream,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
@@ -79,7 +79,7 @@ TODO: One can interpret this as meaning that the ownership of the
 stream is passed through this callback,
 which is irregular.
 We will probably fix this by
-implementing listener attachment with a GskHook
+implementing listener attachment with a EvaHook
 and deprecating this API.
 </para><variablelist role="params">
 <varlistentry><term><parameter>stream</parameter>&#160;:</term>
@@ -95,9 +95,9 @@ This should be <link linkend="g-object-unref"><function>g_object_unref()</functi
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>whether everything is ok.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskStreamListenerErrorFunc" role="function">
-<title>GskStreamListenerErrorFunc ()</title>
-<indexterm zone="GskStreamListenerErrorFunc"><primary sortas="GskStreamListenerErrorFunc">GskStreamListenerErrorFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskStreamListenerErrorFunc)       (<link linkend="GError">GError</link> *err,
+<refsect2 id="EvaStreamListenerErrorFunc" role="function">
+<title>EvaStreamListenerErrorFunc ()</title>
+<indexterm zone="EvaStreamListenerErrorFunc"><primary sortas="EvaStreamListenerErrorFunc">EvaStreamListenerErrorFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaStreamListenerErrorFunc)       (<link linkend="GError">GError</link> *err,
                                                          <link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
 A method for handling a low-level server error.
@@ -109,15 +109,15 @@ A method for handling a low-level server error.
 <listitem><simpara>the data provided to <link linkend="eva-stream-listener-handle-accept"><function>eva_stream_listener_handle_accept()</function></link>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskStreamListenerClass" role="struct">
-<title>GskStreamListenerClass</title>
-<indexterm zone="GskStreamListenerClass"><primary sortas="GskStreamListenerClass">GskStreamListenerClass</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaStreamListenerClass" role="struct">
+<title>EvaStreamListenerClass</title>
+<indexterm zone="EvaStreamListenerClass"><primary sortas="EvaStreamListenerClass">EvaStreamListenerClass</primary></indexterm><programlisting>typedef struct {
   GObjectClass object_class;
-} GskStreamListenerClass;
+} EvaStreamListenerClass;
 </programlisting>
 <para>
 The base class of an object which accepts
-new incoming <link linkend="GskStream"><type>GskStream</type></link>'s.
+new incoming <link linkend="EvaStream"><type>EvaStream</type></link>'s.
 </para><variablelist role="struct">
 <varlistentry>
 <term><link linkend="GObjectClass">GObjectClass</link>&#160;<structfield>object_class</structfield>;</term>
@@ -125,18 +125,18 @@ new incoming <link linkend="GskStream"><type>GskStream</type></link>'s.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskStreamListener-struct" role="struct">
-<title>GskStreamListener</title>
-<indexterm zone="GskStreamListener-struct"><primary sortas="GskStreamListener">GskStreamListener</primary></indexterm><programlisting>typedef struct _GskStreamListener GskStreamListener;</programlisting>
+<refsect2 id="EvaStreamListener-struct" role="struct">
+<title>EvaStreamListener</title>
+<indexterm zone="EvaStreamListener-struct"><primary sortas="EvaStreamListener">EvaStreamListener</primary></indexterm><programlisting>typedef struct _EvaStreamListener EvaStreamListener;</programlisting>
 <para>
 The base instance of an object which accepts
-new incoming <link linkend="GskStream"><type>GskStream</type></link>'s.
+new incoming <link linkend="EvaStream"><type>EvaStream</type></link>'s.
 </para></refsect2>
 <refsect2 id="eva-stream-listener-handle-accept" role="function">
 <title>eva_stream_listener_handle_accept ()</title>
-<indexterm zone="eva-stream-listener-handle-accept"><primary sortas="eva_stream_listener_handle_accept">eva_stream_listener_handle_accept</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_listener_handle_accept   (<link linkend="GskStreamListener">GskStreamListener</link> *listener,
-                                                         <link linkend="GskStreamListenerAcceptFunc">GskStreamListenerAcceptFunc</link> func,
-                                                         <link linkend="GskStreamListenerErrorFunc">GskStreamListenerErrorFunc</link> err_func,
+<indexterm zone="eva-stream-listener-handle-accept"><primary sortas="eva_stream_listener_handle_accept">eva_stream_listener_handle_accept</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_listener_handle_accept   (<link linkend="EvaStreamListener">EvaStreamListener</link> *listener,
+                                                         <link linkend="EvaStreamListenerAcceptFunc">EvaStreamListenerAcceptFunc</link> func,
+                                                         <link linkend="EvaStreamListenerErrorFunc">EvaStreamListenerErrorFunc</link> err_func,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -163,8 +163,8 @@ then <parameter>err_func</parameter> and <parameter>destroy</parameter> will be 
 </variablelist></refsect2>
 <refsect2 id="eva-stream-listener-notify-accepted" role="function">
 <title>eva_stream_listener_notify_accepted ()</title>
-<indexterm zone="eva-stream-listener-notify-accepted"><primary sortas="eva_stream_listener_notify_accepted">eva_stream_listener_notify_accepted</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_listener_notify_accepted (<link linkend="GskStreamListener">GskStreamListener</link> *stream_listener,
-                                                         <link linkend="GskStream">GskStream</link> *new_stream);</programlisting>
+<indexterm zone="eva-stream-listener-notify-accepted"><primary sortas="eva_stream_listener_notify_accepted">eva_stream_listener_notify_accepted</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_listener_notify_accepted (<link linkend="EvaStreamListener">EvaStreamListener</link> *stream_listener,
+                                                         <link linkend="EvaStream">EvaStream</link> *new_stream);</programlisting>
 <para>
 Called by a derived class to notify the system that 
 a new stream has been accepted.</para>
@@ -179,7 +179,7 @@ a new stream has been accepted.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-listener-notify-error" role="function">
 <title>eva_stream_listener_notify_error ()</title>
-<indexterm zone="eva-stream-listener-notify-error"><primary sortas="eva_stream_listener_notify_error">eva_stream_listener_notify_error</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_listener_notify_error    (<link linkend="GskStreamListener">GskStreamListener</link> *stream_listener,
+<indexterm zone="eva-stream-listener-notify-error"><primary sortas="eva_stream_listener_notify_error">eva_stream_listener_notify_error</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_listener_notify_error    (<link linkend="EvaStreamListener">EvaStreamListener</link> *stream_listener,
                                                          <link linkend="GError">GError</link> *error);</programlisting>
 <para>
 Called by a derived class to notify the system that 

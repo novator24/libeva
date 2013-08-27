@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskMainLoopDevPoll
+EvaMainLoopDevPoll
 
 <!-- ##### SECTION Short_Description ##### -->
 /dev/poll based event loop.
@@ -18,7 +18,7 @@ of the /dev/poll mechanism, which can be found on Solaris.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskMainLoopDevPoll ##### -->
+<!-- ##### STRUCT EvaMainLoopDevPoll ##### -->
 <para>
 A /dev/poll-based main-loop.
 </para>

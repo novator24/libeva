@@ -26,10 +26,10 @@ void eva_debug_alloc_add_log_time_update_idle (void);
 
 /* --- object timeouts --- */
 
-typedef void (*GskDebugObjectTimedOut) (GObject *object, gpointer data);
+typedef void (*EvaDebugObjectTimedOut) (GObject *object, gpointer data);
 void eva_debug_set_object_timeout (GObject *object,
                                    guint    max_duration_millis,
-                                   GskDebugObjectTimedOut func,
+                                   EvaDebugObjectTimedOut func,
                                    gpointer data,
                                    GDestroyNotify destroy);
 

@@ -5,26 +5,26 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskTreeNode GskTreeNode;
-typedef struct _GskTree GskTree;
-GskTree      *eva_tree_new             (GCompareFunc     compare);
-GskTree      *eva_tree_ref             (GskTree         *tree);
-void          eva_tree_unref           (GskTree         *tree);
-GskTree      *eva_tree_new_full        (GCompareDataFunc compare,
+typedef struct _EvaTreeNode EvaTreeNode;
+typedef struct _EvaTree EvaTree;
+EvaTree      *eva_tree_new             (GCompareFunc     compare);
+EvaTree      *eva_tree_ref             (EvaTree         *tree);
+void          eva_tree_unref           (EvaTree         *tree);
+EvaTree      *eva_tree_new_full        (GCompareDataFunc compare,
                                         gpointer         compare_data,
                                         GDestroyNotify   key_destroy_func,
                                         GDestroyNotify   value_destroy_func);
-void          eva_tree_insert          (GskTree         *tree,
+void          eva_tree_insert          (EvaTree         *tree,
                                         gpointer         key,
                                         gpointer         value);
-void          eva_tree_replace         (GskTree         *tree,
+void          eva_tree_replace         (EvaTree         *tree,
                                         gpointer         key,
                                         gpointer         value);
-gpointer      eva_tree_lookup          (GskTree         *tree,
+gpointer      eva_tree_lookup          (EvaTree         *tree,
 				        gpointer         key);
-void          eva_tree_remove          (GskTree         *tree,
+void          eva_tree_remove          (EvaTree         *tree,
 					gpointer         key);
-guint         eva_tree_n_nodes         (GskTree         *tree);
+guint         eva_tree_n_nodes         (EvaTree         *tree);
                                        
 
 /* iteration.
@@ -35,7 +35,7 @@ guint         eva_tree_n_nodes         (GskTree         *tree);
  *  were inserted after the iteration began.
  *
  *  When a node is returned to you it has a use_count that is
- *  incremented.  Functions that take a GskTreeNode decrement
+ *  incremented.  Functions that take a EvaTreeNode decrement
  *  that use count.  If you wish to abort iteration prematurely
  *  you should call eva_tree_node_unvisit(); if you wish to
  *  come back to a certain point you might use eva_tree_node_visit(),
@@ -45,23 +45,23 @@ guint         eva_tree_n_nodes         (GskTree         *tree);
  *  Hence make sure you eva_tree_ref/unref around iteration
  *  if you don't own the tree.
  */
-GskTreeNode  *eva_tree_node_first      (GskTree         *tree);
-GskTreeNode  *eva_tree_node_last       (GskTree         *tree);
-GskTreeNode  *eva_tree_node_find       (GskTree         *tree,
+EvaTreeNode  *eva_tree_node_first      (EvaTree         *tree);
+EvaTreeNode  *eva_tree_node_last       (EvaTree         *tree);
+EvaTreeNode  *eva_tree_node_find       (EvaTree         *tree,
 					gpointer         search_key);
-GskTreeNode  *eva_tree_node_next       (GskTree         *tree,
-                                        GskTreeNode     *node);
-GskTreeNode  *eva_tree_node_prev       (GskTree         *tree,
-                                        GskTreeNode     *node);
-gpointer      eva_tree_node_peek_key   (GskTreeNode     *node);
-gpointer      eva_tree_node_peek_value (GskTreeNode     *node);
-gboolean      eva_tree_node_is_removed (GskTreeNode     *node);
-void          eva_tree_node_visit      (GskTree         *tree,
-                                        GskTreeNode     *node);
-void          eva_tree_node_unvisit    (GskTree         *tree,
-                                        GskTreeNode     *node);
+EvaTreeNode  *eva_tree_node_next       (EvaTree         *tree,
+                                        EvaTreeNode     *node);
+EvaTreeNode  *eva_tree_node_prev       (EvaTree         *tree,
+                                        EvaTreeNode     *node);
+gpointer      eva_tree_node_peek_key   (EvaTreeNode     *node);
+gpointer      eva_tree_node_peek_value (EvaTreeNode     *node);
+gboolean      eva_tree_node_is_removed (EvaTreeNode     *node);
+void          eva_tree_node_visit      (EvaTree         *tree,
+                                        EvaTreeNode     *node);
+void          eva_tree_node_unvisit    (EvaTree         *tree,
+                                        EvaTreeNode     *node);
 
-gboolean      eva_tree_validate        (GskTree         *tree);
+gboolean      eva_tree_validate        (EvaTree         *tree);
 
 G_END_DECLS
 

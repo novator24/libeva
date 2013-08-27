@@ -23,7 +23,7 @@ get the value of the hash.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskHash ##### -->
+<!-- ##### STRUCT EvaHash ##### -->
 <para>
 An abstract hashing object.
 </para>

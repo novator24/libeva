@@ -7,24 +7,24 @@
 #include "evamainloop.h"
 #include "evadebug.h"
 
-_GskInitFlags eva_init_flags = 0;
+_EvaInitFlags eva_init_flags = 0;
 gpointer eva_main_thread = NULL;
 
 /**
  * eva_init_info_get_defaults:
- * @info: the #GskInitInfo to fill.
+ * @info: the #EvaInitInfo to fill.
  *
  * Obtain the default initialization information.
  * This should be run before eva_init() or eva_init_info_parse_args().
  *
  * This API has been deprecated for public use,
  * because it doesn't allow us to expand
- * GskInitInfo without breaking binary-compatibility.
+ * EvaInitInfo without breaking binary-compatibility.
  *
  * Use eva_init_info_new() instead.
  */
 void
-eva_init_info_get_defaults (GskInitInfo *info)
+eva_init_info_get_defaults (EvaInitInfo *info)
 {
   info->prgname = NULL;
   info->needs_threads = 1;
@@ -35,12 +35,12 @@ eva_init_info_get_defaults (GskInitInfo *info)
  *
  * Create a new, default initialization-configuration object.
  *
- * returns: the newly allocated #GskInitInfo.
+ * returns: the newly allocated #EvaInitInfo.
  */
-GskInitInfo *
+EvaInitInfo *
 eva_init_info_new (void)
 {
-  GskInitInfo *info = g_new (GskInitInfo, 1);
+  EvaInitInfo *info = g_new (EvaInitInfo, 1);
   eva_init_info_get_defaults (info);
   return info;
 }
@@ -52,7 +52,7 @@ eva_init_info_new (void)
  * Free a initialization-configuration object.
  */
 void
-eva_init_info_free (GskInitInfo *info)
+eva_init_info_free (EvaInitInfo *info)
 {
   g_free (info);
 }
@@ -64,7 +64,7 @@ eva_init_info_free (GskInitInfo *info)
  * out of the argument array.
  * @argv: a reference to main()'s argc;
  * this may have arguments removed.
- * @info: the #GskInitInfo to use as hints,
+ * @info: the #EvaInitInfo to use as hints,
  * which will be filled with the
  * actual initialization information used.
  * If NULL, default initialization parameters
@@ -75,12 +75,12 @@ eva_init_info_free (GskInitInfo *info)
 void
 eva_init                   (int         *argc,
 			    char      ***argv,
-			    GskInitInfo *info)
+			    EvaInitInfo *info)
 {
   g_type_init ();
   if (info == NULL)
     {
-      info = g_newa (GskInitInfo, 1);
+      info = g_newa (EvaInitInfo, 1);
       eva_init_info_get_defaults (info);
     }
   eva_init_info_parse_args (info, argc, argv);
@@ -101,7 +101,7 @@ void
 eva_init_without_threads   (int         *argc,
 			    char      ***argv)
 {
-  GskInitInfo info;
+  EvaInitInfo info;
   g_type_init ();
   eva_init_info_get_defaults (&info);
   info.needs_threads = FALSE;
@@ -162,7 +162,7 @@ handle_debug_flags (const char *opts)
 
 /**
  * eva_init_info_parse_args:
- * @in_out: the #GskInitInfo to fill.
+ * @in_out: the #EvaInitInfo to fill.
  * @argc: the argument count (may be modified)
  * @argv: the arguments (may be modified)
  *
@@ -171,7 +171,7 @@ handle_debug_flags (const char *opts)
  * The only currently supported argument is --eva-debug=FLAGS.
  */
 void
-eva_init_info_parse_args (GskInitInfo *in_out,
+eva_init_info_parse_args (EvaInitInfo *in_out,
 			  int         *argc,
 			  char      ***argv)
 {
@@ -236,7 +236,7 @@ void _eva_url_transfer_register_builtins (void);
  * Initialize EVA.
  */
 void
-eva_init_raw (GskInitInfo *info)
+eva_init_raw (EvaInitInfo *info)
 {
   static gboolean has_initialized = FALSE;
 

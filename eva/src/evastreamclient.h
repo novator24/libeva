@@ -6,7 +6,7 @@
 
 G_BEGIN_DECLS
 
-GskStream *eva_stream_new_connecting (GskSocketAddress  *address,
+EvaStream *eva_stream_new_connecting (EvaSocketAddress  *address,
 				      GError           **error);
 
 /* see also: eva_socket_address_connect_fd

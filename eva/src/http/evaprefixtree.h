@@ -11,36 +11,36 @@ G_BEGIN_DECLS
  * for efficient prefix lookup.
  */
 
-typedef struct _GskPrefixTree GskPrefixTree;
-struct _GskPrefixTree
+typedef struct _EvaPrefixTree EvaPrefixTree;
+struct _EvaPrefixTree
 {
   char *prefix;
-  GskPrefixTree *next_sibling;
-  GskPrefixTree *children;
+  EvaPrefixTree *next_sibling;
+  EvaPrefixTree *children;
 
   gboolean has_data;
   gpointer data;
 };
 
-/* note: a NULL GskPrefixTree* is an empty tree. */
+/* note: a NULL EvaPrefixTree* is an empty tree. */
 
 /* returns the pointer that we replaced, or NULL */
-gpointer eva_prefix_tree_insert       (GskPrefixTree   **tree,
+gpointer eva_prefix_tree_insert       (EvaPrefixTree   **tree,
                                        const char       *prefix,
                                        gpointer          data);
 
-gpointer eva_prefix_tree_lookup       (GskPrefixTree    *tree,
+gpointer eva_prefix_tree_lookup       (EvaPrefixTree    *tree,
                                        const char       *str);
-gpointer eva_prefix_tree_lookup_exact (GskPrefixTree    *tree,
+gpointer eva_prefix_tree_lookup_exact (EvaPrefixTree    *tree,
                                        const char       *str);
-GSList  *eva_prefix_tree_lookup_all   (GskPrefixTree    *tree,
+GSList  *eva_prefix_tree_lookup_all   (EvaPrefixTree    *tree,
                                        const char       *str);
-gpointer eva_prefix_tree_remove       (GskPrefixTree    *tree,
+gpointer eva_prefix_tree_remove       (EvaPrefixTree    *tree,
                                        const char        *prefix);
-void     eva_prefix_tree_foreach      (GskPrefixTree    *tree,
+void     eva_prefix_tree_foreach      (EvaPrefixTree    *tree,
                                        GFunc              func,
                                        gpointer           func_data);
-void     eva_prefix_tree_destroy      (GskPrefixTree    *tree);
+void     eva_prefix_tree_destroy      (EvaPrefixTree    *tree);
 
 
 G_END_DECLS

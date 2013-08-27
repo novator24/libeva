@@ -9,14 +9,14 @@
  *
  * returns: the newly created stream.
  */
-GskStream *
-eva_stream_new_connecting (GskSocketAddress  *address,
+EvaStream *
+eva_stream_new_connecting (EvaSocketAddress  *address,
 			   GError           **error)
 {
   gboolean is_connected;
   int fd;
 
-  /* symbolic addresses are handled internally to GskStreamFd */
+  /* symbolic addresses are handled internally to EvaStreamFd */
   if (EVA_IS_SOCKET_ADDRESS_SYMBOLIC (address))
     return eva_stream_fd_new_from_symbolic_address (EVA_SOCKET_ADDRESS_SYMBOLIC (address), error);
 

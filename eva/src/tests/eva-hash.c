@@ -4,7 +4,7 @@
 
 int main (int argc, char **argv)
 {
-  GskHash *hash = NULL;
+  EvaHash *hash = NULL;
   char buf[8192];
   int nread;
   if (argc != 2)

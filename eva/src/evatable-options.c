@@ -1,38 +1,38 @@
 #include "evatable.h"
 
 
-GskTableOptions     *eva_table_options_new    (void)
+EvaTableOptions     *eva_table_options_new    (void)
 {
-  GskTableOptions *rv = g_new0 (GskTableOptions, 1);
+  EvaTableOptions *rv = g_new0 (EvaTableOptions, 1);
   rv->max_in_memory_bytes = 1024*1024;
   rv->max_in_memory_entries = 2048;
   rv->journal_mode = EVA_TABLE_JOURNAL_DEFAULT;
   return rv;
 }
 
-void                 eva_table_options_destroy(GskTableOptions *options)
+void                 eva_table_options_destroy(EvaTableOptions *options)
 {
   g_free (options);
 }
 
-static GskTableMergeResult
+static EvaTableMergeResult
 merge_return_b (guint         key_len,
                 const guint8 *key_data,
                 guint         a_len,
                 const guint8 *a_data,
                 guint         b_len,
                 const guint8 *b_data,
-                GskTableBuffer *output,
+                EvaTableBuffer *output,
                 gpointer      user_data)
 {
   return EVA_TABLE_MERGE_RETURN_B;
 }
 
-static GskTableMergeResult
+static EvaTableMergeResult
 merge_no_len_return_b (const guint8 *key_data,
                        const guint8 *a_data,
                        const guint8 *b_data,
-                       GskTableBuffer *output,
+                       EvaTableBuffer *output,
                        gpointer      user_data)
 {
   return EVA_TABLE_MERGE_RETURN_B;
@@ -48,7 +48,7 @@ always_stable (guint         key_len,
   return TRUE;
 }
 
-void eva_table_options_set_replacement_semantics (GskTableOptions *options)
+void eva_table_options_set_replacement_semantics (EvaTableOptions *options)
 {
   if (options->compare_no_len == NULL)
     options->merge = merge_return_b;

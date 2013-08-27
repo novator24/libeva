@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GskBuffer</title>
+<title>EvaBuffer</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch01.html" title="Core Library Support">
@@ -46,20 +46,20 @@
 <a name="eva-evabuffer"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="eva-evabuffer.top_of_page"></a>GskBuffer</span></h2>
-<p>GskBuffer — a fast, flexible in-memory data buffer</p>
+<h2><span class="refentrytitle"><a name="eva-evabuffer.top_of_page"></a>EvaBuffer</span></h2>
+<p>EvaBuffer — a fast, flexible in-memory data buffer</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
 <a name="eva-evabuffer.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a>;
-                    <a class="link" href="eva-evabuffer.html#GskBufferFragment" title="GskBufferFragment">GskBufferFragment</a>;
-void                <a class="link" href="eva-evabuffer.html#eva-buffer-construct" title="eva_buffer_construct ()">eva_buffer_construct</a>                (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer);
+                    <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a>;
+                    <a class="link" href="eva-evabuffer.html#EvaBufferFragment" title="EvaBufferFragment">EvaBufferFragment</a>;
+void                <a class="link" href="eva-evabuffer.html#eva-buffer-construct" title="eva_buffer_construct ()">eva_buffer_construct</a>                (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-read" title="eva_buffer_read ()">eva_buffer_read</a>                     (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+>guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-read" title="eva_buffer_read ()">eva_buffer_read</a>                     (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -68,35 +68,35 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> max_length);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-peek" title="eva_buffer_peek ()">eva_buffer_peek</a>                     (const <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+>guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-peek" title="eva_buffer_peek ()">eva_buffer_peek</a>                     (const <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> max_length);
-int                 <a class="link" href="eva-evabuffer.html#eva-buffer-discard" title="eva_buffer_discard ()">eva_buffer_discard</a>                  (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+int                 <a class="link" href="eva-evabuffer.html#eva-buffer-discard" title="eva_buffer_discard ()">eva_buffer_discard</a>                  (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> max_discard);
-char *              <a class="link" href="eva-evabuffer.html#eva-buffer-read-line" title="eva_buffer_read_line ()">eva_buffer_read_line</a>                (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer);
-char *              <a class="link" href="eva-evabuffer.html#eva-buffer-parse-string0" title="eva_buffer_parse_string0 ()">eva_buffer_parse_string0</a>            (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer);
-int                 <a class="link" href="eva-evabuffer.html#eva-buffer-peek-char" title="eva_buffer_peek_char ()">eva_buffer_peek_char</a>                (const <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer);
-int                 <a class="link" href="eva-evabuffer.html#eva-buffer-read-char" title="eva_buffer_read_char ()">eva_buffer_read_char</a>                (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer);
-void                <a class="link" href="eva-evabuffer.html#eva-buffer-append" title="eva_buffer_append ()">eva_buffer_append</a>                   (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+char *              <a class="link" href="eva-evabuffer.html#eva-buffer-read-line" title="eva_buffer_read_line ()">eva_buffer_read_line</a>                (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer);
+char *              <a class="link" href="eva-evabuffer.html#eva-buffer-parse-string0" title="eva_buffer_parse_string0 ()">eva_buffer_parse_string0</a>            (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer);
+int                 <a class="link" href="eva-evabuffer.html#eva-buffer-peek-char" title="eva_buffer_peek_char ()">eva_buffer_peek_char</a>                (const <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer);
+int                 <a class="link" href="eva-evabuffer.html#eva-buffer-read-char" title="eva_buffer_read_char ()">eva_buffer_read_char</a>                (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer);
+void                <a class="link" href="eva-evabuffer.html#eva-buffer-append" title="eva_buffer_append ()">eva_buffer_append</a>                   (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> data,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> length);
-void                <a class="link" href="eva-evabuffer.html#eva-buffer-append-string" title="eva_buffer_append_string ()">eva_buffer_append_string</a>            (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+void                <a class="link" href="eva-evabuffer.html#eva-buffer-append-string" title="eva_buffer_append_string ()">eva_buffer_append_string</a>            (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          const char *string);
-void                <a class="link" href="eva-evabuffer.html#eva-buffer-append-char" title="eva_buffer_append_char ()">eva_buffer_append_char</a>              (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+void                <a class="link" href="eva-evabuffer.html#eva-buffer-append-char" title="eva_buffer_append_char ()">eva_buffer_append_char</a>              (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          char character);
-void                <a class="link" href="eva-evabuffer.html#eva-buffer-append-string0" title="eva_buffer_append_string0 ()">eva_buffer_append_string0</a>           (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+void                <a class="link" href="eva-evabuffer.html#eva-buffer-append-string0" title="eva_buffer_append_string0 ()">eva_buffer_append_string0</a>           (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          const char *string);
-void                <a class="link" href="eva-evabuffer.html#eva-buffer-append-foreign" title="eva_buffer_append_foreign ()">eva_buffer_append_foreign</a>           (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+void                <a class="link" href="eva-evabuffer.html#eva-buffer-append-foreign" title="eva_buffer_append_foreign ()">eva_buffer_append_foreign</a>           (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> data,
@@ -107,40 +107,40 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNo
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> destroy_data);
-void                <a class="link" href="eva-evabuffer.html#eva-buffer-printf" title="eva_buffer_printf ()">eva_buffer_printf</a>                   (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+void                <a class="link" href="eva-evabuffer.html#eva-buffer-printf" title="eva_buffer_printf ()">eva_buffer_printf</a>                   (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          const char *format,
                                                          ...);
-void                <a class="link" href="eva-evabuffer.html#eva-buffer-vprintf" title="eva_buffer_vprintf ()">eva_buffer_vprintf</a>                  (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+void                <a class="link" href="eva-evabuffer.html#eva-buffer-vprintf" title="eva_buffer_vprintf ()">eva_buffer_vprintf</a>                  (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          const char *format,
                                                          va_list args);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-drain" title="eva_buffer_drain ()">eva_buffer_drain</a>                    (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *dst,
-                                                         <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *src);
+>guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-drain" title="eva_buffer_drain ()">eva_buffer_drain</a>                    (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *dst,
+                                                         <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *src);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-transfer" title="eva_buffer_transfer ()">eva_buffer_transfer</a>                 (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *dst,
-                                                         <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *src,
+>guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-transfer" title="eva_buffer_transfer ()">eva_buffer_transfer</a>                 (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *dst,
+                                                         <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *src,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> max_transfer);
-int                 <a class="link" href="eva-evabuffer.html#eva-buffer-writev" title="eva_buffer_writev ()">eva_buffer_writev</a>                   (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *read_from,
+int                 <a class="link" href="eva-evabuffer.html#eva-buffer-writev" title="eva_buffer_writev ()">eva_buffer_writev</a>                   (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *read_from,
                                                          int fd);
-int                 <a class="link" href="eva-evabuffer.html#eva-buffer-read-in-fd" title="eva_buffer_read_in_fd ()">eva_buffer_read_in_fd</a>               (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *write_to,
+int                 <a class="link" href="eva-evabuffer.html#eva-buffer-read-in-fd" title="eva_buffer_read_in_fd ()">eva_buffer_read_in_fd</a>               (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *write_to,
                                                          int read_from);
-int                 <a class="link" href="eva-evabuffer.html#eva-buffer-index-of" title="eva_buffer_index_of ()">eva_buffer_index_of</a>                 (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+int                 <a class="link" href="eva-evabuffer.html#eva-buffer-index-of" title="eva_buffer_index_of ()">eva_buffer_index_of</a>                 (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          char char_to_find);
-int                 <a class="link" href="eva-evabuffer.html#eva-buffer-polystr-index-of" title="eva_buffer_polystr_index_of ()">eva_buffer_polystr_index_of</a>         (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+int                 <a class="link" href="eva-evabuffer.html#eva-buffer-polystr-index-of" title="eva_buffer_polystr_index_of ()">eva_buffer_polystr_index_of</a>         (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          char **strings);
-void                <a class="link" href="eva-evabuffer.html#eva-buffer-destruct" title="eva_buffer_destruct ()">eva_buffer_destruct</a>                 (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *to_destroy);
+void                <a class="link" href="eva-evabuffer.html#eva-buffer-destruct" title="eva_buffer_destruct ()">eva_buffer_destruct</a>                 (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *to_destroy);
 void                <a class="link" href="eva-evabuffer.html#eva-buffer-cleanup-recycling-bin" title="eva_buffer_cleanup_recycling_bin ()">eva_buffer_cleanup_recycling_bin</a>    ();
-                    <a class="link" href="eva-evabuffer.html#GskBufferIterator" title="GskBufferIterator">GskBufferIterator</a>;
+                    <a class="link" href="eva-evabuffer.html#EvaBufferIterator" title="EvaBufferIterator">EvaBufferIterator</a>;
 #define             <a class="link" href="eva-evabuffer.html#eva-buffer-iterator-offset" title="eva_buffer_iterator_offset()">eva_buffer_iterator_offset</a>          (iterator)
-void                <a class="link" href="eva-evabuffer.html#eva-buffer-iterator-construct" title="eva_buffer_iterator_construct ()">eva_buffer_iterator_construct</a>       (<a class="link" href="eva-evabuffer.html#GskBufferIterator" title="GskBufferIterator">GskBufferIterator</a> *iterator,
-                                                         <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *to_iterate);
+void                <a class="link" href="eva-evabuffer.html#eva-buffer-iterator-construct" title="eva_buffer_iterator_construct ()">eva_buffer_iterator_construct</a>       (<a class="link" href="eva-evabuffer.html#EvaBufferIterator" title="EvaBufferIterator">EvaBufferIterator</a> *iterator,
+                                                         <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *to_iterate);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-iterator-peek" title="eva_buffer_iterator_peek ()">eva_buffer_iterator_peek</a>            (<a class="link" href="eva-evabuffer.html#GskBufferIterator" title="GskBufferIterator">GskBufferIterator</a> *iterator,
+>guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-iterator-peek" title="eva_buffer_iterator_peek ()">eva_buffer_iterator_peek</a>            (<a class="link" href="eva-evabuffer.html#EvaBufferIterator" title="EvaBufferIterator">EvaBufferIterator</a> *iterator,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> out,
@@ -149,7 +149,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> max_length);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-iterator-read" title="eva_buffer_iterator_read ()">eva_buffer_iterator_read</a>            (<a class="link" href="eva-evabuffer.html#GskBufferIterator" title="GskBufferIterator">GskBufferIterator</a> *iterator,
+>guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-iterator-read" title="eva_buffer_iterator_read ()">eva_buffer_iterator_read</a>            (<a class="link" href="eva-evabuffer.html#EvaBufferIterator" title="EvaBufferIterator">EvaBufferIterator</a> *iterator,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> out,
@@ -158,13 +158,13 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> max_length);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-iterator-skip" title="eva_buffer_iterator_skip ()">eva_buffer_iterator_skip</a>            (<a class="link" href="eva-evabuffer.html#GskBufferIterator" title="GskBufferIterator">GskBufferIterator</a> *iterator,
+>guint</a>               <a class="link" href="eva-evabuffer.html#eva-buffer-iterator-skip" title="eva_buffer_iterator_skip ()">eva_buffer_iterator_skip</a>            (<a class="link" href="eva-evabuffer.html#EvaBufferIterator" title="EvaBufferIterator">EvaBufferIterator</a> *iterator,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> max_length);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="eva-evabuffer.html#eva-buffer-iterator-find-char" title="eva_buffer_iterator_find_char ()">eva_buffer_iterator_find_char</a>       (<a class="link" href="eva-evabuffer.html#GskBufferIterator" title="GskBufferIterator">GskBufferIterator</a> *iterator,
+>gboolean</a>            <a class="link" href="eva-evabuffer.html#eva-buffer-iterator-find-char" title="eva_buffer_iterator_find_char ()">eva_buffer_iterator_find_char</a>       (<a class="link" href="eva-evabuffer.html#EvaBufferIterator" title="EvaBufferIterator">EvaBufferIterator</a> *iterator,
                                                          char c);
 #define             <a class="link" href="eva-evabuffer.html#EVA-BUFFER-STATIC-INIT--CAPS" title="EVA_BUFFER_STATIC_INIT">EVA_BUFFER_STATIC_INIT</a>
 </pre>
@@ -181,13 +181,13 @@ and <a class="link" href="eva-evabuffer.html#eva-buffer-read" title="eva_buffer_
 <div class="refsect1" lang="en">
 <a name="eva-evabuffer.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskBuffer"></a><h3>GskBuffer</h3>
+<a name="EvaBuffer"></a><h3>EvaBuffer</h3>
 <pre class="programlisting">typedef struct {
   guint			size;
 
-  GskBufferFragment    *first_frag;
-  GskBufferFragment    *last_frag;
-} GskBuffer;
+  EvaBufferFragment    *first_frag;
+  EvaBufferFragment    *last_frag;
+} EvaBuffer;
 </pre>
 <p>
 A buffer is just a list of fragments and a size counter.
@@ -203,12 +203,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="eva-evabuffer.html#GskBufferFragment" title="GskBufferFragment">GskBufferFragment</a> *<em class="structfield"><code>first_frag</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="eva-evabuffer.html#EvaBufferFragment" title="EvaBufferFragment">EvaBufferFragment</a> *<em class="structfield"><code>first_frag</code></em>;</span></p></td>
 <td>the first fragment in the buffer (read end)
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a class="link" href="eva-evabuffer.html#GskBufferFragment" title="GskBufferFragment">GskBufferFragment</a> *<em class="structfield"><code>last_frag</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="eva-evabuffer.html#EvaBufferFragment" title="EvaBufferFragment">EvaBufferFragment</a> *<em class="structfield"><code>last_frag</code></em>;</span></p></td>
 <td>the last fragment in the buffer (write end)
 </td>
 </tr>
@@ -217,9 +217,9 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskBufferFragment"></a><h3>GskBufferFragment</h3>
+<a name="EvaBufferFragment"></a><h3>EvaBufferFragment</h3>
 <pre class="programlisting">typedef struct {
-  GskBufferFragment    *next;
+  EvaBufferFragment    *next;
   char                 *buf;
   guint                 buf_max_size;	/* allocation size of buf */
   guint                 buf_start;	/* offset in buf of valid data */
@@ -228,23 +228,23 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
   gboolean              is_foreign;
   GDestroyNotify        destroy;
   gpointer              destroy_data;
-} GskBufferFragment;
+} EvaBufferFragment;
 </pre>
 <p>
 This structure should rarely be accessed directly,
-instead you should use the GskBuffer methods.
+instead you should use the EvaBuffer methods.
 They are exposed for optimization and debugging convenience.
 </p>
 <p>
 A single contiguous chunk of memory in the buffer.
-Each <a class="link" href="eva-evabuffer.html#GskBufferFragment" title="GskBufferFragment"><span class="type">GskBufferFragment</span></a> is managed by a single buffer,
+Each <a class="link" href="eva-evabuffer.html#EvaBufferFragment" title="EvaBufferFragment"><span class="type">EvaBufferFragment</span></a> is managed by a single buffer,
 but internally fragments are sometimes transferred whole between buffers.
 </p>
 <p>
 A foreign fragment is one which created with
 <a class="link" href="eva-evabuffer.html#eva-buffer-append-foreign" title="eva_buffer_append_foreign ()"><code class="function">eva_buffer_append_foreign()</code></a>.  It means that eva
 will use the destroy method rather than the normal
-buffer pool, where data and the GskBufferFragment
+buffer pool, where data and the EvaBufferFragment
 are allocated continguously.
 The headers of foreign fragments are pooled in a separate pool.
 </p>
@@ -252,7 +252,7 @@ The headers of foreign fragments are pooled in a separate pool.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="eva-evabuffer.html#GskBufferFragment" title="GskBufferFragment">GskBufferFragment</a> *<em class="structfield"><code>next</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="eva-evabuffer.html#EvaBufferFragment" title="EvaBufferFragment">EvaBufferFragment</a> *<em class="structfield"><code>next</code></em>;</span></p></td>
 <td>next fragment in the buffer.
 </td>
 </tr>
@@ -309,7 +309,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-construct"></a><h3>eva_buffer_construct ()</h3>
-<pre class="programlisting">void                eva_buffer_construct                (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer);</pre>
+<pre class="programlisting">void                eva_buffer_construct                (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer);</pre>
 <p>
 Construct an empty buffer out of raw memory.
 (This is equivalent to filling the buffer with 0s)</p>
@@ -329,7 +329,7 @@ Construct an empty buffer out of raw memory.
 <a name="eva-buffer-read"></a><h3>eva_buffer_read ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_buffer_read                     (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+>guint</a>               eva_buffer_read                     (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -373,7 +373,7 @@ is returned.</p>
 <a name="eva-buffer-peek"></a><h3>eva_buffer_peek ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_buffer_peek                     (const <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+>guint</a>               eva_buffer_peek                     (const <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> data,
@@ -420,7 +420,7 @@ data is not removed from the buffer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-discard"></a><h3>eva_buffer_discard ()</h3>
-<pre class="programlisting">int                 eva_buffer_discard                  (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+<pre class="programlisting">int                 eva_buffer_discard                  (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> max_discard);</pre>
@@ -453,7 +453,7 @@ and returns the number of bytes actually discarded.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-read-line"></a><h3>eva_buffer_read_line ()</h3>
-<pre class="programlisting">char *              eva_buffer_read_line                (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer);</pre>
+<pre class="programlisting">char *              eva_buffer_read_line                (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer);</pre>
 <p>
 Parse a newline (\n) terminated line from
 buffer and return it as a newly allocated string.
@@ -482,7 +482,7 @@ If the buffer does not contain a newline, then NULL is returned.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-parse-string0"></a><h3>eva_buffer_parse_string0 ()</h3>
-<pre class="programlisting">char *              eva_buffer_parse_string0            (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer);</pre>
+<pre class="programlisting">char *              eva_buffer_parse_string0            (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer);</pre>
 <p>
 Parse a NUL-terminated line from
 buffer and return it as a newly allocated string.
@@ -510,7 +510,7 @@ If the buffer does not contain a newline, then NULL is returned.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-peek-char"></a><h3>eva_buffer_peek_char ()</h3>
-<pre class="programlisting">int                 eva_buffer_peek_char                (const <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer);</pre>
+<pre class="programlisting">int                 eva_buffer_peek_char                (const <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer);</pre>
 <p>
 Get the first byte in the buffer as a positive or 0 number.
 If the buffer is empty, -1 is returned.
@@ -536,7 +536,7 @@ The buffer is unchanged.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-read-char"></a><h3>eva_buffer_read_char ()</h3>
-<pre class="programlisting">int                 eva_buffer_read_char                (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer);</pre>
+<pre class="programlisting">int                 eva_buffer_read_char                (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer);</pre>
 <p>
 Get the first byte in the buffer as a positive or 0 number,
 and remove the character from the buffer.
@@ -562,7 +562,7 @@ If the buffer is empty, -1 is returned.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-append"></a><h3>eva_buffer_append ()</h3>
-<pre class="programlisting">void                eva_buffer_append                   (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+<pre class="programlisting">void                eva_buffer_append                   (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> data,
@@ -597,7 +597,7 @@ Append data into the buffer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-append-string"></a><h3>eva_buffer_append_string ()</h3>
-<pre class="programlisting">void                eva_buffer_append_string            (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+<pre class="programlisting">void                eva_buffer_append_string            (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          const char *string);</pre>
 <p>
 Append a string to the buffer.</p>
@@ -623,7 +623,7 @@ Append a string to the buffer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-append-char"></a><h3>eva_buffer_append_char ()</h3>
-<pre class="programlisting">void                eva_buffer_append_char              (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+<pre class="programlisting">void                eva_buffer_append_char              (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          char character);</pre>
 <p>
 Append a byte to a buffer.</p>
@@ -648,7 +648,7 @@ Append a byte to a buffer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-append-string0"></a><h3>eva_buffer_append_string0 ()</h3>
-<pre class="programlisting">void                eva_buffer_append_string0           (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+<pre class="programlisting">void                eva_buffer_append_string0           (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          const char *string);</pre>
 <p>
 Append a NUL-terminated string to the buffer.  The NUL is appended.</p>
@@ -674,7 +674,7 @@ Append a NUL-terminated string to the buffer.  The NUL is appended.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-append-foreign"></a><h3>eva_buffer_append_foreign ()</h3>
-<pre class="programlisting">void                eva_buffer_append_foreign           (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+<pre class="programlisting">void                eva_buffer_append_foreign           (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> data,
@@ -727,7 +727,7 @@ if appended a static string into a buffer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-printf"></a><h3>eva_buffer_printf ()</h3>
-<pre class="programlisting">void                eva_buffer_printf                   (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+<pre class="programlisting">void                eva_buffer_printf                   (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          const char *format,
                                                          ...);</pre>
 <p>
@@ -758,7 +758,7 @@ Append printf-style content to a buffer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-vprintf"></a><h3>eva_buffer_vprintf ()</h3>
-<pre class="programlisting">void                eva_buffer_vprintf                  (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+<pre class="programlisting">void                eva_buffer_vprintf                  (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          const char *format,
                                                          va_list args);</pre>
 <p>
@@ -791,8 +791,8 @@ Append printf-style content to a buffer, given a va_list.</p>
 <a name="eva-buffer-drain"></a><h3>eva_buffer_drain ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_buffer_drain                    (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *dst,
-                                                         <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *src);</pre>
+>guint</a>               eva_buffer_drain                    (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *dst,
+                                                         <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *src);</pre>
 <p>
 Transfer all data from <em class="parameter"><code>src</code></em> to <em class="parameter"><code>dst</code></em>,
 leaving <em class="parameter"><code>src</code></em> empty.</p>
@@ -824,8 +824,8 @@ leaving <em class="parameter"><code>src</code></em> empty.</p>
 <a name="eva-buffer-transfer"></a><h3>eva_buffer_transfer ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_buffer_transfer                 (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *dst,
-                                                         <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *src,
+>guint</a>               eva_buffer_transfer                 (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *dst,
+                                                         <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *src,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> max_transfer);</pre>
@@ -864,7 +864,7 @@ transferred is returned.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-writev"></a><h3>eva_buffer_writev ()</h3>
-<pre class="programlisting">int                 eva_buffer_writev                   (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *read_from,
+<pre class="programlisting">int                 eva_buffer_writev                   (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *read_from,
                                                          int fd);</pre>
 <p>
 Writes as much data as possible to the
@@ -898,7 +898,7 @@ or -1 on a write error (consult errno).
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-read-in-fd"></a><h3>eva_buffer_read_in_fd ()</h3>
-<pre class="programlisting">int                 eva_buffer_read_in_fd               (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *write_to,
+<pre class="programlisting">int                 eva_buffer_read_in_fd               (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *write_to,
                                                          int read_from);</pre>
 <p>
 Append data into the buffer directly from the
@@ -930,7 +930,7 @@ or -1 on a read error (consult errno).
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-index-of"></a><h3>eva_buffer_index_of ()</h3>
-<pre class="programlisting">int                 eva_buffer_index_of                 (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+<pre class="programlisting">int                 eva_buffer_index_of                 (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          char char_to_find);</pre>
 <p>
 Scans for the first instance of the given character.</p>
@@ -961,7 +961,7 @@ is not in the buffer.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-polystr-index-of"></a><h3>eva_buffer_polystr_index_of ()</h3>
-<pre class="programlisting">int                 eva_buffer_polystr_index_of         (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *buffer,
+<pre class="programlisting">int                 eva_buffer_polystr_index_of         (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *buffer,
                                                          char **strings);</pre>
 <p>
 Scans for the first instance of any of the strings
@@ -992,7 +992,7 @@ in the buffer.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-destruct"></a><h3>eva_buffer_destruct ()</h3>
-<pre class="programlisting">void                eva_buffer_destruct                 (<a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *to_destroy);</pre>
+<pre class="programlisting">void                eva_buffer_destruct                 (<a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *to_destroy);</pre>
 <p>
 Remove all fragments from a buffer, leaving it empty.
 The buffer is guaranteed to not to be consuming any resources,
@@ -1020,14 +1020,14 @@ kept around to reduce strain on the global allocator.)</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GskBufferIterator"></a><h3>GskBufferIterator</h3>
+<a name="EvaBufferIterator"></a><h3>EvaBufferIterator</h3>
 <pre class="programlisting">typedef struct {
-  GskBufferFragment *fragment;
+  EvaBufferFragment *fragment;
   guint in_cur;
   guint cur_length;
   const guint8 *cur_data;
   guint offset;
-} GskBufferIterator;
+} EvaBufferIterator;
 </pre>
 <p>
 An iterator which can be used to walk through a buffer.
@@ -1043,7 +1043,7 @@ but we have to see what the demands are...
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="eva-evabuffer.html#GskBufferFragment" title="GskBufferFragment">GskBufferFragment</a> *<em class="structfield"><code>fragment</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="eva-evabuffer.html#EvaBufferFragment" title="EvaBufferFragment">EvaBufferFragment</a> *<em class="structfield"><code>fragment</code></em>;</span></p></td>
 <td>which fragment we are currently in.
 </td>
 </tr>
@@ -1083,7 +1083,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 <a name="eva-buffer-iterator-offset"></a><h3>eva_buffer_iterator_offset()</h3>
 <pre class="programlisting">#define             eva_buffer_iterator_offset(iterator)</pre>
 <p>
-Get the offset in bytes into <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer"><span class="type">GskBuffer</span></a> that we
+Get the offset in bytes into <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer"><span class="type">EvaBuffer</span></a> that we
 are into the whole buffer.
 </p>
 <div class="variablelist"><table border="0">
@@ -1098,10 +1098,10 @@ are into the whole buffer.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-buffer-iterator-construct"></a><h3>eva_buffer_iterator_construct ()</h3>
-<pre class="programlisting">void                eva_buffer_iterator_construct       (<a class="link" href="eva-evabuffer.html#GskBufferIterator" title="GskBufferIterator">GskBufferIterator</a> *iterator,
-                                                         <a class="link" href="eva-evabuffer.html#GskBuffer" title="GskBuffer">GskBuffer</a> *to_iterate);</pre>
+<pre class="programlisting">void                eva_buffer_iterator_construct       (<a class="link" href="eva-evabuffer.html#EvaBufferIterator" title="EvaBufferIterator">EvaBufferIterator</a> *iterator,
+                                                         <a class="link" href="eva-evabuffer.html#EvaBuffer" title="EvaBuffer">EvaBuffer</a> *to_iterate);</pre>
 <p>
-Initialize a new <a class="link" href="eva-evabuffer.html#GskBufferIterator" title="GskBufferIterator"><span class="type">GskBufferIterator</span></a>.</p>
+Initialize a new <a class="link" href="eva-evabuffer.html#EvaBufferIterator" title="EvaBufferIterator"><span class="type">EvaBufferIterator</span></a>.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1125,7 +1125,7 @@ Initialize a new <a class="link" href="eva-evabuffer.html#GskBufferIterator" tit
 <a name="eva-buffer-iterator-peek"></a><h3>eva_buffer_iterator_peek ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_buffer_iterator_peek            (<a class="link" href="eva-evabuffer.html#GskBufferIterator" title="GskBufferIterator">GskBufferIterator</a> *iterator,
+>guint</a>               eva_buffer_iterator_peek            (<a class="link" href="eva-evabuffer.html#EvaBufferIterator" title="EvaBufferIterator">EvaBufferIterator</a> *iterator,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> out,
@@ -1168,7 +1168,7 @@ The iterator's position is not changed.</p>
 <a name="eva-buffer-iterator-read"></a><h3>eva_buffer_iterator_read ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_buffer_iterator_read            (<a class="link" href="eva-evabuffer.html#GskBufferIterator" title="GskBufferIterator">GskBufferIterator</a> *iterator,
+>guint</a>               eva_buffer_iterator_read            (<a class="link" href="eva-evabuffer.html#EvaBufferIterator" title="EvaBufferIterator">EvaBufferIterator</a> *iterator,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> out,
@@ -1212,7 +1212,7 @@ the data read.</p>
 <a name="eva-buffer-iterator-skip"></a><h3>eva_buffer_iterator_skip ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               eva_buffer_iterator_skip            (<a class="link" href="eva-evabuffer.html#GskBufferIterator" title="GskBufferIterator">GskBufferIterator</a> *iterator,
+>guint</a>               eva_buffer_iterator_skip            (<a class="link" href="eva-evabuffer.html#EvaBufferIterator" title="EvaBufferIterator">EvaBufferIterator</a> *iterator,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a> max_length);</pre>
@@ -1247,7 +1247,7 @@ returning the number of bytes skipped.</p>
 <a name="eva-buffer-iterator-find-char"></a><h3>eva_buffer_iterator_find_char ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            eva_buffer_iterator_find_char       (<a class="link" href="eva-evabuffer.html#GskBufferIterator" title="GskBufferIterator">GskBufferIterator</a> *iterator,
+>gboolean</a>            eva_buffer_iterator_find_char       (<a class="link" href="eva-evabuffer.html#EvaBufferIterator" title="EvaBufferIterator">EvaBufferIterator</a> *iterator,
                                                          char c);</pre>
 <p>
 If it exists,
@@ -1283,7 +1283,7 @@ Otherwise, do nothing and return FALSE.</p>
 <p>
 Macro which can be used to initialize an empty buffer.
 One can write:
-  GskBuffer buf = EVA_BUFFER_STATIC_INIT;
+  EvaBuffer buf = EVA_BUFFER_STATIC_INIT;
 </p>
 </div>
 </div>

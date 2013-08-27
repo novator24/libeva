@@ -5,7 +5,7 @@
 
 /*
  * XXX: GMarkup assumes UTF-8, so this isn't 8-bit clean (not to mention
- * string-escaping issues in GskXmlValueWriter).
+ * string-escaping issues in EvaXmlValueWriter).
  */
 
 /*
@@ -342,15 +342,15 @@ xml_stack_frame_destroy_stack (XmlStackFrame *top)
 
 /*
  *
- * GskXmlValueReader
+ * EvaXmlValueReader
  *
  */
 
-struct _GskXmlValueReader
+struct _EvaXmlValueReader
 {
   GMarkupParseContext *parse_context;
 
-  GskGtypeLoader *type_loader;
+  EvaGtypeLoader *type_loader;
   XmlStackFrame *stack;
 
   /* Position data for error reporting. */
@@ -361,14 +361,14 @@ struct _GskXmlValueReader
   GType output_type;
 
   /* Callback to report output to client. */
-  GskXmlValueFunc value_callback;
+  EvaXmlValueFunc value_callback;
   gpointer value_callback_data;
   GDestroyNotify value_callback_destroy;
 
   guint had_error : 1;
 };
 
-#define EVA_XML_VALUE_READER(obj) ((GskXmlValueReader *) (obj))
+#define EVA_XML_VALUE_READER(obj) ((EvaXmlValueReader *) (obj))
 
 /*
  *
@@ -377,7 +377,7 @@ struct _GskXmlValueReader
  */
 
 void
-eva_xml_value_reader_set_error (GskXmlValueReader  *reader,
+eva_xml_value_reader_set_error (EvaXmlValueReader  *reader,
 				GError            **error,
 				gint                error_code,
 				const char         *format,
@@ -420,7 +420,7 @@ eva_xml_value_reader_set_error (GskXmlValueReader  *reader,
 /* format describes what we got; add a description of what we expected. */
 
 static void
-eva_xml_value_reader_set_error_mismatch (GskXmlValueReader  *reader,
+eva_xml_value_reader_set_error_mismatch (EvaXmlValueReader  *reader,
 					 GError            **error,
 					 gint                error_code,
 					 const char         *format,
@@ -472,7 +472,7 @@ eva_xml_value_reader_set_error_mismatch (GskXmlValueReader  *reader,
  * Deal with this value according to the parent stack frame.
  */
 static void
-eva_xml_value_reader_pop_value (GskXmlValueReader *reader)
+eva_xml_value_reader_pop_value (EvaXmlValueReader *reader)
 {
   XmlStackFrame *top = reader->stack;
   XmlStackFrame *parent = top->parent;
@@ -550,7 +550,7 @@ eva_xml_value_reader_pop_value (GskXmlValueReader *reader)
  * representation for g_value_transform.
  */
 static gboolean
-instantiate_value_from_text (GskXmlValueReader *reader,
+instantiate_value_from_text (EvaXmlValueReader *reader,
 			     const char        *text,
 			     gsize              text_len,
 			     GError           **error)
@@ -592,7 +592,7 @@ handle_start_element (GMarkupParseContext  *context,
 		      gpointer              user_data,
 		      GError              **error)
 {
-  GskXmlValueReader *reader = EVA_XML_VALUE_READER (user_data);
+  EvaXmlValueReader *reader = EVA_XML_VALUE_READER (user_data);
   XmlStackFrame *top = reader->stack;
 
   (void) context;
@@ -713,7 +713,7 @@ handle_end_element (GMarkupParseContext  *context,
 		    gpointer              user_data,
 		    GError              **error)
 {
-  GskXmlValueReader *reader = EVA_XML_VALUE_READER (user_data);
+  EvaXmlValueReader *reader = EVA_XML_VALUE_READER (user_data);
   XmlStackFrame *top = reader->stack;
 
   (void) context;
@@ -828,7 +828,7 @@ handle_text (GMarkupParseContext  *context,
 	     gpointer              user_data,
 	     GError              **error)
 {
-  GskXmlValueReader *reader = EVA_XML_VALUE_READER (user_data);
+  EvaXmlValueReader *reader = EVA_XML_VALUE_READER (user_data);
   XmlStackFrame *top = reader->stack;
 
   (void) context;
@@ -881,7 +881,7 @@ handle_passthrough (GMarkupParseContext *context,
 		    gpointer             user_data,
 		    GError             **error)
 {
-  GskXmlValueReader *reader = EVA_XML_VALUE_READER (user_data);
+  EvaXmlValueReader *reader = EVA_XML_VALUE_READER (user_data);
   XmlStackFrame *top = reader->stack;
 
   (void) context;
@@ -928,7 +928,7 @@ handle_passthrough (GMarkupParseContext *context,
 
 /* Create the GMarkupParseContext and the stack. */
 static void
-eva_xml_value_reader_create_parser (GskXmlValueReader *reader)
+eva_xml_value_reader_create_parser (EvaXmlValueReader *reader)
 {
   static const GMarkupParser g_markup_parser =
     {
@@ -956,17 +956,17 @@ eva_xml_value_reader_create_parser (GskXmlValueReader *reader)
  *
  */
 
-GskXmlValueReader *
-eva_xml_value_reader_new (GskGtypeLoader  *type_loader,
+EvaXmlValueReader *
+eva_xml_value_reader_new (EvaGtypeLoader  *type_loader,
 			  GType            output_type,
-			  GskXmlValueFunc  value_func,
+			  EvaXmlValueFunc  value_func,
 			  gpointer         value_func_data,
 			  GDestroyNotify   value_func_destroy)
 {
-  GskXmlValueReader *reader;
+  EvaXmlValueReader *reader;
 
   g_return_val_if_fail (type_loader, NULL);
-  reader = g_new0 (GskXmlValueReader, 1);
+  reader = g_new0 (EvaXmlValueReader, 1);
   reader->type_loader = type_loader;
   eva_gtype_loader_ref (type_loader);
   reader->output_type = output_type;
@@ -980,7 +980,7 @@ eva_xml_value_reader_new (GskGtypeLoader  *type_loader,
 }
 
 void
-eva_xml_value_reader_free (GskXmlValueReader *reader)
+eva_xml_value_reader_free (EvaXmlValueReader *reader)
 {
   if (reader->value_callback_destroy)
     (*reader->value_callback_destroy) (reader->value_callback_data);
@@ -1004,7 +1004,7 @@ eva_xml_value_reader_free (GskXmlValueReader *reader)
 }
 
 gboolean
-eva_xml_value_reader_input (GskXmlValueReader *reader,
+eva_xml_value_reader_input (EvaXmlValueReader *reader,
 			    const char        *input,
 			    guint              len,
 			    GError           **error)
@@ -1044,7 +1044,7 @@ eva_xml_value_reader_input (GskXmlValueReader *reader,
 }
 
 void
-eva_xml_value_reader_set_pos (GskXmlValueReader *reader,
+eva_xml_value_reader_set_pos (EvaXmlValueReader *reader,
 			      const char        *filename,
 			      gint               line_no,
 			      gint               char_no)
@@ -1066,7 +1066,7 @@ eva_xml_value_reader_set_pos (GskXmlValueReader *reader,
 }
 
 gboolean
-eva_xml_value_reader_had_error (GskXmlValueReader *reader)
+eva_xml_value_reader_had_error (EvaXmlValueReader *reader)
 {
   return reader->had_error;
 }
@@ -1077,7 +1077,7 @@ eva_xml_value_reader_had_error (GskXmlValueReader *reader)
  *
  */
 
-/* GskXmlValueFunc */
+/* EvaXmlValueFunc */
 static void
 set_object_ptr (const GValue *value, gpointer user_data)
 {
@@ -1086,11 +1086,11 @@ set_object_ptr (const GValue *value, gpointer user_data)
 
 GObject *
 eva_load_object_from_xml_file (const char      *path,
-			       GskGtypeLoader  *type_loader,
+			       EvaGtypeLoader  *type_loader,
 			       GType            object_type,
 			       GError         **error)
 {
-  GskXmlValueReader *xml_value_reader = NULL;
+  EvaXmlValueReader *xml_value_reader = NULL;
   char *file_contents = NULL;
   gsize file_contents_len;
   GObject *object = NULL;

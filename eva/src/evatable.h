@@ -1,7 +1,7 @@
 #ifndef __EVA_TABLE_H_
 #define __EVA_TABLE_H_
 
-/* GskTable.
+/* EvaTable.
  *
  * A efficient on-disk table, meaning a mapping from an
  * uninterpreted piece of binary-data to a value.
@@ -12,7 +12,7 @@
  * - you may store data in the directory, but it the filename
  *   must begin with a capital letter.
  */
-typedef struct _GskTableReader GskTableReader;
+typedef struct _EvaTableReader EvaTableReader;
 
 #include "evamempool.h"
 
@@ -21,24 +21,24 @@ typedef struct
   guint len;
   guint8 *data;
   guint alloced;
-} GskTableBuffer;
+} EvaTableBuffer;
 
 /* --- public table buffer api -- needed for defining merge functions --- */
 /* calls realloc so beginning of buffer is preserved */
-G_INLINE_FUNC guint8 *eva_table_buffer_set_len (GskTableBuffer *buffer,
+G_INLINE_FUNC guint8 *eva_table_buffer_set_len (EvaTableBuffer *buffer,
                                                 guint           len);
 
 /* returns pointer to new area in buffer */
-G_INLINE_FUNC guint8 *eva_table_buffer_append  (GskTableBuffer *buffer,
+G_INLINE_FUNC guint8 *eva_table_buffer_append  (EvaTableBuffer *buffer,
                                                 guint           len);
 
 
-typedef  int (*GskTableCompareFunc)      (guint         a_key_len,
+typedef  int (*EvaTableCompareFunc)      (guint         a_key_len,
                                           const guint8 *a_key_data,
                                           guint         b_key_len,
                                           const guint8 *b_key_data,
                                           gpointer      user_data);
-typedef  int (*GskTableCompareFuncNoLen) (const guint8 *a_key_data,
+typedef  int (*EvaTableCompareFuncNoLen) (const guint8 *a_key_data,
                                           const guint8 *b_key_data,
                                           gpointer      user_data);
 typedef enum
@@ -47,19 +47,19 @@ typedef enum
   EVA_TABLE_MERGE_RETURN_B,
   EVA_TABLE_MERGE_SUCCESS,
   EVA_TABLE_MERGE_DROP,
-} GskTableMergeResult;
-typedef GskTableMergeResult (*GskTableMergeFunc) (guint         key_len,
+} EvaTableMergeResult;
+typedef EvaTableMergeResult (*EvaTableMergeFunc) (guint         key_len,
                                                   const guint8 *key_data,
                                                   guint         a_len,
                                                   const guint8 *a_data,
                                                   guint         b_len,
                                                   const guint8 *b_data,
-                                                  GskTableBuffer *output,
+                                                  EvaTableBuffer *output,
                                                   gpointer      user_data);
-typedef GskTableMergeResult (*GskTableMergeFuncNoLen) (const guint8 *key_data,
+typedef EvaTableMergeResult (*EvaTableMergeFuncNoLen) (const guint8 *key_data,
                                                        const guint8 *a_data,
                                                        const guint8 *b_data,
-                                                       GskTableBuffer *output,
+                                                       EvaTableBuffer *output,
                                                        gpointer      user_data);
 
 /* used for merges that go back to the beginning of the indexer */
@@ -68,21 +68,21 @@ typedef enum
   EVA_TABLE_SIMPLIFY_IDENTITY,
   EVA_TABLE_SIMPLIFY_SUCCESS,
   EVA_TABLE_SIMPLIFY_DELETE
-} GskTableSimplifyResult;
-typedef GskTableSimplifyResult (*GskTableSimplifyFunc)(guint         key_len,
+} EvaTableSimplifyResult;
+typedef EvaTableSimplifyResult (*EvaTableSimplifyFunc)(guint         key_len,
                                                        const guint8 *key_data,
                                                        guint         value_len,
                                                        const guint8 *value_data,
-                                                       GskTableBuffer*val_out,
+                                                       EvaTableBuffer*val_out,
                                                        gpointer      user_data);
-typedef GskTableSimplifyResult (*GskTableSimplifyFuncNoLen)
+typedef EvaTableSimplifyResult (*EvaTableSimplifyFuncNoLen)
                                                       (const guint8 *key_data,
                                                        const guint8 *value_data,
-                                                       GskTableBuffer*val_out,
+                                                       EvaTableBuffer*val_out,
                                                        gpointer      user_data);
 
 /* only used for querying */
-typedef gboolean          (*GskTableValueIsStableFunc)(guint         key_len,
+typedef gboolean          (*EvaTableValueIsStableFunc)(guint         key_len,
                                                        const guint8 *key_data,
                                                        guint         value_len,
                                                        const guint8 *value_data,
@@ -93,74 +93,74 @@ typedef enum
   EVA_TABLE_JOURNAL_NONE,
   EVA_TABLE_JOURNAL_OCCASIONALLY,
   EVA_TABLE_JOURNAL_DEFAULT
-} GskTableJournalMode;
+} EvaTableJournalMode;
 
-typedef struct _GskTableOptions GskTableOptions;
-struct _GskTableOptions
+typedef struct _EvaTableOptions EvaTableOptions;
+struct _EvaTableOptions
 {
   /* compare configuration */
-  GskTableCompareFunc compare;
-  GskTableCompareFuncNoLen compare_no_len;
+  EvaTableCompareFunc compare;
+  EvaTableCompareFuncNoLen compare_no_len;
 
   /* merging configuration */
-  GskTableMergeFunc merge;
-  GskTableMergeFuncNoLen merge_no_len;
+  EvaTableMergeFunc merge;
+  EvaTableMergeFuncNoLen merge_no_len;
 
   /* final merging */
-  GskTableSimplifyFunc simplify;
-  GskTableSimplifyFuncNoLen simplify_no_len;
+  EvaTableSimplifyFunc simplify;
+  EvaTableSimplifyFuncNoLen simplify_no_len;
 
   /* query stability */
-  GskTableValueIsStableFunc is_stable;
+  EvaTableValueIsStableFunc is_stable;
 
   /* user data */
   gpointer user_data;
   GDestroyNotify destroy_user_data;
 
   /* journalling mode */
-  GskTableJournalMode journal_mode;
+  EvaTableJournalMode journal_mode;
 
   /* tunables */
   gsize max_in_memory_entries;
   gsize max_in_memory_bytes;
 };
 
-GskTableOptions     *eva_table_options_new    (void);
-void                 eva_table_options_destroy(GskTableOptions *options);
+EvaTableOptions     *eva_table_options_new    (void);
+void                 eva_table_options_destroy(EvaTableOptions *options);
 
-void eva_table_options_set_replacement_semantics (GskTableOptions *options);
+void eva_table_options_set_replacement_semantics (EvaTableOptions *options);
 
 typedef enum
 {
   EVA_TABLE_MAY_EXIST = (1<<0),
   EVA_TABLE_MAY_CREATE = (1<<1)
-} GskTableNewFlags;
+} EvaTableNewFlags;
 
-typedef struct _GskTable GskTable;
+typedef struct _EvaTable EvaTable;
 
 /* NOTE: hinting options will be ignored if the table already exists. */
-GskTable *  eva_table_new         (const char            *dir,
-                                   const GskTableOptions *options,
-                                   GskTableNewFlags       flags,
+EvaTable *  eva_table_new         (const char            *dir,
+                                   const EvaTableOptions *options,
+                                   EvaTableNewFlags       flags,
 	          	           GError               **error);
-gboolean    eva_table_add         (GskTable              *table,
+gboolean    eva_table_add         (EvaTable              *table,
                                    guint                  key_len,
 	          	           const guint8          *key_data,
                                    guint                  value_len,
 	          	           const guint8          *value_data,
                                    GError               **error);
-gboolean    eva_table_query       (GskTable              *table,
+gboolean    eva_table_query       (EvaTable              *table,
                                    guint                  key_len,
 			           const guint8          *key_data,
                                    gboolean              *found_value_out,
 			           guint                 *value_len_out,
 			           guint8               **value_data_out,
                                    GError               **error);
-const char *eva_table_peek_dir    (GskTable              *table);
-void        eva_table_destroy     (GskTable              *table);
+const char *eva_table_peek_dir    (EvaTable              *table);
+void        eva_table_destroy     (EvaTable              *table);
 
 
-struct _GskTableReader
+struct _EvaTableReader
 {
   gboolean eof;
   GError *error;
@@ -169,20 +169,20 @@ struct _GskTableReader
   guint value_len;
   const guint8 *value_data;
 
-  void     (*advance) (GskTableReader *reader);
-  void     (*destroy) (GskTableReader *reader);
+  void     (*advance) (EvaTableReader *reader);
+  void     (*destroy) (EvaTableReader *reader);
 };
 typedef enum
 {
   EVA_TABLE_BOUND_NONE,
   EVA_TABLE_BOUND_STRICT,
   EVA_TABLE_BOUND_INCLUSIVE
-} GskTableBoundType;
-GskTableReader *eva_table_make_reader_with_bounds (GskTable *table,
-                                       GskTableBoundType start_bound_type,
+} EvaTableBoundType;
+EvaTableReader *eva_table_make_reader_with_bounds (EvaTable *table,
+                                       EvaTableBoundType start_bound_type,
                                        guint start_bound_len,
                                        const guint8 *start_bound_data,
-                                       GskTableBoundType end_bound_type,
+                                       EvaTableBoundType end_bound_type,
                                        guint end_bound_len,
                                        const guint8 *end_bound_data,
                                        GError  **error);
@@ -192,8 +192,8 @@ GskTableReader *eva_table_make_reader_with_bounds (GskTable *table,
                                      EVA_TABLE_BOUND_NONE, 0, NULL, \
                                      error)
 
-G_INLINE_FUNC void     eva_table_reader_advance (GskTableReader *reader);
-G_INLINE_FUNC void     eva_table_reader_destroy (GskTableReader *reader);
+G_INLINE_FUNC void     eva_table_reader_advance (EvaTableReader *reader);
+G_INLINE_FUNC void     eva_table_reader_destroy (EvaTableReader *reader);
 
 
 
@@ -207,18 +207,18 @@ G_INLINE_FUNC void     eva_table_reader_destroy (GskTableReader *reader);
    ensure that len < alloced. */
 
 #define EVA_TABLE_BUFFER_INIT   { 0, NULL, 0 }
-G_INLINE_FUNC void    eva_table_buffer_init         (GskTableBuffer *buffer);
+G_INLINE_FUNC void    eva_table_buffer_init         (EvaTableBuffer *buffer);
 
-G_INLINE_FUNC void    eva_table_buffer_clear        (GskTableBuffer *buffer);
+G_INLINE_FUNC void    eva_table_buffer_clear        (EvaTableBuffer *buffer);
 
-G_INLINE_FUNC void    eva_table_buffer_ensure_size  (GskTableBuffer *buffer,
+G_INLINE_FUNC void    eva_table_buffer_ensure_size  (EvaTableBuffer *buffer,
                                                      guint           min_size);
-G_INLINE_FUNC void    eva_table_buffer_ensure_extra (GskTableBuffer *buffer,
+G_INLINE_FUNC void    eva_table_buffer_ensure_extra (EvaTableBuffer *buffer,
                                                      guint           addl_size);
 
 
 #if defined (G_CAN_INLINE) || defined (__EVA_DEFINE_INLINES__)
-G_INLINE_FUNC void    eva_table_buffer_init    (GskTableBuffer *buffer)
+G_INLINE_FUNC void    eva_table_buffer_init    (EvaTableBuffer *buffer)
 {
   buffer->len = 0;
   buffer->data = NULL;
@@ -227,7 +227,7 @@ G_INLINE_FUNC void    eva_table_buffer_init    (GskTableBuffer *buffer)
 
 /* calls realloc so beginning of buffer is preserved */
 G_INLINE_FUNC void
-eva_table_buffer_ensure_size (GskTableBuffer *buffer,
+eva_table_buffer_ensure_size (EvaTableBuffer *buffer,
                               guint           min_size)
 {
   if (G_UNLIKELY (buffer->alloced < min_size))
@@ -241,7 +241,7 @@ eva_table_buffer_ensure_size (GskTableBuffer *buffer,
 }
 
 G_INLINE_FUNC guint8 *
-eva_table_buffer_set_len (GskTableBuffer *buffer,
+eva_table_buffer_set_len (EvaTableBuffer *buffer,
                           guint           len)
 {
   eva_table_buffer_ensure_size (buffer, len);
@@ -251,7 +251,7 @@ eva_table_buffer_set_len (GskTableBuffer *buffer,
 
 /* returns pointer to new area in buffer */
 G_INLINE_FUNC guint8 *
-eva_table_buffer_append  (GskTableBuffer *buffer,
+eva_table_buffer_append  (EvaTableBuffer *buffer,
                           guint           len)
 {
   guint old_len = buffer->len;
@@ -259,24 +259,24 @@ eva_table_buffer_append  (GskTableBuffer *buffer,
 }
 
 G_INLINE_FUNC void
-eva_table_buffer_clear   (GskTableBuffer *buffer)
+eva_table_buffer_clear   (EvaTableBuffer *buffer)
 {
   g_free (buffer->data);
 }
 
 G_INLINE_FUNC void
-eva_table_buffer_ensure_extra (GskTableBuffer *buffer,
+eva_table_buffer_ensure_extra (EvaTableBuffer *buffer,
                                guint           extra_bytes)
 {
   eva_table_buffer_ensure_size (buffer, buffer->len + extra_bytes);
 }
 G_INLINE_FUNC void
-eva_table_reader_advance (GskTableReader *reader)
+eva_table_reader_advance (EvaTableReader *reader)
 {
   reader->advance (reader);
 }
 G_INLINE_FUNC void
-eva_table_reader_destroy (GskTableReader *reader)
+eva_table_reader_destroy (EvaTableReader *reader)
 {
   reader->destroy (reader);
 }

@@ -7,25 +7,25 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskHttpResponseClass GskHttpResponseClass;
-typedef struct _GskHttpResponse GskHttpResponse;
+typedef struct _EvaHttpResponseClass EvaHttpResponseClass;
+typedef struct _EvaHttpResponse EvaHttpResponse;
 
 #define EVA_TYPE_HTTP_RESPONSE             (eva_http_response_get_type ())
-#define EVA_HTTP_RESPONSE(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_HTTP_RESPONSE, GskHttpResponse))
-#define EVA_HTTP_RESPONSE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_HTTP_RESPONSE, GskHttpResponseClass))
-#define EVA_HTTP_RESPONSE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_HTTP_RESPONSE, GskHttpResponseClass))
+#define EVA_HTTP_RESPONSE(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_HTTP_RESPONSE, EvaHttpResponse))
+#define EVA_HTTP_RESPONSE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_HTTP_RESPONSE, EvaHttpResponseClass))
+#define EVA_HTTP_RESPONSE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_HTTP_RESPONSE, EvaHttpResponseClass))
 #define EVA_IS_HTTP_RESPONSE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_HTTP_RESPONSE))
 #define EVA_IS_HTTP_RESPONSE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_HTTP_RESPONSE))
 
-struct _GskHttpResponseClass
+struct _EvaHttpResponseClass
 {
-  GskHttpHeaderClass base_class;
+  EvaHttpHeaderClass base_class;
 };
-struct _GskHttpResponse
+struct _EvaHttpResponse
 {
-  GskHttpHeader base_instance;
+  EvaHttpHeader base_instance;
   
-  GskHttpStatus             status_code;
+  EvaHttpStatus             status_code;
   int                       age;                  /* Age */
 
   /* initially allowed_verbs == 0;
@@ -34,7 +34,7 @@ struct _GskHttpResponse
    */
   guint                     allowed_verbs;
 
-  GskHttpResponseCacheDirective *cache_control;        /* Cache-Control */
+  EvaHttpResponseCacheDirective *cache_control;        /* Cache-Control */
 
   unsigned                  has_md5sum : 1;
   unsigned char             md5sum[16];           /* Content-MD5 (14.15) */
@@ -52,10 +52,10 @@ struct _GskHttpResponse
   /* The ``Entity-Tag'', cf RFC 2616, Sections 14.24, 14.26, 14.44. */
   char                     *etag;
 
-  GskHttpAuthenticate      *proxy_authenticate;
+  EvaHttpAuthenticate      *proxy_authenticate;
 
   /* This is the WWW-Authenticate: header line. */
-  GskHttpAuthenticate      *authenticate;
+  EvaHttpAuthenticate      *authenticate;
 
   /* If `retry_after_relative', the retry_after is the number 
    * of seconds to wait before retrying; otherwise,
@@ -76,48 +76,48 @@ struct _GskHttpResponse
 };
 
 /* Responses. */
-GskHttpResponse *eva_http_response_new_blank    (void);
+EvaHttpResponse *eva_http_response_new_blank    (void);
 
 /* Redirects should be accompanied by an HTML body saying the URL. */
-GskHttpResponse *eva_http_response_new_redirect (const char    *location);
+EvaHttpResponse *eva_http_response_new_redirect (const char    *location);
 
-GskHttpResponse *eva_http_response_from_request (GskHttpRequest *request,
-						 GskHttpStatus   status_code,
+EvaHttpResponse *eva_http_response_from_request (EvaHttpRequest *request,
+						 EvaHttpStatus   status_code,
 						 gint64          length);
 
-gboolean   eva_http_response_process_first_line (GskHttpResponse *response,
+gboolean   eva_http_response_process_first_line (EvaHttpResponse *response,
 				                 const char      *line);
 
-void       eva_http_response_set_retry_after   (GskHttpResponse *response,
+void       eva_http_response_set_retry_after   (EvaHttpResponse *response,
                                                 gboolean         is_relative,
                                                 glong            time);
-void       eva_http_response_set_no_retry_after(GskHttpResponse *response);
+void       eva_http_response_set_no_retry_after(EvaHttpResponse *response);
 
-void       eva_http_response_set_authenticate (GskHttpResponse *response,
+void       eva_http_response_set_authenticate (EvaHttpResponse *response,
 					       gboolean         is_proxy_auth,
-					       GskHttpAuthenticate *auth);
-GskHttpAuthenticate*
-           eva_http_response_peek_authenticate(GskHttpResponse *response,
+					       EvaHttpAuthenticate *auth);
+EvaHttpAuthenticate*
+           eva_http_response_peek_authenticate(EvaHttpResponse *response,
 				               gboolean         is_proxy_auth);
 
 /* --- setting / getting --- */
-gboolean   eva_http_response_has_content_body   (GskHttpResponse *response,
-                                                 GskHttpRequest  *request);
+gboolean   eva_http_response_has_content_body   (EvaHttpResponse *response,
+                                                 EvaHttpRequest  *request);
 void       eva_http_response_set_cache_control(
-					    GskHttpResponse *response,
-				            GskHttpResponseCacheDirective *directive);
+					    EvaHttpResponse *response,
+				            EvaHttpResponseCacheDirective *directive);
 #define    eva_http_response_set_status_code(response, status)	\
   G_STMT_START{ EVA_HTTP_RESPONSE(response)->status_code = (status); G_STMT_END
 #define    eva_http_response_get_status_code(response) \
                (EVA_HTTP_RESPONSE(response)->status_code)
-void       eva_http_response_set_allowed_verbs  (GskHttpResponse *response,
+void       eva_http_response_set_allowed_verbs  (EvaHttpResponse *response,
                                                  guint            allowed);
 #define eva_http_response_get_allowed_verbs(header)		              \
   (EVA_HTTP_RESPONSE(header)->allowed_verbs)
 /* md5sum may be NULL to unset it */
-void             eva_http_response_set_md5      (GskHttpResponse *response,
+void             eva_http_response_set_md5      (EvaHttpResponse *response,
                                                  const guint8    *md5sum);
-const guint8    *eva_http_response_peek_md5     (GskHttpResponse *response);
+const guint8    *eva_http_response_peek_md5     (EvaHttpResponse *response);
 #define eva_http_response_set_location(response, location)		      \
   g_object_set (EVA_HTTP_RESPONSE(response), "location", (const char *) (location), NULL)
 #define eva_http_response_peek_location(response)		              \

@@ -5,18 +5,18 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GskInitInfo GskInitInfo;
-struct _GskInitInfo
+typedef struct _EvaInitInfo EvaInitInfo;
+struct _EvaInitInfo
 {
   char *prgname;
   guint needs_threads : 1;
 };
 
-GskInitInfo *eva_init_info_new  (void);
-void         eva_init_info_free (GskInitInfo *info);
+EvaInitInfo *eva_init_info_new  (void);
+void         eva_init_info_free (EvaInitInfo *info);
 void         eva_init           (int         *argc,
 				 char      ***argv,
-				 GskInitInfo *info);
+				 EvaInitInfo *info);
 void eva_init_without_threads   (int         *argc,
 				 char      ***argv);
 
@@ -26,20 +26,20 @@ void eva_init_without_threads   (int         *argc,
 #define eva_init_get_support_threads()	((eva_init_flags & _EVA_INIT_SUPPORT_THREADS) == _EVA_INIT_SUPPORT_THREADS)
 
 #ifndef EVA_DISABLE_DEPRECATED
-void eva_init_info_get_defaults (GskInitInfo *info);
+void eva_init_info_get_defaults (EvaInitInfo *info);
 #endif
 
 /* --- implementation details --- */
-void eva_init_info_parse_args   (GskInitInfo *in_out,
+void eva_init_info_parse_args   (EvaInitInfo *in_out,
 				 int         *argc,
 				 char      ***argv);
-void eva_init_raw               (GskInitInfo *info);
+void eva_init_raw               (EvaInitInfo *info);
 
 typedef enum
 {
   _EVA_INIT_SUPPORT_THREADS = (1<<0)
-} _GskInitFlags;
-extern _GskInitFlags eva_init_flags;
+} _EvaInitFlags;
+extern _EvaInitFlags eva_init_flags;
 
 extern gpointer eva_main_thread;
 

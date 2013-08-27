@@ -7,12 +7,12 @@
  * These are Z_OK, Z_STREAM_END, Z_NEED_DICT,
  * Z_ERRNO, Z_STREAM_ERROR, Z_DATA_ERROR, etc.
  * 
- * Converts a zlib error code to a #GskErrorCode.
+ * Converts a zlib error code to a #EvaErrorCode.
  *
  * returns: the best approximation for the zlib error
  * in EVA's list.
  */
-GskErrorCode eva_zlib_error_to_eva_error(gint zlib_error_rv)
+EvaErrorCode eva_zlib_error_to_eva_error(gint zlib_error_rv)
 {
   switch (zlib_error_rv)
     {

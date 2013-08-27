@@ -6,7 +6,7 @@ a DNS resolver which uses just a local resource-record cache.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-A DNS resolver which uses nothing more than a #GskDnsRRCache.
+A DNS resolver which uses nothing more than a #EvaDnsRRCache.
 This can be used to provide a backend for a server.
 </para>
 
@@ -18,19 +18,19 @@ This can be used to provide a backend for a server.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskDnsLocalResolverClass ##### -->
+<!-- ##### STRUCT EvaDnsLocalResolverClass ##### -->
 <para>
 Class for local DNS resolvers.
 </para>
 
 
-<!-- ##### STRUCT GskDnsLocalResolver ##### -->
+<!-- ##### STRUCT EvaDnsLocalResolver ##### -->
 <para>
 Instance for local DNS resolvers.
 </para>
 
 
-<!-- ##### ARG GskDnsLocalResolver:resource-cache ##### -->
+<!-- ##### ARG EvaDnsLocalResolver:resource-cache ##### -->
 <para>
 
 </para>
@@ -44,7 +44,7 @@ Instance for local DNS resolvers.
 @Returns: 
 
 
-<!-- ##### ENUM GskDnsLocalResult ##### -->
+<!-- ##### ENUM EvaDnsLocalResult ##### -->
 <para>
 Possible results from a local DNS query.
 </para>

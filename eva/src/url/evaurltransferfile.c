@@ -1,11 +1,11 @@
 #include "evaurltransferfile.h"
 #include "../evastreamfd.h"
 
-G_DEFINE_TYPE(GskUrlTransferFile, eva_url_transfer_file, EVA_TYPE_URL_TRANSFER);
+G_DEFINE_TYPE(EvaUrlTransferFile, eva_url_transfer_file, EVA_TYPE_URL_TRANSFER);
 
 static gboolean 
-eva_url_transfer_file_test  (GskUrlTransferClass *transfer_class,
-                             const GskUrl        *url)
+eva_url_transfer_file_test  (EvaUrlTransferClass *transfer_class,
+                             const EvaUrl        *url)
 {
   return url->scheme == EVA_URL_SCHEME_FILE
     && url->path != NULL
@@ -13,10 +13,10 @@ eva_url_transfer_file_test  (GskUrlTransferClass *transfer_class,
 }
 
 static gboolean 
-eva_url_transfer_file_start (GskUrlTransfer      *transfer,
+eva_url_transfer_file_start (EvaUrlTransfer      *transfer,
                              GError             **error)
 {
-  GskStream *content;
+  EvaStream *content;
   content = eva_stream_fd_new_read_file (transfer->url->path, error);
   if (content == NULL)
     return FALSE;
@@ -27,13 +27,13 @@ eva_url_transfer_file_start (GskUrlTransfer      *transfer,
 }
 
 static void
-eva_url_transfer_file_class_init (GskUrlTransferFileClass *class)
+eva_url_transfer_file_class_init (EvaUrlTransferFileClass *class)
 {
-  GskUrlTransferClass *transfer_class = EVA_URL_TRANSFER_CLASS (class);
+  EvaUrlTransferClass *transfer_class = EVA_URL_TRANSFER_CLASS (class);
   transfer_class->test = eva_url_transfer_file_test;
   transfer_class->start = eva_url_transfer_file_start;
 }
 static void
-eva_url_transfer_file_init (GskUrlTransferFile *file)
+eva_url_transfer_file_init (EvaUrlTransferFile *file)
 {
 }

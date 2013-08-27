@@ -37,12 +37,12 @@ static GObjectClass *parent_class = NULL;
 #include <unistd.h>    /* needed for close() */
 #include <string.h>
 
-/* --- GskMainLoop methods --- */
+/* --- EvaMainLoop methods --- */
 
 static gboolean
-eva_main_loop_kqueue_setup (GskMainLoop *main_loop)
+eva_main_loop_kqueue_setup (EvaMainLoop *main_loop)
 {
-  GskMainLoopKqueue *main_loop_kqueue = EVA_MAIN_LOOP_KQUEUE (main_loop);
+  EvaMainLoopKqueue *main_loop_kqueue = EVA_MAIN_LOOP_KQUEUE (main_loop);
 #if HAVE_KQUEUE
   main_loop_kqueue->kernel_queue_id = kqueue ();
   return (main_loop_kqueue->kernel_queue_id >= 0);
@@ -54,7 +54,7 @@ eva_main_loop_kqueue_setup (GskMainLoop *main_loop)
 
 #if HAVE_KQUEUE
 static void
-kqueue_flush_pending_changes (GskMainLoopKqueue *main_loop_kqueue)
+kqueue_flush_pending_changes (EvaMainLoopKqueue *main_loop_kqueue)
 {
   if (main_loop_kqueue->num_updates > 0)
     {
@@ -91,7 +91,7 @@ almost_ignore_sigchld (void)
 }
 
 static inline struct kevent *
-get_next_update ( GskMainLoopKqueue *main_loop_kqueue)
+get_next_update ( EvaMainLoopKqueue *main_loop_kqueue)
 {
   if (main_loop_kqueue->num_updates == main_loop_kqueue->max_updates)
     {
@@ -109,10 +109,10 @@ get_next_update ( GskMainLoopKqueue *main_loop_kqueue)
   
 
 static void 
-eva_main_loop_kqueue_change (GskMainLoop       *main_loop,
-                             GskMainLoopChange *change)
+eva_main_loop_kqueue_change (EvaMainLoop       *main_loop,
+                             EvaMainLoopChange *change)
 {
-  GskMainLoopKqueue *main_loop_kqueue = EVA_MAIN_LOOP_KQUEUE (main_loop);
+  EvaMainLoopKqueue *main_loop_kqueue = EVA_MAIN_LOOP_KQUEUE (main_loop);
   if (main_loop_kqueue->num_updates + 1 >= main_loop_kqueue->max_updates)
     {
       if (main_loop_kqueue->max_updates == 0)
@@ -185,13 +185,13 @@ eva_main_loop_kqueue_change (GskMainLoop       *main_loop,
 }
 
 static guint
-eva_main_loop_kqueue_poll (GskMainLoop       *main_loop,
+eva_main_loop_kqueue_poll (EvaMainLoop       *main_loop,
                            guint              max_events_out,
-                           GskMainLoopEvent  *events,
+                           EvaMainLoopEvent  *events,
                            gint               timeout_milli)
 {
   struct kevent *out = alloca (sizeof (struct kevent) * max_events_out);
-  GskMainLoopKqueue *main_loop_kqueue = EVA_MAIN_LOOP_KQUEUE (main_loop);
+  EvaMainLoopKqueue *main_loop_kqueue = EVA_MAIN_LOOP_KQUEUE (main_loop);
   gint kevent_rv;
   guint i;
   guint rv = 0;
@@ -272,7 +272,7 @@ retry_kevent:
 static void    
 eva_main_loop_kqueue_finalize(GObject *object)
 {
-  GskMainLoopKqueue *kqueue = EVA_MAIN_LOOP_KQUEUE (object);
+  EvaMainLoopKqueue *kqueue = EVA_MAIN_LOOP_KQUEUE (object);
   eva_main_loop_destroy_all_sources (EVA_MAIN_LOOP (object));
   if (kqueue->kernel_queue_id >= 0)
     close (kqueue->kernel_queue_id);
@@ -281,13 +281,13 @@ eva_main_loop_kqueue_finalize(GObject *object)
 
 /* --- class methods --- */
 static void
-eva_main_loop_kqueue_init (GskMainLoopKqueue *kqueue)
+eva_main_loop_kqueue_init (EvaMainLoopKqueue *kqueue)
 {
   kqueue->kernel_queue_id = -1;
 }
 
 static void
-eva_main_loop_kqueue_class_init (GskMainLoopClass *main_loop_class)
+eva_main_loop_kqueue_class_init (EvaMainLoopClass *main_loop_class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (main_loop_class);
   parent_class = g_type_class_peek_parent (main_loop_class);
@@ -307,20 +307,20 @@ eva_main_loop_kqueue_get_type()
     {
       static const GTypeInfo main_loop_kqueue_info =
       {
-	sizeof(GskMainLoopKqueueClass),
+	sizeof(EvaMainLoopKqueueClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_main_loop_kqueue_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskMainLoopKqueue),
+	sizeof (EvaMainLoopKqueue),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_main_loop_kqueue_init,
 	NULL		/* value_table */
       };
       GType parent = EVA_TYPE_MAIN_LOOP;
       main_loop_kqueue_type = g_type_register_static (parent,
-                                                  "GskMainLoopKqueue",
+                                                  "EvaMainLoopKqueue",
 						  &main_loop_kqueue_info, 0);
     }
   return main_loop_kqueue_type;

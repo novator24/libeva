@@ -5,16 +5,16 @@
 #include "../evainit.h"
 #include <string.h>
 
-static GskHttpClient *client = NULL;
-static GskHttpServer *server = NULL;
+static EvaHttpClient *client = NULL;
+static EvaHttpServer *server = NULL;
 
-static GskHttpRequest *server_request = NULL;
+static EvaHttpRequest *server_request = NULL;
 static gboolean        had_post_content;
-static GskBuffer       post_content_buffer = EVA_BUFFER_STATIC_INIT;
+static EvaBuffer       post_content_buffer = EVA_BUFFER_STATIC_INIT;
 static gboolean        server_got_request = FALSE;
 
-static GskHttpResponse *client_response = NULL;
-static GskBuffer       client_content = EVA_BUFFER_STATIC_INIT;
+static EvaHttpResponse *client_response = NULL;
+static EvaBuffer       client_content = EVA_BUFFER_STATIC_INIT;
 static gboolean        has_response_content;
 static gboolean        client_got_response = FALSE;
 
@@ -25,14 +25,14 @@ static gboolean        client_got_response = FALSE;
 #endif
 
 static gboolean
-handle_post_content_readable (GskStream *stream, gpointer data)
+handle_post_content_readable (EvaStream *stream, gpointer data)
 {
   g_assert (data == NULL);
   eva_stream_read_buffer (stream, &post_content_buffer, NULL);
   return TRUE;
 }
 static gboolean
-handle_post_content_shutdown (GskStream *stream, gpointer data)
+handle_post_content_shutdown (EvaStream *stream, gpointer data)
 {
   g_assert (data == NULL);
   server_got_request = TRUE;
@@ -40,10 +40,10 @@ handle_post_content_shutdown (GskStream *stream, gpointer data)
 }
 
 static gboolean
-handle_server_trap (GskHttpServer *server,
+handle_server_trap (EvaHttpServer *server,
 		    gpointer       data)
 {
-  GskStream *server_post_content = NULL;
+  EvaStream *server_post_content = NULL;
   DEBUG ("handle_server_trap");
   g_assert (data == NULL);
   g_assert (!server_got_request);
@@ -65,7 +65,7 @@ handle_server_trap (GskHttpServer *server,
   return TRUE;
 }
 static gboolean
-handle_server_shutdown (GskHttpServer *server,
+handle_server_shutdown (EvaHttpServer *server,
 		        gpointer       data)
 {
   g_assert (data == NULL);
@@ -74,7 +74,7 @@ handle_server_shutdown (GskHttpServer *server,
 }
 
 static gboolean
-client_handle_content_body (GskStream *stream, gpointer data)
+client_handle_content_body (EvaStream *stream, gpointer data)
 {
   DEBUG("client_handle_content_body");
   eva_stream_read_buffer (stream, &client_content, NULL);
@@ -82,7 +82,7 @@ client_handle_content_body (GskStream *stream, gpointer data)
 }
 
 static gboolean
-client_handle_content_shutdown (GskStream *stream, gpointer data)
+client_handle_content_shutdown (EvaStream *stream, gpointer data)
 {
   DEBUG("client_handle_content_shutdown");
   client_got_response = TRUE;
@@ -90,9 +90,9 @@ client_handle_content_shutdown (GskStream *stream, gpointer data)
 }
 
 static void
-client_handle_server_response (GskHttpRequest  *request,
-			       GskHttpResponse *response,
-			       GskStream       *input,
+client_handle_server_response (EvaHttpRequest  *request,
+			       EvaHttpResponse *response,
+			       EvaStream       *input,
 			       gpointer         hook_data)
 {
   g_assert (hook_data == NULL);
@@ -155,10 +155,10 @@ clear_client_server ()
 
 int main(int argc, char **argv)
 {
-  GskHttpRequest *client_request;
-  GskHttpResponse *response;
-  GskStream *content;
-  GskMainLoop *loop;
+  EvaHttpRequest *client_request;
+  EvaHttpResponse *response;
+  EvaStream *content;
+  EvaMainLoop *loop;
   int pass, i;
   eva_init_without_threads (&argc,&argv);
   loop = eva_main_loop_default ();
@@ -280,7 +280,7 @@ int main(int argc, char **argv)
 
   /* Test HEAD request */
   {
-    static GskHttpStatus codes[2] = { 200, 404 };
+    static EvaHttpStatus codes[2] = { 200, 404 };
     new_client_server ();
 
     g_printerr ("HEAD request and response... ");

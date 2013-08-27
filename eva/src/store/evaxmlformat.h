@@ -2,8 +2,8 @@
 #define __EVA_XML_FORMAT_H_
 
 /*
- * GskXmlFormat -- implements GskStorageFormat, uses GskXmlValueReader
- * and GskXmlValueWriter to deserialize/serialize values from/to XML.
+ * EvaXmlFormat -- implements EvaStorageFormat, uses EvaXmlValueReader
+ * and EvaXmlValueWriter to deserialize/serialize values from/to XML.
  */
 
 #include "evastorageformat.h"
@@ -11,22 +11,22 @@
 
 G_BEGIN_DECLS
 
-typedef GObjectClass         GskXmlFormatClass;
-typedef struct _GskXmlFormat GskXmlFormat;
+typedef GObjectClass         EvaXmlFormatClass;
+typedef struct _EvaXmlFormat EvaXmlFormat;
 
 GType eva_xml_format_get_type (void) G_GNUC_CONST;
 
 #define EVA_TYPE_XML_FORMAT (eva_xml_format_get_type ())
 #define EVA_XML_FORMAT(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_XML_FORMAT, GskXmlFormat))
+  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_XML_FORMAT, EvaXmlFormat))
 #define EVA_IS_XML_FORMAT(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_XML_FORMAT))
 
-struct _GskXmlFormat
+struct _EvaXmlFormat
 {
   GObject object;
 
-  GskGtypeLoader *type_loader;
+  EvaGtypeLoader *type_loader;
 };
 
 /* Flag for properties that should be ignored by the serialize method.

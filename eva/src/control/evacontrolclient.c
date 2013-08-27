@@ -8,16 +8,16 @@
 #include <stdio.h>
 #include <unistd.h>
 
-struct _GskControlClient
+struct _EvaControlClient
 {
-  GskSocketAddress *address;
+  EvaSocketAddress *address;
 
   char *prompt;
   guint cmd_no;
 
   guint add_newlines_as_needed : 1;
 
-  GskControlClientErrorFunc error_func;
+  EvaControlClientErrorFunc error_func;
   gpointer error_func_data;
 
   int last_argc;
@@ -27,7 +27,7 @@ struct _GskControlClient
 static void
 abort_on_error (GError *error, gpointer data)
 {
-  GskControlClient *cc = data;
+  EvaControlClient *cc = data;
   g_error ("control-client error: %s: %s",
            eva_socket_address_to_string (cc->address),
            error->message);
@@ -43,10 +43,10 @@ abort_on_error (GError *error, gpointer data)
  *
  * returns: the newly allocated control client.
  */
-GskControlClient *
-eva_control_client_new (GskSocketAddress *server)
+EvaControlClient *
+eva_control_client_new (EvaSocketAddress *server)
 {
-  GskControlClient *cc = g_new (GskControlClient, 1);
+  EvaControlClient *cc = g_new (EvaControlClient, 1);
   cc->address = server ? g_object_ref (server) : NULL;
   cc->prompt = NULL;
   cc->cmd_no = 1;
@@ -65,8 +65,8 @@ eva_control_client_new (GskSocketAddress *server)
  * not used yet.
  */
 void
-eva_control_client_set_flag (GskControlClient *cc,
-                             GskControlClientFlag flag,
+eva_control_client_set_flag (EvaControlClient *cc,
+                             EvaControlClientFlag flag,
                              gboolean             value)
 {
   switch (flag)
@@ -88,8 +88,8 @@ eva_control_client_set_flag (GskControlClient *cc,
  * not used yet.
  */
 gboolean
-eva_control_client_get_flag (GskControlClient *cc,
-                             GskControlClientFlag flag)
+eva_control_client_get_flag (EvaControlClient *cc,
+                             EvaControlClientFlag flag)
 {
   switch (flag)
     {
@@ -108,7 +108,7 @@ eva_control_client_get_flag (GskControlClient *cc,
  * Set the prompt format string.
  */
 void
-eva_control_client_set_prompt(GskControlClient *cc,
+eva_control_client_set_prompt(EvaControlClient *cc,
                               const char       *prompt_format)
 {
   char *to_free = cc->prompt;
@@ -126,7 +126,7 @@ struct _GetServerFileStatus
 };
 
 static void
-buffer_callback_get_server_file (GskBuffer *buffer, gpointer data)
+buffer_callback_get_server_file (EvaBuffer *buffer, gpointer data)
 {
   GetServerFileStatus *fs = data;
   *(fs->length_out) = buffer->size;
@@ -136,13 +136,13 @@ buffer_callback_get_server_file (GskBuffer *buffer, gpointer data)
 }
 
 static void
-handle_get_server_file_response (GskHttpRequest  *request,
-                                 GskHttpResponse *response,
-                                 GskStream       *input,
+handle_get_server_file_response (EvaHttpRequest  *request,
+                                 EvaHttpResponse *response,
+                                 EvaStream       *input,
                                  gpointer         hook_data)
 {
   GetServerFileStatus *fs = hook_data;
-  GskStream *stream;
+  EvaStream *stream;
   if (response->status_code != EVA_HTTP_STATUS_OK)
     {
       fs->error = g_error_new (EVA_G_ERROR_DOMAIN,
@@ -158,16 +158,16 @@ handle_get_server_file_response (GskHttpRequest  *request,
 }
 
 static gboolean
-get_server_file (GskControlClient *cc,
+get_server_file (EvaControlClient *cc,
                  const char       *path,
                  gpointer         *contents_out,
                  gsize            *length_out,
                  GError          **error)
 {
-  GskHttpRequest *request;
+  EvaHttpRequest *request;
   GetServerFileStatus status = { FALSE, NULL, contents_out, length_out };
-  GskHttpClient *http_client;
-  GskStream *client_stream;
+  EvaHttpClient *http_client;
+  EvaStream *client_stream;
   char *p = g_strdup_printf ("/run.txt?command=cat&arg1=%s", path);
   http_client = eva_http_client_new ();
   request = eva_http_request_new (EVA_HTTP_VERB_GET, p);
@@ -205,7 +205,7 @@ get_server_file (GskControlClient *cc,
  * typically readline() is employed to use this prompt.
  */
 char *
-eva_control_client_get_prompt_string(GskControlClient *cc)
+eva_control_client_get_prompt_string(EvaControlClient *cc)
 {
   GString *rv;
   guint i;
@@ -252,7 +252,7 @@ eva_control_client_get_prompt_string(GskControlClient *cc)
 }
 
 static void
-set_server_address (GskControlClient *client,
+set_server_address (EvaControlClient *client,
                     const char       *path)
 {
   if (client->address)
@@ -264,7 +264,7 @@ set_server_address (GskControlClient *client,
 }
 
 static void
-run_script (GskControlClient *cc,
+run_script (EvaControlClient *cc,
             const char       *filename)
 {
   FILE *fp = fopen (filename, "r");
@@ -314,10 +314,10 @@ run_script (GskControlClient *cc,
  * Therefore, this may reinvoke the mainloop.
  */
 gboolean
-eva_control_client_parse_command_line_args (GskControlClient *cc,
+eva_control_client_parse_command_line_args (EvaControlClient *cc,
                                             int              *argc_inout,
                                             char           ***argv_inout,
-                                            GskControlClientOptionFlags flags)
+                                            EvaControlClientOptionFlags flags)
 {
   int i;
   gboolean user_specified_interactive = FALSE;
@@ -403,7 +403,7 @@ eva_control_client_parse_command_line_args (GskControlClient *cc,
  * Prints the command-line usage that the control-client class defines.
  */
 void
-eva_control_client_print_command_line_usage(GskControlClientOptionFlags flags)
+eva_control_client_print_command_line_usage(EvaControlClientOptionFlags flags)
 {
   if (TEST_OPTION_FLAG (flags, RANDOM))
     {
@@ -429,13 +429,13 @@ eva_control_client_print_command_line_usage(GskControlClientOptionFlags flags)
 }
 #undef TEST_OPTION_FLAG
 
-gboolean eva_control_client_has_address (GskControlClient *client)
+gboolean eva_control_client_has_address (EvaControlClient *client)
 {
   return client->address != NULL;
 }
 
 void
-eva_control_client_run_command_line (GskControlClient *cc,
+eva_control_client_run_command_line (EvaControlClient *cc,
                                      const char       *line)
 {
   int argc;
@@ -479,7 +479,7 @@ eva_control_client_run_command_line (GskControlClient *cc,
 typedef struct _RequestInfo RequestInfo;
 struct _RequestInfo
 {
-  GskStream *output;
+  EvaStream *output;
   gboolean output_finalized;
 };
 
@@ -490,13 +490,13 @@ handle_output_finalized (RequestInfo *ri)
 }
 
 static void
-handle_response (GskHttpRequest  *request,
-                 GskHttpResponse *response,
-                 GskStream       *input,
+handle_response (EvaHttpRequest  *request,
+                 EvaHttpResponse *response,
+                 EvaStream       *input,
                  gpointer         hook_data)
 {
   RequestInfo *ri = hook_data;
-  GskStream *out = EVA_STREAM (ri->output);
+  EvaStream *out = EVA_STREAM (ri->output);
 #if 0
   if (response->status_code != EVA_HTTP_STATUS_OK)
     g_warning ("ERROR response from server");
@@ -538,18 +538,18 @@ append_url_quoted (GString *str, const char *t)
 
 
 void
-eva_control_client_run_command (GskControlClient *client,
+eva_control_client_run_command (EvaControlClient *client,
                                 char **command_and_args,
                                 const char *in_filename,
                                 const char *out_filename)
 {
-  GskStream *client_stream;
+  EvaStream *client_stream;
   GError *error = NULL;
-  GskStream *in_stream, *out_stream;
-  GskHttpClient *http_client;
+  EvaStream *in_stream, *out_stream;
+  EvaHttpClient *http_client;
   GString *path;
   guint i;
-  GskHttpRequest *request;
+  EvaHttpRequest *request;
   RequestInfo request_info;
 
   client_stream = eva_stream_new_connecting (client->address, &error);
@@ -642,13 +642,13 @@ eva_control_client_run_command (GskControlClient *client,
 }
 
 void
-eva_control_client_increment_command_number (GskControlClient *cc)
+eva_control_client_increment_command_number (EvaControlClient *cc)
 {
   ++(cc->cmd_no);
 }
 
 void
-eva_control_client_set_command_number (GskControlClient *cc, guint no)
+eva_control_client_set_command_number (EvaControlClient *cc, guint no)
 {
   cc->cmd_no = no;
 }

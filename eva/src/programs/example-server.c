@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-GskSource *timeout_source = NULL;
+EvaSource *timeout_source = NULL;
 char *text_to_print = NULL;
 guint period = 1000;
 guint count = 0;
@@ -23,8 +23,8 @@ handle_timeout (gpointer data)
 
 static gboolean
 command_handler__period (char **argv,
-                         GskStream *input,
-                         GskStream **output,
+                         EvaStream *input,
+                         EvaStream **output,
                          gpointer data,
                          GError **error)
 {
@@ -52,8 +52,8 @@ command_handler__period (char **argv,
 
 static gboolean
 command_handler__settext (char **argv,
-                         GskStream *input,
-                         GskStream **output,
+                         EvaStream *input,
+                         EvaStream **output,
                          gpointer data,
                          GError **error)
 {
@@ -71,7 +71,7 @@ command_handler__settext (char **argv,
 
 static gboolean handle_bs_timer (gpointer data)
 {
-  GskBufferStream *bs = EVA_BUFFER_STREAM (data);
+  EvaBufferStream *bs = EVA_BUFFER_STREAM (data);
   eva_buffer_append_string (&bs->read_buffer, "... mom?!?\n");
   eva_buffer_stream_read_buffer_changed (bs);
   eva_buffer_stream_read_shutdown (bs);
@@ -80,12 +80,12 @@ static gboolean handle_bs_timer (gpointer data)
 
 static gboolean
 command_handler__waittest (char **argv,
-                           GskStream *input,
-                           GskStream **output,
+                           EvaStream *input,
+                           EvaStream **output,
                            gpointer data,
                            GError **error)
 {
-  GskBufferStream *bs = eva_buffer_stream_new ();
+  EvaBufferStream *bs = eva_buffer_stream_new ();
   if (!eva_io_write_shutdown (EVA_IO (bs), error))
     return FALSE;       /* shouldn't happen! */
   eva_buffer_append_string (&bs->read_buffer, "hi ...\n");
@@ -101,13 +101,13 @@ command_handler__waittest (char **argv,
 typedef struct _MD5SUMData MD5SUMData;
 struct _MD5SUMData
 {
-  GskHash *hash;
-  GskBufferStream *bs;
-  GskStream *stream;
+  EvaHash *hash;
+  EvaBufferStream *bs;
+  EvaStream *stream;
 };
 /* takes ownership of arguments */
 static MD5SUMData *
-md5sum_data_new (GskBufferStream *bs, GskHash *hash, GskStream *input_stream)
+md5sum_data_new (EvaBufferStream *bs, EvaHash *hash, EvaStream *input_stream)
 {
   MD5SUMData *data = g_new (MD5SUMData, 1);
   data->bs = bs;
@@ -125,7 +125,7 @@ md5sum_data_free (MD5SUMData *data)
 }
 
 static gboolean
-handle_input_stream_readable (GskStream *stream, gpointer data)
+handle_input_stream_readable (EvaStream *stream, gpointer data)
 {
   MD5SUMData *d = data;
   char buf[4096];
@@ -137,7 +137,7 @@ handle_input_stream_readable (GskStream *stream, gpointer data)
   return TRUE;
 }
 static gboolean
-handle_input_stream_read_shutdown (GskStream *stream, gpointer data)
+handle_input_stream_read_shutdown (EvaStream *stream, gpointer data)
 {
   MD5SUMData *d = data;
   char *hexbuf = g_alloca (eva_hash_get_size (d->hash) * 2 + 1);
@@ -153,12 +153,12 @@ handle_input_stream_read_shutdown (GskStream *stream, gpointer data)
 
 static gboolean
 command_handler__md5sum (char **argv,
-                           GskStream *input,
-                           GskStream **output,
+                           EvaStream *input,
+                           EvaStream **output,
                            gpointer data,
                            GError **error)
 {
-  GskBufferStream *bs;
+  EvaBufferStream *bs;
   if (input == NULL)
     {
       g_set_error (error, EVA_G_ERROR_DOMAIN,
@@ -178,10 +178,10 @@ command_handler__md5sum (char **argv,
 }
 
 static void 
-add_socket (GskControlServer *server,
+add_socket (EvaControlServer *server,
             const char       *path)
 {
-  GskSocketAddress *addr = eva_socket_address_local_new (path);
+  EvaSocketAddress *addr = eva_socket_address_local_new (path);
   GError *error = NULL;
   g_assert (addr);
   if (!eva_control_server_listen (server, addr, &error))
@@ -196,7 +196,7 @@ static void usage ()
 }
 int main(int argc, char **argv)
 {
-  GskControlServer *server;
+  EvaControlServer *server;
   int i;
   gboolean got_socket = FALSE;
 

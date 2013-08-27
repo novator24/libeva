@@ -26,11 +26,11 @@ alloc_infos_overlap (const AllocInfo *ai1, const AllocInfo *ai2)
 }
 
 static void
-record_allocation (GskTree *tree, AllocInfo *info)
+record_allocation (EvaTree *tree, AllocInfo *info)
 {
-  GskTreeNode *node;
-  GskTreeNode *next;
-  GskTreeNode *prev;
+  EvaTreeNode *node;
+  EvaTreeNode *next;
+  EvaTreeNode *prev;
   g_assert (eva_tree_lookup (tree, info) == NULL);
   eva_tree_insert (tree, info, info);
 
@@ -58,8 +58,8 @@ int main (int argc, char **argv)
   guint i;
   for (i = 0; i < 10; i++)
     {
-      GskMemPool pool;
-      GskTree *tree;
+      EvaMemPool pool;
+      EvaTree *tree;
       guint j;
       tree = eva_tree_new_full (compare_by_pointer, NULL, g_free, NULL);
       eva_mem_pool_construct (&pool);
@@ -77,8 +77,8 @@ int main (int argc, char **argv)
   for (i = 4; i < 320; i += 15)
     {
       guint j;
-      GskTree *tree = eva_tree_new_full (compare_by_pointer, NULL, g_free, NULL);
-      GskMemPoolFixed pool;
+      EvaTree *tree = eva_tree_new_full (compare_by_pointer, NULL, g_free, NULL);
+      EvaMemPoolFixed pool;
       eva_mem_pool_fixed_construct (&pool, i);
       for (j = 0; j < 1000; j++)
 	{

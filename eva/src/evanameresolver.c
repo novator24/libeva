@@ -13,7 +13,7 @@ GType eva_name_resolver_get_type(void)
     {
       static const GTypeInfo name_resolver_info =
       {
-	sizeof (GskNameResolverIface),
+	sizeof (EvaNameResolverIface),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) NULL,
@@ -25,7 +25,7 @@ GType eva_name_resolver_get_type(void)
 	NULL		/* value_table */
       };
       name_resolver_type = g_type_register_static (G_TYPE_INTERFACE,
-                                                   "GskNameResolver",
+                                                   "EvaNameResolver",
 						   &name_resolver_info,
 						   G_TYPE_FLAG_ABSTRACT);
     }
@@ -33,7 +33,7 @@ GType eva_name_resolver_get_type(void)
 }
 
 /* --- resolver-tasks --- */
-struct _GskNameResolverTask
+struct _EvaNameResolverTask
 {
   guint16                     ref_count;
 
@@ -44,24 +44,24 @@ struct _GskNameResolverTask
 
   gpointer                    task_data;
 
-  GskNameResolver            *resolver;
-  GskNameResolverIface       *iface;
+  EvaNameResolver            *resolver;
+  EvaNameResolverIface       *iface;
 
-  GskNameResolverSuccessFunc  success;
-  GskNameResolverFailureFunc  failure;
+  EvaNameResolverSuccessFunc  success;
+  EvaNameResolverFailureFunc  failure;
   gpointer                    func_data;
   GDestroyNotify              destroy;
 };
 
-EVA_DECLARE_POOL_ALLOCATORS(GskNameResolverTask, eva_name_resolver_task, 8)
+EVA_DECLARE_POOL_ALLOCATORS(EvaNameResolverTask, eva_name_resolver_task, 8)
 
 typedef struct _Handler Handler;
 struct _Handler
 {
-  GskNameResolverFamilyHandler handler;
+  EvaNameResolverFamilyHandler handler;
   gpointer data;
   GDestroyNotify destroy;
-  GskNameResolver *resolver;
+  EvaNameResolver *resolver;
 };
 
 static void
@@ -87,10 +87,10 @@ G_LOCK_DEFINE_STATIC (family_registry);
 
 
 static void
-handle_resolver_success (GskSocketAddress *address,
+handle_resolver_success (EvaSocketAddress *address,
 			 gpointer          task_ptr)
 {
-  GskNameResolverTask *task = task_ptr;
+  EvaNameResolverTask *task = task_ptr;
   if (task->success)
     (*task->success) (address, task->func_data);
   task->is_running = 0;
@@ -101,7 +101,7 @@ static void
 handle_resolver_failure (GError           *error,
 			 gpointer          task_ptr)
 {
-  GskNameResolverTask *task = task_ptr;
+  EvaNameResolverTask *task = task_ptr;
   if (task->failure)
     (*task->failure) (error, task->func_data);
   task->is_running = 0;
@@ -112,7 +112,7 @@ handle_resolver_failure (GError           *error,
  * eva_name_resolver_task_new:
  * @family: name space to look the address up in.
  * @name: name within @family's namespace.
- * @success: function to be called with an appropriate #GskSocketAddress
+ * @success: function to be called with an appropriate #EvaSocketAddress
  *    once the name is successfully resolved.
  * @failure: function to call if the name lookup failed.
  * @func_data: data to pass to @success or @failure.
@@ -125,18 +125,18 @@ handle_resolver_failure (GError           *error,
  * you must eva_name_resolver_task_unref() once you are done
  * with the handle.  (This will NOT cause a running task to be cancelled.)
  *
- * returns: a reference to a #GskNameResolverTask which can
+ * returns: a reference to a #EvaNameResolverTask which can
  * be used to cancel or query the task.
  */
-GskNameResolverTask *
-eva_name_resolver_task_new (GskNameResolverFamily       family,
+EvaNameResolverTask *
+eva_name_resolver_task_new (EvaNameResolverFamily       family,
 		            const char                 *name,
-		            GskNameResolverSuccessFunc  success,
-		            GskNameResolverFailureFunc  failure,
+		            EvaNameResolverSuccessFunc  success,
+		            EvaNameResolverFailureFunc  failure,
 		            gpointer                    func_data,
 		            GDestroyNotify              destroy)
 {
-  GskNameResolverTask *task;
+  EvaNameResolverTask *task;
   Handler *handler;
 
   task = eva_name_resolver_task_alloc ();
@@ -194,7 +194,7 @@ eva_name_resolver_task_new (GskNameResolverFamily       family,
  * but the destroy method will be.
  */
 void
-eva_name_resolver_task_cancel (GskNameResolverTask *task)
+eva_name_resolver_task_cancel (EvaNameResolverTask *task)
 {
   g_return_if_fail (task->is_running);
   g_return_if_fail (!task->was_cancelled);
@@ -218,7 +218,7 @@ eva_name_resolver_task_cancel (GskNameResolverTask *task)
  * This is mostly useless outside the resolver code.
  */
 void
-eva_name_resolver_task_ref (GskNameResolverTask *task)
+eva_name_resolver_task_ref (EvaNameResolverTask *task)
 {
   g_return_if_fail (task->ref_count > 0);
   ++(task->ref_count);
@@ -234,7 +234,7 @@ eva_name_resolver_task_ref (GskNameResolverTask *task)
  * eva_name_resolve().
  */
 void
-eva_name_resolver_task_unref (GskNameResolverTask *task)
+eva_name_resolver_task_unref (EvaNameResolverTask *task)
 {
   g_return_if_fail (task->ref_count > 0);
   if (--(task->ref_count) == 0)
@@ -251,15 +251,15 @@ eva_name_resolver_task_unref (GskNameResolverTask *task)
  * eva_name_resolver_family_get_by_name:
  * @name: the name of the namespace, as a c string.
  *
- * Get the #GskNameResolverFamily of a resolver namespace
+ * Get the #EvaNameResolverFamily of a resolver namespace
  * by ascii string.
  *
  * returns: the family, or 0 on error.
  */
-GskNameResolverFamily
+EvaNameResolverFamily
 eva_name_resolver_family_get_by_name (const char *name)
 {
-  GskNameResolverFamily family;
+  EvaNameResolverFamily family;
   LOCK ();
   family = GPOINTER_TO_UINT (g_hash_table_lookup (name_to_family, name));
   UNLOCK ();
@@ -276,7 +276,7 @@ eva_name_resolver_family_get_by_name (const char *name)
  * returns: the namespace's name as a c string.
  */
 const char *
-eva_name_resolver_family_get_name(GskNameResolverFamily family)
+eva_name_resolver_family_get_name(EvaNameResolverFamily family)
 {
   const char *result;
   LOCK ();
@@ -289,16 +289,16 @@ eva_name_resolver_family_get_name(GskNameResolverFamily family)
  * eva_name_resolver_family_unique:
  * @name: name of a new namespace to register.
  *
- * Allocate a unique GskNameResolverFamily
- * given a new name, or return the old GskNameResolverFamily
+ * Allocate a unique EvaNameResolverFamily
+ * given a new name, or return the old EvaNameResolverFamily
  * if one already exists.
  *
  * returns: the family corresponding to @name.
  */
-GskNameResolverFamily
+EvaNameResolverFamily
 eva_name_resolver_family_unique (const char *name)
 {
-  GskNameResolverFamily family = eva_name_resolver_family_get_by_name (name);
+  EvaNameResolverFamily family = eva_name_resolver_family_get_by_name (name);
   if (!family)
     {
       LOCK ();
@@ -319,7 +319,7 @@ eva_name_resolver_family_unique (const char *name)
  * The family is the name of the namespace.
  */
 void
-eva_name_resolver_add_family_name    (GskNameResolverFamily   family,
+eva_name_resolver_add_family_name    (EvaNameResolverFamily   family,
 				      const char             *name)
 {
   char *copy;
@@ -343,8 +343,8 @@ eva_name_resolver_add_family_name    (GskNameResolverFamily   family,
  * of a given family.
  */
 void
-eva_name_resolver_add_family_resolver (GskNameResolverFamily   family,
-				       GskNameResolver        *resolver)
+eva_name_resolver_add_family_resolver (EvaNameResolverFamily   family,
+				       EvaNameResolver        *resolver)
 {
   Handler *handler;
   g_return_if_fail (EVA_IS_NAME_RESOLVER (resolver));
@@ -367,8 +367,8 @@ eva_name_resolver_add_family_resolver (GskNameResolverFamily   family,
  * of a given family.
  */
 void
-eva_name_resolver_add_family_handler (GskNameResolverFamily family,
-				      GskNameResolverFamilyHandler handler,
+eva_name_resolver_add_family_handler (EvaNameResolverFamily family,
+				      EvaNameResolverFamilyHandler handler,
 				      gpointer data,
 				      GDestroyNotify destroy)
 {
@@ -388,7 +388,7 @@ eva_name_resolver_add_family_handler (GskNameResolverFamily family,
  * @family: name family to perform the lookup in.
  * @name: name to lookup.
  * @success: callback for successful name-lookup: this will
- * be called with the #GskSocketAddress that was found.
+ * be called with the #EvaSocketAddress that was found.
  * @failure: callback for failure.  This is invoked with the
  * #GError object.
  * @func_data: data to call to the callbacks.
@@ -399,14 +399,14 @@ eva_name_resolver_add_family_handler (GskNameResolverFamily family,
 
 /* --- global initialization --- */
 static gboolean made_dns_name_resolver = FALSE;
-static GskDnsRRCache *dns_rr_cache = NULL;
+static EvaDnsRRCache *dns_rr_cache = NULL;
 
-static GskNameResolver *
+static EvaNameResolver *
 make_dns_client (gpointer unused)
 {
-  GskPacketQueue *queue;
-  GskSocketAddressClass *class;
-  GskDnsClient *client;
+  EvaPacketQueue *queue;
+  EvaSocketAddressClass *class;
+  EvaDnsClient *client;
   GError *error = NULL;
 
   g_assert (unused == NULL);
@@ -440,7 +440,7 @@ _eva_name_resolver_init (void)
 
   /* add dns handling by default */
   {
-    GskNameResolverFamily family = eva_name_resolver_family_unique ("ipv4");
+    EvaNameResolverFamily family = eva_name_resolver_family_unique ("ipv4");
     g_assert (family == EVA_NAME_RESOLVER_FAMILY_IPV4);
     eva_name_resolver_add_family_handler (EVA_NAME_RESOLVER_FAMILY_IPV4,
 					  make_dns_client, NULL, NULL);

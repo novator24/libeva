@@ -1,29 +1,29 @@
-<refentry id="eva-GskMimeMultipartDecoder">
+<refentry id="eva-EvaMimeMultipartDecoder">
 <refmeta>
-<refentrytitle role="top_of_page" id="eva-GskMimeMultipartDecoder.top_of_page">GskMimeMultipartDecoder</refentrytitle>
+<refentrytitle role="top_of_page" id="eva-EvaMimeMultipartDecoder.top_of_page">EvaMimeMultipartDecoder</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskMimeMultipartDecoder</refname>
+<refname>EvaMimeMultipartDecoder</refname>
 <refpurpose>read Content-Type multipart/*.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="eva-GskMimeMultipartDecoder.synopsis" role="synopsis">
+<refsynopsisdiv id="eva-EvaMimeMultipartDecoder.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-<link linkend="gboolean">gboolean</link>            (<link linkend="GskMimeMultipartDecoderHook">*GskMimeMultipartDecoderHook</link>)      (<link linkend="GskMimeMultipartDecoder">GskMimeMultipartDecoder</link> *multipart_decoder);
-enum                <link linkend="GskMimeMultipartDecoderMode">GskMimeMultipartDecoderMode</link>;
-                    <link linkend="GskMimeMultipartDecoderClass">GskMimeMultipartDecoderClass</link>;
-                    <link linkend="GskMimeMultipartDecoder">GskMimeMultipartDecoder</link>;
-<link linkend="GskMimeMultipartDecoder">GskMimeMultipartDecoder</link> * <link linkend="eva-mime-multipart-decoder-new">eva_mime_multipart_decoder_new</link>
+<link linkend="gboolean">gboolean</link>            (<link linkend="EvaMimeMultipartDecoderHook">*EvaMimeMultipartDecoderHook</link>)      (<link linkend="EvaMimeMultipartDecoder">EvaMimeMultipartDecoder</link> *multipart_decoder);
+enum                <link linkend="EvaMimeMultipartDecoderMode">EvaMimeMultipartDecoderMode</link>;
+                    <link linkend="EvaMimeMultipartDecoderClass">EvaMimeMultipartDecoderClass</link>;
+                    <link linkend="EvaMimeMultipartDecoder">EvaMimeMultipartDecoder</link>;
+<link linkend="EvaMimeMultipartDecoder">EvaMimeMultipartDecoder</link> * <link linkend="eva-mime-multipart-decoder-new">eva_mime_multipart_decoder_new</link>
                                                         (<link linkend="char">char</link> **kv_pairs);
-<link linkend="void">void</link>                <link linkend="eva-mime-multipart-decoder-set-mode">eva_mime_multipart_decoder_set_mode</link> (<link linkend="GskMimeMultipartDecoder">GskMimeMultipartDecoder</link> *decoder,
-                                                         <link linkend="GskMimeMultipartDecoderMode">GskMimeMultipartDecoderMode</link> mode);
-<link linkend="GskMimeMultipartPiece">GskMimeMultipartPiece</link> * <link linkend="eva-mime-multipart-decoder-get-piece">eva_mime_multipart_decoder_get_piece</link>
-                                                        (<link linkend="GskMimeMultipartDecoder">GskMimeMultipartDecoder</link> *decoder);
+<link linkend="void">void</link>                <link linkend="eva-mime-multipart-decoder-set-mode">eva_mime_multipart_decoder_set_mode</link> (<link linkend="EvaMimeMultipartDecoder">EvaMimeMultipartDecoder</link> *decoder,
+                                                         <link linkend="EvaMimeMultipartDecoderMode">EvaMimeMultipartDecoderMode</link> mode);
+<link linkend="EvaMimeMultipartPiece">EvaMimeMultipartPiece</link> * <link linkend="eva-mime-multipart-decoder-get-piece">eva_mime_multipart_decoder_get_piece</link>
+                                                        (<link linkend="EvaMimeMultipartDecoder">EvaMimeMultipartDecoder</link> *decoder);
 #define             <link linkend="eva-mime-multipart-decoder-trap">eva_mime_multipart_decoder_trap</link>     (multipart_decoder, func, shutdown, data, destroy)
 #define             <link linkend="eva-mime-multipart-decoder-untrap">eva_mime_multipart_decoder_untrap</link>   (multipart_decoder)
 #define             <link linkend="eva-mime-multipart-decoder-block">eva_mime_multipart_decoder_block</link>    (multipart_decoder)
@@ -39,7 +39,7 @@ enum                <link linkend="GskMimeMultipartDecoderMode">GskMimeMultipart
 
 
 
-<refsect1 id="eva-GskMimeMultipartDecoder.description" role="desc">
+<refsect1 id="eva-EvaMimeMultipartDecoder.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 This code implements the MIME multipart encapsulation
@@ -49,11 +49,11 @@ This format is often encountered parsing form data from webpages.
 </para>
 </refsect1>
 
-<refsect1 id="eva-GskMimeMultipartDecoder.details" role="details">
+<refsect1 id="eva-EvaMimeMultipartDecoder.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskMimeMultipartDecoderHook" role="function">
-<title>GskMimeMultipartDecoderHook ()</title>
-<indexterm zone="GskMimeMultipartDecoderHook"><primary sortas="GskMimeMultipartDecoderHook">GskMimeMultipartDecoderHook</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GskMimeMultipartDecoderHook)      (<link linkend="GskMimeMultipartDecoder">GskMimeMultipartDecoder</link> *multipart_decoder);</programlisting>
+<refsect2 id="EvaMimeMultipartDecoderHook" role="function">
+<title>EvaMimeMultipartDecoderHook ()</title>
+<indexterm zone="EvaMimeMultipartDecoderHook"><primary sortas="EvaMimeMultipartDecoderHook">EvaMimeMultipartDecoderHook</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*EvaMimeMultipartDecoderHook)      (<link linkend="EvaMimeMultipartDecoder">EvaMimeMultipartDecoder</link> *multipart_decoder);</programlisting>
 <para>
 Function to invoke when a new piece is available.
 </para><variablelist role="params">
@@ -64,14 +64,14 @@ Function to invoke when a new piece is available.
 of un-retrieved pieces.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMimeMultipartDecoderMode" role="enum">
-<title>enum GskMimeMultipartDecoderMode</title>
-<indexterm zone="GskMimeMultipartDecoderMode"><primary sortas="GskMimeMultipartDecoderMode">GskMimeMultipartDecoderMode</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaMimeMultipartDecoderMode" role="enum">
+<title>enum EvaMimeMultipartDecoderMode</title>
+<indexterm zone="EvaMimeMultipartDecoderMode"><primary sortas="EvaMimeMultipartDecoderMode">EvaMimeMultipartDecoderMode</primary></indexterm><programlisting>typedef enum
 {
   EVA_MIME_MULTIPART_DECODER_MODE_DEFAULT,
   EVA_MIME_MULTIPART_DECODER_MODE_ALWAYS_MEMORY,
   EVA_MIME_MULTIPART_DECODER_MODE_ALWAYS_STREAM
-} GskMimeMultipartDecoderMode;
+} EvaMimeMultipartDecoderMode;
 </programlisting>
 <para>
 Multipart pieces may be streaming or a memory buffer.
@@ -104,38 +104,38 @@ a stream for just a few bytes.  This is can be slightly inconvenient.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMimeMultipartDecoderClass" role="struct">
-<title>GskMimeMultipartDecoderClass</title>
-<indexterm zone="GskMimeMultipartDecoderClass"><primary sortas="GskMimeMultipartDecoderClass">GskMimeMultipartDecoderClass</primary></indexterm><programlisting>typedef struct {
-  GskStreamClass base_class;
+<refsect2 id="EvaMimeMultipartDecoderClass" role="struct">
+<title>EvaMimeMultipartDecoderClass</title>
+<indexterm zone="EvaMimeMultipartDecoderClass"><primary sortas="EvaMimeMultipartDecoderClass">EvaMimeMultipartDecoderClass</primary></indexterm><programlisting>typedef struct {
+  EvaStreamClass base_class;
 
-  gboolean (*set_poll_new_part) (GskMimeMultipartDecoder *decoder,
+  gboolean (*set_poll_new_part) (EvaMimeMultipartDecoder *decoder,
 				 gboolean do_polling);
-  void     (*shutdown_new_part) (GskMimeMultipartDecoder *decoder);
-} GskMimeMultipartDecoderClass;
+  void     (*shutdown_new_part) (EvaMimeMultipartDecoder *decoder);
+} EvaMimeMultipartDecoderClass;
 </programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GskMimeMultipartDecoder" role="struct">
-<title>GskMimeMultipartDecoder</title>
-<indexterm zone="GskMimeMultipartDecoder"><primary sortas="GskMimeMultipartDecoder">GskMimeMultipartDecoder</primary></indexterm><programlisting>typedef struct {
-  GskStream      base_instance;
+<refsect2 id="EvaMimeMultipartDecoder" role="struct">
+<title>EvaMimeMultipartDecoder</title>
+<indexterm zone="EvaMimeMultipartDecoder"><primary sortas="EvaMimeMultipartDecoder">EvaMimeMultipartDecoder</primary></indexterm><programlisting>typedef struct {
+  EvaStream      base_instance;
 
   /* these are parsed out of the initial key-value pairs. */
   char *type;		/* 3.1: type of the body */
   char *start;		/* 3.2: content-id of root part */
   char *start_info;	/* 3.3: random application information */
-} GskMimeMultipartDecoder;
+} EvaMimeMultipartDecoder;
 </programlisting>
 <para>
 </para></refsect2>
 <refsect2 id="eva-mime-multipart-decoder-new" role="function">
 <title>eva_mime_multipart_decoder_new ()</title>
-<indexterm zone="eva-mime-multipart-decoder-new"><primary sortas="eva_mime_multipart_decoder_new">eva_mime_multipart_decoder_new</primary></indexterm><programlisting><link linkend="GskMimeMultipartDecoder">GskMimeMultipartDecoder</link> * eva_mime_multipart_decoder_new
+<indexterm zone="eva-mime-multipart-decoder-new"><primary sortas="eva_mime_multipart_decoder_new">eva_mime_multipart_decoder_new</primary></indexterm><programlisting><link linkend="EvaMimeMultipartDecoder">EvaMimeMultipartDecoder</link> * eva_mime_multipart_decoder_new
                                                         (<link linkend="char">char</link> **kv_pairs);</programlisting>
 <para>
 Allocate a new MIME multipart decoder,
-which is a write-only <link linkend="GskStream"><type>GskStream</type></link>
+which is a write-only <link linkend="EvaStream"><type>EvaStream</type></link>
 that converts to a stream of individual pieces.</para>
 <para>
 </para><variablelist role="params">
@@ -148,8 +148,8 @@ with the Content-Type field.
 </variablelist></refsect2>
 <refsect2 id="eva-mime-multipart-decoder-set-mode" role="function">
 <title>eva_mime_multipart_decoder_set_mode ()</title>
-<indexterm zone="eva-mime-multipart-decoder-set-mode"><primary sortas="eva_mime_multipart_decoder_set_mode">eva_mime_multipart_decoder_set_mode</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mime_multipart_decoder_set_mode (<link linkend="GskMimeMultipartDecoder">GskMimeMultipartDecoder</link> *decoder,
-                                                         <link linkend="GskMimeMultipartDecoderMode">GskMimeMultipartDecoderMode</link> mode);</programlisting>
+<indexterm zone="eva-mime-multipart-decoder-set-mode"><primary sortas="eva_mime_multipart_decoder_set_mode">eva_mime_multipart_decoder_set_mode</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mime_multipart_decoder_set_mode (<link linkend="EvaMimeMultipartDecoder">EvaMimeMultipartDecoder</link> *decoder,
+                                                         <link linkend="EvaMimeMultipartDecoderMode">EvaMimeMultipartDecoderMode</link> mode);</programlisting>
 <para>
 Set whether to force the decoder to convert
 everything to memory or a stream, or it may
@@ -170,8 +170,8 @@ construction.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-mime-multipart-decoder-get-piece" role="function">
 <title>eva_mime_multipart_decoder_get_piece ()</title>
-<indexterm zone="eva-mime-multipart-decoder-get-piece"><primary sortas="eva_mime_multipart_decoder_get_piece">eva_mime_multipart_decoder_get_piece</primary></indexterm><programlisting><link linkend="GskMimeMultipartPiece">GskMimeMultipartPiece</link> * eva_mime_multipart_decoder_get_piece
-                                                        (<link linkend="GskMimeMultipartDecoder">GskMimeMultipartDecoder</link> *decoder);</programlisting>
+<indexterm zone="eva-mime-multipart-decoder-get-piece"><primary sortas="eva_mime_multipart_decoder_get_piece">eva_mime_multipart_decoder_get_piece</primary></indexterm><programlisting><link linkend="EvaMimeMultipartPiece">EvaMimeMultipartPiece</link> * eva_mime_multipart_decoder_get_piece
+                                                        (<link linkend="EvaMimeMultipartDecoder">EvaMimeMultipartDecoder</link> *decoder);</programlisting>
 <para>
 Retrieve a piece of multipart content.
 Pieces will be retrieve in the order they are
@@ -232,7 +232,7 @@ Invocations to this function may be stacked;
 it is undone with <link linkend="eva-mime-multipart-decoder-unblock"><function>eva_mime_multipart_decoder_unblock()</function></link>.
 </para><variablelist role="params">
 <varlistentry><term><parameter>multipart_decoder</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskMimeMultipartDecoder"><type>GskMimeMultipartDecoder</type></link> to watch.
+<listitem><simpara>the <link linkend="EvaMimeMultipartDecoder"><type>EvaMimeMultipartDecoder</type></link> to watch.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-mime-multipart-decoder-unblock" role="macro">
@@ -244,7 +244,7 @@ if we are currently notifying and if this is the last blocker.
 It undones one invocation of <link linkend="eva-mime-multipart-decoder-block"><function>eva_mime_multipart_decoder_block()</function></link>.
 </para><variablelist role="params">
 <varlistentry><term><parameter>multipart_decoder</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskMimeMultipartDecoder"><type>GskMimeMultipartDecoder</type></link> to stop watching.
+<listitem><simpara>the <link linkend="EvaMimeMultipartDecoder"><type>EvaMimeMultipartDecoder</type></link> to stop watching.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 

@@ -1,6 +1,6 @@
-<refentry id="GskPacketQueue">
+<refentry id="EvaPacketQueue">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskPacketQueue.top_of_page">Datagram I/O</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaPacketQueue.top_of_page">Datagram I/O</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
@@ -10,20 +10,20 @@
 <refpurpose>base class for datagram I/O classes</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskPacketQueue.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaPacketQueue.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskPacketQueueClass">GskPacketQueueClass</link>;
-                    <link linkend="GskPacketQueue-struct">GskPacketQueue</link>;
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-packet-queue-bind">eva_packet_queue_bind</link>               (<link linkend="GskPacketQueue">GskPacketQueue</link> *queue,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+                    <link linkend="EvaPacketQueueClass">EvaPacketQueueClass</link>;
+                    <link linkend="EvaPacketQueue-struct">EvaPacketQueue</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-packet-queue-bind">eva_packet_queue_bind</link>               (<link linkend="EvaPacketQueue">EvaPacketQueue</link> *queue,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskPacket">GskPacket</link> *         <link linkend="eva-packet-queue-read">eva_packet_queue_read</link>               (<link linkend="GskPacketQueue">GskPacketQueue</link> *queue,
+<link linkend="EvaPacket">EvaPacket</link> *         <link linkend="eva-packet-queue-read">eva_packet_queue_read</link>               (<link linkend="EvaPacketQueue">EvaPacketQueue</link> *queue,
                                                          <link linkend="gboolean">gboolean</link> save_address,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-packet-queue-write">eva_packet_queue_write</link>              (<link linkend="GskPacketQueue">GskPacketQueue</link> *queue,
-                                                         <link linkend="GskPacket">GskPacket</link> *out,
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-packet-queue-write">eva_packet_queue_write</link>              (<link linkend="EvaPacketQueue">EvaPacketQueue</link> *queue,
+                                                         <link linkend="EvaPacket">EvaPacket</link> *out,
                                                          <link linkend="GError">GError</link> **error);
 #define             <link linkend="eva-packet-queue-get-allow-address">eva_packet_queue_get_allow_address</link>  (queue)
 #define             <link linkend="eva-packet-queue-get-allow-no-address">eva_packet_queue_get_allow_no_address</link>(queue)
@@ -41,18 +41,18 @@
 #define             <link linkend="eva-packet-queue-clear-misses-packets">eva_packet_queue_clear_misses_packets</link>(queue)
 #define             <link linkend="eva-packet-queue-clear-is-readable">eva_packet_queue_clear_is_readable</link>  (queue)
 #define             <link linkend="eva-packet-queue-clear-is-writable">eva_packet_queue_clear_is_writable</link>  (queue)
-<link linkend="void">void</link>                <link linkend="eva-packet-queue-set-bound-addresss">eva_packet_queue_set_bound_addresss</link> (<link linkend="GskPacketQueue">GskPacketQueue</link> *queue,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address);
+<link linkend="void">void</link>                <link linkend="eva-packet-queue-set-bound-addresss">eva_packet_queue_set_bound_addresss</link> (<link linkend="EvaPacketQueue">EvaPacketQueue</link> *queue,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskPacketQueue.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaPacketQueue.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskIO">GskIO</link>
-         +----GskPacketQueue
-               +----<link linkend="GskPacketQueueFd">GskPacketQueueFd</link>
+   +----<link linkend="EvaIO">EvaIO</link>
+         +----EvaPacketQueue
+               +----<link linkend="EvaPacketQueueFd">EvaPacketQueueFd</link>
 </synopsis>
 </refsect1>
 
@@ -63,7 +63,7 @@
 
 
 
-<refsect1 id="GskPacketQueue.description" role="desc">
+<refsect1 id="EvaPacketQueue.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 Datagram I/O means binary packets of data are the transmission unit.
@@ -73,28 +73,28 @@ Unless the packet_queue is bound, it is unlikely to ever be readable.
 </para>
 </refsect1>
 
-<refsect1 id="GskPacketQueue.details" role="details">
+<refsect1 id="EvaPacketQueue.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskPacketQueueClass" role="struct">
-<title>GskPacketQueueClass</title>
-<indexterm zone="GskPacketQueueClass"><primary sortas="GskPacketQueueClass">GskPacketQueueClass</primary></indexterm><programlisting>typedef struct {
-  GskIOClass io_class;
-  gboolean   (*bind)  (GskPacketQueue    *queue,
-		       GskSocketAddress  *addr,
+<refsect2 id="EvaPacketQueueClass" role="struct">
+<title>EvaPacketQueueClass</title>
+<indexterm zone="EvaPacketQueueClass"><primary sortas="EvaPacketQueueClass">EvaPacketQueueClass</primary></indexterm><programlisting>typedef struct {
+  EvaIOClass io_class;
+  gboolean   (*bind)  (EvaPacketQueue    *queue,
+		       EvaSocketAddress  *addr,
 		       GError           **error);
-  GskPacket *(*read)  (GskPacketQueue    *queue,
+  EvaPacket *(*read)  (EvaPacketQueue    *queue,
 		       gboolean           save_address,
 		       GError           **error);
-  gboolean   (*write) (GskPacketQueue    *queue,
-		       GskPacket         *out,
+  gboolean   (*write) (EvaPacketQueue    *queue,
+		       EvaPacket         *out,
 		       GError           **error);
-} GskPacketQueueClass;
+} EvaPacketQueueClass;
 </programlisting>
 <para>
 Base class for an object which can input and output packets.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskIOClass">GskIOClass</link>&#160;<structfield>io_class</structfield>;</term>
+<term><link linkend="EvaIOClass">EvaIOClass</link>&#160;<structfield>io_class</structfield>;</term>
 <listitem><simpara>parent class.
 </simpara></listitem>
 </varlistentry>
@@ -114,16 +114,16 @@ Base class for an object which can input and output packets.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskPacketQueue-struct" role="struct">
-<title>GskPacketQueue</title>
-<indexterm zone="GskPacketQueue-struct"><primary sortas="GskPacketQueue">GskPacketQueue</primary></indexterm><programlisting>typedef struct _GskPacketQueue GskPacketQueue;</programlisting>
+<refsect2 id="EvaPacketQueue-struct" role="struct">
+<title>EvaPacketQueue</title>
+<indexterm zone="EvaPacketQueue-struct"><primary sortas="EvaPacketQueue">EvaPacketQueue</primary></indexterm><programlisting>typedef struct _EvaPacketQueue EvaPacketQueue;</programlisting>
 <para>
 Abstract instance which can read and write packets.
 </para></refsect2>
 <refsect2 id="eva-packet-queue-bind" role="function">
 <title>eva_packet_queue_bind ()</title>
-<indexterm zone="eva-packet-queue-bind"><primary sortas="eva_packet_queue_bind">eva_packet_queue_bind</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_packet_queue_bind               (<link linkend="GskPacketQueue">GskPacketQueue</link> *queue,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+<indexterm zone="eva-packet-queue-bind"><primary sortas="eva_packet_queue_bind">eva_packet_queue_bind</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_packet_queue_bind               (<link linkend="EvaPacketQueue">EvaPacketQueue</link> *queue,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Bind a packet queue to receive on a particular address.</para>
@@ -143,7 +143,7 @@ Bind a packet queue to receive on a particular address.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-packet-queue-read" role="function">
 <title>eva_packet_queue_read ()</title>
-<indexterm zone="eva-packet-queue-read"><primary sortas="eva_packet_queue_read">eva_packet_queue_read</primary></indexterm><programlisting><link linkend="GskPacket">GskPacket</link> *         eva_packet_queue_read               (<link linkend="GskPacketQueue">GskPacketQueue</link> *queue,
+<indexterm zone="eva-packet-queue-read"><primary sortas="eva_packet_queue_read">eva_packet_queue_read</primary></indexterm><programlisting><link linkend="EvaPacket">EvaPacket</link> *         eva_packet_queue_read               (<link linkend="EvaPacketQueue">EvaPacketQueue</link> *queue,
                                                          <link linkend="gboolean">gboolean</link> save_address,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
@@ -164,8 +164,8 @@ Read a packet from the queue, optionally tracking whence it came.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-packet-queue-write" role="function">
 <title>eva_packet_queue_write ()</title>
-<indexterm zone="eva-packet-queue-write"><primary sortas="eva_packet_queue_write">eva_packet_queue_write</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_packet_queue_write              (<link linkend="GskPacketQueue">GskPacketQueue</link> *queue,
-                                                         <link linkend="GskPacket">GskPacket</link> *out,
+<indexterm zone="eva-packet-queue-write"><primary sortas="eva_packet_queue_write">eva_packet_queue_write</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_packet_queue_write              (<link linkend="EvaPacketQueue">EvaPacketQueue</link> *queue,
+                                                         <link linkend="EvaPacket">EvaPacket</link> *out,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Try and write a packet to the queue.
@@ -377,8 +377,8 @@ This should only be used by derived classes.
 </variablelist></refsect2>
 <refsect2 id="eva-packet-queue-set-bound-addresss" role="function">
 <title>eva_packet_queue_set_bound_addresss ()</title>
-<indexterm zone="eva-packet-queue-set-bound-addresss"><primary sortas="eva_packet_queue_set_bound_addresss">eva_packet_queue_set_bound_addresss</primary></indexterm><programlisting><link linkend="void">void</link>                eva_packet_queue_set_bound_addresss (<link linkend="GskPacketQueue">GskPacketQueue</link> *queue,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address);</programlisting>
+<indexterm zone="eva-packet-queue-set-bound-addresss"><primary sortas="eva_packet_queue_set_bound_addresss">eva_packet_queue_set_bound_addresss</primary></indexterm><programlisting><link linkend="void">void</link>                eva_packet_queue_set_bound_addresss (<link linkend="EvaPacketQueue">EvaPacketQueue</link> *queue,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);</programlisting>
 <para>
 Set the bound_address member of the packet-queue safely.
 </para>
@@ -399,10 +399,10 @@ which automatically bind to certain addresses.</para>
 
 
 
-<refsect1 id="GskPacketQueue.see-also">
+<refsect1 id="EvaPacketQueue.see-also">
 <title>See Also</title>
 <para>
-GskIO
+EvaIO
 </para>
 </refsect1>
 

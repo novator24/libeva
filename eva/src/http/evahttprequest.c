@@ -22,14 +22,14 @@ enum
 };
 
 
-/* --- GskHttpRequest implementation --- */
+/* --- EvaHttpRequest implementation --- */
 static void
 eva_http_request_set_property   (GObject        *object,
                                  guint           property_id,
                                  const GValue   *value,
                                  GParamSpec     *pspec)
 {
-  GskHttpRequest *request = EVA_HTTP_REQUEST (object);
+  EvaHttpRequest *request = EVA_HTTP_REQUEST (object);
   switch (property_id)
     {
     case PROP_REQUEST_VERB:
@@ -68,7 +68,7 @@ eva_http_request_get_property   (GObject        *object,
                                  GValue         *value,
                                  GParamSpec     *pspec)
 {
-  GskHttpRequest *request = EVA_HTTP_REQUEST (object);
+  EvaHttpRequest *request = EVA_HTTP_REQUEST (object);
   switch (property_id)
     {
     case PROP_REQUEST_VERB:
@@ -104,7 +104,7 @@ eva_http_request_get_property   (GObject        *object,
 static void
 eva_http_request_finalize (GObject *object)
 {
-  GskHttpRequest *request = EVA_HTTP_REQUEST (object);
+  EvaHttpRequest *request = EVA_HTTP_REQUEST (object);
 
 #define FREE_LIST(Class, free_func, member)                             \
   G_STMT_START{                                                         \
@@ -115,11 +115,11 @@ eva_http_request_finalize (GObject *object)
         free_func (at);                                                 \
       }                                                                 \
   }G_STMT_END
-  FREE_LIST (GskHttpCharSet, eva_http_char_set_free, accept_charsets);
-  FREE_LIST (GskHttpContentEncodingSet, eva_http_content_encoding_set_free, accept_content_encodings);
-  FREE_LIST (GskHttpTransferEncodingSet, eva_http_transfer_encoding_set_free, accept_transfer_encodings);
-  FREE_LIST (GskHttpMediaTypeSet, eva_http_media_type_set_free, accept_media_types);
-  FREE_LIST (GskHttpLanguageSet, eva_http_language_set_free, accept_languages);
+  FREE_LIST (EvaHttpCharSet, eva_http_char_set_free, accept_charsets);
+  FREE_LIST (EvaHttpContentEncodingSet, eva_http_content_encoding_set_free, accept_content_encodings);
+  FREE_LIST (EvaHttpTransferEncodingSet, eva_http_transfer_encoding_set_free, accept_transfer_encodings);
+  FREE_LIST (EvaHttpMediaTypeSet, eva_http_media_type_set_free, accept_media_types);
+  FREE_LIST (EvaHttpLanguageSet, eva_http_language_set_free, accept_languages);
 #undef FREE_LIST
 
   g_free (request->path);
@@ -148,7 +148,7 @@ eva_http_request_finalize (GObject *object)
 }
 
 static void
-eva_http_request_init (GskHttpRequest *request)
+eva_http_request_init (EvaHttpRequest *request)
 {
   request->verb = EVA_HTTP_VERB_GET;
   request->if_modified_since = (time_t) -1;
@@ -222,19 +222,19 @@ GType eva_http_request_get_type()
     {
       static const GTypeInfo http_request_info =
       {
-        sizeof(GskHttpRequestClass),
+        sizeof(EvaHttpRequestClass),
         (GBaseInitFunc) NULL,
         (GBaseFinalizeFunc) NULL,
         (GClassInitFunc) eva_http_request_class_init,
         NULL,           /* class_finalize */
         NULL,           /* class_data */
-        sizeof (GskHttpRequest),
+        sizeof (EvaHttpRequest),
         8,              /* n_preallocs */
         (GInstanceInitFunc) eva_http_request_init,
         NULL            /* value_table */
       };
       http_request_type = g_type_register_static (EVA_TYPE_HTTP_HEADER,
-                                                  "GskHttpRequest",
+                                                  "EvaHttpRequest",
                                                   &http_request_info,
                                                   0);
     }
@@ -250,7 +250,7 @@ GType eva_http_request_get_type()
  *
  * returns: the new request.
  */
-GskHttpRequest *eva_http_request_new_blank    (void)
+EvaHttpRequest *eva_http_request_new_blank    (void)
 {
   return g_object_new (EVA_TYPE_HTTP_REQUEST, NULL);
 }
@@ -264,8 +264,8 @@ GskHttpRequest *eva_http_request_new_blank    (void)
  *
  * returns: the new request.
  */
-GskHttpRequest *
-eva_http_request_new           (GskHttpVerb  verb,
+EvaHttpRequest *
+eva_http_request_new           (EvaHttpVerb  verb,
 			        const char  *path)
 {
   return g_object_new (EVA_TYPE_HTTP_REQUEST,
@@ -273,7 +273,7 @@ eva_http_request_new           (GskHttpVerb  verb,
 		       "path", path, NULL);
 }
 
-/* GskHttpRequest public methods */
+/* EvaHttpRequest public methods */
 
 /**
  * eva_http_request_set_cache_control:
@@ -285,8 +285,8 @@ eva_http_request_new           (GskHttpVerb  verb,
  * it is destroyed.
  */
 void
-eva_http_request_set_cache_control (GskHttpRequest *request,
-				    GskHttpRequestCacheDirective *directive)
+eva_http_request_set_cache_control (EvaHttpRequest *request,
+				    EvaHttpRequestCacheDirective *directive)
 {
   if (NULL != request->cache_control) 
     {
@@ -303,7 +303,7 @@ eva_http_request_set_cache_control (GskHttpRequest *request,
  * a content-body.
  */
 gboolean
-eva_http_request_has_content_body (GskHttpRequest *request)
+eva_http_request_has_content_body (EvaHttpRequest *request)
 {
   switch (request->verb)
     {
@@ -326,7 +326,7 @@ eva_http_request_has_content_body (GskHttpRequest *request)
 /**
  * eva_http_request_add_charsets:
  * @header: the request to affect.
- * @char_sets: list of a #GskHttpCharSet's to indicate are accepted.
+ * @char_sets: list of a #EvaHttpCharSet's to indicate are accepted.
  *
  * Add Accept-CharSet headers to the header.
  * The char-sets will be freed when @header
@@ -351,10 +351,10 @@ eva_http_request_has_content_body (GskHttpRequest *request)
  * See RFC 2616, Section 14.2.
  */
 void
-eva_http_request_add_charsets   (GskHttpRequest *header,
-				 GskHttpCharSet *char_sets)
+eva_http_request_add_charsets   (EvaHttpRequest *header,
+				 EvaHttpCharSet *char_sets)
 {
-  GskHttpCharSet *last = header->accept_charsets;
+  EvaHttpCharSet *last = header->accept_charsets;
   if (last == NULL)
     {
       header->accept_charsets = char_sets;
@@ -375,13 +375,13 @@ eva_http_request_add_charsets   (GskHttpRequest *header,
  * character set.
  */
 void
-eva_http_request_clear_charsets (GskHttpRequest *header)
+eva_http_request_clear_charsets (EvaHttpRequest *header)
 {
-  GskHttpCharSet *set = header->accept_charsets;
+  EvaHttpCharSet *set = header->accept_charsets;
   header->accept_charsets = NULL;
   while (set != NULL)
     {
-      GskHttpCharSet *next = set->next;
+      EvaHttpCharSet *next = set->next;
       eva_http_char_set_free (set);
       set = next;
     }
@@ -390,12 +390,12 @@ eva_http_request_clear_charsets (GskHttpRequest *header)
 /**
  * eva_http_request_add_content_encodings:
  * @header: the request to affect.
- * @set: list of a #GskHttpContentEncodingSet's to indicate are acceptable.
+ * @set: list of a #EvaHttpContentEncodingSet's to indicate are acceptable.
  *   The list is taken over by the header;
  *   you must not free it or use it further.
  *
  * Add Accept-Encoding lines to the header.
- * Each GskHttpContentEncodingSet represents a single
+ * Each EvaHttpContentEncodingSet represents a single
  * possible encoding and an optional associated
  * quality factor.
  *
@@ -410,10 +410,10 @@ eva_http_request_clear_charsets (GskHttpRequest *header)
  * See RFC 2616, Section 14.3.
  */
 void
-eva_http_request_add_content_encodings  (GskHttpRequest *header,
-				         GskHttpContentEncodingSet *set)
+eva_http_request_add_content_encodings  (EvaHttpRequest *header,
+				         EvaHttpContentEncodingSet *set)
 {
-  GskHttpContentEncodingSet *last = header->accept_content_encodings;
+  EvaHttpContentEncodingSet *last = header->accept_content_encodings;
   if (last == NULL)
     {
       header->accept_content_encodings = set;
@@ -434,13 +434,13 @@ eva_http_request_add_content_encodings  (GskHttpRequest *header,
  * content encoding.
  */
 void
-eva_http_request_clear_content_encodings(GskHttpRequest *header)
+eva_http_request_clear_content_encodings(EvaHttpRequest *header)
 {
-  GskHttpContentEncodingSet *set = header->accept_content_encodings;
+  EvaHttpContentEncodingSet *set = header->accept_content_encodings;
   header->accept_content_encodings = NULL;
   while (set != NULL)
     {
-      GskHttpContentEncodingSet *next = set->next;
+      EvaHttpContentEncodingSet *next = set->next;
       eva_http_content_encoding_set_free (set);
       set = next;
     }
@@ -449,7 +449,7 @@ eva_http_request_clear_content_encodings(GskHttpRequest *header)
 /**
  * eva_http_request_add_transfer_encodings:
  * @header: the request to affect.
- * @set: list of a #GskHttpTransferEncodingSet's to indicate are acceptable.
+ * @set: list of a #EvaHttpTransferEncodingSet's to indicate are acceptable.
  *   The list is taken over by the header;
  *   you must not free it or use it further.
  *
@@ -466,10 +466,10 @@ eva_http_request_clear_content_encodings(GskHttpRequest *header)
  * See RFC 2616, Section 14.39.
  */
 void
-eva_http_request_add_transfer_encodings  (GskHttpRequest *header,
-				          GskHttpTransferEncodingSet *set)
+eva_http_request_add_transfer_encodings  (EvaHttpRequest *header,
+				          EvaHttpTransferEncodingSet *set)
 {
-  GskHttpTransferEncodingSet *last = header->accept_transfer_encodings;
+  EvaHttpTransferEncodingSet *last = header->accept_transfer_encodings;
   if (last == NULL)
     {
       header->accept_transfer_encodings = set;
@@ -490,13 +490,13 @@ eva_http_request_add_transfer_encodings  (GskHttpRequest *header,
  * no encoding for HTTP 1.0 clients and also 'chunked' for HTTP 1.1 clients.
  */
 void
-eva_http_request_clear_transfer_encodings(GskHttpRequest *header)
+eva_http_request_clear_transfer_encodings(EvaHttpRequest *header)
 {
-  GskHttpTransferEncodingSet *set = header->accept_transfer_encodings;
+  EvaHttpTransferEncodingSet *set = header->accept_transfer_encodings;
   header->accept_transfer_encodings = NULL;
   while (set != NULL)
     {
-      GskHttpTransferEncodingSet *next = set->next;
+      EvaHttpTransferEncodingSet *next = set->next;
       eva_http_transfer_encoding_set_free (set);
       set = next;
     }
@@ -506,7 +506,7 @@ eva_http_request_clear_transfer_encodings(GskHttpRequest *header)
 /**
  * eva_http_request_add_media:
  * @header: the request to affect.
- * @set: list of a #GskHttpMediaTypeSet's to indicate are acceptable.
+ * @set: list of a #EvaHttpMediaTypeSet's to indicate are acceptable.
  *
  * Add Accept: headers to the header.
  * The media-type-sets will be freed when @header
@@ -526,10 +526,10 @@ eva_http_request_clear_transfer_encodings(GskHttpRequest *header)
  * See RFC 2616, Section 14.1.
  */
 void
-eva_http_request_add_media      (GskHttpRequest *header,
-				 GskHttpMediaTypeSet *set)
+eva_http_request_add_media      (EvaHttpRequest *header,
+				 EvaHttpMediaTypeSet *set)
 {
-  GskHttpMediaTypeSet *last = header->accept_media_types;
+  EvaHttpMediaTypeSet *last = header->accept_media_types;
   if (last == NULL)
     {
       header->accept_media_types = set;
@@ -547,13 +547,13 @@ eva_http_request_add_media      (GskHttpRequest *header,
  * Delete all accepted media-type-sets from the HTTP request.
  */
 void
-eva_http_request_clear_media    (GskHttpRequest *header)
+eva_http_request_clear_media    (EvaHttpRequest *header)
 {
-  GskHttpMediaTypeSet *set = header->accept_media_types;
+  EvaHttpMediaTypeSet *set = header->accept_media_types;
   header->accept_media_types = NULL;
   while (set != NULL)
     {
-      GskHttpMediaTypeSet *next = set->next;
+      EvaHttpMediaTypeSet *next = set->next;
       eva_http_media_type_set_free (set);
       set = next;
     }
@@ -573,11 +573,11 @@ eva_http_request_clear_media    (GskHttpRequest *header)
  * See sections 14.8 for normal Authorization and 14.34.
  */
 void
-eva_http_request_set_authorization       (GskHttpRequest  *request,
+eva_http_request_set_authorization       (EvaHttpRequest  *request,
 					  gboolean         is_proxy_auth,
-					  GskHttpAuthorization *auth)
+					  EvaHttpAuthorization *auth)
 {
-  GskHttpAuthorization **dst_auth = is_proxy_auth ? &request->proxy_authorization : &request->authorization;
+  EvaHttpAuthorization **dst_auth = is_proxy_auth ? &request->proxy_authorization : &request->authorization;
   if (auth)
     eva_http_authorization_ref (auth);
   if (*dst_auth)
@@ -595,8 +595,8 @@ eva_http_request_set_authorization       (GskHttpRequest  *request,
  *
  * returns: the authorization information, or NULL if none exists (default).
  */
-GskHttpAuthorization *
-eva_http_request_peek_authorization      (GskHttpRequest  *request,
+EvaHttpAuthorization *
+eva_http_request_peek_authorization      (EvaHttpRequest  *request,
 					  gboolean    is_proxy_auth)
 {
   return is_proxy_auth ? request->proxy_authorization : request->authorization;
@@ -621,8 +621,8 @@ eva_http_request_peek_authorization      (GskHttpRequest  *request,
  * (3) the cookie's age.
  */
 void
-eva_http_request_add_cookie      (GskHttpRequest *header,
-				  GskHttpCookie  *cookie)
+eva_http_request_add_cookie      (EvaHttpRequest *header,
+				  EvaHttpCookie  *cookie)
 {
   header->cookies = g_slist_append (header->cookies, cookie);
 }
@@ -635,8 +635,8 @@ eva_http_request_add_cookie      (GskHttpRequest *header,
  * Remove a cookie from the request's list and delete it.
  */
 void
-eva_http_request_remove_cookie   (GskHttpRequest *header,
-				  GskHttpCookie  *cookie)
+eva_http_request_remove_cookie   (EvaHttpRequest *header,
+				  EvaHttpCookie  *cookie)
 {
   g_return_if_fail (g_slist_find (header->cookies, cookie) != NULL);
   header->cookies = g_slist_remove (header->cookies, cookie);
@@ -652,14 +652,14 @@ eva_http_request_remove_cookie   (GskHttpRequest *header,
  *
  * returns: a pointer to the cookie, or NULL if not found.
  */
-GskHttpCookie  *
-eva_http_request_find_cookie     (GskHttpRequest *header,
+EvaHttpCookie  *
+eva_http_request_find_cookie     (EvaHttpRequest *header,
 				  const char     *key)
 {
   GSList *at;
   for (at = header->cookies; at != NULL; at = at->next)
     {
-      GskHttpCookie *cookie = at->data;
+      EvaHttpCookie *cookie = at->data;
       if (strcmp (cookie->key, key) == 0)
 	return cookie;
     }

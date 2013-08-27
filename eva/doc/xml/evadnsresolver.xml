@@ -12,43 +12,43 @@
 
 <refsynopsisdiv id="eva-evadnsresolver.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
-<anchor id="GskDnsResolver"/>
+<anchor id="EvaDnsResolver"/>
 <synopsis>
-                    <link linkend="GskDnsResolverHints">GskDnsResolverHints</link>;
-                    <link linkend="GskDnsResolverIface">GskDnsResolverIface</link>;
-                    <link linkend="GskDnsResolver-struct">GskDnsResolver</link>;
-                    <link linkend="GskDnsResolverTask">GskDnsResolverTask</link>;
-<link linkend="void">void</link>                (<link linkend="GskDnsResolverLookupFunc">*GskDnsResolverLookupFunc</link>)         (<link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+                    <link linkend="EvaDnsResolverHints">EvaDnsResolverHints</link>;
+                    <link linkend="EvaDnsResolverIface">EvaDnsResolverIface</link>;
+                    <link linkend="EvaDnsResolver-struct">EvaDnsResolver</link>;
+                    <link linkend="EvaDnsResolverTask">EvaDnsResolverTask</link>;
+<link linkend="void">void</link>                (<link linkend="EvaDnsResolverLookupFunc">*EvaDnsResolverLookupFunc</link>)         (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="gpointer">gpointer</link> func_data);
-<link linkend="void">void</link>                (<link linkend="GskDnsResolverRevLookupFunc">*GskDnsResolverRevLookupFunc</link>)      (const <link linkend="char">char</link> *name,
+<link linkend="void">void</link>                (<link linkend="EvaDnsResolverRevLookupFunc">*EvaDnsResolverRevLookupFunc</link>)      (const <link linkend="char">char</link> *name,
                                                          <link linkend="gpointer">gpointer</link> func_data);
-<link linkend="void">void</link>                (<link linkend="GskDnsResolverResponseFunc">*GskDnsResolverResponseFunc</link>)       (<link linkend="GSList">GSList</link> *answers,
+<link linkend="void">void</link>                (<link linkend="EvaDnsResolverResponseFunc">*EvaDnsResolverResponseFunc</link>)       (<link linkend="GSList">GSList</link> *answers,
                                                          <link linkend="GSList">GSList</link> *authority,
                                                          <link linkend="GSList">GSList</link> *additional,
                                                          <link linkend="GSList">GSList</link> *neg_questions,
                                                          <link linkend="gpointer">gpointer</link> func_data);
-<link linkend="void">void</link>                (<link linkend="GskDnsResolverFailFunc">*GskDnsResolverFailFunc</link>)           (<link linkend="GError">GError</link> *error,
+<link linkend="void">void</link>                (<link linkend="EvaDnsResolverFailFunc">*EvaDnsResolverFailFunc</link>)           (<link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> func_data);
-<link linkend="GskDnsResolverTask">GskDnsResolverTask</link> * <link linkend="eva-dns-resolver-resolve">eva_dns_resolver_resolve</link>           (<link linkend="GskDnsResolver">GskDnsResolver</link> *resolver,
+<link linkend="EvaDnsResolverTask">EvaDnsResolverTask</link> * <link linkend="eva-dns-resolver-resolve">eva_dns_resolver_resolve</link>           (<link linkend="EvaDnsResolver">EvaDnsResolver</link> *resolver,
                                                          <link linkend="gboolean">gboolean</link> recursive,
                                                          <link linkend="GSList">GSList</link> *dns_questions,
-                                                         <link linkend="GskDnsResolverResponseFunc">GskDnsResolverResponseFunc</link> func,
-                                                         <link linkend="GskDnsResolverFailFunc">GskDnsResolverFailFunc</link> on_fail,
+                                                         <link linkend="EvaDnsResolverResponseFunc">EvaDnsResolverResponseFunc</link> func,
+                                                         <link linkend="EvaDnsResolverFailFunc">EvaDnsResolverFailFunc</link> on_fail,
                                                          <link linkend="gpointer">gpointer</link> func_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy,
-                                                         <link linkend="GskDnsResolverHints">GskDnsResolverHints</link> *hints);
-<link linkend="void">void</link>                <link linkend="eva-dns-resolver-cancel">eva_dns_resolver_cancel</link>             (<link linkend="GskDnsResolver">GskDnsResolver</link> *resolver,
-                                                         <link linkend="GskDnsResolverTask">GskDnsResolverTask</link> *task);
-<link linkend="GskDnsResolverTask">GskDnsResolverTask</link> * <link linkend="eva-dns-resolver-lookup">eva_dns_resolver_lookup</link>            (<link linkend="GskDnsResolver">GskDnsResolver</link> *resolver,
+                                                         <link linkend="EvaDnsResolverHints">EvaDnsResolverHints</link> *hints);
+<link linkend="void">void</link>                <link linkend="eva-dns-resolver-cancel">eva_dns_resolver_cancel</link>             (<link linkend="EvaDnsResolver">EvaDnsResolver</link> *resolver,
+                                                         <link linkend="EvaDnsResolverTask">EvaDnsResolverTask</link> *task);
+<link linkend="EvaDnsResolverTask">EvaDnsResolverTask</link> * <link linkend="eva-dns-resolver-lookup">eva_dns_resolver_lookup</link>            (<link linkend="EvaDnsResolver">EvaDnsResolver</link> *resolver,
                                                          const <link linkend="char">char</link> *name,
-                                                         <link linkend="GskDnsResolverLookupFunc">GskDnsResolverLookupFunc</link> func,
-                                                         <link linkend="GskDnsResolverFailFunc">GskDnsResolverFailFunc</link> on_fail,
+                                                         <link linkend="EvaDnsResolverLookupFunc">EvaDnsResolverLookupFunc</link> func,
+                                                         <link linkend="EvaDnsResolverFailFunc">EvaDnsResolverFailFunc</link> on_fail,
                                                          <link linkend="gpointer">gpointer</link> func_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="GskDnsResolverTask">GskDnsResolverTask</link> * <link linkend="eva-dns-resolver-rev-lookup">eva_dns_resolver_rev_lookup</link>        (<link linkend="GskDnsResolver">GskDnsResolver</link> *resolver,
+<link linkend="EvaDnsResolverTask">EvaDnsResolverTask</link> * <link linkend="eva-dns-resolver-rev-lookup">eva_dns_resolver_rev_lookup</link>        (<link linkend="EvaDnsResolver">EvaDnsResolver</link> *resolver,
                                                          const <link linkend="char">char</link> *name,
-                                                         <link linkend="GskDnsResolverRevLookupFunc">GskDnsResolverRevLookupFunc</link> func,
-                                                         <link linkend="GskDnsResolverFailFunc">GskDnsResolverFailFunc</link> on_fail,
+                                                         <link linkend="EvaDnsResolverRevLookupFunc">EvaDnsResolverRevLookupFunc</link> func,
+                                                         <link linkend="EvaDnsResolverFailFunc">EvaDnsResolverFailFunc</link> on_fail,
                                                          <link linkend="gpointer">gpointer</link> func_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
 <link linkend="void">void</link>                <link linkend="eva-dns-resolver-add-name-resolver-iface">eva_dns_resolver_add_name_resolver_iface</link>
@@ -60,14 +60,14 @@
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GInterface">GInterface</link>
-   +----GskDnsResolver
+   +----EvaDnsResolver
 </synopsis>
 </refsect1>
 
 <refsect1 id="eva-evadnsresolver.prerequisites" role="prerequisites">
 <title role="prerequisites.title">Prerequisites</title>
 <para>
-GskDnsResolver requires
+EvaDnsResolver requires
  <link linkend="GObject">GObject</link>.</para>
 </refsect1>
 
@@ -76,8 +76,8 @@ GskDnsResolver requires
 <refsect1 id="eva-evadnsresolver.implementations" role="implementations">
 <title role="implementations.title">Known Implementations</title>
 <para>
-GskDnsResolver is implemented by
- <link linkend="GskDnsClient">GskDnsClient</link>.</para>
+EvaDnsResolver is implemented by
+ <link linkend="EvaDnsClient">EvaDnsClient</link>.</para>
 </refsect1>
 
 
@@ -88,35 +88,35 @@ GskDnsResolver is implemented by
 <para>
 This is an interface which classes that provide DNS lookups
 may implement.  It provides an easy way to conform
-to the <link linkend="GskNameResolver"><type>GskNameResolver</type></link> interface.
+to the <link linkend="EvaNameResolver"><type>EvaNameResolver</type></link> interface.
 </para>
 </refsect1>
 
 <refsect1 id="eva-evadnsresolver.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskDnsResolverHints" role="struct">
-<title>GskDnsResolverHints</title>
-<indexterm zone="GskDnsResolverHints"><primary sortas="GskDnsResolverHints">GskDnsResolverHints</primary></indexterm><programlisting>typedef struct {
-  GskSocketAddress       *address;
-} GskDnsResolverHints;
+<refsect2 id="EvaDnsResolverHints" role="struct">
+<title>EvaDnsResolverHints</title>
+<indexterm zone="EvaDnsResolverHints"><primary sortas="EvaDnsResolverHints">EvaDnsResolverHints</primary></indexterm><programlisting>typedef struct {
+  EvaSocketAddress       *address;
+} EvaDnsResolverHints;
 </programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GskDnsResolverIface" role="struct">
-<title>GskDnsResolverIface</title>
-<indexterm zone="GskDnsResolverIface"><primary sortas="GskDnsResolverIface">GskDnsResolverIface</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaDnsResolverIface" role="struct">
+<title>EvaDnsResolverIface</title>
+<indexterm zone="EvaDnsResolverIface"><primary sortas="EvaDnsResolverIface">EvaDnsResolverIface</primary></indexterm><programlisting>typedef struct {
   GTypeInterface base_iface;
-  gpointer            (*resolve) (GskDnsResolver               *resolver,
+  gpointer            (*resolve) (EvaDnsResolver               *resolver,
 				  gboolean                      recursive,
 				  GSList                       *dns_questions,
-				  GskDnsResolverResponseFunc    func,
-				  GskDnsResolverFailFunc        on_fail,
+				  EvaDnsResolverResponseFunc    func,
+				  EvaDnsResolverFailFunc        on_fail,
 				  gpointer                      func_data,
 				  GDestroyNotify                destroy,
-				  GskDnsResolverHints          *optional_hints);
-  void                (*cancel)  (GskDnsResolver               *resolver,
+				  EvaDnsResolverHints          *optional_hints);
+  void                (*cancel)  (EvaDnsResolver               *resolver,
 				  gpointer                      task);
-} GskDnsResolverIface;
+} EvaDnsResolverIface;
 </programlisting>
 <para>
 The interface for DNS resolvers.
@@ -141,21 +141,21 @@ after having called the success or failure callback.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskDnsResolver-struct" role="struct">
-<title>GskDnsResolver</title>
-<indexterm zone="GskDnsResolver-struct"><primary sortas="GskDnsResolver">GskDnsResolver</primary></indexterm><programlisting>typedef struct _GskDnsResolver GskDnsResolver;</programlisting>
+<refsect2 id="EvaDnsResolver-struct" role="struct">
+<title>EvaDnsResolver</title>
+<indexterm zone="EvaDnsResolver-struct"><primary sortas="EvaDnsResolver">EvaDnsResolver</primary></indexterm><programlisting>typedef struct _EvaDnsResolver EvaDnsResolver;</programlisting>
 <para>
 Any object which implements this interface.
 </para></refsect2>
-<refsect2 id="GskDnsResolverTask" role="struct">
-<title>GskDnsResolverTask</title>
-<indexterm zone="GskDnsResolverTask"><primary sortas="GskDnsResolverTask">GskDnsResolverTask</primary></indexterm><programlisting>typedef struct _GskDnsResolverTask GskDnsResolverTask;</programlisting>
+<refsect2 id="EvaDnsResolverTask" role="struct">
+<title>EvaDnsResolverTask</title>
+<indexterm zone="EvaDnsResolverTask"><primary sortas="EvaDnsResolverTask">EvaDnsResolverTask</primary></indexterm><programlisting>typedef struct _EvaDnsResolverTask EvaDnsResolverTask;</programlisting>
 <para>
 An opaque structure which represents a DNS resolving task.
 </para></refsect2>
-<refsect2 id="GskDnsResolverLookupFunc" role="function">
-<title>GskDnsResolverLookupFunc ()</title>
-<indexterm zone="GskDnsResolverLookupFunc"><primary sortas="GskDnsResolverLookupFunc">GskDnsResolverLookupFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskDnsResolverLookupFunc)         (<link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+<refsect2 id="EvaDnsResolverLookupFunc" role="function">
+<title>EvaDnsResolverLookupFunc ()</title>
+<indexterm zone="EvaDnsResolverLookupFunc"><primary sortas="EvaDnsResolverLookupFunc">EvaDnsResolverLookupFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaDnsResolverLookupFunc)         (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="gpointer">gpointer</link> func_data);</programlisting>
 <para>
 Function to call when an address is found from a name.
@@ -167,9 +167,9 @@ Function to call when an address is found from a name.
 <listitem><simpara>data passed to <link linkend="eva-dns-resolver-lookup"><function>eva_dns_resolver_lookup()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskDnsResolverRevLookupFunc" role="function">
-<title>GskDnsResolverRevLookupFunc ()</title>
-<indexterm zone="GskDnsResolverRevLookupFunc"><primary sortas="GskDnsResolverRevLookupFunc">GskDnsResolverRevLookupFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskDnsResolverRevLookupFunc)      (const <link linkend="char">char</link> *name,
+<refsect2 id="EvaDnsResolverRevLookupFunc" role="function">
+<title>EvaDnsResolverRevLookupFunc ()</title>
+<indexterm zone="EvaDnsResolverRevLookupFunc"><primary sortas="EvaDnsResolverRevLookupFunc">EvaDnsResolverRevLookupFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaDnsResolverRevLookupFunc)      (const <link linkend="char">char</link> *name,
                                                          <link linkend="gpointer">gpointer</link> func_data);</programlisting>
 <para>
 Function to call when an name is found from an address.
@@ -181,33 +181,33 @@ Function to call when an name is found from an address.
 <listitem><simpara>data passed to <link linkend="eva-dns-resolver-rev-lookup"><function>eva_dns_resolver_rev_lookup()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskDnsResolverResponseFunc" role="function">
-<title>GskDnsResolverResponseFunc ()</title>
-<indexterm zone="GskDnsResolverResponseFunc"><primary sortas="GskDnsResolverResponseFunc">GskDnsResolverResponseFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskDnsResolverResponseFunc)       (<link linkend="GSList">GSList</link> *answers,
+<refsect2 id="EvaDnsResolverResponseFunc" role="function">
+<title>EvaDnsResolverResponseFunc ()</title>
+<indexterm zone="EvaDnsResolverResponseFunc"><primary sortas="EvaDnsResolverResponseFunc">EvaDnsResolverResponseFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaDnsResolverResponseFunc)       (<link linkend="GSList">GSList</link> *answers,
                                                          <link linkend="GSList">GSList</link> *authority,
                                                          <link linkend="GSList">GSList</link> *additional,
                                                          <link linkend="GSList">GSList</link> *neg_questions,
                                                          <link linkend="gpointer">gpointer</link> func_data);</programlisting>
 <para>
 Handle a list of DNS results.
-This has all the sections of a <link linkend="GskDnsMessage"><type>GskDnsMessage</type></link>
+This has all the sections of a <link linkend="EvaDnsMessage"><type>EvaDnsMessage</type></link>
 except the questions.
 </para><variablelist role="params">
 <varlistentry><term><parameter>answers</parameter>&#160;:</term>
 <listitem><simpara>
 Direct answers to the questions posed to <link linkend="eva-dns-resolver-resolve"><function>eva_dns_resolver_resolve()</function></link>.
-(A GSList of <link linkend="GskDnsResourceRecord"><type>GskDnsResourceRecord</type></link>'s)
+(A GSList of <link linkend="EvaDnsResourceRecord"><type>EvaDnsResourceRecord</type></link>'s)
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>authority</parameter>&#160;:</term>
 <listitem><simpara>
 Information about the authority of the <parameter>answers</parameter>.
-(A GSList of <link linkend="GskDnsResourceRecord"><type>GskDnsResourceRecord</type></link>'s)
+(A GSList of <link linkend="EvaDnsResourceRecord"><type>EvaDnsResourceRecord</type></link>'s)
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>additional</parameter>&#160;:</term>
 <listitem><simpara>
 Supporting data, for example, the numeric address of a nameserver.
 (To try to save the client from making more queries.)
-(A GSList of <link linkend="GskDnsResourceRecord"><type>GskDnsResourceRecord</type></link>'s)
+(A GSList of <link linkend="EvaDnsResourceRecord"><type>EvaDnsResourceRecord</type></link>'s)
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>neg_questions</parameter>&#160;:</term>
 <listitem><simpara>
@@ -217,9 +217,9 @@ Supporting data, for example, the numeric address of a nameserver.
 Data passed to <link linkend="eva-dns-resolver-resolve"><function>eva_dns_resolver_resolve()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskDnsResolverFailFunc" role="function">
-<title>GskDnsResolverFailFunc ()</title>
-<indexterm zone="GskDnsResolverFailFunc"><primary sortas="GskDnsResolverFailFunc">GskDnsResolverFailFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskDnsResolverFailFunc)           (<link linkend="GError">GError</link> *error,
+<refsect2 id="EvaDnsResolverFailFunc" role="function">
+<title>EvaDnsResolverFailFunc ()</title>
+<indexterm zone="EvaDnsResolverFailFunc"><primary sortas="EvaDnsResolverFailFunc">EvaDnsResolverFailFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaDnsResolverFailFunc)           (<link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> func_data);</programlisting>
 <para>
 Called when a DNS resolution fails.
@@ -235,14 +235,14 @@ Data passed to <link linkend="eva-dns-resolver-resolve"><function>eva_dns_resolv
 </variablelist></refsect2>
 <refsect2 id="eva-dns-resolver-resolve" role="function">
 <title>eva_dns_resolver_resolve ()</title>
-<indexterm zone="eva-dns-resolver-resolve"><primary sortas="eva_dns_resolver_resolve">eva_dns_resolver_resolve</primary></indexterm><programlisting><link linkend="GskDnsResolverTask">GskDnsResolverTask</link> * eva_dns_resolver_resolve           (<link linkend="GskDnsResolver">GskDnsResolver</link> *resolver,
+<indexterm zone="eva-dns-resolver-resolve"><primary sortas="eva_dns_resolver_resolve">eva_dns_resolver_resolve</primary></indexterm><programlisting><link linkend="EvaDnsResolverTask">EvaDnsResolverTask</link> * eva_dns_resolver_resolve           (<link linkend="EvaDnsResolver">EvaDnsResolver</link> *resolver,
                                                          <link linkend="gboolean">gboolean</link> recursive,
                                                          <link linkend="GSList">GSList</link> *dns_questions,
-                                                         <link linkend="GskDnsResolverResponseFunc">GskDnsResolverResponseFunc</link> func,
-                                                         <link linkend="GskDnsResolverFailFunc">GskDnsResolverFailFunc</link> on_fail,
+                                                         <link linkend="EvaDnsResolverResponseFunc">EvaDnsResolverResponseFunc</link> func,
+                                                         <link linkend="EvaDnsResolverFailFunc">EvaDnsResolverFailFunc</link> on_fail,
                                                          <link linkend="gpointer">gpointer</link> func_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy,
-                                                         <link linkend="GskDnsResolverHints">GskDnsResolverHints</link> *hints);</programlisting>
+                                                         <link linkend="EvaDnsResolverHints">EvaDnsResolverHints</link> *hints);</programlisting>
 <para>
 Begin a DNS lookup task.</para>
 <para>
@@ -254,7 +254,7 @@ Begin a DNS lookup task.</para>
 <listitem><simpara> whether to use recursive name resolution on the server.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>dns_questions</parameter>&#160;:</term>
-<listitem><simpara> list of GskDnsQuestion's to resolve.
+<listitem><simpara> list of EvaDnsQuestion's to resolve.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>func</parameter>&#160;:</term>
 <listitem><simpara> function which will be called with answers
@@ -277,8 +277,8 @@ to the given questions.
 </variablelist></refsect2>
 <refsect2 id="eva-dns-resolver-cancel" role="function">
 <title>eva_dns_resolver_cancel ()</title>
-<indexterm zone="eva-dns-resolver-cancel"><primary sortas="eva_dns_resolver_cancel">eva_dns_resolver_cancel</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_resolver_cancel             (<link linkend="GskDnsResolver">GskDnsResolver</link> *resolver,
-                                                         <link linkend="GskDnsResolverTask">GskDnsResolverTask</link> *task);</programlisting>
+<indexterm zone="eva-dns-resolver-cancel"><primary sortas="eva_dns_resolver_cancel">eva_dns_resolver_cancel</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_resolver_cancel             (<link linkend="EvaDnsResolver">EvaDnsResolver</link> *resolver,
+                                                         <link linkend="EvaDnsResolverTask">EvaDnsResolverTask</link> *task);</programlisting>
 <para>
 Cancel a running DNS lookup task.</para>
 <para>
@@ -292,10 +292,10 @@ Cancel a running DNS lookup task.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-resolver-lookup" role="function">
 <title>eva_dns_resolver_lookup ()</title>
-<indexterm zone="eva-dns-resolver-lookup"><primary sortas="eva_dns_resolver_lookup">eva_dns_resolver_lookup</primary></indexterm><programlisting><link linkend="GskDnsResolverTask">GskDnsResolverTask</link> * eva_dns_resolver_lookup            (<link linkend="GskDnsResolver">GskDnsResolver</link> *resolver,
+<indexterm zone="eva-dns-resolver-lookup"><primary sortas="eva_dns_resolver_lookup">eva_dns_resolver_lookup</primary></indexterm><programlisting><link linkend="EvaDnsResolverTask">EvaDnsResolverTask</link> * eva_dns_resolver_lookup            (<link linkend="EvaDnsResolver">EvaDnsResolver</link> *resolver,
                                                          const <link linkend="char">char</link> *name,
-                                                         <link linkend="GskDnsResolverLookupFunc">GskDnsResolverLookupFunc</link> func,
-                                                         <link linkend="GskDnsResolverFailFunc">GskDnsResolverFailFunc</link> on_fail,
+                                                         <link linkend="EvaDnsResolverLookupFunc">EvaDnsResolverLookupFunc</link> func,
+                                                         <link linkend="EvaDnsResolverFailFunc">EvaDnsResolverFailFunc</link> on_fail,
                                                          <link linkend="gpointer">gpointer</link> func_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -328,10 +328,10 @@ TODO. IPv6 support.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-resolver-rev-lookup" role="function">
 <title>eva_dns_resolver_rev_lookup ()</title>
-<indexterm zone="eva-dns-resolver-rev-lookup"><primary sortas="eva_dns_resolver_rev_lookup">eva_dns_resolver_rev_lookup</primary></indexterm><programlisting><link linkend="GskDnsResolverTask">GskDnsResolverTask</link> * eva_dns_resolver_rev_lookup        (<link linkend="GskDnsResolver">GskDnsResolver</link> *resolver,
+<indexterm zone="eva-dns-resolver-rev-lookup"><primary sortas="eva_dns_resolver_rev_lookup">eva_dns_resolver_rev_lookup</primary></indexterm><programlisting><link linkend="EvaDnsResolverTask">EvaDnsResolverTask</link> * eva_dns_resolver_rev_lookup        (<link linkend="EvaDnsResolver">EvaDnsResolver</link> *resolver,
                                                          const <link linkend="char">char</link> *name,
-                                                         <link linkend="GskDnsResolverRevLookupFunc">GskDnsResolverRevLookupFunc</link> func,
-                                                         <link linkend="GskDnsResolverFailFunc">GskDnsResolverFailFunc</link> on_fail,
+                                                         <link linkend="EvaDnsResolverRevLookupFunc">EvaDnsResolverRevLookupFunc</link> func,
+                                                         <link linkend="EvaDnsResolverFailFunc">EvaDnsResolverFailFunc</link> on_fail,
                                                          <link linkend="gpointer">gpointer</link> func_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -375,7 +375,7 @@ TODO. IPv6 support.</para>
 <refsect1 id="eva-evadnsresolver.see-also">
 <title>See Also</title>
 <para>
-GskDnsLocalResolver and GskDnsClient.
+EvaDnsLocalResolver and EvaDnsClient.
 </para>
 </refsect1>
 

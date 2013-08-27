@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskPacketQueueFd
+EvaPacketQueueFd
 
 <!-- ##### SECTION Short_Description ##### -->
 A PacketQueue based on a file descriptor.
@@ -17,13 +17,13 @@ A datagram client or server.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskPacketQueueFd ##### -->
+<!-- ##### STRUCT EvaPacketQueueFd ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG GskPacketQueueFd:file-descriptor ##### -->
+<!-- ##### ARG EvaPacketQueueFd:file-descriptor ##### -->
 <para>
 
 </para>

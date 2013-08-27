@@ -49,36 +49,36 @@
 <p>
 This section of the tutorial describes how to write a webserver.
 There are actual TWO convenient ways to write a webserver in EVA,
-using <span class="structname">GskHttpContent</span> or
-<span class="structname">GskHttpServer</span>.
+using <span class="structname">EvaHttpContent</span> or
+<span class="structname">EvaHttpServer</span>.
 </p>
 <div class="itemizedlist"><ul type="disc">
-<li><p><span class="structname">GskHttpContent</span> is the high-level interface.
+<li><p><span class="structname">EvaHttpContent</span> is the high-level interface.
  It is designed to be called in blocks that feel roughly like Apache's configuration blocks.
  You can only use this if you are planning on following fairly standard namespacing conventions.
  For example, it expects that the path maps to a file-system-like node,
  and that the query is for that node's interpretation.
- Nonetheless, almost all cases can be handled with GskHttpContent.
+ Nonetheless, almost all cases can be handled with EvaHttpContent.
  </p></li>
-<li><p><span class="structname">GskHttpServer</span> is the low-level interface.
+<li><p><span class="structname">EvaHttpServer</span> is the low-level interface.
  It does nothing but speak the protocol: the transport is handled elsewhere.
  Furthermore the act of listening for new connections must be handled outside this class.
  For these reasons, direct use of this class is discouraged.
  But for some specialized cases, the lowlevel interface is more convenient.
  Normally this is because you want an interface that treats the whole URI space uniformly;
- in such a case the request partitioning of GskHttpContent is more annoying than helpful.
+ in such a case the request partitioning of EvaHttpContent is more annoying than helpful.
  For example, redirection servers, caches and proxies may actually find the lowlevel interface
  more convenient.
  </p></li>
 </ul></div>
 <p>
-Of course, although we describe them as independent subsystems, <span class="structname">GskHttpContent</span>
-uses <span class="structname">GskHttpServer</span>.
+Of course, although we describe them as independent subsystems, <span class="structname">EvaHttpContent</span>
+uses <span class="structname">EvaHttpServer</span>.
 </p>
 <div class="refsect2" lang="en">
-<a name="id2636092"></a><h3>Using GskHttpContent</h3>
+<a name="id2636092"></a><h3>Using EvaHttpContent</h3>
 <p>
-<span class="structname">GskHttpContent</span> revolves around a common usage pattern in
+<span class="structname">EvaHttpContent</span> revolves around a common usage pattern in
 HTTP servers: that of the virtual file-system.  Actually its mapping is more complicated
 and weird than that of a file-system.  Here are the fields that you can key off of:
 </p>
@@ -93,7 +93,7 @@ and weird than that of a file-system.  Here are the fields that you can key off 
 <p>
 </p>
 <p>
-There are two kinds of handlers registered with GskHttpContent:
+There are two kinds of handlers registered with EvaHttpContent:
 generic handlers and CGI handlers.  Generic handlers operate on the raw request and post-data.
 CGI handlers operate on parsed key-value pairs.
 </p>
@@ -105,7 +105,7 @@ random data to the URI, or a file, or a function which returns data.
 <div class="refsect3" lang="en">
 <a name="id2636489"></a><h4>Example: Standard Usage</h4>
 <p>
-Here we implement a server that shows off a bunch of GskHttpContent features:
+Here we implement a server that shows off a bunch of EvaHttpContent features:
 </p>
 <div class="itemizedlist"><ul type="disc">
 <li><p><code class="filename">/images</code> is mapped into the filesystem.</p></li>
@@ -120,7 +120,7 @@ Here is the main program:  we'll present the generic and CGI callbacks afterward
 <pre class="programlisting">
 int main (int argc, char **argv)
 {
-  GskHttpContent *content;
+  EvaHttpContent *content;
   int port;
   eva_init (&amp;argc, &amp;argv, NULL);
   if (argc != 2) 
@@ -148,8 +148,8 @@ int main (int argc, char **argv)
 
   /* A generic handler: its content is computed in a callback */
   {
-    GskHttpContentHandler *handler = eva_http_content_handler_new (handle_generic, NULL, NULL);
-    GskHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
+    EvaHttpContentHandler *handler = eva_http_content_handler_new (handle_generic, NULL, NULL);
+    EvaHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
     id.path_prefix = "/generic";
     eva_http_content_add_handler (content, handler);
     eva_http_content_handler_unref (handler);
@@ -157,8 +157,8 @@ int main (int argc, char **argv)
 
   /* A CGI handler: its content is computed in a callback */
   {
-    GskHttpContentHandler *handler = eva_http_content_handler_new_cgi (handle_cgi, NULL, NULL);
-    GskHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
+    EvaHttpContentHandler *handler = eva_http_content_handler_new_cgi (handle_cgi, NULL, NULL);
+    EvaHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
     id.path_prefix = "/cgi";
     eva_http_content_add_handler (content, handler);
     eva_http_content_handler_unref (handler);
@@ -187,19 +187,19 @@ int main (int argc, char **argv)
  Here is a very simple implementation of a generic handler:
 </p>
 <pre class="programlisting">
-static GskHttpContentResult
-handle_generic  (GskHttpContent        *content,
-		 GskHttpContentHandler *handler,
-		 GskHttpServer         *server,
-		 GskHttpRequest        *request,
-		 GskStream             *post_data,
+static EvaHttpContentResult
+handle_generic  (EvaHttpContent        *content,
+		 EvaHttpContentHandler *handler,
+		 EvaHttpServer         *server,
+		 EvaHttpRequest        *request,
+		 EvaStream             *post_data,
 		 gpointer               data)
 {
   static guint64 response_id = 0;
   char *str = g_strdup_printf ("%llu\n", response_id++);
   guint str_len = strlen (str);
-  GskHttpResponse *response = eva_http_response_from_request (request, EVA_HTTP_STATUS_OK, str_len);
-  GskStream *stream = eva_memory_slab_source_new (str, str_len, g_free, str);
+  EvaHttpResponse *response = eva_http_response_from_request (request, EVA_HTTP_STATUS_OK, str_len);
+  EvaStream *stream = eva_memory_slab_source_new (str, str_len, g_free, str);
   eva_http_header_set_content_type (EVA_HTTP_HEADER (response), "text");
   eva_http_header_set_content_subtype (EVA_HTTP_HEADER (response), "plain");
   eva_http_server_respond (server, request, response, stream);
@@ -218,12 +218,12 @@ only after you query a remote server.
 </p>
 <pre class="programlisting">
 static void
-handle_cgi  (GskHttpContent         *content,
-	     GskHttpContentHandler  *handler,
-	     GskHttpServer          *server,
-	     GskHttpRequest         *request,
+handle_cgi  (EvaHttpContent         *content,
+	     EvaHttpContentHandler  *handler,
+	     EvaHttpServer          *server,
+	     EvaHttpRequest         *request,
 	     guint                   n_vars,
-	     GskMimeMultipartPiece **vars,
+	     EvaMimeMultipartPiece **vars,
 	     gpointer                data)
 {
   ...
@@ -235,7 +235,7 @@ handle_cgi  (GskHttpContent         *content,
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2636645"></a><h3>Using GskHttpServer</h3>
+<a name="id2636645"></a><h3>Using EvaHttpServer</h3>
 <p>
 ...
 </p>

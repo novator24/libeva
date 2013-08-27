@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskMainLoopSigio
+EvaMainLoopSigio
 
 <!-- ##### SECTION Short_Description ##### -->
 signal I/O based event loop.
@@ -17,7 +17,7 @@ A main-loop which uses signal-driven I/O.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskMainLoopSigio ##### -->
+<!-- ##### STRUCT EvaMainLoopSigio ##### -->
 <para>
 Signal-driven I/O main-loop object.
 </para>

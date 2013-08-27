@@ -5,7 +5,7 @@
 
 int main(int argc, char **argv)
 {
-  GskStream *out;
+  EvaStream *out;
   char buf[10];
   guint nread;
   GError *error = NULL;

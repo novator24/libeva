@@ -1,42 +1,42 @@
-<refentry id="GskStreamListenerSocket">
+<refentry id="EvaStreamListenerSocket">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskStreamListenerSocket.top_of_page">GskStreamListenerSocket</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaStreamListenerSocket.top_of_page">EvaStreamListenerSocket</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskStreamListenerSocket</refname>
+<refname>EvaStreamListenerSocket</refname>
 <refpurpose>socket-based stream-listener.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskStreamListenerSocket.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaStreamListenerSocket.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskStreamListenerSocket-struct">GskStreamListenerSocket</link>;
-<link linkend="GskStreamListener">GskStreamListener</link> * <link linkend="eva-stream-listener-socket-new-bind">eva_stream_listener_socket_new_bind</link> (<link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+                    <link linkend="EvaStreamListenerSocket-struct">EvaStreamListenerSocket</link>;
+<link linkend="EvaStreamListener">EvaStreamListener</link> * <link linkend="eva-stream-listener-socket-new-bind">eva_stream_listener_socket_new_bind</link> (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskStreamListener">GskStreamListener</link> * <link linkend="eva-stream-listener-socket-new-bind-full">eva_stream_listener_socket_new_bind_full</link>
-                                                        (<link linkend="GskSocketAddress">GskSocketAddress</link> *address,
-                                                         <link linkend="GskStreamListenerSocketFlags">GskStreamListenerSocketFlags</link> flags,
+<link linkend="EvaStreamListener">EvaStreamListener</link> * <link linkend="eva-stream-listener-socket-new-bind-full">eva_stream_listener_socket_new_bind_full</link>
+                                                        (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
+                                                         <link linkend="EvaStreamListenerSocketFlags">EvaStreamListenerSocketFlags</link> flags,
                                                          <link linkend="GError">GError</link> **error);
 <link linkend="void">void</link>                <link linkend="eva-stream-listener-socket-set-backlog">eva_stream_listener_socket_set_backlog</link>
-                                                        (<link linkend="GskStreamListenerSocket">GskStreamListenerSocket</link> *lis,
+                                                        (<link linkend="EvaStreamListenerSocket">EvaStreamListenerSocket</link> *lis,
                                                          <link linkend="guint">guint</link> backlog);
-<link linkend="GskStreamListener">GskStreamListener</link> * <link linkend="eva-stream-listener-socket-new-from-fd">eva_stream_listener_socket_new_from_fd</link>
+<link linkend="EvaStreamListener">EvaStreamListener</link> * <link linkend="eva-stream-listener-socket-new-from-fd">eva_stream_listener_socket_new_from_fd</link>
                                                         (<link linkend="int">int</link> fd,
                                                          <link linkend="GError">GError</link> **error);
 #define             <link linkend="EVA-STREAM-LISTENER-SOCKET-USE-GLIB-MAIN-LOOP--CAPS">EVA_STREAM_LISTENER_SOCKET_USE_GLIB_MAIN_LOOP</link>
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskStreamListenerSocket.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaStreamListenerSocket.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskStreamListener">GskStreamListener</link>
-         +----GskStreamListenerSocket
+   +----<link linkend="EvaStreamListener">EvaStreamListener</link>
+         +----EvaStreamListenerSocket
 </synopsis>
 </refsect1>
 
@@ -44,37 +44,37 @@
 
 
 
-<refsect1 id="GskStreamListenerSocket.properties" role="properties">
+<refsect1 id="EvaStreamListenerSocket.properties" role="properties">
 <title role="properties.title">Properties</title>
 <synopsis>
-  &quot;<link linkend="GskStreamListenerSocket--file-descriptor">file-descriptor</link>&quot;          <link linkend="GskFd">GskFd</link>                 : Read / Write / Construct Only
-  &quot;<link linkend="GskStreamListenerSocket--listening-address">listening-address</link>&quot;        <link linkend="GskSocketAddress">GskSocketAddress</link>*     : Read / Write / Construct Only
-  &quot;<link linkend="GskStreamListenerSocket--may-reuse-address">may-reuse-address</link>&quot;        <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only
-  &quot;<link linkend="GskStreamListenerSocket--unlink-when-done">unlink-when-done</link>&quot;         <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="EvaStreamListenerSocket--file-descriptor">file-descriptor</link>&quot;          <link linkend="EvaFd">EvaFd</link>                 : Read / Write / Construct Only
+  &quot;<link linkend="EvaStreamListenerSocket--listening-address">listening-address</link>&quot;        <link linkend="EvaSocketAddress">EvaSocketAddress</link>*     : Read / Write / Construct Only
+  &quot;<link linkend="EvaStreamListenerSocket--may-reuse-address">may-reuse-address</link>&quot;        <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only
+  &quot;<link linkend="EvaStreamListenerSocket--unlink-when-done">unlink-when-done</link>&quot;         <link linkend="gboolean">gboolean</link>              : Read / Write
 </synopsis>
 </refsect1>
 
 
 
-<refsect1 id="GskStreamListenerSocket.description" role="desc">
+<refsect1 id="EvaStreamListenerSocket.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
-This is a <link linkend="GskStreamListener"><type>GskStreamListener</type></link> that takes new input streams
+This is a <link linkend="EvaStreamListener"><type>EvaStreamListener</type></link> that takes new input streams
 from a raw socket.
 </para>
 </refsect1>
 
-<refsect1 id="GskStreamListenerSocket.details" role="details">
+<refsect1 id="EvaStreamListenerSocket.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskStreamListenerSocket-struct" role="struct">
-<title>GskStreamListenerSocket</title>
-<indexterm zone="GskStreamListenerSocket-struct"><primary sortas="GskStreamListenerSocket">GskStreamListenerSocket</primary></indexterm><programlisting>typedef struct _GskStreamListenerSocket GskStreamListenerSocket;</programlisting>
+<refsect2 id="EvaStreamListenerSocket-struct" role="struct">
+<title>EvaStreamListenerSocket</title>
+<indexterm zone="EvaStreamListenerSocket-struct"><primary sortas="EvaStreamListenerSocket">EvaStreamListenerSocket</primary></indexterm><programlisting>typedef struct _EvaStreamListenerSocket EvaStreamListenerSocket;</programlisting>
 <para>
-An instance of a socket-based <link linkend="GskStreamListener"><type>GskStreamListener</type></link>.
+An instance of a socket-based <link linkend="EvaStreamListener"><type>EvaStreamListener</type></link>.
 </para></refsect2>
 <refsect2 id="eva-stream-listener-socket-new-bind" role="function">
 <title>eva_stream_listener_socket_new_bind ()</title>
-<indexterm zone="eva-stream-listener-socket-new-bind"><primary sortas="eva_stream_listener_socket_new_bind">eva_stream_listener_socket_new_bind</primary></indexterm><programlisting><link linkend="GskStreamListener">GskStreamListener</link> * eva_stream_listener_socket_new_bind (<link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+<indexterm zone="eva-stream-listener-socket-new-bind"><primary sortas="eva_stream_listener_socket_new_bind">eva_stream_listener_socket_new_bind</primary></indexterm><programlisting><link linkend="EvaStreamListener">EvaStreamListener</link> * eva_stream_listener_socket_new_bind (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Create a new listener bound to a specific socket-address.</para>
@@ -91,9 +91,9 @@ Create a new listener bound to a specific socket-address.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-stream-listener-socket-new-bind-full" role="function">
 <title>eva_stream_listener_socket_new_bind_full ()</title>
-<indexterm zone="eva-stream-listener-socket-new-bind-full"><primary sortas="eva_stream_listener_socket_new_bind_full">eva_stream_listener_socket_new_bind_full</primary></indexterm><programlisting><link linkend="GskStreamListener">GskStreamListener</link> * eva_stream_listener_socket_new_bind_full
-                                                        (<link linkend="GskSocketAddress">GskSocketAddress</link> *address,
-                                                         <link linkend="GskStreamListenerSocketFlags">GskStreamListenerSocketFlags</link> flags,
+<indexterm zone="eva-stream-listener-socket-new-bind-full"><primary sortas="eva_stream_listener_socket_new_bind_full">eva_stream_listener_socket_new_bind_full</primary></indexterm><programlisting><link linkend="EvaStreamListener">EvaStreamListener</link> * eva_stream_listener_socket_new_bind_full
+                                                        (<link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
+                                                         <link linkend="EvaStreamListenerSocketFlags">EvaStreamListenerSocketFlags</link> flags,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Create a new listener bound to a specific socket-address.
@@ -120,7 +120,7 @@ TCP/IP socket listeners.</para>
 <refsect2 id="eva-stream-listener-socket-set-backlog" role="function">
 <title>eva_stream_listener_socket_set_backlog ()</title>
 <indexterm zone="eva-stream-listener-socket-set-backlog"><primary sortas="eva_stream_listener_socket_set_backlog">eva_stream_listener_socket_set_backlog</primary></indexterm><programlisting><link linkend="void">void</link>                eva_stream_listener_socket_set_backlog
-                                                        (<link linkend="GskStreamListenerSocket">GskStreamListenerSocket</link> *lis,
+                                                        (<link linkend="EvaStreamListenerSocket">EvaStreamListenerSocket</link> *lis,
                                                          <link linkend="guint">guint</link> backlog);</programlisting>
 <para>
 Set the number of incoming connections that can
@@ -137,7 +137,7 @@ refusing them.
 </variablelist></refsect2>
 <refsect2 id="eva-stream-listener-socket-new-from-fd" role="function">
 <title>eva_stream_listener_socket_new_from_fd ()</title>
-<indexterm zone="eva-stream-listener-socket-new-from-fd"><primary sortas="eva_stream_listener_socket_new_from_fd">eva_stream_listener_socket_new_from_fd</primary></indexterm><programlisting><link linkend="GskStreamListener">GskStreamListener</link> * eva_stream_listener_socket_new_from_fd
+<indexterm zone="eva-stream-listener-socket-new-from-fd"><primary sortas="eva_stream_listener_socket_new_from_fd">eva_stream_listener_socket_new_from_fd</primary></indexterm><programlisting><link linkend="EvaStreamListener">EvaStreamListener</link> * eva_stream_listener_socket_new_from_fd
                                                         (<link linkend="int">int</link> fd,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
@@ -165,20 +165,20 @@ Create a new listener for an already bound socket.</para>
 </para></refsect2>
 
 </refsect1>
-<refsect1 id="GskStreamListenerSocket.property-details" role="property_details">
+<refsect1 id="EvaStreamListenerSocket.property-details" role="property_details">
 <title role="property_details.title">Property Details</title>
-<refsect2 id="GskStreamListenerSocket--file-descriptor" role="property"><title>The <literal>&quot;file-descriptor&quot;</literal> property</title>
-<indexterm zone="GskStreamListenerSocket--file-descriptor"><primary sortas="GskStreamListenerSocket:file-descriptor">GskStreamListenerSocket:file-descriptor</primary></indexterm><programlisting>  &quot;file-descriptor&quot;          <link linkend="GskFd">GskFd</link>                 : Read / Write / Construct Only</programlisting>
+<refsect2 id="EvaStreamListenerSocket--file-descriptor" role="property"><title>The <literal>&quot;file-descriptor&quot;</literal> property</title>
+<indexterm zone="EvaStreamListenerSocket--file-descriptor"><primary sortas="EvaStreamListenerSocket:file-descriptor">EvaStreamListenerSocket:file-descriptor</primary></indexterm><programlisting>  &quot;file-descriptor&quot;          <link linkend="EvaFd">EvaFd</link>                 : Read / Write / Construct Only</programlisting>
 <para>whence to accept new connections on.</para></refsect2>
-<refsect2 id="GskStreamListenerSocket--listening-address" role="property"><title>The <literal>&quot;listening-address&quot;</literal> property</title>
-<indexterm zone="GskStreamListenerSocket--listening-address"><primary sortas="GskStreamListenerSocket:listening-address">GskStreamListenerSocket:listening-address</primary></indexterm><programlisting>  &quot;listening-address&quot;        <link linkend="GskSocketAddress">GskSocketAddress</link>*     : Read / Write / Construct Only</programlisting>
+<refsect2 id="EvaStreamListenerSocket--listening-address" role="property"><title>The <literal>&quot;listening-address&quot;</literal> property</title>
+<indexterm zone="EvaStreamListenerSocket--listening-address"><primary sortas="EvaStreamListenerSocket:listening-address">EvaStreamListenerSocket:listening-address</primary></indexterm><programlisting>  &quot;listening-address&quot;        <link linkend="EvaSocketAddress">EvaSocketAddress</link>*     : Read / Write / Construct Only</programlisting>
 <para>The name others will use to connect.</para></refsect2>
-<refsect2 id="GskStreamListenerSocket--may-reuse-address" role="property"><title>The <literal>&quot;may-reuse-address&quot;</literal> property</title>
-<indexterm zone="GskStreamListenerSocket--may-reuse-address"><primary sortas="GskStreamListenerSocket:may-reuse-address">GskStreamListenerSocket:may-reuse-address</primary></indexterm><programlisting>  &quot;may-reuse-address&quot;        <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only</programlisting>
+<refsect2 id="EvaStreamListenerSocket--may-reuse-address" role="property"><title>The <literal>&quot;may-reuse-address&quot;</literal> property</title>
+<indexterm zone="EvaStreamListenerSocket--may-reuse-address"><primary sortas="EvaStreamListenerSocket:may-reuse-address">EvaStreamListenerSocket:may-reuse-address</primary></indexterm><programlisting>  &quot;may-reuse-address&quot;        <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only</programlisting>
 <para>Whether a listening address may be reused as soon as it's closed.</para><para>Default value: TRUE</para>
 </refsect2>
-<refsect2 id="GskStreamListenerSocket--unlink-when-done" role="property"><title>The <literal>&quot;unlink-when-done&quot;</literal> property</title>
-<indexterm zone="GskStreamListenerSocket--unlink-when-done"><primary sortas="GskStreamListenerSocket:unlink-when-done">GskStreamListenerSocket:unlink-when-done</primary></indexterm><programlisting>  &quot;unlink-when-done&quot;         <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<refsect2 id="EvaStreamListenerSocket--unlink-when-done" role="property"><title>The <literal>&quot;unlink-when-done&quot;</literal> property</title>
+<indexterm zone="EvaStreamListenerSocket--unlink-when-done"><primary sortas="EvaStreamListenerSocket:unlink-when-done">EvaStreamListenerSocket:unlink-when-done</primary></indexterm><programlisting>  &quot;unlink-when-done&quot;         <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
 <para>Unlink the file from the file-system (only for local socket-listeners).</para><para>Default value: FALSE</para>
 </refsect2>
 </refsect1>

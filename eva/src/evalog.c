@@ -405,7 +405,7 @@ void eva_log_append (const char *filename)
   log_file_maybe_open (filename, "a");
 }
 
-struct _GskLogTrap
+struct _EvaLogTrap
 {
   const char *domain;
   GLogLevelFlags level_mask;
@@ -413,7 +413,7 @@ struct _GskLogTrap
   ParsedFormat *format;
 
   gpointer data;
-  GskLogTrapFunc func;
+  EvaLogTrapFunc func;
   GDestroyNotify destroy;
 };
 
@@ -429,10 +429,10 @@ handle_fp (const char *domain,
   fputc ('\n', fp);
 }
 
-static GskLogTrap *
+static EvaLogTrap *
 trap_new_fp (FILE *fp, ParsedFormat *format)
 {
-  GskLogTrap *trap = g_new (GskLogTrap, 1);
+  EvaLogTrap *trap = g_new (EvaLogTrap, 1);
   trap->data = fp;
   trap->format = format;
   trap->func = handle_fp;
@@ -451,11 +451,11 @@ handle_ring_buffer (const char *domain,
 }
 
 
-static GskLogTrap *
-trap_new_ring_buffer (GskLogRingBuffer *buffer,
+static EvaLogTrap *
+trap_new_ring_buffer (EvaLogRingBuffer *buffer,
                       ParsedFormat     *format)
 {
-  GskLogTrap *trap = g_new (GskLogTrap, 1);
+  EvaLogTrap *trap = g_new (EvaLogTrap, 1);
   trap->data = buffer;
   trap->format = format;
   trap->func = handle_ring_buffer;
@@ -463,13 +463,13 @@ trap_new_ring_buffer (GskLogRingBuffer *buffer,
   return trap;
 }
 
-static GskLogTrap *
-trap_new_generic (GskLogTrapFunc func,
+static EvaLogTrap *
+trap_new_generic (EvaLogTrapFunc func,
                   gpointer       data,
                   GDestroyNotify destroy,
                   ParsedFormat  *format)
 {
-  GskLogTrap *trap = g_new (GskLogTrap, 1);
+  EvaLogTrap *trap = g_new (EvaLogTrap, 1);
   trap->data = data;
   trap->format = format;
   trap->func = func;
@@ -485,7 +485,7 @@ static gboolean log_system_initialized = FALSE;
 static void
 add_trap (const char *domain,
           GLogLevelFlags level_mask,
-          GskLogTrap *trap)
+          EvaLogTrap *trap)
 {
   GSList *trap_list;
   gpointer key;
@@ -534,7 +534,7 @@ add_trap (const char *domain,
  *    %{levelsuffix}   '.', '!', '!!!' depending on the severity.
  *    %%               a percent symbol.
  */
-GskLogTrap *
+EvaLogTrap *
 eva_log_trap_domain_to_file(const char *domain,
                             GLogLevelFlags level_mask,
                             const char *filename,
@@ -542,7 +542,7 @@ eva_log_trap_domain_to_file(const char *domain,
 {
   FILE *fp = log_file_maybe_open (filename, DEFAULT_MODE);
   ParsedFormat *format;
-  GskLogTrap *trap;
+  EvaLogTrap *trap;
   if (fp == NULL)
     return NULL;
   if (!log_system_initialized)
@@ -555,15 +555,15 @@ eva_log_trap_domain_to_file(const char *domain,
   return trap;
 }
 
-GskLogTrap *eva_log_trap_generic      (const char    *domain,
+EvaLogTrap *eva_log_trap_generic      (const char    *domain,
                                        GLogLevelFlags trap_mask,
                                        const char    *output_format,
-                                       GskLogTrapFunc func,
+                                       EvaLogTrapFunc func,
                                        gpointer       data,
                                        GDestroyNotify destroy)
 {
   ParsedFormat *format;
-  GskLogTrap *trap;
+  EvaLogTrap *trap;
   if (!log_system_initialized)
     eva_log_init ();
   format = parsed_format_new (output_format);
@@ -583,7 +583,7 @@ ignore_errors  (const char *domain,
 {
 }
 
-GskLogTrap *eva_log_trap_ignore       (const char    *domain,
+EvaLogTrap *eva_log_trap_ignore       (const char    *domain,
                                        GLogLevelFlags trap_mask)
 {
   if (!log_system_initialized)
@@ -592,13 +592,13 @@ GskLogTrap *eva_log_trap_ignore       (const char    *domain,
                                ignore_errors, NULL, NULL);
 }
 
-GskLogTrap *eva_log_trap_ring_buffer  (const char    *domain,
+EvaLogTrap *eva_log_trap_ring_buffer  (const char    *domain,
                                        GLogLevelFlags trap_mask,
-                                       GskLogRingBuffer *buffer,
+                                       EvaLogRingBuffer *buffer,
                                        const char       *output_format)
 {
   ParsedFormat *format;
-  GskLogTrap *trap;
+  EvaLogTrap *trap;
   if (!log_system_initialized)
     eva_log_init ();
   format = parsed_format_new (output_format);
@@ -611,7 +611,7 @@ GskLogTrap *eva_log_trap_ring_buffer  (const char    *domain,
 
 
 static void
-trap_print_using_PrintInfo (GskLogTrap *trap,
+trap_print_using_PrintInfo (EvaLogTrap *trap,
                             PrintInfo *info)
 {
   GString *out;

@@ -1,27 +1,27 @@
 #include "evaprefixtree.h"
 #include <string.h>
 
-static inline GskPrefixTree *
+static inline EvaPrefixTree *
 tree_alloc (const char *str)
 {
-  GskPrefixTree *rv = g_new (GskPrefixTree, 1);
+  EvaPrefixTree *rv = g_new (EvaPrefixTree, 1);
   rv->prefix = g_strdup (str);
   rv->next_sibling = rv->children = NULL;
   rv->has_data = FALSE;
   return rv;
 }
 
-static inline GskPrefixTree *
+static inline EvaPrefixTree *
 tree_alloc_n (const char *str, guint len)
 {
-  GskPrefixTree *rv = g_new (GskPrefixTree, 1);
+  EvaPrefixTree *rv = g_new (EvaPrefixTree, 1);
   rv->prefix = g_strndup (str, len);
   rv->next_sibling = rv->children = NULL;
   rv->has_data = FALSE;
   return rv;
 }
 static inline void
-tree_set_prefix (GskPrefixTree *tree,
+tree_set_prefix (EvaPrefixTree *tree,
                   const char *prefix)
 {
   char *dup = g_strdup (prefix);
@@ -29,7 +29,7 @@ tree_set_prefix (GskPrefixTree *tree,
   tree->prefix = dup;
 }
 
-gpointer eva_prefix_tree_insert       (GskPrefixTree   **tree,
+gpointer eva_prefix_tree_insert       (EvaPrefixTree   **tree,
                                        const char       *prefix,
                                        gpointer          data)
 {
@@ -77,7 +77,7 @@ gpointer eva_prefix_tree_insert       (GskPrefixTree   **tree,
                        |                                |
                        v                                v
                      nextsib                         nextsib */
-              GskPrefixTree *new = tree_alloc_n (prefix, p_at - prefix);
+              EvaPrefixTree *new = tree_alloc_n (prefix, p_at - prefix);
               new->next_sibling = (*tree)->next_sibling;
               (*tree)->next_sibling = NULL;
               new->children = (*tree);
@@ -98,8 +98,8 @@ gpointer eva_prefix_tree_insert       (GskPrefixTree   **tree,
                      v                         v         v
                    nextsib                   nextsib    new */
           {
-            GskPrefixTree *common = tree_alloc_n (prefix, p_at - prefix);
-            GskPrefixTree *cur = *tree;
+            EvaPrefixTree *common = tree_alloc_n (prefix, p_at - prefix);
+            EvaPrefixTree *cur = *tree;
             common->next_sibling = cur->next_sibling;
             common->children = cur;
             *tree = common;
@@ -125,11 +125,11 @@ gpointer eva_prefix_tree_insert       (GskPrefixTree   **tree,
 }
 
 
-gpointer eva_prefix_tree_lookup       (GskPrefixTree    *tree,
+gpointer eva_prefix_tree_lookup       (EvaPrefixTree    *tree,
                                        const char       *str)
 {
   gpointer found = NULL;
-  GskPrefixTree *at = tree;
+  EvaPrefixTree *at = tree;
 
   while (*str && at)
     {
@@ -146,11 +146,11 @@ gpointer eva_prefix_tree_lookup       (GskPrefixTree    *tree,
   return found;
 }
 
-gpointer eva_prefix_tree_lookup_exact (GskPrefixTree    *tree,
+gpointer eva_prefix_tree_lookup_exact (EvaPrefixTree    *tree,
                                        const char       *str)
 {
   gpointer found = NULL;
-  GskPrefixTree *at = tree;
+  EvaPrefixTree *at = tree;
 
   while (*str && at)
     {
@@ -167,11 +167,11 @@ gpointer eva_prefix_tree_lookup_exact (GskPrefixTree    *tree,
   return *str ? NULL : found;
 }
 
-GSList  *eva_prefix_tree_lookup_all   (GskPrefixTree    *tree,
+GSList  *eva_prefix_tree_lookup_all   (EvaPrefixTree    *tree,
                                        const char       *str)
 {
   GSList *rv = NULL;
-  GskPrefixTree *at = tree;
+  EvaPrefixTree *at = tree;
 
   while (*str && at)
     {
@@ -188,13 +188,13 @@ GSList  *eva_prefix_tree_lookup_all   (GskPrefixTree    *tree,
   return rv;
 }
 // good idea, but we don't need it.
-//gpointer eva_prefix_tree_remove       (GskPrefixTree    *tree,
+//gpointer eva_prefix_tree_remove       (EvaPrefixTree    *tree,
 //                                       const char        *prefix)
 //{
 //  ...
 //}
 //
-void     eva_prefix_tree_foreach      (GskPrefixTree    *tree,
+void     eva_prefix_tree_foreach      (EvaPrefixTree    *tree,
                                        GFunc              func,
                                        gpointer           func_data)
 {
@@ -206,11 +206,11 @@ void     eva_prefix_tree_foreach      (GskPrefixTree    *tree,
       tree = tree->next_sibling;
     }
 }
-void     eva_prefix_tree_destroy      (GskPrefixTree    *tree)
+void     eva_prefix_tree_destroy      (EvaPrefixTree    *tree)
 {
   while (tree)
     {
-      GskPrefixTree *next = tree->next_sibling;
+      EvaPrefixTree *next = tree->next_sibling;
       g_free (tree->prefix);
       eva_prefix_tree_destroy (tree->children);
       tree = next;

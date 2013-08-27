@@ -1,30 +1,30 @@
-<refentry id="GskMainLoopPoll">
+<refentry id="EvaMainLoopPoll">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskMainLoopPoll.top_of_page">GskMainLoopPoll</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaMainLoopPoll.top_of_page">EvaMainLoopPoll</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskMainLoopPoll</refname>
+<refname>EvaMainLoopPoll</refname>
 <refpurpose>a poll(2)-based main-loop.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskMainLoopPoll.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaMainLoopPoll.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskMainLoopPoll-struct">GskMainLoopPoll</link>;
+                    <link linkend="EvaMainLoopPoll-struct">EvaMainLoopPoll</link>;
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskMainLoopPoll.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaMainLoopPoll.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----<link linkend="GskMainLoop">GskMainLoop</link>
-         +----<link linkend="GskMainLoopPollBase">GskMainLoopPollBase</link>
-               +----GskMainLoopPoll
+   +----<link linkend="EvaMainLoop">EvaMainLoop</link>
+         +----<link linkend="EvaMainLoopPollBase">EvaMainLoopPollBase</link>
+               +----EvaMainLoopPoll
 </synopsis>
 </refsect1>
 
@@ -35,18 +35,18 @@
 
 
 
-<refsect1 id="GskMainLoopPoll.description" role="desc">
+<refsect1 id="EvaMainLoopPoll.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 A main-loop which uses poll(2) as its underlying multiplexing method.
 </para>
 </refsect1>
 
-<refsect1 id="GskMainLoopPoll.details" role="details">
+<refsect1 id="EvaMainLoopPoll.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskMainLoopPoll-struct" role="struct">
-<title>GskMainLoopPoll</title>
-<indexterm zone="GskMainLoopPoll-struct"><primary sortas="GskMainLoopPoll">GskMainLoopPoll</primary></indexterm><programlisting>typedef struct _GskMainLoopPoll GskMainLoopPoll;</programlisting>
+<refsect2 id="EvaMainLoopPoll-struct" role="struct">
+<title>EvaMainLoopPoll</title>
+<indexterm zone="EvaMainLoopPoll-struct"><primary sortas="EvaMainLoopPoll">EvaMainLoopPoll</primary></indexterm><programlisting>typedef struct _EvaMainLoopPoll EvaMainLoopPoll;</programlisting>
 <para>
 The poll(2)-based main-loop.
 </para></refsect2>

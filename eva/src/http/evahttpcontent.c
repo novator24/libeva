@@ -29,23 +29,23 @@ typedef enum
   HANDLER_CGI
 } HandlerType;
 
-struct _GskHttpContentHandler
+struct _EvaHttpContentHandler
 {
   guint ref_count;
   HandlerType type;
   gpointer data;
   union {
-    GskHttpContentFunc raw;
-    GskHttpContentCGIFunc cgi;
+    EvaHttpContentFunc raw;
+    EvaHttpContentCGIFunc cgi;
   } func;
   GDestroyNotify destroy;
 
   /* these form rings of handlers, once they 
      are added to a content.  */
-  GskHttpContentHandler *next, *prev;
+  EvaHttpContentHandler *next, *prev;
 };
 
-typedef GskHttpContentHandler Handler;
+typedef EvaHttpContentHandler Handler;
 
 static inline Handler *
 handler_alloc (HandlerType     type,
@@ -58,7 +58,7 @@ handler_alloc (HandlerType     type,
   rv->type = type;
   rv->data = data;
   rv->destroy = destroy;
-  rv->func.raw = (GskHttpContentFunc) func;
+  rv->func.raw = (EvaHttpContentFunc) func;
   rv->next = rv->prev = NULL;
   return rv;
 }
@@ -103,14 +103,14 @@ typedef struct _PathVHostTable PathVHostTable;
 
 struct _SuffixList
 {
-  GskPrefixTree *suffix_to_handler;     /* reverse the string before invoking */
+  EvaPrefixTree *suffix_to_handler;     /* reverse the string before invoking */
   Handler *no_suffix_handler;
 };
 
 struct _PathTable
 {
   GHashTable *exact;
-  GskPrefixTree *prefix_to_suffix_list;
+  EvaPrefixTree *prefix_to_suffix_list;
   SuffixList *no_prefix_list;           /* includes no path at all case */
 };
 
@@ -120,24 +120,24 @@ struct _PathVHostTable
   PathTable *no_vhost_path_table;
 };
 
-struct _GskHttpContent
+struct _EvaHttpContent
 {
   /* Table of contents */
-  GskPrefixTree *user_agent_to_path_vhost_table;
+  EvaPrefixTree *user_agent_to_path_vhost_table;
   PathVHostTable *path_vhost_table;
 
   /* Mime types by path */
   /* final target of all these is a pair of strings concatenated
      (including the NULs) */
-  GskPrefixTree *mime_suffix_to_prefix_tree_to_typepair;
-  GskPrefixTree *mime_suffix_to_typepair;     /* no prefix */
-  GskPrefixTree *mime_prefix_to_typepair;     /* no suffix */
+  EvaPrefixTree *mime_suffix_to_prefix_tree_to_typepair;
+  EvaPrefixTree *mime_suffix_to_typepair;     /* no prefix */
+  EvaPrefixTree *mime_prefix_to_typepair;     /* no suffix */
   char *mime_default_typepair;
 
   /* misc configuration options */
   int keepalive_idle_timeout_ms;              /* or -1 for no timeout */
 
-  GskHttpContentErrorHandler error_handler;
+  EvaHttpContentErrorHandler error_handler;
   gpointer error_data;
   GDestroyNotify error_destroy;
 };
@@ -171,15 +171,15 @@ path_vhost_table_new (void)
 }
 
 static void
-server_respond_printf (GskHttpServer *server,
-                       GskHttpRequest *request,
-                       GskHttpStatus   status_code,
+server_respond_printf (EvaHttpServer *server,
+                       EvaHttpRequest *request,
+                       EvaHttpStatus   status_code,
                        const char     *format,
                        ...)
 {
   va_list args;
-  GskHttpResponse *response;
-  GskStream *stream;
+  EvaHttpResponse *response;
+  EvaStream *stream;
   guint str_len;
   char *str;
   va_start (args,format);
@@ -197,11 +197,11 @@ server_respond_printf (GskHttpServer *server,
 
 
 static void
-default_error_handler (GskHttpContent          *content,
+default_error_handler (EvaHttpContent          *content,
                        GError                  *error,
-                       GskHttpServer           *server,
-                       GskHttpRequest          *request,
-                       GskHttpStatus            code,
+                       EvaHttpServer           *server,
+                       EvaHttpRequest          *request,
+                       EvaHttpStatus            code,
                        gpointer                 data)
 
 {
@@ -227,9 +227,9 @@ default_error_handler (GskHttpContent          *content,
  *
  * returns: a newly allocated content database.
  */
-GskHttpContent *eva_http_content_new     (void)
+EvaHttpContent *eva_http_content_new     (void)
 {
-  GskHttpContent *content = g_new0 (GskHttpContent, 1);
+  EvaHttpContent *content = g_new0 (EvaHttpContent, 1);
   content->user_agent_to_path_vhost_table = NULL;
   content->path_vhost_table = path_vhost_table_new ();
   content->error_handler = default_error_handler;
@@ -247,14 +247,14 @@ GskHttpContent *eva_http_content_new     (void)
  *
  * Allocate a new content handler.
  *
- * This should be added to a GskHttpContent
+ * This should be added to a EvaHttpContent
  * using eva_http_content_add_handler()
  * and then unrefed with eva_http_content_handler_unref().
  *
  * returns: the newly allocated handler.
  */
-GskHttpContentHandler *
-eva_http_content_handler_new (GskHttpContentFunc       func,
+EvaHttpContentHandler *
+eva_http_content_handler_new (EvaHttpContentFunc       func,
                               gpointer                 data,
                               GDestroyNotify           destroy)
 {
@@ -271,14 +271,14 @@ eva_http_content_handler_new (GskHttpContentFunc       func,
  *
  * Allocate a new content handler.
  *
- * This should be added to a GskHttpContent
+ * This should be added to a EvaHttpContent
  * using eva_http_content_add_handler()
  * and then unrefed with eva_http_content_handler_unref().
  *
  * returns: the newly allocated handler.
  */
-GskHttpContentHandler *
-eva_http_content_handler_new_cgi (GskHttpContentCGIFunc    func,
+EvaHttpContentHandler *
+eva_http_content_handler_new_cgi (EvaHttpContentCGIFunc    func,
                                   gpointer                 data,
                                   GDestroyNotify           destroy)
 {
@@ -288,7 +288,7 @@ eva_http_content_handler_new_cgi (GskHttpContentCGIFunc    func,
 static void
 handler_ring_add (Handler            **ring,
                   Handler             *new,
-                  GskHttpContentAction action)
+                  EvaHttpContentAction action)
 {
   g_assert (new->next == NULL && new->prev == NULL);
   switch (action)
@@ -344,9 +344,9 @@ handler_ring_add (Handler            **ring,
 
 static void
 suffix_list_add (SuffixList             *sl,
-                 const GskHttpContentId *id,
+                 const EvaHttpContentId *id,
                  Handler                *handler,
-                 GskHttpContentAction    action)
+                 EvaHttpContentAction    action)
 {
   if (id->path_suffix)
     {
@@ -366,9 +366,9 @@ suffix_list_add (SuffixList             *sl,
 
 static void
 path_table_add           (PathTable              *table,
-                          const GskHttpContentId *id,
+                          const EvaHttpContentId *id,
                           Handler                *handler,
-                          GskHttpContentAction    action)
+                          EvaHttpContentAction    action)
 {
   if (id->path)
     {
@@ -400,9 +400,9 @@ path_table_add           (PathTable              *table,
 
 static void
 path_vhost_table_add     (PathVHostTable         *table,
-                          const GskHttpContentId *id,
+                          const EvaHttpContentId *id,
                           Handler                *handler,
-                          GskHttpContentAction    action)
+                          EvaHttpContentAction    action)
 {
   PathTable *pt;
   if (id->host)
@@ -440,10 +440,10 @@ path_vhost_table_add     (PathVHostTable         *table,
  * one database.
  */
 void
-eva_http_content_add_handler     (GskHttpContent          *content,
-                                  const GskHttpContentId  *id,
-                                  GskHttpContentHandler   *handler,
-                                  GskHttpContentAction     action)
+eva_http_content_add_handler     (EvaHttpContent          *content,
+                                  const EvaHttpContentId  *id,
+                                  EvaHttpContentHandler   *handler,
+                                  EvaHttpContentAction     action)
 {
   if (id->user_agent_prefix)
     {
@@ -481,7 +481,7 @@ eva_http_content_add_handler     (GskHttpContent          *content,
  * or you can explicitly use it from a custom handler.
  */
 void
-eva_http_content_set_mime_type (GskHttpContent *content,
+eva_http_content_set_mime_type (EvaHttpContent *content,
                                 const char     *prefix,
                                 const char     *suffix,
                                 const char     *type,
@@ -503,7 +503,7 @@ eva_http_content_set_mime_type (GskHttpContent *content,
   }
   if (prefix && suffix)
     {
-      GskPrefixTree *pref;
+      EvaPrefixTree *pref;
       pref = eva_prefix_tree_lookup_exact (content->mime_suffix_to_prefix_tree_to_typepair,
                                            rev_suffix);
       eva_prefix_tree_insert (&pref, prefix, typepair);
@@ -545,7 +545,7 @@ eva_http_content_set_mime_type (GskHttpContent *content,
  * with prefix==suffix==NULL.
  */
 void
-eva_http_content_set_default_mime_type (GskHttpContent *content,
+eva_http_content_set_default_mime_type (EvaHttpContent *content,
                                         const char     *type,
                                         const char     *subtype)
 {
@@ -553,7 +553,7 @@ eva_http_content_set_default_mime_type (GskHttpContent *content,
 }
 
 gboolean
-eva_http_content_get_mime_type (GskHttpContent *content,
+eva_http_content_get_mime_type (EvaHttpContent *content,
                                 const char     *path,
                                 const char    **type_out,
                                 const char    **subtype_out)
@@ -565,7 +565,7 @@ eva_http_content_get_mime_type (GskHttpContent *content,
 
   /* try prefix/suffix tree */
   {
-    GskPrefixTree *pref_tree = eva_prefix_tree_lookup (content->mime_suffix_to_prefix_tree_to_typepair,
+    EvaPrefixTree *pref_tree = eva_prefix_tree_lookup (content->mime_suffix_to_prefix_tree_to_typepair,
                                                        rev_path);
     typepair = eva_prefix_tree_lookup (pref_tree, path);
     if (typepair)
@@ -604,8 +604,8 @@ done:
  * case.
  */
 void
-eva_http_content_set_error_handler  (GskHttpContent          *content,
-                                     GskHttpContentErrorHandler handler,
+eva_http_content_set_error_handler  (EvaHttpContent          *content,
+                                     EvaHttpContentErrorHandler handler,
                                      gpointer                 data,
                                      GDestroyNotify           destroy)
 {
@@ -621,17 +621,17 @@ typedef struct _CGIRequestInfo CGIRequestInfo;
 struct _CGIRequestInfo
 {
   Handler        *handler;
-  GskHttpContent *content;
-  GskHttpServer  *server;
-  GskHttpRequest *request;
+  EvaHttpContent *content;
+  EvaHttpServer  *server;
+  EvaHttpRequest *request;
   GPtrArray      *mime_pieces;
 };
 
 static CGIRequestInfo *
 cgi_request_info_new (Handler        *handler,
-                      GskHttpContent *content,
-                      GskHttpServer  *server,
-                      GskHttpRequest *request)
+                      EvaHttpContent *content,
+                      EvaHttpServer  *server,
+                      EvaHttpRequest *request)
 {
   CGIRequestInfo *ri = g_new (CGIRequestInfo, 1);
   ri->handler = handler;
@@ -660,7 +660,7 @@ cgi_request_info_callback (CGIRequestInfo *ri)
   ri->handler->func.cgi (ri->content, ri->handler,
                          ri->server, ri->request,
                          ri->mime_pieces->len,
-                         (GskMimeMultipartPiece **) (ri->mime_pieces->pdata),
+                         (EvaMimeMultipartPiece **) (ri->mime_pieces->pdata),
                          ri->handler->data);
 }
 
@@ -671,7 +671,7 @@ append_kv_as_mime_piece_to_ptr_array (gpointer key, gpointer value, gpointer dat
   const char *v = value;
   GPtrArray *arr = data;
   gpointer copy = g_strdup (v);
-  GskMimeMultipartPiece *piece = eva_mime_multipart_piece_alloc ();
+  EvaMimeMultipartPiece *piece = eva_mime_multipart_piece_alloc ();
   eva_mime_multipart_piece_set_id (piece, k);
   eva_mime_multipart_piece_set_data (piece, copy, strlen (v), g_free, copy);
   g_ptr_array_add (arr, piece);
@@ -679,9 +679,9 @@ append_kv_as_mime_piece_to_ptr_array (gpointer key, gpointer value, gpointer dat
 
 static void
 handle_cgi_with_urlencoded_string (Handler        *handler,
-                                   GskHttpContent *content,
-                                   GskHttpServer  *server,
-                                   GskHttpRequest *request,
+                                   EvaHttpContent *content,
+                                   EvaHttpServer  *server,
+                                   EvaHttpRequest *request,
                                    const char     *query_string)
 {
   GPtrArray *mime_pieces = g_ptr_array_new ();
@@ -695,7 +695,7 @@ handle_cgi_with_urlencoded_string (Handler        *handler,
   handler->func.cgi (content, handler,
                      server, request,
                      mime_pieces->len,
-                     (GskMimeMultipartPiece **) (mime_pieces->pdata),
+                     (EvaMimeMultipartPiece **) (mime_pieces->pdata),
                      handler->data);
   for (i = 0; i < mime_pieces->len; i++)
     eva_mime_multipart_piece_unref (mime_pieces->pdata[i]);
@@ -703,7 +703,7 @@ handle_cgi_with_urlencoded_string (Handler        *handler,
 }
 
 static void
-urlencoded_buffer_ready  (GskBuffer              *buffer,
+urlencoded_buffer_ready  (EvaBuffer              *buffer,
                           gpointer                data)
 {
   CGIRequestInfo *ri = data;
@@ -717,13 +717,13 @@ urlencoded_buffer_ready  (GskBuffer              *buffer,
 
 static void
 do_cgi_with_urlencoded_form_data (Handler        *handler,
-                                  GskHttpContent *content,
-                                  GskHttpServer  *server,
-                                  GskHttpRequest *request,
-                                  GskStream      *post_data)
+                                  EvaHttpContent *content,
+                                  EvaHttpServer  *server,
+                                  EvaHttpRequest *request,
+                                  EvaStream      *post_data)
 {
   CGIRequestInfo *ri = cgi_request_info_new (handler, content, server, request);
-  GskStream *content_sink;
+  EvaStream *content_sink;
   content_sink = eva_memory_buffer_sink_new (urlencoded_buffer_ready,
                                              ri,
                                              (GDestroyNotify) cgi_request_info_free);
@@ -732,18 +732,18 @@ do_cgi_with_urlencoded_form_data (Handler        *handler,
 }
 
 static gboolean
-handle_piece_ready (GskMimeMultipartDecoder *decoder,
+handle_piece_ready (EvaMimeMultipartDecoder *decoder,
                     gpointer                 data)
 {
   CGIRequestInfo *ri = data;
-  GskMimeMultipartPiece *piece = eva_mime_multipart_decoder_get_piece (decoder);
+  EvaMimeMultipartPiece *piece = eva_mime_multipart_decoder_get_piece (decoder);
   if (piece)
     g_ptr_array_add (ri->mime_pieces, piece);
   return TRUE;
 }
 
 static gboolean
-handle_decoder_shutdown (GskMimeMultipartDecoder *decoder,
+handle_decoder_shutdown (EvaMimeMultipartDecoder *decoder,
                          gpointer data)
 {
   CGIRequestInfo *ri = data;
@@ -753,12 +753,12 @@ handle_decoder_shutdown (GskMimeMultipartDecoder *decoder,
 
 static void
 do_cgi_with_multipart_form_data (Handler        *handler,
-                                 GskHttpContent *content,
-                                 GskHttpServer  *server,
-                                 GskHttpRequest *request,
-                                 GskStream      *post_data)
+                                 EvaHttpContent *content,
+                                 EvaHttpServer  *server,
+                                 EvaHttpRequest *request,
+                                 EvaStream      *post_data)
 {
-  GskMimeMultipartDecoder *decoder = eva_mime_multipart_decoder_new (NULL);
+  EvaMimeMultipartDecoder *decoder = eva_mime_multipart_decoder_new (NULL);
   CGIRequestInfo *ri = cgi_request_info_new (handler, content, server, request);
   eva_mime_multipart_decoder_set_mode (decoder, EVA_MIME_MULTIPART_DECODER_MODE_ALWAYS_MEMORY);
   eva_mime_multipart_decoder_trap (decoder, handle_piece_ready, handle_decoder_shutdown,
@@ -768,20 +768,20 @@ do_cgi_with_multipart_form_data (Handler        *handler,
 /* precondition: request->path must contain a '?' */
 static void
 do_cgi_with_get_form_data (Handler        *handler,
-                           GskHttpContent *content,
-                           GskHttpServer  *server,
-                           GskHttpRequest *request)
+                           EvaHttpContent *content,
+                           EvaHttpServer  *server,
+                           EvaHttpRequest *request)
 {
   handle_cgi_with_urlencoded_string (handler, content, server, request,
                                      strchr (request->path, '?') + 1);
 }
 
-static GskHttpContentResult
+static EvaHttpContentResult
 try_cgi_handler      (Handler        *handler,
-                      GskHttpContent *content,
-                      GskHttpServer  *server,
-                      GskHttpRequest *request,
-                      GskStream      *post_data)
+                      EvaHttpContent *content,
+                      EvaHttpServer  *server,
+                      EvaHttpRequest *request,
+                      EvaStream      *post_data)
 {
   /* does this HTTP header look like a CGI? */
   /* requirement are either an interesting query string
@@ -812,12 +812,12 @@ try_cgi_handler      (Handler        *handler,
 }
 
 /* --- Responding to a request:  Handler finding and invocation  --- */
-static GskHttpContentResult
+static EvaHttpContentResult
 one_handler_response (Handler        *handler,
-                      GskHttpContent *content,
-                      GskHttpServer  *server,
-                      GskHttpRequest *request,
-                      GskStream      *post_data)
+                      EvaHttpContent *content,
+                      EvaHttpServer  *server,
+                      EvaHttpRequest *request,
+                      EvaStream      *post_data)
 {
   switch (handler->type)
     {
@@ -830,19 +830,19 @@ one_handler_response (Handler        *handler,
     }
 }
 
-static GskHttpContentResult
+static EvaHttpContentResult
 handler_ring_respond     (Handler        *handlers,
-                          GskHttpContent *content,
-                          GskHttpServer  *server,
-                          GskHttpRequest *request,
-                          GskStream      *post_data)
+                          EvaHttpContent *content,
+                          EvaHttpServer  *server,
+                          EvaHttpRequest *request,
+                          EvaStream      *post_data)
 {
   Handler *h = handlers;
   if (h == NULL)
     return EVA_HTTP_CONTENT_CHAIN;
   do
     {
-      GskHttpContentResult rv = one_handler_response (h, content, server, request, post_data);
+      EvaHttpContentResult rv = one_handler_response (h, content, server, request, post_data);
       if (rv != EVA_HTTP_CONTENT_CHAIN)
         return rv;
       h = h->next;
@@ -851,12 +851,12 @@ handler_ring_respond     (Handler        *handlers,
   return EVA_HTTP_CONTENT_CHAIN;
 }
 
-static GskHttpContentResult
+static EvaHttpContentResult
 suffix_list_respond      (SuffixList     *suffix,
-                          GskHttpContent *content,
-                          GskHttpServer  *server,
-                          GskHttpRequest *request,
-                          GskStream      *post_data)
+                          EvaHttpContent *content,
+                          EvaHttpServer  *server,
+                          EvaHttpRequest *request,
+                          EvaStream      *post_data)
 {
   const char *end = strchr (request->path, '?');
   char *rev;
@@ -868,7 +868,7 @@ suffix_list_respond      (SuffixList     *suffix,
   list = eva_prefix_tree_lookup_all (suffix->suffix_to_handler, rev);
   for (at = list; at; at = at->next)
     {
-      GskHttpContentResult rv;
+      EvaHttpContentResult rv;
       rv = handler_ring_respond (at->data, content, server, request, post_data);
       if (rv != EVA_HTTP_CONTENT_CHAIN)
         {
@@ -881,15 +881,15 @@ suffix_list_respond      (SuffixList     *suffix,
   return handler_ring_respond (suffix->no_suffix_handler, content, server, request, post_data);
 }
 
-static GskHttpContentResult
+static EvaHttpContentResult
 path_table_respond       (PathTable      *table,
-                          GskHttpContent *content,
-                          GskHttpServer  *server,
-                          GskHttpRequest *request,
-                          GskStream      *post_data)
+                          EvaHttpContent *content,
+                          EvaHttpServer  *server,
+                          EvaHttpRequest *request,
+                          EvaStream      *post_data)
 {
   Handler *h = g_hash_table_lookup (table->exact, request->path);
-  GskHttpContentResult rv = handler_ring_respond (h, content, server, request, post_data);
+  EvaHttpContentResult rv = handler_ring_respond (h, content, server, request, post_data);
   GSList *list, *at;
   if (rv != EVA_HTTP_CONTENT_CHAIN)
     return rv;
@@ -912,14 +912,14 @@ path_table_respond       (PathTable      *table,
   return EVA_HTTP_CONTENT_CHAIN;
 }
 
-static GskHttpContentResult
+static EvaHttpContentResult
 path_vhost_table_respond (PathVHostTable *table,
-                          GskHttpContent *content,
-                          GskHttpServer  *server,
-                          GskHttpRequest *request,
-                          GskStream      *post_data)
+                          EvaHttpContent *content,
+                          EvaHttpServer  *server,
+                          EvaHttpRequest *request,
+                          EvaStream      *post_data)
 {
-  GskHttpContentResult rv;
+  EvaHttpContentResult rv;
   if (request->host != NULL)
     {
       PathTable *tab = g_hash_table_lookup (table->vhost_to_path_table, request->host);
@@ -941,12 +941,12 @@ path_vhost_table_respond (PathVHostTable *table,
  * @post_data: the server's post data, or NULL if none.
  *
  * Respond to the given HTTP query,
- * using the registered content in the GskHttpContent.
+ * using the registered content in the EvaHttpContent.
  */
-void eva_http_content_respond(GskHttpContent *content,
-                              GskHttpServer  *server,
-                              GskHttpRequest *request,
-			      GskStream      *post_data)
+void eva_http_content_respond(EvaHttpContent *content,
+                              EvaHttpServer  *server,
+                              EvaHttpRequest *request,
+			      EvaStream      *post_data)
 {
   Handler *rv = NULL;
   GError *error;
@@ -1007,9 +1007,9 @@ serve_error_page:
 }
 
 static inline void
-try_add_content_type (GskHttpContent *content,
-                      GskHttpRequest *request,
-                      GskHttpResponse *response)
+try_add_content_type (EvaHttpContent *content,
+                      EvaHttpRequest *request,
+                      EvaHttpResponse *response)
 {
   const char *type, *subtype;
   if (eva_http_content_get_mime_type (content, request->path, &type, &subtype))
@@ -1029,17 +1029,17 @@ struct _DataInfo
   GDestroyNotify destroy;
 };
 
-static GskHttpContentResult
-handle_data_request (GskHttpContent        *content,
-                     GskHttpContentHandler *handler,
-                     GskHttpServer         *server,
-                     GskHttpRequest        *request,
-                     GskStream             *post_data,
+static EvaHttpContentResult
+handle_data_request (EvaHttpContent        *content,
+                     EvaHttpContentHandler *handler,
+                     EvaHttpServer         *server,
+                     EvaHttpRequest        *request,
+                     EvaStream             *post_data,
                      gpointer               data)
 {
   DataInfo *di = data;
-  GskHttpResponse *response;
-  GskStream *stream;
+  EvaHttpResponse *response;
+  EvaStream *stream;
   response = eva_http_response_from_request (request,
                                              EVA_HTTP_STATUS_OK,
                                              di->data_len);
@@ -1087,15 +1087,15 @@ data_info_destroy (gpointer data)
  *
  * Add fixed data to the HTTP content database.
  */
-void           eva_http_content_add_data (GskHttpContent          *content,
-                                          const GskHttpContentId  *id,
+void           eva_http_content_add_data (EvaHttpContent          *content,
+                                          const EvaHttpContentId  *id,
                                           gconstpointer            data,
 					  guint                    data_len,
 					  gpointer                 destroy_data,
 				          GDestroyNotify           destroy)
 {
   DataInfo *di = data_info_alloc (data, data_len, destroy_data, destroy);
-  GskHttpContentHandler *h;
+  EvaHttpContentHandler *h;
   h = eva_http_content_handler_new (handle_data_request, di, data_info_destroy);
   eva_http_content_add_handler (content, id, h, EVA_HTTP_CONTENT_REPLACE);
   eva_http_content_handler_unref (h);
@@ -1112,14 +1112,14 @@ void           eva_http_content_add_data (GskHttpContent          *content,
  *
  * Add fixed data to the HTTP content database.
  */
-void           eva_http_content_add_data_by_path (GskHttpContent          *content,
+void           eva_http_content_add_data_by_path (EvaHttpContent          *content,
                                                   const char              *path,
                                                   gconstpointer            data,
 					          guint                    data_len,
 					          gpointer                 destroy_data,
 				                  GDestroyNotify           destroy)
 {
-  GskHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
+  EvaHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
   id.path = path;
   eva_http_content_add_data (content, &id, data, data_len, destroy_data, destroy);
 }
@@ -1131,19 +1131,19 @@ struct _FileInfo
   guint uri_path_len;
   char *uri_path;
   char *fs_path;
-  GskHttpContentFileType file_type;
+  EvaHttpContentFileType file_type;
 };
-static GskHttpContentResult
-handle_file_request (GskHttpContent        *content,
-                     GskHttpContentHandler *handler,
-                     GskHttpServer         *server,
-                     GskHttpRequest        *request,
-                     GskStream             *post_data,
+static EvaHttpContentResult
+handle_file_request (EvaHttpContent        *content,
+                     EvaHttpContentHandler *handler,
+                     EvaHttpServer         *server,
+                     EvaHttpRequest        *request,
+                     EvaStream             *post_data,
                      gpointer               data)
 {
   FileInfo *fi = data;
-  GskHttpResponse *response;
-  GskStream *stream;
+  EvaHttpResponse *response;
+  EvaStream *stream;
   gint64 size = -1;
   struct stat stat_buf;
   const char *end;
@@ -1226,12 +1226,12 @@ file_info_destroy (gpointer data)
  *
  * Add data from files from the native filesystem.
  */
-void           eva_http_content_add_file (GskHttpContent          *content,
+void           eva_http_content_add_file (EvaHttpContent          *content,
                                           const char              *path,
 					  const char              *fs_path,
-					  GskHttpContentFileType   type)
+					  EvaHttpContentFileType   type)
 {
-  GskHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
+  EvaHttpContentId id = EVA_HTTP_CONTENT_ID_INIT;
   FileInfo *fi = g_new (FileInfo, 1);
   Handler *h;
   fi->uri_path = g_strdup (path);
@@ -1259,10 +1259,10 @@ void           eva_http_content_add_file (GskHttpContent          *content,
  * Add data from files from the native filesystem.
  */
 void
-eva_http_content_add_file_by_id (GskHttpContent          *content,
-                                 const GskHttpContentId  *id,
+eva_http_content_add_file_by_id (EvaHttpContent          *content,
+                                 const EvaHttpContentId  *id,
                                  const char              *fs_path,
-                                 GskHttpContentFileType   type)
+                                 EvaHttpContentFileType   type)
 {
   FileInfo *fi;
   Handler *h;
@@ -1280,12 +1280,12 @@ eva_http_content_add_file_by_id (GskHttpContent          *content,
 
 /* --- serving pages --- */
 static gboolean
-handle_new_request_available (GskHttpServer *server,
+handle_new_request_available (EvaHttpServer *server,
                               gpointer       data)
 {
-  GskHttpContent *content = data;
-  GskHttpRequest *request;
-  GskStream *post_data = NULL;
+  EvaHttpContent *content = data;
+  EvaHttpRequest *request;
+  EvaStream *post_data = NULL;
   if (eva_http_server_get_request (server, &request, &post_data))
     {
       eva_http_content_respond (content, server, request, post_data);
@@ -1297,7 +1297,7 @@ handle_new_request_available (GskHttpServer *server,
 }
 
 static gboolean
-handle_request_pipe_shutdown (GskHttpServer *server,
+handle_request_pipe_shutdown (EvaHttpServer *server,
                               gpointer       data)
 {
   return FALSE;
@@ -1306,13 +1306,13 @@ handle_request_pipe_shutdown (GskHttpServer *server,
 /**
  * eva_http_content_manage_server:
  * @content: the content database which will handle requests.
- * @server: a GskHttpServer to manage.
+ * @server: a EvaHttpServer to manage.
  *
- * Handle requests on the given server, using the GskHttpContent.
+ * Handle requests on the given server, using the EvaHttpContent.
  */
 void
-eva_http_content_manage_server (GskHttpContent *content,
-                                GskHttpServer  *server)
+eva_http_content_manage_server (EvaHttpContent *content,
+                                EvaHttpServer  *server)
 {
   if (content->keepalive_idle_timeout_ms >= 0)
     eva_http_server_set_idle_timeout (server, content->keepalive_idle_timeout_ms);
@@ -1322,12 +1322,12 @@ eva_http_content_manage_server (GskHttpContent *content,
 }
 
 static gboolean
-handler_new_connection (GskStream    *stream,
+handler_new_connection (EvaStream    *stream,
                         gpointer      data,
                         GError      **error)
 {
-  GskHttpServer *server = eva_http_server_new ();
-  GskHttpContent *content = data;
+  EvaHttpServer *server = eva_http_server_new ();
+  EvaHttpContent *content = data;
   eva_http_content_manage_server (content, server);
   if (!eva_stream_attach_pair (EVA_STREAM (server), stream, error))
     {
@@ -1343,7 +1343,7 @@ static void
 handler_listener_failed (GError       *err,
                          gpointer      data)
 {
-  g_warning ("GskHttpContent: listener failed: %s", err->message);
+  g_warning ("EvaHttpContent: listener failed: %s", err->message);
 }
 
 /**
@@ -1358,11 +1358,11 @@ handler_listener_failed (GError       *err,
  * returns: whether the listen call succeeded.
  */
 gboolean
-eva_http_content_listen (GskHttpContent   *content,
-                         GskSocketAddress *address,
+eva_http_content_listen (EvaHttpContent   *content,
+                         EvaSocketAddress *address,
                          GError          **error)
 {
-  GskStreamListener *listener = eva_stream_listener_socket_new_bind (address, error);
+  EvaStreamListener *listener = eva_stream_listener_socket_new_bind (address, error);
   if (listener == NULL)
     return FALSE;
   eva_fd_set_close_on_exec (EVA_STREAM_LISTENER_SOCKET (listener)->fd, TRUE);

@@ -1,32 +1,32 @@
-<refentry id="eva-GskControlServer">
+<refentry id="eva-EvaControlServer">
 <refmeta>
-<refentrytitle role="top_of_page" id="eva-GskControlServer.top_of_page">GskControlServer</refentrytitle>
+<refentrytitle role="top_of_page" id="eva-EvaControlServer.top_of_page">EvaControlServer</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskControlServer</refname>
+<refname>EvaControlServer</refname>
 <refpurpose>a simple mechanism for handling control connections</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="eva-GskControlServer.synopsis" role="synopsis">
+<refsynopsisdiv id="eva-EvaControlServer.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskControlServer">GskControlServer</link>;
-<link linkend="void">void</link>                <link linkend="eva-control-server-add-command">eva_control_server_add_command</link>      (<link linkend="GskControlServer">GskControlServer</link> *server,
+                    <link linkend="EvaControlServer">EvaControlServer</link>;
+<link linkend="void">void</link>                <link linkend="eva-control-server-add-command">eva_control_server_add_command</link>      (<link linkend="EvaControlServer">EvaControlServer</link> *server,
                                                          const <link linkend="char">char</link> *command_name,
-                                                         <link linkend="GskControlServerCommandFunc">GskControlServerCommandFunc</link> func,
+                                                         <link linkend="EvaControlServerCommandFunc">EvaControlServerCommandFunc</link> func,
                                                          <link linkend="gpointer">gpointer</link> data);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-control-server-delete-file">eva_control_server_delete_file</link>      (<link linkend="GskControlServer">GskControlServer</link> *server,
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-control-server-delete-file">eva_control_server_delete_file</link>      (<link linkend="EvaControlServer">EvaControlServer</link> *server,
                                                          const <link linkend="char">char</link> *path,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-control-server-listen">eva_control_server_listen</link>           (<link linkend="GskControlServer">GskControlServer</link> *server,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-control-server-listen">eva_control_server_listen</link>           (<link linkend="EvaControlServer">EvaControlServer</link> *server,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskControlServer">GskControlServer</link> *  <link linkend="eva-control-server-new">eva_control_server_new</link>              (void);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-control-server-set-file">eva_control_server_set_file</link>         (<link linkend="GskControlServer">GskControlServer</link> *server,
+<link linkend="EvaControlServer">EvaControlServer</link> *  <link linkend="eva-control-server-new">eva_control_server_new</link>              (void);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-control-server-set-file">eva_control_server_set_file</link>         (<link linkend="EvaControlServer">EvaControlServer</link> *server,
                                                          const <link linkend="char">char</link> *path,
                                                          const <link linkend="guint8">guint8</link> *content,
                                                          <link linkend="guint">guint</link> content_length,
@@ -42,7 +42,7 @@
 
 
 
-<refsect1 id="eva-GskControlServer.description" role="desc">
+<refsect1 id="eva-EvaControlServer.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 This provides a simple server that can be used
@@ -54,19 +54,19 @@ will be able to invoke.
 </para>
 </refsect1>
 
-<refsect1 id="eva-GskControlServer.details" role="details">
+<refsect1 id="eva-EvaControlServer.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskControlServer" role="struct">
-<title>GskControlServer</title>
-<indexterm zone="GskControlServer"><primary sortas="GskControlServer">GskControlServer</primary></indexterm><programlisting>typedef struct _GskControlServer GskControlServer;</programlisting>
+<refsect2 id="EvaControlServer" role="struct">
+<title>EvaControlServer</title>
+<indexterm zone="EvaControlServer"><primary sortas="EvaControlServer">EvaControlServer</primary></indexterm><programlisting>typedef struct _EvaControlServer EvaControlServer;</programlisting>
 <para>
 Opaque class which acts as a database of virtual files and commands.
 </para></refsect2>
 <refsect2 id="eva-control-server-add-command" role="function">
 <title>eva_control_server_add_command ()</title>
-<indexterm zone="eva-control-server-add-command"><primary sortas="eva_control_server_add_command">eva_control_server_add_command</primary></indexterm><programlisting><link linkend="void">void</link>                eva_control_server_add_command      (<link linkend="GskControlServer">GskControlServer</link> *server,
+<indexterm zone="eva-control-server-add-command"><primary sortas="eva_control_server_add_command">eva_control_server_add_command</primary></indexterm><programlisting><link linkend="void">void</link>                eva_control_server_add_command      (<link linkend="EvaControlServer">EvaControlServer</link> *server,
                                                          const <link linkend="char">char</link> *command_name,
-                                                         <link linkend="GskControlServerCommandFunc">GskControlServerCommandFunc</link> func,
+                                                         <link linkend="EvaControlServerCommandFunc">EvaControlServerCommandFunc</link> func,
                                                          <link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
 Add a command to the command server.
@@ -94,7 +94,7 @@ Add a command to the server.
 </variablelist></refsect2>
 <refsect2 id="eva-control-server-delete-file" role="function">
 <title>eva_control_server_delete_file ()</title>
-<indexterm zone="eva-control-server-delete-file"><primary sortas="eva_control_server_delete_file">eva_control_server_delete_file</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_control_server_delete_file      (<link linkend="GskControlServer">GskControlServer</link> *server,
+<indexterm zone="eva-control-server-delete-file"><primary sortas="eva_control_server_delete_file">eva_control_server_delete_file</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_control_server_delete_file      (<link linkend="EvaControlServer">EvaControlServer</link> *server,
                                                          const <link linkend="char">char</link> *path,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
@@ -115,8 +115,8 @@ Remove a file from the virtual filesystem.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-control-server-listen" role="function">
 <title>eva_control_server_listen ()</title>
-<indexterm zone="eva-control-server-listen"><primary sortas="eva_control_server_listen">eva_control_server_listen</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_control_server_listen           (<link linkend="GskControlServer">GskControlServer</link> *server,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address,
+<indexterm zone="eva-control-server-listen"><primary sortas="eva_control_server_listen">eva_control_server_listen</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_control_server_listen           (<link linkend="EvaControlServer">EvaControlServer</link> *server,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Bind to address and answer the requests using server.</para>
@@ -136,9 +136,9 @@ Bind to address and answer the requests using server.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-control-server-new" role="function">
 <title>eva_control_server_new ()</title>
-<indexterm zone="eva-control-server-new"><primary sortas="eva_control_server_new">eva_control_server_new</primary></indexterm><programlisting><link linkend="GskControlServer">GskControlServer</link> *  eva_control_server_new              (void);</programlisting>
+<indexterm zone="eva-control-server-new"><primary sortas="eva_control_server_new">eva_control_server_new</primary></indexterm><programlisting><link linkend="EvaControlServer">EvaControlServer</link> *  eva_control_server_new              (void);</programlisting>
 <para>
-Allocate a new GskControlServer.
+Allocate a new EvaControlServer.
 </para>
 <para>
 It has a few builtin commands: 'ls', 'cat'.</para>
@@ -149,7 +149,7 @@ It has a few builtin commands: 'ls', 'cat'.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-control-server-set-file" role="function">
 <title>eva_control_server_set_file ()</title>
-<indexterm zone="eva-control-server-set-file"><primary sortas="eva_control_server_set_file">eva_control_server_set_file</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_control_server_set_file         (<link linkend="GskControlServer">GskControlServer</link> *server,
+<indexterm zone="eva-control-server-set-file"><primary sortas="eva_control_server_set_file">eva_control_server_set_file</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_control_server_set_file         (<link linkend="EvaControlServer">EvaControlServer</link> *server,
                                                          const <link linkend="char">char</link> *path,
                                                          const <link linkend="guint8">guint8</link> *content,
                                                          <link linkend="guint">guint</link> content_length,
@@ -190,10 +190,10 @@ This can fail if it cannot make a virtual-directory.
 
 
 
-<refsect1 id="eva-GskControlServer.see-also">
+<refsect1 id="eva-EvaControlServer.see-also">
 <title>See Also</title>
 <para>
-GskControlClient, eva-control-client.
+EvaControlClient, eva-control-client.
 </para>
 </refsect1>
 

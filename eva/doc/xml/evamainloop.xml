@@ -1,6 +1,6 @@
-<refentry id="GskMainLoop">
+<refentry id="EvaMainLoop">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskMainLoop.top_of_page">Main Loop (Generic Event Management)</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaMainLoop.top_of_page">Main Loop (Generic Event Management)</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
@@ -10,93 +10,93 @@
 <refpurpose>Convenient way to be notified when certain types of event occur.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskMainLoop.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaMainLoop.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskMainLoopChange">GskMainLoopChange</link>;
-                    <link linkend="GskMainLoopEvent">GskMainLoopEvent</link>;
-                    <link linkend="GskMainLoopWaitInfo">GskMainLoopWaitInfo</link>;
-                    <link linkend="GskSource">GskSource</link>;
-                    <link linkend="GskMainLoopContextList">GskMainLoopContextList</link>;
-enum                <link linkend="GskMainLoopEventType">GskMainLoopEventType</link>;
-                    <link linkend="GskMainLoopClass">GskMainLoopClass</link>;
-                    <link linkend="GskMainLoop-struct">GskMainLoop</link>;
-<link linkend="void">void</link>                (<link linkend="GskMainLoopWaitPidFunc">*GskMainLoopWaitPidFunc</link>)           (<link linkend="GskMainLoopWaitInfo">GskMainLoopWaitInfo</link> *info,
+                    <link linkend="EvaMainLoopChange">EvaMainLoopChange</link>;
+                    <link linkend="EvaMainLoopEvent">EvaMainLoopEvent</link>;
+                    <link linkend="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</link>;
+                    <link linkend="EvaSource">EvaSource</link>;
+                    <link linkend="EvaMainLoopContextList">EvaMainLoopContextList</link>;
+enum                <link linkend="EvaMainLoopEventType">EvaMainLoopEventType</link>;
+                    <link linkend="EvaMainLoopClass">EvaMainLoopClass</link>;
+                    <link linkend="EvaMainLoop-struct">EvaMainLoop</link>;
+<link linkend="void">void</link>                (<link linkend="EvaMainLoopWaitPidFunc">*EvaMainLoopWaitPidFunc</link>)           (<link linkend="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</link> *info,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="gboolean">gboolean</link>            (<link linkend="GskMainLoopIdleFunc">*GskMainLoopIdleFunc</link>)              (<link linkend="gpointer">gpointer</link> user_data);
-<link linkend="gboolean">gboolean</link>            (<link linkend="GskMainLoopSignalFunc">*GskMainLoopSignalFunc</link>)            (<link linkend="int">int</link> sig_no,
+<link linkend="gboolean">gboolean</link>            (<link linkend="EvaMainLoopIdleFunc">*EvaMainLoopIdleFunc</link>)              (<link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gboolean">gboolean</link>            (<link linkend="EvaMainLoopSignalFunc">*EvaMainLoopSignalFunc</link>)            (<link linkend="int">int</link> sig_no,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="gboolean">gboolean</link>            (<link linkend="GskMainLoopTimeoutFunc">*GskMainLoopTimeoutFunc</link>)           (<link linkend="gpointer">gpointer</link> user_data);
-<link linkend="gboolean">gboolean</link>            (<link linkend="GskMainLoopIOFunc">*GskMainLoopIOFunc</link>)                (<link linkend="int">int</link> fd,
+<link linkend="gboolean">gboolean</link>            (<link linkend="EvaMainLoopTimeoutFunc">*EvaMainLoopTimeoutFunc</link>)           (<link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gboolean">gboolean</link>            (<link linkend="EvaMainLoopIOFunc">*EvaMainLoopIOFunc</link>)                (<link linkend="int">int</link> fd,
                                                          <link linkend="GIOCondition">GIOCondition</link> condition,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-enum                <link linkend="GskMainLoopCreateFlags">GskMainLoopCreateFlags</link>;
-<link linkend="GskMainLoop">GskMainLoop</link> *       <link linkend="eva-main-loop-new">eva_main_loop_new</link>                   (<link linkend="GskMainLoopCreateFlags">GskMainLoopCreateFlags</link> create_flags);
-<link linkend="GskMainLoop">GskMainLoop</link> *       <link linkend="eva-main-loop-default">eva_main_loop_default</link>               (void);
-<link linkend="guint">guint</link>               <link linkend="eva-main-loop-run">eva_main_loop_run</link>                   (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
+enum                <link linkend="EvaMainLoopCreateFlags">EvaMainLoopCreateFlags</link>;
+<link linkend="EvaMainLoop">EvaMainLoop</link> *       <link linkend="eva-main-loop-new">eva_main_loop_new</link>                   (<link linkend="EvaMainLoopCreateFlags">EvaMainLoopCreateFlags</link> create_flags);
+<link linkend="EvaMainLoop">EvaMainLoop</link> *       <link linkend="eva-main-loop-default">eva_main_loop_default</link>               (void);
+<link linkend="guint">guint</link>               <link linkend="eva-main-loop-run">eva_main_loop_run</link>                   (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
                                                          <link linkend="gint">gint</link> timeout,
                                                          <link linkend="guint">guint</link> *t_waited_out);
-<link linkend="GskSource">GskSource</link> *         <link linkend="eva-main-loop-add-idle">eva_main_loop_add_idle</link>              (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
-                                                         <link linkend="GskMainLoopIdleFunc">GskMainLoopIdleFunc</link> source_func,
+<link linkend="EvaSource">EvaSource</link> *         <link linkend="eva-main-loop-add-idle">eva_main_loop_add_idle</link>              (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
+                                                         <link linkend="EvaMainLoopIdleFunc">EvaMainLoopIdleFunc</link> source_func,
                                                          <link linkend="gpointer">gpointer</link> user_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="GskSource">GskSource</link> *         <link linkend="eva-main-loop-add-signal">eva_main_loop_add_signal</link>            (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
+<link linkend="EvaSource">EvaSource</link> *         <link linkend="eva-main-loop-add-signal">eva_main_loop_add_signal</link>            (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
                                                          <link linkend="int">int</link> signal_number,
-                                                         <link linkend="GskMainLoopSignalFunc">GskMainLoopSignalFunc</link> signal_func,
+                                                         <link linkend="EvaMainLoopSignalFunc">EvaMainLoopSignalFunc</link> signal_func,
                                                          <link linkend="gpointer">gpointer</link> user_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="GskSource">GskSource</link> *         <link linkend="eva-main-loop-add-waitpid">eva_main_loop_add_waitpid</link>           (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
+<link linkend="EvaSource">EvaSource</link> *         <link linkend="eva-main-loop-add-waitpid">eva_main_loop_add_waitpid</link>           (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
                                                          <link linkend="int">int</link> process_id,
-                                                         <link linkend="GskMainLoopWaitPidFunc">GskMainLoopWaitPidFunc</link> waitpid_func,
+                                                         <link linkend="EvaMainLoopWaitPidFunc">EvaMainLoopWaitPidFunc</link> waitpid_func,
                                                          <link linkend="gpointer">gpointer</link> user_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="GskSource">GskSource</link> *         <link linkend="eva-main-loop-add-io">eva_main_loop_add_io</link>                (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
+<link linkend="EvaSource">EvaSource</link> *         <link linkend="eva-main-loop-add-io">eva_main_loop_add_io</link>                (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
                                                          <link linkend="int">int</link> fd,
                                                          <link linkend="guint">guint</link> events,
-                                                         <link linkend="GskMainLoopIOFunc">GskMainLoopIOFunc</link> io_func,
+                                                         <link linkend="EvaMainLoopIOFunc">EvaMainLoopIOFunc</link> io_func,
                                                          <link linkend="gpointer">gpointer</link> user_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="void">void</link>                <link linkend="eva-source-adjust-io">eva_source_adjust_io</link>                (<link linkend="GskSource">GskSource</link> *source,
+<link linkend="void">void</link>                <link linkend="eva-source-adjust-io">eva_source_adjust_io</link>                (<link linkend="EvaSource">EvaSource</link> *source,
                                                          <link linkend="guint">guint</link> events);
-<link linkend="void">void</link>                <link linkend="eva-source-remove-io-events">eva_source_remove_io_events</link>         (<link linkend="GskSource">GskSource</link> *source,
+<link linkend="void">void</link>                <link linkend="eva-source-remove-io-events">eva_source_remove_io_events</link>         (<link linkend="EvaSource">EvaSource</link> *source,
                                                          <link linkend="guint">guint</link> events);
-<link linkend="void">void</link>                <link linkend="eva-source-add-io-events">eva_source_add_io_events</link>            (<link linkend="GskSource">GskSource</link> *source,
+<link linkend="void">void</link>                <link linkend="eva-source-add-io-events">eva_source_add_io_events</link>            (<link linkend="EvaSource">EvaSource</link> *source,
                                                          <link linkend="guint">guint</link> events);
-<link linkend="GskSource">GskSource</link> *         <link linkend="eva-main-loop-add-timer">eva_main_loop_add_timer</link>             (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
-                                                         <link linkend="GskMainLoopTimeoutFunc">GskMainLoopTimeoutFunc</link> timer_func,
+<link linkend="EvaSource">EvaSource</link> *         <link linkend="eva-main-loop-add-timer">eva_main_loop_add_timer</link>             (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
+                                                         <link linkend="EvaMainLoopTimeoutFunc">EvaMainLoopTimeoutFunc</link> timer_func,
                                                          <link linkend="gpointer">gpointer</link> timer_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> timer_destroy,
                                                          <link linkend="gint64">gint64</link> millis_expire,
                                                          <link linkend="gint64">gint64</link> milli_period);
-<link linkend="GskSource">GskSource</link> *         <link linkend="eva-main-loop-add-timer-absolute">eva_main_loop_add_timer_absolute</link>    (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
-                                                         <link linkend="GskMainLoopTimeoutFunc">GskMainLoopTimeoutFunc</link> timer_func,
+<link linkend="EvaSource">EvaSource</link> *         <link linkend="eva-main-loop-add-timer-absolute">eva_main_loop_add_timer_absolute</link>    (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
+                                                         <link linkend="EvaMainLoopTimeoutFunc">EvaMainLoopTimeoutFunc</link> timer_func,
                                                          <link linkend="gpointer">gpointer</link> timer_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> timer_destroy,
                                                          <link linkend="int">int</link> unixtime,
                                                          <link linkend="int">int</link> unixtime_micro);
-<link linkend="void">void</link>                <link linkend="eva-source-adjust-timer">eva_source_adjust_timer</link>             (<link linkend="GskSource">GskSource</link> *timer_source,
+<link linkend="void">void</link>                <link linkend="eva-source-adjust-timer">eva_source_adjust_timer</link>             (<link linkend="EvaSource">EvaSource</link> *timer_source,
                                                          <link linkend="gint64">gint64</link> millis_expire,
                                                          <link linkend="gint64">gint64</link> milli_period);
-<link linkend="void">void</link>                <link linkend="eva-source-remove">eva_source_remove</link>                   (<link linkend="GskSource">GskSource</link> *source);
-<link linkend="void">void</link>                <link linkend="eva-main-loop-add-context">eva_main_loop_add_context</link>           (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
+<link linkend="void">void</link>                <link linkend="eva-source-remove">eva_source_remove</link>                   (<link linkend="EvaSource">EvaSource</link> *source);
+<link linkend="void">void</link>                <link linkend="eva-main-loop-add-context">eva_main_loop_add_context</link>           (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
                                                          <link linkend="GMainContext">GMainContext</link> *context);
-<link linkend="void">void</link>                <link linkend="eva-main-loop-quit">eva_main_loop_quit</link>                  (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-main-loop-should-continue">eva_main_loop_should_continue</link>       (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop);
-<link linkend="GskMainLoop">GskMainLoop</link> *       <link linkend="eva-source-peek-main-loop">eva_source_peek_main_loop</link>           (<link linkend="GskSource">GskSource</link> *source);
-<link linkend="void">void</link>                <link linkend="eva-main-loop-destroy-all-sources">eva_main_loop_destroy_all_sources</link>   (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop);
+<link linkend="void">void</link>                <link linkend="eva-main-loop-quit">eva_main_loop_quit</link>                  (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-main-loop-should-continue">eva_main_loop_should_continue</link>       (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop);
+<link linkend="EvaMainLoop">EvaMainLoop</link> *       <link linkend="eva-source-peek-main-loop">eva_source_peek_main_loop</link>           (<link linkend="EvaSource">EvaSource</link> *source);
+<link linkend="void">void</link>                <link linkend="eva-main-loop-destroy-all-sources">eva_main_loop_destroy_all_sources</link>   (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop);
 <link linkend="gboolean">gboolean</link>            <link linkend="eva-main-loop-do-waitpid">eva_main_loop_do_waitpid</link>            (<link linkend="int">int</link> pid,
-                                                         <link linkend="GskMainLoopWaitInfo">GskMainLoopWaitInfo</link> *wait_info);
+                                                         <link linkend="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</link> *wait_info);
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskMainLoop.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaMainLoop.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----GskMainLoop
-         +----<link linkend="GskMainLoopPollBase">GskMainLoopPollBase</link>
-         +----<link linkend="GskMainLoopKqueue">GskMainLoopKqueue</link>
+   +----EvaMainLoop
+         +----<link linkend="EvaMainLoopPollBase">EvaMainLoopPollBase</link>
+         +----<link linkend="EvaMainLoopKqueue">EvaMainLoopKqueue</link>
 </synopsis>
 </refsect1>
 
@@ -107,7 +107,7 @@ enum                <link linkend="GskMainLoopCreateFlags">GskMainLoopCreateFlag
 
 
 
-<refsect1 id="GskMainLoop.description" role="desc">
+<refsect1 id="EvaMainLoop.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 A main loop is an object which can trap events and call user functions
@@ -119,18 +119,18 @@ readied, signals being delivered, timeouts, idle functions and child-process
 termination are the currently known events.
 </para>
 <para>
-GskMainLoop itself is abstract, you must use a system-specific derived class
+EvaMainLoop itself is abstract, you must use a system-specific derived class
 to do polling.  Use <link linkend="eva-main-loop-default"><function>eva_main_loop_default()</function></link> to get a main loop which is
 appropriate to your system.
 </para>
 </refsect1>
 
-<refsect1 id="GskMainLoop.details" role="details">
+<refsect1 id="EvaMainLoop.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskMainLoopChange" role="struct">
-<title>GskMainLoopChange</title>
-<indexterm zone="GskMainLoopChange"><primary sortas="GskMainLoopChange">GskMainLoopChange</primary></indexterm><programlisting>typedef struct {
-  GskMainLoopEventType type;
+<refsect2 id="EvaMainLoopChange" role="struct">
+<title>EvaMainLoopChange</title>
+<indexterm zone="EvaMainLoopChange"><primary sortas="EvaMainLoopChange">EvaMainLoopChange</primary></indexterm><programlisting>typedef struct {
+  EvaMainLoopEventType type;
   union
   {
     struct {
@@ -148,22 +148,22 @@ appropriate to your system.
       gboolean did_exit;
     } process;
   } data;
-} GskMainLoopChange;
+} EvaMainLoopChange;
 </programlisting>
 <para>
 This structure is passed to the system-dependent polling
 mechanism to indicate a change in events we want notification of.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskMainLoopEventType">GskMainLoopEventType</link>&#160;<structfield>type</structfield>;</term>
+<term><link linkend="EvaMainLoopEventType">EvaMainLoopEventType</link>&#160;<structfield>type</structfield>;</term>
 <listitem><simpara>what type of change is to occur.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMainLoopEvent" role="struct">
-<title>GskMainLoopEvent</title>
-<indexterm zone="GskMainLoopEvent"><primary sortas="GskMainLoopEvent">GskMainLoopEvent</primary></indexterm><programlisting>typedef struct {
-  GskMainLoopEventType type;
+<refsect2 id="EvaMainLoopEvent" role="struct">
+<title>EvaMainLoopEvent</title>
+<indexterm zone="EvaMainLoopEvent"><primary sortas="EvaMainLoopEvent">EvaMainLoopEvent</primary></indexterm><programlisting>typedef struct {
+  EvaMainLoopEventType type;
   union
   {
     guint signal;
@@ -171,28 +171,28 @@ mechanism to indicate a change in events we want notification of.
       guint fd;
       GIOCondition events;
     } io;
-    GskMainLoopWaitInfo process_wait_info;
+    EvaMainLoopWaitInfo process_wait_info;
   } data;
-} GskMainLoopEvent;
+} EvaMainLoopEvent;
 </programlisting>
 <para>
 An event passed back from the system-dependent polling
 mechanism.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskMainLoopEventType">GskMainLoopEventType</link>&#160;<structfield>type</structfield>;</term>
+<term><link linkend="EvaMainLoopEventType">EvaMainLoopEventType</link>&#160;<structfield>type</structfield>;</term>
 <listitem><simpara>what type of event occurred.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskMainLoopWaitInfo">GskMainLoopWaitInfo</link>&#160;<structfield>process_wait_info</structfield>;</term>
+<term><link linkend="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</link>&#160;<structfield>process_wait_info</structfield>;</term>
 <listitem><simpara>
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMainLoopWaitInfo" role="struct">
-<title>GskMainLoopWaitInfo</title>
-<indexterm zone="GskMainLoopWaitInfo"><primary sortas="GskMainLoopWaitInfo">GskMainLoopWaitInfo</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaMainLoopWaitInfo" role="struct">
+<title>EvaMainLoopWaitInfo</title>
+<indexterm zone="EvaMainLoopWaitInfo"><primary sortas="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</primary></indexterm><programlisting>typedef struct {
   int               pid; 
   gboolean          exited;         /* exit(2) or killed by signal? */
   union {
@@ -200,7 +200,7 @@ mechanism.
     int             exit_status;    /*  exited */
   } d;           
   gboolean          dumped_core;
-} GskMainLoopWaitInfo;
+} EvaMainLoopWaitInfo;
 </programlisting>
 <para>
 Information about a process's termination.
@@ -222,26 +222,26 @@ by a signal, including crashes, which exit with SIGSEGV, SIGABRT, etc.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskSource" role="struct">
-<title>GskSource</title>
-<indexterm zone="GskSource"><primary sortas="GskSource">GskSource</primary></indexterm><programlisting>typedef struct _GskSource GskSource;</programlisting>
+<refsect2 id="EvaSource" role="struct">
+<title>EvaSource</title>
+<indexterm zone="EvaSource"><primary sortas="EvaSource">EvaSource</primary></indexterm><programlisting>typedef struct _EvaSource EvaSource;</programlisting>
 <para>
 An opaque object representing a trap of an event.
 </para></refsect2>
-<refsect2 id="GskMainLoopContextList" role="struct">
-<title>GskMainLoopContextList</title>
-<indexterm zone="GskMainLoopContextList"><primary sortas="GskMainLoopContextList">GskMainLoopContextList</primary></indexterm><programlisting>typedef struct _GskMainLoopContextList GskMainLoopContextList;</programlisting>
+<refsect2 id="EvaMainLoopContextList" role="struct">
+<title>EvaMainLoopContextList</title>
+<indexterm zone="EvaMainLoopContextList"><primary sortas="EvaMainLoopContextList">EvaMainLoopContextList</primary></indexterm><programlisting>typedef struct _EvaMainLoopContextList EvaMainLoopContextList;</programlisting>
 <para>
 Private.
 </para></refsect2>
-<refsect2 id="GskMainLoopEventType" role="enum">
-<title>enum GskMainLoopEventType</title>
-<indexterm zone="GskMainLoopEventType"><primary sortas="GskMainLoopEventType">GskMainLoopEventType</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaMainLoopEventType" role="enum">
+<title>enum EvaMainLoopEventType</title>
+<indexterm zone="EvaMainLoopEventType"><primary sortas="EvaMainLoopEventType">EvaMainLoopEventType</primary></indexterm><programlisting>typedef enum
 {
   EVA_MAIN_LOOP_EVENT_IO,
   EVA_MAIN_LOOP_EVENT_SIGNAL,
   EVA_MAIN_LOOP_EVENT_PROCESS
-} GskMainLoopEventType;
+} EvaMainLoopEventType;
 </programlisting>
 <para>
 Types of event that can be dealt with by this main-loop.
@@ -263,18 +263,18 @@ An input/output event.  This is really just a file-descriptor event.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMainLoopClass" role="struct">
-<title>GskMainLoopClass</title>
-<indexterm zone="GskMainLoopClass"><primary sortas="GskMainLoopClass">GskMainLoopClass</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaMainLoopClass" role="struct">
+<title>EvaMainLoopClass</title>
+<indexterm zone="EvaMainLoopClass"><primary sortas="EvaMainLoopClass">EvaMainLoopClass</primary></indexterm><programlisting>typedef struct {
   GObjectClass object_class;
-  gboolean (*setup)  (GskMainLoop       *main_loop);
-  void     (*change) (GskMainLoop       *main_loop,
-                      GskMainLoopChange *change);
-  guint    (*poll)   (GskMainLoop       *main_loop,
+  gboolean (*setup)  (EvaMainLoop       *main_loop);
+  void     (*change) (EvaMainLoop       *main_loop,
+                      EvaMainLoopChange *change);
+  guint    (*poll)   (EvaMainLoop       *main_loop,
                       guint              max_events_out,
-                      GskMainLoopEvent  *events,
+                      EvaMainLoopEvent  *events,
                       gint               timeout);
-} GskMainLoopClass;
+} EvaMainLoopClass;
 </programlisting>
 <para>
 The virtual function which must be implemented for each type of main-loop.
@@ -301,18 +301,18 @@ are interested in has occurred.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMainLoop-struct" role="struct">
-<title>GskMainLoop</title>
-<indexterm zone="GskMainLoop-struct"><primary sortas="GskMainLoop">GskMainLoop</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaMainLoop-struct" role="struct">
+<title>EvaMainLoop</title>
+<indexterm zone="EvaMainLoop-struct"><primary sortas="EvaMainLoop">EvaMainLoop</primary></indexterm><programlisting>typedef struct {
   gint		 exit_status;
 
-  GskMainLoopEvent *event_array_cache;
+  EvaMainLoopEvent *event_array_cache;
   unsigned       max_events;
 
   /* a list of GMainContext's */
-  GskMainLoopContextList *first_context;
-  GskMainLoopContextList *last_context;
-} GskMainLoop;
+  EvaMainLoopContextList *first_context;
+  EvaMainLoopContextList *last_context;
+} EvaMainLoop;
 </programlisting>
 <para>
 A main-loop.  This holds information about all its sources.
@@ -324,24 +324,24 @@ return from <link linkend="main"><function>main()</function></link>.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskMainLoopEvent">GskMainLoopEvent</link>&#160;*<structfield>event_array_cache</structfield>;</term>
+<term><link linkend="EvaMainLoopEvent">EvaMainLoopEvent</link>&#160;*<structfield>event_array_cache</structfield>;</term>
 <listitem><simpara>
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskMainLoopContextList">GskMainLoopContextList</link>&#160;*<structfield>first_context</structfield>;</term>
+<term><link linkend="EvaMainLoopContextList">EvaMainLoopContextList</link>&#160;*<structfield>first_context</structfield>;</term>
 <listitem><simpara>first GMainContext in the list.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskMainLoopContextList">GskMainLoopContextList</link>&#160;*<structfield>last_context</structfield>;</term>
+<term><link linkend="EvaMainLoopContextList">EvaMainLoopContextList</link>&#160;*<structfield>last_context</structfield>;</term>
 <listitem><simpara>last GMainContext in the list.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMainLoopWaitPidFunc" role="function">
-<title>GskMainLoopWaitPidFunc ()</title>
-<indexterm zone="GskMainLoopWaitPidFunc"><primary sortas="GskMainLoopWaitPidFunc">GskMainLoopWaitPidFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskMainLoopWaitPidFunc)           (<link linkend="GskMainLoopWaitInfo">GskMainLoopWaitInfo</link> *info,
+<refsect2 id="EvaMainLoopWaitPidFunc" role="function">
+<title>EvaMainLoopWaitPidFunc ()</title>
+<indexterm zone="EvaMainLoopWaitPidFunc"><primary sortas="EvaMainLoopWaitPidFunc">EvaMainLoopWaitPidFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaMainLoopWaitPidFunc)           (<link linkend="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</link> *info,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 A function which will be invoked when a process terminates.
@@ -353,9 +353,9 @@ A function which will be invoked when a process terminates.
 <listitem><simpara>data registered to <link linkend="eva-main-loop-add-waitpid"><function>eva_main_loop_add_waitpid()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMainLoopIdleFunc" role="function">
-<title>GskMainLoopIdleFunc ()</title>
-<indexterm zone="GskMainLoopIdleFunc"><primary sortas="GskMainLoopIdleFunc">GskMainLoopIdleFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GskMainLoopIdleFunc)              (<link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<refsect2 id="EvaMainLoopIdleFunc" role="function">
+<title>EvaMainLoopIdleFunc ()</title>
+<indexterm zone="EvaMainLoopIdleFunc"><primary sortas="EvaMainLoopIdleFunc">EvaMainLoopIdleFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*EvaMainLoopIdleFunc)              (<link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 Function to be called repetitively (that is, with no blocking or waiting; however,
 other events will continue to be processed).  It will stop when <link linkend="eva-main-loop-remove"><function>eva_main_loop_remove()</function></link>
@@ -367,9 +367,9 @@ is run on its source, or if it returns FALSE.
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>whether to continue running.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMainLoopSignalFunc" role="function">
-<title>GskMainLoopSignalFunc ()</title>
-<indexterm zone="GskMainLoopSignalFunc"><primary sortas="GskMainLoopSignalFunc">GskMainLoopSignalFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GskMainLoopSignalFunc)            (<link linkend="int">int</link> sig_no,
+<refsect2 id="EvaMainLoopSignalFunc" role="function">
+<title>EvaMainLoopSignalFunc ()</title>
+<indexterm zone="EvaMainLoopSignalFunc"><primary sortas="EvaMainLoopSignalFunc">EvaMainLoopSignalFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*EvaMainLoopSignalFunc)            (<link linkend="int">int</link> sig_no,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 Function to be called whenever a UNIX signal of a particular number is raised.
@@ -387,9 +387,9 @@ or if it returns FALSE.
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>whether to continue trapping the unix signal.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMainLoopTimeoutFunc" role="function">
-<title>GskMainLoopTimeoutFunc ()</title>
-<indexterm zone="GskMainLoopTimeoutFunc"><primary sortas="GskMainLoopTimeoutFunc">GskMainLoopTimeoutFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GskMainLoopTimeoutFunc)           (<link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<refsect2 id="EvaMainLoopTimeoutFunc" role="function">
+<title>EvaMainLoopTimeoutFunc ()</title>
+<indexterm zone="EvaMainLoopTimeoutFunc"><primary sortas="EvaMainLoopTimeoutFunc">EvaMainLoopTimeoutFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*EvaMainLoopTimeoutFunc)           (<link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 Function to invoke whenever a timeout expires.
 </para>
@@ -406,9 +406,9 @@ milli_period==-1).
 or if the source has been destroyed)
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMainLoopIOFunc" role="function">
-<title>GskMainLoopIOFunc ()</title>
-<indexterm zone="GskMainLoopIOFunc"><primary sortas="GskMainLoopIOFunc">GskMainLoopIOFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GskMainLoopIOFunc)                (<link linkend="int">int</link> fd,
+<refsect2 id="EvaMainLoopIOFunc" role="function">
+<title>EvaMainLoopIOFunc ()</title>
+<indexterm zone="EvaMainLoopIOFunc"><primary sortas="EvaMainLoopIOFunc">EvaMainLoopIOFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*EvaMainLoopIOFunc)                (<link linkend="int">int</link> fd,
                                                          <link linkend="GIOCondition">GIOCondition</link> condition,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
@@ -427,12 +427,12 @@ requested events are noticed.
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>whether to keep these source.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskMainLoopCreateFlags" role="enum">
-<title>enum GskMainLoopCreateFlags</title>
-<indexterm zone="GskMainLoopCreateFlags"><primary sortas="GskMainLoopCreateFlags">GskMainLoopCreateFlags</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaMainLoopCreateFlags" role="enum">
+<title>enum EvaMainLoopCreateFlags</title>
+<indexterm zone="EvaMainLoopCreateFlags"><primary sortas="EvaMainLoopCreateFlags">EvaMainLoopCreateFlags</primary></indexterm><programlisting>typedef enum
 {
   EVA_MAIN_LOOP_NEEDS_THREADS = (1 &lt;&lt; 0)
-} GskMainLoopCreateFlags;
+} EvaMainLoopCreateFlags;
 </programlisting>
 <para>
 Indicate user requirements for the main-loop being constructed.
@@ -440,7 +440,7 @@ Indicate user requirements for the main-loop being constructed.
 <varlistentry id="EVA-MAIN-LOOP-NEEDS-THREADS--CAPS" role="constant">
 <term><literal>EVA_MAIN_LOOP_NEEDS_THREADS</literal></term>
 <listitem><simpara>
-Some main loops (like GskMainLoopKqueue) don't cooperate with
+Some main loops (like EvaMainLoopKqueue) don't cooperate with
 threads at all!  This flag precludes choosing main-loops
 which are have this property.
 If you don't need threads, this flag does not hurt, except
@@ -451,7 +451,7 @@ want to get it right for a high-volume single-threaded server.
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-new" role="function">
 <title>eva_main_loop_new ()</title>
-<indexterm zone="eva-main-loop-new"><primary sortas="eva_main_loop_new">eva_main_loop_new</primary></indexterm><programlisting><link linkend="GskMainLoop">GskMainLoop</link> *       eva_main_loop_new                   (<link linkend="GskMainLoopCreateFlags">GskMainLoopCreateFlags</link> create_flags);</programlisting>
+<indexterm zone="eva-main-loop-new"><primary sortas="eva_main_loop_new">eva_main_loop_new</primary></indexterm><programlisting><link linkend="EvaMainLoop">EvaMainLoop</link> *       eva_main_loop_new                   (<link linkend="EvaMainLoopCreateFlags">EvaMainLoopCreateFlags</link> create_flags);</programlisting>
 <para>
 Make a new main loop.
 </para><variablelist role="params">
@@ -463,7 +463,7 @@ Make a new main loop.
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-default" role="function">
 <title>eva_main_loop_default ()</title>
-<indexterm zone="eva-main-loop-default"><primary sortas="eva_main_loop_default">eva_main_loop_default</primary></indexterm><programlisting><link linkend="GskMainLoop">GskMainLoop</link> *       eva_main_loop_default               (void);</programlisting>
+<indexterm zone="eva-main-loop-default"><primary sortas="eva_main_loop_default">eva_main_loop_default</primary></indexterm><programlisting><link linkend="EvaMainLoop">EvaMainLoop</link> *       eva_main_loop_default               (void);</programlisting>
 <para>
 Get the main-loop which is associated with the current thread.</para>
 <para>
@@ -475,7 +475,7 @@ to call <link linkend="g-object-unref"><function>g_object_unref()</function></li
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-run" role="function">
 <title>eva_main_loop_run ()</title>
-<indexterm zone="eva-main-loop-run"><primary sortas="eva_main_loop_run">eva_main_loop_run</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_main_loop_run                   (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
+<indexterm zone="eva-main-loop-run"><primary sortas="eva_main_loop_run">eva_main_loop_run</primary></indexterm><programlisting><link linkend="guint">guint</link>               eva_main_loop_run                   (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
                                                          <link linkend="gint">gint</link> timeout,
                                                          <link linkend="guint">guint</link> *t_waited_out);</programlisting>
 <para>
@@ -496,8 +496,8 @@ Run the main loop once, for a specified number of milliseconds.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-add-idle" role="function">
 <title>eva_main_loop_add_idle ()</title>
-<indexterm zone="eva-main-loop-add-idle"><primary sortas="eva_main_loop_add_idle">eva_main_loop_add_idle</primary></indexterm><programlisting><link linkend="GskSource">GskSource</link> *         eva_main_loop_add_idle              (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
-                                                         <link linkend="GskMainLoopIdleFunc">GskMainLoopIdleFunc</link> source_func,
+<indexterm zone="eva-main-loop-add-idle"><primary sortas="eva_main_loop_add_idle">eva_main_loop_add_idle</primary></indexterm><programlisting><link linkend="EvaSource">EvaSource</link> *         eva_main_loop_add_idle              (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
+                                                         <link linkend="EvaMainLoopIdleFunc">EvaMainLoopIdleFunc</link> source_func,
                                                          <link linkend="gpointer">gpointer</link> user_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -526,14 +526,14 @@ be handled at one time.</para>
 <varlistentry><term><parameter>destroy</parameter>&#160;:</term>
 <listitem><simpara> to be called when the source is destroyed.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GskSource"><type>GskSource</type></link> which can be removed (or ignored).
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="EvaSource"><type>EvaSource</type></link> which can be removed (or ignored).
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-add-signal" role="function">
 <title>eva_main_loop_add_signal ()</title>
-<indexterm zone="eva-main-loop-add-signal"><primary sortas="eva_main_loop_add_signal">eva_main_loop_add_signal</primary></indexterm><programlisting><link linkend="GskSource">GskSource</link> *         eva_main_loop_add_signal            (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
+<indexterm zone="eva-main-loop-add-signal"><primary sortas="eva_main_loop_add_signal">eva_main_loop_add_signal</primary></indexterm><programlisting><link linkend="EvaSource">EvaSource</link> *         eva_main_loop_add_signal            (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
                                                          <link linkend="int">int</link> signal_number,
-                                                         <link linkend="GskMainLoopSignalFunc">GskMainLoopSignalFunc</link> signal_func,
+                                                         <link linkend="EvaMainLoopSignalFunc">EvaMainLoopSignalFunc</link> signal_func,
                                                          <link linkend="gpointer">gpointer</link> user_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -567,14 +567,14 @@ It is ok to connect multiple times to a single signal simulataneously.</para>
 <varlistentry><term><parameter>destroy</parameter>&#160;:</term>
 <listitem><simpara> to be called when the source is destroyed.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GskSource"><type>GskSource</type></link> which can be removed (or ignored).
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="EvaSource"><type>EvaSource</type></link> which can be removed (or ignored).
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-add-waitpid" role="function">
 <title>eva_main_loop_add_waitpid ()</title>
-<indexterm zone="eva-main-loop-add-waitpid"><primary sortas="eva_main_loop_add_waitpid">eva_main_loop_add_waitpid</primary></indexterm><programlisting><link linkend="GskSource">GskSource</link> *         eva_main_loop_add_waitpid           (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
+<indexterm zone="eva-main-loop-add-waitpid"><primary sortas="eva_main_loop_add_waitpid">eva_main_loop_add_waitpid</primary></indexterm><programlisting><link linkend="EvaSource">EvaSource</link> *         eva_main_loop_add_waitpid           (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
                                                          <link linkend="int">int</link> process_id,
-                                                         <link linkend="GskMainLoopWaitPidFunc">GskMainLoopWaitPidFunc</link> waitpid_func,
+                                                         <link linkend="EvaMainLoopWaitPidFunc">EvaMainLoopWaitPidFunc</link> waitpid_func,
                                                          <link linkend="gpointer">gpointer</link> user_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -602,15 +602,15 @@ The handler will be invoked synchronously.</para>
 <varlistentry><term><parameter>destroy</parameter>&#160;:</term>
 <listitem><simpara> to be called when the source is destroyed.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GskSource"><type>GskSource</type></link> which can be removed (or ignored).
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="EvaSource"><type>EvaSource</type></link> which can be removed (or ignored).
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-add-io" role="function">
 <title>eva_main_loop_add_io ()</title>
-<indexterm zone="eva-main-loop-add-io"><primary sortas="eva_main_loop_add_io">eva_main_loop_add_io</primary></indexterm><programlisting><link linkend="GskSource">GskSource</link> *         eva_main_loop_add_io                (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
+<indexterm zone="eva-main-loop-add-io"><primary sortas="eva_main_loop_add_io">eva_main_loop_add_io</primary></indexterm><programlisting><link linkend="EvaSource">EvaSource</link> *         eva_main_loop_add_io                (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
                                                          <link linkend="int">int</link> fd,
                                                          <link linkend="guint">guint</link> events,
-                                                         <link linkend="GskMainLoopIOFunc">GskMainLoopIOFunc</link> io_func,
+                                                         <link linkend="EvaMainLoopIOFunc">EvaMainLoopIOFunc</link> io_func,
                                                          <link linkend="gpointer">gpointer</link> user_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -645,19 +645,19 @@ events occur.
 <varlistentry><term><parameter>destroy</parameter>&#160;:</term>
 <listitem><simpara> to be called when the source is destroyed.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GskSource"><type>GskSource</type></link> which can be removed or altered.
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="EvaSource"><type>EvaSource</type></link> which can be removed or altered.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-source-adjust-io" role="function">
 <title>eva_source_adjust_io ()</title>
-<indexterm zone="eva-source-adjust-io"><primary sortas="eva_source_adjust_io">eva_source_adjust_io</primary></indexterm><programlisting><link linkend="void">void</link>                eva_source_adjust_io                (<link linkend="GskSource">GskSource</link> *source,
+<indexterm zone="eva-source-adjust-io"><primary sortas="eva_source_adjust_io">eva_source_adjust_io</primary></indexterm><programlisting><link linkend="void">void</link>                eva_source_adjust_io                (<link linkend="EvaSource">EvaSource</link> *source,
                                                          <link linkend="guint">guint</link> events);</programlisting>
 <para>
 This changes the types of events being watched by the main-loop.
 </para>
 <para>
-Note:  each new file-descriptor needs a new GskSource.
-You must reuse this GskSource for a new file-descriptor
+Note:  each new file-descriptor needs a new EvaSource.
+You must reuse this EvaSource for a new file-descriptor
 even if it happens to have the same numeric value
 as a file-descriptor you closed.
 (The reason why:  EVA automatically coagulates
@@ -665,8 +665,8 @@ multiple adjust_io calls.  This is fine with all main-loops.
 However, kqueue(2) on BSD, and possibly others, automatically
 unregister all interest in an event if the file-descriptor closes.
 Hence, if the file-descriptor is re-opened and re-used with the
-same GskSource, EVA will not be able to determine
-that anything has changed, and will not issue a new <link linkend="GskMainLoopChange"><type>GskMainLoopChange</type></link>.
+same EvaSource, EVA will not be able to determine
+that anything has changed, and will not issue a new <link linkend="EvaMainLoopChange"><type>EvaMainLoopChange</type></link>.
 This will break main-loops that are sensitive to exact which file-descriptor
 (not just the number) was registered.)</para>
 <para>
@@ -680,7 +680,7 @@ This will break main-loops that are sensitive to exact which file-descriptor
 </variablelist></refsect2>
 <refsect2 id="eva-source-remove-io-events" role="function">
 <title>eva_source_remove_io_events ()</title>
-<indexterm zone="eva-source-remove-io-events"><primary sortas="eva_source_remove_io_events">eva_source_remove_io_events</primary></indexterm><programlisting><link linkend="void">void</link>                eva_source_remove_io_events         (<link linkend="GskSource">GskSource</link> *source,
+<indexterm zone="eva-source-remove-io-events"><primary sortas="eva_source_remove_io_events">eva_source_remove_io_events</primary></indexterm><programlisting><link linkend="void">void</link>                eva_source_remove_io_events         (<link linkend="EvaSource">EvaSource</link> *source,
                                                          <link linkend="guint">guint</link> events);</programlisting>
 <para>
 Cause this source to stop being notified if any of the events in
@@ -697,7 +697,7 @@ should be reduced.
 </variablelist></refsect2>
 <refsect2 id="eva-source-add-io-events" role="function">
 <title>eva_source_add_io_events ()</title>
-<indexterm zone="eva-source-add-io-events"><primary sortas="eva_source_add_io_events">eva_source_add_io_events</primary></indexterm><programlisting><link linkend="void">void</link>                eva_source_add_io_events            (<link linkend="GskSource">GskSource</link> *source,
+<indexterm zone="eva-source-add-io-events"><primary sortas="eva_source_add_io_events">eva_source_add_io_events</primary></indexterm><programlisting><link linkend="void">void</link>                eva_source_add_io_events            (<link linkend="EvaSource">EvaSource</link> *source,
                                                          <link linkend="guint">guint</link> events);</programlisting>
 <para>
 Cause this source to be notified if any of the events in
@@ -715,8 +715,8 @@ should be expanded.
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-add-timer" role="function">
 <title>eva_main_loop_add_timer ()</title>
-<indexterm zone="eva-main-loop-add-timer"><primary sortas="eva_main_loop_add_timer">eva_main_loop_add_timer</primary></indexterm><programlisting><link linkend="GskSource">GskSource</link> *         eva_main_loop_add_timer             (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
-                                                         <link linkend="GskMainLoopTimeoutFunc">GskMainLoopTimeoutFunc</link> timer_func,
+<indexterm zone="eva-main-loop-add-timer"><primary sortas="eva_main_loop_add_timer">eva_main_loop_add_timer</primary></indexterm><programlisting><link linkend="EvaSource">EvaSource</link> *         eva_main_loop_add_timer             (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
+                                                         <link linkend="EvaMainLoopTimeoutFunc">EvaMainLoopTimeoutFunc</link> timer_func,
                                                          <link linkend="gpointer">gpointer</link> timer_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> timer_destroy,
                                                          <link linkend="gint64">gint64</link> millis_expire,
@@ -747,13 +747,13 @@ at a regular interval thereafter.</para>
 <listitem><simpara> period between subsequent invocation of the timeout.
 This may be -1 to indicate that the timeout is a one-shot.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GskSource"><type>GskSource</type></link> which can be removed or altered.
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="EvaSource"><type>EvaSource</type></link> which can be removed or altered.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-add-timer-absolute" role="function">
 <title>eva_main_loop_add_timer_absolute ()</title>
-<indexterm zone="eva-main-loop-add-timer-absolute"><primary sortas="eva_main_loop_add_timer_absolute">eva_main_loop_add_timer_absolute</primary></indexterm><programlisting><link linkend="GskSource">GskSource</link> *         eva_main_loop_add_timer_absolute    (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
-                                                         <link linkend="GskMainLoopTimeoutFunc">GskMainLoopTimeoutFunc</link> timer_func,
+<indexterm zone="eva-main-loop-add-timer-absolute"><primary sortas="eva_main_loop_add_timer_absolute">eva_main_loop_add_timer_absolute</primary></indexterm><programlisting><link linkend="EvaSource">EvaSource</link> *         eva_main_loop_add_timer_absolute    (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
+                                                         <link linkend="EvaMainLoopTimeoutFunc">EvaMainLoopTimeoutFunc</link> timer_func,
                                                          <link linkend="gpointer">gpointer</link> timer_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> timer_destroy,
                                                          <link linkend="int">int</link> unixtime,
@@ -786,12 +786,12 @@ timer should expire.
 <varlistentry><term><parameter>unixtime_micro</parameter>&#160;:</term>
 <listitem><simpara> fractional part of <parameter>unixtime</parameter>, in microseconds.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GskSource"><type>GskSource</type></link> which can be removed or altered.
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="EvaSource"><type>EvaSource</type></link> which can be removed or altered.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-source-adjust-timer" role="function">
 <title>eva_source_adjust_timer ()</title>
-<indexterm zone="eva-source-adjust-timer"><primary sortas="eva_source_adjust_timer">eva_source_adjust_timer</primary></indexterm><programlisting><link linkend="void">void</link>                eva_source_adjust_timer             (<link linkend="GskSource">GskSource</link> *timer_source,
+<indexterm zone="eva-source-adjust-timer"><primary sortas="eva_source_adjust_timer">eva_source_adjust_timer</primary></indexterm><programlisting><link linkend="void">void</link>                eva_source_adjust_timer             (<link linkend="EvaSource">EvaSource</link> *timer_source,
                                                          <link linkend="gint64">gint64</link> millis_expire,
                                                          <link linkend="gint64">gint64</link> milli_period);</programlisting>
 <para>
@@ -812,7 +812,7 @@ the timer is a one-shot.
 </variablelist></refsect2>
 <refsect2 id="eva-source-remove" role="function">
 <title>eva_source_remove ()</title>
-<indexterm zone="eva-source-remove"><primary sortas="eva_source_remove">eva_source_remove</primary></indexterm><programlisting><link linkend="void">void</link>                eva_source_remove                   (<link linkend="GskSource">GskSource</link> *source);</programlisting>
+<indexterm zone="eva-source-remove"><primary sortas="eva_source_remove">eva_source_remove</primary></indexterm><programlisting><link linkend="void">void</link>                eva_source_remove                   (<link linkend="EvaSource">EvaSource</link> *source);</programlisting>
 <para>
 Destroy a main loop's source.
 </para>
@@ -829,10 +829,10 @@ deleted unexpectedly in the middle of the user's callback.)</para>
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-add-context" role="function">
 <title>eva_main_loop_add_context ()</title>
-<indexterm zone="eva-main-loop-add-context"><primary sortas="eva_main_loop_add_context">eva_main_loop_add_context</primary></indexterm><programlisting><link linkend="void">void</link>                eva_main_loop_add_context           (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop,
+<indexterm zone="eva-main-loop-add-context"><primary sortas="eva_main_loop_add_context">eva_main_loop_add_context</primary></indexterm><programlisting><link linkend="void">void</link>                eva_main_loop_add_context           (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop,
                                                          <link linkend="GMainContext">GMainContext</link> *context);</programlisting>
 <para>
-Indicate that a particular <link linkend="GskMainLoop"><type>GskMainLoop</type></link> will take care of
+Indicate that a particular <link linkend="EvaMainLoop"><type>EvaMainLoop</type></link> will take care of
 invoking the necessary methods of <parameter>context</parameter>.</para>
 <para>
 </para><variablelist role="params">
@@ -845,12 +845,12 @@ invoking the necessary methods of <parameter>context</parameter>.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-quit" role="function">
 <title>eva_main_loop_quit ()</title>
-<indexterm zone="eva-main-loop-quit"><primary sortas="eva_main_loop_quit">eva_main_loop_quit</primary></indexterm><programlisting><link linkend="void">void</link>                eva_main_loop_quit                  (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop);</programlisting>
+<indexterm zone="eva-main-loop-quit"><primary sortas="eva_main_loop_quit">eva_main_loop_quit</primary></indexterm><programlisting><link linkend="void">void</link>                eva_main_loop_quit                  (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop);</programlisting>
 <para>
 Set the main-loop flag that indicates that it should really stop running.
 </para>
 <para>
-If you are executing a GskMainLoop using <link linkend="eva-main-loop-run"><function>eva_main_loop_run()</function></link>,
+If you are executing a EvaMainLoop using <link linkend="eva-main-loop-run"><function>eva_main_loop_run()</function></link>,
 then you should probably check <link linkend="eva-main-loop-should-continue"><function>eva_main_loop_should_continue()</function></link> at every iteration
 to ensure that you should not have quit by now.</para>
 <para>
@@ -861,7 +861,7 @@ to ensure that you should not have quit by now.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-should-continue" role="function">
 <title>eva_main_loop_should_continue ()</title>
-<indexterm zone="eva-main-loop-should-continue"><primary sortas="eva_main_loop_should_continue">eva_main_loop_should_continue</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_main_loop_should_continue       (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop);</programlisting>
+<indexterm zone="eva-main-loop-should-continue"><primary sortas="eva_main_loop_should_continue">eva_main_loop_should_continue</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_main_loop_should_continue       (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop);</programlisting>
 <para>
 Query whether the main-loop should keep running or not.</para>
 <para>
@@ -874,7 +874,7 @@ Query whether the main-loop should keep running or not.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-source-peek-main-loop" role="function">
 <title>eva_source_peek_main_loop ()</title>
-<indexterm zone="eva-source-peek-main-loop"><primary sortas="eva_source_peek_main_loop">eva_source_peek_main_loop</primary></indexterm><programlisting><link linkend="GskMainLoop">GskMainLoop</link> *       eva_source_peek_main_loop           (<link linkend="GskSource">GskSource</link> *source);</programlisting>
+<indexterm zone="eva-source-peek-main-loop"><primary sortas="eva_source_peek_main_loop">eva_source_peek_main_loop</primary></indexterm><programlisting><link linkend="EvaMainLoop">EvaMainLoop</link> *       eva_source_peek_main_loop           (<link linkend="EvaSource">EvaSource</link> *source);</programlisting>
 <para>
 Get the main-loop where the source was created.</para>
 <para>
@@ -887,7 +887,7 @@ Get the main-loop where the source was created.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-main-loop-destroy-all-sources" role="function">
 <title>eva_main_loop_destroy_all_sources ()</title>
-<indexterm zone="eva-main-loop-destroy-all-sources"><primary sortas="eva_main_loop_destroy_all_sources">eva_main_loop_destroy_all_sources</primary></indexterm><programlisting><link linkend="void">void</link>                eva_main_loop_destroy_all_sources   (<link linkend="GskMainLoop">GskMainLoop</link> *main_loop);</programlisting>
+<indexterm zone="eva-main-loop-destroy-all-sources"><primary sortas="eva_main_loop_destroy_all_sources">eva_main_loop_destroy_all_sources</primary></indexterm><programlisting><link linkend="void">void</link>                eva_main_loop_destroy_all_sources   (<link linkend="EvaMainLoop">EvaMainLoop</link> *main_loop);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>main_loop</parameter>&#160;:</term>
@@ -897,7 +897,7 @@ Get the main-loop where the source was created.</para>
 <refsect2 id="eva-main-loop-do-waitpid" role="function">
 <title>eva_main_loop_do_waitpid ()</title>
 <indexterm zone="eva-main-loop-do-waitpid"><primary sortas="eva_main_loop_do_waitpid">eva_main_loop_do_waitpid</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_main_loop_do_waitpid            (<link linkend="int">int</link> pid,
-                                                         <link linkend="GskMainLoopWaitInfo">GskMainLoopWaitInfo</link> *wait_info);</programlisting>
+                                                         <link linkend="EvaMainLoopWaitInfo">EvaMainLoopWaitInfo</link> *wait_info);</programlisting>
 <para>
 Do a waitpid system call on the process and munge the
 data into <parameter>wait_info</parameter> for the caller to use.</para>

@@ -1,21 +1,21 @@
-<refentry id="eva-GskZlibInflator">
+<refentry id="eva-EvaZlibInflator">
 <refmeta>
-<refentrytitle role="top_of_page" id="eva-GskZlibInflator.top_of_page">GskZlibInflator</refentrytitle>
+<refentrytitle role="top_of_page" id="eva-EvaZlibInflator.top_of_page">EvaZlibInflator</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskZlibInflator</refname>
+<refname>EvaZlibInflator</refname>
 <refpurpose>a zlib decompressor</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="eva-GskZlibInflator.synopsis" role="synopsis">
+<refsynopsisdiv id="eva-EvaZlibInflator.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskZlibInflator">GskZlibInflator</link>;
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-zlib-inflator-new">eva_zlib_inflator_new</link>               (void);
+                    <link linkend="EvaZlibInflator">EvaZlibInflator</link>;
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-zlib-inflator-new">eva_zlib_inflator_new</link>               (void);
 </synopsis>
 </refsynopsisdiv>
 
@@ -27,23 +27,23 @@
 
 
 
-<refsect1 id="eva-GskZlibInflator.description" role="desc">
+<refsect1 id="eva-EvaZlibInflator.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 A stream which decompresses data on its input to decompressed data on its output.
 </para>
 </refsect1>
 
-<refsect1 id="eva-GskZlibInflator.details" role="details">
+<refsect1 id="eva-EvaZlibInflator.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskZlibInflator" role="struct">
-<title>GskZlibInflator</title>
-<indexterm zone="GskZlibInflator"><primary sortas="GskZlibInflator">GskZlibInflator</primary></indexterm><programlisting>typedef struct {
-  GskStream      stream;
+<refsect2 id="EvaZlibInflator" role="struct">
+<title>EvaZlibInflator</title>
+<indexterm zone="EvaZlibInflator"><primary sortas="EvaZlibInflator">EvaZlibInflator</primary></indexterm><programlisting>typedef struct {
+  EvaStream      stream;
   gpointer       private_stream;
-  GskBuffer      decompressed;
+  EvaBuffer      decompressed;
   gboolean       use_gzip;
-} GskZlibInflator;
+} EvaZlibInflator;
 </programlisting>
 <para>
 The instance of a zlib inflator stream (a decompressor).
@@ -51,7 +51,7 @@ One writes deflated input to it, and then
 raw (decompressed) data can be read from it.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskStream">GskStream</link>&#160;<structfield>stream</structfield>;</term>
+<term><link linkend="EvaStream">EvaStream</link>&#160;<structfield>stream</structfield>;</term>
 <listitem><simpara>parent instance.
 </simpara></listitem>
 </varlistentry>
@@ -61,7 +61,7 @@ raw (decompressed) data can be read from it.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskBuffer">GskBuffer</link>&#160;<structfield>decompressed</structfield>;</term>
+<term><link linkend="EvaBuffer">EvaBuffer</link>&#160;<structfield>decompressed</structfield>;</term>
 <listitem><simpara>buffer of decompressed data.
 </simpara></listitem>
 </varlistentry>
@@ -73,7 +73,7 @@ raw (decompressed) data can be read from it.
 </variablelist></refsect2>
 <refsect2 id="eva-zlib-inflator-new" role="function">
 <title>eva_zlib_inflator_new ()</title>
-<indexterm zone="eva-zlib-inflator-new"><primary sortas="eva_zlib_inflator_new">eva_zlib_inflator_new</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_zlib_inflator_new               (void);</programlisting>
+<indexterm zone="eva-zlib-inflator-new"><primary sortas="eva_zlib_inflator_new">eva_zlib_inflator_new</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_zlib_inflator_new               (void);</programlisting>
 <para>
 Create a new zlib inflator: this takes deflated (compressed) input
 which is written into it, and uncompressed data can be read from it.</para>
@@ -87,10 +87,10 @@ which is written into it, and uncompressed data can be read from it.</para>
 
 
 
-<refsect1 id="eva-GskZlibInflator.see-also">
+<refsect1 id="eva-EvaZlibInflator.see-also">
 <title>See Also</title>
 <para>
-GskZlibDeflator
+EvaZlibDeflator
 </para>
 </refsect1>
 

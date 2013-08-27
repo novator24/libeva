@@ -1,6 +1,6 @@
-<refentry id="GskIO">
+<refentry id="EvaIO">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskIO.top_of_page">Base Input/Output Object</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaIO.top_of_page">Base Input/Output Object</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
@@ -12,15 +12,15 @@ but no actual read or write methods.
 Those are left for derived classes to support.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskIO.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaIO.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskIOClass">GskIOClass</link>;
-                    <link linkend="GskIO-struct">GskIO</link>;
-<link linkend="gboolean">gboolean</link>            (<link linkend="GskIOHookFunc">*GskIOHookFunc</link>)                    (<link linkend="GskIO">GskIO</link> *io,
+                    <link linkend="EvaIOClass">EvaIOClass</link>;
+                    <link linkend="EvaIO-struct">EvaIO</link>;
+<link linkend="gboolean">gboolean</link>            (<link linkend="EvaIOHookFunc">*EvaIOHookFunc</link>)                    (<link linkend="EvaIO">EvaIO</link> *io,
                                                          <link linkend="gpointer">gpointer</link> data);
-enum                <link linkend="GskIOErrorCause">GskIOErrorCause</link>;
+enum                <link linkend="EvaIOErrorCause">EvaIOErrorCause</link>;
 #define             <link linkend="EVA-IO-READ-HOOK--CAPS">EVA_IO_READ_HOOK</link>                    (io)
 #define             <link linkend="EVA-IO-WRITE-HOOK--CAPS">EVA_IO_WRITE_HOOK</link>                   (io)
 #define             <link linkend="eva-io-block-read">eva_io_block_read</link>                   (io)
@@ -33,17 +33,17 @@ enum                <link linkend="GskIOErrorCause">GskIOErrorCause</link>;
 #define             <link linkend="eva-io-trap-writable">eva_io_trap_writable</link>                (io, func, shutdown_func, data, destroy)
 #define             <link linkend="eva-io-untrap-readable">eva_io_untrap_readable</link>              (io)
 #define             <link linkend="eva-io-untrap-writable">eva_io_untrap_writable</link>              (io)
-<link linkend="void">void</link>                <link linkend="eva-io-shutdown">eva_io_shutdown</link>                     (<link linkend="GskIO">GskIO</link> *io,
+<link linkend="void">void</link>                <link linkend="eva-io-shutdown">eva_io_shutdown</link>                     (<link linkend="EvaIO">EvaIO</link> *io,
                                                          <link linkend="GError">GError</link> **error);
 #define             <link linkend="eva-io-read-shutdown">eva_io_read_shutdown</link>                (io, error)
 #define             <link linkend="eva-io-write-shutdown">eva_io_write_shutdown</link>               (io, error)
-<link linkend="void">void</link>                <link linkend="eva-io-close">eva_io_close</link>                        (<link linkend="GskIO">GskIO</link> *io);
+<link linkend="void">void</link>                <link linkend="eva-io-close">eva_io_close</link>                        (<link linkend="EvaIO">EvaIO</link> *io);
 #define             <link linkend="eva-io-notify-ready-to-read">eva_io_notify_ready_to_read</link>         (io)
 #define             <link linkend="eva-io-notify-ready-to-write">eva_io_notify_ready_to_write</link>        (io)
 #define             <link linkend="eva-io-notify-read-shutdown">eva_io_notify_read_shutdown</link>         (io)
 #define             <link linkend="eva-io-notify-write-shutdown">eva_io_notify_write_shutdown</link>        (io)
-<link linkend="void">void</link>                <link linkend="eva-io-notify-shutdown">eva_io_notify_shutdown</link>              (<link linkend="GskIO">GskIO</link> *io);
-<link linkend="void">void</link>                <link linkend="eva-io-notify-connected">eva_io_notify_connected</link>             (<link linkend="GskIO">GskIO</link> *io);
+<link linkend="void">void</link>                <link linkend="eva-io-notify-shutdown">eva_io_notify_shutdown</link>              (<link linkend="EvaIO">EvaIO</link> *io);
+<link linkend="void">void</link>                <link linkend="eva-io-notify-connected">eva_io_notify_connected</link>             (<link linkend="EvaIO">EvaIO</link> *io);
 #define             <link linkend="eva-io-is-polling-for-read">eva_io_is_polling_for_read</link>          (io)
 #define             <link linkend="eva-io-is-polling-for-write">eva_io_is_polling_for_write</link>         (io)
 #define             <link linkend="eva-io-get-is-connecting">eva_io_get_is_connecting</link>            (io)
@@ -80,25 +80,25 @@ enum                <link linkend="GskIOErrorCause">GskIOErrorCause</link>;
 #define             <link linkend="eva-io-clear-shutdown-on-error">eva_io_clear_shutdown_on_error</link>      (io)
 #define             <link linkend="eva-io-set-idle-notify-write">eva_io_set_idle_notify_write</link>        (io,v)
 #define             <link linkend="eva-io-set-idle-notify-read">eva_io_set_idle_notify_read</link>         (io,v)
-<link linkend="void">void</link>                <link linkend="eva-io-set-error">eva_io_set_error</link>                    (<link linkend="GskIO">GskIO</link> *io,
-                                                         <link linkend="GskIOErrorCause">GskIOErrorCause</link> cause,
-                                                         <link linkend="GskErrorCode">GskErrorCode</link> error_code,
+<link linkend="void">void</link>                <link linkend="eva-io-set-error">eva_io_set_error</link>                    (<link linkend="EvaIO">EvaIO</link> *io,
+                                                         <link linkend="EvaIOErrorCause">EvaIOErrorCause</link> cause,
+                                                         <link linkend="EvaErrorCode">EvaErrorCode</link> error_code,
                                                          const <link linkend="char">char</link> *format,
                                                          ...);
-<link linkend="void">void</link>                <link linkend="eva-io-set-gerror">eva_io_set_gerror</link>                   (<link linkend="GskIO">GskIO</link> *io,
-                                                         <link linkend="GskIOErrorCause">GskIOErrorCause</link> cause,
+<link linkend="void">void</link>                <link linkend="eva-io-set-gerror">eva_io_set_gerror</link>                   (<link linkend="EvaIO">EvaIO</link> *io,
+                                                         <link linkend="EvaIOErrorCause">EvaIOErrorCause</link> cause,
                                                          <link linkend="GError">GError</link> *error);
-const <link linkend="char">char</link> *        <link linkend="eva-io-error-cause-to-string">eva_io_error_cause_to_string</link>        (<link linkend="GskIOErrorCause">GskIOErrorCause</link> cause);
+const <link linkend="char">char</link> *        <link linkend="eva-io-error-cause-to-string">eva_io_error_cause_to_string</link>        (<link linkend="EvaIOErrorCause">EvaIOErrorCause</link> cause);
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskIO.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaIO.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----GskIO
-         +----<link linkend="GskPacketQueue">GskPacketQueue</link>
-         +----<link linkend="GskStream">GskStream</link>
+   +----EvaIO
+         +----<link linkend="EvaPacketQueue">EvaPacketQueue</link>
+         +----<link linkend="EvaStream">EvaStream</link>
 </synopsis>
 </refsect1>
 
@@ -107,16 +107,16 @@ const <link linkend="char">char</link> *        <link linkend="eva-io-error-caus
 
 
 
-<refsect1 id="GskIO.signals" role="signal_proto">
+<refsect1 id="EvaIO.signals" role="signal_proto">
 <title role="signal_proto.title">Signals</title>
 <synopsis>
-  &quot;<link linkend="GskIO-on-connect">on-connect</link>&quot;                                     : No Recursion
-  &quot;<link linkend="GskIO-on-error">on-error</link>&quot;                                       : No Recursion
+  &quot;<link linkend="EvaIO-on-connect">on-connect</link>&quot;                                     : No Recursion
+  &quot;<link linkend="EvaIO-on-error">on-error</link>&quot;                                       : No Recursion
 </synopsis>
 </refsect1>
 
 
-<refsect1 id="GskIO.description" role="desc">
+<refsect1 id="EvaIO.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 The primary feature of this class is that it has two hooks;
@@ -125,30 +125,30 @@ to access them.
 </para>
 </refsect1>
 
-<refsect1 id="GskIO.details" role="details">
+<refsect1 id="EvaIO.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskIOClass" role="struct">
-<title>GskIOClass</title>
-<indexterm zone="GskIOClass"><primary sortas="GskIOClass">GskIOClass</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaIOClass" role="struct">
+<title>EvaIOClass</title>
+<indexterm zone="EvaIOClass"><primary sortas="EvaIOClass">EvaIOClass</primary></indexterm><programlisting>typedef struct {
   GObjectClass object_class;
   /* --- signals (do not override, usually) --- */
   /* Emitted after the connection is made. */
-  void       (*on_connect)      (GskIO      *io);
-  void       (*on_error)        (GskIO      *io);
+  void       (*on_connect)      (EvaIO      *io);
+  void       (*on_error)        (EvaIO      *io);
 
   /* --- virtuals --- */
-  gboolean   (*open)            (GskIO      *io,
+  gboolean   (*open)            (EvaIO      *io,
 				 GError    **error);
-  void       (*set_poll_read)   (GskIO      *io,
+  void       (*set_poll_read)   (EvaIO      *io,
 				 gboolean    do_poll);
-  void       (*set_poll_write)  (GskIO      *io,
+  void       (*set_poll_write)  (EvaIO      *io,
 				 gboolean    do_poll);
-  gboolean   (*shutdown_read)   (GskIO      *io,
+  gboolean   (*shutdown_read)   (EvaIO      *io,
 				 GError    **error);
-  gboolean   (*shutdown_write)  (GskIO      *io,
+  gboolean   (*shutdown_write)  (EvaIO      *io,
 				 GError    **error);
-  void       (*close)           (GskIO      *io);
-} GskIOClass;
+  void       (*close)           (EvaIO      *io);
+} EvaIOClass;
 </programlisting>
 <para>
 Methods which derived classes should overload to
@@ -175,7 +175,7 @@ has been completed.
 <varlistentry>
 <term><structfield>open</structfield>&#160;()</term>
 <listitem><simpara>
-Open resources.  This is called when the <link linkend="GskIO"><type>GskIO</type></link> is constructed.
+Open resources.  This is called when the <link linkend="EvaIO"><type>EvaIO</type></link> is constructed.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
@@ -215,16 +215,16 @@ Deallocate system resources associated with instance.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskIO-struct" role="struct">
-<title>GskIO</title>
-<indexterm zone="GskIO-struct"><primary sortas="GskIO">GskIO</primary></indexterm><programlisting>typedef struct _GskIO GskIO;</programlisting>
+<refsect2 id="EvaIO-struct" role="struct">
+<title>EvaIO</title>
+<indexterm zone="EvaIO-struct"><primary sortas="EvaIO">EvaIO</primary></indexterm><programlisting>typedef struct _EvaIO EvaIO;</programlisting>
 <para>
 The base class for all input/output objects.
 It has no public members.
 </para></refsect2>
-<refsect2 id="GskIOHookFunc" role="function">
-<title>GskIOHookFunc ()</title>
-<indexterm zone="GskIOHookFunc"><primary sortas="GskIOHookFunc">GskIOHookFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GskIOHookFunc)                    (<link linkend="GskIO">GskIO</link> *io,
+<refsect2 id="EvaIOHookFunc" role="function">
+<title>EvaIOHookFunc ()</title>
+<indexterm zone="EvaIOHookFunc"><primary sortas="EvaIOHookFunc">EvaIOHookFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*EvaIOHookFunc)                    (<link linkend="EvaIO">EvaIO</link> *io,
                                                          <link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
 A callback which will be run when either the object
@@ -241,9 +241,9 @@ or <link linkend="eva-io-trap-writable"><function>eva_io_trap_writable()</functi
 be deleted.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskIOErrorCause" role="enum">
-<title>enum GskIOErrorCause</title>
-<indexterm zone="GskIOErrorCause"><primary sortas="GskIOErrorCause">GskIOErrorCause</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaIOErrorCause" role="enum">
+<title>enum EvaIOErrorCause</title>
+<indexterm zone="EvaIOErrorCause"><primary sortas="EvaIOErrorCause">EvaIOErrorCause</primary></indexterm><programlisting>typedef enum
 {
   EVA_IO_ERROR_NONE,
   EVA_IO_ERROR_INIT,
@@ -258,10 +258,10 @@ be deleted.
   EVA_IO_ERROR_CLOSE,
   EVA_IO_ERROR_SYNC,
   EVA_IO_ERROR_POLL
-} GskIOErrorCause;
+} EvaIOErrorCause;
 </programlisting>
 <para>
-Every <link linkend="GskIO"><type>GskIO</type></link> has an GError and a GskIOErrorCause
+Every <link linkend="EvaIO"><type>EvaIO</type></link> has an GError and a EvaIOErrorCause
 which tells the last error observed on the stream,
 and what type of action triggered it.
 </para>
@@ -347,22 +347,22 @@ An error occurred closing.
 <title>EVA_IO_READ_HOOK()</title>
 <indexterm zone="EVA-IO-READ-HOOK--CAPS"><primary sortas="EVA_IO_READ_HOOK">EVA_IO_READ_HOOK</primary></indexterm><programlisting>#define             EVA_IO_READ_HOOK(io)</programlisting>
 <para>
-Get a pointer to the <link linkend="GskHook"><type>GskHook</type></link>
-corresponding to the read end of the <link linkend="GskIO"><type>GskIO</type></link>.
+Get a pointer to the <link linkend="EvaHook"><type>EvaHook</type></link>
+corresponding to the read end of the <link linkend="EvaIO"><type>EvaIO</type></link>.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the GskIO which contains the read-hook.
+<listitem><simpara>the EvaIO which contains the read-hook.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="EVA-IO-WRITE-HOOK--CAPS" role="macro">
 <title>EVA_IO_WRITE_HOOK()</title>
 <indexterm zone="EVA-IO-WRITE-HOOK--CAPS"><primary sortas="EVA_IO_WRITE_HOOK">EVA_IO_WRITE_HOOK</primary></indexterm><programlisting>#define             EVA_IO_WRITE_HOOK(io)</programlisting>
 <para>
-Get a pointer to the <link linkend="GskHook"><type>GskHook</type></link>
-corresponding to the write end of the <link linkend="GskIO"><type>GskIO</type></link>.
+Get a pointer to the <link linkend="EvaHook"><type>EvaHook</type></link>
+corresponding to the write end of the <link linkend="EvaIO"><type>EvaIO</type></link>.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the GskIO which contains the write-hook.
+<listitem><simpara>the EvaIO which contains the write-hook.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-block-read" role="macro">
@@ -372,7 +372,7 @@ corresponding to the write end of the <link linkend="GskIO"><type>GskIO</type></
 Block the read hook from being triggered.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the GskIO whose read hook should be blocked.
+<listitem><simpara>the EvaIO whose read hook should be blocked.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-block-write" role="macro">
@@ -382,7 +382,7 @@ Block the read hook from being triggered.
 Block the write hook from being triggered.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the GskIO whose write hook should be blocked.
+<listitem><simpara>the EvaIO whose write hook should be blocked.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-unblock-read" role="macro">
@@ -392,7 +392,7 @@ Block the write hook from being triggered.
 Unblock the read hook from being triggered.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the GskIO whose read hook should be unblocked.
+<listitem><simpara>the EvaIO whose read hook should be unblocked.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-unblock-write" role="macro">
@@ -402,7 +402,7 @@ Unblock the read hook from being triggered.
 Unblock the write hook from being triggered.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the GskIO whose write hook should be unblocked.
+<listitem><simpara>the EvaIO whose write hook should be unblocked.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-has-read-hook" role="macro">
@@ -412,7 +412,7 @@ Unblock the write hook from being triggered.
 Return whether the read hook is trapped.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the GskIO whose read hook should be tested.
+<listitem><simpara>the EvaIO whose read hook should be tested.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-has-write-hook" role="macro">
@@ -422,26 +422,26 @@ Return whether the read hook is trapped.
 Return whether the write hook is trapped.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the GskIO whose write hook should be tested.
+<listitem><simpara>the EvaIO whose write hook should be tested.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-trap-readable" role="macro">
 <title>eva_io_trap_readable()</title>
 <indexterm zone="eva-io-trap-readable"><primary sortas="eva_io_trap_readable">eva_io_trap_readable</primary></indexterm><programlisting>#define             eva_io_trap_readable(io, func, shutdown_func, data, destroy)</programlisting>
 <para>
-Trap the read end of the <link linkend="GskIO"><type>GskIO</type></link>.
+Trap the read end of the <link linkend="EvaIO"><type>EvaIO</type></link>.
 </para>
 <para>
-Note that only one trap of a <link linkend="GskIO"><type>GskIO</type></link>'s read-end is allowed at a time.
+Note that only one trap of a <link linkend="EvaIO"><type>EvaIO</type></link>'s read-end is allowed at a time.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> whose read end should be trapped.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> whose read end should be trapped.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>func</parameter>&#160;:</term>
-<listitem><simpara>the function to call (a <link linkend="GskIOHookFunc"><type>GskIOHookFunc</type></link>) when it's readable.
+<listitem><simpara>the function to call (a <link linkend="EvaIOHookFunc"><type>EvaIOHookFunc</type></link>) when it's readable.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>shutdown_func</parameter>&#160;:</term>
-<listitem><simpara>the function to call (a <link linkend="GskIOHookFunc"><type>GskIOHookFunc</type></link>) when it's read end is shut down.
+<listitem><simpara>the function to call (a <link linkend="EvaIOHookFunc"><type>EvaIOHookFunc</type></link>) when it's read end is shut down.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>data</parameter>&#160;:</term>
 <listitem><simpara>data passed along to <parameter>func</parameter> and <parameter>shutdown_func</parameter>
@@ -454,19 +454,19 @@ Note that only one trap of a <link linkend="GskIO"><type>GskIO</type></link>'s r
 <title>eva_io_trap_writable()</title>
 <indexterm zone="eva-io-trap-writable"><primary sortas="eva_io_trap_writable">eva_io_trap_writable</primary></indexterm><programlisting>#define             eva_io_trap_writable(io, func, shutdown_func, data, destroy)</programlisting>
 <para>
-Trap the write end of the <link linkend="GskIO"><type>GskIO</type></link>.
+Trap the write end of the <link linkend="EvaIO"><type>EvaIO</type></link>.
 </para>
 <para>
-Note that only one trap of a <link linkend="GskIO"><type>GskIO</type></link>'s write-end is allowed at a time.
+Note that only one trap of a <link linkend="EvaIO"><type>EvaIO</type></link>'s write-end is allowed at a time.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> whose write end should be trapped.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> whose write end should be trapped.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>func</parameter>&#160;:</term>
-<listitem><simpara>the function to call (a <link linkend="GskIOHookFunc"><type>GskIOHookFunc</type></link>) when it's writable.
+<listitem><simpara>the function to call (a <link linkend="EvaIOHookFunc"><type>EvaIOHookFunc</type></link>) when it's writable.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>shutdown_func</parameter>&#160;:</term>
-<listitem><simpara>the function to call (a <link linkend="GskIOHookFunc"><type>GskIOHookFunc</type></link>) when it's write end is shut down.
+<listitem><simpara>the function to call (a <link linkend="EvaIOHookFunc"><type>EvaIOHookFunc</type></link>) when it's write end is shut down.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>data</parameter>&#160;:</term>
 <listitem><simpara>data passed along to <parameter>func</parameter> and <parameter>shutdown_func</parameter>
@@ -479,28 +479,28 @@ Note that only one trap of a <link linkend="GskIO"><type>GskIO</type></link>'s w
 <title>eva_io_untrap_readable()</title>
 <indexterm zone="eva-io-untrap-readable"><primary sortas="eva_io_untrap_readable">eva_io_untrap_readable</primary></indexterm><programlisting>#define             eva_io_untrap_readable(io)</programlisting>
 <para>
-Untrap the read end of the <link linkend="GskIO"><type>GskIO</type></link>.
+Untrap the read end of the <link linkend="EvaIO"><type>EvaIO</type></link>.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> whose read end should be untrapped.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> whose read end should be untrapped.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-untrap-writable" role="macro">
 <title>eva_io_untrap_writable()</title>
 <indexterm zone="eva-io-untrap-writable"><primary sortas="eva_io_untrap_writable">eva_io_untrap_writable</primary></indexterm><programlisting>#define             eva_io_untrap_writable(io)</programlisting>
 <para>
-Untrap the write end of the <link linkend="GskIO"><type>GskIO</type></link>.
+Untrap the write end of the <link linkend="EvaIO"><type>EvaIO</type></link>.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> whose write end should be untrapped.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> whose write end should be untrapped.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-shutdown" role="function">
 <title>eva_io_shutdown ()</title>
-<indexterm zone="eva-io-shutdown"><primary sortas="eva_io_shutdown">eva_io_shutdown</primary></indexterm><programlisting><link linkend="void">void</link>                eva_io_shutdown                     (<link linkend="GskIO">GskIO</link> *io,
+<indexterm zone="eva-io-shutdown"><primary sortas="eva_io_shutdown">eva_io_shutdown</primary></indexterm><programlisting><link linkend="void">void</link>                eva_io_shutdown                     (<link linkend="EvaIO">EvaIO</link> *io,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
-Shutdown the read and write ends of a <link linkend="GskIO"><type>GskIO</type></link>.</para>
+Shutdown the read and write ends of a <link linkend="EvaIO"><type>EvaIO</type></link>.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
@@ -514,7 +514,7 @@ Shutdown the read and write ends of a <link linkend="GskIO"><type>GskIO</type></
 <title>eva_io_read_shutdown()</title>
 <indexterm zone="eva-io-read-shutdown"><primary sortas="eva_io_read_shutdown">eva_io_read_shutdown</primary></indexterm><programlisting>#define             eva_io_read_shutdown(io, error)</programlisting>
 <para>
-Shutdown both the read ends of the <link linkend="GskIO"><type>GskIO</type></link>.
+Shutdown both the read ends of the <link linkend="EvaIO"><type>EvaIO</type></link>.
 </para>
 <para>
 Returns TRUE if the shutdown succeeded immediately.
@@ -525,7 +525,7 @@ or if an error occurred.  These cases can be distinguished by looking
 at the <parameter>error</parameter> return.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>error</parameter>&#160;:</term>
 <listitem><simpara>error return if things go wrong.
@@ -535,7 +535,7 @@ at the <parameter>error</parameter> return.
 <title>eva_io_write_shutdown()</title>
 <indexterm zone="eva-io-write-shutdown"><primary sortas="eva_io_write_shutdown">eva_io_write_shutdown</primary></indexterm><programlisting>#define             eva_io_write_shutdown(io, error)</programlisting>
 <para>
-Shutdown both the write ends of the <link linkend="GskIO"><type>GskIO</type></link>.
+Shutdown both the write ends of the <link linkend="EvaIO"><type>EvaIO</type></link>.
 </para>
 <para>
 Returns FALSE if the shutdown has been initiated but not finished,
@@ -543,7 +543,7 @@ or if an error occurred.  These cases can be distinguished by looking
 at the <parameter>error</parameter> return.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>error</parameter>&#160;:</term>
 <listitem><simpara>optional error return if things go wrong.
@@ -551,13 +551,13 @@ at the <parameter>error</parameter> return.
 </variablelist></refsect2>
 <refsect2 id="eva-io-close" role="function">
 <title>eva_io_close ()</title>
-<indexterm zone="eva-io-close"><primary sortas="eva_io_close">eva_io_close</primary></indexterm><programlisting><link linkend="void">void</link>                eva_io_close                        (<link linkend="GskIO">GskIO</link> *io);</programlisting>
+<indexterm zone="eva-io-close"><primary sortas="eva_io_close">eva_io_close</primary></indexterm><programlisting><link linkend="void">void</link>                eva_io_close                        (<link linkend="EvaIO">EvaIO</link> *io);</programlisting>
 <para>
-Close an open <link linkend="GskIO"><type>GskIO</type></link>.</para>
+Close an open <link linkend="EvaIO"><type>EvaIO</type></link>.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara> the <link linkend="GskIO"><type>GskIO</type></link> to close.
+<listitem><simpara> the <link linkend="EvaIO"><type>EvaIO</type></link> to close.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-notify-ready-to-read" role="macro">
@@ -568,7 +568,7 @@ Trigger an is-readable event.  This should only be
 called by derived implementations.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> whose read-end is ready.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> whose read-end is ready.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-notify-ready-to-write" role="macro">
@@ -579,7 +579,7 @@ Trigger an is-writable event.  This should only be
 called by derived implementations.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> whose write-end is ready.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> whose write-end is ready.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-notify-read-shutdown" role="macro">
@@ -590,7 +590,7 @@ Trigger a read-end-shutdown event.  This should only be
 called by derived implementations.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> whose read-end is shutdown.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> whose read-end is shutdown.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-notify-write-shutdown" role="macro">
@@ -601,12 +601,12 @@ Trigger a write-end-shutdown event.  This should only be
 called by derived implementations.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> whose write-end is shutdown.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> whose write-end is shutdown.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-notify-shutdown" role="function">
 <title>eva_io_notify_shutdown ()</title>
-<indexterm zone="eva-io-notify-shutdown"><primary sortas="eva_io_notify_shutdown">eva_io_notify_shutdown</primary></indexterm><programlisting><link linkend="void">void</link>                eva_io_notify_shutdown              (<link linkend="GskIO">GskIO</link> *io);</programlisting>
+<indexterm zone="eva-io-notify-shutdown"><primary sortas="eva_io_notify_shutdown">eva_io_notify_shutdown</primary></indexterm><programlisting><link linkend="void">void</link>                eva_io_notify_shutdown              (<link linkend="EvaIO">EvaIO</link> *io);</programlisting>
 <para>
 This function is called by an implementation
 when the read- and write- ends of the i/o object
@@ -619,7 +619,7 @@ have both shut-down.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-io-notify-connected" role="function">
 <title>eva_io_notify_connected ()</title>
-<indexterm zone="eva-io-notify-connected"><primary sortas="eva_io_notify_connected">eva_io_notify_connected</primary></indexterm><programlisting><link linkend="void">void</link>                eva_io_notify_connected             (<link linkend="GskIO">GskIO</link> *io);</programlisting>
+<indexterm zone="eva-io-notify-connected"><primary sortas="eva_io_notify_connected">eva_io_notify_connected</primary></indexterm><programlisting><link linkend="void">void</link>                eva_io_notify_connected             (<link linkend="EvaIO">EvaIO</link> *io);</programlisting>
 <para>
 Trigger an is-connected event.  This should only be
 called by derived implementations.
@@ -627,7 +627,7 @@ Called to indicate that the connection has been made.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara> the <link linkend="GskIO"><type>GskIO</type></link> that finished connecting to the remote side.
+<listitem><simpara> the <link linkend="EvaIO"><type>EvaIO</type></link> that finished connecting to the remote side.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-is-polling-for-read" role="macro">
@@ -656,56 +656,56 @@ indicated that polling for writability was desired.
 <title>eva_io_get_is_connecting()</title>
 <indexterm zone="eva-io-get-is-connecting"><primary sortas="eva_io_get_is_connecting">eva_io_get_is_connecting</primary></indexterm><programlisting>#define             eva_io_get_is_connecting(io)</programlisting>
 <para>
-Return whether the <link linkend="GskIO"><type>GskIO</type></link> is still connecting.
-Will be FALSE if the <link linkend="GskIO"><type>GskIO</type></link> is never connecting.
+Return whether the <link linkend="EvaIO"><type>EvaIO</type></link> is still connecting.
+Will be FALSE if the <link linkend="EvaIO"><type>EvaIO</type></link> is never connecting.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to test.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to test.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-get-is-readable" role="macro">
 <title>eva_io_get_is_readable()</title>
 <indexterm zone="eva-io-get-is-readable"><primary sortas="eva_io_get_is_readable">eva_io_get_is_readable</primary></indexterm><programlisting>#define             eva_io_get_is_readable(io)</programlisting>
 <para>
-Return whether the <link linkend="GskIO"><type>GskIO</type></link> is readable.
+Return whether the <link linkend="EvaIO"><type>EvaIO</type></link> is readable.
 (It means that the read-end is available--
 it does not that there is any data which can be read.)
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to test.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to test.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-get-is-writable" role="macro">
 <title>eva_io_get_is_writable()</title>
 <indexterm zone="eva-io-get-is-writable"><primary sortas="eva_io_get_is_writable">eva_io_get_is_writable</primary></indexterm><programlisting>#define             eva_io_get_is_writable(io)</programlisting>
 <para>
-Return whether the <link linkend="GskIO"><type>GskIO</type></link> is writable.
+Return whether the <link linkend="EvaIO"><type>EvaIO</type></link> is writable.
 (It means that the write-end is available--
 it does not mean that you can necessarily write data.)
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to test.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to test.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-get-never-partial-reads" role="macro">
 <title>eva_io_get_never_partial_reads()</title>
 <indexterm zone="eva-io-get-never-partial-reads"><primary sortas="eva_io_get_never_partial_reads">eva_io_get_never_partial_reads</primary></indexterm><programlisting>#define             eva_io_get_never_partial_reads(io)</programlisting>
 <para>
-Return whether the <link linkend="GskIO"><type>GskIO</type></link> ever reads a partial buffer.
+Return whether the <link linkend="EvaIO"><type>EvaIO</type></link> ever reads a partial buffer.
 </para>
 <para>
 An example of a source which never returns partial data
 is a virtual source like /dev/zero.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to test.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to test.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-get-never-partial-writes" role="macro">
 <title>eva_io_get_never_partial_writes()</title>
 <indexterm zone="eva-io-get-never-partial-writes"><primary sortas="eva_io_get_never_partial_writes">eva_io_get_never_partial_writes</primary></indexterm><programlisting>#define             eva_io_get_never_partial_writes(io)</programlisting>
 <para>
-Return whether the <link linkend="GskIO"><type>GskIO</type></link> ever writes a partial buffer.
+Return whether the <link linkend="EvaIO"><type>EvaIO</type></link> ever writes a partial buffer.
 </para>
 <para>
 An example of a source which never writes partial data
@@ -713,29 +713,29 @@ is a infinite memory buffer, or a sink which merely
 discards data written to it.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to test.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to test.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-get-never-blocks-write" role="macro">
 <title>eva_io_get_never_blocks_write()</title>
 <indexterm zone="eva-io-get-never-blocks-write"><primary sortas="eva_io_get_never_blocks_write">eva_io_get_never_blocks_write</primary></indexterm><programlisting>#define             eva_io_get_never_blocks_write(io)</programlisting>
 <para>
-Return if the <link linkend="GskIO"><type>GskIO</type></link> will never block to write data.  It will always allow
+Return if the <link linkend="EvaIO"><type>EvaIO</type></link> will never block to write data.  It will always allow
 some data to be written, until it is full and will allow no more ever.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to test.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to test.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-get-never-blocks-read" role="macro">
 <title>eva_io_get_never_blocks_read()</title>
 <indexterm zone="eva-io-get-never-blocks-read"><primary sortas="eva_io_get_never_blocks_read">eva_io_get_never_blocks_read</primary></indexterm><programlisting>#define             eva_io_get_never_blocks_read(io)</programlisting>
 <para>
-Return if the <link linkend="GskIO"><type>GskIO</type></link> will never block to read data.  It will always return
+Return if the <link linkend="EvaIO"><type>EvaIO</type></link> will never block to read data.  It will always return
 some data, until it is empty and will never return any more.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to test.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to test.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-get-idle-notify-write" role="macro">
@@ -747,7 +747,7 @@ That means it will be triggered continually,
 as long as there is a unblocked hook watching it.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to test.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to test.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-get-idle-notify-read" role="macro">
@@ -759,18 +759,18 @@ That means it will be triggered continually,
 as long as there is a unblocked hook watching it.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to test.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to test.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-get-is-open" role="macro">
 <title>eva_io_get_is_open()</title>
 <indexterm zone="eva-io-get-is-open"><primary sortas="eva_io_get_is_open">eva_io_get_is_open</primary></indexterm><programlisting>#define             eva_io_get_is_open(io)</programlisting>
 <para>
-Return whether the <link linkend="GskIO"><type>GskIO</type></link> is open.  A <link linkend="GskIO"><type>GskIO</type></link> should be open if
+Return whether the <link linkend="EvaIO"><type>EvaIO</type></link> is open.  A <link linkend="EvaIO"><type>EvaIO</type></link> should be open if
 you want to use it.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to test.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to test.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-get-is-read-shutting-down" role="macro">
@@ -806,40 +806,40 @@ Get whether the write end of the IO is in the process of shutting down.
 <title>eva_io_mark_is_connecting()</title>
 <indexterm zone="eva-io-mark-is-connecting"><primary sortas="eva_io_mark_is_connecting">eva_io_mark_is_connecting</primary></indexterm><programlisting>#define             eva_io_mark_is_connecting(io)</programlisting>
 <para>
-Set the <link linkend="GskIO"><type>GskIO</type></link>'s is_connecting flag.  This should only be called
+Set the <link linkend="EvaIO"><type>EvaIO</type></link>'s is_connecting flag.  This should only be called
 by the implementations of derived classes.  By default,
-GskIO is not in the connecting state.
+EvaIO is not in the connecting state.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-mark-is-readable" role="macro">
 <title>eva_io_mark_is_readable()</title>
 <indexterm zone="eva-io-mark-is-readable"><primary sortas="eva_io_mark_is_readable">eva_io_mark_is_readable</primary></indexterm><programlisting>#define             eva_io_mark_is_readable(io)</programlisting>
 <para>
-Set whether the <link linkend="GskIO"><type>GskIO</type></link> is_readable.  This should only be called by
+Set whether the <link linkend="EvaIO"><type>EvaIO</type></link> is_readable.  This should only be called by
 the implementations of derived classes.  In general,
 you should not change is_readable more than once in the lifetime
 of an object; however some types of streams
 can be made readable again once they are shutdown.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-mark-is-writable" role="macro">
 <title>eva_io_mark_is_writable()</title>
 <indexterm zone="eva-io-mark-is-writable"><primary sortas="eva_io_mark_is_writable">eva_io_mark_is_writable</primary></indexterm><programlisting>#define             eva_io_mark_is_writable(io)</programlisting>
 <para>
-Set whether the <link linkend="GskIO"><type>GskIO</type></link> is_writable.  This should only be called by
+Set whether the <link linkend="EvaIO"><type>EvaIO</type></link> is_writable.  This should only be called by
 the implementations of derived classes.  In general,
 you should not change is_writable more than once in the lifetime
 of an object; however some types of streams
 can be made writable again once they are shutdown.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-mark-never-partial-reads" role="macro">
@@ -851,7 +851,7 @@ should never have a partial success.
 This should therefore only be used by implementations of derived classes.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-mark-never-partial-writes" role="macro">
@@ -863,120 +863,120 @@ should never have a partial success.
 This should therefore only be used by implementations of derived classes.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-mark-never-blocks-write" role="macro">
 <title>eva_io_mark_never_blocks_write()</title>
 <indexterm zone="eva-io-mark-never-blocks-write"><primary sortas="eva_io_mark_never_blocks_write">eva_io_mark_never_blocks_write</primary></indexterm><programlisting>#define             eva_io_mark_never_blocks_write(io)</programlisting>
 <para>
-Indicate that writing to the <link linkend="GskIO"><type>GskIO</type></link> never will block.
+Indicate that writing to the <link linkend="EvaIO"><type>EvaIO</type></link> never will block.
 Once this flag is set it cannot be cleared.
 This should only be used by implementations of derived classes.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-mark-never-blocks-read" role="macro">
 <title>eva_io_mark_never_blocks_read()</title>
 <indexterm zone="eva-io-mark-never-blocks-read"><primary sortas="eva_io_mark_never_blocks_read">eva_io_mark_never_blocks_read</primary></indexterm><programlisting>#define             eva_io_mark_never_blocks_read(io)</programlisting>
 <para>
-Indicate that reading from the <link linkend="GskIO"><type>GskIO</type></link> never will block.
+Indicate that reading from the <link linkend="EvaIO"><type>EvaIO</type></link> never will block.
 Once this flag is set it cannot be cleared.
 This should only be used by implementations of derived classes.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-mark-idle-notify-write" role="macro">
 <title>eva_io_mark_idle_notify_write()</title>
 <indexterm zone="eva-io-mark-idle-notify-write"><primary sortas="eva_io_mark_idle_notify_write">eva_io_mark_idle_notify_write</primary></indexterm><programlisting>#define             eva_io_mark_idle_notify_write(io)</programlisting>
 <para>
-Tell the GskIO system to continually trigger a user's write hook,
+Tell the EvaIO system to continually trigger a user's write hook,
 if any, assuming it is not blocked.
 This should only be used by implementations of derived classes.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-mark-idle-notify-read" role="macro">
 <title>eva_io_mark_idle_notify_read()</title>
 <indexterm zone="eva-io-mark-idle-notify-read"><primary sortas="eva_io_mark_idle_notify_read">eva_io_mark_idle_notify_read</primary></indexterm><programlisting>#define             eva_io_mark_idle_notify_read(io)</programlisting>
 <para>
-Tell the GskIO system to continually trigger a user's read hook,
+Tell the EvaIO system to continually trigger a user's read hook,
 if any, assuming it is not blocked.
 This should only be used by implementations of derived classes.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-mark-is-open" role="macro">
 <title>eva_io_mark_is_open()</title>
 <indexterm zone="eva-io-mark-is-open"><primary sortas="eva_io_mark_is_open">eva_io_mark_is_open</primary></indexterm><programlisting>#define             eva_io_mark_is_open(io)</programlisting>
 <para>
-Indicate that a <link linkend="GskIO"><type>GskIO</type></link> is open.
+Indicate that a <link linkend="EvaIO"><type>EvaIO</type></link> is open.
 This should only be used by implementations of derived classes.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-mark-shutdown-on-error" role="macro">
 <title>eva_io_mark_shutdown_on_error()</title>
 <indexterm zone="eva-io-mark-shutdown-on-error"><primary sortas="eva_io_mark_shutdown_on_error">eva_io_mark_shutdown_on_error</primary></indexterm><programlisting>#define             eva_io_mark_shutdown_on_error(io)</programlisting>
 <para>
-Cause the <link linkend="GskIO"><type>GskIO</type></link> object to be shutdown if it fails.
+Cause the <link linkend="EvaIO"><type>EvaIO</type></link> object to be shutdown if it fails.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> object to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> object to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-clear-is-readable" role="macro">
 <title>eva_io_clear_is_readable()</title>
 <indexterm zone="eva-io-clear-is-readable"><primary sortas="eva_io_clear_is_readable">eva_io_clear_is_readable</primary></indexterm><programlisting>#define             eva_io_clear_is_readable(io)</programlisting>
 <para>
-Indicate that a <link linkend="GskIO"><type>GskIO</type></link> is no longer readable.
+Indicate that a <link linkend="EvaIO"><type>EvaIO</type></link> is no longer readable.
 In most classes, this condition is permanent.
 This should only be used by implementations of derived classes.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-clear-is-writable" role="macro">
 <title>eva_io_clear_is_writable()</title>
 <indexterm zone="eva-io-clear-is-writable"><primary sortas="eva_io_clear_is_writable">eva_io_clear_is_writable</primary></indexterm><programlisting>#define             eva_io_clear_is_writable(io)</programlisting>
 <para>
-Indicate that a <link linkend="GskIO"><type>GskIO</type></link> is no longer writable.
+Indicate that a <link linkend="EvaIO"><type>EvaIO</type></link> is no longer writable.
 In most classes, this condition is permanent.
 This should only be used by implementations of derived classes.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-clear-never-partial-reads" role="macro">
 <title>eva_io_clear_never_partial_reads()</title>
 <indexterm zone="eva-io-clear-never-partial-reads"><primary sortas="eva_io_clear_never_partial_reads">eva_io_clear_never_partial_reads</primary></indexterm><programlisting>#define             eva_io_clear_never_partial_reads(io)</programlisting>
 <para>
-Indicate that the GskIO may exhibit partial reads.
+Indicate that the EvaIO may exhibit partial reads.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-clear-never-partial-writes" role="macro">
 <title>eva_io_clear_never_partial_writes()</title>
 <indexterm zone="eva-io-clear-never-partial-writes"><primary sortas="eva_io_clear_never_partial_writes">eva_io_clear_never_partial_writes</primary></indexterm><programlisting>#define             eva_io_clear_never_partial_writes(io)</programlisting>
 <para>
-Indicate that the GskIO may exhibit partial writes.
+Indicate that the EvaIO may exhibit partial writes.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-clear-idle-notify-write" role="macro">
@@ -987,7 +987,7 @@ Stop continually triggering the user's write hook.
 (This undoes <link linkend="eva-io-mark-idle-notify-write"><function>eva_io_mark_idle_notify_write()</function></link>)
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-clear-idle-notify-read" role="macro">
@@ -998,17 +998,17 @@ Stop continually triggering the user's read hook.
 (This undoes <link linkend="eva-io-mark-idle-notify-read"><function>eva_io_mark_idle_notify_read()</function></link>)
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-clear-is-open" role="macro">
 <title>eva_io_clear_is_open()</title>
 <indexterm zone="eva-io-clear-is-open"><primary sortas="eva_io_clear_is_open">eva_io_clear_is_open</primary></indexterm><programlisting>#define             eva_io_clear_is_open(io)</programlisting>
 <para>
-Indicate that the GskIO is closed.
+Indicate that the EvaIO is closed.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
-<listitem><simpara>the <link linkend="GskIO"><type>GskIO</type></link> to affect.
+<listitem><simpara>the <link linkend="EvaIO"><type>EvaIO</type></link> to affect.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-io-clear-shutdown-on-error" role="macro">
@@ -1025,7 +1025,7 @@ Suppress automatic-shutdown when the stream fails.
 <title>eva_io_set_idle_notify_write()</title>
 <indexterm zone="eva-io-set-idle-notify-write"><primary sortas="eva_io_set_idle_notify_write">eva_io_set_idle_notify_write</primary></indexterm><programlisting>#define             eva_io_set_idle_notify_write(io,v)</programlisting>
 <para>
-Set whether to perform idle-notification on the writable end of this GskIO.
+Set whether to perform idle-notification on the writable end of this EvaIO.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
 <listitem><simpara>the IO object to affect.
@@ -1038,7 +1038,7 @@ Set whether to perform idle-notification on the writable end of this GskIO.
 <title>eva_io_set_idle_notify_read()</title>
 <indexterm zone="eva-io-set-idle-notify-read"><primary sortas="eva_io_set_idle_notify_read">eva_io_set_idle_notify_read</primary></indexterm><programlisting>#define             eva_io_set_idle_notify_read(io,v)</programlisting>
 <para>
-Set whether to perform idle-notification on the readable end of this GskIO.
+Set whether to perform idle-notification on the readable end of this EvaIO.
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
 <listitem><simpara>the IO object to affect.
@@ -1049,13 +1049,13 @@ Set whether to perform idle-notification on the readable end of this GskIO.
 </variablelist></refsect2>
 <refsect2 id="eva-io-set-error" role="function">
 <title>eva_io_set_error ()</title>
-<indexterm zone="eva-io-set-error"><primary sortas="eva_io_set_error">eva_io_set_error</primary></indexterm><programlisting><link linkend="void">void</link>                eva_io_set_error                    (<link linkend="GskIO">GskIO</link> *io,
-                                                         <link linkend="GskIOErrorCause">GskIOErrorCause</link> cause,
-                                                         <link linkend="GskErrorCode">GskErrorCode</link> error_code,
+<indexterm zone="eva-io-set-error"><primary sortas="eva_io_set_error">eva_io_set_error</primary></indexterm><programlisting><link linkend="void">void</link>                eva_io_set_error                    (<link linkend="EvaIO">EvaIO</link> *io,
+                                                         <link linkend="EvaIOErrorCause">EvaIOErrorCause</link> cause,
+                                                         <link linkend="EvaErrorCode">EvaErrorCode</link> error_code,
                                                          const <link linkend="char">char</link> *format,
                                                          ...);</programlisting>
 <para>
-Set the error member of the <link linkend="GskIO"><type>GskIO</type></link>.</para>
+Set the error member of the <link linkend="EvaIO"><type>EvaIO</type></link>.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>io</parameter>&#160;:</term>
@@ -1076,8 +1076,8 @@ Set the error member of the <link linkend="GskIO"><type>GskIO</type></link>.</pa
 </variablelist></refsect2>
 <refsect2 id="eva-io-set-gerror" role="function">
 <title>eva_io_set_gerror ()</title>
-<indexterm zone="eva-io-set-gerror"><primary sortas="eva_io_set_gerror">eva_io_set_gerror</primary></indexterm><programlisting><link linkend="void">void</link>                eva_io_set_gerror                   (<link linkend="GskIO">GskIO</link> *io,
-                                                         <link linkend="GskIOErrorCause">GskIOErrorCause</link> cause,
+<indexterm zone="eva-io-set-gerror"><primary sortas="eva_io_set_gerror">eva_io_set_gerror</primary></indexterm><programlisting><link linkend="void">void</link>                eva_io_set_gerror                   (<link linkend="EvaIO">EvaIO</link> *io,
+                                                         <link linkend="EvaIOErrorCause">EvaIOErrorCause</link> cause,
                                                          <link linkend="GError">GError</link> *error);</programlisting>
 <para>
 Set the IO's error member, taking ownership of
@@ -1096,9 +1096,9 @@ the <parameter>error</parameter> parameter.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-io-error-cause-to-string" role="function">
 <title>eva_io_error_cause_to_string ()</title>
-<indexterm zone="eva-io-error-cause-to-string"><primary sortas="eva_io_error_cause_to_string">eva_io_error_cause_to_string</primary></indexterm><programlisting>const <link linkend="char">char</link> *        eva_io_error_cause_to_string        (<link linkend="GskIOErrorCause">GskIOErrorCause</link> cause);</programlisting>
+<indexterm zone="eva-io-error-cause-to-string"><primary sortas="eva_io_error_cause_to_string">eva_io_error_cause_to_string</primary></indexterm><programlisting>const <link linkend="char">char</link> *        eva_io_error_cause_to_string        (<link linkend="EvaIOErrorCause">EvaIOErrorCause</link> cause);</programlisting>
 <para>
-Convert the GskIOErrorCause code into a human-readable lowercase string.</para>
+Convert the EvaIOErrorCause code into a human-readable lowercase string.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>cause</parameter>&#160;:</term>
@@ -1110,10 +1110,10 @@ Convert the GskIOErrorCause code into a human-readable lowercase string.</para>
 
 </refsect1>
 
-<refsect1 id="GskIO.signal-details" role="signals">
+<refsect1 id="EvaIO.signal-details" role="signals">
 <title role="signals.title">Signal Details</title>
-<refsect2 id="GskIO-on-connect" role="signal"><title>The <literal>&quot;on-connect&quot;</literal> signal</title>
-<indexterm zone="GskIO-on-connect"><primary sortas="GskIO::on-connect">GskIO::on-connect</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GskIO">GskIO</link>   *evaio,
+<refsect2 id="EvaIO-on-connect" role="signal"><title>The <literal>&quot;on-connect&quot;</literal> signal</title>
+<indexterm zone="EvaIO-on-connect"><primary sortas="EvaIO::on-connect">EvaIO::on-connect</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="EvaIO">EvaIO</link>   *evaio,
                                                         <link linkend="gpointer">gpointer</link> user_data)      : No Recursion</programlisting>
 <para>
 Signal to indicate that the eva-io has become connected
@@ -1124,12 +1124,12 @@ Signal to indicate that the eva-io has become connected
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>user_data</parameter>&#160;:</term>
 <listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
-</variablelist></refsect2><refsect2 id="GskIO-on-error" role="signal"><title>The <literal>&quot;on-error&quot;</literal> signal</title>
-<indexterm zone="GskIO-on-error"><primary sortas="GskIO::on-error">GskIO::on-error</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GskIO">GskIO</link>   *evaio,
+</variablelist></refsect2><refsect2 id="EvaIO-on-error" role="signal"><title>The <literal>&quot;on-error&quot;</literal> signal</title>
+<indexterm zone="EvaIO-on-error"><primary sortas="EvaIO::on-error">EvaIO::on-error</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="EvaIO">EvaIO</link>   *evaio,
                                                         <link linkend="gpointer">gpointer</link> user_data)      : No Recursion</programlisting>
 <para>
 Signal to indicate that the eva-io has had an error.
-Use the 'error' and 'error_cause' members of <link linkend="GskIO"><type>GskIO</type></link>
+Use the 'error' and 'error_cause' members of <link linkend="EvaIO"><type>EvaIO</type></link>
 to find out what went wrong.
 </para><variablelist role="params">
 <varlistentry><term><parameter>evaio</parameter>&#160;:</term>
@@ -1141,10 +1141,10 @@ to find out what went wrong.
 </refsect1>
 
 
-<refsect1 id="GskIO.see-also">
+<refsect1 id="EvaIO.see-also">
 <title>See Also</title>
 <para>
-GskHook, GskStream
+EvaHook, EvaStream
 </para>
 </refsect1>
 

@@ -65,7 +65,7 @@
  */
 
 gpointer
-eva_mem_pool_must_alloc   (GskMemPool     *pool,
+eva_mem_pool_must_alloc   (EvaMemPool     *pool,
 			   gsize           size)
 {
   char *rv;
@@ -111,7 +111,7 @@ eva_mem_pool_must_alloc   (GskMemPool     *pool,
  *
  * returns: the slab of memory allocated from the pool.
  */
-gpointer eva_mem_pool_alloc0           (GskMemPool     *pool,
+gpointer eva_mem_pool_alloc0           (EvaMemPool     *pool,
                                         gsize           size)
 {
   return memset (eva_mem_pool_alloc (pool, size), 0, size);
@@ -131,7 +131,7 @@ gpointer eva_mem_pool_alloc0           (GskMemPool     *pool,
  * returns: a copy of @str, allocated from @pool.
  */
 char *
-eva_mem_pool_strdup       (GskMemPool     *pool,
+eva_mem_pool_strdup       (EvaMemPool     *pool,
 			   const char     *str)
 {
   guint L;
@@ -149,7 +149,7 @@ eva_mem_pool_strdup       (GskMemPool     *pool,
  */
 #if 0           /* inlined */
 void
-eva_mem_pool_destruct     (GskMemPool     *pool)
+eva_mem_pool_destruct     (EvaMemPool     *pool)
 {
   gpointer slab = pool->all_chunk_list;
   while (slab)
@@ -159,7 +159,7 @@ eva_mem_pool_destruct     (GskMemPool     *pool)
       slab = new_slab;
     }
 #ifdef EVA_DEBUG
-  memset (pool, 0xea, sizeof (GskMemPool));
+  memset (pool, 0xea, sizeof (EvaMemPool));
 #endif
 }
 #endif
@@ -173,7 +173,7 @@ eva_mem_pool_destruct     (GskMemPool     *pool)
  * Set up a fixed-size memory allocator for use.
  */
 void
-eva_mem_pool_fixed_construct (GskMemPoolFixed     *pool,
+eva_mem_pool_fixed_construct (EvaMemPoolFixed     *pool,
 			      gsize           size)
 {
   pool->slab_list = NULL;
@@ -192,7 +192,7 @@ eva_mem_pool_fixed_construct (GskMemPoolFixed     *pool,
  * returns: the allocated memory.
  */
 gpointer
-eva_mem_pool_fixed_alloc     (GskMemPoolFixed     *pool)
+eva_mem_pool_fixed_alloc     (EvaMemPoolFixed     *pool)
 {
   if (pool->free_list)
     {
@@ -226,7 +226,7 @@ eva_mem_pool_fixed_alloc     (GskMemPoolFixed     *pool)
  *
  * returns: the allocated, zeroed memory.
  */
-gpointer eva_mem_pool_fixed_alloc0    (GskMemPoolFixed     *pool)
+gpointer eva_mem_pool_fixed_alloc0    (EvaMemPoolFixed     *pool)
 {
   return memset (eva_mem_pool_fixed_alloc (pool), 0, pool->piece_size);
 }
@@ -239,7 +239,7 @@ gpointer eva_mem_pool_fixed_alloc0    (GskMemPoolFixed     *pool)
  *
  * Recycle some of the pool's memory back to it.
  */
-void     eva_mem_pool_fixed_free      (GskMemPoolFixed     *pool,
+void     eva_mem_pool_fixed_free      (EvaMemPoolFixed     *pool,
                                        gpointer        from_pool)
 {
   SLAB_GET_NEXT_PTR (from_pool) = pool->free_list;
@@ -252,7 +252,7 @@ void     eva_mem_pool_fixed_free      (GskMemPoolFixed     *pool,
  *
  * Free all memory associated with this pool.
  */
-void     eva_mem_pool_fixed_destruct  (GskMemPoolFixed     *pool)
+void     eva_mem_pool_fixed_destruct  (EvaMemPoolFixed     *pool)
 {
   while (pool->slab_list)
     {

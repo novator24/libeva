@@ -19,14 +19,14 @@
  *
  * returns: the newly allocated structure.
  */
-GskXmlrpcStruct *eva_xmlrpc_struct_new         (void)
+EvaXmlrpcStruct *eva_xmlrpc_struct_new         (void)
 {
-  GskXmlrpcStruct *structure = g_new0 (GskXmlrpcStruct, 1);
+  EvaXmlrpcStruct *structure = g_new0 (EvaXmlrpcStruct, 1);
   return structure;
 }
 
 static void
-eva_xmlrpc_value_destruct (GskXmlrpcValue *value)
+eva_xmlrpc_value_destruct (EvaXmlrpcValue *value)
 {
   switch (value->type)
     {
@@ -53,7 +53,7 @@ eva_xmlrpc_value_destruct (GskXmlrpcValue *value)
  *
  * Free memory associated with an XMLRPC struct.
  */
-void             eva_xmlrpc_struct_free        (GskXmlrpcStruct *structure)
+void             eva_xmlrpc_struct_free        (EvaXmlrpcStruct *structure)
 {
   unsigned i;
   for (i = 0; i < structure->n_members; i++)
@@ -63,9 +63,9 @@ void             eva_xmlrpc_struct_free        (GskXmlrpcStruct *structure)
     }
 }
 static void
-eva_xmlrpc_struct_add_value_steal_name (GskXmlrpcStruct *structure,
+eva_xmlrpc_struct_add_value_steal_name (EvaXmlrpcStruct *structure,
                              char      *member_name,
-			     GskXmlrpcValue  *value)
+			     EvaXmlrpcValue  *value)
 {
   if (structure->n_members == structure->alloced)
     {
@@ -74,7 +74,7 @@ eva_xmlrpc_struct_add_value_steal_name (GskXmlrpcStruct *structure,
 	new_alloced = 16;
       else
 	new_alloced += new_alloced;
-      structure->members = g_renew (GskXmlrpcNamedValue, structure->members, new_alloced);
+      structure->members = g_renew (EvaXmlrpcNamedValue, structure->members, new_alloced);
       structure->alloced = new_alloced;
     }
   structure->members[structure->n_members].name = member_name;
@@ -84,9 +84,9 @@ eva_xmlrpc_struct_add_value_steal_name (GskXmlrpcStruct *structure,
 
 
 static inline void
-eva_xmlrpc_struct_add_value (GskXmlrpcStruct *structure,
+eva_xmlrpc_struct_add_value (EvaXmlrpcStruct *structure,
                              const char      *member_name,
-			     GskXmlrpcValue  *value)
+			     EvaXmlrpcValue  *value)
 {
   eva_xmlrpc_struct_add_value_steal_name (structure, g_strdup (member_name), value);
 }
@@ -99,11 +99,11 @@ eva_xmlrpc_struct_add_value (GskXmlrpcStruct *structure,
  *
  * Add a single int32 member to the given struct.
  */
-void             eva_xmlrpc_struct_add_int32   (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_int32   (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 gint32           value)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_INT32;
   v.data.v_int32 = value;
   eva_xmlrpc_struct_add_value (structure, member_name, &v);
@@ -117,11 +117,11 @@ void             eva_xmlrpc_struct_add_int32   (GskXmlrpcStruct *structure,
  *
  * Add a single boolean member to the given struct.
  */
-void             eva_xmlrpc_struct_add_boolean (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_boolean (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 gboolean         value)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_BOOLEAN;
   v.data.v_boolean = value;
   eva_xmlrpc_struct_add_value (structure, member_name, &v);
@@ -135,11 +135,11 @@ void             eva_xmlrpc_struct_add_boolean (GskXmlrpcStruct *structure,
  *
  * Add a single double member to the given struct.
  */
-void             eva_xmlrpc_struct_add_double  (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_double  (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 gdouble          value)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_DOUBLE;
   v.data.v_double = value;
   eva_xmlrpc_struct_add_value (structure, member_name, &v);
@@ -153,11 +153,11 @@ void             eva_xmlrpc_struct_add_double  (GskXmlrpcStruct *structure,
  *
  * Add a single string member to the given struct.
  */
-void             eva_xmlrpc_struct_add_string  (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_string  (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 const char      *value)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_STRING;
   v.data.v_string = g_strdup (value);
   eva_xmlrpc_struct_add_value (structure, member_name, &v);
@@ -171,11 +171,11 @@ void             eva_xmlrpc_struct_add_string  (GskXmlrpcStruct *structure,
  *
  * Add a single date member to the given struct.
  */
-void             eva_xmlrpc_struct_add_date    (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_date    (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 gulong           value)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_DATE;
   v.data.v_date = value;
   eva_xmlrpc_struct_add_value (structure, member_name, &v);
@@ -190,11 +190,11 @@ void             eva_xmlrpc_struct_add_date    (GskXmlrpcStruct *structure,
  *
  * Add a single data member to the given struct.
  */
-void             eva_xmlrpc_struct_add_data    (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_data    (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 GByteArray      *data)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_BINARY_DATA;
   v.data.v_binary_data = data;
   eva_xmlrpc_struct_add_value (structure, member_name, &v);
@@ -209,11 +209,11 @@ void             eva_xmlrpc_struct_add_data    (GskXmlrpcStruct *structure,
  *
  * Add a structure as a member of another structure.
  */
-void             eva_xmlrpc_struct_add_struct  (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_struct  (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
-                                                GskXmlrpcStruct *substructure)
+                                                EvaXmlrpcStruct *substructure)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_STRUCT;
   v.data.v_struct = substructure;
   eva_xmlrpc_struct_add_value (structure, member_name, &v);
@@ -228,20 +228,20 @@ void             eva_xmlrpc_struct_add_struct  (GskXmlrpcStruct *structure,
  *
  * Add an array as a member of a structure.
  */
-void             eva_xmlrpc_struct_add_array   (GskXmlrpcStruct *structure,
+void             eva_xmlrpc_struct_add_array   (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
-                                                GskXmlrpcArray  *array)
+                                                EvaXmlrpcArray  *array)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_ARRAY;
   v.data.v_array = array;
   eva_xmlrpc_struct_add_value (structure, member_name, &v);
 }
 
-static GskXmlrpcValue *
-eva_xmlrpc_struct_peek_any (GskXmlrpcStruct *structure,
+static EvaXmlrpcValue *
+eva_xmlrpc_struct_peek_any (EvaXmlrpcStruct *structure,
 			    const char      *member_name,
-			    GskXmlrpcType    type)
+			    EvaXmlrpcType    type)
 {
   guint i;
   for (i = 0; i < structure->n_members; i++)
@@ -262,11 +262,11 @@ eva_xmlrpc_struct_peek_any (GskXmlrpcStruct *structure,
  *
  * returns: whether there was an int32 member named @member_name.
  */
-gboolean         eva_xmlrpc_struct_peek_int32  (GskXmlrpcStruct *structure,
+gboolean         eva_xmlrpc_struct_peek_int32  (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 gint32          *out)
 {
-  GskXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_INT32);
+  EvaXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_INT32);
   if (value)
     *out = value->data.v_int32;
   return value != NULL;
@@ -283,11 +283,11 @@ gboolean         eva_xmlrpc_struct_peek_int32  (GskXmlrpcStruct *structure,
  *
  * returns: whether there was an boolean member named @member_name.
  */
-gboolean         eva_xmlrpc_struct_peek_boolean(GskXmlrpcStruct *structure,
+gboolean         eva_xmlrpc_struct_peek_boolean(EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 gboolean        *out)
 {
-  GskXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_BOOLEAN);
+  EvaXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_BOOLEAN);
   if (value)
     *out = value->data.v_boolean;
   return value != NULL;
@@ -304,11 +304,11 @@ gboolean         eva_xmlrpc_struct_peek_boolean(GskXmlrpcStruct *structure,
  *
  * returns: whether there was an double member named @member_name.
  */
-gboolean         eva_xmlrpc_struct_peek_double (GskXmlrpcStruct *structure,
+gboolean         eva_xmlrpc_struct_peek_double (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
                                                 double          *out)
 {
-  GskXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_DOUBLE);
+  EvaXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_DOUBLE);
   if (value)
     *out = value->data.v_double;
   return value != NULL;
@@ -325,10 +325,10 @@ gboolean         eva_xmlrpc_struct_peek_double (GskXmlrpcStruct *structure,
  * 
  * returns: the string value, or NULL.
  */
-const char *     eva_xmlrpc_struct_peek_string (GskXmlrpcStruct *structure,
+const char *     eva_xmlrpc_struct_peek_string (EvaXmlrpcStruct *structure,
                                                 const char      *member_name)
 {
-  GskXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_STRING);
+  EvaXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_STRING);
   return value ? value->data.v_string : NULL;
 }
 
@@ -343,11 +343,11 @@ const char *     eva_xmlrpc_struct_peek_string (GskXmlrpcStruct *structure,
  *
  * returns: whether there was an date member named @member_name.
  */
-gboolean         eva_xmlrpc_struct_peek_date   (GskXmlrpcStruct *structure,
+gboolean         eva_xmlrpc_struct_peek_date   (EvaXmlrpcStruct *structure,
                                                 const char      *member_name,
 						gulong          *out)
 {
-  GskXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_DATE);
+  EvaXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_DATE);
   if (value)
     *out = value->data.v_date;
   return value != NULL;
@@ -362,10 +362,10 @@ gboolean         eva_xmlrpc_struct_peek_date   (GskXmlrpcStruct *structure,
  * 
  * returns: a reference (not a copy!) to the binary data, or #NULL.
  */
-const GByteArray*eva_xmlrpc_struct_peek_data   (GskXmlrpcStruct *structure,
+const GByteArray*eva_xmlrpc_struct_peek_data   (EvaXmlrpcStruct *structure,
                                                 const char      *member_name)
 {
-  GskXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_BINARY_DATA);
+  EvaXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_BINARY_DATA);
   return value ? value->data.v_binary_data : NULL;
 }
 /**
@@ -374,14 +374,14 @@ const GByteArray*eva_xmlrpc_struct_peek_data   (GskXmlrpcStruct *structure,
  * @member_name: the value to retrieve.
  *
  * Lookup a named substructure member of a structure,
- * returning a reference to the #GskXmlrpcStruct result, or #NULL.
+ * returning a reference to the #EvaXmlrpcStruct result, or #NULL.
  * 
  * returns: a reference (not a copy!) to the struct, or #NULL.
  */
-GskXmlrpcStruct *eva_xmlrpc_struct_peek_struct (GskXmlrpcStruct *structure,
+EvaXmlrpcStruct *eva_xmlrpc_struct_peek_struct (EvaXmlrpcStruct *structure,
                                                 const char      *member_name)
 {
-  GskXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_STRUCT);
+  EvaXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_STRUCT);
   return value ? value->data.v_struct : NULL;
 }
 /**
@@ -390,14 +390,14 @@ GskXmlrpcStruct *eva_xmlrpc_struct_peek_struct (GskXmlrpcStruct *structure,
  * @member_name: the value to retrieve.
  *
  * Lookup a named subarray member of a structure,
- * returning a reference to the #GskXmlrpcArray result, or #NULL.
+ * returning a reference to the #EvaXmlrpcArray result, or #NULL.
  * 
  * returns: a reference (not a copy!) to the array, or #NULL.
  */
-GskXmlrpcArray  *eva_xmlrpc_struct_peek_array  (GskXmlrpcStruct *structure,
+EvaXmlrpcArray  *eva_xmlrpc_struct_peek_array  (EvaXmlrpcStruct *structure,
                                                 const char      *member_name)
 {
-  GskXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_ARRAY);
+  EvaXmlrpcValue *value = eva_xmlrpc_struct_peek_any (structure, member_name, EVA_XMLRPC_ARRAY);
   return value ? value->data.v_array : NULL;
 }
 
@@ -409,9 +409,9 @@ GskXmlrpcArray  *eva_xmlrpc_struct_peek_array  (GskXmlrpcStruct *structure,
  *
  * returns: the newly allocated arrays.
  */
-GskXmlrpcArray  *eva_xmlrpc_array_new          (void)
+EvaXmlrpcArray  *eva_xmlrpc_array_new          (void)
 {
-  return g_new0 (GskXmlrpcArray, 1);
+  return g_new0 (EvaXmlrpcArray, 1);
 }
 
 /**
@@ -420,7 +420,7 @@ GskXmlrpcArray  *eva_xmlrpc_array_new          (void)
  *
  * Free the array and all its values.
  */
-void             eva_xmlrpc_array_free         (GskXmlrpcArray  *array)
+void             eva_xmlrpc_array_free         (EvaXmlrpcArray  *array)
 {
   unsigned i;
   for (i = 0; i < array->len; i++)
@@ -430,8 +430,8 @@ void             eva_xmlrpc_array_free         (GskXmlrpcArray  *array)
 }
 
 static void
-eva_xmlrpc_array_add_value (GskXmlrpcArray *array,
-			    GskXmlrpcValue  *value)
+eva_xmlrpc_array_add_value (EvaXmlrpcArray *array,
+			    EvaXmlrpcValue  *value)
 {
   if (array->len == array->alloced)
     {
@@ -440,7 +440,7 @@ eva_xmlrpc_array_add_value (GskXmlrpcArray *array,
 	new_alloced = 16;
       else
 	new_alloced += new_alloced;
-      array->values = g_renew (GskXmlrpcValue, array->values, new_alloced);
+      array->values = g_renew (EvaXmlrpcValue, array->values, new_alloced);
       array->alloced = new_alloced;
     }
   array->values[array->len] = *value;
@@ -454,10 +454,10 @@ eva_xmlrpc_array_add_value (GskXmlrpcArray *array,
  *
  * Append an integer to an XMLRPC array.
  */
-void             eva_xmlrpc_array_add_int32    (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_int32    (EvaXmlrpcArray  *array,
                                                 gint32           value)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_INT32;
   v.data.v_int32 = value;
   eva_xmlrpc_array_add_value (array, &v);
@@ -470,10 +470,10 @@ void             eva_xmlrpc_array_add_int32    (GskXmlrpcArray  *array,
  *
  * Append a boolean to an XMLRPC array.
  */
-void             eva_xmlrpc_array_add_boolean  (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_boolean  (EvaXmlrpcArray  *array,
                                                 gboolean         value)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_BOOLEAN;
   v.data.v_boolean = value;
   eva_xmlrpc_array_add_value (array, &v);
@@ -486,10 +486,10 @@ void             eva_xmlrpc_array_add_boolean  (GskXmlrpcArray  *array,
  *
  * Append a double-precision floating-pointer value to an XMLRPC array.
  */
-void             eva_xmlrpc_array_add_double   (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_double   (EvaXmlrpcArray  *array,
                                                 gdouble          value)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_DOUBLE;
   v.data.v_double = value;
   eva_xmlrpc_array_add_value (array, &v);
@@ -503,10 +503,10 @@ void             eva_xmlrpc_array_add_double   (GskXmlrpcArray  *array,
  *
  * Append a string to an XMLRPC array.
  */
-void             eva_xmlrpc_array_add_string   (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_string   (EvaXmlrpcArray  *array,
                                                 const char      *value)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_STRING;
   v.data.v_string = g_strdup (value);
   eva_xmlrpc_array_add_value (array, &v);
@@ -519,10 +519,10 @@ void             eva_xmlrpc_array_add_string   (GskXmlrpcArray  *array,
  *
  * Append a string to an XMLRPC array.
  */
-void             eva_xmlrpc_array_add_date     (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_date     (EvaXmlrpcArray  *array,
                                                 gulong           value)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_DATE;
   v.data.v_date = value;
   eva_xmlrpc_array_add_value (array, &v);
@@ -538,10 +538,10 @@ void             eva_xmlrpc_array_add_date     (GskXmlrpcArray  *array,
  * Append a binary-data element to an XMLRPC array.
  * This take ownership of @data.
  */
-void             eva_xmlrpc_array_add_data     (GskXmlrpcArray  *array,
+void             eva_xmlrpc_array_add_data     (EvaXmlrpcArray  *array,
                                                 GByteArray      *data)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_BINARY_DATA;
   v.data.v_binary_data = data;
   eva_xmlrpc_array_add_value (array, &v);
@@ -556,10 +556,10 @@ void             eva_xmlrpc_array_add_data     (GskXmlrpcArray  *array,
  * Append a binary-data element to an XMLRPC array.
  * This take ownership of @substructure.
  */
-void             eva_xmlrpc_array_add_struct   (GskXmlrpcArray  *array,
-                                                GskXmlrpcStruct *substructure)
+void             eva_xmlrpc_array_add_struct   (EvaXmlrpcArray  *array,
+                                                EvaXmlrpcStruct *substructure)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_STRUCT;
   v.data.v_struct = substructure;
   eva_xmlrpc_array_add_value (array, &v);
@@ -574,10 +574,10 @@ void             eva_xmlrpc_array_add_struct   (GskXmlrpcArray  *array,
  * Append a binary-data element to an XMLRPC array.
  * This take ownership of @subarray.
  */
-void             eva_xmlrpc_array_add_array    (GskXmlrpcArray  *array,
-                                                GskXmlrpcArray  *subarray)
+void             eva_xmlrpc_array_add_array    (EvaXmlrpcArray  *array,
+                                                EvaXmlrpcArray  *subarray)
 {
-  GskXmlrpcValue v;
+  EvaXmlrpcValue v;
   v.type = EVA_XMLRPC_ARRAY;
   v.data.v_array = subarray;
   eva_xmlrpc_array_add_value (array, &v);
@@ -593,10 +593,10 @@ void             eva_xmlrpc_array_add_array    (GskXmlrpcArray  *array,
  *
  * returns: a newly allocated request.
  */
-GskXmlrpcRequest *
-eva_xmlrpc_request_new(GskXmlrpcStream *xmlrpc_stream)
+EvaXmlrpcRequest *
+eva_xmlrpc_request_new(EvaXmlrpcStream *xmlrpc_stream)
 {
-  GskXmlrpcRequest *request = g_new (GskXmlrpcRequest, 1);
+  EvaXmlrpcRequest *request = g_new (EvaXmlrpcRequest, 1);
   request->magic = REQUEST_MAGIC;
   request->ref_count = 1;
   request->method_name = NULL;
@@ -616,7 +616,7 @@ eva_xmlrpc_request_new(GskXmlrpcStream *xmlrpc_stream)
  *
  * returns: the @request, for convenience.
  */
-GskXmlrpcRequest   *eva_xmlrpc_request_ref        (GskXmlrpcRequest   *request)
+EvaXmlrpcRequest   *eva_xmlrpc_request_ref        (EvaXmlrpcRequest   *request)
 {
   g_assert (request->ref_count > 0);
   g_assert (request->magic == REQUEST_MAGIC);
@@ -631,7 +631,7 @@ GskXmlrpcRequest   *eva_xmlrpc_request_ref        (GskXmlrpcRequest   *request)
  * Decrease the reference count on @request,
  * and free it if the count reached 0.
  */
-void             eva_xmlrpc_request_unref      (GskXmlrpcRequest   *request)
+void             eva_xmlrpc_request_unref      (EvaXmlrpcRequest   *request)
 {
   g_assert (request->ref_count > 0);
   g_assert (request->magic == REQUEST_MAGIC);
@@ -654,7 +654,7 @@ void             eva_xmlrpc_request_unref      (GskXmlrpcRequest   *request)
  *
  * Set the method name for this request.
  */
-void             eva_xmlrpc_request_set_name   (GskXmlrpcRequest   *request,
+void             eva_xmlrpc_request_set_name   (EvaXmlrpcRequest   *request,
                                                 const char      *name)
 {
   char *nname = g_strdup (name);
@@ -669,7 +669,7 @@ void             eva_xmlrpc_request_set_name   (GskXmlrpcRequest   *request,
  *
  * Append an integer to an XMLRPC request.
  */
-void             eva_xmlrpc_request_add_int32  (GskXmlrpcRequest *request,
+void             eva_xmlrpc_request_add_int32  (EvaXmlrpcRequest *request,
                                                 gint32           value)
 {
   eva_xmlrpc_array_add_int32 (request->params, value);
@@ -682,7 +682,7 @@ void             eva_xmlrpc_request_add_int32  (GskXmlrpcRequest *request,
  *
  * Append a boolean to an XMLRPC request.
  */
-void             eva_xmlrpc_request_add_boolean  (GskXmlrpcRequest *request,
+void             eva_xmlrpc_request_add_boolean  (EvaXmlrpcRequest *request,
                                                 gboolean         value)
 {
   eva_xmlrpc_array_add_boolean (request->params, value);
@@ -694,7 +694,7 @@ void             eva_xmlrpc_request_add_boolean  (GskXmlrpcRequest *request,
  *
  * Append a double to an XMLRPC request.
  */
-void             eva_xmlrpc_request_add_double (GskXmlrpcRequest *request,
+void             eva_xmlrpc_request_add_double (EvaXmlrpcRequest *request,
                                                 gdouble          value)
 {
   eva_xmlrpc_array_add_double (request->params, value);
@@ -706,7 +706,7 @@ void             eva_xmlrpc_request_add_double (GskXmlrpcRequest *request,
  *
  * Append a string to an XMLRPC request.
  */
-void             eva_xmlrpc_request_add_string (GskXmlrpcRequest *request,
+void             eva_xmlrpc_request_add_string (EvaXmlrpcRequest *request,
                                                 const char      *value)
 {
   eva_xmlrpc_array_add_string (request->params, value);
@@ -718,7 +718,7 @@ void             eva_xmlrpc_request_add_string (GskXmlrpcRequest *request,
  *
  * Append a date to an XMLRPC request.
  */
-void             eva_xmlrpc_request_add_date   (GskXmlrpcRequest *request,
+void             eva_xmlrpc_request_add_date   (EvaXmlrpcRequest *request,
                                                 gulong           value)
 {
   eva_xmlrpc_array_add_date (request->params, value);
@@ -731,7 +731,7 @@ void             eva_xmlrpc_request_add_date   (GskXmlrpcRequest *request,
  *
  * Append binary data to an XMLRPC request (it will be base64 encoded transparently).
  */
-void             eva_xmlrpc_request_add_data (GskXmlrpcRequest *request,
+void             eva_xmlrpc_request_add_data (EvaXmlrpcRequest *request,
                                               GByteArray      *data)
 {
   eva_xmlrpc_array_add_data (request->params, data);
@@ -745,8 +745,8 @@ void             eva_xmlrpc_request_add_data (GskXmlrpcRequest *request,
  *
  * Add a structure as a parameter to the request.
  */
-void             eva_xmlrpc_request_add_struct(GskXmlrpcRequest *request,
-                                              GskXmlrpcStruct *substructure)
+void             eva_xmlrpc_request_add_struct(EvaXmlrpcRequest *request,
+                                              EvaXmlrpcStruct *substructure)
 {
   eva_xmlrpc_array_add_struct (request->params, substructure);
 }
@@ -759,8 +759,8 @@ void             eva_xmlrpc_request_add_struct(GskXmlrpcRequest *request,
  *
  * Add a structure as a parameter to the request.
  */
-void             eva_xmlrpc_request_add_array(GskXmlrpcRequest *request,
-                                              GskXmlrpcArray  *array)
+void             eva_xmlrpc_request_add_array(EvaXmlrpcRequest *request,
+                                              EvaXmlrpcArray  *array)
 {
   eva_xmlrpc_array_add_array (request->params, array);
 }
@@ -773,9 +773,9 @@ void             eva_xmlrpc_request_add_array(GskXmlrpcRequest *request,
  * returns: the newly allocated response which has no parameters
  * and no fault.
  */
-GskXmlrpcResponse   *eva_xmlrpc_response_new        (void)
+EvaXmlrpcResponse   *eva_xmlrpc_response_new        (void)
 {
-  GskXmlrpcResponse *response = g_new (GskXmlrpcResponse, 1);
+  EvaXmlrpcResponse *response = g_new (EvaXmlrpcResponse, 1);
   response->magic = RESPONSE_MAGIC;
   response->ref_count = 1;
   response->params = eva_xmlrpc_array_new ();
@@ -791,7 +791,7 @@ GskXmlrpcResponse   *eva_xmlrpc_response_new        (void)
  *
  * returns: the @response, for convenience.
  */
-GskXmlrpcResponse   *eva_xmlrpc_response_ref        (GskXmlrpcResponse   *response)
+EvaXmlrpcResponse   *eva_xmlrpc_response_ref        (EvaXmlrpcResponse   *response)
 {
   g_assert (response->ref_count > 0);
   g_assert (response->magic == RESPONSE_MAGIC);
@@ -806,7 +806,7 @@ GskXmlrpcResponse   *eva_xmlrpc_response_ref        (GskXmlrpcResponse   *respon
  * Decrease the reference count on @response,
  * and free it if the count reached 0.
  */
-void             eva_xmlrpc_response_unref      (GskXmlrpcResponse   *response)
+void             eva_xmlrpc_response_unref      (EvaXmlrpcResponse   *response)
 {
   g_assert (response->ref_count > 0);
   g_assert (response->magic == RESPONSE_MAGIC);
@@ -828,7 +828,7 @@ void             eva_xmlrpc_response_unref      (GskXmlrpcResponse   *response)
  *
  * Append an integer to an XMLRPC response.
  */
-void             eva_xmlrpc_response_add_int32  (GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_add_int32  (EvaXmlrpcResponse *response,
                                                 gint32           value)
 {
   eva_xmlrpc_array_add_int32 (response->params, value);
@@ -840,7 +840,7 @@ void             eva_xmlrpc_response_add_int32  (GskXmlrpcResponse *response,
  *
  * Append a boolean to an XMLRPC response.
  */
-void             eva_xmlrpc_response_add_boolean  (GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_add_boolean  (EvaXmlrpcResponse *response,
                                                 gboolean           value)
 {
   eva_xmlrpc_array_add_boolean (response->params, value);
@@ -852,7 +852,7 @@ void             eva_xmlrpc_response_add_boolean  (GskXmlrpcResponse *response,
  *
  * Append a double to an XMLRPC response.
  */
-void             eva_xmlrpc_response_add_double (GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_add_double (EvaXmlrpcResponse *response,
                                                 gdouble          value)
 {
   eva_xmlrpc_array_add_double (response->params, value);
@@ -864,7 +864,7 @@ void             eva_xmlrpc_response_add_double (GskXmlrpcResponse *response,
  *
  * Append a string to an XMLRPC response.
  */
-void             eva_xmlrpc_response_add_string (GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_add_string (EvaXmlrpcResponse *response,
                                                 const char      *value)
 {
   eva_xmlrpc_array_add_string (response->params, value);
@@ -876,7 +876,7 @@ void             eva_xmlrpc_response_add_string (GskXmlrpcResponse *response,
  *
  * Append a date to an XMLRPC response.
  */
-void             eva_xmlrpc_response_add_date   (GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_add_date   (EvaXmlrpcResponse *response,
                                                 gulong           value)
 {
   eva_xmlrpc_array_add_date (response->params, value);
@@ -890,7 +890,7 @@ void             eva_xmlrpc_response_add_date   (GskXmlrpcResponse *response,
  *
  * Append binary data to an XMLRPC response (it will be base64 encoded transparently).
  */
-void             eva_xmlrpc_response_add_data (GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_add_data (EvaXmlrpcResponse *response,
                                               GByteArray      *data)
 {
   eva_xmlrpc_array_add_data (response->params, data);
@@ -904,8 +904,8 @@ void             eva_xmlrpc_response_add_data (GskXmlrpcResponse *response,
  *
  * Add a structure as a parameter to the response.
  */
-void             eva_xmlrpc_response_add_struct(GskXmlrpcResponse *response,
-                                              GskXmlrpcStruct *substructure)
+void             eva_xmlrpc_response_add_struct(EvaXmlrpcResponse *response,
+                                              EvaXmlrpcStruct *substructure)
 {
   eva_xmlrpc_array_add_struct (response->params, substructure);
 }
@@ -918,15 +918,15 @@ void             eva_xmlrpc_response_add_struct(GskXmlrpcResponse *response,
  *
  * Add a structure as a parameter to the response.
  */
-void             eva_xmlrpc_response_add_array(GskXmlrpcResponse *response,
-                                              GskXmlrpcArray  *array)
+void             eva_xmlrpc_response_add_array(EvaXmlrpcResponse *response,
+                                              EvaXmlrpcArray  *array)
 {
   eva_xmlrpc_array_add_array (response->params, array);
 }
 
 
 #if 0
-void             eva_xmlrpc_response_fault_int32(GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_fault_int32(EvaXmlrpcResponse *response,
                                               gint32           value)
 {
   if (response->has_fault)
@@ -936,7 +936,7 @@ void             eva_xmlrpc_response_fault_int32(GskXmlrpcResponse *response,
   response->fault.data.v_int32 = value;
 }
 
-void             eva_xmlrpc_response_fault_double(GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_fault_double(EvaXmlrpcResponse *response,
                                               gdouble          value)
 {
   if (response->has_fault)
@@ -945,7 +945,7 @@ void             eva_xmlrpc_response_fault_double(GskXmlrpcResponse *response,
   response->fault.type = EVA_XMLRPC_DOUBLE;
   response->fault.data.v_int32 = value;
 }
-void             eva_xmlrpc_response_fault_string(GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_fault_string(EvaXmlrpcResponse *response,
                                               const char      *value)
 {
   if (response->has_fault)
@@ -954,7 +954,7 @@ void             eva_xmlrpc_response_fault_string(GskXmlrpcResponse *response,
   response->fault.type = EVA_XMLRPC_STRING;
   response->fault.data.v_string = g_strdup (value);
 }
-void             eva_xmlrpc_response_fault_date (GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_fault_date (EvaXmlrpcResponse *response,
                                               gulong           value)
 {
   if (response->has_fault)
@@ -965,7 +965,7 @@ void             eva_xmlrpc_response_fault_date (GskXmlrpcResponse *response,
 }
 
 /* these take ownership of second argument */
-void             eva_xmlrpc_response_fault_data (GskXmlrpcResponse *response,
+void             eva_xmlrpc_response_fault_data (EvaXmlrpcResponse *response,
                                               GByteArray      *data)
 {
   if (response->has_fault)
@@ -974,8 +974,8 @@ void             eva_xmlrpc_response_fault_data (GskXmlrpcResponse *response,
   response->fault.type = EVA_XMLRPC_BINARY_DATA;
   response->fault.data.v_binary_data = data;
 }
-void             eva_xmlrpc_response_fault_array(GskXmlrpcResponse *response,
-                                              GskXmlrpcArray  *array)
+void             eva_xmlrpc_response_fault_array(EvaXmlrpcResponse *response,
+                                              EvaXmlrpcArray  *array)
 {
   if (response->has_fault)
     eva_xmlrpc_value_destruct (&response->fault);
@@ -995,8 +995,8 @@ void             eva_xmlrpc_response_fault_array(GskXmlrpcResponse *response,
  * Indicate that an error occurred trying to
  * process the XMLRPC request.
  */
-void             eva_xmlrpc_response_fault   (GskXmlrpcResponse *response,
-                                              GskXmlrpcStruct *structure)
+void             eva_xmlrpc_response_fault   (EvaXmlrpcResponse *response,
+                                              EvaXmlrpcStruct *structure)
 {
   if (response->has_fault)
     eva_xmlrpc_value_destruct (&response->fault);
@@ -1033,7 +1033,7 @@ typedef struct _ValueStack ValueStack;
 struct _ValueStack
 {
   gboolean is_structure;	/* if not, it's an array */
-  gpointer cur;		/* either GskXmlrpcArray or GskXmlrpcStruct */
+  gpointer cur;		/* either EvaXmlrpcArray or EvaXmlrpcStruct */
 
   guint state;
 
@@ -1041,7 +1041,7 @@ struct _ValueStack
   char *name;
 
   gboolean got_value;
-  GskXmlrpcValue value;
+  EvaXmlrpcValue value;
 
   ValueStack *up;
 };
@@ -1067,17 +1067,17 @@ enum
   RESPONSE_IN_FAULT_TYPED_VALUE,
 };
 
-struct _GskXmlrpcParser
+struct _EvaXmlrpcParser
 {
   ValueStack *stack;
   /* This is so the request & response 
    * can ref the stream so it does not
    * get shut down
    */
-  GskXmlrpcStream *xmlrpc_stream;
+  EvaXmlrpcStream *xmlrpc_stream;
   guint state;
   gboolean got_cur_param;
-  GskXmlrpcValue cur_param;
+  EvaXmlrpcValue cur_param;
   gpointer cur_message;
 
   GMarkupParseContext *context;
@@ -1085,14 +1085,14 @@ struct _GskXmlrpcParser
 };
 
 static gboolean
-deal_with_stack_and_type (GskXmlrpcParser *parser,
+deal_with_stack_and_type (EvaXmlrpcParser *parser,
 			  const char *element_name,
-			  GskXmlrpcValue *value_init_out,
+			  EvaXmlrpcValue *value_init_out,
 			  GError **error)
 {
   ValueStack *old = parser->stack;
 
-  memset (value_init_out, 0, sizeof (GskXmlrpcValue));
+  memset (value_init_out, 0, sizeof (EvaXmlrpcValue));
 
   if (strcmp (element_name, "i4") == 0
    || strcmp (element_name, "int") == 0)
@@ -1146,7 +1146,7 @@ deal_with_stack_and_type (GskXmlrpcParser *parser,
 
 #if DEBUG_XMLRPC_PARSER
 static char *
-get_state_string (GskXmlrpcParser *parser)
+get_state_string (EvaXmlrpcParser *parser)
 {
   GString *str = g_string_new ("");
   switch (parser->state)
@@ -1212,7 +1212,7 @@ parser_start_element   (GMarkupParseContext *context,
 			gpointer             user_data,
                         GError             **error)
 {
-  GskXmlrpcParser *parser = user_data;
+  EvaXmlrpcParser *parser = user_data;
 #if DEBUG_XMLRPC_PARSER
     {
       char *state = get_state_string(parser);
@@ -1226,7 +1226,7 @@ parser_start_element   (GMarkupParseContext *context,
       if (strcmp (element_name, "methodCall") == 0)
 	{
 	  parser->state = REQUEST_IN_METHODCALL;
-	  /* The GskXmlrpcStream is needed so we can ref it
+	  /* The EvaXmlrpcStream is needed so we can ref it
 	   * and prevent a stream shutdown 
 	   */
 	  parser->cur_message = eva_xmlrpc_request_new (parser->xmlrpc_stream);
@@ -1298,8 +1298,8 @@ parser_start_element   (GMarkupParseContext *context,
     case REQUEST_IN_PARAM_VALUE:
     case RESPONSE_IN_FAULT_VALUE:
       {
-	GskXmlrpcValue *value = (parser->state == RESPONSE_IN_FAULT_VALUE)
-	                      ? &((GskXmlrpcResponse*)parser->cur_message)->fault
+	EvaXmlrpcValue *value = (parser->state == RESPONSE_IN_FAULT_VALUE)
+	                      ? &((EvaXmlrpcResponse*)parser->cur_message)->fault
 			      : &parser->cur_param;
 	if (deal_with_stack_and_type (parser, element_name, value, error))
 	  {
@@ -1423,7 +1423,7 @@ parser_end_element     (GMarkupParseContext *context,
 			gpointer             user_data,
 			GError             **error)
 {
-  GskXmlrpcParser *parser = user_data;
+  EvaXmlrpcParser *parser = user_data;
 #if DEBUG_XMLRPC_PARSER
     {
       char *state = get_state_string(parser);
@@ -1467,9 +1467,9 @@ parser_end_element     (GMarkupParseContext *context,
 
       /* Append param to set */
       {
-	GskXmlrpcArray *array = (parser->state == REQUEST_IN_PARAM)
-	                         ? ((GskXmlrpcRequest*)(parser->cur_message))->params
-	                         : ((GskXmlrpcResponse*)(parser->cur_message))->params;
+	EvaXmlrpcArray *array = (parser->state == REQUEST_IN_PARAM)
+	                         ? ((EvaXmlrpcRequest*)(parser->cur_message))->params
+	                         : ((EvaXmlrpcResponse*)(parser->cur_message))->params;
 	eva_xmlrpc_array_add_value (array, &parser->cur_param);
       }
       parser->got_cur_param = FALSE;
@@ -1627,7 +1627,7 @@ parser_end_element     (GMarkupParseContext *context,
       ASSERT_ELEMENT_NAME("fault");
       return;
     case RESPONSE_IN_FAULT_VALUE:
-      ((GskXmlrpcResponse*)(parser->cur_message))->has_fault = TRUE;
+      ((EvaXmlrpcResponse*)(parser->cur_message))->has_fault = TRUE;
       parser->state = RESPONSE_IN_FAULT;
       ASSERT_ELEMENT_NAME("value");
       return;
@@ -1647,7 +1647,7 @@ is_whitespace (const char *txt, unsigned len)
 
 static gboolean
 parse_value_from_string (const char *text, gsize text_len,
-			 GskXmlrpcValue *val, GError **error)
+			 EvaXmlrpcValue *val, GError **error)
 {
   switch (val->type)
     {
@@ -1751,7 +1751,7 @@ parser_text            (GMarkupParseContext *context,
 			gpointer             user_data,
 			GError             **error)
 {
-  GskXmlrpcParser *parser = user_data;
+  EvaXmlrpcParser *parser = user_data;
   gboolean got_implicit_string = FALSE;
 #if DEBUG_XMLRPC_PARSER
     {
@@ -1779,7 +1779,7 @@ parser_text            (GMarkupParseContext *context,
       return;
     case REQUEST_IN_METHODNAME:
       {
-	GskXmlrpcRequest *req = parser->cur_message;
+	EvaXmlrpcRequest *req = parser->cur_message;
 	g_free (req->method_name);
 	req->method_name = g_strndup (text, text_len);
 	return;
@@ -1807,8 +1807,8 @@ parser_text            (GMarkupParseContext *context,
       if (is_whitespace (text, text_len))
 	return;
       {
-	GskXmlrpcValue *value = (parser->state == RESPONSE_IN_FAULT_VALUE)
-			      ? &((GskXmlrpcResponse*)parser->cur_message)->fault
+	EvaXmlrpcValue *value = (parser->state == RESPONSE_IN_FAULT_VALUE)
+			      ? &((EvaXmlrpcResponse*)parser->cur_message)->fault
 			      : &parser->cur_param;
 	if (parser->state == REQUEST_IN_PARAM_VALUE)
 	  parser->state = REQUEST_IN_PARAM_TYPED_VALUE;
@@ -1823,7 +1823,7 @@ parser_text            (GMarkupParseContext *context,
     case RESPONSE_IN_PARAM_TYPED_VALUE:
     case RESPONSE_IN_FAULT_TYPED_VALUE:
       {
-	GskXmlrpcValue *value = NULL;
+	EvaXmlrpcValue *value = NULL;
 	gboolean *got_value;
 	if (parser->stack)
 	  {
@@ -1865,7 +1865,7 @@ parser_text            (GMarkupParseContext *context,
 	  }
 	else if (parser->state == RESPONSE_IN_FAULT_TYPED_VALUE)
 	  {
-	    GskXmlrpcResponse *res = parser->cur_message;
+	    EvaXmlrpcResponse *res = parser->cur_message;
 	    value = &res->fault;
 	    got_value = &res->has_fault;
 	  }
@@ -1951,9 +1951,9 @@ static GMarkupParser parser_funcs =
  *
  * returns: the newly allocated parser.
  */
-GskXmlrpcParser *eva_xmlrpc_parser_new (GskXmlrpcStream *stream)
+EvaXmlrpcParser *eva_xmlrpc_parser_new (EvaXmlrpcStream *stream)
 {
-  GskXmlrpcParser *parser = g_new0 (GskXmlrpcParser, 1);
+  EvaXmlrpcParser *parser = g_new0 (EvaXmlrpcParser, 1);
   parser->xmlrpc_stream = stream;
   parser->state = OUTER;
   parser->messages = g_queue_new ();
@@ -1976,7 +1976,7 @@ GskXmlrpcParser *eva_xmlrpc_parser_new (GskXmlrpcStream *stream)
  *
  * returns: TRUE if processing did not encounter an error.
  */
-gboolean   eva_xmlrpc_parser_feed   (GskXmlrpcParser *parser,
+gboolean   eva_xmlrpc_parser_feed   (EvaXmlrpcParser *parser,
 				     const char              *text,
 				     gssize                   len,
 				     GError                 **error)
@@ -1986,10 +1986,10 @@ gboolean   eva_xmlrpc_parser_feed   (GskXmlrpcParser *parser,
 }
 
 static gpointer
-eva_xmlrpc_parser_get_either (GskXmlrpcParser *parser,
+eva_xmlrpc_parser_get_either (EvaXmlrpcParser *parser,
 			      guint            magic)
 {
-  GskXmlrpcRequest *rv;
+  EvaXmlrpcRequest *rv;
   if (parser->messages->head == NULL)
     return NULL;
   rv = parser->messages->head->data;
@@ -2008,8 +2008,8 @@ eva_xmlrpc_parser_get_either (GskXmlrpcParser *parser,
  * returns: a reference to the request; the caller
  * must call eva_xmlrpc_request_unref() eventually.
  */
-GskXmlrpcRequest *
-eva_xmlrpc_parser_get_request (GskXmlrpcParser *parser)
+EvaXmlrpcRequest *
+eva_xmlrpc_parser_get_request (EvaXmlrpcParser *parser)
 {
   return eva_xmlrpc_parser_get_either (parser, REQUEST_MAGIC);
 }
@@ -2024,8 +2024,8 @@ eva_xmlrpc_parser_get_request (GskXmlrpcParser *parser)
  * returns: a reference to the response; the caller
  * must call eva_xmlrpc_response_unref() eventually.
  */
-GskXmlrpcResponse *
-eva_xmlrpc_parser_get_response (GskXmlrpcParser *parser)
+EvaXmlrpcResponse *
+eva_xmlrpc_parser_get_response (EvaXmlrpcParser *parser)
 {
   return eva_xmlrpc_parser_get_either (parser, RESPONSE_MAGIC);
 }
@@ -2069,7 +2069,7 @@ value_stack_destroy_all (ValueStack *stack)
  *
  * Free the memory associated with the parser.
  */
-void eva_xmlrpc_parser_free (GskXmlrpcParser *parser)
+void eva_xmlrpc_parser_free (EvaXmlrpcParser *parser)
 {
   g_list_foreach (parser->messages->head, (GFunc) eva_xmlrpc_either_unref, NULL);
   g_queue_free (parser->messages);

@@ -12,24 +12,24 @@
 
 <refsynopsisdiv id="eva-evadnsclient.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
-<anchor id="GskDnsClient"/>
+<anchor id="EvaDnsClient"/>
 <synopsis>
-                    <link linkend="GskDnsClient-struct">GskDnsClient</link>;
-                    <link linkend="GskDnsClientClass">GskDnsClientClass</link>;
-enum                <link linkend="GskDnsClientFlags">GskDnsClientFlags</link>;
-<link linkend="GskDnsClient">GskDnsClient</link> *      <link linkend="eva-dns-client-new">eva_dns_client_new</link>                  (<link linkend="GskPacketQueue">GskPacketQueue</link> *packet_queue,
-                                                         <link linkend="GskDnsRRCache">GskDnsRRCache</link> *rr_cache,
-                                                         <link linkend="GskDnsClientFlags">GskDnsClientFlags</link> flags);
-<link linkend="void">void</link>                <link linkend="eva-dns-client-add-searchpath">eva_dns_client_add_searchpath</link>       (<link linkend="GskDnsClient">GskDnsClient</link> *client,
+                    <link linkend="EvaDnsClient-struct">EvaDnsClient</link>;
+                    <link linkend="EvaDnsClientClass">EvaDnsClientClass</link>;
+enum                <link linkend="EvaDnsClientFlags">EvaDnsClientFlags</link>;
+<link linkend="EvaDnsClient">EvaDnsClient</link> *      <link linkend="eva-dns-client-new">eva_dns_client_new</link>                  (<link linkend="EvaPacketQueue">EvaPacketQueue</link> *packet_queue,
+                                                         <link linkend="EvaDnsRRCache">EvaDnsRRCache</link> *rr_cache,
+                                                         <link linkend="EvaDnsClientFlags">EvaDnsClientFlags</link> flags);
+<link linkend="void">void</link>                <link linkend="eva-dns-client-add-searchpath">eva_dns_client_add_searchpath</link>       (<link linkend="EvaDnsClient">EvaDnsClient</link> *client,
                                                          const <link linkend="char">char</link> *searchpath);
-<link linkend="void">void</link>                <link linkend="eva-dns-client-add-ns">eva_dns_client_add_ns</link>               (<link linkend="GskDnsClient">GskDnsClient</link> *client,
-                                                         <link linkend="GskSocketAddressIpv4">GskSocketAddressIpv4</link> *address);
-<link linkend="void">void</link>                <link linkend="eva-dns-client-set-cache">eva_dns_client_set_cache</link>            (<link linkend="GskDnsClient">GskDnsClient</link> *client,
-                                                         <link linkend="GskDnsRRCache">GskDnsRRCache</link> *rr_cache);
-<link linkend="void">void</link>                <link linkend="eva-dns-client-set-flags">eva_dns_client_set_flags</link>            (<link linkend="GskDnsClient">GskDnsClient</link> *client,
-                                                         <link linkend="GskDnsClientFlags">GskDnsClientFlags</link> flags);
-<link linkend="GskDnsClientFlags">GskDnsClientFlags</link>   <link linkend="eva-dns-client-get-flags">eva_dns_client_get_flags</link>            (<link linkend="GskDnsClient">GskDnsClient</link> *client);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-dns-client-parse-system-files">eva_dns_client_parse_system_files</link>   (<link linkend="GskDnsClient">GskDnsClient</link> *client);
+<link linkend="void">void</link>                <link linkend="eva-dns-client-add-ns">eva_dns_client_add_ns</link>               (<link linkend="EvaDnsClient">EvaDnsClient</link> *client,
+                                                         <link linkend="EvaSocketAddressIpv4">EvaSocketAddressIpv4</link> *address);
+<link linkend="void">void</link>                <link linkend="eva-dns-client-set-cache">eva_dns_client_set_cache</link>            (<link linkend="EvaDnsClient">EvaDnsClient</link> *client,
+                                                         <link linkend="EvaDnsRRCache">EvaDnsRRCache</link> *rr_cache);
+<link linkend="void">void</link>                <link linkend="eva-dns-client-set-flags">eva_dns_client_set_flags</link>            (<link linkend="EvaDnsClient">EvaDnsClient</link> *client,
+                                                         <link linkend="EvaDnsClientFlags">EvaDnsClientFlags</link> flags);
+<link linkend="EvaDnsClientFlags">EvaDnsClientFlags</link>   <link linkend="eva-dns-client-get-flags">eva_dns_client_get_flags</link>            (<link linkend="EvaDnsClient">EvaDnsClient</link> *client);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-dns-client-parse-system-files">eva_dns_client_parse_system_files</link>   (<link linkend="EvaDnsClient">EvaDnsClient</link> *client);
 </synopsis>
 </refsynopsisdiv>
 
@@ -37,7 +37,7 @@ enum                <link linkend="GskDnsClientFlags">GskDnsClientFlags</link>;
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----GskDnsClient
+   +----EvaDnsClient
 </synopsis>
 </refsect1>
 
@@ -46,8 +46,8 @@ enum                <link linkend="GskDnsClientFlags">GskDnsClientFlags</link>;
 <refsect1 id="eva-evadnsclient.implemented-interfaces" role="impl_interfaces">
 <title role="impl_interfaces.title">Implemented Interfaces</title>
 <para>
-GskDnsClient implements
- <link linkend="GskNameResolver">GskNameResolver</link> and  <link linkend="GskDnsResolver">GskDnsResolver</link>.</para>
+EvaDnsClient implements
+ <link linkend="EvaNameResolver">EvaNameResolver</link> and  <link linkend="EvaDnsResolver">EvaDnsResolver</link>.</para>
 </refsect1>
 
 
@@ -68,24 +68,24 @@ since the default name resolver uses DNS.
 
 <refsect1 id="eva-evadnsclient.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskDnsClient-struct" role="struct">
-<title>GskDnsClient</title>
-<indexterm zone="GskDnsClient-struct"><primary sortas="GskDnsClient">GskDnsClient</primary></indexterm><programlisting>typedef struct _GskDnsClient GskDnsClient;</programlisting>
+<refsect2 id="EvaDnsClient-struct" role="struct">
+<title>EvaDnsClient</title>
+<indexterm zone="EvaDnsClient-struct"><primary sortas="EvaDnsClient">EvaDnsClient</primary></indexterm><programlisting>typedef struct _EvaDnsClient EvaDnsClient;</programlisting>
 <para>
 An instance of the DNS client.
 </para></refsect2>
-<refsect2 id="GskDnsClientClass" role="struct">
-<title>GskDnsClientClass</title>
-<indexterm zone="GskDnsClientClass"><primary sortas="GskDnsClientClass">GskDnsClientClass</primary></indexterm><programlisting>typedef struct _GskDnsClientClass GskDnsClientClass;</programlisting>
+<refsect2 id="EvaDnsClientClass" role="struct">
+<title>EvaDnsClientClass</title>
+<indexterm zone="EvaDnsClientClass"><primary sortas="EvaDnsClientClass">EvaDnsClientClass</primary></indexterm><programlisting>typedef struct _EvaDnsClientClass EvaDnsClientClass;</programlisting>
 <para>
 The class of the DNS client.
 </para></refsect2>
-<refsect2 id="GskDnsClientFlags" role="enum">
-<title>enum GskDnsClientFlags</title>
-<indexterm zone="GskDnsClientFlags"><primary sortas="GskDnsClientFlags">GskDnsClientFlags</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaDnsClientFlags" role="enum">
+<title>enum EvaDnsClientFlags</title>
+<indexterm zone="EvaDnsClientFlags"><primary sortas="EvaDnsClientFlags">EvaDnsClientFlags</primary></indexterm><programlisting>typedef enum
 {
   EVA_DNS_CLIENT_STUB_RESOLVER = (1&lt;&lt;0)
-} GskDnsClientFlags;
+} EvaDnsClientFlags;
 </programlisting>
 <para>
 Flags which affect how the DNS client operates.
@@ -101,12 +101,12 @@ recursion and caching for it.
 </variablelist></refsect2>
 <refsect2 id="eva-dns-client-new" role="function">
 <title>eva_dns_client_new ()</title>
-<indexterm zone="eva-dns-client-new"><primary sortas="eva_dns_client_new">eva_dns_client_new</primary></indexterm><programlisting><link linkend="GskDnsClient">GskDnsClient</link> *      eva_dns_client_new                  (<link linkend="GskPacketQueue">GskPacketQueue</link> *packet_queue,
-                                                         <link linkend="GskDnsRRCache">GskDnsRRCache</link> *rr_cache,
-                                                         <link linkend="GskDnsClientFlags">GskDnsClientFlags</link> flags);</programlisting>
+<indexterm zone="eva-dns-client-new"><primary sortas="eva_dns_client_new">eva_dns_client_new</primary></indexterm><programlisting><link linkend="EvaDnsClient">EvaDnsClient</link> *      eva_dns_client_new                  (<link linkend="EvaPacketQueue">EvaPacketQueue</link> *packet_queue,
+                                                         <link linkend="EvaDnsRRCache">EvaDnsRRCache</link> *rr_cache,
+                                                         <link linkend="EvaDnsClientFlags">EvaDnsClientFlags</link> flags);</programlisting>
 <para>
 Create a new DNS client.
-This implements the <link linkend="GskDnsResolver"><type>GskDnsResolver</type></link> interface.</para>
+This implements the <link linkend="EvaDnsResolver"><type>EvaDnsResolver</type></link> interface.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>packet_queue</parameter>&#160;:</term>
@@ -126,7 +126,7 @@ or stub resolver.
 </variablelist></refsect2>
 <refsect2 id="eva-dns-client-add-searchpath" role="function">
 <title>eva_dns_client_add_searchpath ()</title>
-<indexterm zone="eva-dns-client-add-searchpath"><primary sortas="eva_dns_client_add_searchpath">eva_dns_client_add_searchpath</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_client_add_searchpath       (<link linkend="GskDnsClient">GskDnsClient</link> *client,
+<indexterm zone="eva-dns-client-add-searchpath"><primary sortas="eva_dns_client_add_searchpath">eva_dns_client_add_searchpath</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_client_add_searchpath       (<link linkend="EvaDnsClient">EvaDnsClient</link> *client,
                                                          const <link linkend="char">char</link> *searchpath);</programlisting>
 <para>
 Add a new implicit domain to the list the client keeps.
@@ -155,8 +155,8 @@ However, looking up "cvs.com." will ONLY search the global namespace.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-client-add-ns" role="function">
 <title>eva_dns_client_add_ns ()</title>
-<indexterm zone="eva-dns-client-add-ns"><primary sortas="eva_dns_client_add_ns">eva_dns_client_add_ns</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_client_add_ns               (<link linkend="GskDnsClient">GskDnsClient</link> *client,
-                                                         <link linkend="GskSocketAddressIpv4">GskSocketAddressIpv4</link> *address);</programlisting>
+<indexterm zone="eva-dns-client-add-ns"><primary sortas="eva_dns_client_add_ns">eva_dns_client_add_ns</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_client_add_ns               (<link linkend="EvaDnsClient">EvaDnsClient</link> *client,
+                                                         <link linkend="EvaSocketAddressIpv4">EvaSocketAddressIpv4</link> *address);</programlisting>
 <para>
 Add a new nameserver to query.
 All nameservers will be queried simultaneously.</para>
@@ -171,8 +171,8 @@ All nameservers will be queried simultaneously.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-client-set-cache" role="function">
 <title>eva_dns_client_set_cache ()</title>
-<indexterm zone="eva-dns-client-set-cache"><primary sortas="eva_dns_client_set_cache">eva_dns_client_set_cache</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_client_set_cache            (<link linkend="GskDnsClient">GskDnsClient</link> *client,
-                                                         <link linkend="GskDnsRRCache">GskDnsRRCache</link> *rr_cache);</programlisting>
+<indexterm zone="eva-dns-client-set-cache"><primary sortas="eva_dns_client_set_cache">eva_dns_client_set_cache</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_client_set_cache            (<link linkend="EvaDnsClient">EvaDnsClient</link> *client,
+                                                         <link linkend="EvaDnsRRCache">EvaDnsRRCache</link> *rr_cache);</programlisting>
 <para>
 Switch the client to use a new resource-record cache.</para>
 <para>
@@ -186,8 +186,8 @@ Switch the client to use a new resource-record cache.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-client-set-flags" role="function">
 <title>eva_dns_client_set_flags ()</title>
-<indexterm zone="eva-dns-client-set-flags"><primary sortas="eva_dns_client_set_flags">eva_dns_client_set_flags</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_client_set_flags            (<link linkend="GskDnsClient">GskDnsClient</link> *client,
-                                                         <link linkend="GskDnsClientFlags">GskDnsClientFlags</link> flags);</programlisting>
+<indexterm zone="eva-dns-client-set-flags"><primary sortas="eva_dns_client_set_flags">eva_dns_client_set_flags</primary></indexterm><programlisting><link linkend="void">void</link>                eva_dns_client_set_flags            (<link linkend="EvaDnsClient">EvaDnsClient</link> *client,
+                                                         <link linkend="EvaDnsClientFlags">EvaDnsClientFlags</link> flags);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>client</parameter>&#160;:</term>
@@ -199,7 +199,7 @@ Switch the client to use a new resource-record cache.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-client-get-flags" role="function">
 <title>eva_dns_client_get_flags ()</title>
-<indexterm zone="eva-dns-client-get-flags"><primary sortas="eva_dns_client_get_flags">eva_dns_client_get_flags</primary></indexterm><programlisting><link linkend="GskDnsClientFlags">GskDnsClientFlags</link>   eva_dns_client_get_flags            (<link linkend="GskDnsClient">GskDnsClient</link> *client);</programlisting>
+<indexterm zone="eva-dns-client-get-flags"><primary sortas="eva_dns_client_get_flags">eva_dns_client_get_flags</primary></indexterm><programlisting><link linkend="EvaDnsClientFlags">EvaDnsClientFlags</link>   eva_dns_client_get_flags            (<link linkend="EvaDnsClient">EvaDnsClient</link> *client);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>client</parameter>&#160;:</term>
@@ -210,7 +210,7 @@ Switch the client to use a new resource-record cache.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-dns-client-parse-system-files" role="function">
 <title>eva_dns_client_parse_system_files ()</title>
-<indexterm zone="eva-dns-client-parse-system-files"><primary sortas="eva_dns_client_parse_system_files">eva_dns_client_parse_system_files</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_dns_client_parse_system_files   (<link linkend="GskDnsClient">GskDnsClient</link> *client);</programlisting>
+<indexterm zone="eva-dns-client-parse-system-files"><primary sortas="eva_dns_client_parse_system_files">eva_dns_client_parse_system_files</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_dns_client_parse_system_files   (<link linkend="EvaDnsClient">EvaDnsClient</link> *client);</programlisting>
 <para>
 Parse system DNS configuration.
 </para>

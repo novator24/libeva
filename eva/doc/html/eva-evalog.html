@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch01.html" title="Core Library Support">
-<link rel="prev" href="GskSocketAddress.html" title="Socket Addresses.">
+<link rel="prev" href="EvaSocketAddress.html" title="Socket Addresses.">
 <link rel="next" href="tutorial-debugging-hints.html" title="Debugging Hints">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -30,7 +30,7 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GskSocketAddress.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="EvaSocketAddress.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
@@ -55,7 +55,7 @@
 <a name="eva-evalog.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 void                <a class="link" href="eva-evalog.html#eva-log-init" title="eva_log_init ()">eva_log_init</a>                        (void);
-GskLogTrap *        <a class="link" href="eva-evalog.html#eva-log-trap-domain-to-file" title="eva_log_trap_domain_to_file ()">eva_log_trap_domain_to_file</a>         (const char *domain,
+EvaLogTrap *        <a class="link" href="eva-evalog.html#eva-log-trap-domain-to-file" title="eva_log_trap_domain_to_file ()">eva_log_trap_domain_to_file</a>         (const char *domain,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Message-Logging.html#GLogLevelFlags"
 >GLogLevelFlags</a> level_mask,
@@ -89,7 +89,7 @@ given files.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-log-trap-domain-to-file"></a><h3>eva_log_trap_domain_to_file ()</h3>
-<pre class="programlisting">GskLogTrap *        eva_log_trap_domain_to_file         (const char *domain,
+<pre class="programlisting">EvaLogTrap *        eva_log_trap_domain_to_file         (const char *domain,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Message-Logging.html#GLogLevelFlags"
 >GLogLevelFlags</a> level_mask,

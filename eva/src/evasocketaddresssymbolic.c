@@ -2,28 +2,28 @@
 #include "evasocketaddresssymbolic.h"
 #include "evanameresolver.h"
 
-G_DEFINE_ABSTRACT_TYPE(GskSocketAddressSymbolic,
+G_DEFINE_ABSTRACT_TYPE(EvaSocketAddressSymbolic,
                        eva_socket_address_symbolic,
 		       EVA_TYPE_SOCKET_ADDRESS);
-G_DEFINE_TYPE         (GskSocketAddressSymbolicIpv4,
+G_DEFINE_TYPE         (EvaSocketAddressSymbolicIpv4,
                        eva_socket_address_symbolic_ipv4,
 		       EVA_TYPE_SOCKET_ADDRESS_SYMBOLIC);
 
-/* GskSocketAddressSymbolic */
+/* EvaSocketAddressSymbolic */
 enum
 {
   SYMBOLIC_PROP_0,
   SYMBOLIC_PROP_NAME,
 };
 static gboolean
-eva_socket_address_symbolic_to_native(GskSocketAddress *address,
+eva_socket_address_symbolic_to_native(EvaSocketAddress *address,
 			              gpointer          output)
 {
   return FALSE;
 }
 
 static gboolean
-eva_socket_address_symbolic_from_native (GskSocketAddress *address,
+eva_socket_address_symbolic_from_native (EvaSocketAddress *address,
 			                 gconstpointer     sockaddr_data,
 			                 gsize             sockaddr_length)
 {
@@ -31,20 +31,20 @@ eva_socket_address_symbolic_from_native (GskSocketAddress *address,
 }
 
 static char *
-eva_socket_address_symbolic_to_string  (GskSocketAddress *address)
+eva_socket_address_symbolic_to_string  (EvaSocketAddress *address)
 {
   return g_strdup (EVA_SOCKET_ADDRESS_SYMBOLIC (address)->name);
 }
 
 static gboolean
-eva_socket_address_symbolic_equals     (GskSocketAddress *addr1,
-                                        GskSocketAddress *addr2)
+eva_socket_address_symbolic_equals     (EvaSocketAddress *addr1,
+                                        EvaSocketAddress *addr2)
 {
   return strcmp (EVA_SOCKET_ADDRESS_SYMBOLIC (addr1)->name,
                  EVA_SOCKET_ADDRESS_SYMBOLIC (addr2)->name) == 0;
 }
 static guint
-eva_socket_address_symbolic_hash       (GskSocketAddress *addr)
+eva_socket_address_symbolic_hash       (EvaSocketAddress *addr)
 {
   return g_str_hash (EVA_SOCKET_ADDRESS_SYMBOLIC (addr)->name) + 100000;
 }
@@ -55,7 +55,7 @@ eva_socket_address_symbolic_set_property (GObject        *object,
                                           const GValue   *value,
                                           GParamSpec     *pspec)
 {
-  GskSocketAddressSymbolic *symbolic = EVA_SOCKET_ADDRESS_SYMBOLIC (object);
+  EvaSocketAddressSymbolic *symbolic = EVA_SOCKET_ADDRESS_SYMBOLIC (object);
   switch (property_id)
     {
     case SYMBOLIC_PROP_NAME:
@@ -73,7 +73,7 @@ eva_socket_address_symbolic_get_property (GObject        *object,
                                           GValue         *value,
                                           GParamSpec     *pspec)
 {
-  GskSocketAddressSymbolic *symbolic = EVA_SOCKET_ADDRESS_SYMBOLIC (object);
+  EvaSocketAddressSymbolic *symbolic = EVA_SOCKET_ADDRESS_SYMBOLIC (object);
   switch (property_id)
     {
     case SYMBOLIC_PROP_NAME:
@@ -86,16 +86,16 @@ eva_socket_address_symbolic_get_property (GObject        *object,
 static void
 eva_socket_address_symbolic_finalize (GObject *object)
 {
-  GskSocketAddressSymbolic *symbolic = EVA_SOCKET_ADDRESS_SYMBOLIC (object);
+  EvaSocketAddressSymbolic *symbolic = EVA_SOCKET_ADDRESS_SYMBOLIC (object);
   g_free (symbolic->name);
   G_OBJECT_CLASS (eva_socket_address_symbolic_parent_class)->finalize (object);
 }
 
 static void
-eva_socket_address_symbolic_class_init (GskSocketAddressSymbolicClass *class)
+eva_socket_address_symbolic_class_init (EvaSocketAddressSymbolicClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
-  GskSocketAddressClass *address_class = EVA_SOCKET_ADDRESS_CLASS (class);
+  EvaSocketAddressClass *address_class = EVA_SOCKET_ADDRESS_CLASS (class);
   address_class->to_native = eva_socket_address_symbolic_to_native;
   address_class->from_native = eva_socket_address_symbolic_from_native;
   address_class->to_string = eva_socket_address_symbolic_to_string;
@@ -109,38 +109,38 @@ eva_socket_address_symbolic_class_init (GskSocketAddressSymbolicClass *class)
                                                         NULL, G_PARAM_READWRITE));
 }
 static void
-eva_socket_address_symbolic_init (GskSocketAddressSymbolic *symbolic)
+eva_socket_address_symbolic_init (EvaSocketAddressSymbolic *symbolic)
 {
 }
 
 /* Public API */
 gpointer
-eva_socket_address_symbolic_create_name_resolver (GskSocketAddressSymbolic *symbolic)
+eva_socket_address_symbolic_create_name_resolver (EvaSocketAddressSymbolic *symbolic)
 {
-  GskSocketAddressSymbolicClass *class = EVA_SOCKET_ADDRESS_SYMBOLIC_GET_CLASS (symbolic);
+  EvaSocketAddressSymbolicClass *class = EVA_SOCKET_ADDRESS_SYMBOLIC_GET_CLASS (symbolic);
   return class->create_name_resolver (symbolic);
 }
 
 void
-eva_socket_address_symbolic_start_resolution (GskSocketAddressSymbolic *symbolic,
+eva_socket_address_symbolic_start_resolution (EvaSocketAddressSymbolic *symbolic,
                                               gpointer                  name_resolver,
-                                              GskSocketAddressSymbolicResolveFunc r,
-                                              GskSocketAddressSymbolicErrorFunc e,
+                                              EvaSocketAddressSymbolicResolveFunc r,
+                                              EvaSocketAddressSymbolicErrorFunc e,
                                               gpointer                  user_data,
                                               GDestroyNotify            destroy)
 {
-  GskSocketAddressSymbolicClass *class = EVA_SOCKET_ADDRESS_SYMBOLIC_GET_CLASS (symbolic);
+  EvaSocketAddressSymbolicClass *class = EVA_SOCKET_ADDRESS_SYMBOLIC_GET_CLASS (symbolic);
   class->start_resolution (symbolic, name_resolver, r, e, user_data, destroy);
 }
 void
-eva_socket_address_symbolic_cancel_resolution (GskSocketAddressSymbolic *symbolic,
+eva_socket_address_symbolic_cancel_resolution (EvaSocketAddressSymbolic *symbolic,
                                                gpointer                  name_resolver)
 {
-  GskSocketAddressSymbolicClass *class = EVA_SOCKET_ADDRESS_SYMBOLIC_GET_CLASS (symbolic);
+  EvaSocketAddressSymbolicClass *class = EVA_SOCKET_ADDRESS_SYMBOLIC_GET_CLASS (symbolic);
   class->cancel_resolution (symbolic, name_resolver);
 }
 
-/* GskSocketAddressSymbolicIpv4 */
+/* EvaSocketAddressSymbolicIpv4 */
 enum
 {
   SYMBOLIC_IPV4_PROP_0,
@@ -150,17 +150,17 @@ enum
 typedef struct _Ipv4NameResolver Ipv4NameResolver;
 struct _Ipv4NameResolver
 {
-  GskSocketAddressSymbolicIpv4 *ipv4;
-  GskSocketAddressSymbolicResolveFunc resolve_func;
-  GskSocketAddressSymbolicErrorFunc error_func;
+  EvaSocketAddressSymbolicIpv4 *ipv4;
+  EvaSocketAddressSymbolicResolveFunc resolve_func;
+  EvaSocketAddressSymbolicErrorFunc error_func;
   gpointer data;
   GDestroyNotify destroy;
-  GskNameResolverTask *task;
+  EvaNameResolverTask *task;
   gboolean resolved;
 };
 
 static gpointer 
-eva_socket_address_symbolic_ipv4_create_name_resolver (GskSocketAddressSymbolic *symbolic)
+eva_socket_address_symbolic_ipv4_create_name_resolver (EvaSocketAddressSymbolic *symbolic)
 {
   Ipv4NameResolver *resolver = g_new0 (Ipv4NameResolver, 1);
   resolver->ipv4 = EVA_SOCKET_ADDRESS_SYMBOLIC_IPV4 (g_object_ref (symbolic));
@@ -168,13 +168,13 @@ eva_socket_address_symbolic_ipv4_create_name_resolver (GskSocketAddressSymbolic 
 }
 
 static void
-ipv4_handle_success (GskSocketAddress *address,
+ipv4_handle_success (EvaSocketAddress *address,
                      gpointer          func_data)
 {
   Ipv4NameResolver *resolver = func_data;
 
-  GskSocketAddressIpv4 *host_only = EVA_SOCKET_ADDRESS_IPV4 (address);
-  GskSocketAddress *real;
+  EvaSocketAddressIpv4 *host_only = EVA_SOCKET_ADDRESS_IPV4 (address);
+  EvaSocketAddress *real;
 
   resolver->resolved = 1;
 
@@ -217,10 +217,10 @@ ipv4_handle_destroy (gpointer          func_data)
 }
 
 static void
-eva_socket_address_symbolic_ipv4_start_resolution (GskSocketAddressSymbolic *symbolic,
+eva_socket_address_symbolic_ipv4_start_resolution (EvaSocketAddressSymbolic *symbolic,
                                                    gpointer                  name_resolver,
-                                                   GskSocketAddressSymbolicResolveFunc r,
-                                                   GskSocketAddressSymbolicErrorFunc e,
+                                                   EvaSocketAddressSymbolicResolveFunc r,
+                                                   EvaSocketAddressSymbolicErrorFunc e,
                                                    gpointer                  user_data,
                                                    GDestroyNotify            destroy)
 {
@@ -242,7 +242,7 @@ eva_socket_address_symbolic_ipv4_start_resolution (GskSocketAddressSymbolic *sym
 }
 
 static void
-eva_socket_address_symbolic_ipv4_cancel_resolution (GskSocketAddressSymbolic *symbolic,
+eva_socket_address_symbolic_ipv4_cancel_resolution (EvaSocketAddressSymbolic *symbolic,
                                                     gpointer                  name_resolver)
 {
   Ipv4NameResolver *resolver = name_resolver;
@@ -260,7 +260,7 @@ eva_socket_address_symbolic_ipv4_cancel_resolution (GskSocketAddressSymbolic *sy
     return;
   if (resolver->task != NULL)
     {
-      GskNameResolverTask *task = resolver->task;
+      EvaNameResolverTask *task = resolver->task;
       resolver->task = NULL;
       eva_name_resolver_task_cancel (task);
     }
@@ -268,7 +268,7 @@ eva_socket_address_symbolic_ipv4_cancel_resolution (GskSocketAddressSymbolic *sy
 
 
 static char *
-eva_socket_address_symbolic_ipv4_to_string  (GskSocketAddress *address)
+eva_socket_address_symbolic_ipv4_to_string  (EvaSocketAddress *address)
 {
   return g_strdup_printf ("%s:%u",
                           EVA_SOCKET_ADDRESS_SYMBOLIC (address)->name,
@@ -276,8 +276,8 @@ eva_socket_address_symbolic_ipv4_to_string  (GskSocketAddress *address)
 }
 
 static gboolean
-eva_socket_address_symbolic_ipv4_equals(GskSocketAddress *addr1,
-                                        GskSocketAddress *addr2)
+eva_socket_address_symbolic_ipv4_equals(EvaSocketAddress *addr1,
+                                        EvaSocketAddress *addr2)
 {
   return strcmp (EVA_SOCKET_ADDRESS_SYMBOLIC (addr1)->name,
                  EVA_SOCKET_ADDRESS_SYMBOLIC (addr2)->name) == 0
@@ -285,7 +285,7 @@ eva_socket_address_symbolic_ipv4_equals(GskSocketAddress *addr1,
        == EVA_SOCKET_ADDRESS_SYMBOLIC_IPV4 (addr2)->port;
 }
 static guint
-eva_socket_address_symbolic_ipv4_hash   (GskSocketAddress *addr)
+eva_socket_address_symbolic_ipv4_hash   (EvaSocketAddress *addr)
 {
   return g_str_hash (EVA_SOCKET_ADDRESS_SYMBOLIC (addr)->name) + 200000
      + EVA_SOCKET_ADDRESS_SYMBOLIC_IPV4 (addr)->port;
@@ -296,7 +296,7 @@ eva_socket_address_symbolic_ipv4_set_property (GObject        *object,
                                                const GValue   *value,
                                                GParamSpec     *pspec)
 {
-  GskSocketAddressSymbolicIpv4 *symbolic_ipv4 = EVA_SOCKET_ADDRESS_SYMBOLIC_IPV4 (object);
+  EvaSocketAddressSymbolicIpv4 *symbolic_ipv4 = EVA_SOCKET_ADDRESS_SYMBOLIC_IPV4 (object);
   switch (property_id)
     {
     case SYMBOLIC_IPV4_PROP_PORT:
@@ -313,7 +313,7 @@ eva_socket_address_symbolic_ipv4_get_property (GObject        *object,
                                                GValue         *value,
                                                GParamSpec     *pspec)
 {
-  GskSocketAddressSymbolicIpv4 *symbolic_ipv4 = EVA_SOCKET_ADDRESS_SYMBOLIC_IPV4 (object);
+  EvaSocketAddressSymbolicIpv4 *symbolic_ipv4 = EVA_SOCKET_ADDRESS_SYMBOLIC_IPV4 (object);
   switch (property_id)
     {
     case SYMBOLIC_IPV4_PROP_PORT:
@@ -327,16 +327,16 @@ eva_socket_address_symbolic_ipv4_get_property (GObject        *object,
 static void
 eva_socket_address_symbolic_ipv4_finalize (GObject *object)
 {
-  //GskSocketAddressSymbolicIpv4 *symbolic_ipv4 = EVA_SOCKET_ADDRESS_SYMBOLIC_IPV4 (object);
+  //EvaSocketAddressSymbolicIpv4 *symbolic_ipv4 = EVA_SOCKET_ADDRESS_SYMBOLIC_IPV4 (object);
   G_OBJECT_CLASS (eva_socket_address_symbolic_ipv4_parent_class)->finalize (object);
 }
 
 static void
-eva_socket_address_symbolic_ipv4_class_init (GskSocketAddressSymbolicIpv4Class *class)
+eva_socket_address_symbolic_ipv4_class_init (EvaSocketAddressSymbolicIpv4Class *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
-  GskSocketAddressClass *address_class = EVA_SOCKET_ADDRESS_CLASS (class);
-  GskSocketAddressSymbolicClass *symbolic_class = EVA_SOCKET_ADDRESS_SYMBOLIC_CLASS (class);
+  EvaSocketAddressClass *address_class = EVA_SOCKET_ADDRESS_CLASS (class);
+  EvaSocketAddressSymbolicClass *symbolic_class = EVA_SOCKET_ADDRESS_SYMBOLIC_CLASS (class);
   object_class->set_property = eva_socket_address_symbolic_ipv4_set_property;
   object_class->get_property = eva_socket_address_symbolic_ipv4_get_property;
   object_class->finalize = eva_socket_address_symbolic_ipv4_finalize;
@@ -351,10 +351,10 @@ eva_socket_address_symbolic_ipv4_class_init (GskSocketAddressSymbolicIpv4Class *
                                                       0,65535,0, G_PARAM_READWRITE));
 }
 static void
-eva_socket_address_symbolic_ipv4_init (GskSocketAddressSymbolicIpv4 *symbolic_ipv4)
+eva_socket_address_symbolic_ipv4_init (EvaSocketAddressSymbolicIpv4 *symbolic_ipv4)
 {
 }
-GskSocketAddress *
+EvaSocketAddress *
 eva_socket_address_symbolic_ipv4_new (const char *name,
                                       guint16     port)
 {

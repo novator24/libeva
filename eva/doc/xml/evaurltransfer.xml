@@ -1,105 +1,105 @@
-<refentry id="GskUrlTransfer">
+<refentry id="EvaUrlTransfer">
 <refmeta>
-<refentrytitle role="top_of_page" id="GskUrlTransfer.top_of_page">GskUrlTransfer</refentrytitle>
+<refentrytitle role="top_of_page" id="EvaUrlTransfer.top_of_page">EvaUrlTransfer</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskUrlTransfer</refname>
+<refname>EvaUrlTransfer</refname>
 <refpurpose>Transfer data with a location by URL.</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="GskUrlTransfer.synopsis" role="synopsis">
+<refsynopsisdiv id="EvaUrlTransfer.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskUrlTransferRedirect">GskUrlTransferRedirect</link>;
-enum                <link linkend="GskUrlTransferResult">GskUrlTransferResult</link>;
+                    <link linkend="EvaUrlTransferRedirect">EvaUrlTransferRedirect</link>;
+enum                <link linkend="EvaUrlTransferResult">EvaUrlTransferResult</link>;
 #define             <link linkend="EVA-URL-TRANSFER-N-RESULTS--CAPS">EVA_URL_TRANSFER_N_RESULTS</link>
-const <link linkend="char">char</link> *        <link linkend="eva-url-transfer-result-name">eva_url_transfer_result_name</link>        (<link linkend="GskUrlTransferResult">GskUrlTransferResult</link> result);
-<link linkend="void">void</link>                (<link linkend="GskUrlTransferFunc">*GskUrlTransferFunc</link>)               (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *info,
+const <link linkend="char">char</link> *        <link linkend="eva-url-transfer-result-name">eva_url_transfer_result_name</link>        (<link linkend="EvaUrlTransferResult">EvaUrlTransferResult</link> result);
+<link linkend="void">void</link>                (<link linkend="EvaUrlTransferFunc">*EvaUrlTransferFunc</link>)               (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *info,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="GskStream">GskStream</link> *         (<link linkend="GskUrlUploadFunc">*GskUrlUploadFunc</link>)                 (<link linkend="gpointer">gpointer</link> upload_data,
+<link linkend="EvaStream">EvaStream</link> *         (<link linkend="EvaUrlUploadFunc">*EvaUrlUploadFunc</link>)                 (<link linkend="gpointer">gpointer</link> upload_data,
                                                          <link linkend="gssize">gssize</link> *size_out,
                                                          <link linkend="GError">GError</link> **error);
-                    <link linkend="GskUrlTransfer-struct">GskUrlTransfer</link>;
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-url-transfer">eva_url_transfer</link>                    (<link linkend="GskUrl">GskUrl</link> *url,
-                                                         <link linkend="GskUrlUploadFunc">GskUrlUploadFunc</link> upload_func,
+                    <link linkend="EvaUrlTransfer-struct">EvaUrlTransfer</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-url-transfer">eva_url_transfer</link>                    (<link linkend="EvaUrl">EvaUrl</link> *url,
+                                                         <link linkend="EvaUrlUploadFunc">EvaUrlUploadFunc</link> upload_func,
                                                          <link linkend="gpointer">gpointer</link> upload_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> upload_destroy,
-                                                         <link linkend="GskUrlTransferFunc">GskUrlTransferFunc</link> handler,
+                                                         <link linkend="EvaUrlTransferFunc">EvaUrlTransferFunc</link> handler,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="GskUrlTransfer">GskUrlTransfer</link> *    <link linkend="eva-url-transfer-new">eva_url_transfer_new</link>                (<link linkend="GskUrl">GskUrl</link> *url);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-handler">eva_url_transfer_set_handler</link>        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskUrlTransferFunc">GskUrlTransferFunc</link> handler,
+<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *    <link linkend="eva-url-transfer-new">eva_url_transfer_new</link>                (<link linkend="EvaUrl">EvaUrl</link> *url);
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-handler">eva_url_transfer_set_handler</link>        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaUrlTransferFunc">EvaUrlTransferFunc</link> handler,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-url">eva_url_transfer_set_url</link>            (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskUrl">GskUrl</link> *url);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-upload">eva_url_transfer_set_upload</link>         (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskUrlUploadFunc">GskUrlUploadFunc</link> func,
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-url">eva_url_transfer_set_url</link>            (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaUrl">EvaUrl</link> *url);
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-upload">eva_url_transfer_set_upload</link>         (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaUrlUploadFunc">EvaUrlUploadFunc</link> func,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-upload-packet">eva_url_transfer_set_upload_packet</link>  (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskPacket">GskPacket</link> *packet);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-oneshot-upload">eva_url_transfer_set_oneshot_upload</link> (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskStream">GskStream</link> *stream,
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-upload-packet">eva_url_transfer_set_upload_packet</link>  (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaPacket">EvaPacket</link> *packet);
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-oneshot-upload">eva_url_transfer_set_oneshot_upload</link> (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaStream">EvaStream</link> *stream,
                                                          <link linkend="gssize">gssize</link> size);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-timeout">eva_url_transfer_set_timeout</link>        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-timeout">eva_url_transfer_set_timeout</link>        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="guint">guint</link> millis);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-clear-timeout">eva_url_transfer_clear_timeout</link>      (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer);
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-clear-timeout">eva_url_transfer_clear_timeout</link>      (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer);
 <link linkend="void">void</link>                <link linkend="eva-url-transfer-set-follow-redirects">eva_url_transfer_set_follow_redirects</link>
-                                                        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+                                                        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="gboolean">gboolean</link> follow_redirs);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-address-hint">eva_url_transfer_set_address_hint</link>   (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-url-transfer-start">eva_url_transfer_start</link>              (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-address-hint">eva_url_transfer_set_address_hint</link>   (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-url-transfer-start">eva_url_transfer_start</link>              (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="GError">GError</link> **error);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-cancel">eva_url_transfer_cancel</link>             (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-url-transfer-has-upload">eva_url_transfer_has_upload</link>         (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-url-transfer-create-upload">eva_url_transfer_create_upload</link>      (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-cancel">eva_url_transfer_cancel</link>             (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-url-transfer-has-upload">eva_url_transfer_has_upload</link>         (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer);
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-url-transfer-create-upload">eva_url_transfer_create_upload</link>      (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="gssize">gssize</link> *size_out,
                                                          <link linkend="GError">GError</link> **error);
 <link linkend="gboolean">gboolean</link>            <link linkend="eva-url-transfer-peek-expects-download-stream">eva_url_transfer_peek_expects_download_stream</link>
-                                                        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-url-transfer-is-done">eva_url_transfer_is_done</link>            (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-address">eva_url_transfer_set_address</link>        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *addr);
-<link linkend="gboolean">gboolean</link>            <link linkend="eva-url-transfer-add-redirect">eva_url_transfer_add_redirect</link>       (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+                                                        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-url-transfer-is-done">eva_url_transfer_is_done</link>            (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer);
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-address">eva_url_transfer_set_address</link>        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *addr);
+<link linkend="gboolean">gboolean</link>            <link linkend="eva-url-transfer-add-redirect">eva_url_transfer_add_redirect</link>       (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="GObject">GObject</link> *request,
                                                          <link linkend="GObject">GObject</link> *response,
                                                          <link linkend="gboolean">gboolean</link> is_permanent,
-                                                         <link linkend="GskUrl">GskUrl</link> *dest_url);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-download">eva_url_transfer_set_download</link>       (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskStream">GskStream</link> *content);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-request">eva_url_transfer_set_request</link>        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaUrl">EvaUrl</link> *dest_url);
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-download">eva_url_transfer_set_download</link>       (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaStream">EvaStream</link> *content);
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-request">eva_url_transfer_set_request</link>        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="GObject">GObject</link> *request);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-response">eva_url_transfer_set_response</link>       (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-response">eva_url_transfer_set_response</link>       (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="GObject">GObject</link> *response);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-error">eva_url_transfer_set_error</link>          (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-set-error">eva_url_transfer_set_error</link>          (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          const <link linkend="GError">GError</link> *error);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-take-error">eva_url_transfer_take_error</link>         (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-take-error">eva_url_transfer_take_error</link>         (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="GError">GError</link> *error);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-notify-done">eva_url_transfer_notify_done</link>        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskUrlTransferResult">GskUrlTransferResult</link> result);
-<link linkend="void">void</link>                <link linkend="eva-url-transfer-class-register">eva_url_transfer_class_register</link>     (<link linkend="GskUrlScheme">GskUrlScheme</link> scheme,
-                                                         <link linkend="GskUrlTransferClass">GskUrlTransferClass</link> *transfer_class);
-<link linkend="char">char</link> *              <link linkend="eva-url-transfer-get-state-string">eva_url_transfer_get_state_string</link>   (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer);
-<link linkend="GskStream">GskStream</link> *         <link linkend="eva-url-transfer-stream-new">eva_url_transfer_stream_new</link>         (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-notify-done">eva_url_transfer_notify_done</link>        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaUrlTransferResult">EvaUrlTransferResult</link> result);
+<link linkend="void">void</link>                <link linkend="eva-url-transfer-class-register">eva_url_transfer_class_register</link>     (<link linkend="EvaUrlScheme">EvaUrlScheme</link> scheme,
+                                                         <link linkend="EvaUrlTransferClass">EvaUrlTransferClass</link> *transfer_class);
+<link linkend="char">char</link> *              <link linkend="eva-url-transfer-get-state-string">eva_url_transfer_get_state_string</link>   (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer);
+<link linkend="EvaStream">EvaStream</link> *         <link linkend="eva-url-transfer-stream-new">eva_url_transfer_stream_new</link>         (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="GError">GError</link> **error);
 </synopsis>
 </refsynopsisdiv>
 
-<refsect1 id="GskUrlTransfer.object-hierarchy" role="object_hierarchy">
+<refsect1 id="EvaUrlTransfer.object-hierarchy" role="object_hierarchy">
 <title role="object_hierarchy.title">Object Hierarchy</title>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----GskUrlTransfer
-         +----<link linkend="GskUrlTransferHttp">GskUrlTransferHttp</link>
-         +----<link linkend="GskUrlTransferFile">GskUrlTransferFile</link>
+   +----EvaUrlTransfer
+         +----<link linkend="EvaUrlTransferHttp">EvaUrlTransferHttp</link>
+         +----<link linkend="EvaUrlTransferFile">EvaUrlTransferFile</link>
 </synopsis>
 </refsect1>
 
@@ -110,10 +110,10 @@ const <link linkend="char">char</link> *        <link linkend="eva-url-transfer-
 
 
 
-<refsect1 id="GskUrlTransfer.description" role="desc">
+<refsect1 id="EvaUrlTransfer.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
-A GskUrlTransfer represents a single upload and/or download with
+A EvaUrlTransfer represents a single upload and/or download with
 a resource designed by a URL.  Although most of the interface
 is URL-scheme independent, for convenience we allow users to see
 the URL-specific portions as well.
@@ -123,7 +123,7 @@ Some types of URLs are download only,
 and others support upload, but possibly not at the same time.
 </para>
 <para>
-The basic plan is to make a <link linkend="GskUrlTransfer"><type>GskUrlTransfer</type></link>
+The basic plan is to make a <link linkend="EvaUrlTransfer"><type>EvaUrlTransfer</type></link>
 object.  If you wish to upload, provide a way of constructing
 an upload content-stream.  If you wish to download, provide a function
 that will be called with the downloading content-stream.
@@ -145,24 +145,24 @@ exactly once, after or during the invocation of <link linkend="eva-url-transfer-
 </para>
 <para>
 Internally, the URL-transfer code maintains a mapping from url-scheme to
-a list of GskUrlTransferClasses responsible for that type of URL.
+a list of EvaUrlTransferClasses responsible for that type of URL.
 When eva_url_transfer_new(url) is called, each handler for the url's scheme is tried in
 sequence until one is found that accepts the URL, or NULL will returned
 if no suitable class is found.
 </para>
 </refsect1>
 
-<refsect1 id="GskUrlTransfer.details" role="details">
+<refsect1 id="EvaUrlTransfer.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskUrlTransferRedirect" role="struct">
-<title>GskUrlTransferRedirect</title>
-<indexterm zone="GskUrlTransferRedirect"><primary sortas="GskUrlTransferRedirect">GskUrlTransferRedirect</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaUrlTransferRedirect" role="struct">
+<title>EvaUrlTransferRedirect</title>
+<indexterm zone="EvaUrlTransferRedirect"><primary sortas="EvaUrlTransferRedirect">EvaUrlTransferRedirect</primary></indexterm><programlisting>typedef struct {
   gboolean is_permanent;
-  GskUrl *url;
+  EvaUrl *url;
   GObject *request;
   GObject *response;
-  GskUrlTransferRedirect *next;
-} GskUrlTransferRedirect;
+  EvaUrlTransferRedirect *next;
+} EvaUrlTransferRedirect;
 </programlisting>
 <para>
 A node in the linked-list of redirections we have receieved.
@@ -173,7 +173,7 @@ A node in the linked-list of redirections we have receieved.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskUrl">GskUrl</link>&#160;*<structfield>url</structfield>;</term>
+<term><link linkend="EvaUrl">EvaUrl</link>&#160;*<structfield>url</structfield>;</term>
 <listitem><simpara>the location that we have been redirected to.
 </simpara></listitem>
 </varlistentry>
@@ -188,14 +188,14 @@ A node in the linked-list of redirections we have receieved.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskUrlTransferRedirect">GskUrlTransferRedirect</link>&#160;*<structfield>next</structfield>;</term>
+<term><link linkend="EvaUrlTransferRedirect">EvaUrlTransferRedirect</link>&#160;*<structfield>next</structfield>;</term>
 <listitem><simpara>next redirect chronologically.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskUrlTransferResult" role="enum">
-<title>enum GskUrlTransferResult</title>
-<indexterm zone="GskUrlTransferResult"><primary sortas="GskUrlTransferResult">GskUrlTransferResult</primary></indexterm><programlisting>typedef enum
+<refsect2 id="EvaUrlTransferResult" role="enum">
+<title>enum EvaUrlTransferResult</title>
+<indexterm zone="EvaUrlTransferResult"><primary sortas="EvaUrlTransferResult">EvaUrlTransferResult</primary></indexterm><programlisting>typedef enum
 {
   EVA_URL_TRANSFER_ERROR_BAD_REQUEST,
   EVA_URL_TRANSFER_ERROR_BAD_NAME,
@@ -208,7 +208,7 @@ A node in the linked-list of redirections we have receieved.
   EVA_URL_TRANSFER_REDIRECT,
   EVA_URL_TRANSFER_CANCELLED,
   EVA_URL_TRANSFER_SUCCESS
-} GskUrlTransferResult;
+} EvaUrlTransferResult;
 </programlisting>
 <para>
 The result element of transfer is prepared before
@@ -304,12 +304,12 @@ Number of result-codes, seldom needed.
 </para></refsect2>
 <refsect2 id="eva-url-transfer-result-name" role="function">
 <title>eva_url_transfer_result_name ()</title>
-<indexterm zone="eva-url-transfer-result-name"><primary sortas="eva_url_transfer_result_name">eva_url_transfer_result_name</primary></indexterm><programlisting>const <link linkend="char">char</link> *        eva_url_transfer_result_name        (<link linkend="GskUrlTransferResult">GskUrlTransferResult</link> result);</programlisting>
+<indexterm zone="eva-url-transfer-result-name"><primary sortas="eva_url_transfer_result_name">eva_url_transfer_result_name</primary></indexterm><programlisting>const <link linkend="char">char</link> *        eva_url_transfer_result_name        (<link linkend="EvaUrlTransferResult">EvaUrlTransferResult</link> result);</programlisting>
 <para>
 <parameter>result</parameter>: the enumeration value.
 </para>
 <para>
-Convert a GskUrlTransferResult value
+Convert a EvaUrlTransferResult value
 into a human-readable string.</para>
 <para>
 Get a mixed-case human-readable name for the Transfer-Result.
@@ -320,9 +320,9 @@ Get a mixed-case human-readable name for the Transfer-Result.
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the constant string.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskUrlTransferFunc" role="function">
-<title>GskUrlTransferFunc ()</title>
-<indexterm zone="GskUrlTransferFunc"><primary sortas="GskUrlTransferFunc">GskUrlTransferFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GskUrlTransferFunc)               (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *info,
+<refsect2 id="EvaUrlTransferFunc" role="function">
+<title>EvaUrlTransferFunc ()</title>
+<indexterm zone="EvaUrlTransferFunc"><primary sortas="EvaUrlTransferFunc">EvaUrlTransferFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*EvaUrlTransferFunc)               (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *info,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 A function that is called when the transfer is "done".
@@ -340,9 +340,9 @@ It will only be called after <link linkend="eva-url-transfer-start"><function>ev
 or <link linkend="eva-url-transfer-set-handler"><function>eva_url_transfer_set_handler()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskUrlUploadFunc" role="function">
-<title>GskUrlUploadFunc ()</title>
-<indexterm zone="GskUrlUploadFunc"><primary sortas="GskUrlUploadFunc">GskUrlUploadFunc</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         (*GskUrlUploadFunc)                 (<link linkend="gpointer">gpointer</link> upload_data,
+<refsect2 id="EvaUrlUploadFunc" role="function">
+<title>EvaUrlUploadFunc ()</title>
+<indexterm zone="EvaUrlUploadFunc"><primary sortas="EvaUrlUploadFunc">EvaUrlUploadFunc</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         (*EvaUrlUploadFunc)                 (<link linkend="gpointer">gpointer</link> upload_data,
                                                          <link linkend="gssize">gssize</link> *size_out,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
@@ -371,42 +371,42 @@ and indicates that the length is not known in advance.
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>a newly allocated stream, or NULL if an error occurs.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GskUrlTransfer-struct" role="struct">
-<title>GskUrlTransfer</title>
-<indexterm zone="GskUrlTransfer-struct"><primary sortas="GskUrlTransfer">GskUrlTransfer</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="EvaUrlTransfer-struct" role="struct">
+<title>EvaUrlTransfer</title>
+<indexterm zone="EvaUrlTransfer-struct"><primary sortas="EvaUrlTransfer">EvaUrlTransfer</primary></indexterm><programlisting>typedef struct {
   /* --- information prepared for the handler --- */
-  GskUrlTransferResult result;
-  GskUrl *url;
+  EvaUrlTransferResult result;
+  EvaUrl *url;
   GSList *redirect_urls;        // XXX: unused
-  GskUrlTransferRedirect *first_redirect, *last_redirect;
-  GskSocketAddress *address;
+  EvaUrlTransferRedirect *first_redirect, *last_redirect;
+  EvaSocketAddress *address;
 
   /* may be available: protocol-specific headers */
-  GObject *request;     /* a GskHttpRequest probably */
-  GObject *response;    /* a GskHttpResponse probably */
+  GObject *request;     /* a EvaHttpRequest probably */
+  GObject *response;    /* a EvaHttpResponse probably */
 
-  GskStream *content;   /* the downloading content */
+  EvaStream *content;   /* the downloading content */
 
   /* the last redirect (if any) */
-  GskUrl *redirect_url; /* [just a peeked version of last_redirect-&gt;url, not a ref] */
+  EvaUrl *redirect_url; /* [just a peeked version of last_redirect-&gt;url, not a ref] */
   gboolean redirect_is_permanent;
 
   /* ERROR status codes */
   GError *error;
-} GskUrlTransfer;
+} EvaUrlTransfer;
 </programlisting>
 <para>
 A GObject that represents a transfer of data with the entity responsible
 for that type of URL.
 </para><variablelist role="struct">
 <varlistentry>
-<term><link linkend="GskUrlTransferResult">GskUrlTransferResult</link>&#160;<structfield>result</structfield>;</term>
+<term><link linkend="EvaUrlTransferResult">EvaUrlTransferResult</link>&#160;<structfield>result</structfield>;</term>
 <listitem><simpara>code indicating final status of the transfer.
 (only valid in the "done" state)
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskUrl">GskUrl</link>&#160;*<structfield>url</structfield>;</term>
+<term><link linkend="EvaUrl">EvaUrl</link>&#160;*<structfield>url</structfield>;</term>
 <listitem><simpara>the url of the initial request.
 </simpara></listitem>
 </varlistentry>
@@ -416,7 +416,7 @@ for that type of URL.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskSocketAddress">GskSocketAddress</link>&#160;*<structfield>address</structfield>;</term>
+<term><link linkend="EvaSocketAddress">EvaSocketAddress</link>&#160;*<structfield>address</structfield>;</term>
 <listitem><simpara>socket-address of the server for this url.
 </simpara></listitem>
 </varlistentry>
@@ -431,12 +431,12 @@ for that type of URL.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskStream">GskStream</link>&#160;*<structfield>content</structfield>;</term>
+<term><link linkend="EvaStream">EvaStream</link>&#160;*<structfield>content</structfield>;</term>
 <listitem><simpara>downloading data.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
-<term><link linkend="GskUrl">GskUrl</link>&#160;*<structfield>redirect_url</structfield>;</term>
+<term><link linkend="EvaUrl">EvaUrl</link>&#160;*<structfield>redirect_url</structfield>;</term>
 <listitem><simpara>target of first redirect.
 </simpara></listitem>
 </varlistentry>
@@ -453,11 +453,11 @@ for that type of URL.
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer" role="function">
 <title>eva_url_transfer ()</title>
-<indexterm zone="eva-url-transfer"><primary sortas="eva_url_transfer">eva_url_transfer</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_transfer                    (<link linkend="GskUrl">GskUrl</link> *url,
-                                                         <link linkend="GskUrlUploadFunc">GskUrlUploadFunc</link> upload_func,
+<indexterm zone="eva-url-transfer"><primary sortas="eva_url_transfer">eva_url_transfer</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_transfer                    (<link linkend="EvaUrl">EvaUrl</link> *url,
+                                                         <link linkend="EvaUrlUploadFunc">EvaUrlUploadFunc</link> upload_func,
                                                          <link linkend="gpointer">gpointer</link> upload_data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> upload_destroy,
-                                                         <link linkend="GskUrlTransferFunc">GskUrlTransferFunc</link> handler,
+                                                         <link linkend="EvaUrlTransferFunc">EvaUrlTransferFunc</link> handler,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
@@ -485,7 +485,7 @@ examining transfer-&gt;result.</para>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>upload_func</parameter>&#160;:</term>
 <listitem><simpara> optional function that can create the upload's content
-as a <link linkend="GskStream"><type>GskStream</type></link>.
+as a <link linkend="EvaStream"><type>EvaStream</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>upload_data</parameter>&#160;:</term>
 <listitem><simpara> data which can be used by the upload function.
@@ -517,7 +517,7 @@ most common ways for this function to fail.
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-new" role="function">
 <title>eva_url_transfer_new ()</title>
-<indexterm zone="eva-url-transfer-new"><primary sortas="eva_url_transfer_new">eva_url_transfer_new</primary></indexterm><programlisting><link linkend="GskUrlTransfer">GskUrlTransfer</link> *    eva_url_transfer_new                (<link linkend="GskUrl">GskUrl</link> *url);</programlisting>
+<indexterm zone="eva-url-transfer-new"><primary sortas="eva_url_transfer_new">eva_url_transfer_new</primary></indexterm><programlisting><link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *    eva_url_transfer_new                (<link linkend="EvaUrl">EvaUrl</link> *url);</programlisting>
 <para>
 Create a URL transfer of the appropriate type for the given URL.
 We try the registered classes, in order.</para>
@@ -532,8 +532,8 @@ could handle the URL.
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-set-handler" role="function">
 <title>eva_url_transfer_set_handler ()</title>
-<indexterm zone="eva-url-transfer-set-handler"><primary sortas="eva_url_transfer_set_handler">eva_url_transfer_set_handler</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_handler        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskUrlTransferFunc">GskUrlTransferFunc</link> handler,
+<indexterm zone="eva-url-transfer-set-handler"><primary sortas="eva_url_transfer_set_handler">eva_url_transfer_set_handler</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_handler        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaUrlTransferFunc">EvaUrlTransferFunc</link> handler,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -561,8 +561,8 @@ This function may also be called in a number of error cases.
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-set-url" role="function">
 <title>eva_url_transfer_set_url ()</title>
-<indexterm zone="eva-url-transfer-set-url"><primary sortas="eva_url_transfer_set_url">eva_url_transfer_set_url</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_url            (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskUrl">GskUrl</link> *url);</programlisting>
+<indexterm zone="eva-url-transfer-set-url"><primary sortas="eva_url_transfer_set_url">eva_url_transfer_set_url</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_url            (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaUrl">EvaUrl</link> *url);</programlisting>
 <para>
 Set the URL that is the target of this transfer.
 This can only be done once, before the transfer
@@ -582,8 +582,8 @@ is called by <link linkend="eva-url-transfer-new"><function>eva_url_transfer_new
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-set-upload" role="function">
 <title>eva_url_transfer_set_upload ()</title>
-<indexterm zone="eva-url-transfer-set-upload"><primary sortas="eva_url_transfer_set_upload">eva_url_transfer_set_upload</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_upload         (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskUrlUploadFunc">GskUrlUploadFunc</link> func,
+<indexterm zone="eva-url-transfer-set-upload"><primary sortas="eva_url_transfer_set_upload">eva_url_transfer_set_upload</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_upload         (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaUrlUploadFunc">EvaUrlUploadFunc</link> func,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
 <para>
@@ -611,7 +611,7 @@ consider using <link linkend="eva-url-transfer-set-upload-packet"><function>eva_
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>func</parameter>&#160;:</term>
 <listitem><simpara> function that can create the upload's content
-as a <link linkend="GskStream"><type>GskStream</type></link>.
+as a <link linkend="EvaStream"><type>EvaStream</type></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>data</parameter>&#160;:</term>
 <listitem><simpara> data which can be used by the upload function.
@@ -624,27 +624,27 @@ still be extant though).
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-set-upload-packet" role="function">
 <title>eva_url_transfer_set_upload_packet ()</title>
-<indexterm zone="eva-url-transfer-set-upload-packet"><primary sortas="eva_url_transfer_set_upload_packet">eva_url_transfer_set_upload_packet</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_upload_packet  (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskPacket">GskPacket</link> *packet);</programlisting>
+<indexterm zone="eva-url-transfer-set-upload-packet"><primary sortas="eva_url_transfer_set_upload_packet">eva_url_transfer_set_upload_packet</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_upload_packet  (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaPacket">EvaPacket</link> *packet);</programlisting>
 <para>
-Set the upload stream in an easy, reliable way using a GskPacket.</para>
+Set the upload stream in an easy, reliable way using a EvaPacket.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer</parameter>&#160;:</term>
 <listitem><simpara> the Transfer to affect.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>packet</parameter>&#160;:</term>
-<listitem><simpara> the GskPacket containing the upload content as data.
+<listitem><simpara> the EvaPacket containing the upload content as data.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-set-oneshot-upload" role="function">
 <title>eva_url_transfer_set_oneshot_upload ()</title>
-<indexterm zone="eva-url-transfer-set-oneshot-upload"><primary sortas="eva_url_transfer_set_oneshot_upload">eva_url_transfer_set_oneshot_upload</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_oneshot_upload (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskStream">GskStream</link> *stream,
+<indexterm zone="eva-url-transfer-set-oneshot-upload"><primary sortas="eva_url_transfer_set_oneshot_upload">eva_url_transfer_set_oneshot_upload</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_oneshot_upload (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaStream">EvaStream</link> *stream,
                                                          <link linkend="gssize">gssize</link> size);</programlisting>
 <para>
 Set the content to upload to the remote URL,
-as a <link linkend="GskStream"><type>GskStream</type></link>.
+as a <link linkend="EvaStream"><type>EvaStream</type></link>.
 </para>
 <para>
 Since streams can only be read once,
@@ -664,7 +664,7 @@ redirection.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-set-timeout" role="function">
 <title>eva_url_transfer_set_timeout ()</title>
-<indexterm zone="eva-url-transfer-set-timeout"><primary sortas="eva_url_transfer_set_timeout">eva_url_transfer_set_timeout</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_timeout        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<indexterm zone="eva-url-transfer-set-timeout"><primary sortas="eva_url_transfer_set_timeout">eva_url_transfer_set_timeout</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_timeout        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="guint">guint</link> millis);</programlisting>
 <para>
 Set the timeout on the download.
@@ -686,7 +686,7 @@ This must be called before the transfer is started
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-clear-timeout" role="function">
 <title>eva_url_transfer_clear_timeout ()</title>
-<indexterm zone="eva-url-transfer-clear-timeout"><primary sortas="eva_url_transfer_clear_timeout">eva_url_transfer_clear_timeout</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_clear_timeout      (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer);</programlisting>
+<indexterm zone="eva-url-transfer-clear-timeout"><primary sortas="eva_url_transfer_clear_timeout">eva_url_transfer_clear_timeout</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_clear_timeout      (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer);</programlisting>
 <para>
 Clear the timeout on the download.
 </para>
@@ -702,7 +702,7 @@ This must be called before the transfer is started
 <refsect2 id="eva-url-transfer-set-follow-redirects" role="function">
 <title>eva_url_transfer_set_follow_redirects ()</title>
 <indexterm zone="eva-url-transfer-set-follow-redirects"><primary sortas="eva_url_transfer_set_follow_redirects">eva_url_transfer_set_follow_redirects</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_follow_redirects
-                                                        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+                                                        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="gboolean">gboolean</link> follow_redirs);</programlisting>
 <para>
 Configure how the transfer will behave when it encounters
@@ -727,8 +727,8 @@ even if the download led to a redirect.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-set-address-hint" role="function">
 <title>eva_url_transfer_set_address_hint ()</title>
-<indexterm zone="eva-url-transfer-set-address-hint"><primary sortas="eva_url_transfer_set_address_hint">eva_url_transfer_set_address_hint</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_address_hint   (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *address);</programlisting>
+<indexterm zone="eva-url-transfer-set-address-hint"><primary sortas="eva_url_transfer_set_address_hint">eva_url_transfer_set_address_hint</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_address_hint   (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *address);</programlisting>
 <para>
 To avoid DNS lookups in very bulky transfer situations,
 DNS may be bypassed and replaced with this address.
@@ -749,7 +749,7 @@ the URL's port).
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-start" role="function">
 <title>eva_url_transfer_start ()</title>
-<indexterm zone="eva-url-transfer-start"><primary sortas="eva_url_transfer_start">eva_url_transfer_start</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_transfer_start              (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<indexterm zone="eva-url-transfer-start"><primary sortas="eva_url_transfer_start">eva_url_transfer_start</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_transfer_start              (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 Begin the upload and/or download.  (Maybe start with name-lookup).</para>
@@ -769,7 +769,7 @@ receive done-notification.
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-cancel" role="function">
 <title>eva_url_transfer_cancel ()</title>
-<indexterm zone="eva-url-transfer-cancel"><primary sortas="eva_url_transfer_cancel">eva_url_transfer_cancel</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_cancel             (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer);</programlisting>
+<indexterm zone="eva-url-transfer-cancel"><primary sortas="eva_url_transfer_cancel">eva_url_transfer_cancel</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_cancel             (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer);</programlisting>
 <para>
 Abort a running transfer.
 </para>
@@ -784,13 +784,13 @@ result EVA_URL_TRANSFER_CANCELLED.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-has-upload" role="function">
 <title>eva_url_transfer_has_upload ()</title>
-<indexterm zone="eva-url-transfer-has-upload"><primary sortas="eva_url_transfer_has_upload">eva_url_transfer_has_upload</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_transfer_has_upload         (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer);</programlisting>
+<indexterm zone="eva-url-transfer-has-upload"><primary sortas="eva_url_transfer_has_upload">eva_url_transfer_has_upload</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_transfer_has_upload         (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer);</programlisting>
 <para>
 Figure out whether this transfer has upload data.
 </para>
 <para>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</para>
+of types of EvaUrlTransfer.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer</parameter>&#160;:</term>
@@ -801,7 +801,7 @@ of types of GskUrlTransfer.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-create-upload" role="function">
 <title>eva_url_transfer_create_upload ()</title>
-<indexterm zone="eva-url-transfer-create-upload"><primary sortas="eva_url_transfer_create_upload">eva_url_transfer_create_upload</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_url_transfer_create_upload      (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<indexterm zone="eva-url-transfer-create-upload"><primary sortas="eva_url_transfer_create_upload">eva_url_transfer_create_upload</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_url_transfer_create_upload      (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="gssize">gssize</link> *size_out,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
@@ -810,7 +810,7 @@ function.
 </para>
 <para>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</para>
+of types of EvaUrlTransfer.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer</parameter>&#160;:</term>
@@ -822,19 +822,19 @@ of types of GskUrlTransfer.</para>
 <varlistentry><term><parameter>error</parameter>&#160;:</term>
 <listitem><simpara> optional location to store the <link linkend="GError"><type>GError</type></link> if there is a problem.
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a newly allocated <link linkend="GskStream"><type>GskStream</type></link>, or NULL if an error occurs.
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a newly allocated <link linkend="EvaStream"><type>EvaStream</type></link>, or NULL if an error occurs.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-peek-expects-download-stream" role="function">
 <title>eva_url_transfer_peek_expects_download_stream ()</title>
 <indexterm zone="eva-url-transfer-peek-expects-download-stream"><primary sortas="eva_url_transfer_peek_expects_download_stream">eva_url_transfer_peek_expects_download_stream</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_transfer_peek_expects_download_stream
-                                                        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer);</programlisting>
+                                                        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer);</programlisting>
 <para>
 This function can be used to see if download-content is expected.
 </para>
 <para>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</para>
+of types of EvaUrlTransfer.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer</parameter>&#160;:</term>
@@ -846,7 +846,7 @@ returns: whether this transfer has a download handler.
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-is-done" role="function">
 <title>eva_url_transfer_is_done ()</title>
-<indexterm zone="eva-url-transfer-is-done"><primary sortas="eva_url_transfer_is_done">eva_url_transfer_is_done</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_transfer_is_done            (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer);</programlisting>
+<indexterm zone="eva-url-transfer-is-done"><primary sortas="eva_url_transfer_is_done">eva_url_transfer_is_done</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_transfer_is_done            (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer);</programlisting>
 <para>
 Find out whether the transfer is done.
 The transfer is done iff the callback has been invoked.</para>
@@ -860,15 +860,15 @@ The transfer is done iff the callback has been invoked.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-set-address" role="function">
 <title>eva_url_transfer_set_address ()</title>
-<indexterm zone="eva-url-transfer-set-address"><primary sortas="eva_url_transfer_set_address">eva_url_transfer_set_address</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_address        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskSocketAddress">GskSocketAddress</link> *addr);</programlisting>
+<indexterm zone="eva-url-transfer-set-address"><primary sortas="eva_url_transfer_set_address">eva_url_transfer_set_address</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_address        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaSocketAddress">EvaSocketAddress</link> *addr);</programlisting>
 <para>
 Set the socket-address for informational purposes.
 This is occasionally interesting to the user of the Transfer.
 </para>
 <para>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</para>
+of types of EvaUrlTransfer.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer</parameter>&#160;:</term>
@@ -880,25 +880,25 @@ of types of GskUrlTransfer.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-add-redirect" role="function">
 <title>eva_url_transfer_add_redirect ()</title>
-<indexterm zone="eva-url-transfer-add-redirect"><primary sortas="eva_url_transfer_add_redirect">eva_url_transfer_add_redirect</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_transfer_add_redirect       (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<indexterm zone="eva-url-transfer-add-redirect"><primary sortas="eva_url_transfer_add_redirect">eva_url_transfer_add_redirect</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            eva_url_transfer_add_redirect       (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="GObject">GObject</link> *request,
                                                          <link linkend="GObject">GObject</link> *response,
                                                          <link linkend="gboolean">gboolean</link> is_permanent,
-                                                         <link linkend="GskUrl">GskUrl</link> *dest_url);</programlisting>
+                                                         <link linkend="EvaUrl">EvaUrl</link> *dest_url);</programlisting>
 <para>
 Add an entry to the list of redirects
 that we have encountered while trying to
 service this request.
 </para>
 <para>
-Most users of GskUrlTransfer won't care about these redirects--
+Most users of EvaUrlTransfer won't care about these redirects--
 they are provided to the rare client that cares about the redirect-path.
 More commonly, users merely wish to suppress redirect handling: that can be done
 more easily by <link linkend="eva-url-transfer-set-follow-redirects"><function>eva_url_transfer_set_follow_redirects()</function></link>.
 </para>
 <para>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</para>
+of types of EvaUrlTransfer.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer</parameter>&#160;:</term>
@@ -923,15 +923,15 @@ and call <link linkend="eva-url-transfer-notify-done"><function>eva_url_transfer
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-set-download" role="function">
 <title>eva_url_transfer_set_download ()</title>
-<indexterm zone="eva-url-transfer-set-download"><primary sortas="eva_url_transfer_set_download">eva_url_transfer_set_download</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_download       (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskStream">GskStream</link> *content);</programlisting>
+<indexterm zone="eva-url-transfer-set-download"><primary sortas="eva_url_transfer_set_download">eva_url_transfer_set_download</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_download       (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaStream">EvaStream</link> *content);</programlisting>
 <para>
 Set the incoming-content that is associated with this transfer.
 This will used by the user of the Transfer.
 </para>
 <para>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</para>
+of types of EvaUrlTransfer.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer</parameter>&#160;:</term>
@@ -943,14 +943,14 @@ of types of GskUrlTransfer.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-set-request" role="function">
 <title>eva_url_transfer_set_request ()</title>
-<indexterm zone="eva-url-transfer-set-request"><primary sortas="eva_url_transfer_set_request">eva_url_transfer_set_request</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_request        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<indexterm zone="eva-url-transfer-set-request"><primary sortas="eva_url_transfer_set_request">eva_url_transfer_set_request</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_request        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="GObject">GObject</link> *request);</programlisting>
 <para>
 Set the outgoing-request header data for this transaction.
 </para>
 <para>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</para>
+of types of EvaUrlTransfer.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer</parameter>&#160;:</term>
@@ -962,14 +962,14 @@ of types of GskUrlTransfer.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-set-response" role="function">
 <title>eva_url_transfer_set_response ()</title>
-<indexterm zone="eva-url-transfer-set-response"><primary sortas="eva_url_transfer_set_response">eva_url_transfer_set_response</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_response       (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<indexterm zone="eva-url-transfer-set-response"><primary sortas="eva_url_transfer_set_response">eva_url_transfer_set_response</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_response       (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="GObject">GObject</link> *response);</programlisting>
 <para>
 Set the incoming-response header data for this transaction.
 </para>
 <para>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</para>
+of types of EvaUrlTransfer.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer</parameter>&#160;:</term>
@@ -981,7 +981,7 @@ of types of GskUrlTransfer.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-set-error" role="function">
 <title>eva_url_transfer_set_error ()</title>
-<indexterm zone="eva-url-transfer-set-error"><primary sortas="eva_url_transfer_set_error">eva_url_transfer_set_error</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_error          (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<indexterm zone="eva-url-transfer-set-error"><primary sortas="eva_url_transfer_set_error">eva_url_transfer_set_error</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_set_error          (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          const <link linkend="GError">GError</link> *error);</programlisting>
 <para>
 Set the error field for this transaction.
@@ -989,7 +989,7 @@ A copy of the error parameter is made.
 </para>
 <para>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</para>
+of types of EvaUrlTransfer.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer</parameter>&#160;:</term>
@@ -1001,16 +1001,16 @@ of types of GskUrlTransfer.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-take-error" role="function">
 <title>eva_url_transfer_take_error ()</title>
-<indexterm zone="eva-url-transfer-take-error"><primary sortas="eva_url_transfer_take_error">eva_url_transfer_take_error</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_take_error         (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<indexterm zone="eva-url-transfer-take-error"><primary sortas="eva_url_transfer_take_error">eva_url_transfer_take_error</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_take_error         (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="GError">GError</link> *error);</programlisting>
 <para>
 Set the error field for this transaction.
 The error parameter will be freed eventually by the
-<link linkend="GskUrlTransfer"><type>GskUrlTransfer</type></link>.
+<link linkend="EvaUrlTransfer"><type>EvaUrlTransfer</type></link>.
 </para>
 <para>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</para>
+of types of EvaUrlTransfer.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer</parameter>&#160;:</term>
@@ -1022,8 +1022,8 @@ of types of GskUrlTransfer.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-notify-done" role="function">
 <title>eva_url_transfer_notify_done ()</title>
-<indexterm zone="eva-url-transfer-notify-done"><primary sortas="eva_url_transfer_notify_done">eva_url_transfer_notify_done</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_notify_done        (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
-                                                         <link linkend="GskUrlTransferResult">GskUrlTransferResult</link> result);</programlisting>
+<indexterm zone="eva-url-transfer-notify-done"><primary sortas="eva_url_transfer_notify_done">eva_url_transfer_notify_done</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_notify_done        (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
+                                                         <link linkend="EvaUrlTransferResult">EvaUrlTransferResult</link> result);</programlisting>
 <para>
 Transition the transfer to the DONE state,
 and invoke the user's callback (if any).
@@ -1031,7 +1031,7 @@ This function may only be invoked once per transfer.
 </para>
 <para>
 This function should only be needed by implementors
-of types of GskUrlTransfer.</para>
+of types of EvaUrlTransfer.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>transfer</parameter>&#160;:</term>
@@ -1043,8 +1043,8 @@ of types of GskUrlTransfer.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-class-register" role="function">
 <title>eva_url_transfer_class_register ()</title>
-<indexterm zone="eva-url-transfer-class-register"><primary sortas="eva_url_transfer_class_register">eva_url_transfer_class_register</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_class_register     (<link linkend="GskUrlScheme">GskUrlScheme</link> scheme,
-                                                         <link linkend="GskUrlTransferClass">GskUrlTransferClass</link> *transfer_class);</programlisting>
+<indexterm zone="eva-url-transfer-class-register"><primary sortas="eva_url_transfer_class_register">eva_url_transfer_class_register</primary></indexterm><programlisting><link linkend="void">void</link>                eva_url_transfer_class_register     (<link linkend="EvaUrlScheme">EvaUrlScheme</link> scheme,
+                                                         <link linkend="EvaUrlTransferClass">EvaUrlTransferClass</link> *transfer_class);</programlisting>
 <para>
 Register a class of URL transfer that can
 handle a given scheme.
@@ -1060,7 +1060,7 @@ It will only be instantiated if the class' test method</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-get-state-string" role="function">
 <title>eva_url_transfer_get_state_string ()</title>
-<indexterm zone="eva-url-transfer-get-state-string"><primary sortas="eva_url_transfer_get_state_string">eva_url_transfer_get_state_string</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_url_transfer_get_state_string   (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer);</programlisting>
+<indexterm zone="eva-url-transfer-get-state-string"><primary sortas="eva_url_transfer_get_state_string">eva_url_transfer_get_state_string</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_url_transfer_get_state_string   (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer);</programlisting>
 <para>
 Get a newly allocated, human-readable description
 of the state of the transfer.</para>
@@ -1074,7 +1074,7 @@ of the state of the transfer.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-url-transfer-stream-new" role="function">
 <title>eva_url_transfer_stream_new ()</title>
-<indexterm zone="eva-url-transfer-stream-new"><primary sortas="eva_url_transfer_stream_new">eva_url_transfer_stream_new</primary></indexterm><programlisting><link linkend="GskStream">GskStream</link> *         eva_url_transfer_stream_new         (<link linkend="GskUrlTransfer">GskUrlTransfer</link> *transfer,
+<indexterm zone="eva-url-transfer-stream-new"><primary sortas="eva_url_transfer_stream_new">eva_url_transfer_stream_new</primary></indexterm><programlisting><link linkend="EvaStream">EvaStream</link> *         eva_url_transfer_stream_new         (<link linkend="EvaUrlTransfer">EvaUrlTransfer</link> *transfer,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 This code will start the transfer,
@@ -1095,10 +1095,10 @@ and return a stream that you can trap immediately.</para>
 
 
 
-<refsect1 id="GskUrlTransfer.see-also">
+<refsect1 id="EvaUrlTransfer.see-also">
 <title>See Also</title>
 <para>
-<link linkend="GskUrlTransferHttp"><type>GskUrlTransferHttp</type></link>.
+<link linkend="EvaUrlTransferHttp"><type>EvaUrlTransferHttp</type></link>.
 </para>
 </refsect1>
 

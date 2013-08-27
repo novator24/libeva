@@ -1,21 +1,21 @@
-<refentry id="eva-GskSimpleFilter">
+<refentry id="eva-EvaSimpleFilter">
 <refmeta>
-<refentrytitle role="top_of_page" id="eva-GskSimpleFilter.top_of_page">GskSimpleFilter</refentrytitle>
+<refentrytitle role="top_of_page" id="eva-EvaSimpleFilter.top_of_page">EvaSimpleFilter</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>EVA Library</refmiscinfo>
 </refmeta>
 
 <refnamediv>
-<refname>GskSimpleFilter</refname>
+<refname>EvaSimpleFilter</refname>
 <refpurpose></refpurpose>
 </refnamediv>
 
-<refsynopsisdiv id="eva-GskSimpleFilter.synopsis" role="synopsis">
+<refsynopsisdiv id="eva-EvaSimpleFilter.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-                    <link linkend="GskSimpleFilterClass">GskSimpleFilterClass</link>;
-                    <link linkend="GskSimpleFilter">GskSimpleFilter</link>;
+                    <link linkend="EvaSimpleFilterClass">EvaSimpleFilterClass</link>;
+                    <link linkend="EvaSimpleFilter">EvaSimpleFilter</link>;
 </synopsis>
 </refsynopsisdiv>
 
@@ -27,35 +27,35 @@
 
 
 
-<refsect1 id="eva-GskSimpleFilter.description" role="desc">
+<refsect1 id="eva-EvaSimpleFilter.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 </para>
 </refsect1>
 
-<refsect1 id="eva-GskSimpleFilter.details" role="details">
+<refsect1 id="eva-EvaSimpleFilter.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskSimpleFilterClass" role="struct">
-<title>GskSimpleFilterClass</title>
-<indexterm zone="GskSimpleFilterClass"><primary sortas="GskSimpleFilterClass">GskSimpleFilterClass</primary></indexterm><programlisting>typedef struct {
-  GskStreamClass stream_class;
-  gboolean (*process)(GskSimpleFilter *filter,
-		      GskBuffer       *dst,
-		      GskBuffer       *src,
+<refsect2 id="EvaSimpleFilterClass" role="struct">
+<title>EvaSimpleFilterClass</title>
+<indexterm zone="EvaSimpleFilterClass"><primary sortas="EvaSimpleFilterClass">EvaSimpleFilterClass</primary></indexterm><programlisting>typedef struct {
+  EvaStreamClass stream_class;
+  gboolean (*process)(EvaSimpleFilter *filter,
+		      EvaBuffer       *dst,
+		      EvaBuffer       *src,
 		      GError         **error);
-  gboolean (*flush)  (GskSimpleFilter *filter,
-		      GskBuffer       *dst,
-		      GskBuffer       *src,
+  gboolean (*flush)  (EvaSimpleFilter *filter,
+		      EvaBuffer       *dst,
+		      EvaBuffer       *src,
 		      GError         **error);
-} GskSimpleFilterClass;
+} EvaSimpleFilterClass;
 </programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GskSimpleFilter" role="struct">
-<title>GskSimpleFilter</title>
-<indexterm zone="GskSimpleFilter"><primary sortas="GskSimpleFilter">GskSimpleFilter</primary></indexterm><programlisting>typedef struct {
-  GskStream      stream;
-} GskSimpleFilter;
+<refsect2 id="EvaSimpleFilter" role="struct">
+<title>EvaSimpleFilter</title>
+<indexterm zone="EvaSimpleFilter"><primary sortas="EvaSimpleFilter">EvaSimpleFilter</primary></indexterm><programlisting>typedef struct {
+  EvaStream      stream;
+} EvaSimpleFilter;
 </programlisting>
 <para>
 </para></refsect2>

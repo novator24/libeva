@@ -8,17 +8,17 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskIO GskIO;
-typedef struct _GskIOClass GskIOClass;
+typedef struct _EvaIO EvaIO;
+typedef struct _EvaIOClass EvaIOClass;
 
-typedef gboolean (*GskIOHookFunc) (GskIO        *io,
+typedef gboolean (*EvaIOHookFunc) (EvaIO        *io,
 				   gpointer      data);
 /* --- type macros --- */
 GType eva_io_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_IO		 (eva_io_get_type ())
-#define EVA_IO(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_IO, GskIO))
-#define EVA_IO_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_IO, GskIOClass))
-#define EVA_IO_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_IO, GskIOClass))
+#define EVA_IO(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_IO, EvaIO))
+#define EVA_IO_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_IO, EvaIOClass))
+#define EVA_IO_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_IO, EvaIOClass))
 #define EVA_IS_IO(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_IO))
 #define EVA_IS_IO_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_IO))
 
@@ -37,32 +37,32 @@ typedef enum
   EVA_IO_ERROR_CLOSE,
   EVA_IO_ERROR_SYNC,
   EVA_IO_ERROR_POLL
-} GskIOErrorCause;
-const char * eva_io_error_cause_to_string (GskIOErrorCause cause);
+} EvaIOErrorCause;
+const char * eva_io_error_cause_to_string (EvaIOErrorCause cause);
 
 /* --- structures --- */
-struct _GskIOClass 
+struct _EvaIOClass 
 {
   GObjectClass object_class;
   /* --- signals (do not override, usually) --- */
   /* Emitted after the connection is made. */
-  void       (*on_connect)      (GskIO      *io);
-  void       (*on_error)        (GskIO      *io);
+  void       (*on_connect)      (EvaIO      *io);
+  void       (*on_error)        (EvaIO      *io);
 
   /* --- virtuals --- */
-  gboolean   (*open)            (GskIO      *io,
+  gboolean   (*open)            (EvaIO      *io,
 				 GError    **error);
-  void       (*set_poll_read)   (GskIO      *io,
+  void       (*set_poll_read)   (EvaIO      *io,
 				 gboolean    do_poll);
-  void       (*set_poll_write)  (GskIO      *io,
+  void       (*set_poll_write)  (EvaIO      *io,
 				 gboolean    do_poll);
-  gboolean   (*shutdown_read)   (GskIO      *io,
+  gboolean   (*shutdown_read)   (EvaIO      *io,
 				 GError    **error);
-  gboolean   (*shutdown_write)  (GskIO      *io,
+  gboolean   (*shutdown_write)  (EvaIO      *io,
 				 GError    **error);
-  void       (*close)           (GskIO      *io);
+  void       (*close)           (EvaIO      *io);
 };
-struct _GskIO 
+struct _EvaIO 
 {
   GObject      object;
 
@@ -85,14 +85,14 @@ struct _GskIO
 
   /*< private >*/
   /* hooks */
-  GskHook           read_hook;
-  GskHook           write_hook;
+  EvaHook           read_hook;
+  EvaHook           write_hook;
 };
 /* --- prototypes --- */
 
 /* public */
-#define EVA_IO_READ_HOOK(io)		((GskHook*) &EVA_IO (io)->read_hook)
-#define EVA_IO_WRITE_HOOK(io)		((GskHook*) &EVA_IO (io)->write_hook)
+#define EVA_IO_READ_HOOK(io)		((EvaHook*) &EVA_IO (io)->read_hook)
+#define EVA_IO_WRITE_HOOK(io)		((EvaHook*) &EVA_IO (io)->write_hook)
 #define eva_io_block_read(io)		eva_hook_block (EVA_IO_READ_HOOK (io))
 #define eva_io_block_write(io)		eva_hook_block (EVA_IO_WRITE_HOOK (io))
 #define eva_io_unblock_read(io)		eva_hook_unblock (EVA_IO_READ_HOOK (io))
@@ -101,19 +101,19 @@ struct _GskIO
 #define eva_io_has_write_hook(io)       eva_hook_is_trapped (EVA_IO_WRITE_HOOK (io))
 #define eva_io_trap_readable(io, func, shutdown_func, data, destroy)		\
 	eva_hook_trap (EVA_IO_READ_HOOK (io),					\
-		       (GskHookFunc) func, (GskHookFunc) shutdown_func, data, destroy)
+		       (EvaHookFunc) func, (EvaHookFunc) shutdown_func, data, destroy)
 #define eva_io_trap_writable(io, func, shutdown_func, data, destroy)		\
 	eva_hook_trap (EVA_IO_WRITE_HOOK (io),					\
-		       (GskHookFunc) func, (GskHookFunc) shutdown_func, data, destroy)
+		       (EvaHookFunc) func, (EvaHookFunc) shutdown_func, data, destroy)
 #define eva_io_untrap_readable(io) eva_hook_untrap (EVA_IO_READ_HOOK (io))
 #define eva_io_untrap_writable(io) eva_hook_untrap (EVA_IO_WRITE_HOOK (io))
-void eva_io_shutdown (GskIO   *io,
+void eva_io_shutdown (EvaIO   *io,
 		      GError **error);
 
 /* shutdown the io in various ways */             
 #define eva_io_read_shutdown(io, error)   eva_hook_shutdown (EVA_IO_READ_HOOK (io), error)
 #define eva_io_write_shutdown(io, error)  eva_hook_shutdown (EVA_IO_WRITE_HOOK (io), error)
-void     eva_io_close             (GskIO          *io);
+void     eva_io_close             (EvaIO          *io);
 
 
 /* protected: do notifications of the usual events */
@@ -121,8 +121,8 @@ void     eva_io_close             (GskIO          *io);
 #define eva_io_notify_ready_to_write(io)	eva_hook_notify (EVA_IO_WRITE_HOOK (io))
 #define eva_io_notify_read_shutdown(io)		eva_hook_notify_shutdown (EVA_IO_READ_HOOK (io))
 #define eva_io_notify_write_shutdown(io)	eva_hook_notify_shutdown (EVA_IO_WRITE_HOOK (io))
-void     eva_io_notify_shutdown (GskIO *io);
-void     eva_io_notify_connected (GskIO *io);
+void     eva_io_notify_shutdown (EvaIO *io);
+void     eva_io_notify_connected (EvaIO *io);
 
 /* flags */
 #define eva_io_get_is_connecting(io)             _EVA_IO_TEST_FIELD (io, is_connecting)
@@ -170,20 +170,20 @@ void     eva_io_notify_connected (GskIO *io);
 /* --- error handling --- */
 
 /* these functions are for use by derived classes only. */
-void        eva_io_set_error (GskIO             *io,
-                              GskIOErrorCause    cause,
-                              GskErrorCode       error_code,
+void        eva_io_set_error (EvaIO             *io,
+                              EvaIOErrorCause    cause,
+                              EvaErrorCode       error_code,
                               const char        *format,
                               ...) G_GNUC_PRINTF(4,5);
-void        eva_io_set_gerror (GskIO             *io,
-                               GskIOErrorCause    cause,
+void        eva_io_set_gerror (EvaIO             *io,
+                               EvaIOErrorCause    cause,
                                GError            *error);
 
 void        eva_io_set_default_print_errors (gboolean print_errors);
 
 /*< private >*/
-void _eva_io_stop_idle_ready (GskIO *io);
-void _eva_io_make_idle_ready (GskIO *io);
+void _eva_io_stop_idle_ready (EvaIO *io);
+void _eva_io_make_idle_ready (EvaIO *io);
 void _eva_io_nonblocking_init ();
 
 /* implementation bits */

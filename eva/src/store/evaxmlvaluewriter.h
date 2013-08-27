@@ -3,8 +3,8 @@
 
 /*
  *
- * GskXmlValueWriter -- a read-only stream that serializes a GValue to XML,
- * in a format which can hopefully be read by a GskXmlValueReader.
+ * EvaXmlValueWriter -- a read-only stream that serializes a GValue to XML,
+ * in a format which can hopefully be read by a EvaXmlValueReader.
  *
  */
 
@@ -12,8 +12,8 @@
 
 G_BEGIN_DECLS
 
-typedef GskStreamClass            GskXmlValueWriterClass;
-typedef struct _GskXmlValueWriter GskXmlValueWriter;
+typedef EvaStreamClass            EvaXmlValueWriterClass;
+typedef struct _EvaXmlValueWriter EvaXmlValueWriter;
 
 GType eva_xml_value_writer_get_type (void) G_GNUC_CONST;
 
@@ -21,20 +21,20 @@ GType eva_xml_value_writer_get_type (void) G_GNUC_CONST;
 #define EVA_XML_VALUE_WRITER(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
 			       EVA_TYPE_XML_VALUE_WRITER, \
-			       GskXmlValueWriter))
+			       EvaXmlValueWriter))
 #define EVA_IS_XML_VALUE_WRITER(obj) \
   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_XML_VALUE_WRITER))
 
-struct _GskXmlValueWriter 
+struct _EvaXmlValueWriter 
 {
-  GskStream stream;
+  EvaStream stream;
 
   /* private */
   gpointer stack;
-  GskBuffer buf;
+  EvaBuffer buf;
 };
 
-GskXmlValueWriter * eva_xml_value_writer_new (const GValue *value);
+EvaXmlValueWriter * eva_xml_value_writer_new (const GValue *value);
 
 G_END_DECLS
 

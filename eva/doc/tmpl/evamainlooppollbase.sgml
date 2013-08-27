@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskMainLoopPollBase
+EvaMainLoopPollBase
 
 <!-- ##### SECTION Short_Description ##### -->
 a base class for file-descriptor-only polling mechanisms.
@@ -20,7 +20,7 @@ are implemented in terms of pipes.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskMainLoopPollBaseClass ##### -->
+<!-- ##### STRUCT EvaMainLoopPollBaseClass ##### -->
 <para>
 Base-class for I/O-only main-loops.
 The @config_fd and @do_polling functions are to be implemented
@@ -35,7 +35,7 @@ caching would break on some OS's where the file-descriptor
 is auto-unpolled when it is closed.)
 @do_polling: 
 
-<!-- ##### STRUCT GskMainLoopPollBase ##### -->
+<!-- ##### STRUCT EvaMainLoopPollBase ##### -->
 <para>
 Base data for I/O-only main loop mechanisms.
 </para>

@@ -3,28 +3,28 @@
 
 static GObjectClass *parent_class = NULL;
 
-struct _GskXmlrpcIncoming
+struct _EvaXmlrpcIncoming
 {
-  GskXmlrpcRequest *request;
-  GskXmlrpcResponse *response;
-  GskXmlrpcIncoming *next;
+  EvaXmlrpcRequest *request;
+  EvaXmlrpcResponse *response;
+  EvaXmlrpcIncoming *next;
 };
 
-struct _GskXmlrpcOutgoing
+struct _EvaXmlrpcOutgoing
 {
-  GskXmlrpcRequest *request;
-  GskXmlrpcResponseNotify notify;
+  EvaXmlrpcRequest *request;
+  EvaXmlrpcResponseNotify notify;
   gpointer data;
   GDestroyNotify destroy;
-  GskXmlrpcOutgoing *next;
+  EvaXmlrpcOutgoing *next;
 };
 
-/* --- GskStream methods --- */
+/* --- EvaStream methods --- */
 static gboolean
-eva_xmlrpc_stream_shutdown_write (GskIO      *io,
+eva_xmlrpc_stream_shutdown_write (EvaIO      *io,
 				  GError    **error)
 {
-  GskXmlrpcStream *xmlrpc_stream = EVA_XMLRPC_STREAM (io);
+  EvaXmlrpcStream *xmlrpc_stream = EVA_XMLRPC_STREAM (io);
 
   /* XXX: error conditions... */
 
@@ -35,10 +35,10 @@ eva_xmlrpc_stream_shutdown_write (GskIO      *io,
 }
 
 static gboolean
-eva_xmlrpc_stream_shutdown_read (GskIO      *io,
+eva_xmlrpc_stream_shutdown_read (EvaIO      *io,
 				 GError    **error)
 {
-  GskXmlrpcStream *xmlrpc_stream = EVA_XMLRPC_STREAM (io);
+  EvaXmlrpcStream *xmlrpc_stream = EVA_XMLRPC_STREAM (io);
   if (xmlrpc_stream->outgoing.size != 0)
     {
       g_set_error (error, EVA_G_ERROR_DOMAIN, EVA_ERROR_LINGERING_DATA,
@@ -54,12 +54,12 @@ eva_xmlrpc_stream_shutdown_read (GskIO      *io,
 }
 
 static guint
-eva_xmlrpc_stream_raw_read (GskStream     *stream,
+eva_xmlrpc_stream_raw_read (EvaStream     *stream,
                             gpointer       data,
                             guint          length,
                             GError       **error)
 {
-  GskXmlrpcStream *xmlrpc_stream = EVA_XMLRPC_STREAM (stream);
+  EvaXmlrpcStream *xmlrpc_stream = EVA_XMLRPC_STREAM (stream);
   guint rv = eva_buffer_read (&xmlrpc_stream->outgoing, data, length);
   if (xmlrpc_stream->outgoing.size == 0)
     {
@@ -72,11 +72,11 @@ eva_xmlrpc_stream_raw_read (GskStream     *stream,
 }
 
 static guint
-eva_xmlrpc_stream_raw_read_buffer (GskStream     *stream,
-                                   GskBuffer     *buffer,
+eva_xmlrpc_stream_raw_read_buffer (EvaStream     *stream,
+                                   EvaBuffer     *buffer,
                                    GError       **error)
 {
-  GskXmlrpcStream *xmlrpc_stream = EVA_XMLRPC_STREAM (stream);
+  EvaXmlrpcStream *xmlrpc_stream = EVA_XMLRPC_STREAM (stream);
   guint rv = eva_buffer_drain (buffer, &xmlrpc_stream->outgoing);
   if (xmlrpc_stream->outgoing.size == 0)
     eva_stream_clear_idle_notify_read (stream);
@@ -85,9 +85,9 @@ eva_xmlrpc_stream_raw_read_buffer (GskStream     *stream,
 
 /* Handle a request from the other side. */
 static void
-handle_request (GskXmlrpcStream *stream, GskXmlrpcRequest *request)
+handle_request (EvaXmlrpcStream *stream, EvaXmlrpcRequest *request)
 {
-  GskXmlrpcIncoming *incoming = g_new (GskXmlrpcIncoming, 1);
+  EvaXmlrpcIncoming *incoming = g_new (EvaXmlrpcIncoming, 1);
   incoming->request = request;
   incoming->response = NULL;
   incoming->next = NULL;
@@ -110,9 +110,9 @@ handle_request (GskXmlrpcStream *stream, GskXmlrpcRequest *request)
 
 /* Handle a response from the other side. */
 static gboolean
-handle_response (GskXmlrpcStream *stream, GskXmlrpcResponse *response)
+handle_response (EvaXmlrpcStream *stream, EvaXmlrpcResponse *response)
 {
-  GskXmlrpcOutgoing *outgoing;
+  EvaXmlrpcOutgoing *outgoing;
   if (stream->first_unresponded_request == NULL)
     return FALSE;
 
@@ -130,15 +130,15 @@ handle_response (GskXmlrpcStream *stream, GskXmlrpcResponse *response)
 }
 
 static guint
-eva_xmlrpc_stream_raw_write (GskStream     *stream,
+eva_xmlrpc_stream_raw_write (EvaStream     *stream,
                              gconstpointer  data,
                              guint          length,
                              GError       **error)
 {
-  GskXmlrpcStream *xmlrpc_stream = EVA_XMLRPC_STREAM (stream);
-  GskXmlrpcParser *parser = xmlrpc_stream->parser;
-  GskXmlrpcRequest *request;
-  GskXmlrpcResponse *response;
+  EvaXmlrpcStream *xmlrpc_stream = EVA_XMLRPC_STREAM (stream);
+  EvaXmlrpcParser *parser = xmlrpc_stream->parser;
+  EvaXmlrpcRequest *request;
+  EvaXmlrpcResponse *response;
   if (!eva_xmlrpc_parser_feed (parser, data, length, error))
     return 0;
   while ((request=eva_xmlrpc_parser_get_request (parser)) != NULL)
@@ -156,7 +156,7 @@ eva_xmlrpc_stream_raw_write (GskStream     *stream,
 static void
 eva_xmlrpc_stream_finalize (GObject *object)
 {
-  GskXmlrpcStream *xmlrpc_stream = EVA_XMLRPC_STREAM (object);
+  EvaXmlrpcStream *xmlrpc_stream = EVA_XMLRPC_STREAM (object);
   eva_xmlrpc_parser_free (xmlrpc_stream->parser);
   eva_hook_destruct(&xmlrpc_stream->incoming_request_hook);
   (*parent_class->finalize) (object);
@@ -165,21 +165,21 @@ eva_xmlrpc_stream_finalize (GObject *object)
 
 /* --- functions --- */
 static void
-eva_xmlrpc_stream_init (GskXmlrpcStream *xmlrpc_stream)
+eva_xmlrpc_stream_init (EvaXmlrpcStream *xmlrpc_stream)
 {
   xmlrpc_stream->parser = eva_xmlrpc_parser_new (xmlrpc_stream);
   eva_stream_mark_is_readable (EVA_STREAM (xmlrpc_stream));
   eva_stream_mark_is_writable (EVA_STREAM (xmlrpc_stream));
-  EVA_HOOK_INIT (xmlrpc_stream, GskXmlrpcStream, incoming_request_hook, 0,
+  EVA_HOOK_INIT (xmlrpc_stream, EvaXmlrpcStream, incoming_request_hook, 0,
 		 set_poll_requestable, shutdown_requestable);
   EVA_HOOK_SET_FLAG (EVA_XMLRPC_STREAM_REQUEST_HOOK (xmlrpc_stream), IS_AVAILABLE);
 }
 
 static void
-eva_xmlrpc_stream_class_init (GskXmlrpcStreamClass *class)
+eva_xmlrpc_stream_class_init (EvaXmlrpcStreamClass *class)
 {
-  GskStreamClass *stream_class = EVA_STREAM_CLASS (class);
-  GskIOClass *io_class = EVA_IO_CLASS (class);
+  EvaStreamClass *stream_class = EVA_STREAM_CLASS (class);
+  EvaIOClass *io_class = EVA_IO_CLASS (class);
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   parent_class = g_type_class_peek_parent (class);
   io_class->shutdown_read = eva_xmlrpc_stream_shutdown_read;
@@ -188,7 +188,7 @@ eva_xmlrpc_stream_class_init (GskXmlrpcStreamClass *class)
   stream_class->raw_write = eva_xmlrpc_stream_raw_write;
   stream_class->raw_read_buffer = eva_xmlrpc_stream_raw_read_buffer;
   object_class->finalize = eva_xmlrpc_stream_finalize;
-  EVA_HOOK_CLASS_INIT (G_OBJECT_CLASS (class), "incoming-request-hook", GskXmlrpcStream, incoming_request_hook);
+  EVA_HOOK_CLASS_INIT (G_OBJECT_CLASS (class), "incoming-request-hook", EvaXmlrpcStream, incoming_request_hook);
 }
 
 GType eva_xmlrpc_stream_get_type()
@@ -198,19 +198,19 @@ GType eva_xmlrpc_stream_get_type()
     {
       static const GTypeInfo xmlrpc_stream_info =
       {
-	sizeof(GskXmlrpcStreamClass),
+	sizeof(EvaXmlrpcStreamClass),
 	(GBaseInitFunc) NULL,
 	(GBaseFinalizeFunc) NULL,
 	(GClassInitFunc) eva_xmlrpc_stream_class_init,
 	NULL,		/* class_finalize */
 	NULL,		/* class_data */
-	sizeof (GskXmlrpcStream),
+	sizeof (EvaXmlrpcStream),
 	0,		/* n_preallocs */
 	(GInstanceInitFunc) eva_xmlrpc_stream_init,
 	NULL		/* value_table */
       };
       xmlrpc_stream_type = g_type_register_static (EVA_TYPE_STREAM,
-                                                  "GskXmlrpcStream",
+                                                  "EvaXmlrpcStream",
 						  &xmlrpc_stream_info, 0);
     }
   return xmlrpc_stream_type;
@@ -229,9 +229,9 @@ GType eva_xmlrpc_stream_get_type()
  * must call eva_xmlrpc_request_unref() on eventually,
  * or NULL if no unhandled requests are available.
  */
-GskXmlrpcRequest *eva_xmlrpc_stream_get_request (GskXmlrpcStream *stream)
+EvaXmlrpcRequest *eva_xmlrpc_stream_get_request (EvaXmlrpcStream *stream)
 {
-  GskXmlrpcRequest *request;
+  EvaXmlrpcRequest *request;
   if (stream->next_to_dequeue == NULL)
     return NULL;
   request = eva_xmlrpc_request_ref (stream->next_to_dequeue->request);
@@ -242,13 +242,13 @@ GskXmlrpcRequest *eva_xmlrpc_stream_get_request (GskXmlrpcStream *stream)
 }
 
 static void
-try_flushing_incoming_requests (GskXmlrpcStream *stream)
+try_flushing_incoming_requests (EvaXmlrpcStream *stream)
 {
   gboolean mark_idle_notify = FALSE;
   while (stream->first_unhandled_request != NULL
       && stream->first_unhandled_request->response != NULL)
     {
-      GskXmlrpcIncoming *incoming = stream->first_unhandled_request;
+      EvaXmlrpcIncoming *incoming = stream->first_unhandled_request;
       stream->first_unhandled_request = incoming->next;
       if (stream->first_unhandled_request == NULL)
 	stream->last_request = NULL;
@@ -274,11 +274,11 @@ try_flushing_incoming_requests (GskXmlrpcStream *stream)
  *
  * Give the RPC result to the other side of this connection.
  */
-void              eva_xmlrpc_stream_respond     (GskXmlrpcStream *stream,
-						 GskXmlrpcRequest *request,
-						 GskXmlrpcResponse *response)
+void              eva_xmlrpc_stream_respond     (EvaXmlrpcStream *stream,
+						 EvaXmlrpcRequest *request,
+						 EvaXmlrpcResponse *response)
 {
-  GskXmlrpcIncoming *incoming;
+  EvaXmlrpcIncoming *incoming;
   for (incoming = stream->first_unhandled_request;
        incoming != NULL;
        incoming = incoming->next)
@@ -301,19 +301,19 @@ void              eva_xmlrpc_stream_respond     (GskXmlrpcStream *stream,
  * or if the stream shuts down before a response is obtained.
  *
  * Make a request (a method call) to the other side of this
- * #GskXmlrpcStream.  When a response is received,
+ * #EvaXmlrpcStream.  When a response is received,
  * @notify will be called, then destroy will be called.
  *
  * If the stream shuts down before a notify is obtained,
  * then just @destroy is run.
  */
-void              eva_xmlrpc_stream_make_request (GskXmlrpcStream *stream,
-						  GskXmlrpcRequest *request,
-						  GskXmlrpcResponseNotify notify,
+void              eva_xmlrpc_stream_make_request (EvaXmlrpcStream *stream,
+						  EvaXmlrpcRequest *request,
+						  EvaXmlrpcResponseNotify notify,
 						  gpointer data,
 						  GDestroyNotify destroy)
 {
-  GskXmlrpcOutgoing *outgoing = g_new (GskXmlrpcOutgoing, 1);
+  EvaXmlrpcOutgoing *outgoing = g_new (EvaXmlrpcOutgoing, 1);
   outgoing->request = g_object_ref (request);
   outgoing->notify = notify;
   outgoing->data = data;

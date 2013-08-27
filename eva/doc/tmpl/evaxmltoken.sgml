@@ -42,7 +42,7 @@ evaxmltoken
 
 
 
-<!-- ##### STRUCT GskXmlTokenOpen ##### -->
+<!-- ##### STRUCT EvaXmlTokenOpen ##### -->
 <para>
 
 </para>
@@ -55,7 +55,7 @@ evaxmltoken
 @num_param: 
 @params: 
 
-<!-- ##### STRUCT GskXmlTokenClose ##### -->
+<!-- ##### STRUCT EvaXmlTokenClose ##### -->
 <para>
 
 </para>
@@ -66,7 +66,7 @@ evaxmltoken
 @lineno: 
 @tag_name: 
 
-<!-- ##### STRUCT GskXmlTokenText ##### -->
+<!-- ##### STRUCT EvaXmlTokenText ##### -->
 <para>
 
 </para>
@@ -77,7 +77,7 @@ evaxmltoken
 @lineno: 
 @text: 
 
-<!-- ##### STRUCT GskXmlTokenComment ##### -->
+<!-- ##### STRUCT EvaXmlTokenComment ##### -->
 <para>
 
 </para>
@@ -88,7 +88,7 @@ evaxmltoken
 @lineno: 
 @comment: 
 
-<!-- ##### STRUCT GskXmlTokenAny ##### -->
+<!-- ##### STRUCT EvaXmlTokenAny ##### -->
 <para>
 
 </para>
@@ -98,7 +98,7 @@ evaxmltoken
 @filename: 
 @lineno: 
 
-<!-- ##### UNION GskXmlToken ##### -->
+<!-- ##### UNION EvaXmlToken ##### -->
 <para>
 
 </para>

@@ -17,13 +17,13 @@ evamodule
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskCompileContext ##### -->
+<!-- ##### STRUCT EvaCompileContext ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GskModule ##### -->
+<!-- ##### STRUCT EvaModule ##### -->
 <para>
 
 </para>

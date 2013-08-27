@@ -9,7 +9,7 @@
  * eva_dns_resolver_resolve:
  * @resolver: the DNS resolver which should begin processing the request.
  * @recursive: whether to use recursive name resolution on the server.
- * @dns_questions: list of GskDnsQuestion's to resolve.
+ * @dns_questions: list of EvaDnsQuestion's to resolve.
  * @func: function which will be called with answers
  * to the given questions.
  * @on_fail: function to call if the name cannot be resolved.
@@ -21,17 +21,17 @@
  *
  * returns: a running DNS lookup task.
  */
-GskDnsResolverTask *
-eva_dns_resolver_resolve (GskDnsResolver        *resolver,
+EvaDnsResolverTask *
+eva_dns_resolver_resolve (EvaDnsResolver        *resolver,
 			  gboolean               recursive,
 			  GSList                *dns_questions,
-			  GskDnsResolverResponseFunc func,
-			  GskDnsResolverFailFunc on_fail,
+			  EvaDnsResolverResponseFunc func,
+			  EvaDnsResolverFailFunc on_fail,
 			  gpointer               func_data,
 			  GDestroyNotify         destroy,
-			  GskDnsResolverHints   *hints)
+			  EvaDnsResolverHints   *hints)
 {
-  GskDnsResolverIface *iface = EVA_DNS_RESOLVER_GET_IFACE (resolver);
+  EvaDnsResolverIface *iface = EVA_DNS_RESOLVER_GET_IFACE (resolver);
   g_return_val_if_fail (iface != NULL, NULL);
   return (*iface->resolve)(resolver, recursive, dns_questions,
 			   func, on_fail,
@@ -46,10 +46,10 @@ eva_dns_resolver_resolve (GskDnsResolver        *resolver,
  * Cancel a running DNS lookup task.
  */
 void
-eva_dns_resolver_cancel (GskDnsResolver       *resolver,
-			 GskDnsResolverTask   *task)
+eva_dns_resolver_cancel (EvaDnsResolver       *resolver,
+			 EvaDnsResolverTask   *task)
 {
-  GskDnsResolverIface *iface = EVA_DNS_RESOLVER_GET_IFACE (resolver);
+  EvaDnsResolverIface *iface = EVA_DNS_RESOLVER_GET_IFACE (resolver);
   (*iface->cancel) (resolver, task);
 }
 
@@ -59,8 +59,8 @@ struct _LookupData
 {
   char                    *host_name;
   gboolean                 is_ipv6;
-  GskDnsResolverLookupFunc func;
-  GskDnsResolverFailFunc   on_fail;
+  EvaDnsResolverLookupFunc func;
+  EvaDnsResolverFailFunc   on_fail;
   gpointer                 func_data;
   GDestroyNotify           destroy;
 };
@@ -68,14 +68,14 @@ struct _LookupData
       ((lookup_data)->is_ipv6 ? EVA_DNS_RR_HOST_ADDRESS_IPV6            \
                               : EVA_DNS_RR_HOST_ADDRESS)
 
-static GskDnsResourceRecord *
+static EvaDnsResourceRecord *
 list_search (GSList *rr_list,
 	     const char *owner,
-	     GskDnsResourceRecordType type)
+	     EvaDnsResourceRecordType type)
 {
   while (rr_list != NULL)
     {
-      GskDnsResourceRecord *record = rr_list->data;
+      EvaDnsResourceRecord *record = rr_list->data;
       rr_list = rr_list->next;
 
       if (strcasecmp (record->owner, owner) == 0 && type == record->type)
@@ -86,11 +86,11 @@ list_search (GSList *rr_list,
 
 static gboolean
 list_search_questions (GSList *questions, const char *host,
-		       GskDnsResourceRecordType type)
+		       EvaDnsResourceRecordType type)
 {
   while (questions != NULL)
     {
-      GskDnsQuestion *q = questions->data;
+      EvaDnsQuestion *q = questions->data;
       questions = questions->next;
       if (strcmp (q->query_name, host) == 0
        && (q->query_type == EVA_DNS_RR_WILDCARD || q->query_type == type))
@@ -108,11 +108,11 @@ lookup_data_handle_result (GSList             *answers,
 {
   LookupData *data = handle_result_data;
   const char *host = data->host_name;
-  GskDnsResourceRecordType rrtype = LOOKUP_DATA_GET_RRTYPE (data);
+  EvaDnsResourceRecordType rrtype = LOOKUP_DATA_GET_RRTYPE (data);
 
   for (;;)
     {
-      GskDnsResourceRecord *answer;
+      EvaDnsResourceRecord *answer;
       if (list_search_questions (negatives, host, rrtype)
        || list_search_questions (negatives, host, EVA_DNS_RR_CANONICAL_NAME))
 	{
@@ -138,7 +138,7 @@ lookup_data_handle_result (GSList             *answers,
 	    {
 	      /* XXX: more error checking is really required!!! */
 	      /* (basically there should be a trail of CNAME's) */
-	      GskSocketAddress *addr;
+	      EvaSocketAddress *addr;
 	      addr = eva_socket_address_ipv4_new (answer->rdata.a.ip_address, 0);
 	      (*data->func) (addr, data->func_data);
 	      g_object_unref (addr);
@@ -201,15 +201,15 @@ lookup_data_destroy      (gpointer             handle_result_data)
  *
  * returns: a running DNS lookup task.
  */
-GskDnsResolverTask *
-eva_dns_resolver_lookup  (GskDnsResolver        *resolver,
+EvaDnsResolverTask *
+eva_dns_resolver_lookup  (EvaDnsResolver        *resolver,
 			  const char            *name,
-			  GskDnsResolverLookupFunc func,
-			  GskDnsResolverFailFunc on_fail,
+			  EvaDnsResolverLookupFunc func,
+			  EvaDnsResolverFailFunc on_fail,
 			  gpointer               func_data,
 			  GDestroyNotify         destroy)
 {
-  GskDnsQuestion question
+  EvaDnsQuestion question
     = {
 	(char *) name,
 	EVA_DNS_RR_HOST_ADDRESS,
@@ -232,7 +232,7 @@ eva_dns_resolver_lookup  (GskDnsResolver        *resolver,
       guint8 ip_address[4];
       if (eva_dns_parse_ip_address (&tmp, ip_address))
 	{
-	  GskSocketAddress *socket_address;
+	  EvaSocketAddress *socket_address;
 	  socket_address = eva_socket_address_ipv4_new(ip_address, 0);
 	  (*func)(socket_address, func_data);
 	  if (destroy != NULL)
@@ -271,7 +271,7 @@ eva_dns_resolver_get_type (void)
     {
       static const GTypeInfo resolver_info =
       {
-	sizeof (GskDnsResolverIface),
+	sizeof (EvaDnsResolverIface),
 	NULL,			/* base_init */
 	NULL,			/* base_finalize */
 	NULL,
@@ -283,7 +283,7 @@ eva_dns_resolver_get_type (void)
 	NULL
       };
       type = g_type_register_static (G_TYPE_INTERFACE,
-				     "GskDnsResolver",
+				     "EvaDnsResolver",
 				     &resolver_info,
 				     G_TYPE_FLAG_ABSTRACT);
       g_type_interface_add_prerequisite (type, G_TYPE_OBJECT);
@@ -294,31 +294,31 @@ eva_dns_resolver_get_type (void)
 
 /* --- name-resolver interface --- */
 static gpointer 
-name_start_resolve   (GskNameResolver           *resolver,
-		      GskNameResolverFamily      family,
+name_start_resolve   (EvaNameResolver           *resolver,
+		      EvaNameResolverFamily      family,
 		      const char                *name,
-		      GskNameResolverSuccessFunc success,
-		      GskNameResolverFailureFunc failure,
+		      EvaNameResolverSuccessFunc success,
+		      EvaNameResolverFailureFunc failure,
 		      gpointer                   func_data,
 		      GDestroyNotify             destroy)
 {
-  GskDnsResolver *dns_resolver = EVA_DNS_RESOLVER (resolver);
+  EvaDnsResolver *dns_resolver = EVA_DNS_RESOLVER (resolver);
   g_return_val_if_fail (family == EVA_NAME_RESOLVER_FAMILY_IPV4, NULL);
   return eva_dns_resolver_lookup (dns_resolver, name,
 				  success, failure, func_data, destroy);
 }
 
 static gboolean 
-name_cancel_resolve (GskNameResolver           *resolver,
+name_cancel_resolve (EvaNameResolver           *resolver,
 		     gpointer                   handle)
 {
   eva_dns_resolver_cancel (EVA_DNS_RESOLVER (resolver),
-			   (GskDnsResolverTask *) handle);
+			   (EvaDnsResolverTask *) handle);
   return TRUE;
 }
 
 static void
-init_name_resolver_iface (GskNameResolverIface *iface)
+init_name_resolver_iface (EvaNameResolverIface *iface)
 {
   iface->start_resolve = name_start_resolve;
   iface->cancel_resolve = name_cancel_resolve;

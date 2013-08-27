@@ -17,7 +17,7 @@ This is a #GObject equivalent of sockaddr_t.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskSocketAddressClass ##### -->
+<!-- ##### STRUCT EvaSocketAddressClass ##### -->
 <para>
 The base-class for all types of socket-addresses.
 The members of this class should only be used by derived classes.
@@ -31,36 +31,36 @@ this type in the native OS representation.
 @to_native: Convert to a native struct sockaddr* type representation.
 @from_native: Convert from a native struct sockaddr* type representation.
 @to_string: Convert to a human-readable ASCII representation.
-@equals: Test if this is equal to another #GskSocketAddress
+@equals: Test if this is equal to another #EvaSocketAddress
 of this exact type are equal.
 @hash: Compute a hash-value based on this socket.
 
-<!-- ##### STRUCT GskSocketAddress ##### -->
+<!-- ##### STRUCT EvaSocketAddress ##### -->
 <para>
 The base instance for all socket addresses.
 </para>
 
 
-<!-- ##### STRUCT GskSocketAddressIpv4 ##### -->
+<!-- ##### STRUCT EvaSocketAddressIpv4 ##### -->
 <para>
 An IPv4 Socket Address.  This is a 4-byte host IP address
 and a 2-byte port number (as a guint16).
 </para>
 
 
-<!-- ##### STRUCT GskSocketAddressLocal ##### -->
+<!-- ##### STRUCT EvaSocketAddressLocal ##### -->
 <para>
 A local socket, often called a UNIX-domain socket.
 </para>
 
 
-<!-- ##### STRUCT GskSocketAddressIpv6 ##### -->
+<!-- ##### STRUCT EvaSocketAddressIpv6 ##### -->
 <para>
 An IPv6 Socket Address.  For now, the IPv6 implementation is unfinished.
 </para>
 
 
-<!-- ##### STRUCT GskSocketAddressEthernet ##### -->
+<!-- ##### STRUCT EvaSocketAddressEthernet ##### -->
 <para>
 
 </para>
@@ -132,7 +132,7 @@ on the given port.
 </para>
 
 @port: the port on the local host the address should refer to.
-@Returns: the newly allocated #GskSocketAddressIpv4.
+@Returns: the newly allocated #EvaSocketAddressIpv4.
 
 
 <!-- ##### FUNCTION eva_socket_address_ipv4_new ##### -->

@@ -5,13 +5,13 @@
 
 int main (int argc, char **argv)
 {
-  GskStream *read_end;
-  GskStream *write_end;
-  GskBufferStream *memory_input;
-  GskBufferStream *memory_output;
+  EvaStream *read_end;
+  EvaStream *write_end;
+  EvaBufferStream *memory_input;
+  EvaBufferStream *memory_output;
   GError *error = NULL;
-  GskMainLoop *loop;
-  GskBuffer *output_buffer;
+  EvaMainLoop *loop;
+  EvaBuffer *output_buffer;
   char buf[6];
 
   eva_init_without_threads (&argc, &argv);

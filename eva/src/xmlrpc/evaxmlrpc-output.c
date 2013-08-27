@@ -4,7 +4,7 @@
 #include <string.h>
 
 static void
-append_value (GskBuffer *buffer, const GskXmlrpcValue *value)
+append_value (EvaBuffer *buffer, const EvaXmlrpcValue *value)
 {
   switch (value->type)
     {
@@ -50,7 +50,7 @@ append_value (GskBuffer *buffer, const GskXmlrpcValue *value)
       break;
     case EVA_XMLRPC_STRUCT:
       {
-	GskXmlrpcStruct *st = value->data.v_struct;
+	EvaXmlrpcStruct *st = value->data.v_struct;
 	guint i;
 	eva_buffer_append_string (buffer, "  <value><struct>\n");
 	for (i = 0; i < st->n_members; i++)
@@ -66,7 +66,7 @@ append_value (GskBuffer *buffer, const GskXmlrpcValue *value)
       break;
     case EVA_XMLRPC_ARRAY:
       {
-	GskXmlrpcArray *ar = value->data.v_array;
+	EvaXmlrpcArray *ar = value->data.v_array;
 	guint i;
 	eva_buffer_append_string (buffer, "  <value><array><data>\n");
 	for (i = 0; i < ar->len; i++)
@@ -89,8 +89,8 @@ append_value (GskBuffer *buffer, const GskXmlrpcValue *value)
  *
  * Write the XML corresponding to this response to the buffer.
  */
-void eva_xmlrpc_response_to_buffer (GskXmlrpcResponse *response,
-				    GskBuffer         *buffer)
+void eva_xmlrpc_response_to_buffer (EvaXmlrpcResponse *response,
+				    EvaBuffer         *buffer)
 {
   eva_buffer_append_string (buffer, "<methodResponse>\n");
   if (response->has_fault)
@@ -120,8 +120,8 @@ void eva_xmlrpc_response_to_buffer (GskXmlrpcResponse *response,
  *
  * Write the XML corresponding to this request to the buffer.
  */
-void eva_xmlrpc_request_to_buffer  (GskXmlrpcRequest  *request,
-				    GskBuffer         *buffer)
+void eva_xmlrpc_request_to_buffer  (EvaXmlrpcRequest  *request,
+				    EvaBuffer         *buffer)
 {
   guint i;
   eva_buffer_append_string (buffer, "<methodCall>\n");

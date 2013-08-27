@@ -1,8 +1,8 @@
 <!-- ##### SECTION Title ##### -->
-GskControlClient
+EvaControlClient
 
 <!-- ##### SECTION Short_Description ##### -->
-a client for manipulating an implementation of GskControlServer.
+a client for manipulating an implementation of EvaControlServer.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
@@ -10,24 +10,24 @@ This provides the client end of the server control code.
 </para>
 <para>
 This class is rarely needed, because the eva-control-client
-that comes with Gsk can manipulate any control server.
+that comes with Eva can manipulate any control server.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-GskControlServer.
+EvaControlServer.
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskControlClient ##### -->
+<!-- ##### STRUCT EvaControlClient ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### USER_FUNCTION GskControlClientErrorFunc ##### -->
+<!-- ##### USER_FUNCTION EvaControlClientErrorFunc ##### -->
 <para>
 
 </para>
@@ -36,7 +36,7 @@ GskControlServer.
 @data: 
 
 
-<!-- ##### ENUM GskControlClientFlag ##### -->
+<!-- ##### ENUM EvaControlClientFlag ##### -->
 <para>
 
 </para>

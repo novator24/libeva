@@ -24,7 +24,7 @@ G_LOCK_DEFINE_STATIC (fd_table);
  * or -1 on error.
  */
 gint
-eva_fork (GskForkFunc action,
+eva_fork (EvaForkFunc action,
 	  gpointer    data,
 	  GError    **error)
 {

@@ -2,11 +2,11 @@
 Client Stream
 
 <!-- ##### SECTION Short_Description ##### -->
-Create a GskStream which is connecting to a remote address.
+Create a EvaStream which is connecting to a remote address.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-A simple method to create a GskStream which is connecting
+A simple method to create a EvaStream which is connecting
 to a remote address, without any of the low-level hassles.
 </para>
 

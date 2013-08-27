@@ -7,7 +7,7 @@
 <link rel="start" href="index.html" title="EVA Reference Manual">
 <link rel="up" href="ch11.html" title="MIME handling">
 <link rel="prev" href="ch11.html" title="MIME handling">
-<link rel="next" href="eva-GskMimeMultipartDecoder.html" title="GskMimeMultipartDecoder">
+<link rel="next" href="eva-EvaMimeMultipartDecoder.html" title="EvaMimeMultipartDecoder">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="chapter" href="ch01.html" title="Core Library Support">
@@ -34,7 +34,7 @@
 <td><a accesskey="u" href="ch11.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">EVA Reference Manual</th>
-<td><a accesskey="n" href="eva-GskMimeMultipartDecoder.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="eva-EvaMimeMultipartDecoder.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#eva-evamimemultipartpiece.synopsis" class="shortcut">Top</a>
@@ -54,21 +54,21 @@
 <div class="refsynopsisdiv">
 <a name="eva-evamimemultipartpiece.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-                    <a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a>;
-<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> * <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-ref" title="eva_mime_multipart_piece_ref ()">eva_mime_multipart_piece_ref</a>    (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece);
-void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-unref" title="eva_mime_multipart_piece_unref ()">eva_mime_multipart_piece_unref</a>      (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece);
-<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> * <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-alloc" title="eva_mime_multipart_piece_alloc ()">eva_mime_multipart_piece_alloc</a>  (void);
+                    <a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a>;
+<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> * <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-ref" title="eva_mime_multipart_piece_ref ()">eva_mime_multipart_piece_ref</a>    (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece);
+void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-unref" title="eva_mime_multipart_piece_unref ()">eva_mime_multipart_piece_unref</a>      (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece);
+<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> * <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-alloc" title="eva_mime_multipart_piece_alloc ()">eva_mime_multipart_piece_alloc</a>  (void);
 void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-description" title="eva_mime_multipart_piece_set_description ()">eva_mime_multipart_piece_set_description</a>
-                                                        (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
+                                                        (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
                                                          const char *description);
-void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-stream" title="eva_mime_multipart_piece_set_stream ()">eva_mime_multipart_piece_set_stream</a> (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream);
-void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-type" title="eva_mime_multipart_piece_set_type ()">eva_mime_multipart_piece_set_type</a>   (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
+void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-stream" title="eva_mime_multipart_piece_set_stream ()">eva_mime_multipart_piece_set_stream</a> (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream);
+void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-type" title="eva_mime_multipart_piece_set_type ()">eva_mime_multipart_piece_set_type</a>   (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
                                                          const char *type,
                                                          const char *subtype,
                                                          const char *charset,
                                                          const char * const *kv_pairs);
-void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-data" title="eva_mime_multipart_piece_set_data ()">eva_mime_multipart_piece_set_data</a>   (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
+void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-data" title="eva_mime_multipart_piece_set_data ()">eva_mime_multipart_piece_set_data</a>   (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> data,
@@ -82,12 +82,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNo
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> destroy_data);
 void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-transfer-encoding" title="eva_mime_multipart_piece_set_transfer_encoding ()">eva_mime_multipart_piece_set_transfer_encoding</a>
-                                                        (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
+                                                        (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
                                                          const char *encoding);
 void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-location" title="eva_mime_multipart_piece_set_location ()">eva_mime_multipart_piece_set_location</a>
-                                                        (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
+                                                        (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
                                                          const char *location);
-void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-id" title="eva_mime_multipart_piece_set_id ()">eva_mime_multipart_piece_set_id</a>     (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
+void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mime-multipart-piece-set-id" title="eva_mime_multipart_piece_set_id ()">eva_mime_multipart_piece_set_id</a>     (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
                                                          const char *id);
 </pre>
 </div>
@@ -99,7 +99,7 @@ void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mim
 <div class="refsect1" lang="en">
 <a name="eva-evamimemultipartpiece.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="GskMimeMultipartPiece"></a><h3>GskMimeMultipartPiece</h3>
+<a name="EvaMimeMultipartPiece"></a><h3>EvaMimeMultipartPiece</h3>
 <pre class="programlisting">typedef struct {
   char *type;
   char *subtype;
@@ -114,7 +114,7 @@ void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mim
   /* if is_memory */
   guint content_length;
   gconstpointer content_data;
-} GskMimeMultipartPiece;
+} EvaMimeMultipartPiece;
 </pre>
 <p>
 </p>
@@ -122,7 +122,7 @@ void                <a class="link" href="eva-evamimemultipartpiece.html#eva-mim
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mime-multipart-piece-ref"></a><h3>eva_mime_multipart_piece_ref ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> * eva_mime_multipart_piece_ref    (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece);</pre>
+<pre class="programlisting"><a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> * eva_mime_multipart_piece_ref    (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece);</pre>
 <p>
 Reference the piece.  This piece will only be destroyed
 when its reference-count hits 0.</p>
@@ -147,7 +147,7 @@ when its reference-count hits 0.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mime-multipart-piece-unref"></a><h3>eva_mime_multipart_piece_unref ()</h3>
-<pre class="programlisting">void                eva_mime_multipart_piece_unref      (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece);</pre>
+<pre class="programlisting">void                eva_mime_multipart_piece_unref      (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece);</pre>
 <p>
 Unreference the piece.  This piece will be destroyed
 when its reference-count hits 0.</p>
@@ -165,7 +165,7 @@ when its reference-count hits 0.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mime-multipart-piece-alloc"></a><h3>eva_mime_multipart_piece_alloc ()</h3>
-<pre class="programlisting"><a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> * eva_mime_multipart_piece_alloc  (void);</pre>
+<pre class="programlisting"><a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> * eva_mime_multipart_piece_alloc  (void);</pre>
 <p>
 Allocate a new MIME piece.</p>
 <p>
@@ -183,7 +183,7 @@ Allocate a new MIME piece.</p>
 <div class="refsect2" lang="en">
 <a name="eva-mime-multipart-piece-set-description"></a><h3>eva_mime_multipart_piece_set_description ()</h3>
 <pre class="programlisting">void                eva_mime_multipart_piece_set_description
-                                                        (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
+                                                        (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
                                                          const char *description);</pre>
 <p>
 Set the Content-Description tag for this MIME piece.</p>
@@ -208,8 +208,8 @@ Set the Content-Description tag for this MIME piece.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mime-multipart-piece-set-stream"></a><h3>eva_mime_multipart_piece_set_stream ()</h3>
-<pre class="programlisting">void                eva_mime_multipart_piece_set_stream (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
-                                                         <a class="link" href="GskStream.html" title="Binary Input/Output Stream Base">GskStream</a> *stream);</pre>
+<pre class="programlisting">void                eva_mime_multipart_piece_set_stream (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
+                                                         <a class="link" href="EvaStream.html" title="Binary Input/Output Stream Base">EvaStream</a> *stream);</pre>
 <p>
 Set the content of a MIME piece to the <em class="parameter"><code>stream</code></em>.</p>
 <p>
@@ -233,7 +233,7 @@ Set the content of a MIME piece to the <em class="parameter"><code>stream</code>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mime-multipart-piece-set-type"></a><h3>eva_mime_multipart_piece_set_type ()</h3>
-<pre class="programlisting">void                eva_mime_multipart_piece_set_type   (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
+<pre class="programlisting">void                eva_mime_multipart_piece_set_type   (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
                                                          const char *type,
                                                          const char *subtype,
                                                          const char *charset,
@@ -279,7 +279,7 @@ strings are their values.
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mime-multipart-piece-set-data"></a><h3>eva_mime_multipart_piece_set_data ()</h3>
-<pre class="programlisting">void                eva_mime_multipart_piece_set_data   (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
+<pre class="programlisting">void                eva_mime_multipart_piece_set_data   (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
 >gconstpointer</a> data,
@@ -332,7 +332,7 @@ with destroy notification.</p>
 <div class="refsect2" lang="en">
 <a name="eva-mime-multipart-piece-set-transfer-encoding"></a><h3>eva_mime_multipart_piece_set_transfer_encoding ()</h3>
 <pre class="programlisting">void                eva_mime_multipart_piece_set_transfer_encoding
-                                                        (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
+                                                        (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
                                                          const char *encoding);</pre>
 <p>
 Set the Content-Encoding tag for this MIME piece.
@@ -366,7 +366,7 @@ characters as hex.</p>
 <div class="refsect2" lang="en">
 <a name="eva-mime-multipart-piece-set-location"></a><h3>eva_mime_multipart_piece_set_location ()</h3>
 <pre class="programlisting">void                eva_mime_multipart_piece_set_location
-                                                        (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
+                                                        (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
                                                          const char *location);</pre>
 <p>
 </p>
@@ -389,7 +389,7 @@ characters as hex.</p>
 <hr>
 <div class="refsect2" lang="en">
 <a name="eva-mime-multipart-piece-set-id"></a><h3>eva_mime_multipart_piece_set_id ()</h3>
-<pre class="programlisting">void                eva_mime_multipart_piece_set_id     (<a class="link" href="eva-evamimemultipartpiece.html#GskMimeMultipartPiece" title="GskMimeMultipartPiece">GskMimeMultipartPiece</a> *piece,
+<pre class="programlisting">void                eva_mime_multipart_piece_set_id     (<a class="link" href="eva-evamimemultipartpiece.html#EvaMimeMultipartPiece" title="EvaMimeMultipartPiece">EvaMimeMultipartPiece</a> *piece,
                                                          const char *id);</pre>
 <p>
 Set the Content-ID tag for this MIME piece.

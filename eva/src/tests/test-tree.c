@@ -17,8 +17,8 @@ direct_compare (gconstpointer a, gconstpointer b)
 
 int main ()
 {
-  GskTree *tree;
-  GskTreeNode *node;
+  EvaTree *tree;
+  EvaTreeNode *node;
 
   /* TEST1.0: 1 element tree */
   tree = eva_tree_new (direct_compare);

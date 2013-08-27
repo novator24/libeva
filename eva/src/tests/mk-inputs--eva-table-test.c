@@ -15,7 +15,7 @@ int main(int argc, char **argv)
   while (fgets (buf, sizeof (buf), fp))
     {
       char *hex1, hex[33];
-      GskHash *md5;
+      EvaHash *md5;
       g_strstrip (buf);
       if (buf[0] == 0)
         hex1 = g_strdup(".");

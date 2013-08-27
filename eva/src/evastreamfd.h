@@ -7,15 +7,15 @@
 G_BEGIN_DECLS
 
 /* --- typedefs --- */
-typedef struct _GskStreamFd GskStreamFd;
-typedef struct _GskStreamFdClass GskStreamFdClass;
+typedef struct _EvaStreamFd EvaStreamFd;
+typedef struct _EvaStreamFdClass EvaStreamFdClass;
 
 /* --- type macros --- */
 GType eva_stream_fd_get_type(void) G_GNUC_CONST;
 #define EVA_TYPE_STREAM_FD			(eva_stream_fd_get_type ())
-#define EVA_STREAM_FD(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_FD, GskStreamFd))
-#define EVA_STREAM_FD_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_FD, GskStreamFdClass))
-#define EVA_STREAM_FD_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_FD, GskStreamFdClass))
+#define EVA_STREAM_FD(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), EVA_TYPE_STREAM_FD, EvaStreamFd))
+#define EVA_STREAM_FD_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), EVA_TYPE_STREAM_FD, EvaStreamFdClass))
+#define EVA_STREAM_FD_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), EVA_TYPE_STREAM_FD, EvaStreamFdClass))
 #define EVA_IS_STREAM_FD(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EVA_TYPE_STREAM_FD))
 #define EVA_IS_STREAM_FD_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), EVA_TYPE_STREAM_FD))
 
@@ -28,13 +28,13 @@ GType eva_stream_fd_get_type(void) G_GNUC_CONST;
 #endif
 
 /* --- structures --- */
-struct _GskStreamFdClass 
+struct _EvaStreamFdClass 
 {
-  GskStreamClass stream_class;
+  EvaStreamClass stream_class;
 };
-struct _GskStreamFd 
+struct _EvaStreamFd 
 {
-  GskStream      stream;
+  EvaStream      stream;
 
   /* read-only */
   guint is_pollable : 1;
@@ -48,7 +48,7 @@ struct _GskStreamFd
   GPollFD poll_fd;
   GSource *source;
 #else
-  GskSource *source;
+  EvaSource *source;
 #endif
 };
 
@@ -64,44 +64,44 @@ typedef enum
   EVA_STREAM_FD_FOR_NEW_SOCKET  = EVA_STREAM_FD_IS_READWRITE
                                 | EVA_STREAM_FD_IS_POLLABLE
 			        | EVA_STREAM_FD_IS_SHUTDOWNABLE
-} GskStreamFdFlags;
+} EvaStreamFdFlags;
 
-GskStream   *eva_stream_fd_new             (gint            fd,
-                                            GskStreamFdFlags flags);
-GskStreamFdFlags eva_stream_fd_flags_guess (gint            fd);
-GskStream   *eva_stream_fd_new_auto        (gint            fd);
+EvaStream   *eva_stream_fd_new             (gint            fd,
+                                            EvaStreamFdFlags flags);
+EvaStreamFdFlags eva_stream_fd_flags_guess (gint            fd);
+EvaStream   *eva_stream_fd_new_auto        (gint            fd);
 
 
-GskStream   *eva_stream_fd_new_connecting  (gint            fd);
-GskStream   *eva_stream_fd_new_from_symbolic_address (GskSocketAddressSymbolic *symbolic,
+EvaStream   *eva_stream_fd_new_connecting  (gint            fd);
+EvaStream   *eva_stream_fd_new_from_symbolic_address (EvaSocketAddressSymbolic *symbolic,
                                                       GError                  **error);
 
 /* reading/writing from/to a file */
-GskStream   *eva_stream_fd_new_read_file   (const char     *filename,
+EvaStream   *eva_stream_fd_new_read_file   (const char     *filename,
 					    GError        **error);
-GskStream   *eva_stream_fd_new_write_file  (const char     *filename,
+EvaStream   *eva_stream_fd_new_write_file  (const char     *filename,
 					    gboolean        may_create,
 					    gboolean        should_truncate,
 					    GError        **error);
-GskStream   *eva_stream_fd_new_create_file (const char     *filename,
+EvaStream   *eva_stream_fd_new_create_file (const char     *filename,
 					    gboolean        may_exist,
 					    GError        **error);
 
 
 /*< private >*/
-GskStream * eva_stream_fd_new_open (const char     *filename,
+EvaStream * eva_stream_fd_new_open (const char     *filename,
 			            guint           open_flags,
 			            guint           permission,
 			            GError        **error);
 
-gboolean    eva_stream_fd_pipe     (GskStream     **read_side_out,
-                                    GskStream     **write_side_out,
+gboolean    eva_stream_fd_pipe     (EvaStream     **read_side_out,
+                                    EvaStream     **write_side_out,
 			            GError        **error);
 
-gboolean    eva_stream_fd_duplex_pipe (GskStream     **side_a_out,
-                                       GskStream     **side_b_out,
+gboolean    eva_stream_fd_duplex_pipe (EvaStream     **side_a_out,
+                                       EvaStream     **side_b_out,
 			               GError        **error);
-gboolean    eva_stream_fd_duplex_pipe_fd (GskStream     **side_a_out,
+gboolean    eva_stream_fd_duplex_pipe_fd (EvaStream     **side_a_out,
                                           int            *side_b_fd_out,
 			                  GError        **error);
 

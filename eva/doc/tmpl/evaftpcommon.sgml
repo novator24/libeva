@@ -17,7 +17,7 @@ Structures and definitions for the FTP protocol implementation.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskFtpCommand ##### -->
+<!-- ##### STRUCT EvaFtpCommand ##### -->
 <para>
 
 </para>
@@ -28,7 +28,7 @@ Structures and definitions for the FTP protocol implementation.
 @pathname: 
 @help_topic: 
 
-<!-- ##### ENUM GskFtpCommandType ##### -->
+<!-- ##### ENUM EvaFtpCommandType ##### -->
 <para>
 
 </para>
@@ -67,7 +67,7 @@ Structures and definitions for the FTP protocol implementation.
 @EVA_FTP_COMMAND_HELP: 
 @EVA_FTP_COMMAND_NOOP: 
 
-<!-- ##### ENUM GskFtpCharType ##### -->
+<!-- ##### ENUM EvaFtpCharType ##### -->
 <para>
 
 </para>
@@ -76,7 +76,7 @@ Structures and definitions for the FTP protocol implementation.
 @EVA_FTP_CHAR_TYPE_EBCDIC: 
 @EVA_FTP_CHAR_TYPE_IMAGE: 
 
-<!-- ##### ENUM GskFtpTerminalType ##### -->
+<!-- ##### ENUM EvaFtpTerminalType ##### -->
 <para>
 
 </para>
@@ -85,7 +85,7 @@ Structures and definitions for the FTP protocol implementation.
 @EVA_FTP_TERMINAL_TELNET: 
 @EVA_FTP_TERMINAL_CARRIAGE_CONTROL: 
 
-<!-- ##### ENUM GskFtpFileStructure ##### -->
+<!-- ##### ENUM EvaFtpFileStructure ##### -->
 <para>
 
 </para>
@@ -94,7 +94,7 @@ Structures and definitions for the FTP protocol implementation.
 @EVA_FTP_FILE_STRUCTURE_RECORD: 
 @EVA_FTP_FILE_STRUCTURE_PAGE: 
 
-<!-- ##### ENUM GskFtpTransferMode ##### -->
+<!-- ##### ENUM EvaFtpTransferMode ##### -->
 <para>
 
 </para>
@@ -240,7 +240,7 @@ Structures and definitions for the FTP protocol implementation.
 @command: 
 
 
-<!-- ##### STRUCT GskFtpReply ##### -->
+<!-- ##### STRUCT EvaFtpReply ##### -->
 <para>
 
 </para>

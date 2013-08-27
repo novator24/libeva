@@ -14,8 +14,8 @@
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-<link linkend="int">int</link>                 (<link linkend="GskForkFunc">*GskForkFunc</link>)                      (<link linkend="gpointer">gpointer</link> data);
-<link linkend="gint">gint</link>                <link linkend="eva-fork">eva_fork</link>                            (<link linkend="GskForkFunc">GskForkFunc</link> action,
+<link linkend="int">int</link>                 (<link linkend="EvaForkFunc">*EvaForkFunc</link>)                      (<link linkend="gpointer">gpointer</link> data);
+<link linkend="gint">gint</link>                <link linkend="eva-fork">eva_fork</link>                            (<link linkend="EvaForkFunc">EvaForkFunc</link> action,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GError">GError</link> **error);
 <link linkend="void">void</link>                <link linkend="eva-fork-add-cleanup-fd">eva_fork_add_cleanup_fd</link>             (<link linkend="int">int</link> fd);
@@ -44,9 +44,9 @@ a callback oriented fork interface.
 
 <refsect1 id="eva-evafork.details" role="details">
 <title role="details.title">Details</title>
-<refsect2 id="GskForkFunc" role="function">
-<title>GskForkFunc ()</title>
-<indexterm zone="GskForkFunc"><primary sortas="GskForkFunc">GskForkFunc</primary></indexterm><programlisting><link linkend="int">int</link>                 (*GskForkFunc)                      (<link linkend="gpointer">gpointer</link> data);</programlisting>
+<refsect2 id="EvaForkFunc" role="function">
+<title>EvaForkFunc ()</title>
+<indexterm zone="EvaForkFunc"><primary sortas="EvaForkFunc">EvaForkFunc</primary></indexterm><programlisting><link linkend="int">int</link>                 (*EvaForkFunc)                      (<link linkend="gpointer">gpointer</link> data);</programlisting>
 <para>
 Function to call from the background process.
 </para><variablelist role="params">
@@ -58,7 +58,7 @@ Function to call from the background process.
 </variablelist></refsect2>
 <refsect2 id="eva-fork" role="function">
 <title>eva_fork ()</title>
-<indexterm zone="eva-fork"><primary sortas="eva_fork">eva_fork</primary></indexterm><programlisting><link linkend="gint">gint</link>                eva_fork                            (<link linkend="GskForkFunc">GskForkFunc</link> action,
+<indexterm zone="eva-fork"><primary sortas="eva_fork">eva_fork</primary></indexterm><programlisting><link linkend="gint">gint</link>                eva_fork                            (<link linkend="EvaForkFunc">EvaForkFunc</link> action,
                                                          <link linkend="gpointer">gpointer</link> data,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>

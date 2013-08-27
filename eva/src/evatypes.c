@@ -21,15 +21,15 @@ eva_fd_get_type ()
 	NULL
 	};
       type = g_type_register_static (G_TYPE_INT,
-				     "GskFd",
+				     "EvaFd",
 				     &type_info,
 				     0);
     }
   return type;
 }
 
-typedef struct _GskParamSpecFd GskParamSpecFd;
-struct _GskParamSpecFd
+typedef struct _EvaParamSpecFd EvaParamSpecFd;
+struct _EvaParamSpecFd
 {
   GParamSpec parent_instance;
 };
@@ -77,7 +77,7 @@ eva_param_fd_get_type ()
   if (type == 0)
     {
       static GParamSpecTypeInfo pspec_info = {
-	sizeof (GskParamSpecFd),  /* instance_size */
+	sizeof (EvaParamSpecFd),  /* instance_size */
 	4,                        /* n_preallocs */
 	param_fd_init,            /* instance_init */
 	0,              	  /* value_type */
@@ -87,7 +87,7 @@ eva_param_fd_get_type ()
 	param_fd_values_cmp,      /* values_cmp */
       };
       pspec_info.value_type = EVA_TYPE_FD;
-      type = g_param_type_register_static ("GskParamFd", &pspec_info);
+      type = g_param_type_register_static ("EvaParamFd", &pspec_info);
     }
   return type;
 }

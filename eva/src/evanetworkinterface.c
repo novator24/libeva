@@ -76,8 +76,8 @@ get_IPPROTO_IP ()
  * returns: a newly allocated list of interfaces that
  * must be freed with eva_network_interface_set_destroy().
  */
-GskNetworkInterfaceSet *
-eva_network_interface_set_new(GskNetworkInterfaceFlags  flags)
+EvaNetworkInterfaceSet *
+eva_network_interface_set_new(EvaNetworkInterfaceFlags  flags)
 {
   GArray *ifreq_array;
   GArray *rv;
@@ -118,7 +118,7 @@ eva_network_interface_set_new(GskNetworkInterfaceFlags  flags)
     }
 
   /* now query each of those interfaces. */
-  rv = g_array_new (FALSE, FALSE, sizeof (GskNetworkInterface));
+  rv = g_array_new (FALSE, FALSE, sizeof (EvaNetworkInterface));
   for (i = 0; i < ifreq_array->len; i++)
     {
       struct ifreq *req_array = (struct ifreq *)(ifreq_array->data) + i;
@@ -129,7 +129,7 @@ eva_network_interface_set_new(GskNetworkInterfaceFlags  flags)
       gboolean has_multicast;
       gboolean is_p2p;
       guint if_flags;
-      GskNetworkInterface interface;
+      EvaNetworkInterface interface;
 
       /* XXX: we don't at all no how to handle a generic interface. */
       /* XXX: is this an IPv6 problem? */
@@ -238,10 +238,10 @@ eva_network_interface_set_new(GskNetworkInterfaceFlags  flags)
 
   g_array_free (ifreq_array, TRUE);
   {
-    GskNetworkInterfaceSet *set;
-    set = g_new (GskNetworkInterfaceSet, 1);
+    EvaNetworkInterfaceSet *set;
+    set = g_new (EvaNetworkInterfaceSet, 1);
     set->num_interfaces = rv->len;
-    set->interfaces = (GskNetworkInterface *) rv->data;
+    set->interfaces = (EvaNetworkInterface *) rv->data;
     return set;
   }
 }
@@ -253,7 +253,7 @@ eva_network_interface_set_new(GskNetworkInterfaceFlags  flags)
  * Free the memory used by the list of interfaces.
  */
 void
-eva_network_interface_set_destroy(GskNetworkInterfaceSet    *set)
+eva_network_interface_set_destroy(EvaNetworkInterfaceSet    *set)
 {
   guint i;
   for (i = 0; i < set->num_interfaces; i++)

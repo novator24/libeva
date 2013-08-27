@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskUrl
+EvaUrl
 
 <!-- ##### SECTION Short_Description ##### -->
 A Universal Resource Locator (or Identifier)
@@ -30,7 +30,7 @@ TODO: find a reference RFC for URL encoding.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskUrl ##### -->
+<!-- ##### STRUCT EvaUrl ##### -->
 <para>
 A URL (Universal Resource Locator).
 This structure contains a number of read-only, pre-parsed
@@ -42,42 +42,42 @@ and other usual benefits.
 </para>
 
 
-<!-- ##### ARG GskUrl:fragment ##### -->
+<!-- ##### ARG EvaUrl:fragment ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskUrl:host ##### -->
+<!-- ##### ARG EvaUrl:host ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskUrl:password ##### -->
+<!-- ##### ARG EvaUrl:password ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskUrl:path ##### -->
+<!-- ##### ARG EvaUrl:path ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskUrl:port ##### -->
+<!-- ##### ARG EvaUrl:port ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskUrl:query ##### -->
+<!-- ##### ARG EvaUrl:query ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG GskUrl:user-name ##### -->
+<!-- ##### ARG EvaUrl:user-name ##### -->
 <para>
 
 </para>
 
-<!-- ##### ENUM GskUrlScheme ##### -->
+<!-- ##### ENUM EvaUrlScheme ##### -->
 <para>
 Types of URLs that are known.
 (This is an extensible enum-- you can allocate new enum values
@@ -280,7 +280,7 @@ Characters which do not normally need escaping within a URL.
 @Returns: 
 
 
-<!-- ##### USER_FUNCTION GskUrlSuccess ##### -->
+<!-- ##### USER_FUNCTION EvaUrlSuccess ##### -->
 <para>
 Function to call with an input stream if the URL
 download request seems to be succeeding.
@@ -291,7 +291,7 @@ by the URL which was passed to eva_url_download().
 @user_data: data passed to eva_url_download().
 
 
-<!-- ##### USER_FUNCTION GskUrlFailure ##### -->
+<!-- ##### USER_FUNCTION EvaUrlFailure ##### -->
 <para>
 Function to call if the URL
 download seems to be failing.
@@ -312,10 +312,10 @@ download seems to be failing.
 @user_data: 
 
 
-<!-- ##### USER_FUNCTION GskUrlParser ##### -->
+<!-- ##### USER_FUNCTION EvaUrlParser ##### -->
 <para>
 Function to parse a string (of a given scheme)
-into a #GskUrl.  This is used to register new types
+into a #EvaUrl.  This is used to register new types
 of URL.  See eva_url_scheme_get_unique().
 </para>
 
@@ -325,9 +325,9 @@ of URL.  See eva_url_scheme_get_unique().
 @Returns: a newly allocated URL, or NULL on a parse error.
 
 
-<!-- ##### USER_FUNCTION GskUrlToString ##### -->
+<!-- ##### USER_FUNCTION EvaUrlToString ##### -->
 <para>
-Function to convert a #GskUrl into a NUL-terminated string.
+Function to convert a #EvaUrl into a NUL-terminated string.
 This is used to register new types
 of URL.  See eva_url_scheme_get_unique().
 </para>
@@ -369,13 +369,13 @@ of URL.  See eva_url_scheme_get_unique().
 @Returns: 
 
 
-<!-- ##### STRUCT GskUrlDownload ##### -->
+<!-- ##### STRUCT EvaUrlDownload ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### USER_FUNCTION GskUrlDownloadMethod ##### -->
+<!-- ##### USER_FUNCTION EvaUrlDownloadMethod ##### -->
 <para>
 Function to begin downloading a given URL.
 </para>

@@ -32,7 +32,7 @@ ie your IP address (with port set to 0).
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskNetworkInterface ##### -->
+<!-- ##### STRUCT EvaNetworkInterface ##### -->
 <para>
 Information about a single network interface.
 </para>
@@ -43,7 +43,7 @@ Information about a single network interface.
 @p2p_address: the remote IP address of a point-to-point connection.
 @broadcast: the broadcast IP address.
 
-<!-- ##### STRUCT GskNetworkInterfaceSet ##### -->
+<!-- ##### STRUCT EvaNetworkInterfaceSet ##### -->
 <para>
 Information about a number of network interfaces.
 </para>
@@ -51,7 +51,7 @@ Information about a number of network interfaces.
 @num_interfaces: the number of interfaces.
 @interfaces: the interfaces.
 
-<!-- ##### ENUM GskNetworkInterfaceFlags ##### -->
+<!-- ##### ENUM EvaNetworkInterfaceFlags ##### -->
 <para>
 Constraints governing which interfaces to return.
 </para>

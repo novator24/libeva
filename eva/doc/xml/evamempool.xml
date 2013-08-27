@@ -16,27 +16,27 @@
 <synopsis>
 #define             <link linkend="EVA-MEM-POOL-FIXED-STATIC-INIT--CAPS">EVA_MEM_POOL_FIXED_STATIC_INIT</link>      (size)
 #define             <link linkend="EVA-MEM-POOL-STATIC-INIT--CAPS">EVA_MEM_POOL_STATIC_INIT</link>
-                    <link linkend="GskMemPool">GskMemPool</link>;
-                    <link linkend="GskMemPoolFixed">GskMemPoolFixed</link>;
-<link linkend="void">void</link>                <link linkend="eva-mem-pool-construct">eva_mem_pool_construct</link>              (<link linkend="GskMemPool">GskMemPool</link> *pool);
+                    <link linkend="EvaMemPool">EvaMemPool</link>;
+                    <link linkend="EvaMemPoolFixed">EvaMemPoolFixed</link>;
+<link linkend="void">void</link>                <link linkend="eva-mem-pool-construct">eva_mem_pool_construct</link>              (<link linkend="EvaMemPool">EvaMemPool</link> *pool);
 <link linkend="void">void</link>                <link linkend="eva-mem-pool-construct-with-scratch-buf">eva_mem_pool_construct_with_scratch_buf</link>
-                                                        (<link linkend="GskMemPool">GskMemPool</link> *pool,
+                                                        (<link linkend="EvaMemPool">EvaMemPool</link> *pool,
                                                          <link linkend="gpointer">gpointer</link> buffer,
                                                          <link linkend="gsize">gsize</link> buffer_size);
-<link linkend="gpointer">gpointer</link>            <link linkend="eva-mem-pool-alloc">eva_mem_pool_alloc</link>                  (<link linkend="GskMemPool">GskMemPool</link> *pool,
+<link linkend="gpointer">gpointer</link>            <link linkend="eva-mem-pool-alloc">eva_mem_pool_alloc</link>                  (<link linkend="EvaMemPool">EvaMemPool</link> *pool,
                                                          <link linkend="gsize">gsize</link> size);
-<link linkend="gpointer">gpointer</link>            <link linkend="eva-mem-pool-alloc0">eva_mem_pool_alloc0</link>                 (<link linkend="GskMemPool">GskMemPool</link> *pool,
+<link linkend="gpointer">gpointer</link>            <link linkend="eva-mem-pool-alloc0">eva_mem_pool_alloc0</link>                 (<link linkend="EvaMemPool">EvaMemPool</link> *pool,
                                                          <link linkend="gsize">gsize</link> size);
-<link linkend="char">char</link> *              <link linkend="eva-mem-pool-strdup">eva_mem_pool_strdup</link>                 (<link linkend="GskMemPool">GskMemPool</link> *pool,
+<link linkend="char">char</link> *              <link linkend="eva-mem-pool-strdup">eva_mem_pool_strdup</link>                 (<link linkend="EvaMemPool">EvaMemPool</link> *pool,
                                                          const <link linkend="char">char</link> *str);
-<link linkend="void">void</link>                <link linkend="eva-mem-pool-destruct">eva_mem_pool_destruct</link>               (<link linkend="GskMemPool">GskMemPool</link> *pool);
-<link linkend="void">void</link>                <link linkend="eva-mem-pool-fixed-construct">eva_mem_pool_fixed_construct</link>        (<link linkend="GskMemPoolFixed">GskMemPoolFixed</link> *pool,
+<link linkend="void">void</link>                <link linkend="eva-mem-pool-destruct">eva_mem_pool_destruct</link>               (<link linkend="EvaMemPool">EvaMemPool</link> *pool);
+<link linkend="void">void</link>                <link linkend="eva-mem-pool-fixed-construct">eva_mem_pool_fixed_construct</link>        (<link linkend="EvaMemPoolFixed">EvaMemPoolFixed</link> *pool,
                                                          <link linkend="gsize">gsize</link> size);
-<link linkend="gpointer">gpointer</link>            <link linkend="eva-mem-pool-fixed-alloc">eva_mem_pool_fixed_alloc</link>            (<link linkend="GskMemPoolFixed">GskMemPoolFixed</link> *pool);
-<link linkend="gpointer">gpointer</link>            <link linkend="eva-mem-pool-fixed-alloc0">eva_mem_pool_fixed_alloc0</link>           (<link linkend="GskMemPoolFixed">GskMemPoolFixed</link> *pool);
-<link linkend="void">void</link>                <link linkend="eva-mem-pool-fixed-free">eva_mem_pool_fixed_free</link>             (<link linkend="GskMemPoolFixed">GskMemPoolFixed</link> *pool,
+<link linkend="gpointer">gpointer</link>            <link linkend="eva-mem-pool-fixed-alloc">eva_mem_pool_fixed_alloc</link>            (<link linkend="EvaMemPoolFixed">EvaMemPoolFixed</link> *pool);
+<link linkend="gpointer">gpointer</link>            <link linkend="eva-mem-pool-fixed-alloc0">eva_mem_pool_fixed_alloc0</link>           (<link linkend="EvaMemPoolFixed">EvaMemPoolFixed</link> *pool);
+<link linkend="void">void</link>                <link linkend="eva-mem-pool-fixed-free">eva_mem_pool_fixed_free</link>             (<link linkend="EvaMemPoolFixed">EvaMemPoolFixed</link> *pool,
                                                          <link linkend="gpointer">gpointer</link> from_pool);
-<link linkend="void">void</link>                <link linkend="eva-mem-pool-fixed-destruct">eva_mem_pool_fixed_destruct</link>         (<link linkend="GskMemPoolFixed">GskMemPoolFixed</link> *pool);
+<link linkend="void">void</link>                <link linkend="eva-mem-pool-fixed-destruct">eva_mem_pool_fixed_destruct</link>         (<link linkend="EvaMemPoolFixed">EvaMemPoolFixed</link> *pool);
 </synopsis>
 </refsynopsisdiv>
 
@@ -81,7 +81,7 @@ member-wise given its elements' size.
 <para>
 Example:
 <programlisting>
-static GskMemPoolFixed request_pool = EVA_MEM_POOL_FIXED_STATIC_INIT(sizeof (Request));
+static EvaMemPoolFixed request_pool = EVA_MEM_POOL_FIXED_STATIC_INIT(sizeof (Request));
 ...
 Request *request = eva_mem_pool_fixed_alloc (&amp;request_pool);
 ...
@@ -104,27 +104,27 @@ Example:
 <programlisting>
 void foo ()
 {
-  GskMemPool mem_pool = EVA_MEM_POOL_STATIC_INIT;
+  EvaMemPool mem_pool = EVA_MEM_POOL_STATIC_INIT;
   void *garbage = eva_mem_pool_alloc (&amp;mem_pool, 20);
   ...
   eva_mem_pool_destruct (&amp;mem_pool);
 }
 </programlisting>
 </para></refsect2>
-<refsect2 id="GskMemPool" role="struct">
-<title>GskMemPool</title>
-<indexterm zone="GskMemPool"><primary sortas="GskMemPool">GskMemPool</primary></indexterm><programlisting>typedef struct {
-} GskMemPool;
+<refsect2 id="EvaMemPool" role="struct">
+<title>EvaMemPool</title>
+<indexterm zone="EvaMemPool"><primary sortas="EvaMemPool">EvaMemPool</primary></indexterm><programlisting>typedef struct {
+} EvaMemPool;
 </programlisting>
 <para>
 A memory pool.
 It should be created on the stack or inside another
 object.
 </para></refsect2>
-<refsect2 id="GskMemPoolFixed" role="struct">
-<title>GskMemPoolFixed</title>
-<indexterm zone="GskMemPoolFixed"><primary sortas="GskMemPoolFixed">GskMemPoolFixed</primary></indexterm><programlisting>typedef struct {
-} GskMemPoolFixed;
+<refsect2 id="EvaMemPoolFixed" role="struct">
+<title>EvaMemPoolFixed</title>
+<indexterm zone="EvaMemPoolFixed"><primary sortas="EvaMemPoolFixed">EvaMemPoolFixed</primary></indexterm><programlisting>typedef struct {
+} EvaMemPoolFixed;
 </programlisting>
 <para>
 A fixed-size memory pool.
@@ -133,7 +133,7 @@ object.
 </para></refsect2>
 <refsect2 id="eva-mem-pool-construct" role="function">
 <title>eva_mem_pool_construct ()</title>
-<indexterm zone="eva-mem-pool-construct"><primary sortas="eva_mem_pool_construct">eva_mem_pool_construct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mem_pool_construct              (<link linkend="GskMemPool">GskMemPool</link> *pool);</programlisting>
+<indexterm zone="eva-mem-pool-construct"><primary sortas="eva_mem_pool_construct">eva_mem_pool_construct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mem_pool_construct              (<link linkend="EvaMemPool">EvaMemPool</link> *pool);</programlisting>
 <para>
 Initialize the members of a mem-pool.
 (The memory for the mem-pool structure itself
@@ -148,7 +148,7 @@ structure or on the stack.)</para>
 <refsect2 id="eva-mem-pool-construct-with-scratch-buf" role="function">
 <title>eva_mem_pool_construct_with_scratch_buf ()</title>
 <indexterm zone="eva-mem-pool-construct-with-scratch-buf"><primary sortas="eva_mem_pool_construct_with_scratch_buf">eva_mem_pool_construct_with_scratch_buf</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mem_pool_construct_with_scratch_buf
-                                                        (<link linkend="GskMemPool">GskMemPool</link> *pool,
+                                                        (<link linkend="EvaMemPool">EvaMemPool</link> *pool,
                                                          <link linkend="gpointer">gpointer</link> buffer,
                                                          <link linkend="gsize">gsize</link> buffer_size);</programlisting>
 <para>
@@ -171,7 +171,7 @@ to use as storage.
 </variablelist></refsect2>
 <refsect2 id="eva-mem-pool-alloc" role="function">
 <title>eva_mem_pool_alloc ()</title>
-<indexterm zone="eva-mem-pool-alloc"><primary sortas="eva_mem_pool_alloc">eva_mem_pool_alloc</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_mem_pool_alloc                  (<link linkend="GskMemPool">GskMemPool</link> *pool,
+<indexterm zone="eva-mem-pool-alloc"><primary sortas="eva_mem_pool_alloc">eva_mem_pool_alloc</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_mem_pool_alloc                  (<link linkend="EvaMemPool">EvaMemPool</link> *pool,
                                                          <link linkend="gsize">gsize</link> size);</programlisting>
 <para>
 Allocate memory from a pool,
@@ -190,7 +190,7 @@ out-of-memory condition.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-mem-pool-alloc0" role="function">
 <title>eva_mem_pool_alloc0 ()</title>
-<indexterm zone="eva-mem-pool-alloc0"><primary sortas="eva_mem_pool_alloc0">eva_mem_pool_alloc0</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_mem_pool_alloc0                 (<link linkend="GskMemPool">GskMemPool</link> *pool,
+<indexterm zone="eva-mem-pool-alloc0"><primary sortas="eva_mem_pool_alloc0">eva_mem_pool_alloc0</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_mem_pool_alloc0                 (<link linkend="EvaMemPool">EvaMemPool</link> *pool,
                                                          <link linkend="gsize">gsize</link> size);</programlisting>
 <para>
 Allocate memory from a pool, and initializes it to 0.
@@ -209,7 +209,7 @@ out-of-memory condition.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-mem-pool-strdup" role="function">
 <title>eva_mem_pool_strdup ()</title>
-<indexterm zone="eva-mem-pool-strdup"><primary sortas="eva_mem_pool_strdup">eva_mem_pool_strdup</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_mem_pool_strdup                 (<link linkend="GskMemPool">GskMemPool</link> *pool,
+<indexterm zone="eva-mem-pool-strdup"><primary sortas="eva_mem_pool_strdup">eva_mem_pool_strdup</primary></indexterm><programlisting><link linkend="char">char</link> *              eva_mem_pool_strdup                 (<link linkend="EvaMemPool">EvaMemPool</link> *pool,
                                                          const <link linkend="char">char</link> *str);</programlisting>
 <para>
 Allocated space from the mem-pool to store
@@ -231,7 +231,7 @@ If <parameter>str</parameter> is NULL, then NULL is returned.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-mem-pool-destruct" role="function">
 <title>eva_mem_pool_destruct ()</title>
-<indexterm zone="eva-mem-pool-destruct"><primary sortas="eva_mem_pool_destruct">eva_mem_pool_destruct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mem_pool_destruct               (<link linkend="GskMemPool">GskMemPool</link> *pool);</programlisting>
+<indexterm zone="eva-mem-pool-destruct"><primary sortas="eva_mem_pool_destruct">eva_mem_pool_destruct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mem_pool_destruct               (<link linkend="EvaMemPool">EvaMemPool</link> *pool);</programlisting>
 <para>
 Destroy all chunk associated with the given mem-pool.</para>
 <para>
@@ -242,7 +242,7 @@ Destroy all chunk associated with the given mem-pool.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-mem-pool-fixed-construct" role="function">
 <title>eva_mem_pool_fixed_construct ()</title>
-<indexterm zone="eva-mem-pool-fixed-construct"><primary sortas="eva_mem_pool_fixed_construct">eva_mem_pool_fixed_construct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mem_pool_fixed_construct        (<link linkend="GskMemPoolFixed">GskMemPoolFixed</link> *pool,
+<indexterm zone="eva-mem-pool-fixed-construct"><primary sortas="eva_mem_pool_fixed_construct">eva_mem_pool_fixed_construct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mem_pool_fixed_construct        (<link linkend="EvaMemPoolFixed">EvaMemPoolFixed</link> *pool,
                                                          <link linkend="gsize">gsize</link> size);</programlisting>
 <para>
 Set up a fixed-size memory allocator for use.</para>
@@ -257,7 +257,7 @@ Set up a fixed-size memory allocator for use.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-mem-pool-fixed-alloc" role="function">
 <title>eva_mem_pool_fixed_alloc ()</title>
-<indexterm zone="eva-mem-pool-fixed-alloc"><primary sortas="eva_mem_pool_fixed_alloc">eva_mem_pool_fixed_alloc</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_mem_pool_fixed_alloc            (<link linkend="GskMemPoolFixed">GskMemPoolFixed</link> *pool);</programlisting>
+<indexterm zone="eva-mem-pool-fixed-alloc"><primary sortas="eva_mem_pool_fixed_alloc">eva_mem_pool_fixed_alloc</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_mem_pool_fixed_alloc            (<link linkend="EvaMemPoolFixed">EvaMemPoolFixed</link> *pool);</programlisting>
 <para>
 Allocate a block of the Fixed-Pool's size.</para>
 <para>
@@ -270,7 +270,7 @@ Allocate a block of the Fixed-Pool's size.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-mem-pool-fixed-alloc0" role="function">
 <title>eva_mem_pool_fixed_alloc0 ()</title>
-<indexterm zone="eva-mem-pool-fixed-alloc0"><primary sortas="eva_mem_pool_fixed_alloc0">eva_mem_pool_fixed_alloc0</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_mem_pool_fixed_alloc0           (<link linkend="GskMemPoolFixed">GskMemPoolFixed</link> *pool);</programlisting>
+<indexterm zone="eva-mem-pool-fixed-alloc0"><primary sortas="eva_mem_pool_fixed_alloc0">eva_mem_pool_fixed_alloc0</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            eva_mem_pool_fixed_alloc0           (<link linkend="EvaMemPoolFixed">EvaMemPoolFixed</link> *pool);</programlisting>
 <para>
 Allocate a block of the Fixed-Pool's size.
 Set its contents to 0.</para>
@@ -284,7 +284,7 @@ Set its contents to 0.</para>
 </variablelist></refsect2>
 <refsect2 id="eva-mem-pool-fixed-free" role="function">
 <title>eva_mem_pool_fixed_free ()</title>
-<indexterm zone="eva-mem-pool-fixed-free"><primary sortas="eva_mem_pool_fixed_free">eva_mem_pool_fixed_free</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mem_pool_fixed_free             (<link linkend="GskMemPoolFixed">GskMemPoolFixed</link> *pool,
+<indexterm zone="eva-mem-pool-fixed-free"><primary sortas="eva_mem_pool_fixed_free">eva_mem_pool_fixed_free</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mem_pool_fixed_free             (<link linkend="EvaMemPoolFixed">EvaMemPoolFixed</link> *pool,
                                                          <link linkend="gpointer">gpointer</link> from_pool);</programlisting>
 <para>
 Recycle some of the pool's memory back to it.</para>
@@ -300,7 +300,7 @@ It must have been allocated from this pool.
 </variablelist></refsect2>
 <refsect2 id="eva-mem-pool-fixed-destruct" role="function">
 <title>eva_mem_pool_fixed_destruct ()</title>
-<indexterm zone="eva-mem-pool-fixed-destruct"><primary sortas="eva_mem_pool_fixed_destruct">eva_mem_pool_fixed_destruct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mem_pool_fixed_destruct         (<link linkend="GskMemPoolFixed">GskMemPoolFixed</link> *pool);</programlisting>
+<indexterm zone="eva-mem-pool-fixed-destruct"><primary sortas="eva_mem_pool_fixed_destruct">eva_mem_pool_fixed_destruct</primary></indexterm><programlisting><link linkend="void">void</link>                eva_mem_pool_fixed_destruct         (<link linkend="EvaMemPoolFixed">EvaMemPoolFixed</link> *pool);</programlisting>
 <para>
 Free all memory associated with this pool.</para>
 <para>

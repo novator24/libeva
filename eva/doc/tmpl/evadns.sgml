@@ -27,7 +27,7 @@ to try.
 
 
 
-<!-- ##### STRUCT GskDnsMessage ##### -->
+<!-- ##### STRUCT EvaDnsMessage ##### -->
 <para>
 This structure encapsulates a DNS packet, either a query or a response.
 </para>
@@ -53,12 +53,12 @@ Recursion Desired - this bit may be set in a query and
 is copied into the response.  If RD is set, it directs
 the name server to pursue the query recursively.
 Recursive query support is optional.
-@questions: List of #GskDnsQuestion  For a query, this is the most important section.
+@questions: List of #EvaDnsQuestion  For a query, this is the most important section.
 Questions are often found in a response; they should just be copies of questions
 from the corresponding query.
-@error_code: in a response, this is a #GskDnsResponseCode telling what went
+@error_code: in a response, this is a #EvaDnsResponseCode telling what went
 wrong, if anything.  0 means "no error".
-@answers: In a response, this is a list of #GskDnsResourceRecord's.
+@answers: In a response, this is a list of #EvaDnsResourceRecord's.
 They should lead toward answering the question in the query.
 @authority: resource records which give information about 
 authority nameservers relevant to the @answers.
@@ -66,7 +66,7 @@ authority nameservers relevant to the @answers.
 For example, it is typical to give an address (an A record) for any
 nameservers (NS records) given in prior sections.
 
-<!-- ##### STRUCT GskDnsResourceRecord ##### -->
+<!-- ##### STRUCT EvaDnsResourceRecord ##### -->
 <para>
 An atom of information about a host in the DNS system.
 The exact type of information depends on @type,
@@ -86,7 +86,7 @@ now obsolete).
 @domain_name: 
 @txt: 
 
-<!-- ##### STRUCT GskDnsQuestion ##### -->
+<!-- ##### STRUCT EvaDnsQuestion ##### -->
 <para>
 A question, asked by a client resolver of a server.
 </para>
@@ -95,7 +95,7 @@ A question, asked by a client resolver of a server.
 @query_type: what information about the host is wanted.
 @query_class: which address namespace this question is about.
 
-<!-- ##### ENUM GskDnsResourceRecordType ##### -->
+<!-- ##### ENUM EvaDnsResourceRecordType ##### -->
 <para>
 This is a list of types of information that may be
 available about some domain names.
@@ -103,8 +103,8 @@ available about some domain names.
 <para>
 This is the list of types of resource-records,
 and it doubles as a list of types of questions that can
-be asked.  (See GskDnsResourceRecord::type
-and GskDnsQuestion::query_type)
+be asked.  (See EvaDnsResourceRecord::type
+and EvaDnsQuestion::query_type)
 </para>
 
 @EVA_DNS_RR_HOST_ADDRESS: 
@@ -137,7 +137,7 @@ XXX
 If reforming a query, this can be used to obtain records of any
 type about the domain name.
 
-<!-- ##### ENUM GskDnsResourceClass ##### -->
+<!-- ##### ENUM EvaDnsResourceClass ##### -->
 <para>
 What type of addresses are we considering.
 Almost always EVA_DNS_CLASS_INTERNET.
@@ -386,7 +386,7 @@ Test whether @serial_1 is less that @serial_2.  See RFC 1982.
 @last_owner: 
 
 
-<!-- ##### ENUM GskDnsResponseCode ##### -->
+<!-- ##### ENUM EvaDnsResponseCode ##### -->
 <para>
 Types of errors that can be encountered from the DNS server.
 (From RFC 1035 Section 4.1.1)

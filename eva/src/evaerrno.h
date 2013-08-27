@@ -23,8 +23,8 @@ void eva_errno_fd_creation_failed_errno (int e);
 
 /* mechanism to get notification when the file-descriptors
    run out.  default behavior is to abort. */
-typedef void (*GskErrnoFdCreateFailedFunc) (gboolean system_wide);
-void eva_errno_trap_fd_creation_failed (GskErrnoFdCreateFailedFunc);
+typedef void (*EvaErrnoFdCreateFailedFunc) (gboolean system_wide);
+void eva_errno_trap_fd_creation_failed (EvaErrnoFdCreateFailedFunc);
 
 
 

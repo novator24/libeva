@@ -14,13 +14,13 @@ Unless the packet_queue is bound, it is unlikely to ever be readable.
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
-GskIO
+EvaIO
 </para>
 
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskPacketQueueClass ##### -->
+<!-- ##### STRUCT EvaPacketQueueClass ##### -->
 <para>
 Base class for an object which can input and output packets.
 </para>
@@ -30,7 +30,7 @@ Base class for an object which can input and output packets.
 @read: read an incoming packet.
 @write: write an outgoing packet.
 
-<!-- ##### STRUCT GskPacketQueue ##### -->
+<!-- ##### STRUCT EvaPacketQueue ##### -->
 <para>
 Abstract instance which can read and write packets.
 </para>

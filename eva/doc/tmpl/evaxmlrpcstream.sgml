@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-GskXmlrpcStream
+EvaXmlrpcStream
 
 <!-- ##### SECTION Short_Description ##### -->
 a stream of XMLRPC method calls and responses.
@@ -23,7 +23,7 @@ if you please.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GskXmlrpcStreamClass ##### -->
+<!-- ##### STRUCT EvaXmlrpcStreamClass ##### -->
 <para>
 
 </para>
@@ -32,7 +32,7 @@ if you please.
 @set_poll_requestable: 
 @shutdown_requestable: 
 
-<!-- ##### STRUCT GskXmlrpcStream ##### -->
+<!-- ##### STRUCT EvaXmlrpcStream ##### -->
 <para>
 
 </para>
@@ -49,10 +49,10 @@ if you please.
 
 <!-- ##### MACRO EVA_XMLRPC_STREAM_REQUEST_HOOK ##### -->
 <para>
-Get the #GskHook for the request-available end of the stream.
+Get the #EvaHook for the request-available end of the stream.
 </para>
 
-@stream: #GskXmlrpcStream from which to obtain the hook.
+@stream: #EvaXmlrpcStream from which to obtain the hook.
 
 
 <!-- ##### FUNCTION eva_xmlrpc_stream_get_request ##### -->
@@ -74,7 +74,7 @@ Get the #GskHook for the request-available end of the stream.
 @response: 
 
 
-<!-- ##### USER_FUNCTION GskXmlrpcResponseNotify ##### -->
+<!-- ##### USER_FUNCTION EvaXmlrpcResponseNotify ##### -->
 <para>
 
 </para>

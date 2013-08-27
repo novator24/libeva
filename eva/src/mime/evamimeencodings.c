@@ -22,8 +22,8 @@
  */
 gboolean
 eva_mime_make_transfer_encoding_decoders (const char *encoding,
-		                          GskStream **write_end_out,
-		                          GskStream **read_end_out,
+		                          EvaStream **write_end_out,
+		                          EvaStream **read_end_out,
 		                          GError    **error)
 {
   if (encoding == NULL
@@ -72,8 +72,8 @@ eva_mime_make_transfer_encoding_decoders (const char *encoding,
  */
 gboolean
 eva_mime_make_transfer_encoding_encoders (const char *encoding,
-		                          GskStream **write_end_out,
-		                          GskStream **read_end_out,
+		                          EvaStream **write_end_out,
+		                          EvaStream **read_end_out,
 					  const char *bdy_str,
 		                          GError    **error)
 {

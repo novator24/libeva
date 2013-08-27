@@ -13,7 +13,7 @@ static void handle_disconnect (void) { g_message ("disconnected"); }
 
 int main(int argc, char **argv)
 {
-  GskStream *stream;
+  EvaStream *stream;
   eva_init_without_threads (&argc, &argv);
 
   if (argc != 3)
