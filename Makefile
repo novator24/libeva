@@ -2,7 +2,7 @@ CC ?= gcc
 PREFIX ?= /usr/local
 GLIB_DIR ?= /usr
 CFLAGS = -g -std=c99 -fPIC -I$(GLIB_DIR)/lib/glib-2.0/include -I$(GLIB_DIR)/include/glib-2.0 -Isrc
-LDFLAGS = -Wl,-rpath -Wl,.
+LDFLAGS = -Wl,-rpath,$(GLIB_DIR)/lib -Wl,-rpath,. -lglib-2.0 -L$(GLIB_DIR)/lib
 OBJS =  evahello.o \
 	evathreadpool.o \
 	evainit.o \
