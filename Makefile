@@ -63,9 +63,9 @@ DNSOBJS = dns_evadnsclient.o \
 	dns_evadnsresolver.o 
 
 DNSINCS = src/eva/dns/evadnsclient.h \
-	dns_evadns.h \
-	dns_evadnsrrcache.h \
-	dns_evadnsresolver.h
+	src/eva/dns/evadns.h \
+	src/eva/dns/evadnsrrcache.h \
+	src/eva/dns/evadnsresolver.h
 
 all: libeva.a libeva.so
 
