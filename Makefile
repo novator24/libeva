@@ -1,7 +1,7 @@
 CC ?= gcc
 PREFIX ?= /usr/local
 GLIB_DIR ?= /usr
-CFLAGS = -g -fPIC -I$(GLIB_DIR)/lib/glib-2.0/include -I$(GLIB_DIR)/include/glib-2.0 -Isrc
+CFLAGS = -g -std=c99 -fPIC -I$(GLIB_DIR)/lib/glib-2.0/include -I$(GLIB_DIR)/include/glib-2.0 -Isrc
 LDFLAGS = -Wl,-rpath -Wl,.
 OBJS =  evahello.o \
 	evathreadpool.o \
