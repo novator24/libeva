@@ -1,11 +1,11 @@
 CC ?= gcc
 PREFIX ?= /usr/local
-CFLAGS = -g -fPIC -I.
+CFLAGS = -g -fPIC -Isrc
 LDFLAGS = -Wl,-rpath -Wl,.
 OBJS = \
         evahello.o                 
 INCS = \
-        evahello.h               
+        src/eva/evahello.h               
 
 all: libeva.a libeva.so
 
@@ -29,6 +29,6 @@ libeva.a: $(OBJS)
 libeva.so: $(OBJS)
 	$(CC) $(LDFLAGS) -o $@ $^ -Wl,-soname=$@ -Wl,-h -Wl,$@ -shared -L. -lpthread -ldl -lstdc++
 
-evahello.o: evahello.c evahello.h
-	$(CC) -c $(CFLAGS) -o $@ evahello.c
+evahello.o: src/eva/evahello.c src/eva/evahello.h
+	$(CC) -c $(CFLAGS) -o $@ src/eva/evahello.c
 
