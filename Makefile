@@ -73,8 +73,8 @@ clean:
 	-rm -f *.o *.so *.a libeva.so.* libeva.a
 
 install: libeva.a libeva.so
-	mkdir -p ${PREFIX}/include
-	mkdir -p ${PREFIX}/include/dns
+	mkdir -p ${PREFIX}/include/eva
+	mkdir -p ${PREFIX}/include/eva/dns
 	mkdir -p ${PREFIX}/lib
 	rm -f ${PREFIX}/lib/libeva.a
 	rm -f ${PREFIX}/lib/libeva.so
@@ -82,8 +82,8 @@ install: libeva.a libeva.so
 	ln -s ${PREFIX}/lib/libeva-0.1-1.a ${PREFIX}/lib/libeva.a
 	cp libeva.so ${PREFIX}/lib/libeva-0.1-1.so
 	ln -s ${PREFIX}/lib/libeva-0.1-1.so ${PREFIX}/lib/libeva.so
-	cp ${INCS} ${PREFIX}/include
-	cp ${DNSINCS} ${PREFIX}/include/dns
+	cp ${INCS} ${PREFIX}/include/eva
+	cp ${DNSINCS} ${PREFIX}/include/eva/dns
 
 libeva.a: $(OBJS) $(DNSOBJS)
 	ar cr $@ $^
