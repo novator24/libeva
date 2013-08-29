@@ -89,7 +89,7 @@ libeva.a: $(OBJS) $(DNSOBJS)
 	ar cr $@ $^
 
 libeva.so: $(OBJS) $(DNSOBJS)
-	$(CC) $(LDFLAGS) -o $@ $^ -Wl,-soname=$@ -Wl,-h -Wl,$@ -shared -L. -lpthread -ldl -lstdc++
+	$(CC) $(LDFLAGS) -o $@ $^ -Wl,-soname=$@ -Wl,-h -Wl,$@ -shared -L. -lpthread -ldl #-lstdc++
 
 evahello.o: src/eva/evahello.c src/eva/evahello.h
 	$(CC) -c $(CFLAGS) -o $@ src/eva/evahello.c
